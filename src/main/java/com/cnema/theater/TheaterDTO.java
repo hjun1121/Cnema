@@ -4,8 +4,8 @@ public class TheaterDTO {
 	private int num;
 	private int area;
 	private int location;
-	private int x_position;
-	private int y_position;
+	private double x_position;
+	private double y_position;
 	
 	public int getNum() {
 		return num;
@@ -25,16 +25,17 @@ public class TheaterDTO {
 	public void setLocation(int location) {
 		this.location = location;
 	}
-	public int getX_position() {
+	public double getX_position() {
 		return x_position;
 	}
-	public void setX_position(int x_position) {
+	public void setX_position(double x_position) {
 		this.x_position = x_position;
 	}
-	public int getY_position() {
+	public double getY_position() {
 		return y_position;
 	}
-	public void setY_position(int y_position) {
+	public void setY_position(double y_position) {
 		this.y_position = y_position;
 	}
+
 }
