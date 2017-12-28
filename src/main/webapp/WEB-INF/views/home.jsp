@@ -10,5 +10,7 @@
 	<a href="member/memberJoin">Join</a>
 	<a href="member/memberLogin">Login</a>
 	<a href="myPage/myPageView">My Page</a>
+	씨네마!
+
 </body>
 </html>
