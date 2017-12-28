@@ -5,6 +5,6 @@
 	<title>영화 그 이상의 감동. CNEMA</title>
 </head>
 <body>
-<a href="myPage/myPageView">My Page</a>
+<a href="member/myPageView">My Page</a>
 </body>
 </html>

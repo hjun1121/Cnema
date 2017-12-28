@@ -14,9 +14,13 @@ public class MemberController {
 	@Inject
 	private MemberService memberService;
 	
-	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public void selectOne(){
-		
+	@RequestMapping(value="myPageView", method=RequestMethod.GET)
+	public void selectOne(String id){
+		try {
+			memberService.selectOne(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
