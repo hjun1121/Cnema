@@ -20,10 +20,6 @@ public class MovieService {
 	
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
-//		RowNum rowNum = listData.makeRow();
-//		Pager pager = listData.makePage(noticeDAO.totalCount(rowNum));
-//		System.out.println(rowNum.getKind());
-//		System.out.println(rowNum.getSearch());
 		List<MovieDTO> ar = movieDAO.selectList();
 		mv.addObject("list", ar);
 		mv.setViewName("movie/movie_chart");
