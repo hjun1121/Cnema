@@ -11,6 +11,14 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="memberMapper.";
 	
+	public int join(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"join", memberDTO);
+	}
+	
+	public int login(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"login", memberDTO);
+	}
+	
 	public MemberDTO selectOne(String id) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"selectOne", id);
 	}
