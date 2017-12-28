@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>ìí ê·¸ ì´ìì ê°ë. CNEMA</title>
+	<title>김시네마. CNEMA</title>
 </head>
 <body>
 <h1>
