@@ -2,14 +2,9 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>영화 그 이상의 감동. CNEMA</title>
 </head>
 <body>
-<h1>
-	jkjk12z
-
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<a href="myPage/myPageView">My Page</a>
 </body>
 </html>
