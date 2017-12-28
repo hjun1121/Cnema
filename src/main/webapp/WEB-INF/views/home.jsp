@@ -6,8 +6,7 @@
 </head>
 <body>
 <h1>
-	jkjk12z
-
+	씨네마!
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
