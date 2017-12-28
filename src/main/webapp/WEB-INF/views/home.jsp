@@ -2,7 +2,7 @@
 <html>
 <head>
 </head>
-<title>영화 그이상의 감동. CNEMA</title>
+	<title>영화 그이상의 감동. CNEMA</title>
 <body>
 	<a href="member/myPageView">My Page</a>
 	<a href="member/memberJoin">Join</a>
