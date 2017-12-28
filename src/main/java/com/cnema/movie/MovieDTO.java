@@ -17,8 +17,8 @@ public class MovieDTO {
 	private int type;
 	private String contents;
 	private int age_limit;
-	
-	
+
+
 	public int getM_num() {
 		return m_num;
 	}
