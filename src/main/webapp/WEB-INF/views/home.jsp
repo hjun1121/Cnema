@@ -18,7 +18,7 @@
 		<a href="member/memberLogin">Login</a>
 	</c:if>	
 	<c:if test="${!empty member }">
-		<a href="member/myPageView">My Page</a>
+		<a href="member/myPageView?id=${member.id }">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
 </body>
