@@ -10,8 +10,13 @@
 	<a href="">리뷰</a>
 
 	<!-- 형준꺼 -->
+<<<<<<< HEAD
 	<a href="">빠른예매</a>
 	<a href="">상영시간표</a>
+=======
+	<a href="theater/quickReserve">빠른예매</a>
+	<a href="theater/scheduleList">상영시간표</a>
+>>>>>>> parent of 2a9e146... quick reserve
 	
 	<c:if test="${empty member }">
 		<a href="member/memberJoin">Join</a>
