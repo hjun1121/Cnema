@@ -29,7 +29,7 @@ public class MovieController {
 		MemberDTO memberDTO = null;
 		id="hseong";
 		try {
-			memberDTO = memberService.selectOne(id);
+			//memberDTO = memberService.selectOne(id);
 			System.out.println(memberDTO.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
