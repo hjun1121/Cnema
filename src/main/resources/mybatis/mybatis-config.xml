@@ -7,5 +7,6 @@
   	<typeAliases>
   		<typeAlias type="com.cnema.member.MemberDTO" alias="memberDTO"/>
   		<typeAlias type="com.cnema.coupon.MyCouponDTO" alias="myCouponDTO"/>
+  		<typeAlias type="com.cnema.movie.MovieDTO" alias="movieDTO"/>
   	</typeAliases>
   </configuration>

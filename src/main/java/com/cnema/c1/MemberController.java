@@ -79,7 +79,7 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
 			mv.addObject("myCoupon",myCouponDTO);
