@@ -125,3 +125,7 @@ src/main/resources/mybatis/db.properties
 .classpath
 target/m2e-wtp/web-resources/META-INF/maven/com.cnema/c1/pom.properties
 src/main/java/com/cnema/c1/MovieController.java
+src/main/webapp/WEB-INF/views/home.jsp
+src/main/java/com/cnema/c1/MovieController.java
+src/main/java/com/cnema/movie/MovieService.java
+src/main/java/com/cnema/c1/MemberController.java
