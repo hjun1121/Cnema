@@ -54,9 +54,7 @@ public class MemberController {
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
-		
 		id="hseong";
-		
 		try {
 			memberDTO = memberService.selectOne(id);
 			System.out.println(memberDTO.getName());
