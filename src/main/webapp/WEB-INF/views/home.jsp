@@ -5,6 +5,11 @@
 	<title>영화 그이상의 감동. CNEMA</title>
 <body>
 	
+	
+	<!-- 형준꺼 -->
+	<a href="">빠른예매</a>
+	<a href="">상영시간표</a>
+	
 	<c:if test="${empty member }">
 		<a href="member/memberJoin">Join</a>
 		<a href="member/memberLogin">Login</a>
