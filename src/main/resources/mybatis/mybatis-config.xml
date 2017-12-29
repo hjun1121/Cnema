@@ -5,6 +5,6 @@
   
   <configuration>
   	<typeAliases>
-  		<typeAlias type="com.cnema.member.memberDTO" alias="memberDTO"/>
+  		<typeAlias type="com.cnema.member.MemberDTO" alias="memberDTO"/>
   	</typeAliases>
   </configuration>

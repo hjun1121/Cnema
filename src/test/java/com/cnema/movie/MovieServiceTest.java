@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class MovieServiceTest {
+import com.cnema.c1.AbstractTest;
+
+public class MovieServiceTest extends AbstractTest {
 
 	@Test
 	public void test() {

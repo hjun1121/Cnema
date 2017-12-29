@@ -120,3 +120,8 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/java,eclipse,windows,oracleforms
 /target/
 target/m2e-wtp/web-resources/META-INF/maven/com.cnema/c1/pom.properties
+target/m2e-wtp/web-resources/META-INF/maven/com.cnema/c1/pom.properties
+src/main/resources/mybatis/db.properties
+.classpath
+target/m2e-wtp/web-resources/META-INF/maven/com.cnema/c1/pom.properties
+src/main/java/com/cnema/c1/MovieController.java

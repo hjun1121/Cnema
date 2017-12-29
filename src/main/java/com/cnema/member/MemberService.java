@@ -9,7 +9,15 @@ public class MemberService {
 	@Inject
 	private MemberDAO memberDAO;
 	
-	public MemberDTO selectOne(MemberDTO memberDTO)throws Exception{
-		return memberDAO.selectOne(memberDTO);
+	public MemberDTO login(MemberDTO memberDTO) throws Exception{
+		return memberDAO.login(memberDTO);
+	}
+	
+	public int join(MemberDTO memberDTO) throws Exception{
+		return memberDAO.join(memberDTO);
+	}
+	
+	public MemberDTO selectOne(String id) throws Exception{
+		return memberDAO.selectOne(id);
 	}
 }
