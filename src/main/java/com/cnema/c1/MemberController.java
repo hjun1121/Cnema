@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
@@ -31,7 +33,6 @@ public class MemberController {
 		try {
 			memberService.login(memberDTO);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -46,22 +47,30 @@ public class MemberController {
 		try {
 			memberService.join(memberDTO);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
-	public void selectOne(String id){
+	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
+		MemberDTO memberDTO = null;
+		
+		id="hseong";
+		
 		try {
-			MemberDTO memberDTO = memberService.selectOne(id);
-			System.out.println(memberDTO.getPw());
+			memberDTO = memberService.selectOne(id);
+			System.out.println(memberDTO.getName());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
+		if(memberDTO != null){
+			mv.addObject("myInfo",memberDTO);
+			mv.setViewName("member/myPageView");
+		}else{
+			rd.addFlashAttribute("message","로그인이 필요합니다.");
+			mv.setViewName("redirect:../home");
+		}
+		return mv;
 	}
-	
 }
