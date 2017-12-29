@@ -4,12 +4,14 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.MyCouponService;
+import com.sun.swing.internal.plaf.metal.resources.metal;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 
@@ -18,6 +20,8 @@ import com.cnema.member.MemberService;
 public class MemberController {
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private MyCouponService myCouponService;
 	
 	@RequestMapping(value="memberLogout")
 	public String logout(HttpSession session){
@@ -66,9 +70,11 @@ public class MemberController {
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
+		MyCouponDTO myCouponDTO = null;
 		id="hseong";
 		try {
 			memberDTO = memberService.selectOne(id);
+			myCouponDTO = myCouponService.selectOne(id);
 			System.out.println(memberDTO.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,6 +82,7 @@ public class MemberController {
 		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
+			mv.addObject("myCoupon",myCouponDTO);
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");

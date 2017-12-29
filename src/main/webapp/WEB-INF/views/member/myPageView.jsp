@@ -12,5 +12,10 @@ ${myInfo.name }님  ${myInfo.id}<br>
 고객님은 sysdate ${myInfo.type}입니다.<br>
 CJ ONE 사용가능 포인트   ${myInfo.v_point}점<br>
 CJ ONE 누적 포인트 ${myInfo.a_point}점<br>
+
+<h3>MY COUPON</h3>
+VIP쿠폰 ${myCoupon.name}
+
+<h3>위시리스트♡</h3>
 </body>
 </html>

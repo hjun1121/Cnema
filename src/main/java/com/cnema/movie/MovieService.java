@@ -12,10 +12,10 @@ import com.cnema.util.FileSaver;
 @Service
 public class MovieService {
 
-	@Inject
-	private MovieDAO movieDAO;
-	@Inject
-	private FileSaver fileSaver;
+	//	@Inject
+	//	private MovieDAO movieDAO;
+//	@Inject
+//	private FileSaver fileSaver;
 
 //	public ModelAndView selectList() throws Exception {
 //		ModelAndView mv = new ModelAndView();
