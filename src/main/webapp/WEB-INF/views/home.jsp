@@ -18,12 +18,8 @@
 		<a href="member/memberLogin">Login</a>
 	</c:if>	
 	<c:if test="${!empty member }">
-<<<<<<< HEAD
 	<h2>${member.id } 님 환영합니다</h2>
 		<a href="member/myPageView?id=${member.id }">My Page</a>
-=======
-		<a href="member/myPageView">My Page</a>
->>>>>>> parent of 2ba8889... 씨발럼
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
 </body>
