@@ -17,6 +17,7 @@ public class MovieController {
 	private MovieService movieService;
 	
 	
+<<<<<<< HEAD
 //	//selectList
 //	@RequestMapping(value = "movieList")
 //	public ModelAndView selectList(ModelAndView mv) throws Exception {
@@ -24,6 +25,14 @@ public class MovieController {
 //		
 //		return mv;
 //	}
+=======
+	//selectList
+	@RequestMapping(value = "movieList")
+	public ModelAndView selectList(ModelAndView mv) throws Exception {
+		
+		return mv;
+	}
+>>>>>>> 837041ec02ff6b8b739603a4c6153e1936fe8330
 	
 //	//selectOne
 //	@RequestMapping(value="noticeView")
