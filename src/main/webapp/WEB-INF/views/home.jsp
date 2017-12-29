@@ -5,6 +5,10 @@
 	<title>영화 그이상의 감동. CNEMA</title>
 <body>
 	
+	<!-- 헤푸 -->
+	<a href="temp/header">header</a>
+	<a href="temp/footer">footer</a>
+	
 	<!-- 현민_영화 -->
 	<a href="">무비차트</a>
 	<a href="">리뷰</a>
@@ -22,6 +26,7 @@
 		<a href="member/myPageView?id=${member.id }">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
+	
 </body>
 </html>
 
