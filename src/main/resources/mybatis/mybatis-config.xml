@@ -6,6 +6,5 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.cnema.member.MemberDTO" alias="memberDTO"/>
-  		<typeAlias type="com.cnema.coupon.MyCouponDTO" alias="myCouponDTO"/>
   	</typeAliases>
   </configuration>
