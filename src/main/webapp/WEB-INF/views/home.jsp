@@ -18,6 +18,7 @@
 		<a href="member/memberLogin">Login</a>
 	</c:if>	
 	<c:if test="${!empty member }">
+	<h2>${member.id } 님 환영합니다</h2>
 		<a href="member/myPageView">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
