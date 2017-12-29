@@ -9,7 +9,7 @@ public class MemberService {
 	@Inject
 	private MemberDAO memberDAO;
 	
-	public int login(MemberDTO memberDTO) throws Exception{
+	public MemberDTO login(MemberDTO memberDTO) throws Exception{
 		return memberDAO.login(memberDTO);
 	}
 	
