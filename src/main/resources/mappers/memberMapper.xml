@@ -12,6 +12,6 @@
   	</select>
   
   	<select id="selectOne" resultType="memberDTO" parameterType="java.lang.String">
-  		SELECT * FROM member WHERE id=#{id}
+  		
   	</select>
   </mapper>
