@@ -17,13 +17,13 @@ public class MovieController {
 	private MovieService movieService;
 	
 	
-	//selectList
-	@RequestMapping(value = "movieList")
-	public ModelAndView selectList(ModelAndView mv) throws Exception {
-		mv = movieService.selectList();
-		
-		return mv;
-	}
+//	//selectList
+//	@RequestMapping(value = "movieList")
+//	public ModelAndView selectList(ModelAndView mv) throws Exception {
+//		mv = movieService.selectList();
+//		
+//		return mv;
+//	}
 	
 //	//selectOne
 //	@RequestMapping(value="noticeView")
