@@ -6,6 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
 	div{
 		height: 600px;
 	}
@@ -39,6 +43,17 @@
 		float: left;
 		margin-left: 2px;
 	}
+	
+	.head{
+		height: 35px;
+		background-color: black;
+		
+	}
+	
+	.head h2{
+		color: white;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -46,18 +61,30 @@
 	
 	<div id="all">
 		<div id="movie">
+			<div class="head">
+				<h2>영화</h2>
+			</div>
 			11
 		</div>
 		
 		<div id="theater">
+			<div class="head">
+				<h2>극장</h2>
+			</div>
 			22
 		</div>
 		
 		<div id="day">
+			<div class="head">
+				<h2>날짜</h2>
+			</div>
 			33
 		</div>
 		
 		<div id="schedule">
+			<div class="head">
+				<h2>시간</h2>
+			</div>
 			44
 		</div>
 	</div>
