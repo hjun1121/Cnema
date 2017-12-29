@@ -7,11 +7,11 @@
   		insert into member values(#{id},#{pw},#{name},#{birth},#{gender},#{phone},#{email},#{postCode},#{addr1},#{addr2},10,1000,1000,sysdate,#{fileName},#{oriName})
   	</insert>
   	
-  	<select id="login" parameterType="memberDTO" resultType="int">
-  		select nvl(count(id),0) from member where id=#{id} and pw=#{pw}
+  	<select id="login" parameterType="memberDTO" resultType="memberDTO">
+  		select * from member where id=#{id} and pw=#{pw}
   	</select>
   
   	<select id="selectOne" resultType="memberDTO" parameterType="java.lang.String">
-  		select * from member where id=#{id}
+  		
   	</select>
   </mapper>

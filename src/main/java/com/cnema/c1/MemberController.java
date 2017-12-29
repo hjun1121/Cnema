@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,8 +20,9 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@RequestMapping(value="memberLogout")
-	public void logout(HttpSession session){
+	public String logout(HttpSession session){
 		session.invalidate();
+		return "redirect:../";
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
@@ -29,12 +31,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public void login(MemberDTO memberDTO){
+	public ModelAndView login(MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ModelAndView mv){
+		MemberDTO member = null;
 		try {
-			memberService.login(memberDTO);
+			member = memberService.login(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		if(member != null){
+			session.setAttribute("member", member);
+			mv.setViewName("redirect:../");
+		}else{
+			mv.setViewName("redirect:../member/memberLogin");
+		}
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
@@ -54,9 +66,7 @@ public class MemberController {
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
-		
 		id="hseong";
-		
 		try {
 			memberDTO = memberService.selectOne(id);
 			System.out.println(memberDTO.getName());
