@@ -14,6 +14,7 @@ public class MovieService {
 	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);
+
 	}
 
 }
