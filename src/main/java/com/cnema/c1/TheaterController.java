@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="theater/*")
 public class TheaterController {
 	
+	@RequestMapping(value="quickReserve")
+	public void quickReserve(){
+		
+	}
 	
+	@RequestMapping(value="scheduleList")
+	public void scheduleList(){
+		
+	}
 	
 }
