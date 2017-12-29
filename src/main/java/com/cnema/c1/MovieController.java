@@ -1,18 +1,30 @@
 package com.cnema.c1;
 
+import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import com.cnema.movie.MovieService;
+import com.cnema.util.ListData;
 
 @Controller
 @RequestMapping(value = "/movie/*")
 public class MovieController {
 
-	//	@Inject
-	//	private MovieService movieService;
+	@Inject
+	private MovieService movieService;
 	
+
+	//selectList
+	@RequestMapping(value = "movieList")
+	public ModelAndView selectList(ModelAndView mv) throws Exception {
+		mv = movieService.selectList();
+		
+		return mv;
+	}
 	
-	//selectOne
+//	//selectOne
 //	@RequestMapping(value="noticeView")
 //	public ModelAndView selectOne(ModelAndView mv, int num, RedirectAttributes rd) throws Exception{
 //		BoardDTO boardDTO = null;
@@ -32,6 +44,7 @@ public class MovieController {
 //		return mv;
 //	}
 	
+
 	//insert
 	
 	//delete
