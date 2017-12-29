@@ -8,5 +8,11 @@
 </head>
 <body>
 	<h2>Member Login</h2>
+	
+	<form action="memberLogin" method="post">
+		<p><input type="text" name="id"></p>
+		<p><input type="text" name="pw"></p>
+		<button>Login</button>
+	</form>
 </body>
 </html>
