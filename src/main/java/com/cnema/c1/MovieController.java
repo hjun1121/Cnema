@@ -20,7 +20,6 @@ public class MovieController {
 	//selectList
 	@RequestMapping(value = "movieList")
 	public ModelAndView selectList(ModelAndView mv) throws Exception {
-		mv = movieService.selectList();
 		
 		return mv;
 	}
