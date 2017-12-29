@@ -45,15 +45,15 @@ public class MemberController {
 		}else{
 			mv.setViewName("redirect:../member/memberLogin");
 		}
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public void join(){
 		
 	}
-	
+
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
 	public void join(MemberDTO memberDTO){
 		try {
@@ -62,7 +62,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
