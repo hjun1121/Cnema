@@ -19,8 +19,8 @@ public class MovieController {
 	
 	//selectList
 	@RequestMapping(value = "movieList")
-	public ModelAndView selectList(ModelAndView mv, ListData listData) throws Exception {
-		mv = movieService.selectList(listData);
+	public ModelAndView selectList(ModelAndView mv) throws Exception {
+		mv = movieService.selectList();
 		
 		return mv;
 	}

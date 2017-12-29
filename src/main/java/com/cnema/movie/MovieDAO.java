@@ -19,7 +19,7 @@ public class MovieDAO {
 	public List<MovieDTO> selectList() throws Exception {
 		return sqlSession.selectList(namespace+"selectList"); 
 	}
-	
+
 	//insert
 	
 	//delete
