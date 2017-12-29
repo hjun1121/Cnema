@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="memberMapper">
   	<insert id="join" parameterType="memberDTO">
-  		insert into member values(#{id},#{pw},#{name},#{birth},#{gender},#{phone},#{email},#{postCode},#{addr1},#{addr2},#{type},1000,1000,sysdate,#{fileName},#{oriName})
+  		insert into member values(#{id},#{pw},#{name},#{birth},#{gender},#{phone},#{email},#{postCode},#{addr1},#{addr2},10,1000,1000,sysdate,#{fileName},#{oriName})
   	</insert>
   	
   	<select id="login" parameterType="memberDTO" resultType="int">

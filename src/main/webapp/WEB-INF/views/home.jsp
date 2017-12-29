@@ -10,4 +10,3 @@
 	<a href="member/memberLogout">Logout</a>
 </body>
 </html>
-
