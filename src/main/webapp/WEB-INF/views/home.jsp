@@ -2,35 +2,29 @@
 <html>
 <head>
 </head>
-	<title>영화 그이상의 감동. CNEMA</title>
+	<title>미안... CNEMA</title>
 <body>
 	
-	<!-- 헤푸 -->
+	<!-- í¤í¸ -->
 	<a href="temp/header">header</a>
 	<a href="temp/footer">footer</a>
 	
-	<!-- 현민_영화 -->
-	<a href="">무비차트</a>
-	<a href="">리뷰</a>
+	<!-- íë¯¼_ìí -->
+	<a href="">UTF-8</a>
+	<a href="">변경을</a>
 
-	<!-- 형준꺼 -->
+	<!-- íì¤êº¼ -->
 	<a href="theater/quickReserve">빠른예매</a>
-	<a href="theater/scheduleList">상영시간표</a>
+	<a href="theater/scheduleList">영화상영표</a>
 	
 	<c:if test="${empty member }">
 		<a href="member/memberJoin">Join</a>
 		<a href="member/memberLogin">Login</a>
 	</c:if>	
 	<c:if test="${!empty member }">
-<<<<<<< HEAD
-	<h2>${member.id } 님 환영합니다</h2>
-		<a href="member/myPageView?id=${member.id }">My Page</a>
-=======
 		<a href="member/myPageView">My Page</a>
->>>>>>> parent of 2ba8889... 씨발럼
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
-	
 </body>
 </html>
 
