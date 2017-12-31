@@ -6,5 +6,4 @@
   	<select id="selectOne" resultType="movieDTO" parameterType="int">
   		SELECT * FROM movie WHERE m_num=#{num}
   	</select>
-
 </mapper>
