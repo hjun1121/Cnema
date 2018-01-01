@@ -11,6 +11,7 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="memberMapper.";
 	
+	/*kim*/
 	public int join(MemberDTO memberDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"join", memberDTO);
 	}
@@ -19,7 +20,8 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"login", memberDTO);
 	}
 	
-	public MemberDTO selectOne(String id) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"selectOne", id);
+	/*heeseong*/
+	public MemberDTO memberInfo(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"memberInfo", id);
 	}
 }
