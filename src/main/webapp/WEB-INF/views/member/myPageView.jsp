@@ -10,7 +10,7 @@
 <body>
 <h1>My Page</h1>
 	<!-- 나의 정보 -->
-	${myInfo.name }님  ${myInfo.id}<br>
+	${myInfo.name}님  ${myInfo.id}<br>
 	고객님은 sysdate ${myInfo.type}입니다.<br>
 	
 	<!-- 나의 포인트 -->
@@ -21,8 +21,15 @@
 	
 	<!-- 내가 본 영화 -->
 	<h3>내가 본 영화</h3>
-	<c:forEach items="${rList}" var="reserveList">
-		${reserveList.id }
+	<c:forEach items="${rList}" var="rList">
+		사진 : <br>
+		영화명:${rList.m_num }  <br>
+		날짜 :  <br>
+		시간 :  ${rList.schedule_num }<br>
+		지점 : ${rList.t_num }<br>
+		상영관 번호 : ${rList.screen_num }<br>
+		몇명 :  <br>
+		------ <br>
 	</c:forEach>
 </body>
 </html>
