@@ -5,17 +5,12 @@
 	<title>미안... CNEMA</title>
 <body>
 	
-	<!-- í¤í¸ -->
-	<a href="temp/header">header</a>
-	<a href="temp/footer">footer</a>
-	
-	<!-- íë¯¼_ìí -->
-	<a href="">UTF-8</a>
-	<a href="">변경을</a>
-
-	<!-- íì¤êº¼ -->
-	<a href="theater/quickReserve">빠른예매</a>
-	<a href="theater/scheduleList">영화상영표</a>
+	<a href="home/kim">김</a>
+	<a href="home/lee">이</a>
+	<a href="home/ssin">신</a>
+	<a href="home/jang">장</a>
+	<a href="home/park">박</a>
+	<br>
 	
 	<c:if test="${empty member }">
 		<a href="member/memberJoin">Join</a>
@@ -25,6 +20,7 @@
 		<a href="member/myPageView">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
+	
 </body>
 </html>
 
