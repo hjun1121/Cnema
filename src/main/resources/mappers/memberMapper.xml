@@ -14,4 +14,7 @@
   	<select id="selectOne" resultType="memberDTO" parameterType="java.lang.String">
   		select * from member where id=#{id}
   	</select>
+  	
+  	
+  	<!-- kim -->
   </mapper>
