@@ -8,9 +8,18 @@
 </head>
 <body>
 <h1>My Page</h1>
-${myInfo.name }님  ${myInfo.id}<br>
-고객님은 sysdate ${myInfo.type}입니다.<br>
-CJ ONE 사용가능 포인트   ${myInfo.v_point}점<br>
-CJ ONE 누적 포인트 ${myInfo.a_point}점<br>
+	<!-- 나의 정보 -->
+	${myInfo.name }님  ${myInfo.id}<br>
+	고객님은 sysdate ${myInfo.type}입니다.<br>
+	
+	<!-- 나의 포인트 -->
+	CJ ONE 사용가능 포인트   ${myInfo.v_point}점<br>
+	CJ ONE 누적 포인트 ${myInfo.a_point}점<br>
+	
+	<!-- 위시리스트 -->
+	
+	<!-- 내가 본 영화 -->
+	<h3>내가 본 영화</h3>
+	${rList.t_num }
 </body>
 </html>

@@ -21,7 +21,7 @@ public class AjaxController {
 	public ModelAndView idCheck(String id){
 		MemberDTO memberDTO =null;
 		try {
-			memberDTO = memberService.selectOne(id);
+			memberDTO = memberService.memberInfo(id);
 			System.out.println(memberDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

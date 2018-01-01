@@ -6,10 +6,10 @@
 <body>
 	
 	<a href="home/kim">김</a>
-	<a href="home/lee">이</a>
-	<a href="home/ssin">신</a>
+	<a href="home/lee">이´</a>
+	<a href="home/ssin">신 </a>
 	<a href="home/jang">장</a>
-	<a href="home/park">박</a>
+	<a href="home/park">박</a>
 	<br>
 	
 	<c:if test="${empty member }">

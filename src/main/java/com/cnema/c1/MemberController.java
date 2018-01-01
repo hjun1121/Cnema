@@ -18,6 +18,7 @@ public class MemberController {
 	@Inject
 	private MemberService memberService;
 	
+	/*kim*/
 	@RequestMapping(value="memberLogout")
 	public String logout(HttpSession session){
 		session.invalidate();
@@ -59,12 +60,13 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/*heeseong*/
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
 		try {
-			memberDTO = memberService.selectOne(id);
+			memberDTO = memberService.memberInfo(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
