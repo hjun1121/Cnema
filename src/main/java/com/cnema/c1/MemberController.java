@@ -53,12 +53,24 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
-	public void join(MemberDTO memberDTO, HttpSession session){
+	public void join(MemberDTO memberDTO, HttpSession session, RedirectAttributes rd){
+		int result = 0;
 		try {
-			memberService.join(memberDTO, session);
+			result = memberService.join(memberDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		
+		if(result>0){
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "회원가입 실패");
+			mv.setViewName("redirect:../");
+		}
+		
 	}
 	
 	/*heeseong*/
