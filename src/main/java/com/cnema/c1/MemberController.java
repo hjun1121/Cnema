@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +26,6 @@ public class MemberController {
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public void login(){
-		
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
@@ -51,7 +49,6 @@ public class MemberController {
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public void join(){
-		
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
@@ -66,10 +63,8 @@ public class MemberController {
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
-		id="hseong";
 		try {
 			memberDTO = memberService.selectOne(id);
-			System.out.println(memberDTO.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,7 +74,7 @@ public class MemberController {
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
-			mv.setViewName("redirect:../home");
+			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}

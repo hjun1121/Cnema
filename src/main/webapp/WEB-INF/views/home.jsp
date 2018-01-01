@@ -2,7 +2,7 @@
 <html>
 <head>
 </head>
-	<title>미안... CNEMA</title>
+	<title> CNEMA</title>
 <body>
 	
 	<a href="home/kim">김</a>
@@ -17,10 +17,9 @@
 		<a href="member/memberLogin">Login</a>
 	</c:if>	
 	<c:if test="${!empty member }">
-		<a href="member/myPageView">My Page</a>
+		<a href="member/myPageView?id=${member.id }">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
-	
 </body>
 </html>
 
