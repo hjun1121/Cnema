@@ -16,6 +16,8 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
+import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScheduleService;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -24,6 +26,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Inject
 	private ReserveService reserveService;
+	@Inject
+	private ScheduleService scheduleService;
 	
 	/*kim*/
 	@RequestMapping(value="memberLogout")
@@ -84,11 +88,20 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+		ScheduleDTO scheduleDTO = null;
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		for(int num = 0;num<rList.size();num++){
+			try {
+				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
+				System.out.println(num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(memberDTO != null){
