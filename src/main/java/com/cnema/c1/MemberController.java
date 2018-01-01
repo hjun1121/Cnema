@@ -1,5 +1,8 @@
 package com.cnema.c1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -11,12 +14,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.reserve.ReserveDTO;
+import com.cnema.reserve.ReserveService;
 
 @Controller
 @RequestMapping(value="/member/**")
 public class MemberController {
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private ReserveService reserveService;
 	
 	/*kim*/
 	@RequestMapping(value="memberLogout")
@@ -65,14 +72,18 @@ public class MemberController {
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
 		MemberDTO memberDTO = null;
+		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
+			rList = reserveService.reserveList(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("rList"+rList.get(0).getId());
+		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
+			mv.addObject("rList",rList);
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");

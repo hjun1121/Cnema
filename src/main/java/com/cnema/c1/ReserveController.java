@@ -22,8 +22,8 @@ public class ReserveController {
 	
 	/*heeseong*/
 	@RequestMapping(value="reserveList", method=RequestMethod.GET)
-	public ModelAndView reserveList(String id, ModelAndView mv, RedirectAttributes rd){
-		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+	public void reserveList(String id, ModelAndView mv, RedirectAttributes rd){
+		/*List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		
 		try {
 			rList = reserveService.reserveList(id);
@@ -38,6 +38,6 @@ public class ReserveController {
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
 			mv.setViewName("redirect:../");
 		}
-		return mv;
+		return mv;*/
 	}
 }

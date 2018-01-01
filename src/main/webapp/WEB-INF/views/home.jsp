@@ -7,7 +7,7 @@
 	
 	<a href="home/kim">김</a>
 	<a href="home/lee">이</a>
-	<a href="home/ssin">신 </a>
+	<a href="home/ssin">신</a>
 	<a href="home/jang">장</a>
 	<a href="home/park">박</a>
 	<br>
@@ -20,6 +20,6 @@
 		<a href="member/myPageView?id=${member.id }">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
+	
 </body>
 </html>
-
