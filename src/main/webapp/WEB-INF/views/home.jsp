@@ -21,6 +21,5 @@
 		<a href="member/myPageView?id=${member.id }">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
-	
 </body>
 </html>

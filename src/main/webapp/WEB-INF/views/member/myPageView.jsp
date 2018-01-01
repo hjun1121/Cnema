@@ -21,8 +21,8 @@
 	
 	<!-- 내가 본 영화 -->
 	<h3>내가 본 영화</h3>
-	<c:forEach items="rList" var="rList">
-		${rList }
+	<c:forEach items="${rList}" var="reserveList">
+		${reserveList.id }
 	</c:forEach>
 </body>
 </html>

@@ -70,7 +70,8 @@ public class MemberController {
 	
 	/*heeseong*/
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
-	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
+	public ModelAndView selectOne(String id,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		try {
@@ -79,7 +80,6 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("rList"+rList.get(0).getId());
 		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
