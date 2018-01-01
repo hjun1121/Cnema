@@ -163,7 +163,8 @@
 </head>
 <body>
 	<h2>Member Join</h2>
-	<form action="memberJoin" method="post" name="frm">
+	<form action="memberJoin" method="post" name="frm" enctype="multipart/form-data">
+		프사<input type="file" name="file">
 		<p>id <input type="text" id="id" name="id"></p>
 		<div id="id_ch"></div>
 		<p>pw <input type="text" id="pw1" name="pw"></p>
@@ -206,8 +207,7 @@
 		<br>
 		<input type="text" id="addr" name="addr1" placeholder="주소" readonly="readonly">
 		<input type="text" id="addr2" name="addr2" placeholder="나머지주소">
-		<input type="text" name="fileName">
-		<input type="text" name="oriName">
+		
 		<br>
 		<input type="button" id="joinBtn" value="조인">
 	</form>
