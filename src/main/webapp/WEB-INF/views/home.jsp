@@ -5,7 +5,7 @@
 	<title>미안... CNEMA</title>
 <body>
 	
-	<!-- í¤í¸ -->
+	<!-- 지현 -->
 	<a href="temp/header">header</a>
 	<a href="temp/footer">footer</a>
 	
@@ -15,7 +15,7 @@
 
 	<!-- íì¤êº¼ -->
 	<a href="theater/quickReserve">빠른예매</a>
-	<a href="theater/scheduleList">영화상영표</a>
+	<a href="theater/scheduleList">영화상영표ㅓ</a>
 	
 	<c:if test="${empty member }">
 		<a href="member/memberJoin">Join</a>
