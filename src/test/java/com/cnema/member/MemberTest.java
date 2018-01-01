@@ -16,7 +16,6 @@ public class MemberTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			MemberDTO memberDTO = memberDAO.selectOne("hseong");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
