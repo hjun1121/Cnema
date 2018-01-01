@@ -22,7 +22,6 @@ public class AjaxController {
 		MemberDTO memberDTO =null;
 		try {
 			memberDTO = memberService.selectOne(id);
-			System.out.println(memberDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,7 +33,7 @@ public class AjaxController {
 		}else{
 			mv.addObject("result", "no");
 		}
-		mv.setViewName("idCheck");
+		mv.setViewName("ajax/idCheck");
 		
 		return mv;
 	}
