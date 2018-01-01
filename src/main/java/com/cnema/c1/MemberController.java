@@ -60,9 +60,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
-	public void join(MemberDTO memberDTO){
+	public void join(MemberDTO memberDTO, HttpSession session){
 		try {
-			memberService.join(memberDTO);
+			memberService.join(memberDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

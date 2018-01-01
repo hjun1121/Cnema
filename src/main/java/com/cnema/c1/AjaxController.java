@@ -34,7 +34,7 @@ public class AjaxController {
 		}else{
 			mv.addObject("result", "no");
 		}
-		mv.setViewName("idCheck");
+		mv.setViewName("ajax/idCheck");
 		
 		return mv;
 	}
