@@ -23,6 +23,20 @@ public class AjaxController {
 	@Inject
 	private TheaterService theaterSerice;
 	
+	@RequestMapping(value="idFind", method=RequestMethod.POST)
+	public ModelAndView idFind(MemberDTO memberDTO){
+		ModelAndView mv = new ModelAndView();
+			List<MemberDTO> ar=null;
+		try {
+			ar = memberService.idFind(memberDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			mv.addObject("idList", ar);
+			mv.setViewName("ajax/idFindList");
+		return mv;
+	}
 	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
 	public ModelAndView locationList(String area){

@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="memberMapper">
   	<!-- kim -->
+  	<select id="idFind" parameterType="memberDTO" resultType="memberDTO">
+		select * from member where name=#{name} and email=#{email}  	
+  	</select>
+  	
+  	<select id="pwFind" parameterType="memberDTO" resultType="memberDTO">
+  		select * from member where id=#{id} and name=#{name} and email=#{email}
+  	</select>
+  	
   	<insert id="join" parameterType="memberDTO">
   		insert into member values(#{id},#{pw},#{name},#{birth},#{gender},#{phone},#{email},#{postCode},#{addr1},#{addr2},10,1000,1000,sysdate,#{fileName},#{oriName})
   	</insert>

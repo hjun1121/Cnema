@@ -27,6 +27,14 @@ public class MemberTest extends AbstractTest {
 	public void test() {
 		
 		try {
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setId("joy");
+			memberDTO.setName("joy");
+			memberDTO.setEmail("library_4@naver.com");
+			List<MemberDTO> ar =  memberDAO.idFind(memberDTO);
+			System.out.println(ar.size());
+			System.out.println(ar.get(0).getAddr1());
+			System.out.println(ar.get(1).getAddr1());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

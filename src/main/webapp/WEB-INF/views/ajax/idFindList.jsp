@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>PW FIND</h2>
-	
-	<form action="../ajax/pwFind" method="post">
-		<p>id<input type="text"></p>
-		<p>pw<input type="text"></p>
-		<input type="button" value="pwFind">
-		<div id="pwList"></div>
-	</form>
+	<h2>ID FIND LIST</h2>
 </body>
 </html>
