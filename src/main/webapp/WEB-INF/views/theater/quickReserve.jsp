@@ -26,7 +26,15 @@
 			
 		});
 		
+		$(".movies").click(function(){
+			var num = $(this).attr("title");
+			$("#movie_num").val(num);
+		});
 		
+		$("#list").on("click", ".location" , function(){
+			var num = $(this).attr("title");
+			$("#theater_num").val(num);
+		});
 		
 		
 	});
@@ -85,6 +93,8 @@
 	}
 	.locationList{
 		float: right;
+		overflow: auto;
+		height: 200px;
 	}
 </style>
 </head>
@@ -99,7 +109,7 @@
 			<ul>
 				<c:forEach items="${movie }" var="DTO">
 					<li>
-						<a href="#" onclick="return false;">
+						<a href="#" onclick="return false;" class="movies" title="${DTO.movie_num }">
 							<span>${DTO.age_limit }</span>
 							<span>${DTO.movie_name }</span>
 						</a>
@@ -114,11 +124,15 @@
 			</div>
 			<ul>
 				<li>
-					<a href="#" class="area" title="서울" onclick="return false;">서울</a>
+					<a href="#" class="area" id="area" title="서울" onclick="return false;">서울</a>
 					<div class="locationList" id="list">
 						<ul>
 							<c:forEach items="${location }" var="DTO">
-								<li>${DTO.location }</li>
+								<li>
+									<a href="#" onclick="return false;" class="location" title="${DTO.theater_num }" >
+										${DTO.location }
+									</a>
+								</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -149,6 +163,12 @@
 			</div>
 		</div>
 	</div>
-	
+	<div id="bottom_area">
+		<form action="">
+			<input type="text" id="movie_num" name="movie_num">
+			<input type="text" id="theater_num" name="theater_num">
+			<input type="text" id="sehedule_num" name="sehedule_num">
+		</form>
+	</div>
 </body>
 </html>
