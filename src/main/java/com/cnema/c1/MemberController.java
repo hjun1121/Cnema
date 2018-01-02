@@ -1,5 +1,7 @@
 package com.cnema.c1;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,17 @@ public class MemberController {
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public void login(){
+		InetAddress addr = null;
+		try {
+			addr = InetAddress.getLocalHost();
+			String ip = addr.toString();
+			ip = ip.substring(ip.lastIndexOf("/")+1);
+			
+			System.out.println(ip);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)

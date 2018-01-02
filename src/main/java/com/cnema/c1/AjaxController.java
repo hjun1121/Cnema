@@ -22,7 +22,6 @@ public class AjaxController {
 		MemberDTO memberDTO =null;
 		try {
 			memberDTO = memberService.memberInfo(id);
-			System.out.println(memberDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
