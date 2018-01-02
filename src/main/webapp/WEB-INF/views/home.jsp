@@ -27,6 +27,8 @@
 	<c:if test="${empty member }">
 		<a href="member/memberJoin">Join</a>
 		<a href="member/memberLogin">Login</a>
+		<a href="member/idFind">Id Find</a>
+		<a href="member/pwFind">Pw Find</a>
 	</c:if>	
 	<c:if test="${!empty member }">
 		<img height="100px" width="100px" src="resources/profil/${member.fileName }">

@@ -28,6 +28,16 @@ public class MemberController {
 	private ReserveService reserveService;
 	
 	/*kim*/
+	@RequestMapping(value="idFind", method=RequestMethod.GET)
+	public void idFind(){
+		
+	}
+	
+	@RequestMapping(value="pwFind", method=RequestMethod.GET)
+	public void pwFind(){
+		
+	}
+	
 	@RequestMapping(value="memberLogout")
 	public String logout(HttpSession session){
 		session.invalidate();
