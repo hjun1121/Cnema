@@ -23,6 +23,7 @@ public class AjaxController {
 	@Inject
 	private TheaterService theaterSerice;
 	
+	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
 	public ModelAndView locationList(String area){
 		List<TheaterDTO> ar = null;;
@@ -37,6 +38,11 @@ public class AjaxController {
 		mv.setViewName("ajax/locationList");
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="emailCheck", method=RequestMethod.POST)
+	public String emailCheck(){
+		return "ajax/emailCheck";
 	}
 	
 	@RequestMapping(value="idCheck", method=RequestMethod.POST)

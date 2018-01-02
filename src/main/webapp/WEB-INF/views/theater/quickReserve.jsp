@@ -98,7 +98,12 @@
 			</div>
 			<ul>
 				<c:forEach items="${movie }" var="DTO">
-					<li>${DTO.movie_name }</li>
+					<li>
+						<a href="#" onclick="return false;">
+							<span>${DTO.age_limit }</span>
+							<span>${DTO.movie_name }</span>
+						</a>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
