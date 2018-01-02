@@ -22,7 +22,7 @@ public class MovieController {
 		MovieDTO movieDTO = null;
 		int num = 1;
 		movieDTO = movieService.selectOne(num);
-		System.out.println(movieDTO.getM_name());
+		System.out.println(movieDTO.getMovie_name());
 		
 		mv.addObject("movie", movieDTO);
 		mv.setViewName("movie/movieView");

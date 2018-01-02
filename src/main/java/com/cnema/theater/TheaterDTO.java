@@ -1,28 +1,28 @@
 package com.cnema.theater;
 
 public class TheaterDTO {
-	private int num;
-	private int area;
-	private int location;
+	private int theater_num;
+	private String area;
+	private String location;
 	private double x_position;
 	private double y_position;
 	
-	public int getNum() {
-		return num;
+	public int getTheater_num() {
+		return theater_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setTheater_num(int theater_num) {
+		this.theater_num = theater_num;
 	}
-	public int getArea() {
+	public String getArea() {
 		return area;
 	}
-	public void setArea(int area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
-	public int getLocation() {
+	public String getLocation() {
 		return location;
 	}
-	public void setLocation(int location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	public double getX_position() {
