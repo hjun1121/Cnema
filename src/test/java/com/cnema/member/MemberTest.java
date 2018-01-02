@@ -2,12 +2,16 @@ package com.cnema.member;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Test;
 
 import com.cnema.c1.AbstractTest;
+import com.cnema.theater.TheaterDAO;
+import com.cnema.theater.TheaterDTO;
 import com.cnema.util.EmailDAO;
 
 public class MemberTest extends AbstractTest {
@@ -16,14 +20,13 @@ public class MemberTest extends AbstractTest {
 	private MemberDAO memberDAO;
 	@Inject
 	private EmailDAO emailDAO;
-	
+	@Inject
+	private TheaterDAO theaterDAO;
 	
 	@Test
 	public void test() {
 		
 		try {
-			String email = "library_4@naver.com";
-			emailDAO.send(email);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

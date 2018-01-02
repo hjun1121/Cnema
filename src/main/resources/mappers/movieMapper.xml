@@ -6,4 +6,8 @@
   	<select id="selectOne" resultType="movieDTO" parameterType="int">
   		SELECT * FROM movie WHERE m_num=#{num}
   	</select>
+  	
+  	<select id="movieList" resultType="movieDTO">
+  		select * from movie
+  	</select>
 </mapper>

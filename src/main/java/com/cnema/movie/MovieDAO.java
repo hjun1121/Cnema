@@ -2,6 +2,8 @@ package com.cnema.movie;
 
 
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,6 +31,8 @@ public class MovieDAO {
 
 	//update
 
-
+	public List<MovieDTO> movieList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"movieList");
+	}
 
 }
