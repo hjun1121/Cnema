@@ -21,8 +21,6 @@
 	<context:component-scan base-package="com.cnema.member" />
 	<context:component-scan base-package="com.cnema.movie" />
 	<context:component-scan base-package="com.cnema.reserve" />
-<<<<<<< HEAD
-=======
 	<context:component-scan base-package="com.cnema.theater"/>
->>>>>>> a181d6da96a63c55f08f8d9088a67a2a04b356ee
+
 </beans>

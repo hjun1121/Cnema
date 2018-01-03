@@ -16,13 +16,10 @@
 	<title> CNEMA</title>
 <body>
 
-<<<<<<< HEAD
-=======
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5O5PVvHTWRo" ></iframe>
->>>>>>> a181d6da96a63c55f08f8d9088a67a2a04b356ee
 	<a href="home/kim">김</a>
 	<a href="home/lee">이</a>
 	<a href="home/ssin">신</a>

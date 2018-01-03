@@ -17,7 +17,7 @@ public class FileSaver {
 		if(!file.exists()){
 			file.mkdirs();
 		}
-		
+
 		//2. fileName
 		String fileName = multipartFile.getOriginalFilename();
 		fileName = fileName.substring(fileName.lastIndexOf("."));

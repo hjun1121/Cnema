@@ -25,16 +25,11 @@ import com.cnema.movie.WishDTO;
 import com.cnema.movie.WishService;
 import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
-<<<<<<< HEAD
-import com.cnema.theater.ScheduleDTO;
-import com.cnema.theater.ScheduleService;
-=======
 import com.cnema.reserve.TicketPriceDTO;
 import com.cnema.reserve.TicketPriceService;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.sun.java.swing.plaf.motif.resources.motif;
->>>>>>> 105dd440f72d8446f95b7f275a2e47eed6c35c5e
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -45,8 +40,6 @@ public class MemberController {
 	private ReserveService reserveService;
 	@Inject
 	private ScheduleService scheduleService;
-<<<<<<< HEAD
-=======
 	@Inject
 	private TicketPriceService ticketPriceService;
 	@Inject
@@ -55,7 +48,6 @@ public class MemberController {
 	private WishService wishService;
 	@Inject
 	private PointService pointService;
->>>>>>> 105dd440f72d8446f95b7f275a2e47eed6c35c5e
 	
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
@@ -141,16 +133,13 @@ public class MemberController {
 		MovieDTO movieDTO = null;
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-<<<<<<< HEAD
-		ScheduleDTO scheduleDTO = null;
-=======
+		ScheduleDTO scheduleDTO2 = null;
 		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
->>>>>>> 105dd440f72d8446f95b7f275a2e47eed6c35c5e
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);

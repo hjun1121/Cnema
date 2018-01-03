@@ -36,7 +36,7 @@ public class MovieDAO {
 
 	//selectList
 	public List<MovieDTO> movieList(String kind) throws Exception{
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("kind", kind);
 		return sqlSession.selectList(NAMESPACE+"movieList", map);
 	}
