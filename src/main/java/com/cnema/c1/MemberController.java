@@ -3,6 +3,7 @@ package com.cnema.c1;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
+import com.cnema.theater.ScheduleDTO;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -107,16 +109,24 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+		List<ScheduleDTO> sList = new ArrayList<ScheduleDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
+			sList = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
-			mv.addObject("rList",rList);
+			
+			List<Object> list = new ArrayList<>();
+			list.add(rList);
+			list.add(sList);
+			
+			mv.addObject("all", list);
+			
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
