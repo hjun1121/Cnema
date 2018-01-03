@@ -1,12 +1,13 @@
 package com.cnema.member;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cnema.reserve.ReserveDTO;
 import com.cnema.util.FileSaver;
 
 @Service
@@ -18,6 +19,14 @@ public class MemberService {
 	private FileSaver fileSaver;
 	
 	/*kim*/
+	public List<MemberDTO> idFind(MemberDTO memberDTO) throws Exception{
+		return memberDAO.idFind(memberDTO);
+	}
+	
+	public MemberDTO pwFind(MemberDTO memberDTO) throws Exception{
+		return memberDAO.pwFind(memberDTO);
+	}
+	
 	public MemberDTO login(MemberDTO memberDTO) throws Exception{
 		return memberDAO.login(memberDTO);
 	}

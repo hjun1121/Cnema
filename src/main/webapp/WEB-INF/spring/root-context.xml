@@ -9,7 +9,7 @@
 		
 		<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean class="com.cnema.util.FileSaver" id="fileSaver"></bean>
-		
+	<bean class="com.cnema.util.EmailDAO" id="emailDAO"> </bean>
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
 		<property name="maxUploadSize" value="10485760"></property>
@@ -21,4 +21,8 @@
 	<context:component-scan base-package="com.cnema.member" />
 	<context:component-scan base-package="com.cnema.movie" />
 	<context:component-scan base-package="com.cnema.reserve" />
+<<<<<<< HEAD
+=======
+	<context:component-scan base-package="com.cnema.theater"/>
+>>>>>>> a181d6da96a63c55f08f8d9088a67a2a04b356ee
 </beans>

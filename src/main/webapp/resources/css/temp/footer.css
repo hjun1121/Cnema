@@ -1,0 +1,148 @@
+
+@CHARSET "UTF-8";
+
+#footer {background:url(../../../resources/images/common/bg/bg_footer_com.gif) repeat-x 0 100%;} /* .sect-ad height 값에 따라 background-position 값 변경 */
+#footer .sect-ad {width:auto; height:240px; text-align:center;}
+#footer .sect-ad iframe {width:100%; height:240px;display:block;}
+#footer .foot {padding:0 0 147px; width:100%; height:auto;}
+
+#cgvwrap .cgv-ad-wrap .sect-head-ad,
+.head, .im-wrap, 
+#contents, 
+.foot, 
+.sect-smuse, 
+.sect-cinfo {position:relative; width:980px; margin:0 auto;}
+.head h1, .sect-srh, .sect-booking,.sect-phototicket {position:absolute; z-index:1;}
+.cf:before,.cf:after                                                    {content: " "; /* 1 */display: table; /* 2 */}
+.cf:after                                                               {clear: both;}
+.cf                                                                     {*zoom: 1;}
+
+#cgvwrap {position:relative; width:100%;min-width:980px}
+
+.sect-cinfo {position:relative; width:980px; margin:0 auto;}
+.sect-cinfo {padding-top:28px;}
+.foot .sect-cinfo{}
+/* Common Css : sect-cinfo */
+.sect-cinfo .familysite, .sect-cinfo .share, .sect-cinfo .logo {position:absolute;}
+
+.sect-cinfo .policy {width: auto;letter-spacing:0px; margin:0 -11px;}
+.sect-cinfo .policy li {background:url(../../../resources/images/common/bg/bg_li_vline2.gif) no-repeat 0 1px;}
+.sect-cinfo .policy li:first-child {background-image:none;}
+/* .sect-cinfo .policy li:first-child > a:first-child {padding-left:0;} */
+.sect-cinfo .policy li > a {padding:0 10px; font-family:'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif; font-size:14px; color:#444444; text-decoration:none; vertical-align:middle;letter-spacing:-1px}
+.sect-cinfo .policy li > a.empha-red {color:#e7612e;}
+
+.sect-cinfo .familysite {bottom:22px; right:0;}
+.sect-cinfo .familysite select {width:140px; background:transparent; border:1px solid #999;}
+.sect-cinfo .familysite button[type='button'] {width:29px; height:29px; background-color:#666; color:#fdfcf0; font-family:verdana, sans-serif; font-size:10px; font-weight:bold; text-align:center;}
+
+.sect-cinfo .share {position:absolute; display:inline-block; right:182px; top:63px;}
+.sect-cinfo .share a {float:left; width:34px; height:34px; margin-left:2px;}
+.sect-cinfo .share a:first-child {margin-left:0;}
+.sect-cinfo .share a.facebook {background-position:-509px -429px;}
+.sect-cinfo .share a.twitter {background-position:-551px -429px;}
+.sect-cinfo .share a.instagram {background-position:-593px -429px;}
+
+.sect-cinfo .logo {top:65px; left:0; width:90px; height:43px; background-position:-145px -319px;}
+
+
+.foot .sect-cinfo .address {padding:20px 0 0 108px; font-size:12px; color:#555555;}
+.sect-cinfo .address address {font-style:normal; height:12px;}
+.sect-cinfo .address p {margin-top:8px; height:12px;}
+.sect-cinfo .address p.vl > span {display:inline-block; padding-left:5px; margin-left:5px; height:12px; border-left:1px solid #c0c0c0;}
+.sect-cinfo .address p.vl > span:first-child {padding-left:0; margin-left:0; border-left:0;}
+.sect-cinfo .address p.copyright {position:absolute; right:0; bottom:0; font-family:Helvetica, verdana, sans-serif; font-size:11px;}
+
+
+/* Background */
+.sect-service .util li > a, 
+.sect-service .gnb li > a, 
+.lnb > ul > li > a, 
+.sect-service a.showtimes, 
+.sect-booking > a, 
+.sect-phototicket > a, 
+.sect-person li > a, 
+.line-v, 
+.line-dot, 
+.sect-smuse li > a, 
+.sect-cinfo .share a, 
+.sect-cinfo .logo {overflow:hidden; background-image:url(../../../resources/images/common/sprite/common_sprite_area_v4_2016.png); background-repeat:no-repeat; text-indent:100%; white-space:nowrap;}
+.lnb h2, 
+.sect-smuse h2, 
+.sect-cinfo h2 {font:0px/0 a; visibility:hidden;}
+.sect-service h2, 
+.im-wrap .lnb > ul > li > a, 
+.sect-srh h2, 
+.sect-booking h2, 
+.sect-booking > a, 
+.sect-phototicket h2, 
+.sect-phototicket > a, 
+.sect-person h2 {font:0px/0 a;}
+
+
+
+
+
+/* @CHARSET "UTF-8";
+
+#cgvwrap .cgv-ad-wrap .sect-head-ad,
+.head, .im-wrap, 
+#contents, 
+.foot, 
+.sect-smuse, 
+.sect-cinfo {position:relative; width:980px; margin:0 auto;}
+.head h1, .sect-srh, .sect-booking,.sect-phototicket {position:absolute; z-index:1;}
+.cf:before,.cf:after                                                    {content: " "; 1display: table; 2}
+.cf:after                                                               {clear: both;}
+.cf                                                                     {*zoom: 1;}
+
+
+#footer {background:url(../../../resources/images/common/bg/bg_footer_com.gif) repeat-x 0 100%;} .sect-ad height 값에 따라 background-position 값 변경
+#footer .sect-ad {width:auto; height:240px; text-align:center;}
+#footer .sect-ad iframe {width:100%; height:240px;display:block;}
+#footer .foot {padding:0 0 147px; width:100%; height:auto;}
+
+
+
+.foot .sect-cinfo{}
+.foot .sect-cinfo .address {padding:20px 0 0 108px; font-size:12px; color:#555555;}
+
+.sect-cinfo .share a, 
+.sect-cinfo .logo {overflow:hidden; background-image:url(../../../resources/images/common/sprite/common_sprite_area_v4_2016.png); background-repeat:no-repeat; text-indent:100%; white-space:nowrap;}
+.sect-cinfo h2 {font:0px/0 a; visibility:hidden;}
+
+.sect-cinfo {padding-top:28px;}
+.foot .sect-cinfo{}
+Common Css : sect-cinfo
+.sect-cinfo .familysite, .sect-cinfo .share, .sect-cinfo .logo {position:absolute;}
+
+.sect-cinfo .policy {width: auto;letter-spacing:0px; margin:0 -11px;}
+.sect-cinfo .policy li {background:url(../../../resources/images/common/bg/bg_li_vline2.gif) no-repeat 0 1px;}
+.sect-cinfo .policy li:first-child {background-image:none;}
+.sect-cinfo .policy li:first-child > a:first-child {padding-left:0;}
+.sect-cinfo .policy li > a {padding:0 10px; font-family:'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif; font-size:14px; color:#444444; text-decoration:none; vertical-align:middle;letter-spacing:-1px}
+.sect-cinfo .policy li > a.empha-red {color:#e7612e;}
+
+.sect-cinfo .familysite {bottom:22px; right:0;}
+.sect-cinfo .familysite select {width:140px; background:transparent; border:1px solid #999;}
+.sect-cinfo .familysite button[type='button'] {width:29px; height:29px; background-color:#666; color:#fdfcf0; font-family:verdana, sans-serif; font-size:10px; font-weight:bold; text-align:center;}
+
+.sect-cinfo .share {position:absolute; display:inline-block; right:182px; top:63px;}
+.sect-cinfo .share a {float:left; width:34px; height:34px; margin-left:2px;}
+.sect-cinfo .share a:first-child {margin-left:0;}
+.sect-cinfo .share a.facebook {background-position:-509px -429px;}
+.sect-cinfo .share a.twitter {background-position:-551px -429px;}
+.sect-cinfo .share a.instagram {background-position:-593px -429px;}
+
+.sect-cinfo .logo {top:65px; left:0; width:90px; height:43px; background-position:-145px -319px;}
+
+
+.foot .sect-cinfo .address {padding:20px 0 0 108px; font-size:12px; color:#555555;}
+.sect-cinfo .address address {font-style:normal; height:12px;}
+.sect-cinfo .address p {margin-top:8px; height:12px;}
+.sect-cinfo .address p.vl > span {display:inline-block; padding-left:5px; margin-left:5px; height:12px; border-left:1px solid #c0c0c0;}
+.sect-cinfo .address p.vl > span:first-child {padding-left:0; margin-left:0; border-left:0;}
+.sect-cinfo .address p.copyright {position:absolute; right:0; bottom:0; font-family:Helvetica, verdana, sans-serif; font-size:11px;}
+
+
+ */
