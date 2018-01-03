@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,44 @@
 </head>
 <body>
 <h1>My Page</h1>
-${myInfo.name }님  ${myInfo.id}<br>
-고객님은 sysdate ${myInfo.type}입니다.<br>
-CJ ONE 사용가능 포인트   ${myInfo.v_point}점<br>
-CJ ONE 누적 포인트 ${myInfo.a_point}점<br>
+	<!-- 나의 정보 -->
+	${myInfo.name}님  ${myInfo.id}<br>
+	고객님은 sysdate ${myInfo.type}입니다.<br>
+	
+	<!-- 나의 포인트 -->
+	CJ ONE 사용가능 포인트   ${myInfo.v_point}점<br>
+	CJ ONE 누적 포인트 ${myInfo.a_point}점<br>
+	
+	<!-- 위시리스트 -->
+	<h3>위시 리스트</h3>
+	<c:forEach items="${mwList}" var="mList">
+		사진 : ${mList.fileName}<br>
+		영화명 : ${mList.movie_name}<br>
+		개봉일 : ${mList.open_date}<br>
+		좋아요수 :${mList.wish}<br>
+		예매
+	</c:forEach>
+	<%-- 
+		사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
+		영화명: ${allList["3"][i.index].movie_name}<br>
+		날짜 : ${allList["1"][i.index].day}<br>
+		시간 : ${allList["1"][i.index].in_time}~${allList["1"][i.index].out_time}<br>
+		지점 : ${rList.theater_num }<br>
+		상영관 번호 : ${rList.screen_num }<br>
+		몇명 : ${allList["2"][i.index].people}<br>
+		------ <br>
+	</c:forEach> --%>
+	<!-- 내가 본 영화 -->
+	<h3>내가 본 영화</h3>
+	<c:forEach items="${allList[0]}" var="rList" varStatus="i">
+		사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
+		영화명: ${allList["3"][i.index].movie_name}<br>
+		날짜 : ${allList["1"][i.index].day}<br>
+		시간 : ${allList["1"][i.index].in_time}~${allList["1"][i.index].out_time}<br>
+		지점 : ${rList.theater_num }<br>
+		상영관 번호 : ${rList.screen_num }<br>
+		몇명 : ${allList["2"][i.index].people}<br>
+		------ <br>
+	</c:forEach>
 </body>
 </html>

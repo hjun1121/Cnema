@@ -1,10 +1,15 @@
 package com.cnema.c1;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,12 +17,44 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.movie.MovieDTO;
+import com.cnema.movie.MovieService;
+import com.cnema.movie.WishDTO;
+import com.cnema.movie.WishService;
+import com.cnema.reserve.ReserveDTO;
+import com.cnema.reserve.ReserveService;
+import com.cnema.reserve.TicketPriceDTO;
+import com.cnema.reserve.TicketPriceService;
+import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScheduleService;
+import com.sun.java.swing.plaf.motif.resources.motif;
 
 @Controller
 @RequestMapping(value="/member/**")
 public class MemberController {
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private ReserveService reserveService;
+	@Inject
+	private ScheduleService scheduleService;
+	@Inject
+	private TicketPriceService ticketPriceService;
+	@Inject
+	private MovieService movieService;
+	@Inject
+	private WishService wishService;
+	
+	/*kim*/
+	@RequestMapping(value="idFind", method=RequestMethod.GET)
+	public void idFind(){
+		
+	}
+	
+	@RequestMapping(value="pwFind", method=RequestMethod.GET)
+	public void pwFind(){
+		
+	}
 	
 	@RequestMapping(value="memberLogout")
 	public String logout(HttpSession session){
@@ -27,7 +64,17 @@ public class MemberController {
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public void login(){
-		
+		InetAddress addr = null;
+		try {
+			addr = InetAddress.getLocalHost();
+			String ip = addr.toString();
+			ip = ip.substring(ip.lastIndexOf("/")+1);
+			
+			System.out.println(ip);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
@@ -38,7 +85,7 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		if(member != null){
 			session.setAttribute("member", member);
 			mv.setViewName("redirect:../");
@@ -51,35 +98,76 @@ public class MemberController {
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public void join(){
-		
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
-	public void join(MemberDTO memberDTO){
+	public ModelAndView join(MemberDTO memberDTO, HttpSession session, RedirectAttributes rd){
+		int result = 0;
 		try {
-			memberService.join(memberDTO);
+			result = memberService.join(memberDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		ModelAndView mv = new ModelAndView();
+		if(result>0){
+			rd.addFlashAttribute("message", "회원가입 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "회원가입 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
 	}
-
+	
+	/*heeseong*/
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
-	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
+	public ModelAndView selectOne(String id,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
-		id="hseong";
+		ScheduleDTO scheduleDTO = null;
+		TicketPriceDTO ticketPriceDTO = null;
+		MovieDTO movieDTO = null;
+		
+		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
+		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
+		List<MovieDTO> mList = new ArrayList<MovieDTO>();
+		List<WishDTO> wList = new ArrayList<WishDTO>();
+		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		try {
-			memberDTO = memberService.selectOne(id);
-			System.out.println(memberDTO.getName());
+			memberDTO = memberService.memberInfo(id);
+			rList = reserveService.reserveList(id);
+			for(int size=0;size<rList.size();size++){
+				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
+				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
+				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
+				schList.add(scheduleDTO);
+				tpList.add(ticketPriceDTO);
+				mList.add(movieDTO);
+			}
+			wList = wishService.wishList(id);
+			for(int size=0;size<wList.size();size++){
+				movieDTO = movieService.movieInfo(wList.get(size).getMovie_num());
+				mwList.add(movieDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
+			List<Object> reserveList = new ArrayList<>();
+			reserveList.add(rList);
+			reserveList.add(schList);
+			reserveList.add(tpList);
+			reserveList.add(mList);
+			mv.addObject("allList", reserveList);
+			mv.addObject("mwList", mwList);
+			
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
-			mv.setViewName("redirect:../home");
+			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}

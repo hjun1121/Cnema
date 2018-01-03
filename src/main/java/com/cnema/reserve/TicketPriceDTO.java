@@ -1,18 +1,18 @@
 package com.cnema.reserve;
 
 public class TicketPriceDTO {
-	private int num;
+	private int tp_num;
 	private int people;
 	private int total_price;
 	private int c_num;
 	private int point;
 	private int price;
 	
-	public int getNum() {
-		return num;
+	public int getTp_num() {
+		return tp_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setTp_num(int tp_num) {
+		this.tp_num = tp_num;
 	}
 	public int getPeople() {
 		return people;

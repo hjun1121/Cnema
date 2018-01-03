@@ -2,6 +2,8 @@ package com.cnema.member;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDTO {
 	private String id;
 	private String pw;
@@ -17,9 +19,16 @@ public class MemberDTO {
 	private int v_point;
 	private int a_point;
 	private Date reg_date;
+	private MultipartFile file;
 	private String fileName;
 	private String oriName;
 	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public String getId() {
 		return id;
 	}
