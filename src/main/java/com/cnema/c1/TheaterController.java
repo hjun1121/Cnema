@@ -23,7 +23,7 @@ public class TheaterController {
 	@Inject
 	private MovieService movieService;
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)
-	public void quickReserve(Model model, String area){
+	public void quickReserve(Model model, String area, String kind){
 		
 		if(area == null){
 			area="서울";
@@ -31,7 +31,7 @@ public class TheaterController {
 		List<MovieDTO> movieList = null;
 		List<TheaterDTO> theaterList = null;
 		try {
-			movieList = movieService.movieList();
+			movieList = movieService.movieList(kind);
 			theaterList = theaterService.locationList(area);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

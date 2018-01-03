@@ -10,9 +10,7 @@
 	var message = '${message}';
 	if(message != ""){
 		alert(message);
-		
 	}
-
 </script>
 </head>
 	<title> CNEMA</title>
