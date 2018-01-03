@@ -32,8 +32,6 @@
 	
 	<!-- 내가 본 영화 -->
 	<h3>내가 본 영화</h3>
-	<c:forEach items="${rList}" var="reserveList">
-
 	<c:forEach items="${allList[0]}" var="rList" varStatus="i">
 		사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
 		영화명: ${allList["3"][i.index].movie_name}<br>
@@ -52,5 +50,15 @@
 		${pointList.theater }  ${pointList.use_day } ${pointList.point_price } ${pointList.type }<br>
 		----
 	</c:forEach>
+	
+	<!-- 정보 수정 -->
+	<h3>정보 수정</h3>
+	
+	
+	
+	<!-- Admin -->
+	<!-- 쿠폰 주기 -->
+	<!-- 영화 등록 -->
+	<!-- 회원 정보 -->
 </body>
 </html>
