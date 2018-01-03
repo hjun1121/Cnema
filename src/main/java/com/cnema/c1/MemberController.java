@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.member.PointDTO;
+import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.movie.WishDTO;
@@ -44,6 +46,8 @@ public class MemberController {
 	private MovieService movieService;
 	@Inject
 	private WishService wishService;
+	@Inject
+	private PointService pointService;
 	
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
@@ -134,9 +138,11 @@ public class MemberController {
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
+		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
+			pList = pointService.pointList(id);
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
 				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
@@ -163,6 +169,7 @@ public class MemberController {
 			reserveList.add(mList);
 			mv.addObject("allList", reserveList);
 			mv.addObject("mwList", mwList);
+			mv.addObject("pList",pList);
 			
 			mv.setViewName("member/myPageView");
 		}else{
