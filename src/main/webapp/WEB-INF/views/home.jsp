@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,11 +12,10 @@
 		alert(message);
 	}
 </script>
-
 </head>
 	<title> CNEMA</title>
 <body>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5O5PVvHTWRo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5O5PVvHTWRo" ></iframe>
 	<a href="home/kim">김</a>
 	<a href="home/lee">이</a>
 	<a href="home/ssin">신</a>

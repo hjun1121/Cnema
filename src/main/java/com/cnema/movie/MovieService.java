@@ -22,17 +22,10 @@ public class MovieService {
 	private FileSaver fileSaver;
 	
 	
-	public List<MovieDTO> movieList() throws Exception {
-		return movieDAO.movieList();
+	public List<MovieDTO> movieList(String kind) throws Exception {
+		return movieDAO.movieList(kind);
 	}
 	
-	public List<MovieDTO> gradeList() throws Exception {
-		return movieDAO.gradeList();
-	}
-	
-	public List<MovieDTO> open_dateList() throws Exception {
-		return movieDAO.open_dateList();
-	}
 	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);

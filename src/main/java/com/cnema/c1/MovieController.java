@@ -22,6 +22,7 @@ public class MovieController {
 	@Inject
 	private MovieService movieService;
 	
+	
 	//selectOne
 	@RequestMapping(value="movie_view")
 	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd) throws Exception {
@@ -34,51 +35,49 @@ public class MovieController {
 		mv.setViewName("movie/movieView");
 		return mv;
 	}
+	
 	//selectList
 	@RequestMapping(value = "movieList")
 	public ModelAndView selectList(ModelAndView mv) throws Exception {
 		return mv;
 	}
 	
-	//gradeList
-	@RequestMapping(value = "movie_chart")
-	public ModelAndView gradeList(ModelAndView mv) throws Exception {
-		ModelAndView mv1 = new ModelAndView();
-		List<MovieDTO> ar = movieService.gradeList();
-		mv1.addObject("gradeList", ar);
-		return mv1;
-	}
-
-	//open_dateList
-	@RequestMapping(value = "movie_chart1")
-	public ModelAndView open_dateList(ModelAndView mv) throws Exception {
+	//movieList
+	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
+	public ModelAndView movieList(String kind) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		if(kind == null) {
+			kind = "reserve_rate";
+		}
+		List<MovieDTO> ar = movieService.movieList(kind);
+		mv.addObject("movie_list", ar);
 		return mv;
-	}
-
-	//insert
-	@RequestMapping(value="movie_chart", method=RequestMethod.GET)
-	public void insert() {
 	}
 	
-	@RequestMapping(value="movie_chart", method=RequestMethod.POST)
-	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
-		int result = 0;
-		try {
-			result = movieService.insert(movieDTO, session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		ModelAndView mv = new ModelAndView();
-		if(result>0) {
-			rd.addFlashAttribute("message", "영화 insert 성공");
-			mv.setViewName("redirect:../");
-		} else {
-			rd.addFlashAttribute("message", "영화 insert 실패");
-			mv.setViewName("redirect:../");
-		}
-		
-		return mv;
-	}
+//	//insert
+//	@RequestMapping(value="movie_chart", method=RequestMethod.GET)
+//	public void insert() {
+//	}
+//	
+//	@RequestMapping(value="movie_chart", method=RequestMethod.POST)
+//	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
+//		int result = 0;
+//		try {
+//			result = movieService.insert(movieDTO, session);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		ModelAndView mv = new ModelAndView();
+//		if(result>0) {
+//			rd.addFlashAttribute("message", "영화 insert 성공");
+//			mv.setViewName("redirect:../");
+//		} else {
+//			rd.addFlashAttribute("message", "영화 insert 실패");
+//			mv.setViewName("redirect:../");
+//		}
+//		
+//		return mv;
+//	}
 
 	
 	//delete

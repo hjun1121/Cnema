@@ -8,8 +8,20 @@
   		SELECT * FROM movie WHERE movie_num=#{movie_num}
   	</select>
   	
-  	<select id="movieList" resultType="movieDTO">
-  		select * from movie
+  	<select id="movieList" parameterType="java.util.Map" resultType="movieDTO">
+  		select * from movie 
+  		<choose>
+  			<when test="kind == 'grade'">
+  				order by grade desc
+  			</when>
+  			<when test="kind == 'open_date'">
+  				order by open_date asc
+  			</when>
+  			<when test="kind == 'reserve_rate'">
+  				order by reserve_rate desc
+  			</when>
+  		</choose>
+
   	</select>
   	
   	<insert id="insert" parameterType="movieDTO">
@@ -20,11 +32,5 @@
   	<select id="movieInfo" resultType="movieDTO" >
   		select * from movie where movie_num=#{movie_num}
   	</select>
-	<select id="gradeList" resultType="movieDTO">
-		select * from movie order by grade desc
-	</select>
-
-	<select id="open_dateList" resultType="movieDTO">
-		select * from  movie order by open_date desc
-	</select>
+	
 </mapper>
