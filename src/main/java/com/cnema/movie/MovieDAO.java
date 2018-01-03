@@ -41,7 +41,7 @@ public class MovieDAO {
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"movieInfo",movie_num);
 	}
-
+	
 	//gradeList
 	public List<MovieDTO> gradeList() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"gradeList");

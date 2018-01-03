@@ -20,7 +20,6 @@
   	<select id="movieInfo" resultType="movieDTO" >
   		select * from movie where movie_num=#{movie_num}
   	</select>
-
 	<select id="gradeList" resultType="movieDTO">
 		select * from movie order by grade desc
 	</select>
