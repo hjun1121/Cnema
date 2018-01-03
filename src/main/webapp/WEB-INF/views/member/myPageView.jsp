@@ -21,11 +21,11 @@
 	
 	<!-- 내가 본 영화 -->
 	<h3>내가 본 영화</h3>
-	<c:forEach items="${rList}" var="rList">
+	<c:forEach items="${all[0]}" var="rList">
 		사진 : <br>
 		영화명:${rList.m_num }  <br>
-		날짜 :  <br>
-		시간 :  ${rList.schedule_num }<br>
+		날짜 : ${all[1].screen_num} <br>
+		시간 : <br>
 		지점 : ${rList.t_num }<br>
 		상영관 번호 : ${rList.screen_num }<br>
 		몇명 :  <br>
