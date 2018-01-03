@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div id="cgvwrap">
+
 	<!-- Footer 시작 -->
 	<div id="footer">
 		<div class="foot">
@@ -28,4 +28,4 @@
 		</div>
 	</div>
 	<!-- Footer 끝-->
-</div>
+
