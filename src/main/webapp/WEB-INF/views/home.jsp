@@ -15,6 +15,10 @@
 </head>
 	<title> CNEMA</title>
 <body>
+
+<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5O5PVvHTWRo" ></iframe>
 	<a href="home/kim">김</a>
 	<a href="home/lee">이</a>
@@ -35,5 +39,7 @@
 		<a href="member/myPageView?id=${member.id }">My Page</a>
 		<a href="member/memberLogout">Logout</a>
 	</c:if>
+	
+<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	
 </body>
 </html>
