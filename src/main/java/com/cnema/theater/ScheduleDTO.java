@@ -3,16 +3,16 @@ package com.cnema.theater;
 import java.sql.Date;
 
 public class ScheduleDTO {
-	private int num;
+	private int schedule_num;
 	private int screen_num;
 	private Date in_time;
 	private Date out_time;
 	
-	public int getNum() {
-		return num;
+	public int getSchedule_num() {
+		return schedule_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setSchedule_num(int schedule_num) {
+		this.schedule_num = schedule_num;
 	}
 	public int getScreen_num() {
 		return screen_num;

@@ -1,7 +1,7 @@
 package com.cnema.reserve;
 
 public class ReserveDTO {
-	private int num;
+	private int reserve_num;
 	private int theater_num;
 	private int screen_num;
 	private int schedule_num;
@@ -11,11 +11,11 @@ public class ReserveDTO {
 	private int age_type;
 	private int tp_num;
 	
-	public int getNum() {
-		return num;
+	public int getReserve_num() {
+		return reserve_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setReserve_num(int reserve_num) {
+		this.reserve_num = reserve_num;
 	}
 	public int getTheater_num() {
 		return theater_num;

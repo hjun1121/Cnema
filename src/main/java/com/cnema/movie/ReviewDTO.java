@@ -4,25 +4,25 @@ import java.sql.Date;
 
 public class ReviewDTO {
 
-	private int r_num;
-	private int m_num;
+	private int review_num;
+	private int movie_num;
 	private String id;
 	private String contents;
 	private int warning;
 	private int hit;
 	private Date reg_date;
-	
-	public int getR_num() {
-		return r_num;
+
+	public int getReview_num() {
+		return review_num;
 	}
-	public void setR_num(int r_num) {
-		this.r_num = r_num;
+	public void setReview_num(int review_num) {
+		this.review_num = review_num;
 	}
-	public int getM_num() {
-		return m_num;
+	public int getMovie_num() {
+		return movie_num;
 	}
-	public void setM_num(int m_num) {
-		this.m_num = m_num;
+	public void setMovie_num(int movie_num) {
+		this.movie_num = movie_num;
 	}
 	public String getId() {
 		return id;

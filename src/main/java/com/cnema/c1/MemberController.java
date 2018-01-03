@@ -1,10 +1,14 @@
 package com.cnema.c1;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,12 +16,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.reserve.ReserveDTO;
+import com.cnema.reserve.ReserveService;
 
 @Controller
 @RequestMapping(value="/member/**")
 public class MemberController {
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private ReserveService reserveService;
+	
+	/*kim*/
+	@RequestMapping(value="idFind", method=RequestMethod.GET)
+	public void idFind(){
+		
+	}
+	
+	@RequestMapping(value="pwFind", method=RequestMethod.GET)
+	public void pwFind(){
+		
+	}
 	
 	@RequestMapping(value="memberLogout")
 	public String logout(HttpSession session){
@@ -27,7 +46,17 @@ public class MemberController {
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public void login(){
-		
+		InetAddress addr = null;
+		try {
+			addr = InetAddress.getLocalHost();
+			String ip = addr.toString();
+			ip = ip.substring(ip.lastIndexOf("/")+1);
+			
+			System.out.println(ip);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
@@ -51,35 +80,47 @@ public class MemberController {
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
 	public void join(){
-		
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
-	public void join(MemberDTO memberDTO){
+	public ModelAndView join(MemberDTO memberDTO, HttpSession session, RedirectAttributes rd){
+		int result = 0;
 		try {
-			memberService.join(memberDTO);
+			result = memberService.join(memberDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		ModelAndView mv = new ModelAndView();
+		if(result>0){
+			rd.addFlashAttribute("message", "회원가입 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "회원가입 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
 	}
-
+	
+	/*heeseong*/
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
-	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd){
+	public ModelAndView selectOne(String id,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
-		id="hseong";
+		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		try {
-			memberDTO = memberService.selectOne(id);
-			System.out.println(memberDTO.getName());
+			memberDTO = memberService.memberInfo(id);
+			rList = reserveService.reserveList(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
+			mv.addObject("rList",rList);
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
-			mv.setViewName("redirect:../home");
+			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}

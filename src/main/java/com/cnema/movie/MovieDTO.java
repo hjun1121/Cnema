@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class MovieDTO {
 
-	private int m_num;
-	private String m_name;
+	private int movie_num;
+	private String movie_name;
 	private String fileName;
 	private String oriName;
 	private String teaser_url;
@@ -19,17 +19,18 @@ public class MovieDTO {
 	private int age_limit;
 
 
-	public int getM_num() {
-		return m_num;
+
+	public int getMovie_num() {
+		return movie_num;
 	}
-	public void setM_num(int m_num) {
-		this.m_num = m_num;
+	public void setMovie_num(int movie_num) {
+		this.movie_num = movie_num;
 	}
-	public String getM_name() {
-		return m_name;
+	public String getMovie_name() {
+		return movie_name;
 	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setMovie_name(String movie_name) {
+		this.movie_name = movie_name;
 	}
 	public String getFileName() {
 		return fileName;
