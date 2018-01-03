@@ -50,7 +50,7 @@ public class MovieController {
 	}
 
 	//open_dateList
-	@RequestMapping(value = "movie_chart")
+	@RequestMapping(value = "movie_chart1")
 	public ModelAndView open_dateList(ModelAndView mv) throws Exception {
 		return mv;
 	}
