@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+
+
+html,body, #contaniner, #footer {background-color:#fdfcf0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td {font-size:100%; margin:0; padding:0; border:0; vertical-align:baseline; word-break:break-all;}
+body {line-height:1; color:black; }
+ol, ul {list-style:none;}
+h1, h2, h3, h4, h5, h6{ font-family:'NanumBarunGothicBold', sans-serif; font-weight:normal}
+table {width:100%; border-collapse:separate; border-spacing:0;}
+caption, th, td {font-weight:normal; line-height:1.5em; text-align:left; vertical-align:middle;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';}
+blockquote, q {quotes:'' '';}
+button,
+input {overflow:visible;}
+button::-moz-focus-inner {border:0; padding:0;}
+input, select, img {vertical-align:middle;}
+textarea {overflow:auto; overflow-x:hidden; vertical-align:top;}
+em {font-style:normal;}
+strong{font-family:'NanumBarunGothicBold', sans-serif; font-weight:normal;}
+i{font-style:normal;}
+html,
+body {height:100%;}
+html {overflow-y:scroll;}
+
+body,
+input,
+textarea,
+button,
+table {font-size:12px; line-height:1.2; color:#666; font-family:'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;}
+table thead th {font-family:'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;}
+legend {font:0/0 a; position:absolute; right:-999em; top:-999em; zoom:1;}
+
+a {color:inherit; text-decoration:none;}
+*+ html a {color:#666;}
+a:focus,
+a:hover {text-decoration:none;}
+a:active {background-color:transparent;}
+
