@@ -1,19 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
->>>>>>> 92133f6d028a1e29d235d43508939d4327e73dd7
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
-</head>
-<body>
-	<h2>Quick Reserve</h2>
-=======
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -178,6 +170,5 @@
 			<input type="text" id="sehedule_num" name="sehedule_num">
 		</form>
 	</div>
->>>>>>> 92133f6d028a1e29d235d43508939d4327e73dd7
 </body>
 </html>

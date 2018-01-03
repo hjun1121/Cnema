@@ -7,6 +7,7 @@ public class ScheduleDTO {
 	private int screen_num;
 	private Date in_time;
 	private Date out_time;
+	private Date day;
 	
 	public int getSchedule_num() {
 		return schedule_num;
@@ -31,5 +32,11 @@ public class ScheduleDTO {
 	}
 	public void setOut_time(Date out_time) {
 		this.out_time = out_time;
+	}
+	public Date getDay() {
+		return day;
+	}
+	public void setDay(Date day) {
+		this.day = day;
 	}
 }
