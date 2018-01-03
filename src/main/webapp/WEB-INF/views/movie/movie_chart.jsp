@@ -45,7 +45,7 @@
 	<table>
 	<c:forEach items="${movie_list}" var = "movie">
 		<tr>
-			<td><img alt="${movie.movie_name} 포스터" src='/resource/movie/${movie.fileName}'></td>
+			<td><img alt="${movie.movie_name} 포스터" src='../resources/movie/${movie.fileName}'></td>
 			<td>${movie.movie_name}</td>
 			<td>예매율 : ${movie.reserve_rate}</td>
 			<td>장르 : ${movie.type}</td>
