@@ -2,7 +2,9 @@ package com.cnema.movie;
 
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,7 +20,7 @@ public class MovieDAO {
 	private static final String NAMESPACE = "movieMapper.";
 
 
-	
+
 	//selectOne
 	public MovieDTO selectOne(int num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"selectOne", num);
@@ -34,18 +36,10 @@ public class MovieDAO {
 	//update
 
 	//selectList
-	public List<MovieDTO> movieList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"movieList");
-	}
-
-	//gradeList
-	public List<MovieDTO> gradeList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"gradeList");
-	}
-	
-	//open_dateList
-	public List<MovieDTO> open_dateList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"open_dateList");
+	public List<MovieDTO> movieList(String kind) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("kind", kind);
+		return sqlSession.selectList(NAMESPACE+"movieList", map);
 	}
 
 }
