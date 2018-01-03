@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.junit.Test;
 
 import com.cnema.c1.AbstractTest;
+import com.cnema.reserve.TicketPriceDAO;
+import com.cnema.reserve.TicketPriceDTO;
 import com.cnema.theater.TheaterDAO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.util.EmailDAO;
@@ -22,19 +24,14 @@ public class MemberTest extends AbstractTest {
 	private EmailDAO emailDAO;
 	@Inject
 	private TheaterDAO theaterDAO;
-	
+	@Inject
+	private TicketPriceDAO ticketPriceDAO;
 	@Test
 	public void test() {
 		
 		try {
-			MemberDTO memberDTO = new MemberDTO();
-			memberDTO.setId("joy");
-			memberDTO.setName("joy");
-			memberDTO.setEmail("library_4@naver.com");
-			List<MemberDTO> ar =  memberDAO.idFind(memberDTO);
-			System.out.println(ar.size());
-			System.out.println(ar.get(0).getAddr1());
-			System.out.println(ar.get(1).getAddr1());
+			TicketPriceDTO ticketPriceDTO = ticketPriceDAO.ticketPInfo(1);
+			System.out.println(ticketPriceDTO.getPeople());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
