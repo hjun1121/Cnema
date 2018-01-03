@@ -1,5 +1,7 @@
 package com.cnema.c1;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -35,11 +37,24 @@ public class MovieController {
 	//selectList
 	@RequestMapping(value = "movieList")
 	public ModelAndView selectList(ModelAndView mv) throws Exception {
-		
 		return mv;
 	}
 	
-	
+	//gradeList
+	@RequestMapping(value = "movie_chart")
+	public ModelAndView gradeList(ModelAndView mv) throws Exception {
+		ModelAndView mv1 = new ModelAndView();
+		List<MovieDTO> ar = movieService.gradeList();
+		mv1.addObject("gradeList", ar);
+		return mv1;
+	}
+
+	//open_dateList
+	@RequestMapping(value = "movie_chart")
+	public ModelAndView open_dateList(ModelAndView mv) throws Exception {
+		return mv;
+	}
+
 	//insert
 	@RequestMapping(value="movie_chart", method=RequestMethod.GET)
 	public void insert() {

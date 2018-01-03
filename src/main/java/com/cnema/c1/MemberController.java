@@ -81,7 +81,7 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		if(member != null){
 			session.setAttribute("member", member);
 			mv.setViewName("redirect:../");
