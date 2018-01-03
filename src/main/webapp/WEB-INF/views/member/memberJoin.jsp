@@ -146,6 +146,17 @@
 			var email2 = $("#email2").val();
 			var email = email1 +'@'+email2;
 			$("#email").val(email);
+			
+			$.ajax({
+				url:"../ajax/emailCheck",
+				type:"post",
+				data:{
+				},
+				success:function(data){
+					$("#email_ch").html(data);
+				}
+			});
+			
 		})
 		
 		$("#joinBtn").click(function(){
@@ -186,7 +197,7 @@
 			-
 			<input type="text" id="l">
 		</p>
-		<input type="text" id="phone" name="phone">
+		<input type="hidden" id="phone" name="phone">
 		
 		<p>email
 		<input type="text" id="email1">@
@@ -200,7 +211,11 @@
 		</select>
 		<input type="button" id="mailCheck" value="이메일 인증">
 		</p>
-		<input type="text" id="email" name="email">
+		<div id="email_ch">
+		
+		</div>
+		
+		<input type="hidden" id="email" name="email">
 		<p></p>
 		<input type="text" id="postCode" name="postCode" placeholder="우편번호" readonly="readonly">
 		<input type="button" id="addrCheck" value="우편번호 찾기" readonly="readonly" >

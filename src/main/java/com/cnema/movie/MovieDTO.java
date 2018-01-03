@@ -2,10 +2,12 @@ package com.cnema.movie;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MovieDTO {
 
-	private int m_num;
-	private String m_name;
+	private int movie_num;
+	private String movie_name;
 	private String fileName;
 	private String oriName;
 	private String teaser_url;
@@ -14,22 +16,29 @@ public class MovieDTO {
 	private Date open_date;
 	private int run_time;
 	private int grade; //평점
-	private int type;
+	private String type;
 	private String contents;
 	private int age_limit;
+	private MultipartFile file;
 
 
-	public int getM_num() {
-		return m_num;
+	public MultipartFile getFile() {
+		return file;
 	}
-	public void setM_num(int m_num) {
-		this.m_num = m_num;
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
-	public String getM_name() {
-		return m_name;
+	public int getMovie_num() {
+		return movie_num;
 	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setMovie_num(int movie_num) {
+		this.movie_num = movie_num;
+	}
+	public String getMovie_name() {
+		return movie_name;
+	}
+	public void setMovie_name(String movie_name) {
+		this.movie_name = movie_name;
 	}
 	public String getFileName() {
 		return fileName;
@@ -79,10 +88,10 @@ public class MovieDTO {
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getContents() {
