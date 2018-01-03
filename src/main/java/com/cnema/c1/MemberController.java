@@ -17,12 +17,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.movie.MovieDTO;
+import com.cnema.movie.MovieService;
 import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
 import com.cnema.reserve.TicketPriceDTO;
 import com.cnema.reserve.TicketPriceService;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
+import com.sun.java.swing.plaf.motif.resources.motif;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -35,6 +38,8 @@ public class MemberController {
 	private ScheduleService scheduleService;
 	@Inject
 	private TicketPriceService ticketPriceService;
+	@Inject
+	private MovieService movieService;
 	
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
@@ -117,19 +122,22 @@ public class MemberController {
 		MemberDTO memberDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
+		MovieDTO movieDTO = null;
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
+		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
 				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
-				System.out.println("people"+ticketPriceDTO.getPeople());
+				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
 				schList.add(scheduleDTO);
 				tpList.add(ticketPriceDTO);
+				mList.add(movieDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,6 +150,7 @@ public class MemberController {
 			list.add(rList);
 			list.add(schList);
 			list.add(tpList);
+			list.add(mList);
 			
 			mv.addObject("allList", list);
 			

@@ -22,10 +22,10 @@
 	<!-- 내가 본 영화 -->
 	<h3>내가 본 영화</h3>
 	<c:forEach items="${allList[0]}" var="rList" varStatus="i">
-		사진 : <br>
-		영화명: <br>
+		사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
+		영화명: ${allList["3"][i.index].movie_name}<br>
 		날짜 : ${allList["1"][i.index].day}<br>
-		시간 : ${allList["1"][i.index].in_time}~${all["1"][i.index].out_time}<br>
+		시간 : ${allList["1"][i.index].in_time}~${allList["1"][i.index].out_time}<br>
 		지점 : ${rList.theater_num }<br>
 		상영관 번호 : ${rList.screen_num }<br>
 		몇명 : ${allList["2"][i.index].people}<br>

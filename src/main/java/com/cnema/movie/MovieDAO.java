@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MovieDAO {
-
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "movieMapper.";
@@ -36,6 +35,11 @@ public class MovieDAO {
 
 	public List<MovieDTO> movieList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieList");
+	}
+	
+	/*heeseong*/
+	public MovieDTO movieInfo(int movie_num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"movieInfo",movie_num);
 	}
 
 }
