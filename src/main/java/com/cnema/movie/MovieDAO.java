@@ -18,7 +18,6 @@ public class MovieDAO {
 	private static final String NAMESPACE = "movieMapper.";
 
 
-	//selectList
 	
 	//selectOne
 	public MovieDTO selectOne(int num) throws Exception{
@@ -34,8 +33,19 @@ public class MovieDAO {
 
 	//update
 
+	//selectList
 	public List<MovieDTO> movieList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieList");
+	}
+	
+	//gradeList
+	public List<MovieDTO> gradeList() throws Exception {
+		return sqlSession.gradeList(NAMESPACE+"gradeList");
+	}
+	
+	//open_dateList
+	public List<MovieDTO> open_dateList() throws Exception {
+		return sqlSession.open_dateList(NAMESPACE+"open_dateList");
 	}
 
 }

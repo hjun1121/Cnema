@@ -35,10 +35,20 @@ public class MovieController {
 	//selectList
 	@RequestMapping(value = "movieList")
 	public ModelAndView selectList(ModelAndView mv) throws Exception {
-		
 		return mv;
 	}
 	
+	//gradeList
+	@RequestMapping(value = "gradeList")
+	public ModelAndView gradeList(ModelAndView mv) throws Exception {
+		return mv;
+	}
+
+	//open_dateList
+	@RequestMapping(value = "open_dateList")
+	public ModelAndView open_dateList(ModelAndView mv) throws Exception {
+		return mv;
+	}
 	
 	//insert
 	@RequestMapping(value="movie_chart", method=RequestMethod.GET)

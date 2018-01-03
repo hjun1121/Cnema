@@ -28,6 +28,10 @@ public class MovieService {
 		return movieDAO.movieList();
 	}
 	
+	public List<MovieDTO> gradeList() throws Exception {
+		return movieDAO.gradeList();
+	}
+	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);
 

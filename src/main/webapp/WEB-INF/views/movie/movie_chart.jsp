@@ -24,26 +24,30 @@
 <h1>무비차트</h1>
 <hr>
 <table>
-	<tr>
-		<td>포스터</td>
-		<td>제목</td>
-		<td>예매율</td>
-		<td>개봉일</td>
-		<td>♡</td>
-		<td><button>예매</button></td>
-	</tr>
 	<c:forEach items="${movie}" var = "movie">
 		<tr>
 			<td>사진</td>
 			<td>${movie.title}</td>
-			<td>${movie.reserve_rate}</td>
-			<td>${movie.open_date}</td>
-			<td>♡</td>
+			<td>예매율 : ${movie.reserve_rate}</td>
+			<td>장르 : ${movie.type}</td>
+			<td>개봉일 : ${movie.open_date}</td>
+			<td>♡ ${movie.wish}</td>
+			<td><input type="button" id="reserveBtn" value="예매"></td>
+			<td>${movie.contents}</td>
+			<td>${movie.teaser_url}</td>
+			<td>평점 : ${movie.grade}</td>
 		</tr>
 	</c:forEach>
 </table>
 <hr>
-
-
+<h1>영화리뷰</h1>
+<table>
+	<tr>
+		<td>id : ${review.id}</td>
+		<td>${review.contents}</td>
+		<td>작성일 : ${review.reg_date}</td>
+		<td>좋아요 : ${review.hit}</td>
+	</tr>
+</table>
 </body>
 </html>
