@@ -19,7 +19,10 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
+import com.cnema.reserve.TicketPriceDTO;
+import com.cnema.reserve.TicketPriceService;
 import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScheduleService;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -28,6 +31,10 @@ public class MemberController {
 	private MemberService memberService;
 	@Inject
 	private ReserveService reserveService;
+	@Inject
+	private ScheduleService scheduleService;
+	@Inject
+	private TicketPriceService ticketPriceService;
 	
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
@@ -108,12 +115,22 @@ public class MemberController {
 	public ModelAndView selectOne(String id,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
+		ScheduleDTO scheduleDTO = null;
+		TicketPriceDTO ticketPriceDTO = null;
+		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-		List<ScheduleDTO> sList = new ArrayList<ScheduleDTO>();
+		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
+		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
-			sList = null;
+			for(int size=0;size<rList.size();size++){
+				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
+				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
+				System.out.println("people"+ticketPriceDTO.getPeople());
+				schList.add(scheduleDTO);
+				tpList.add(ticketPriceDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,9 +140,10 @@ public class MemberController {
 			
 			List<Object> list = new ArrayList<>();
 			list.add(rList);
-			list.add(sList);
+			list.add(schList);
+			list.add(tpList);
 			
-			mv.addObject("all", list);
+			mv.addObject("allList", list);
 			
 			mv.setViewName("member/myPageView");
 		}else{

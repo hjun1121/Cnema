@@ -10,6 +10,7 @@
   		<typeAlias type="com.cnema.movie.MovieDTO" alias="movieDTO"/>
   		<typeAlias type="com.cnema.reserve.ReserveDTO" alias="reserveDTO"/>
   		<typeAlias type="com.cnema.theater.TheaterDTO" alias="theaterDTO"/>
-  		
+  		<typeAlias type="com.cnema.theater.ScheduleDTO" alias="scheduleDTO"/>
+  		<typeAlias type="com.cnema.reserve.TicketPriceDTO" alias="ticketPriceDTO"/>
   	</typeAliases>
   </configuration>
