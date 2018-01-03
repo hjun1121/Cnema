@@ -16,10 +16,8 @@ import com.cnema.util.FileSaver;
 
 @Service
 public class MovieService {
-
 	@Inject
 	private MovieDAO movieDAO;
-	
 	@Inject
 	private FileSaver fileSaver;
 	
@@ -31,7 +29,6 @@ public class MovieService {
 	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);
-
 	}
 
 	public int insert(MovieDTO movieDTO, HttpSession session) throws Exception {
@@ -43,5 +40,8 @@ public class MovieService {
 		
 		return result;
 	}
-	
+	/*heeseong*/
+	public MovieDTO movieInfo(int movie_num) throws Exception{
+		return movieDAO.movieInfo(movie_num);
+	}
 }

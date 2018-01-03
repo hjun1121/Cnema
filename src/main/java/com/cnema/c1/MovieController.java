@@ -40,9 +40,40 @@ public class MovieController {
 		return mv;
 	}
 	
+<<<<<<< HEAD
 	//movieList
 	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
 	public ModelAndView movieList(String kind) throws Exception {
+=======
+	//gradeList
+	@RequestMapping(value = "movie_chart")
+	public ModelAndView gradeList(ModelAndView mv) throws Exception {
+		ModelAndView mv1 = new ModelAndView();
+		List<MovieDTO> ar = movieService.gradeList();
+		mv1.addObject("gradeList", ar);
+		return mv1;
+	}
+
+	//open_dateList
+	@RequestMapping(value = "movie_chart1")
+	public ModelAndView open_dateList(ModelAndView mv) throws Exception {
+		return mv;
+	}
+
+	//insert
+	@RequestMapping(value="movie_chart", method=RequestMethod.GET)
+	public void insert() {
+	}
+	
+	@RequestMapping(value="movie_chart", method=RequestMethod.POST)
+	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
+		int result = 0;
+		try {
+			result = movieService.insert(movieDTO, session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+>>>>>>> 2633f51e9c8713bf09261993101137dc86be93d9
 		ModelAndView mv = new ModelAndView();
 		if(kind == null) {
 			kind = "reserve_rate";
