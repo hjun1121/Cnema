@@ -16,7 +16,7 @@
 </head>
 	<title> CNEMA</title>
 <body>
-	
+
 	<a href="home/kim">김</a>
 	<a href="home/lee">이</a>
 	<a href="home/ssin">신</a>
