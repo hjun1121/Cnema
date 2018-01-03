@@ -37,15 +37,15 @@ public class MovieDAO {
 	public List<MovieDTO> movieList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieList");
 	}
-	
+
 	//gradeList
 	public List<MovieDTO> gradeList() throws Exception {
-		return sqlSession.gradeList(NAMESPACE+"gradeList");
+		return sqlSession.selectList(NAMESPACE+"gradeList");
 	}
 	
 	//open_dateList
 	public List<MovieDTO> open_dateList() throws Exception {
-		return sqlSession.open_dateList(NAMESPACE+"open_dateList");
+		return sqlSession.selectList(NAMESPACE+"open_dateList");
 	}
 
 }
