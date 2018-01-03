@@ -9,6 +9,7 @@
 	var message = '${message}';
 	if(message != ""){
 		alert(message);
+		
 	}
 
 </script>
