@@ -5,10 +5,6 @@
   <mapper namespace="scheduleMapper">
   	<!-- heeseong -->
   	<select id="scheduleInfo" resultType="scheduleDTO" parameterType="int">
-<<<<<<< HEAD
-  		select * from schedule where num=#{snum}
-=======
   		select * from schedule where schedule_num=#{sNum}
->>>>>>> 105dd440f72d8446f95b7f275a2e47eed6c35c5e
   	</select>
   </mapper>

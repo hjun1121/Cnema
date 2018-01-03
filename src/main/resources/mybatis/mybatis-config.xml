@@ -11,13 +11,8 @@
   		<typeAlias type="com.cnema.movie.MovieDTO" alias="movieDTO"/>
   		<typeAlias type="com.cnema.movie.WishDTO" alias="wishDTO"/>
   		<typeAlias type="com.cnema.reserve.ReserveDTO" alias="reserveDTO"/>
-<<<<<<< HEAD
-  		<typeAlias type="com.cnema.theater.ScheduleDTO" alias="scheduleDTO"/>
-=======
   		<typeAlias type="com.cnema.theater.TheaterDTO" alias="theaterDTO"/>
   		<typeAlias type="com.cnema.theater.ScheduleDTO" alias="scheduleDTO"/>
   		<typeAlias type="com.cnema.reserve.TicketPriceDTO" alias="ticketPriceDTO"/>
-  		
->>>>>>> 105dd440f72d8446f95b7f275a2e47eed6c35c5e
   	</typeAliases>
   </configuration>

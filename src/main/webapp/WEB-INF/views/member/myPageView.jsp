@@ -32,16 +32,8 @@
 	
 	<!-- 내가 본 영화 -->
 	<h3>내가 본 영화</h3>
-<<<<<<< HEAD
 	<c:forEach items="${rList}" var="reserveList">
-		사진 : ${movieList.fileName }<br>
-		영화명:${reserveList.m_num }  <br>
-		날짜 :  <br>
-		시간 :  ${scheduleList.intime}~${scheduleList.out_time }<br>
-		지점 : ${reserveList.t_num }<br>
-		상영관 번호 : ${reserveList.screen_num }<br>
-		몇명 : ${ticketPList.people } <br>
-=======
+
 	<c:forEach items="${allList[0]}" var="rList" varStatus="i">
 		사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
 		영화명: ${allList["3"][i.index].movie_name}<br>
@@ -50,7 +42,6 @@
 		지점 : ${rList.theater_num }<br>
 		상영관 번호 : ${rList.screen_num }<br>
 		몇명 : ${allList["2"][i.index].people}<br>
->>>>>>> 105dd440f72d8446f95b7f275a2e47eed6c35c5e
 		------ <br>
 	</c:forEach>
 	
