@@ -83,5 +83,25 @@
 	</c:forEach>
 	<!-- 회원 목록 -->
 	<h3>회원 목록</h3>
+	<c:forEach items="${memList }" var="memberList">
+		<table>
+			<tr>
+				<td>프로필사진</td>
+				<td>ID</td>
+				<td>이름</td>
+				<td>생일</td>
+				<td>등급</td>
+				<td>가입일자</td>
+			</tr>
+			<tr>
+				<td>${memberList.fileName }</td>
+				<td>${memberList.id }</td>
+				<td>${memberList.name }</td>
+				<td>${memberList.birth }</td>
+				<td>${memberList.type }</td>
+				<td>${memberList.reg_date }</td>
+			</tr>
+		</table>
+	</c:forEach>
 </body>
 </html>

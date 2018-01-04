@@ -140,11 +140,13 @@ public class MemberController {
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
+		List<MemberDTO> memList = new ArrayList<MemberDTO>(); 
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
 			pList = pointService.pointList(id);
 			mList = movieService.movieAList();
+			memList = memberService.memberList();
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
 				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
@@ -180,6 +182,7 @@ public class MemberController {
 			mv.addObject("mwList", mwList);
 			mv.addObject("pList",pList);
 			mv.addObject("mList",mList);
+			mv.addObject("memList",memList);
 			
 			mv.setViewName("member/myPageView");
 		}else{
