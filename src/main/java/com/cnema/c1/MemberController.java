@@ -133,6 +133,7 @@ public class MemberController {
 		MovieDTO movieDTO = null;
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+		ScheduleDTO scheduleDTO2 = null;
 		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
@@ -158,6 +159,14 @@ public class MemberController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		for(int num = 0;num<rList.size();num++){
+			try {
+				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
+				System.out.println(num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(memberDTO != null){

@@ -50,5 +50,15 @@
 		${pointList.theater }  ${pointList.use_day } ${pointList.point_price } ${pointList.type }<br>
 		----
 	</c:forEach>
+	
+	<!-- 정보 수정 -->
+	<h3>정보 수정</h3>
+	
+	
+	
+	<!-- Admin -->
+	<!-- 쿠폰 주기 -->
+	<!-- 영화 등록 -->
+	<!-- 회원 정보 -->
 </body>
 </html>
