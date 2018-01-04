@@ -1,5 +1,7 @@
 package com.cnema.theater;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
