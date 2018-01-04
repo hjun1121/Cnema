@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h2>신현민꺼</h2>
+	<a href="../movie/movie_insert">영화삽입</a>
 	<a href="../movie/movie_chart">무비차트</a>
  	<a href="../movie/movie_review">리뷰</a>
  	
