@@ -132,14 +132,7 @@ public class MemberController {
 	public ModelAndView selectOne(String id,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
-		ScheduleDTO scheduleDTO = null;
-		TicketPriceDTO ticketPriceDTO = null;
-		MovieDTO movieDTO = null;
 		
-		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
-		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
-		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
@@ -148,43 +141,16 @@ public class MemberController {
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
-			rList = reserveService.reserveList(id);
 			pList = pointService.pointList(id);
 			mList = movieService.movieAList();
 			memList = memberService.memberList();
 			mcList = myCouponService.myCouponList(id);
-			for(int size=0;size<rList.size();size++){
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
-				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
-				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
-				schList.add(scheduleDTO);
-				tpList.add(ticketPriceDTO);
-				mrList.add(movieDTO);
-			}
 			wList = wishService.wishList(id);
-			for(int size=0;size<wList.size();size++){
-				movieDTO = movieService.movieInfo(wList.get(size).getMovie_num());
-				mwList.add(movieDTO);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int num = 0;num<rList.size();num++){
-			try {
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
-			List<Object> reserveList = new ArrayList<>();
-			reserveList.add(rList);
-			reserveList.add(schList);
-			reserveList.add(tpList);
-			reserveList.add(mrList);
-			mv.addObject("allList", reserveList);
 			mv.addObject("mwList", mwList);
 			mv.addObject("pList",pList);
 			mv.addObject("mList",mList);

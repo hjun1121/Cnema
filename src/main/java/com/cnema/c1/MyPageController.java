@@ -33,8 +33,6 @@ import com.cnema.theater.ScheduleService;
 @RequestMapping(value="myPage/**")
 public class MyPageController {
 	@Inject
-	private MemberService memberService;
-	@Inject
 	private ReserveService reserveService;
 	@Inject
 	private ScheduleService scheduleService;
@@ -46,7 +44,6 @@ public class MyPageController {
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(String id, RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
@@ -56,7 +53,6 @@ public class MyPageController {
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
 		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		try {
-			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
@@ -77,8 +73,7 @@ public class MyPageController {
 			}
 		}
 		
-		if(memberDTO != null){
-			mv.addObject("myInfo",memberDTO);
+		if(id!=null){
 			List<Object> reserveList = new ArrayList<>();
 			reserveList.add(rList);
 			reserveList.add(schList);
