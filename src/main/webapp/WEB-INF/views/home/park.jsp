@@ -9,6 +9,9 @@
 <body>
 	<h2>박세나꺼</h2>
 	
+
+	<a href="../notice/noticeList">Notice List</a>
+	
 	<br>
 	<a href="../">home</a>
 </body>

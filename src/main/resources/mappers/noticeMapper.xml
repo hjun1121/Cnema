@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="noticeMapper">	<!-- 파일 이름과 동일한 이름으로 맞추기 -->
+ 	<sql id="test">
+  		where title like '%'||#{search}||'%'
+  	</sql>
+ 
+  <select id="selectList" parameterType="com.cnema.util.RowNum" resultType="NoticeDTO">
+  		select * from
+  		(select rownum r, N.* from
+  		(select * from notice
+		<if test="kind == 'Title'">
+			where Title like '%'||#{search}||'%'
+		</if>
+	
+		<if test="kind == 'Contents'">
+			where Contents like '%'||#{search}||'%'
+		</if>
+		order by num desc) N)
+  		where r between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<select id="totalCount" parameterType="com.cnema.util.RowNum" resultType="int">
+  		select count(num) from notice
+  		<if test="kind == 'Title'">
+  			<include refid="test"></include>  	<!-- 자주 쓰는 중복되는 sql문을 따로 분리해서 저장한 뒤 불러와서 사용 -->	
+  		</if>
+  
+  		<if test="kind == 'Contents'">
+  			where contents like '%'||#{search}||'%'
+  		</if>
+  		<!-- select nvl(count(num),0) from notice -->
+  	</select>
+  	
+  	<select id="selectOne" parameterType="int" resultType="NoticeDTO">
+  		select * from notice where num=#{num}
+  	</select>
+  	
+  	<update id="hitUpdate" parameterType="int">
+  		update notice set hit=hit+1 where num=#{num}
+  	</update>
+  	
+ </mapper>
+ 

@@ -69,7 +69,7 @@
 								</div>
 							</div>
 						</li>
-                        <li class="culture"><a href="#">이벤트&amp;컬쳐</a>
+                        <li class="culture"><a href="home/park">이벤트&amp;컬쳐</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
