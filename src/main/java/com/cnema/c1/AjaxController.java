@@ -24,9 +24,26 @@ public class AjaxController {
 	@Inject
 	private MemberService memberService;
 	@Inject
-	private TheaterService theaterSerice;
+	private TheaterService theaterService;
 	@Inject
 	private MovieService movieService;
+	
+	
+	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
+	public void qrTheater(int theater_num, Model model){
+		TheaterDTO theaterDTO = null;
+		
+		try {
+			theaterDTO = theaterService.selectOne(theater_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("theater", theaterDTO);
+		
+		
+	}
 	
 	@RequestMapping(value="qrMovie", method=RequestMethod.POST)
 	public void qrMovie(int movie_num, Model model){
@@ -60,7 +77,7 @@ public class AjaxController {
 	public ModelAndView locationList(String area){
 		List<TheaterDTO> ar = null;;
 		try {
-			ar = theaterSerice.locationList(area);
+			ar = theaterService.locationList(area);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

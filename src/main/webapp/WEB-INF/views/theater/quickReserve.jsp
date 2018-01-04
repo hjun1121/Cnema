@@ -47,6 +47,19 @@
 		$("#list").on("click", ".location" , function(){
 			var num = $(this).attr("title");
 			$("#theater_num").val(num);
+			
+			$.ajax({
+				url:"../ajax/qrTheater",
+				type:"post",
+				data:{
+					theater_num:num
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
+			
+			
 		});
 		
 		
@@ -182,23 +195,10 @@
 					<td>빈칸</td>
 				</tr>
 			</table>
-			<table border="1" style="float: left; margin-left: 10px">
+			<table border="1" style="float: left; margin-left: 10px" id="qrTheater">
 				<tr>
-					<td>극장</td>
-					<td>??????</td>
-				</tr>
-				<tr>
-					<td>일시</td>
-					<td>??????</td>
-				</tr>
-				<tr>
-					<td>상영관</td>
-					<td>??????</td>
-				</tr>
-				<tr>
-					<td>인원</td>
-					<td>??????</td>
-				</tr>												
+					<td>빈칸</td>
+				</tr>											
 			</table>
 		</form>
 		<form action="" style="clear: both;">
