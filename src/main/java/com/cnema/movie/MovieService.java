@@ -33,11 +33,11 @@ public class MovieService {
 
 	public int insert(MovieDTO movieDTO, HttpSession session) throws Exception {
 		MultipartFile file = movieDTO.getFile();
-		String name = fileSaver.fileSave(file, session, "movie");
+		String name = fileSaver.fileSave(file, session, "movie_poster");
 		movieDTO.setFileName(name);
 		movieDTO.setOriName(file.getOriginalFilename());
 		int result = movieDAO.insert(movieDTO);
-		
+
 		return result;
 	}
 	/*heeseong*/

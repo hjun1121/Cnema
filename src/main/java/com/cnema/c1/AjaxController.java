@@ -5,12 +5,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.movie.MovieDTO;
+import com.cnema.movie.MovieService;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 
@@ -21,7 +24,39 @@ public class AjaxController {
 	@Inject
 	private MemberService memberService;
 	@Inject
-	private TheaterService theaterSerice;
+	private TheaterService theaterService;
+	@Inject
+	private MovieService movieService;
+	
+	
+	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
+	public void qrTheater(int theater_num, Model model){
+		TheaterDTO theaterDTO = null;
+		
+		try {
+			theaterDTO = theaterService.selectOne(theater_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("theater", theaterDTO);
+		
+		
+	}
+	
+	@RequestMapping(value="qrMovie", method=RequestMethod.POST)
+	public void qrMovie(int movie_num, Model model){
+		MovieDTO movieDTO = null;
+		try {
+			movieDTO = movieService.selectOne(movie_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("movie", movieDTO);
+		
+	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
 	public ModelAndView idFind(MemberDTO memberDTO){
@@ -42,7 +77,7 @@ public class AjaxController {
 	public ModelAndView locationList(String area){
 		List<TheaterDTO> ar = null;;
 		try {
-			ar = theaterSerice.locationList(area);
+			ar = theaterService.locationList(area);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

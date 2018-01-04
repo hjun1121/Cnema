@@ -25,15 +25,41 @@
 			});
 			
 		});
-		
 		$(".movies").click(function(){
 			var num = $(this).attr("title");
 			$("#movie_num").val(num);
+			
+			$.ajax({
+				url:"../ajax/qrMovie",
+				type:"post",
+				data:{
+					movie_num:num
+				},
+				success:function(data){
+					$("#qrMovie").html(data);
+				}
+			});
+			
+			
+			
 		});
 		
 		$("#list").on("click", ".location" , function(){
 			var num = $(this).attr("title");
 			$("#theater_num").val(num);
+			
+			$.ajax({
+				url:"../ajax/qrTheater",
+				type:"post",
+				data:{
+					theater_num:num
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
+			
+			
 		});
 		
 		
@@ -100,7 +126,6 @@
 </head>
 <body>
 	<h2>Quick Reserve</h2>
-	
 	<div id="all">
 		<div id="movie">
 			<div class="head">
@@ -165,6 +190,18 @@
 	</div>
 	<div id="bottom_area">
 		<form action="">
+			<table border="1" style="float: left;" id="qrMovie">
+				<tr>
+					<td>빈칸</td>
+				</tr>
+			</table>
+			<table border="1" style="float: left; margin-left: 10px" id="qrTheater">
+				<tr>
+					<td>빈칸</td>
+				</tr>											
+			</table>
+		</form>
+		<form action="" style="clear: both;">
 			<input type="text" id="movie_num" name="movie_num">
 			<input type="text" id="theater_num" name="theater_num">
 			<input type="text" id="sehedule_num" name="sehedule_num">
