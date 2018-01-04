@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 
-<link rel="stylesheet"  type="text/css" href="./resources/css/temp/header.css">
-<link rel="stylesheet"  type="text/css" href="./resources/css/temp/common.css">
-<link rel="stylesheet"  type="text/css" href="./resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,7 +23,9 @@
 
 <div id="cgvwrap">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
-
+	<!-- 띄움 -->
+    <div id="ctl00_sect_txt_banner" class="sect_txt_banner"><div class="inner"></div></div>
+	<!-- 띄움 -->
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5O5PVvHTWRo" ></iframe>
 	<a href="home/kim">김</a>
