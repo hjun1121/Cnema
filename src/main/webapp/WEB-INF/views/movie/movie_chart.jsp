@@ -13,8 +13,53 @@
 		
 		var kind = '${kind}';
 		
-		$("#kind").each()
+		$(".kind").each(function() {
+			if($(this).val() == kind) {
+				$(this).attr("selected", true);
+			}
+		});
+
 		
+		$(".wish_btn").click(function() {
+			var num = $(this).val();
+			var title = $(this).attr("title");
+			
+			if (title == 1) {
+				$.ajax({
+					url: "../book/bookRentWishReturn.book",
+					type: "GET",
+					data: {
+						num:num,
+						kind:'${kind}',
+// 						curPage: ${curPage},
+// 						search: '${search}',
+						id:'${member.id}'
+					},
+					success: function(data) {
+						alert(data);
+						location.href="movie_chart";
+					}
+				});
+
+			} else if (title == 0) {
+				$.ajax({
+					url: "../book/bookRentWish.book",
+					type: "GET",
+					data: {
+						num:num,
+						kind:'${kind}',
+						curPage: ${curPage},
+						search: '${search}',
+						rent_id:'${member.id}'
+					},
+					success: function(data) {
+						alert(data);
+						location.href="movie_chart";
+					}
+				});
+			}
+		});
+
 	});
 	
 </script>
