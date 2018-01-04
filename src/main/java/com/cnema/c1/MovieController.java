@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cnema.member.MemberDTO;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.movie.WishDTO;
 
 @Controller
 @RequestMapping(value = "/movie/*")
@@ -41,6 +42,7 @@ public class MovieController {
 	public ModelAndView selectList(ModelAndView mv) throws Exception {
 		return mv;
 	}
+	
 
 	//movieList
 	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
@@ -49,8 +51,10 @@ public class MovieController {
 		if(kind == null) {
 			kind = "reserve_rate";
 		}
+		List<WishDTO> wish = movieService.wishList();
 		List<MovieDTO> ar = movieService.movieList(kind);
 		mv.addObject("movie_list", ar);
+		mv.addObject("wish_list", wish);
 		return mv;
 	}
 

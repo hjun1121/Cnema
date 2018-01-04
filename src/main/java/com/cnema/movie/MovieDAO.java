@@ -33,6 +33,18 @@ public class MovieDAO {
 	//delete
 
 	//update
+	
+	//wishList
+	public List<WishDTO> wishList() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"wishList");
+	}
+	
+	//wish
+	public int movieWish(String id, int num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put(id, num);
+		return sqlSession.update(NAMESPACE+"movieWish", map);
+	}
 
 	//selectList
 	public List<MovieDTO> movieList(String kind) throws Exception{

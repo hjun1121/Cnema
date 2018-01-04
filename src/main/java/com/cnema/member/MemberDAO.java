@@ -34,4 +34,5 @@ public class MemberDAO {
 	public MemberDTO memberInfo(String id) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"memberInfo", id);
 	}
+	
 }
