@@ -57,12 +57,31 @@
 	
 	
 	<!-- Admin -->
-	<!-- 쿠폰 주기 -->
 	<!-- 영화 목록 -->
 	<h3>영화 목록</h3>
-	<c:forEach items="${}" var="">
-	
+	<c:forEach items="${mList }" var="movieList">
+		<table>
+			<tr>
+				<td>포스터</td>
+				<td>영화이름</td>
+				<td>개봉일</td>
+				<td>상영시간(분)</td>
+				<td>영화 설명</td>
+				<td>나이 제한</td>
+				<td>수정</td>
+			</tr>
+			<tr>
+				<td>${movieList.fileName }</td>
+				<td>${movieList.movie_name }</td>
+				<td>${movieList.open_date }</td>
+				<td>${movieList.run_time }</td>
+				<td>${movieList.contents }</td>
+				<td>${movieList.age_limit }</td>
+				<td><input type="button" value="수정"></td>
+			</tr>
+		</table>
 	</c:forEach>
-	<!-- 회원 정보 -->
+	<!-- 회원 목록 -->
+	<h3>회원 목록</h3>
 </body>
 </html>

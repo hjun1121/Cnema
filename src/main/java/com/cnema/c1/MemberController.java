@@ -133,24 +133,25 @@ public class MemberController {
 		MovieDTO movieDTO = null;
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-		ScheduleDTO scheduleDTO2 = null;
 		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
-		List<MovieDTO> mList = new ArrayList<MovieDTO>();
+		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
+		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
 			rList = reserveService.reserveList(id);
 			pList = pointService.pointList(id);
+			mList = movieService.movieAList();
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
 				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
 				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
 				schList.add(scheduleDTO);
 				tpList.add(ticketPriceDTO);
-				mList.add(movieDTO);
+				mrList.add(movieDTO);
 			}
 			wList = wishService.wishList(id);
 			for(int size=0;size<wList.size();size++){
@@ -163,7 +164,6 @@ public class MemberController {
 		for(int num = 0;num<rList.size();num++){
 			try {
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
-				System.out.println(num);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -175,10 +175,11 @@ public class MemberController {
 			reserveList.add(rList);
 			reserveList.add(schList);
 			reserveList.add(tpList);
-			reserveList.add(mList);
+			reserveList.add(mrList);
 			mv.addObject("allList", reserveList);
 			mv.addObject("mwList", mwList);
 			mv.addObject("pList",pList);
+			mv.addObject("mList",mList);
 			
 			mv.setViewName("member/myPageView");
 		}else{
