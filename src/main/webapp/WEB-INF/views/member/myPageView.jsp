@@ -92,6 +92,7 @@
 				<td>생일</td>
 				<td>등급</td>
 				<td>가입일자</td>
+				<td>쿠폰</td>
 			</tr>
 			<tr>
 				<td>${memberList.fileName }</td>
@@ -100,6 +101,7 @@
 				<td>${memberList.birth }</td>
 				<td>${memberList.type }</td>
 				<td>${memberList.reg_date }</td>
+				<td><input type="button" value="쿠폰증정"></td>
 			</tr>
 		</table>
 	</c:forEach>
