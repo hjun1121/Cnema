@@ -17,107 +17,39 @@
 	CJ ONE 사용가능 포인트   ${myInfo.v_point}점<br>
 	CJ ONE 누적 포인트 ${myInfo.a_point}점<br>
 	
-	<!-- 1:1 문의 -->
-	<h3>1:1 문의->링크걸기</h3>
-	
-	<!-- 위시리스트 -->
-	<h3>위시 리스트</h3>
-	<c:forEach items="${mwList}" var="mList">
-		사진 : ${mList.fileName}<br>
-		영화명 : ${mList.movie_name}<br>
-		개봉일 : ${mList.open_date}<br>
-		좋아요수 :${mList.wish}<br>
-		예매버튼
-	</c:forEach>
-	
-	<!-- 내가 본 영화 -->
-	<h3>내가 본 영화</h3>
-	<c:forEach items="${allList[0]}" var="rList" varStatus="i">
-		사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
-		영화명: ${allList["3"][i.index].movie_name}<br>
-		날짜 : ${allList["1"][i.index].day}<br>
-		시간 : ${allList["1"][i.index].in_time}~${allList["1"][i.index].out_time}<br>
-		지점 : ${rList.theater_num }<br>
-		상영관 번호 : ${rList.screen_num }<br>
-		몇명 : ${allList["2"][i.index].people}<br>
-		------ <br>
-	</c:forEach>
-	
-	<!-- Point내역 -->
-	<h3>내가 본 영화</h3>
-	<c:forEach items="${pList}" var="pointList">
-		구매 구분    구매극장    적립일    적립<br>
-		${pointList.theater }  ${pointList.use_day } ${pointList.point_price } ${pointList.type }<br>
-		----
-	</c:forEach>
-	
-	<!-- 정보 수정 -->
-	<h3>정보 수정</h3>
-	
 	<!-- 쿠폰내역 -->
 	<h3>나의 쿠폰</h3>
-	<c:forEach items="${mcList }" var="myCouponList">
-		<table>
-			<tr>
-				<td>쿠폰 이름</td>
-				<td>사용기간</td>
-			</tr>
-			<tr>
-				<td>${myCouponList.name }</td>
-				<td>${myCouponList.publish_date }~${myCouponList.publish_date}</td>
-			</tr>
-		</table>
-	</c:forEach>
+	금액 할인 :
+	할인률 :
+	
+	<!-- 나의 예매 내역 -->
+	<h3>내가 본 영화</h3>
+	<a href="../myPage/movieHistory?id=${member.id }">내가 본 영화</a>
+	<h3>위시 리스트</h3>
+	<a href="">위시 리스트</a>
+	
+	<!-- 쿠폰 및 포인트 사용 -->
+	<h3>Point 내역</h3>
+	<a href="">Point 내역</a>
+	<h3>나의 쿠폰</h3>
+	<a href="">나의 쿠폰</a>
+
+	<!-- 정보 수정 -->
+	<h3>정보 수정</h3>
+	<a href="">정보 수정</a>
+	<h3>프로필 관리</h3>
+	<a href="">프로필 관리</a>
+	<h3>회원 탈퇴</h3>
+	<a href="">회원 탈퇴</a>
+	
+	<!-- 나의 문의내역 -->
+	<h3>나의 문의 내역</h3>
+	<a href="">나의 문의 내역</a>
 	
 	<!-- Admin -->
-	
-	<!-- 영화 목록 -->
 	<h3>영화 목록</h3>
-	<c:forEach items="${mList }" var="movieList">
-		<table>
-			<tr>
-				<td>포스터</td>
-				<td>영화이름</td>
-				<td>개봉일</td>
-				<td>상영시간(분)</td>
-				<td>영화 설명</td>
-				<td>나이 제한</td>
-				<td>수정</td>
-			</tr>
-			<tr>
-				<td>${movieList.fileName }</td>
-				<td>${movieList.movie_name }</td>
-				<td>${movieList.open_date }</td>
-				<td>${movieList.run_time }</td>
-				<td>${movieList.contents }</td>
-				<td>${movieList.age_limit }</td>
-				<td><input type="button" value="수정"></td>
-			</tr>
-		</table>
-	</c:forEach>
-	<!-- 회원 목록 -->
+	<a href="">영화 목록</a>
 	<h3>회원 목록</h3>
-	<c:forEach items="${memList }" var="memberList">
-		<table>
-			<tr>
-				<td>프로필사진</td>
-				<td>ID</td>
-				<td>이름</td>
-				<td>생일</td>
-				<td>등급</td>
-				<td>가입일자</td>
-				<td>쿠폰</td>
-			</tr>
-			<tr>
-				<td>${memberList.fileName }</td>
-				<td>${memberList.id }</td>
-				<td>${memberList.name }</td>
-				<td>${memberList.birth }</td>
-				<td>${memberList.type }</td>
-				<td>${memberList.reg_date }</td>
-				<td><input type="button" value="쿠폰증정"></td>
-			</tr>
-		</table>
-	</c:forEach>
+	<a href="">회원 목록</a>
 </body>
 </html>
