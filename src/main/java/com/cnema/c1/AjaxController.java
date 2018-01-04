@@ -5,12 +5,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.movie.MovieDTO;
+import com.cnema.movie.MovieService;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 
@@ -22,6 +25,21 @@ public class AjaxController {
 	private MemberService memberService;
 	@Inject
 	private TheaterService theaterSerice;
+	@Inject
+	private MovieService movieService;
+	
+	@RequestMapping(value="qrMovie", method=RequestMethod.POST)
+	public void qrMovie(int movie_num, Model model){
+		MovieDTO movieDTO = null;
+		try {
+			movieDTO = movieService.selectOne(movie_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("movie", movieDTO);
+		
+	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
 	public ModelAndView idFind(MemberDTO memberDTO){
