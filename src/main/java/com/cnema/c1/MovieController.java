@@ -23,43 +23,43 @@ public class MovieController {
 	private MovieService movieService;
 	
 	
-//	//selectOne
-//	@RequestMapping(value="movie_view")
-//	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd) throws Exception {
-//		MovieDTO movieDTO = null;
-//		int num = 1;
-//		movieDTO = movieService.selectOne(num);
-//		System.out.println(movieDTO.getMovie_name());
-//		
-//		mv.addObject("movie", movieDTO);
-//		mv.setViewName("movie/movieView");
-//		return mv;
-//	}
-//	
-//	//selectList
-//	@RequestMapping(value = "movieList")
-//	public ModelAndView selectList(ModelAndView mv) throws Exception {
-//		return mv;
-//	}
-//	
-//	//movieList
-//	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
-//	public ModelAndView movieList(String kind) throws Exception {
-//		ModelAndView mv = new ModelAndView();
-//		if(kind == null) {
-//			kind = "reserve_rate";
-//		}
-//		List<MovieDTO> ar = movieService.movieList(kind);
-//		mv.addObject("movie_list", ar);
-//		return mv;
-//	}
-	
+	//selectOne
+	@RequestMapping(value="movie_view")
+	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd) throws Exception {
+		MovieDTO movieDTO = null;
+		int num = 1;
+		movieDTO = movieService.selectOne(num);
+		System.out.println(movieDTO.getMovie_name());
+		
+		mv.addObject("movie", movieDTO);
+		mv.setViewName("movie/movieView");
+		return mv;
+	}
+
+	//selectList
+	@RequestMapping(value = "movieList")
+	public ModelAndView selectList(ModelAndView mv) throws Exception {
+		return mv;
+	}
+
+	//movieList
+	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
+	public ModelAndView movieList(String kind) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		if(kind == null) {
+			kind = "reserve_rate";
+		}
+		List<MovieDTO> ar = movieService.movieList(kind);
+		mv.addObject("movie_list", ar);
+		return mv;
+	}
+
 	//insert
-	@RequestMapping(value="movie_chart", method=RequestMethod.GET)
+	@RequestMapping(value="movie_insert", method=RequestMethod.GET)
 	public void insert() {
 	}
-	
-	@RequestMapping(value="movie_chart", method=RequestMethod.POST)
+
+	@RequestMapping(value="movie_insert", method=RequestMethod.POST)
 	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
 		int result = 0;
 		try {
@@ -79,7 +79,7 @@ public class MovieController {
 		return mv;
 	}
 
-	
+
 	//delete
 	
 	//update
