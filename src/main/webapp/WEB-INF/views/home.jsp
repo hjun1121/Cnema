@@ -5,6 +5,7 @@
 <html>
 <head>
 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
@@ -27,6 +28,12 @@
     <div id="ctl00_sect_txt_banner" class="sect_txt_banner"><div class="inner"></div></div>
 	<!-- 띄움 -->
 
+	<!-- //////////////////////////// -->
+	
+	
+	<!-- //////////////////////////// -->
+	
+	
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5O5PVvHTWRo" ></iframe>
 	<br>
 	<a href="home/kim">김</a>

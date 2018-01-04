@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.member.PointDTO;
@@ -48,6 +50,8 @@ public class MemberController {
 	private WishService wishService;
 	@Inject
 	private PointService pointService;
+	@Inject
+	private MyCouponService myCouponService;
 	
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
@@ -128,57 +132,30 @@ public class MemberController {
 	public ModelAndView selectOne(String id,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
-		ScheduleDTO scheduleDTO = null;
-		TicketPriceDTO ticketPriceDTO = null;
-		MovieDTO movieDTO = null;
 		
-		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-		ScheduleDTO scheduleDTO2 = null;
-		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
-		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
-		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
+		List<MovieDTO> mList = new ArrayList<MovieDTO>();
+		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
-			rList = reserveService.reserveList(id);
 			pList = pointService.pointList(id);
-			for(int size=0;size<rList.size();size++){
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
-				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
-				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
-				schList.add(scheduleDTO);
-				tpList.add(ticketPriceDTO);
-				mList.add(movieDTO);
-			}
+			mList = movieService.movieAList();
+			memList = memberService.memberList();
+			mcList = myCouponService.myCouponList(id);
 			wList = wishService.wishList(id);
-			for(int size=0;size<wList.size();size++){
-				movieDTO = movieService.movieInfo(wList.get(size).getMovie_num());
-				mwList.add(movieDTO);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int num = 0;num<rList.size();num++){
-			try {
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
-				System.out.println(num);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
-			List<Object> reserveList = new ArrayList<>();
-			reserveList.add(rList);
-			reserveList.add(schList);
-			reserveList.add(tpList);
-			reserveList.add(mList);
-			mv.addObject("allList", reserveList);
 			mv.addObject("mwList", mwList);
 			mv.addObject("pList",pList);
+			mv.addObject("mList",mList);
+			mv.addObject("memList",memList);
+			mv.addObject("mcList",mcList);
 			
 			mv.setViewName("member/myPageView");
 		}else{

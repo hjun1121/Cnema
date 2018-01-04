@@ -180,6 +180,15 @@
 			<div class="head">
 				<h2>날짜</h2>
 			</div>
+				<ul>
+					<c:forEach items="${day }" var="DTO">
+						${DTO.day_num }
+					</c:forEach>
+				</ul>
+			<ul>
+			
+			
+			</ul>
 		</div>
 		
 		<div id="schedule">

@@ -1,7 +1,5 @@
 package com.cnema.movie;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +15,6 @@ public class MovieDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "movieMapper.";
-
 
 
 	//selectOne
@@ -56,6 +53,11 @@ public class MovieDAO {
 	/*heeseong*/
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"movieInfo",movie_num);
+	}
+	
+	/*heeseong*/
+	public List<MovieDTO> movieAList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"movieAList");
 	}
 	
 }

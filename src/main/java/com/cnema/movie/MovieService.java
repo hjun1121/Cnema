@@ -52,4 +52,8 @@ public class MovieService {
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return movieDAO.movieInfo(movie_num);
 	}
+	
+	public List<MovieDTO> movieAList() throws Exception {
+		return movieDAO.movieAList();
+	}
 }
