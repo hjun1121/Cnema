@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet"  type="text/css" href="./resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="./resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="./resources/css/temp/footer.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -16,6 +21,7 @@
 	<title> CNEMA</title>
 <body>
 
+<div id="cgvwrap">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 
 
@@ -41,5 +47,6 @@
 	</c:if>
 	
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	
+</div>
 </body>
 </html>

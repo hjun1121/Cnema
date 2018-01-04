@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<div id="cgvwrap">
 	<!-- Header -->
 	<div id="header">
 		<div class="head">
-			<h1><a href="/"><img src="../resources/images/common/title/h1_cgv.png" alt="CGV"></a></h1>
+			<h1><a href="/"><img src="./resources/images/common/title/h1_cgv.png" alt="CGV"></a></h1>
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
@@ -29,7 +28,7 @@
             
             <div class="im-wrap"> 
             <!-- Important wrap -->
-				<h2><img src="../resources/images/common/title/h2_cultureplex.png" alt="CULTUREPLEX"></h2>
+				<h2><img src="./resources/images/common/title/h2_cultureplex.png" alt="CULTUREPLEX"></h2>
 				<!-- Local Navigation Bar -->
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
@@ -98,4 +97,4 @@
 		
 	</div>
 	<!-- /Header -->
-</div>
+
