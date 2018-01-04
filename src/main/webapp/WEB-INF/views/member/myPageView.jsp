@@ -54,9 +54,23 @@
 	<!-- 정보 수정 -->
 	<h3>정보 수정</h3>
 	
-	
+	<!-- 쿠폰내역 -->
+	<h3>나의 쿠폰</h3>
+	<c:forEach items="${mcList }" var="myCouponList">
+		<table>
+			<tr>
+				<td>쿠폰 이름</td>
+				<td>사용기간</td>
+			</tr>
+			<tr>
+				<td>${myCouponList.name }</td>
+				<td>${myCouponList.publish_date }~${myCouponList.publish_date}</td>
+			</tr>
+		</table>
+	</c:forEach>
 	
 	<!-- Admin -->
+	
 	<!-- 영화 목록 -->
 	<h3>영화 목록</h3>
 	<c:forEach items="${mList }" var="movieList">
