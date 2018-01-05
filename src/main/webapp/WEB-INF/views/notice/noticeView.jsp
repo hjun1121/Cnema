@@ -24,6 +24,8 @@
 				<div class="view_area">
 					 ${view.contents}
 				<div class="listbtn"><button type="button" class="round inblack" id="btn_list"><span>목록으로</span></button></div>
+				<a href="./noticeUpdate?num=${view.num}">update</a>
+				<a href="./noticeDelete?num=${view.num}">delete</a>
 			</div>
 		</div>
 	</div>
