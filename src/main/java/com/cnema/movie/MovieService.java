@@ -34,8 +34,9 @@ public class MovieService {
 		return movieDAO.selectOne(num);
 	}
 	
-	public int movieWish(String id, int num) throws Exception {
-		int result = movieDAO.movieWish(id, num);
+	public int movieWish(String id, int movie_num) throws Exception {
+		int result = movieDAO.movieWish(id, movie_num);
+		result = movieDAO.wishInsert(id, movie_num);
 		return result;
 	}
 

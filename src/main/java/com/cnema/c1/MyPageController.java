@@ -80,12 +80,22 @@ public class MyPageController {
 			}
 		}
 		
+<<<<<<< HEAD
 		List<Object> reserveList = new ArrayList<>();
 		reserveList.add(rList);
 		reserveList.add(schList);
 		reserveList.add(tpList);
 		reserveList.add(mrList);
 		mv.addObject("allList", reserveList);
+=======
+		if(id!=null){
+			List<Object> reserveList = new ArrayList<Object>();
+			reserveList.add(rList);
+			reserveList.add(schList);
+			reserveList.add(tpList);
+			reserveList.add(mrList);
+			mv.addObject("allList", reserveList);
+>>>>>>> e15d616e8bf73a9a890a080b041989a5d4660d8b
 			
 		mv.setViewName("myPage/movieHistory");
 		return mv;

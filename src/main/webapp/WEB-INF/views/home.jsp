@@ -67,7 +67,6 @@ function showSlides(n) {
 	<div id="contaniner" class="bg-bricks main bg-bricks">
 		<div id="contents">
 			<div class="sect-common">
-				<!-- ////////////////// -->
 				<div class="slider" id="slider">
 					<div class="item-wrap">
 						<div class="mySlides" style="display: block;">
@@ -93,20 +92,6 @@ function showSlides(n) {
 					
 					</div>
 				</div>
-					<!-- /////////////////// -->
-				<!-- <div class="slider" id="slider">
-					
-					<button type="button" class="btn-pause" style="left: 537px; display: block;">일시멈춤</button>
-                	<div class="item-wrap">
-                    	<button type="button" style="left: 465px; display: block;" class="">캘린더콤보</button>
-			        	<a class="item" style="width: 980px; height: 450px; display: none;">
-                        	<img src="#" alt="캘린더콤보" style="width: 100%; height: 100%;">
-                    	</a>
-		        	</div>
-					<button type="button" class="btn-prev">이전 페이지 이동</button>
-					<button type="button" class="btn-next">다음 페이지 이동</button>
-				</div> -->
-				<!-- /////////////// -->
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_movie_selection.gif" alt="MOVIE SELECTION"></h3>
 			<div class="cols-movie">
