@@ -76,5 +76,4 @@ public class MovieDAO {
 	public List<MovieDTO> movieAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieAList");
 	}
-	
 }

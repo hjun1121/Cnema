@@ -133,26 +133,21 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		
-		List<WishDTO> wList = new ArrayList<WishDTO>();
-		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
-		List<PointDTO> pList = new ArrayList<PointDTO>();
+		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
-			pList = pointService.pointList(id);
 			mList = movieService.movieAList();
 			memList = memberService.memberList();
 			mcList = myCouponService.myCouponList(id);
-			wList = wishService.wishList(id);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
-			mv.addObject("mwList", mwList);
-			mv.addObject("pList",pList);
 			mv.addObject("mList",mList);
 			mv.addObject("memList",memList);
 			mv.addObject("mcList",mcList);
