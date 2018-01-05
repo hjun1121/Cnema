@@ -43,5 +43,26 @@
   		update notice set hit=hit+1 where num=#{num}
   	</update>
   	
+  	<update id="update" parameterType="com.cnema.board.BoardDTO">
+  		update notice set
+  		title=#{title}, contents=#{contents}
+  		where num=#{num}
+  	</update>
+  	
+  	<select id="getNum" resultType="int">
+  		select board_seq.nextval from dual
+  	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		delete notice where num=#{num}
+  	</delete>
+  	
+  	<insert id="insert" parameterType="com.cnema.board.BoardDTO">
+  		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  			select board_seq.nextval from dual
+  		</selectKey>
+  		insert into notice 
+  		values(#{num},#{writer},#{title},#{contents},sysdate,0)
+  	</insert>
  </mapper>
  

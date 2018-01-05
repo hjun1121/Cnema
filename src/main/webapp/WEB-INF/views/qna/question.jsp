@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,15 +18,15 @@
 
 			<tr>
 				<th scope="row"><label for="inp_name">이름</label></th>
-				<td colspan="3"><strong>박세나</strong></td>
+				<td colspan="3"><strong>${member.name}</strong></td>
 			</tr>
 			<tr>
 				<th scope="row">휴대전화</th>
-				<td><strong>010-****-1091</strong></td>
+				<td><strong>${member.phone }</strong></td>
 				<input type="hidden" id="HiddenMobile1" name="HiddenMobile1"
 					value="b89fcc3c2bc74d40c4f821dd54f6765a">
 				<th scope="row">이메일</th>
-				<td><strong>sn**91@nate.com</strong></td>
+				<td><strong>${member.email }</strong></td>
 				<input type="hidden" id="HiddenEmail1" name="HiddenEmail1"
 					value="f14fc398ef45f53e42b0034e44e03f76">
 			</tr>

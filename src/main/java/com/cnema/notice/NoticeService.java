@@ -3,6 +3,7 @@ package com.cnema.notice;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,5 +39,21 @@ public class NoticeService {
 		//((NoticeDTO)boardDTO).setFileNames(fileDAO.selectList(num));
 		
 		return boardDTO;
+	}
+	public int insert(BoardDTO boardDTO, HttpSession session) throws Exception {
+		int result = noticeDAO.insert(boardDTO);
+		return result;
+	}
+
+
+	public int update(BoardDTO boardDTO) throws Exception {
+		int result = noticeDAO.update(boardDTO);
+		return result;
+	}
+
+	
+	public int delete(int num) throws Exception {
+		int result = noticeDAO.delete(num);
+		return result;
 	}
 }
