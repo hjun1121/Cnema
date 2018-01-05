@@ -41,7 +41,8 @@
 						src="http://img.cgv.co.kr/R2014/images/common/ico/ico_redstar.png"
 						alt="필수"></em></th>
 				<td>
-					<ul class="type_list">
+					<ul class="type_list">  
+					
 						<li id="li_ra_1" class="on"><input type="radio"
 							checked="checked" id="inp_type01" name="sel_qnatype" value="1249"><label
 							for="inp_type01">문의</label></li>
@@ -108,5 +109,9 @@
 			</tr>
 		</tbody>
 	</table>
+	<a style="margin-left:5px" href="../home/park" class="round gray"><span style="padding:0 14px;">취소</span></a>
+	
+	<a style="margin-left:5px" href="qnaWrite" class="round gray"><span style="padding:0 14px;">등록하기</span></a>
+	
 </body>
 </html>
