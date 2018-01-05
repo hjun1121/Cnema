@@ -30,7 +30,7 @@
 	
 	<!-- 쿠폰 및 포인트 사용 -->
 	<h3>Point 내역</h3>
-	<a href="">Point 내역</a>
+	<a href="../myPage/pointHistory?id=${member.id }">Point 내역</a>
 	<h3>나의 쿠폰</h3>
 	<a href="">나의 쿠폰</a>
 
@@ -48,13 +48,8 @@
 	
 	<!-- Admin -->
 	<h3>영화 목록</h3>
-<<<<<<< HEAD
-	
-	<!-- 회원 정보 -->
-=======
 	<a href="">영화 목록</a>
 	<h3>회원 목록</h3>
 	<a href="">회원 목록</a>
->>>>>>> 36513d882557c0486462147e5fee4cbca2c60c3b
 </body>
 </html>

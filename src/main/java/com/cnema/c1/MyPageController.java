@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.cnema.member.PointDTO;
+import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.movie.WishDTO;
@@ -23,7 +26,7 @@ import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 
 @Controller
-@RequestMapping(value="myPage/**")
+@RequestMapping(value="/myPage/**")
 public class MyPageController {
 	@Inject
 	private ReserveService reserveService;
@@ -35,6 +38,8 @@ public class MyPageController {
 	private MovieService movieService;
 	@Inject
 	private WishService wishService;
+	@Inject
+	private PointService pointService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(String id, RedirectAttributes rd,String kind){
@@ -73,7 +78,7 @@ public class MyPageController {
 		}
 		
 		if(id!=null){
-			List<Object> reserveList = new ArrayList<>();
+			List<Object> reserveList = new ArrayList<Object>();
 			reserveList.add(rList);
 			reserveList.add(schList);
 			reserveList.add(tpList);
@@ -129,6 +134,20 @@ public class MyPageController {
 		}
 		mv.addObject("mwList", mwList);
 		mv.setViewName("myPage/wishList");
+		return mv;
+	}
+	
+	@RequestMapping(value="pointHistory", method=RequestMethod.GET)
+	public ModelAndView pointHistory(String id){
+		ModelAndView mv = new ModelAndView();
+		List<PointDTO> pList = new ArrayList<PointDTO>();
+		try {
+			pList = pointService.pointList(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("pList",pList);
+		mv.setViewName("myPage/pointHistory");
 		return mv;
 	}
 }

@@ -134,14 +134,11 @@ public class MemberController {
 		MemberDTO memberDTO = null;
 		
 		
-		
-		List<PointDTO> pList = new ArrayList<PointDTO>();
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
 			memberDTO = memberService.memberInfo(id);
-			pList = pointService.pointList(id);
 			mList = movieService.movieAList();
 			memList = memberService.memberList();
 			mcList = myCouponService.myCouponList(id);
@@ -151,7 +148,6 @@ public class MemberController {
 		}
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
-			mv.addObject("pList",pList);
 			mv.addObject("mList",mList);
 			mv.addObject("memList",memList);
 			mv.addObject("mcList",mcList);

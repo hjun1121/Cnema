@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항</title>
+<title>Insert title here</title>
+</head>
 <script type="text/javascript">
 	$(function(){
 		var message = '${message}';
@@ -21,7 +22,7 @@
 			document.frm.search.value=s;
 			document.frm.kind.value=t;
 			document.frm.submit();
-		});
+		})
 	});
 </script>
 <style type="text/css">
@@ -31,33 +32,30 @@
 </style>
 </head>
 <body>
-	<h1>Notice list Page</h1>
-	<form name="frm" action="./noticeList" method="get">
-	<input type="hidden" name="curPage" value="1">
-		<select name="kind">
-			<option>Title</option>
-			<option>Contents</option>
-		</select>
-		<input type="text" name="search">
-		<button>검색</button>
-	</form>
+	<h1>Qna list Page 진행중인 이벤트</h1>
+	<!--Ajax 사용하기  -->
+<button id="endEventList">종료된 이벤트</button>
 	<table>
 		<tr>
-			<th>no.</th>
+			<th>이미지</th>
 			<th>글제목</th>
 			<th>글쓴이</th>
 			<th>등록일</th>
-			<th>조회수</th>
+			<th>답변</th>
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td>${dto.num}</td>
+			<td>${dto.fileName}</td>
 			<td>
-			<a href="./noticeView?num=${dto.num}">${dto.title}</a>
-			</td> 
+			<a href="./qnaView?num=${dto.num}">${dto.title}</a>
+			</td>
 			<td>${dto.writer}</td>
 			<td>${dto.reg_date}</td>
-			<td>${dto.hit}</td>
+			<td>
+			<c:if test="${dto.reply != null }">
+			답변완료
+			</c:if>
+			</td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -74,6 +72,7 @@
 		</c:if>
 	</div>
 	
-	<a href="./noticeWrite">글쓰기</a>
+	
+
 </body>
 </html>

@@ -15,8 +15,10 @@ public class MovieDAOTest extends AbstractTest {
 
 	@Test
 	public void test() {
+		String id ="joy";
+		int movie_num=26;
+
 		try {
-			MovieDTO movieDTO = movieDAO.selectOne(1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
