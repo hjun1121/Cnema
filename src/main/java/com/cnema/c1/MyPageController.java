@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.member.MemberDTO;
 import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
@@ -42,7 +44,8 @@ public class MyPageController {
 	private PointService pointService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
-	public ModelAndView movieHistory(String id, RedirectAttributes rd,String kind){
+	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		/*if(kind == null) {
 			kind = "2018";
 		}*/
@@ -57,7 +60,7 @@ public class MyPageController {
 		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		try {
 			/*rList = reserveService.reserveList(id,kind);*/
-			rList = reserveService.reserveList(id);
+			rList = reserveService.reserveList(memberDTO.getId());
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
 				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
@@ -77,19 +80,14 @@ public class MyPageController {
 			}
 		}
 		
-		if(id!=null){
-			List<Object> reserveList = new ArrayList<Object>();
-			reserveList.add(rList);
-			reserveList.add(schList);
-			reserveList.add(tpList);
-			reserveList.add(mrList);
-			mv.addObject("allList", reserveList);
-			
-			mv.setViewName("myPage/movieHistory");
-		}else{
-			rd.addFlashAttribute("message","로그인이 필요합니다.");
-			mv.setViewName("redirect:../");
-		}
+		List<Object> reserveList = new ArrayList<>();
+		reserveList.add(rList);
+		reserveList.add(schList);
+		reserveList.add(tpList);
+		reserveList.add(mrList);
+		
+		mv.addObject("allList", reserveList);
+		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}
 	
@@ -114,13 +112,14 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="wishList",method=RequestMethod.GET)
-	public ModelAndView wishList(String id,RedirectAttributes rd){
+	public ModelAndView wishList(HttpSession session,RedirectAttributes rd){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		try {
-			wList = wishService.wishList(id);
+			wList = wishService.wishList(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -138,16 +137,23 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="pointHistory", method=RequestMethod.GET)
-	public ModelAndView pointHistory(String id){
+	public ModelAndView pointHistory(HttpSession session){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
-			pList = pointService.pointList(id);
+			pList = pointService.pointList(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("pList",pList);
 		mv.setViewName("myPage/pointHistory");
 		return mv;
+	}
+	@RequestMapping(value="pointHistory", method=RequestMethod.POST)
+	public void pointHistory(int year,int month, int day){
+		System.out.println("y:"+year);
+		System.out.println("m:"+month);
+		System.out.println("d:"+day);
 	}
 }
