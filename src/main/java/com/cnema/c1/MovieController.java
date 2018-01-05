@@ -42,7 +42,7 @@ public class MovieController {
 	public ModelAndView selectList(ModelAndView mv) throws Exception {
 		return mv;
 	}
-	
+
 
 	//movieList
 	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)

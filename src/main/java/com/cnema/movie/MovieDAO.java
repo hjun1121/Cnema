@@ -8,9 +8,11 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
+@Transactional
 public class MovieDAO {
 	@Inject
 	private SqlSession sqlSession;
@@ -36,13 +38,28 @@ public class MovieDAO {
 		return sqlSession.selectList(NAMESPACE+"wishList");
 	}
 	
-	//wish
-	public int movieWish(String id, int num) throws Exception {
-		Map<String, Object> map = new HashMap<>();
-		map.put(id, num);
-		return sqlSession.update(NAMESPACE+"movieWish", map);
+	//wishInsert
+	public int wishInsert(String id, int movie_num) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("movie_num", movie_num);
+		return sqlSession.insert(NAMESPACE+"wishInsert", map);
 	}
-
+	
+	//wish
+	public int movieWish(String id, int movie_num) throws Exception {
+		return sqlSession.update(NAMESPACE+"movieWish", movie_num);
+	}
+	public int movieWish1(int movie_num) throws Exception{
+		System.out.println("innnnnnnnnnnnnnnnnnnnnnn ");
+		System.out.println(movie_num);
+		movie_num =  sqlSession.update(NAMESPACE+"movieWish", movie_num);
+		System.out.println("===========" + movie_num + "+++++++++++++++++++++");
+		//return sqlSession.update(NAMESPACE+"movieWish", movie_num);
+		return movie_num;
+		
+	}
+	
 	//selectList
 	public List<MovieDTO> movieList(String kind) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -59,5 +76,4 @@ public class MovieDAO {
 	public List<MovieDTO> movieAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieAList");
 	}
-	
 }

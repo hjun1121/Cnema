@@ -32,11 +32,12 @@
 </style>
 </head>
 <body>
-	<h1>Qna list Page</h1>
-
+	<h1>Qna list Page 진행중인 이벤트</h1>
+	<!--Ajax 사용하기  -->
+<button id="endEventList">종료된 이벤트</button>
 	<table>
 		<tr>
-			<th>no.</th>
+			<th>이미지</th>
 			<th>글제목</th>
 			<th>글쓴이</th>
 			<th>등록일</th>
@@ -44,7 +45,7 @@
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td>${dto.num}</td>
+			<td>${dto.fileName}</td>
 			<td>
 			<a href="./qnaView?num=${dto.num}">${dto.title}</a>
 			</td>

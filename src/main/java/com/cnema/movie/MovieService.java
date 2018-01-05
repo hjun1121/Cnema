@@ -34,8 +34,9 @@ public class MovieService {
 		return movieDAO.selectOne(num);
 	}
 	
-	public int movieWish(String id, int num) throws Exception {
-		int result = movieDAO.movieWish(id, num);
+	public int movieWish(String id, int movie_num) throws Exception {
+		int result = movieDAO.movieWish(id, movie_num);
+		result = movieDAO.wishInsert(id, movie_num);
 		return result;
 	}
 
@@ -52,7 +53,7 @@ public class MovieService {
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return movieDAO.movieInfo(movie_num);
 	}
-	
+	/*heeseong*/
 	public List<MovieDTO> movieAList() throws Exception {
 		return movieDAO.movieAList();
 	}
