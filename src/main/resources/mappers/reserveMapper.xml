@@ -7,4 +7,9 @@
   	<select id="reserveList" resultType="reserveDTO" parameterType="java.lang.String">
   		select * from reserve where id=#{id}
   	</select>
+  	
+  	<!-- heeseong -->
+  	<delete id="reserveDel" parameterType="int" >
+  		delete reserve where reserve_num=#{reserve_num}
+  	</delete>
   </mapper>

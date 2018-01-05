@@ -19,6 +19,5 @@
 		<p>나이제한<input type="text" id="age_limit" name="age_limit"></p>
 		<input type="submit" id="insertBtn" value="insert">
 </form>
-
 </body>
 </html>
