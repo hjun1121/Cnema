@@ -9,59 +9,53 @@
 <title>무비차트</title>
 <script type="text/javascript">
 
-	$(function() {
+// 	$(function() {
 		
-		var kind = '${kind}';
+// 		var kind = '${kind}';
 		
-		$(".kind").each(function() {
-			if($(this).val() == kind) {
-				$(this).attr("selected", true);
-			}
-		});
+// 		$(".kind").each(function() {
+// 			if($(this).val() == kind) {
+// 				$(this).attr("selected", true);
+// 			}
+// 		});
 
 		
-		$(".wish_btn").click(function() {
-			var num = $(this).val();
-			var title = $(this).attr("title");
+// 		$(".wish_btn").click(function() {
+// 			var num = $(this).val();
+// 			var title = $(this).attr("title");
 			
-			if (title == 1) {
-				$.ajax({
-					url: "../book/bookRentWishReturn.book",
-					type: "GET",
-					data: {
-						num:num,
-						kind:'${kind}',
-// 						curPage: ${curPage},
-// 						search: '${search}',
-						id:'${member.id}'
-					},
-					success: function(data) {
-						alert(data);
-						location.href="movie_chart";
-					}
-				});
+// 			if (title == 1) {
+// 				$.ajax({
+// 					url: "../ajax/movie_wish",
+// 					type: "POST",
+// 					data: {
+// 						movie_num:num,
+// 						kind:'${kind}',
+// 						id:'${member.id}'
+// 					},
+// 					success: function(data) {
+// 						alert(data);
+// 					}
+// 				});
 
-			} else if (title == 0) {
-				$.ajax({
-					url: "../book/bookRentWish.book",
-					type: "GET",
-					data: {
-						num:num,
-						kind:'${kind}',
-						curPage: ${curPage},
-						search: '${search}',
-						rent_id:'${member.id}'
-					},
-					success: function(data) {
-						alert(data);
-						location.href="movie_chart";
-					}
-				});
-			}
-		});
+// 			} else if (title == 0) {
+// 				$.ajax({
+// 					url: "../ajax/movie_wish",
+// 					type: "POST",
+// 					data: {
+// 						movie_num:num,
+// 						kind:'${kind}',
+// 						id:'${member.id}'
+// 					},
+// 					success: function(data) {
+// 						alert(data);
+// 					}
+// 				});
+// 			}
+// 		});
 
-	});
-	
+// 	});
+
 </script>
 </head>
 <body>
@@ -82,7 +76,24 @@
 		<tr><td>예매율 : ${movie.reserve_rate}</td></tr>
 		<tr><td>장르 : ${movie.type}</td></tr>
 		<tr><td>개봉일 : ${movie.open_date}</td></tr>
-		<tr><td>♡ ${movie.wish}</td></tr>
+		<c:set var="heart1" value="0" ></c:set>
+		<c:set var="heart2" value="0" ></c:set>
+<%-- 							<c:if test="${ not empty member }"><c:forEach items="${wish_list}" var="wish"> --%>
+<%-- 								<c:if test="${wish.num eq dto.num}">										 --%>
+<%-- 									<c:choose> --%>
+<%-- 										<c:when test="${heart1 == 0}"> --%>
+<%-- 											<td scope="row" style="display: table-cell;"><button class = "btn btn-default wish_btn" type = "submit" value = "${dto.num}" title="1">❤️</button></td> --%>
+<%-- 											<c:set var="heart1" value="1" ></c:set> --%>
+<%-- 											<c:set var="heart2" value="1" ></c:set> --%>
+<%-- 										</c:when> --%>
+<%-- 									</c:choose> --%>
+<%-- 								</c:if> --%>
+<%-- 							</c:forEach> --%>
+<%-- 								<c:if test="${heart2 == 0}"> --%>
+<%-- 									<td scope="row" style="display: table-cell;"><button class = "btn btn-default wish_btn" type = "submit" value = "${dto.num}" title="0">♡</button></td> --%>
+<%-- 								</c:if> --%>
+<%-- 							</c:if> --%>
+		<tr><td>❤ ${movie.wish}</td></tr>
 		<tr><td><input type="button" id="reserveBtn" value="예매"></td></tr>
 		<tr><td>${movie.contents}</td></tr>
 		<tr><td><iframe width="560" height="315" src="${movie.teaser_url}"></iframe></td></tr>
@@ -96,3 +107,5 @@
 
 </body>
 </html>
+
+

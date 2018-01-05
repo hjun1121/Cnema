@@ -6,7 +6,7 @@ public class BoardDTO {
 	private int num;
 	private String title;
 	private String writer;
-	private String contenst;
+	private String contents;
 	private Date reg_date;
 	private String fileName;
 	private String oriName;
@@ -29,11 +29,12 @@ public class BoardDTO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getContenst() {
-		return contenst;
+	
+	public String getContents() {
+		return contents;
 	}
-	public void setContenst(String contenst) {
-		this.contenst = contenst;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	public Date getReg_date() {
 		return reg_date;

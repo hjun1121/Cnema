@@ -26,9 +26,17 @@ public class MovieService {
 		return movieDAO.movieList(kind);
 	}
 	
+	public List<WishDTO> wishList() throws Exception {
+		return movieDAO.wishList();
+	}
 	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);
+	}
+	
+	public int movieWish(String id, int num) throws Exception {
+		int result = movieDAO.movieWish(id, num);
+		return result;
 	}
 
 	public int insert(MovieDTO movieDTO, HttpSession session) throws Exception {

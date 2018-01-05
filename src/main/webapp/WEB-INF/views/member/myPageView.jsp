@@ -26,7 +26,7 @@
 	<h3>내가 본 영화</h3>
 	<a href="../myPage/movieHistory?id=${member.id }">내가 본 영화</a>
 	<h3>위시 리스트</h3>
-	<a href="">위시 리스트</a>
+	<a href="../myPage/wishList?id=${member.id }">위시 리스트</a>
 	
 	<!-- 쿠폰 및 포인트 사용 -->
 	<h3>Point 내역</h3>
@@ -48,8 +48,13 @@
 	
 	<!-- Admin -->
 	<h3>영화 목록</h3>
+<<<<<<< HEAD
+	
+	<!-- 회원 정보 -->
+=======
 	<a href="">영화 목록</a>
 	<h3>회원 목록</h3>
 	<a href="">회원 목록</a>
+>>>>>>> 36513d882557c0486462147e5fee4cbca2c60c3b
 </body>
 </html>
