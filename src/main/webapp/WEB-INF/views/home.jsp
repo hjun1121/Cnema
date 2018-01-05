@@ -53,17 +53,20 @@
         			<iframe src="https://www.youtube.com/embed/5O5PVvHTWRo" width="733" height="388" title="영화광고-1987" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Movie_Selection_L" id="Movie_Selection_L"></iframe>
 				</div>
 				<div id="Selection_R" class="col-ad">
-				
+					<a href="#" target="_blank">
+					<img src="${pageContext.request.contextPath }/resources/images/main/1ONOHF5TDF_2.jpg" width="240" height="388" border="0"></a>
 				</div>
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
 			<div class="sect-event">
 			<ul>
+				<c:forEach begin="0" end="3" varStatus="i">
 		    	<li>
                 	<a href="#">
-                    	<img src="#" alt="Cnema">
+                    	<img src="${pageContext.request.contextPath }/resources/images/main/aaa.png" alt="♡">
                 	</a>
             	</li>
+            	</c:forEach>
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
@@ -71,18 +74,18 @@
 				<div class="col-ad">
 					<div class="box-com">
 		    			<div class="box-inner">
-                			<a href="#"><img src="#" alt="1"></a>
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="1"></a>
             			</div>
 					</div>
 				</div>
 				<div class="col-hd">
 					<a href="#">
-						<img src="#" alt=""></a>
+						<img src="${pageContext.request.contextPath }/resources/images/main/ccc.png" alt="2"></a>
 				</div>
 				<div class="col-collage">
 					<div class="box-com">
 						<div class="box-inner">
-                			<a href="#"><img src="#" alt="3"></a>
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="3"></a>
             			</div>
 					</div>
 				</div>
