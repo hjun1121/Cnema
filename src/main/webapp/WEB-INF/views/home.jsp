@@ -22,7 +22,6 @@
 </script>
 
 <script type="text/javascript">
-
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -50,6 +49,7 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
+
 
 </head>
 	<title> CNEMA</title>

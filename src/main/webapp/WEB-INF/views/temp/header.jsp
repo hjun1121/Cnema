@@ -8,7 +8,7 @@
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
-					<li><a href="#" class="app" target="_blank" title="CGV앱 4.0 설치 새창"><span>CGV앱 4.0 설치</span></a></li>
+					<!-- <li><a href="#" class="app" target="_blank" title="CGV앱 4.0 설치 새창"><span>CGV앱 4.0 설치</span></a></li> -->
 					<li><a href="#" class="like" target="_blank" title="Facebook 좋아요! 새창"><span>Facebook 좋아요!</span></a></li>
 				    <li><a href="#" class="insta" target="_blank" title="Instagram Follow"><span>Instagram Follow</span></a></li>
                 	
@@ -22,7 +22,7 @@
 					<!-- 2014.12.8 리뉴얼-->
 					<li><a href="#" class="customer"><span>고객센터</span></a></li>
 				    <!-- 2014.12.8 리뉴얼-->
-					<li><a href="#" class="showtimes"><span>ENGLISH TICKETING</span></a></li>
+					<!-- <li><a href="#" class="showtimes"><span>ENGLISH TICKETING</span></a></li> -->
 				</ul>
 			</div>
             
