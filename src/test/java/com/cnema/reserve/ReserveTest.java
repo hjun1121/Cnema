@@ -16,13 +16,13 @@ public class ReserveTest extends AbstractTest {
 	
 	@Test
 	public void test() {
-		List<ReserveDTO> rList = new ArrayList<>();
+		/*List<ReserveDTO> rList = new ArrayList<>();
 		try {
 			rList = reserveDAO.reserveList("joy","2018");
 			System.out.println(rList.size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
