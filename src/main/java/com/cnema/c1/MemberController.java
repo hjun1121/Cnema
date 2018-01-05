@@ -133,7 +133,6 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		
-		List<WishDTO> wList = new ArrayList<WishDTO>();
 		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
@@ -145,7 +144,6 @@ public class MemberController {
 			mList = movieService.movieAList();
 			memList = memberService.memberList();
 			mcList = myCouponService.myCouponList(id);
-			wList = wishService.wishList(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

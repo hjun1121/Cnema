@@ -42,7 +42,11 @@ public class MyPageController {
 	private MovieService movieService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
-	public ModelAndView movieHistory(String id, RedirectAttributes rd){
+	public ModelAndView movieHistory(String id, RedirectAttributes rd,String kind){
+		/*if(kind == null) {
+			kind = "2018";
+		}*/
+		
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
@@ -53,6 +57,7 @@ public class MyPageController {
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
 		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		try {
+			/*rList = reserveService.reserveList(id,kind);*/
 			rList = reserveService.reserveList(id);
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());

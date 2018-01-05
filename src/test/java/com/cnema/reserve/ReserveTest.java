@@ -1,6 +1,7 @@
 package com.cnema.reserve;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -15,14 +16,13 @@ public class ReserveTest extends AbstractTest {
 	
 	@Test
 	public void test() {
-		int result = 0;
+		List<ReserveDTO> rList = new ArrayList<>();
 		try {
-			result = reserveDAO.reserveDel(4);
+			rList = reserveDAO.reserveList("joy","2018");
+			System.out.println(rList.size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(result);
 	}
-
 }
