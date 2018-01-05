@@ -17,4 +17,8 @@ public class ReserveDAO {
 	public List<ReserveDTO> reserveList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"reserveList", id);
 	}
+	/*heeseong*/
+	public int reserveDel(int reserve_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"reserveDel",reserve_num);
+	}
 }

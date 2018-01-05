@@ -88,5 +88,23 @@ public class MyPageController {
 		}
 		return mv;
 	}
-	
+	@RequestMapping(value="movieHistory",method=RequestMethod.POST)
+	public ModelAndView movieHistory(int reserve_num, RedirectAttributes rd){
+		int result = 0;
+		try {
+			result = reserveService.reserveDel(reserve_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		if(result>0){
+			rd.addFlashAttribute("message", "예매 내역 삭제 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "예매 내역 삭제 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
 }
