@@ -19,9 +19,9 @@
 						<span>대표이사 : 서정</span><span>사업자등록번호 : 104-81-45690</span><span>통신판매업신고번호 : 2017-서울용산-0662</span>
 					</p>
 					<p class="vl">
-						<span>개인정보보호 책임자 : 마케팅 담당 정종민</span>
-						<span>대표이메일 : cjcgvmaster@cj.net</span>
-						<span>CGV고객센터 : 1544-1122</span>
+						<span>개인정보보호 책임자 : 마케팅 담당 김형준</span>
+						<span>대표이메일 : library_4@naver.com</span>
+						<span>CNEMA고객센터 : 1544-1122</span>
 					</p>
 				</div>
 			</div>

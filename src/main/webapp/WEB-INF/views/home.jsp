@@ -53,7 +53,8 @@
         			<iframe src="https://www.youtube.com/embed/5O5PVvHTWRo" width="733" height="388" title="영화광고-1987" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Movie_Selection_L" id="Movie_Selection_L"></iframe>
 				</div>
 				<div id="Selection_R" class="col-ad">
-				
+					<a href="#" target="_blank">
+					<img src="${pageContext.request.contextPath }/resources/images/main/1ONOHF5TDF_2.jpg" width="240" height="388" border="0"></a>
 				</div>
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
