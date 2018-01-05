@@ -34,5 +34,12 @@ public class MemberDAO {
 	public MemberDTO memberInfo(String id) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"memberInfo", id);
 	}
+<<<<<<< HEAD
 	
+=======
+	/*heeseong*/
+	public List<MemberDTO> memberList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"memberList");
+	}
+>>>>>>> 36513d882557c0486462147e5fee4cbca2c60c3b
 }
