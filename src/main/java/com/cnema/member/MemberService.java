@@ -48,6 +48,7 @@ public class MemberService {
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberList() throws Exception{
-		return memberDAO.memberList();
+		//return memberDAO.memberList();
+		return null;
 	}
 }
