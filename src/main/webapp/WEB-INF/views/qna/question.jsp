@@ -23,8 +23,7 @@
 			<tr>
 				<th scope="row">휴대전화</th>
 				<td><strong>${member.phone }</strong></td>
-				<input type="hidden" id="HiddenMobile1" name="HiddenMobile1"
-					value="b89fcc3c2bc74d40c4f821dd54f6765a">
+				<input type="hidden" id="Mobile1" name="Mobile1" value="">
 				<th scope="row">이메일</th>
 				<td><strong>${member.email }</strong></td>
 				<input type="hidden" id="HiddenEmail1" name="HiddenEmail1"
@@ -65,32 +64,21 @@
 							for="no_sel">선택하지 않음</label></li>
 						<li><input type="radio" id="sel" name="sel_theaterchoise"
 							value="1"><label for="sel">선택함</label></li>
-					</ul> <label for="sel_t_group" class="hidden">국내,국외 선택</label> <select
-					title="국내,국외 선택" class="sel01" id="sel_t_group" name="sel_t_group"
-					disabled="disabled" style="width: 96px;">
-						<option value="dm">국내</option>
-						<option value="oc">국외</option>
-				</select> <label for="sel_regioncode" class="hidden">지역 선택</label> <select
+					</ul> 
+					
+					<label for="sel_regioncode" class="hidden">지역 선택</label> <select
 					title="지역 선택" class="sel01" id="sel_regioncode"
-					name="sel_regioncode" disabled="disabled" style="width: 114px;"><option
-							value="" selected="selected">지역 선택</option>
-						<option value="12">강원</option>
+					name="sel_regioncode" disabled="disabled" style="width: 114px;">
+					<option value="" selected="selected">지역 선택</option>
 						<option value="02">경기</option>
-						<option value="204">경상</option>
-						<option value="206">광주</option>
-						<option value="11">대구</option>
-						<option value="03">대전</option>
-						<option value="05">부산</option>
 						<option value="01">서울</option>
-						<option value="207">울산</option>
-						<option value="202">인천</option>
-						<option value="04">전라</option>
-						<option value="06">제주</option>
-						<option value="205">충청</option></select> <label for="sel_theatercode"
-					class="hidden">영화관 선택</label> <select title="영화관 선택" class="sel01"
-					id="sel_theatercode" name="sel_theatercode" disabled="disabled"
-					style="width: 114px;"><option value="" selected="selected">영화관
-							선택</option></select>
+					</select> 
+					<label for="sel_theatercode" class="hidden">영화관 선택</label> 
+					<select title="영화관 선택" class="sel01" id="sel_theatercode" name="sel_theatercode" disabled="disabled" style="width: 114px;">
+					<option value="" selected="selected">영화관선택</option>
+						<option value="02">강남</option>
+						<option value="01">홍대</option>
+					</select>
 				</td>
 			</tr>
 			<tr>

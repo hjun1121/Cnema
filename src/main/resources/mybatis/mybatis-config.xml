@@ -17,5 +17,6 @@
   		<typeAlias type="com.cnema.theater.DayDTO" alias="dayDTO"/>
   		<typeAlias type="com.cnema.coupon.MyCouponDTO" alias="myCouponDTO"/>
   		<typeAlias type="com.cnema.notice.NoticeDTO" alias="NoticeDTO"/>
+  		<typeAlias type="com.cnema.qna.QnaDTO" alias="QnaDTO"/>
   	</typeAliases>
   </configuration>
