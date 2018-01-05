@@ -31,10 +31,10 @@ public class AjaxController {
 	
 	//movieWish
 	@RequestMapping(value = "movie_wish", method=RequestMethod.POST)
-	public ModelAndView movieWish(String id, int num) throws Exception {
+	public ModelAndView movieWish(String id, int movie_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = movieService.movieWish(id, num);
+		result = movieService.movieWish(id, movie_num);
 		if(result > 0) {
 			mv.addObject("message", "성공");
 		} else {
@@ -44,7 +44,7 @@ public class AjaxController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
 	public void qrTheater(int theater_num, Model model){
 		TheaterDTO theaterDTO = null;

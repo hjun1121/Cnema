@@ -9,52 +9,53 @@
 <title>무비차트</title>
 <script type="text/javascript">
 
-// 	$(function() {
+	$(function() {
 		
-// 		var kind = '${kind}';
+		var kind = '${kind}';
 		
-// 		$(".kind").each(function() {
-// 			if($(this).val() == kind) {
-// 				$(this).attr("selected", true);
-// 			}
-// 		});
+		$(".kind").each(function() {
+			if($(this).val() == kind) {
+				$(this).attr("selected", true);
+			}
+		});
 
-		
-// 		$(".wish_btn").click(function() {
-// 			var num = $(this).val();
-// 			var title = $(this).attr("title");
-			
-// 			if (title == 1) {
-// 				$.ajax({
-// 					url: "../ajax/movie_wish",
-// 					type: "POST",
-// 					data: {
-// 						movie_num:num,
-// 						kind:'${kind}',
-// 						id:'${member.id}'
-// 					},
-// 					success: function(data) {
-// 						alert(data);
-// 					}
-// 				});
 
-// 			} else if (title == 0) {
-// 				$.ajax({
-// 					url: "../ajax/movie_wish",
-// 					type: "POST",
-// 					data: {
-// 						movie_num:num,
-// 						kind:'${kind}',
-// 						id:'${member.id}'
-// 					},
-// 					success: function(data) {
-// 						alert(data);
-// 					}
-// 				});
-// 			}
-// 		});
+		$(".wish_btn").click(function() {
+			var movie_num = $(this).attr("name");
+			alert(movie_num);
+			var title = $(this).attr("title");
 
-// 	});
+			if (title == 1) {
+				$.ajax({
+					url: "../ajax/movie_wish",
+					type: "POST",
+					data: {
+						movie_num:movie_num,
+						kind:'${kind}',
+						id:'${member.id}'
+					},
+					success: function(data) {
+						alert(data);
+					}
+				});
+
+			} else if (title == 0) {
+				$.ajax({
+					url: "../ajax/movie_wish",
+					type: "POST",
+					data: {
+						movie_num:movie_num,
+						kind:'${kind}',
+						id:'${member.id}'
+					},
+					success: function(data) {
+						alert(data);
+					}
+				});
+			}
+		});
+
+	});
 
 </script>
 </head>
@@ -78,22 +79,22 @@
 		<tr><td>개봉일 : ${movie.open_date}</td></tr>
 		<c:set var="heart1" value="0" ></c:set>
 		<c:set var="heart2" value="0" ></c:set>
-<%-- 							<c:if test="${ not empty member }"><c:forEach items="${wish_list}" var="wish"> --%>
-<%-- 								<c:if test="${wish.num eq dto.num}">										 --%>
-<%-- 									<c:choose> --%>
-<%-- 										<c:when test="${heart1 == 0}"> --%>
-<%-- 											<td scope="row" style="display: table-cell;"><button class = "btn btn-default wish_btn" type = "submit" value = "${dto.num}" title="1">❤️</button></td> --%>
-<%-- 											<c:set var="heart1" value="1" ></c:set> --%>
-<%-- 											<c:set var="heart2" value="1" ></c:set> --%>
-<%-- 										</c:when> --%>
-<%-- 									</c:choose> --%>
-<%-- 								</c:if> --%>
-<%-- 							</c:forEach> --%>
-<%-- 								<c:if test="${heart2 == 0}"> --%>
-<%-- 									<td scope="row" style="display: table-cell;"><button class = "btn btn-default wish_btn" type = "submit" value = "${dto.num}" title="0">♡</button></td> --%>
-<%-- 								</c:if> --%>
-<%-- 							</c:if> --%>
-		<tr><td>❤ ${movie.wish}</td></tr>
+							<c:if test="${ not empty member }"><c:forEach items="${wish_list}" var="wish">
+								<c:if test="${wish.wish_num eq movie.movie_num}">										
+									<c:choose>
+										<c:when test="${heart1 == 0}">
+											<tr><td><input type="button" class="wish_btn"  value="❤" name="${movie.movie_num}" title="1"></td></tr>
+											<c:set var="heart1" value="1" ></c:set>
+											<c:set var="heart2" value="1" ></c:set>
+										</c:when>
+									</c:choose>
+								</c:if>
+							</c:forEach>
+								<c:if test="${heart2 == 0}">
+									<tr><td><input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"></td></tr>
+								</c:if>
+							</c:if>
+<%-- 		<tr><td>❤ ${movie.wish}</td></tr> --%>
 		<tr><td><input type="button" id="reserveBtn" value="예매"></td></tr>
 		<tr><td>${movie.contents}</td></tr>
 		<tr><td><iframe width="560" height="315" src="${movie.teaser_url}"></iframe></td></tr>

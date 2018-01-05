@@ -74,7 +74,7 @@ public class MyPageController {
 		}
 		
 		if(id!=null){
-			List<Object> reserveList = new ArrayList<>();
+			List<Object> reserveList = new ArrayList<Object>();
 			reserveList.add(rList);
 			reserveList.add(schList);
 			reserveList.add(tpList);

@@ -24,5 +24,6 @@
 	<context:component-scan base-package="com.cnema.theater"/>
 	<context:component-scan base-package="com.cnema.coupon"/>
 	<context:component-scan base-package="com.cnema.notice"/>
+	
 
 </beans>
