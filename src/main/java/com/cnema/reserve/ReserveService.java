@@ -15,4 +15,8 @@ public class ReserveService {
 	public List<ReserveDTO> reserveList(String id) throws Exception{
 		return reserveDAO.reserveList(id);
 	}
+	/*heeseong*/
+	public int reserveDel(int reserve_num) throws Exception{
+		return reserveDAO.reserveDel(reserve_num);
+	}
 }
