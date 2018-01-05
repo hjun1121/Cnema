@@ -85,6 +85,7 @@ public class MyPageController {
 		reserveList.add(schList);
 		reserveList.add(tpList);
 		reserveList.add(mrList);
+		
 		mv.addObject("allList", reserveList);
 		mv.setViewName("myPage/movieHistory");
 		return mv;
