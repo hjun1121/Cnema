@@ -39,17 +39,7 @@ public class MemberController {
 	@Inject
 	private MemberService memberService;
 	@Inject
-	private ReserveService reserveService;
-	@Inject
-	private ScheduleService scheduleService;
-	@Inject
-	private TicketPriceService ticketPriceService;
-	@Inject
 	private MovieService movieService;
-	@Inject
-	private WishService wishService;
-	@Inject
-	private PointService pointService;
 	@Inject
 	private MyCouponService myCouponService;
 	
@@ -129,20 +119,16 @@ public class MemberController {
 	
 	/*heeseong*/
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
-	public ModelAndView selectOne(String id,RedirectAttributes rd){
+	public ModelAndView selectOne(HttpSession session,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = null;
-		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
-			memberDTO = memberService.memberInfo(id);
 			mList = movieService.movieAList();
 			memList = memberService.memberList();
-			mcList = myCouponService.myCouponList(id);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -16,6 +16,10 @@
 		select * from wish
 	</select>
 
+ 	<select id="wishList1"  parameterType="String" resultType="com.cnema.movie.WishDTO">
+		select * from wish	where id=#{id}
+	</select>
+
   	<select id="selectOne" resultType="movieDTO" parameterType="int">
   		SELECT * FROM movie WHERE movie_num=#{movie_num}
   	</select>

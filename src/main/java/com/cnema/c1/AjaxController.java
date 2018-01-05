@@ -3,6 +3,7 @@ package com.cnema.c1;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,8 +32,10 @@ public class AjaxController {
 	
 	//movieWish
 	@RequestMapping(value = "movie_wish", method=RequestMethod.POST)
-	public ModelAndView movieWish(String id, int movie_num) throws Exception {
+	public ModelAndView movieWish(int movie_num, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = memberDTO.getId();
 		int result = 0;
 		result = movieService.movieWish(id, movie_num);
 		if(result > 0) {

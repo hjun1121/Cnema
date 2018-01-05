@@ -32,9 +32,8 @@
 </style>
 </head>
 <body>
-	<h1>Qna list Page 진행중인 이벤트</h1>
-	<!--Ajax 사용하기  -->
-<button id="endEventList">종료된 이벤트</button>
+	<h1>Qna list Page</h1>
+
 	<table>
 		<tr>
 			<th>이미지</th>
