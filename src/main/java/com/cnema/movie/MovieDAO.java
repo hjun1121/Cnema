@@ -38,6 +38,11 @@ public class MovieDAO {
 		return sqlSession.selectList(NAMESPACE+"wishList");
 	}
 	
+	//wishList
+	public List<WishDTO> wishList(String id) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"wishList1", id);
+	}
+	
 	//wishInsert
 	public int wishInsert(String id, int movie_num) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();

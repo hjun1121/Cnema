@@ -30,6 +30,10 @@ public class MovieService {
 		return movieDAO.wishList();
 	}
 	
+	public List<WishDTO> wishList(String id) throws Exception {
+		return movieDAO.wishList(id);
+	}
+	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);
 	}

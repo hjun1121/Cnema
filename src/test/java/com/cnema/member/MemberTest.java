@@ -52,7 +52,7 @@ public class MemberTest extends AbstractTest {
 			int maxDay= date+14;
 			int count = 0;
 			
-			List<DayDTO> ar = new ArrayList<>();
+			List<DayDTO> ar = new ArrayList();
 			for(int i = date; i <= maxDay; i++){
 				DayDTO dayDTO = new DayDTO();
 				sDay.set(year, month-1, i);

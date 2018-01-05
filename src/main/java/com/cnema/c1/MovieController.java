@@ -46,13 +46,19 @@ public class MovieController {
 
 	//movieList
 	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
-	public ModelAndView movieList(String kind) throws Exception {
+	public ModelAndView movieList(String kind, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = memberDTO.getId();
+		
 		if(kind == null) {
 			kind = "reserve_rate";
 		}
-		List<WishDTO> wish = movieService.wishList();
+		
+		List<WishDTO> wish = movieService.wishList(id);
+		System.out.println(wish.size());
 		List<MovieDTO> ar = movieService.movieList(kind);
+		System.out.println(ar.size());
 		mv.addObject("movie_list", ar);
 		mv.addObject("wish_list", wish);
 		return mv;

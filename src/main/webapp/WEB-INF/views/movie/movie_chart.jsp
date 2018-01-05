@@ -31,8 +31,7 @@
 					type: "POST",
 					data: {
 						movie_num:movie_num,
-						kind:'${kind}',
-						id:'${member.id}'
+						kind:'${kind}'
 					},
 					success: function(data) {
 						alert(data);
@@ -45,8 +44,7 @@
 					type: "POST",
 					data: {
 						movie_num:movie_num,
-						kind:'${kind}',
-						id:'${member.id}'
+						kind:'${kind}'
 					},
 					success: function(data) {
 						alert(data);
