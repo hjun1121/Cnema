@@ -28,18 +28,19 @@ public class NoticeDAO implements BoardDAO{
 	}
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("Before:"+boardDTO.getNum());
+		int result = sqlSession.insert(namespace+"insert", boardDTO);
+		System.out.println("After:"+boardDTO.getNum());
+		return result;
 	}
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"update", boardDTO);
 	}
 	@Override
 	public int delete(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("delete num : "+num);
+		return sqlSession.delete(namespace+"delete", num);
 	}
 	@Override
 	public int totalCount(RowNum rowNum) throws Exception {
@@ -51,7 +52,6 @@ public class NoticeDAO implements BoardDAO{
 	}
 	@Override
 	public int getNum() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace+"getNum");
 	}
 }

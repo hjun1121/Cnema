@@ -21,8 +21,7 @@
 		</tr>
 		
 	</table>
-	
-	<input type="button" id="savebutton" value="수정">
+		<input type="submit" id="savebutton" value="수정">
 	</form>
 </body>
 </html>

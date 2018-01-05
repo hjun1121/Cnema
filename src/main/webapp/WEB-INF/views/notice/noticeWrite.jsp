@@ -22,7 +22,7 @@
 	</table>
 	
 
-	<input type="button" id="savebutton" value="write">
+	<input type="submit" id="savebutton" value="글쓰기">
 	</form>
 </body>
 </html>
