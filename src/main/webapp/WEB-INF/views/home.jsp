@@ -60,11 +60,13 @@
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
 			<div class="sect-event">
 			<ul>
+				<c:forEach begin="0" end="3" varStatus="i">
 		    	<li>
                 	<a href="#">
-                    	<img src="#" alt="Cnema">
+                    	<img src="${pageContext.request.contextPath }/resources/images/main/aaa.png" alt="♡">
                 	</a>
             	</li>
+            	</c:forEach>
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
@@ -72,18 +74,18 @@
 				<div class="col-ad">
 					<div class="box-com">
 		    			<div class="box-inner">
-                			<a href="#"><img src="#" alt="1"></a>
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="1"></a>
             			</div>
 					</div>
 				</div>
 				<div class="col-hd">
 					<a href="#">
-						<img src="#" alt=""></a>
+						<img src="${pageContext.request.contextPath }/resources/images/main/ccc.png" alt="2"></a>
 				</div>
 				<div class="col-collage">
 					<div class="box-com">
 						<div class="box-inner">
-                			<a href="#"><img src="#" alt="3"></a>
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="3"></a>
             			</div>
 					</div>
 				</div>
