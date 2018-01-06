@@ -32,12 +32,11 @@ public class QnaService {
 	}
 	
 	public BoardDTO selectOne(int num) throws Exception {
-		qnaDAO.hitUpdate(num);
 		BoardDTO boardDTO = qnaDAO.selectOne(num);
 		return boardDTO;
 	}
 	
-	public int insert(BoardDTO boardDTO, HttpSession session) throws Exception {
+	public int insert(QnaDTO boardDTO, HttpSession session) throws Exception {
 		int result = qnaDAO.insert(boardDTO);
 		return result;
 	}
