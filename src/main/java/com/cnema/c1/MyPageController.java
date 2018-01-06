@@ -80,7 +80,7 @@ public class MyPageController {
 			}
 		}
 		
-		List<Object> reserveList = new ArrayList<>();
+		List<Object> reserveList = new ArrayList<Object>();
 		reserveList.add(rList);
 		reserveList.add(schList);
 		reserveList.add(tpList);
@@ -142,7 +142,7 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
-			pList = pointService.pointList(memberDTO.getId());
+			pList = pointService.pointList(memberDTO.getId(),"2018-01-06");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -150,10 +150,19 @@ public class MyPageController {
 		mv.setViewName("myPage/pointHistory");
 		return mv;
 	}
+	
 	@RequestMapping(value="pointHistory", method=RequestMethod.POST)
-	public void pointHistory(int year,int month, int day){
-		System.out.println("y:"+year);
-		System.out.println("m:"+month);
-		System.out.println("d:"+day);
+	public ModelAndView pointHistory(HttpSession session, String testDatepicker){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		List<PointDTO> pList = new ArrayList<PointDTO>();
+		try {
+			pList = pointService.pointList(memberDTO.getId(), testDatepicker);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("pList",pList);
+		mv.setViewName("myPage/pointHistory");
+		return mv;
 	}
 }

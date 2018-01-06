@@ -1,6 +1,8 @@
 package com.cnema.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -13,7 +15,10 @@ public class PointDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "pointMapper.";
 	
-	public List<PointDTO> pointList(String id) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"pointList",id);
+	public List<PointDTO> pointList(String id,String testDatepicker) throws Exception{
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("id", id);
+		pMap.put("datepicker", testDatepicker);
+		return sqlSession.selectList(NAMESPACE+"pointList",pMap);
 	}
 }

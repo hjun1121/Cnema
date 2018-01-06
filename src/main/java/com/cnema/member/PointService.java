@@ -11,7 +11,7 @@ public class PointService {
 	@Inject
 	private PointDAO pointDAO;
 	
-	public List<PointDTO> pointList(String id) throws Exception{
-		return pointDAO.pointList(id);
+	public List<PointDTO> pointList(String id,String testDatepicker) throws Exception{
+		return pointDAO.pointList(id,testDatepicker);
 	}
 }
