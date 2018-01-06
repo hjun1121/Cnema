@@ -5,6 +5,9 @@
   <mapper namespace="myCouponMapper">
   <!-- heeseong -->
   <select id="myCouponList" resultType="myCouponDTO" parameterType="java.lang.String">
+  	select * from myCoupon where id=#{id} and type=#{type}
+  </select>
+  <select id="myCouponAList" resultType="myCouponDTO" parameterType="java.lang.String">
   	select * from myCoupon where id=#{id}
   </select>
   </mapper>
