@@ -200,4 +200,27 @@ public class MyPageController {
 		mv.setViewName("myPage/couponHistory");
 		return mv;
 	}
+	
+	@RequestMapping(value="withdrawal", method=RequestMethod.GET)
+	public ModelAndView widhdrawal(HttpSession session){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+	
+		mv.addObject("member",memberDTO);
+		
+		mv.setViewName("myPage/withdrawal");
+		return mv;
+	}
+	
+	@RequestMapping(value="widhdrawal", method=RequestMethod.POST)
+	public ModelAndView widhdrawal(HttpSession session,String pwd){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		System.out.println(pwd);
+		mv.addObject("memberDTO",memberDTO);
+		
+		mv.setViewName("myPage/widhdrawal");
+		return mv;
+	}
+	
 }
