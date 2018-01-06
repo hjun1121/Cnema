@@ -171,13 +171,27 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="couponHistory", method=RequestMethod.GET)
-	public ModelAndView couponHistory(HttpSession session,String ckind){
-		System.out.println("cKind:"+ckind);
+	public ModelAndView couponHistory(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
-			mcList = myCouponService.myCouponList(memberDTO.getId());
+			mcList = myCouponService.myCouponAList(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("mcList",mcList);
+		
+		mv.setViewName("myPage/couponHistory");
+		return mv;
+	}
+	@RequestMapping(value="couponHistory", method=RequestMethod.POST)
+	public ModelAndView couponHistory(HttpSession session,String type){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
+		try {
+			mcList = myCouponService.myCouponList(memberDTO.getId(),type);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

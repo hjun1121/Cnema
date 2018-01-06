@@ -9,25 +9,26 @@
 <title>나의 쿠폰</title>
 <script type="text/javascript">
 	$(function() {
-		var ckind = '${ckind}';
-		$(".ckind").each(function() {
-			if($(this).val() == ckind) {
+		var type = '${type}';
+		
+		$(".type").each(function() {
+			if($(this).val() == type) {
 				$(this).attr("selected", true);
 			}
 		});
 	});
-
 </script>
 </head>
 <body>
 	<h3>MY COUPON</h3>
 	<form action="couponHistory" method="POST">
-	<select id="cKind">
-		<option class = "cKind" value="useAble">사용가능</option>
-		<option class = "cKind" value="useFinish">사용완료</option>
-		<option class = "cKind" value="dateFinish">기간만료</option>
-	</select>
-	<input type="button" value="GO">
+		<select id="type" name="type">
+			<option class = "type" value="11">사용가능</option>
+			<option class = "type" value="10">사용완료</option>
+			<option class = "type" value="12">기간만료</option>
+		</select>
+	<input type="submit" value="GO">
+
 	</form>
 	<table>
 		<tr>
