@@ -31,8 +31,8 @@ public class QnaService {
 		return mv;
 	}
 	
-	public BoardDTO selectOne(int num) throws Exception {
-		BoardDTO boardDTO = qnaDAO.selectOne(num);
+	public QnaDTO selectOne(int num) throws Exception {
+		QnaDTO boardDTO = qnaDAO.selectOne(num);
 		return boardDTO;
 	}
 	

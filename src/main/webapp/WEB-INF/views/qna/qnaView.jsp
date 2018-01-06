@@ -27,9 +27,9 @@
 			</tr>
 		</table>
 		<textarea class="form-control" rows="5">${list.contents }</textarea>
-		<c:forEach items="${list.ar }" var="file">
+		<%-- <c:forEach items="${list.ar }" var="file">
 			<a href="../util/download?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a>
-		</c:forEach>
+		</c:forEach> --%>
 		
 		<a href="./qnaDelete?num=${list.num }" class="btn btn-default">DELETE</a>
 		<a href="./qnaList" class="btn btn-default">List</a>
