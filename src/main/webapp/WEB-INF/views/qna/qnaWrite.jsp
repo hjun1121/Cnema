@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="qna/qnaWrite" method="post">
+<form action="qnaWrite" method="post">
 		<table>
 		<tr>
 			<th>이른</th>
@@ -34,7 +34,7 @@
 		<tr>
 			<th>영화관 선택</th>
 			<td>
-				<select id="areasel">
+				<select id="areasel" name="areasel">
 					<option selected="selected">지역선택</option>
 					<c:forEach items="${area_list}" var="dto">
 					<option>${dto.area}</option>
@@ -42,7 +42,7 @@
 				</select>
 			</td>
 			<td>
-			<select id="locationsel">
+			<select id="locationsel" name="locationsel">
 					<option selected="selected">영화관선택</option>
 					<c:forEach items="${area_list}" var="dto">
 					<option>${dto.location}</option>
