@@ -32,7 +32,7 @@
 	<h3>Point 내역</h3>
 	<a href="../myPage/pointHistory">Point 내역</a>
 	<h3>나의 쿠폰</h3>
-	<a href="">나의 쿠폰</a>
+	<a href="../myPage/couponHistory">나의 쿠폰</a>
 
 	<!-- 정보 수정 -->
 	<h3>정보 수정</h3>

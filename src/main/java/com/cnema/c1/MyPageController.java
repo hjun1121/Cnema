@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
@@ -42,6 +44,8 @@ public class MyPageController {
 	private WishService wishService;
 	@Inject
 	private PointService pointService;
+	@Inject
+	private MyCouponService myCouponService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
@@ -163,6 +167,23 @@ public class MyPageController {
 		}
 		mv.addObject("pList",pList);
 		mv.setViewName("myPage/pointHistory");
+		return mv;
+	}
+	
+	@RequestMapping(value="couponHistory", method=RequestMethod.GET)
+	public ModelAndView couponHistory(HttpSession session,String ckind){
+		System.out.println("cKind:"+ckind);
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
+		try {
+			mcList = myCouponService.myCouponList(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("mcList",mcList);
+		
+		mv.setViewName("myPage/couponHistory");
 		return mv;
 	}
 }

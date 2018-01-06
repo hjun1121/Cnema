@@ -3,7 +3,6 @@ package com.cnema.c1;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,23 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
-import com.cnema.member.PointDTO;
-import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
-import com.cnema.movie.WishDTO;
-import com.cnema.movie.WishService;
-import com.cnema.reserve.ReserveDTO;
-import com.cnema.reserve.ReserveService;
-import com.cnema.reserve.TicketPriceDTO;
-import com.cnema.reserve.TicketPriceService;
-import com.cnema.theater.ScheduleDTO;
-import com.cnema.theater.ScheduleService;
-import com.sun.java.swing.plaf.motif.resources.motif;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -40,8 +27,6 @@ public class MemberController {
 	private MemberService memberService;
 	@Inject
 	private MovieService movieService;
-	@Inject
-	private MyCouponService myCouponService;
 	
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
@@ -125,7 +110,6 @@ public class MemberController {
 		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
-		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
 			mList = movieService.movieAList();
 			memList = memberService.memberList();
@@ -136,7 +120,6 @@ public class MemberController {
 			mv.addObject("myInfo",memberDTO);
 			mv.addObject("mList",mList);
 			mv.addObject("memList",memList);
-			mv.addObject("mcList",mcList);
 			
 			mv.setViewName("member/myPageView");
 		}else{
