@@ -13,7 +13,19 @@
 <title>포인트 적립/사용내역</title>
 <script type="text/javascript">
 $(function() {
-    $( "#testDatepicker" ).datepicker({
+    $( "#testDatepicker1" ).datepicker({
+    	changeMonth: true, 
+        changeYear: true,
+        nextText: '>',
+        prevText: '<',
+        dateFormat : 'yy-mm-dd',
+        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        dayNamesMin: ['일','월','화','수','목','금','토'],
+   	 	changeMonth: true,
+        changeYear: true,
+   		showMonthAfterYear: true,
+    });
+    $( "#testDatepicker2" ).datepicker({
     	changeMonth: true, 
         changeYear: true,
         nextText: '>',
@@ -31,7 +43,8 @@ $(function() {
 <body>
 	<h3>Point 내역</h3>
 	<form name="frm" action="pointHistory" method="post">
-		<input type="text" name="testDatepicker" id="testDatepicker"> 
+		<input type="text" name="testDatepicker1" id="testDatepicker1">~
+		<input type="text" name="testDatepicker2" id="testDatepicker2"> 
 		<input type="submit" value="조회하기">
 	</form>
 	<c:forEach items="${pList}" var="pointList">

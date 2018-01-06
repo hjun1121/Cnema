@@ -15,10 +15,11 @@ public class PointDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "pointMapper.";
 	
-	public List<PointDTO> pointList(String id,String testDatepicker) throws Exception{
+	public List<PointDTO> pointList(String id,String testDatepicker1,String testDatepicker2) throws Exception{
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		pMap.put("id", id);
-		pMap.put("datepicker", testDatepicker);
+		pMap.put("datepicker1", testDatepicker1);
+		pMap.put("datepicker2", testDatepicker2);
 		return sqlSession.selectList(NAMESPACE+"pointList",pMap);
 	}
 }

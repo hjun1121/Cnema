@@ -142,7 +142,7 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
-			pList = pointService.pointList(memberDTO.getId(),"2018-01-06");
+			pList = pointService.pointList(memberDTO.getId(),"2017-12-05","2018-01-05");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -152,12 +152,12 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="pointHistory", method=RequestMethod.POST)
-	public ModelAndView pointHistory(HttpSession session, String testDatepicker){
+	public ModelAndView pointHistory(HttpSession session, String testDatepicker1, String testDatepicker2){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
-			pList = pointService.pointList(memberDTO.getId(), testDatepicker);
+			pList = pointService.pointList(memberDTO.getId(), testDatepicker1,testDatepicker2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

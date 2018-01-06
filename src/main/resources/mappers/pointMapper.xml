@@ -5,6 +5,6 @@
 <mapper namespace="pointMapper">
 	<!-- 희성 -->
 	<select id="pointList" resultType="pointDTO">
-		select * from point where id=#{id} and use_day=#{datepicker}
+		select * from point where id=#{id} and use_day <![CDATA[>=]]> #{datepicker1} and use_day <![CDATA[<=]]> #{datepicker2}
 	</select>
   </mapper>
