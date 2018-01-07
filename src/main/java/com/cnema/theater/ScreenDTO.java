@@ -1,5 +1,7 @@
 package com.cnema.theater;
 
+import java.util.List;
+
 public class ScreenDTO {
 	private int screen_num;
 	private int theater_num;
@@ -7,7 +9,15 @@ public class ScreenDTO {
 	private int floor;
 	private int x_num;
 	private int y_num;
+	private List<ScheduleDTO> ar;
 	
+	
+	public List<ScheduleDTO> getAr() {
+		return ar;
+	}
+	public void setAr(List<ScheduleDTO> ar) {
+		this.ar = ar;
+	}
 	public int getRoom_num() {
 		return room_num;
 	}

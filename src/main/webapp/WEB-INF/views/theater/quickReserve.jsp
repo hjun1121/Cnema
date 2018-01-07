@@ -80,6 +80,31 @@
 			
 		})
 		
+		$(".time").click(function(){
+			var movie_num = $("#movie_num").val();
+			var theater_num = $("#theater_num").val();
+			var day_num = $("#day_num").val();
+			
+			if(movie_num == '' || theater_num=='' || day_num==''){
+			}else{
+				
+				$.ajax({
+					url:"../ajax/qrSchedule",
+					type:"post",
+					data:{
+						theater_num:theater_num,
+						movie_num:movie_num,
+						day_num:day_num
+					},
+					success:function(data){
+						$("#scheduleList").html(data);
+					}
+				});
+				
+			}
+			
+		});
+		
 		
 	});
 </script>
@@ -152,7 +177,7 @@
 			<ul>
 				<c:forEach items="${movie }" var="DTO">
 					<li>
-						<a href="#" onclick="return false;" class="movies" title="${DTO.movie_num }">
+						<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
 							<span>${DTO.age_limit }</span>
 							<span>${DTO.movie_name }</span>
 						</a>
@@ -172,7 +197,7 @@
 						<ul>
 							<c:forEach items="${location }" var="DTO">
 								<li>
-									<a href="#" onclick="return false;" class="location" title="${DTO.theater_num }" >
+									<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
 										${DTO.location }
 									</a>
 								</li>
@@ -200,7 +225,7 @@
 			</div>
 				<ul>
 					<c:forEach items="${dayList }" var="DTO">
-						<p><a href="#" class="days" title="${DTO.day_num }" onclick="return false;">${DTO.week} ${DTO.day }</a></p>
+						<p><a href="#" class="days time" title="${DTO.day_num }" onclick="return false;">${DTO.week} ${DTO.day }</a></p>
 					</c:forEach>
 				</ul>
 			<ul>
@@ -213,6 +238,8 @@
 			<div class="head">
 				<h2>시간</h2>
 			</div>
+				<ul id="scheduleList">
+				</ul>
 		</div>
 	</div>
 	<div id="bottom_area">

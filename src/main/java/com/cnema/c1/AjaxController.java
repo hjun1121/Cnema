@@ -17,6 +17,9 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScheduleService;
+import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 
@@ -30,6 +33,8 @@ public class AjaxController {
 	private TheaterService theaterService;
 	@Inject
 	private MovieService movieService;
+	@Inject
+	private ScheduleService scheduleService;
 	
 	
 	//movieWish
@@ -92,6 +97,24 @@ public class AjaxController {
 		}
 		model.addAttribute("movie", movieDTO);
 		
+	}
+	
+	@RequestMapping(value="qrSchedule", method=RequestMethod.POST)
+	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
+		System.out.println(theater_num);
+		System.out.println(movie_num);
+		System.out.println(day_num);
+		try {
+			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
+			model.addAttribute("screenList", ar);
+			for(ScreenDTO screenDTO : ar){
+				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num);
+				screenDTO.setAr(ar2);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
