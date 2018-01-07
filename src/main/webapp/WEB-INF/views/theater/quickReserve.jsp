@@ -259,6 +259,7 @@
 				<h2>시간</h2>
 			</div>
 				<ul id="scheduleList">
+					<h4> 영화, 극장, 날짜를 선택해주세요</h4>
 				</ul>
 		</div>
 	</div>
