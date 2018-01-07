@@ -26,22 +26,39 @@ public class MovieService {
 		return movieDAO.movieList(kind);
 	}
 	
+	public List<WishDTO> wishList() throws Exception {
+		return movieDAO.wishList();
+	}
+	
+	public List<WishDTO> wishList(String id) throws Exception {
+		return movieDAO.wishList(id);
+	}
 	
 	public MovieDTO selectOne(int num) throws Exception{
 		return movieDAO.selectOne(num);
 	}
+	
+	public int movieWish(String id, int movie_num) throws Exception {
+		int result = movieDAO.movieWish(id, movie_num);
+		result = movieDAO.wishInsert(id, movie_num);
+		return result;
+	}
 
 	public int insert(MovieDTO movieDTO, HttpSession session) throws Exception {
 		MultipartFile file = movieDTO.getFile();
-		String name = fileSaver.fileSave(file, session, "movie");
+		String name = fileSaver.fileSave(file, session, "movie_poster");
 		movieDTO.setFileName(name);
 		movieDTO.setOriName(file.getOriginalFilename());
 		int result = movieDAO.insert(movieDTO);
-		
+
 		return result;
 	}
 	/*heeseong*/
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return movieDAO.movieInfo(movie_num);
+	}
+	/*heeseong*/
+	public List<MovieDTO> movieAList() throws Exception {
+		return movieDAO.movieAList();
 	}
 }

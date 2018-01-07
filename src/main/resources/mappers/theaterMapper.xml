@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="theaterMapper">
   
+
+  	<select id="selectOne" parameterType="int" resultType="theaterDTO">
+  		select * from theater where theater_num=#{theater_num}
+  	</select>
   	
   	<select id="locationList" parameterType="String" resultType="theaterDTO">
   		select * from theater where area=#{area}

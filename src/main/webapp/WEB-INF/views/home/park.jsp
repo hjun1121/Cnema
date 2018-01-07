@@ -9,6 +9,11 @@
 <body>
 	<h2>박세나꺼</h2>
 	
+
+	<a href="../notice/noticeList">Notice List</a>
+	<a href="../qna/qnaList">Qna List</a>
+	<a href="../qna/qnaWrite">문의하기</a>
+	
 	<br>
 	<a href="../">home</a>
 </body>

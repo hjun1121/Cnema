@@ -25,15 +25,104 @@
 			});
 			
 		});
-		
 		$(".movies").click(function(){
 			var num = $(this).attr("title");
 			$("#movie_num").val(num);
+			
+			$.ajax({
+				url:"../ajax/qrMovie",
+				type:"post",
+				data:{
+					movie_num:num
+				},
+				success:function(data){
+					$("#qrMovie").html(data);
+				}
+			});
+			
+			
+			
 		});
 		
 		$("#list").on("click", ".location" , function(){
 			var num = $(this).attr("title");
 			$("#theater_num").val(num);
+			var day = $("#day_num").val();
+			$.ajax({
+				url:"../ajax/qrDay",
+				type:"post",
+				data:{
+					theater_num:num,
+					day: day
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
+			
+		});
+		
+		$(".days").click(function(){
+			var day = $(this).attr("title");
+			var theater_num = $("#theater_num").val();
+			$("#day_num").val(day);
+			$.ajax({
+				url:"../ajax/qrDay",
+				type:"post",
+				data:{
+					theater_num:theater_num,
+					day:day
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
+			
+		})
+		
+		$(".time").click(function(){
+			var movie_num = $("#movie_num").val();
+			var theater_num = $("#theater_num").val();
+			var day_num = $("#day_num").val();
+			
+			if(movie_num == '' || theater_num=='' || day_num==''){
+			}else{
+				
+				$.ajax({
+					url:"../ajax/qrScheduleList",
+					type:"post",
+					data:{
+						theater_num:theater_num,
+						movie_num:movie_num,
+						day_num:day_num
+					},
+					success:function(data){
+						$("#scheduleList").html(data);
+					}
+				});
+				
+			}
+			
+		});
+		
+		$("#scheduleList").on("click", ".schedules" , function(){
+			var schedule_num = $(this).attr("title");
+			$("#schedule_num").val(schedule_num);
+			var theater_num = $("#theater_num").val();
+			var day_num = $("#day_num").val();
+			$.ajax({
+				url:"../ajax/qrSchedule",
+				type:"post",
+				data:{
+					theater_num:theater_num,
+					day_num: day_num,
+					schedule_num:schedule_num
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
+			
 		});
 		
 		
@@ -100,7 +189,6 @@
 </head>
 <body>
 	<h2>Quick Reserve</h2>
-	
 	<div id="all">
 		<div id="movie">
 			<div class="head">
@@ -109,7 +197,7 @@
 			<ul>
 				<c:forEach items="${movie }" var="DTO">
 					<li>
-						<a href="#" onclick="return false;" class="movies" title="${DTO.movie_num }">
+						<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
 							<span>${DTO.age_limit }</span>
 							<span>${DTO.movie_name }</span>
 						</a>
@@ -129,7 +217,7 @@
 						<ul>
 							<c:forEach items="${location }" var="DTO">
 								<li>
-									<a href="#" onclick="return false;" class="location" title="${DTO.theater_num }" >
+									<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
 										${DTO.location }
 									</a>
 								</li>
@@ -155,19 +243,44 @@
 			<div class="head">
 				<h2>날짜</h2>
 			</div>
+				<ul>
+					<c:forEach items="${dayList }" var="DTO">
+						<p><a href="#" class="days time" title="${DTO.day_num }" onclick="return false;">${DTO.week} ${DTO.day }</a></p>
+					</c:forEach>
+				</ul>
+			<ul>
+			
+			
+			</ul>
 		</div>
 		
 		<div id="schedule">
 			<div class="head">
 				<h2>시간</h2>
 			</div>
+				<ul id="scheduleList">
+					<h4> 영화, 극장, 날짜를 선택해주세요</h4>
+				</ul>
 		</div>
 	</div>
 	<div id="bottom_area">
 		<form action="">
+			<table border="1" style="float: left;" id="qrMovie">
+				<tr>
+					<td>빈칸</td>
+				</tr>
+			</table>
+			<table border="1" style="float: left; margin-left: 10px" id="qrTheater">
+				<tr>
+					<td>빈칸</td>
+				</tr>											
+			</table>
+		</form>
+		<form action="" style="clear: both;">
 			<input type="text" id="movie_num" name="movie_num">
 			<input type="text" id="theater_num" name="theater_num">
-			<input type="text" id="sehedule_num" name="sehedule_num">
+			<input type="text" id="day_num" name="day_num">
+			<input type="text" id="schedule_num" name="schedule_num">
 		</form>
 	</div>
 </body>

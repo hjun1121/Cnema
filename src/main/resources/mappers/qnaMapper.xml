@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="qnaMapper">
+  
+  <!-- <resultMap type="QnaDTO" id="qnaResult">
+  	<id property="num" column="num"/>
+  	<collection property="fileNames" column="num" ofType="FileDTO" select="selectFile"></collection>
+  </resultMap>
+   -->
+  
+  
+  
+  <sql id="kind">
+  	like '%'||#{search}||'%'
+  </sql>
+  
+  
+  <select id="selectOne" parameterType="int" resultType="QnaDTO">
+  	select num, area, location, type, title, writer, contents, reg_date, filename, oriname,
+  	reply, reply_id, reply_date from qna where num=#{num}
+  </select>
+  
+<!--   <select id="selectFile" parameterType="int" resultType="FileDTO">
+  	select * from upload where num=#{num}
+  </select> -->
+  
+  <select id="selectList" parameterType="com.cnema.util.RowNum" resultType="QnaDTO">
+  	select * from
+  		(select rownum r, N.* from
+  		(select * from qna
+		order by num desc) N)
+  		where r between #{startRow} and #{lastRow}
+  </select>
+  
+  <!-- 수정하기  -->
+  <insert id="insert" parameterType="com.cnema.board.BoardDTO">
+  	<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  		select board_seq.nextval from dual
+  	</selectKey>
+  	insert into qna
+  	values(#{num},0,0,#{type},#{title},#{writer},#{contents},sysdate,#{fileName},0,null,null,null)
+  </insert>
+  
+  <update id="update" parameterType="com.cnema.board.BoardDTO">
+  	update qna set reply=#{reply}, reply=#{reply_id} reply_date=sysdate where num=#{num}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+	delete qna where num=#{num}
+  </delete>
+  
+  <select id="totalCount" parameterType="com.cnema.util.RowNum" resultType="int">
+  	select count(*) from qna
+  
+  </select>
+  
+
+  <select id="getNum" resultType="int">
+  	select board_seq.nextval from dual
+  </select>
+  
+  </mapper>

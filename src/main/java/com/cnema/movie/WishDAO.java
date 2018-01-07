@@ -17,4 +17,6 @@ public class WishDAO {
 	public List<WishDTO> wishList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"wishList",id);
 	}
+	
+	
 }

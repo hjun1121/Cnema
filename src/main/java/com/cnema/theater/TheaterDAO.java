@@ -17,8 +17,13 @@ public class TheaterDAO {
 	
 	private final String NAMESPACE="theaterMapper.";
 	
+
+	
+	public TheaterDTO selectOne(int theater_num){
+		return sqlSession.selectOne(NAMESPACE+"selectOne", theater_num);
+	}
+	
 	public List<MovieDTO> selectList(){
-		
 		return sqlSession.selectList(NAMESPACE+"selectList");
 	}
 	

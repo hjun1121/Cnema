@@ -11,6 +11,16 @@ public class TheaterService {
 	
 	@Inject
 	private TheaterDAO theaterDAO;
+	@Inject
+	private DayDAO dayDAO;
+	
+	public List<DayDTO> dayList() throws Exception{
+		return dayDAO.dayList(); 
+	}
+	
+	public TheaterDTO selectOne(int theater_num) throws Exception{
+		return theaterDAO.selectOne(theater_num);
+	}
 	
 	public List<TheaterDTO> locationList(String area) throws Exception{
 		return theaterDAO.locationList(area);
