@@ -27,7 +27,13 @@ public class ScheduleDAO {
 ;		return sqlSession.selectList(NAMESPACE+"scheduleList", map);
 	}
 	
+	public ScheduleDTO scheduleOne(int schedule_num)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"scheduleOne", schedule_num);
+	}
 	
+	public ScreenDTO screenOne(int screen_num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"screenOne", screen_num);
+	}
 	/*heeseong*/
 	public ScheduleDTO scheduleInfo(int sNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"scheduleInfo", sNum);

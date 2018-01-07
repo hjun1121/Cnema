@@ -12,7 +12,9 @@
 	</td>
 </tr>
 <tr>
-	<td>상영관</td><td></td>
+	<td>상영관</td><td>${screen.room_num }
+	<c:if test="${!empty screen }">관</c:if>
+	</td>
 </tr>
 <tr>
 	<td>인원</td><td></td>

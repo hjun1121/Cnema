@@ -79,12 +79,31 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		model.addAttribute("day", day);
 		model.addAttribute("theater", theaterDTO);
 		return "ajax/qrTheater";
 	}
-	
+
+	@RequestMapping(value="qrSchedule", method=RequestMethod.POST)
+	public String qrTheater(int schedule_num ,@RequestParam(defaultValue="2000-01-01", required=false)Date day_num, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
+		TheaterDTO theaterDTO = null;
+		ScheduleDTO scheduleDTO = null;
+		ScreenDTO screenDTO = null;
+		
+		try {
+			theaterDTO = theaterService.selectOne(theater_num);
+			scheduleDTO = scheduleService.scheduleOne(schedule_num);
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("screen", screenDTO);
+		model.addAttribute("day", day_num);
+		model.addAttribute("theater", theaterDTO);
+		
+		return "ajax/qrTheater";
+	}
 	
 	@RequestMapping(value="qrMovie", method=RequestMethod.POST)
 	public void qrMovie(int movie_num, Model model){
@@ -99,11 +118,8 @@ public class AjaxController {
 		
 	}
 	
-	@RequestMapping(value="qrSchedule", method=RequestMethod.POST)
+	@RequestMapping(value="qrScheduleList", method=RequestMethod.POST)
 	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
-		System.out.println(theater_num);
-		System.out.println(movie_num);
-		System.out.println(day_num);
 		try {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
 			model.addAttribute("screenList", ar);

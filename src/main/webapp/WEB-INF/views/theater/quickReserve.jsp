@@ -89,7 +89,7 @@
 			}else{
 				
 				$.ajax({
-					url:"../ajax/qrSchedule",
+					url:"../ajax/qrScheduleList",
 					type:"post",
 					data:{
 						theater_num:theater_num,
@@ -102,6 +102,26 @@
 				});
 				
 			}
+			
+		});
+		
+		$("#scheduleList").on("click", ".schedules" , function(){
+			var schedule_num = $(this).attr("title");
+			$("#schedule_num").val(schedule_num);
+			var theater_num = $("#theater_num").val();
+			var day_num = $("#day_num").val();
+			$.ajax({
+				url:"../ajax/qrSchedule",
+				type:"post",
+				data:{
+					theater_num:theater_num,
+					day_num: day_num,
+					schedule_num:schedule_num
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
 			
 		});
 		
@@ -259,7 +279,7 @@
 			<input type="text" id="movie_num" name="movie_num">
 			<input type="text" id="theater_num" name="theater_num">
 			<input type="text" id="day_num" name="day_num">
-			<input type="text" id="sehedule_num" name="sehedule_num">
+			<input type="text" id="schedule_num" name="schedule_num">
 		</form>
 	</div>
 </body>

@@ -26,6 +26,14 @@
   		select S.*, to_char(in_time,'HH:mi') inttime ,to_char(out_time,'HH:mi') outtime from schedule S where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num}
   	</select>	
   
+  	<select id="scheduleOne" resultType="scheduleDTO" parameterType="int">
+  		select * from schedule where schedule_num=#{schedule_num}
+  	</select>
+  
+  	<select id="screenOne" resultType="screenDTO" parameterType="int">
+  		select * from screen where screen_num=#{screen_num}
+  	</select>
+  
   	<!-- heeseong -->
   	<select id="scheduleInfo" resultType="scheduleDTO" parameterType="int">
   		select * from schedule where schedule_num=#{sNum}

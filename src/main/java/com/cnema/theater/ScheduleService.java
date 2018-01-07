@@ -20,6 +20,13 @@ public class ScheduleService {
 		return scheduleDAO.screenList(theater_num);
 	}
 	
+	public ScheduleDTO scheduleOne(int schedule_num) throws Exception{
+		return scheduleDAO.scheduleOne(schedule_num);
+	}
+	
+	public ScreenDTO screenOne(int screen_num) throws Exception{
+		return scheduleDAO.screenOne(screen_num);
+	}
 	/*heeseong*/
 	public ScheduleDTO scheduleInfo(int sNum) throws Exception{
 		return scheduleDAO.scheduleInfo(sNum);
