@@ -3,8 +3,29 @@ package com.cnema.theater;
 public class ScreenDTO {
 	private int screen_num;
 	private int theater_num;
+	private int room_num;
 	private int floor;
-
+	private int x_num;
+	private int y_num;
+	
+	public int getRoom_num() {
+		return room_num;
+	}
+	public void setRoom_num(int room_num) {
+		this.room_num = room_num;
+	}
+	public int getX_num() {
+		return x_num;
+	}
+	public void setX_num(int x_num) {
+		this.x_num = x_num;
+	}
+	public int getY_num() {
+		return y_num;
+	}
+	public void setY_num(int y_num) {
+		this.y_num = y_num;
+	}
 	public int getTheater_num() {
 		return theater_num;
 	}
