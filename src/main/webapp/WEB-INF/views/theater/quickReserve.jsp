@@ -47,20 +47,38 @@
 		$("#list").on("click", ".location" , function(){
 			var num = $(this).attr("title");
 			$("#theater_num").val(num);
-			
+			var day = $("#day_num").val();
 			$.ajax({
-				url:"../ajax/qrTheater",
+				url:"../ajax/qrDay",
 				type:"post",
 				data:{
-					theater_num:num
+					theater_num:num,
+					day: day
 				},
 				success:function(data){
 					$("#qrTheater").html(data);
 				}
 			});
 			
-			
 		});
+		
+		$(".days").click(function(){
+			var day = $(this).attr("title");
+			var theater_num = $("#theater_num").val();
+			$("#day_num").val(day);
+			$.ajax({
+				url:"../ajax/qrDay",
+				type:"post",
+				data:{
+					theater_num:theater_num,
+					day:day
+				},
+				success:function(data){
+					$("#qrTheater").html(data);
+				}
+			});
+			
+		})
 		
 		
 	});
@@ -181,8 +199,8 @@
 				<h2>날짜</h2>
 			</div>
 				<ul>
-					<c:forEach items="${day }" var="DTO">
-						${DTO.day_num }
+					<c:forEach items="${dayList }" var="DTO">
+						<p><a href="#" class="days" title="${DTO.day_num }" onclick="return false;">${DTO.week} ${DTO.day }</a></p>
 					</c:forEach>
 				</ul>
 			<ul>
@@ -213,6 +231,7 @@
 		<form action="" style="clear: both;">
 			<input type="text" id="movie_num" name="movie_num">
 			<input type="text" id="theater_num" name="theater_num">
+			<input type="text" id="day_num" name="day_num">
 			<input type="text" id="sehedule_num" name="sehedule_num">
 		</form>
 	</div>

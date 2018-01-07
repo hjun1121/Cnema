@@ -1,5 +1,6 @@
 package com.cnema.c1;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.member.MemberDTO;
@@ -61,8 +63,23 @@ public class AjaxController {
 		
 		model.addAttribute("theater", theaterDTO);
 		
-		
 	}
+	
+	@RequestMapping(value="qrDay", method=RequestMethod.POST)
+	public String qrTheater(@RequestParam(defaultValue="2000-01-01", required=false)Date day, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
+		TheaterDTO theaterDTO = null;
+		try {
+			theaterDTO = theaterService.selectOne(theater_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("day", day);
+		model.addAttribute("theater", theaterDTO);
+		return "ajax/qrTheater";
+	}
+	
 	
 	@RequestMapping(value="qrMovie", method=RequestMethod.POST)
 	public void qrMovie(int movie_num, Model model){

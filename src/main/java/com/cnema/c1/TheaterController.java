@@ -45,8 +45,7 @@ public class TheaterController {
 		
 		model.addAttribute("location", theaterList);
 		model.addAttribute("movie", movieList);
-		model.addAttribute("day", dayList);
-		
+		model.addAttribute("dayList", dayList);
 	}
 	
 	@RequestMapping(value="scheduleList")

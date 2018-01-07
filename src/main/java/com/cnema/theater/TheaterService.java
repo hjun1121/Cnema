@@ -11,9 +11,11 @@ public class TheaterService {
 	
 	@Inject
 	private TheaterDAO theaterDAO;
+	@Inject
+	private DayDAO dayDAO;
 	
 	public List<DayDTO> dayList() throws Exception{
-		return theaterDAO.dayList();
+		return dayDAO.dayList(); 
 	}
 	
 	public TheaterDTO selectOne(int theater_num) throws Exception{
