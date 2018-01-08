@@ -22,7 +22,7 @@ public class QnaDAO {
 		return sqlSession.selectList(namespace+"selectList", rowNum);
 	}
 
-	public BoardDTO selectOne(int num) throws Exception {
+	public QnaDTO selectOne(int num) throws Exception {
 		return sqlSession.selectOne(namespace+"selectOne", num);
 	}
 

@@ -54,4 +54,17 @@ public class QnaController {
 		
 		return "redirect:../home/park";
 	}
+	
+	@RequestMapping(value="qnaView")
+	public String selectOne(Model model, QnaDTO qnaDTO) {
+		QnaDTO boardDTO = null;
+		try {
+			 boardDTO = qnaService.selectOne(qnaDTO.getNum());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("list", boardDTO);
+		return "qna/qnaView";
+	}
 }
