@@ -39,4 +39,9 @@ public class MemberDAO {
 	public List<MemberDTO> memberList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"memberList");
 	}
+	/*heeseong*/
+	public int withdrawal(String id) throws Exception{
+		return sqlSession.delete(NAMESPACE+"withdrawal",id);
+	}
+
 }
