@@ -259,6 +259,7 @@
 				$(this).attr("class","seatOn");
 				$(this).css("background-color","pink")
 				var seat_num = $(this).attr("title");
+				$("#seat1").val(seat_num);
 				sCount++;
 			}else{
 				alert("인원보다 많은자리입니다");
@@ -273,7 +274,6 @@
 			}else{
 				
 			}
-			
 			var seat_num = $(this).attr("title");
 			var seatList = $("#seat_num").val();
 		});

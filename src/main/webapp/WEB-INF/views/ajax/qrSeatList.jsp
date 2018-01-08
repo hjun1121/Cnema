@@ -3,5 +3,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:forEach begin="1" end="${pCount }" varStatus="c">
-	<input type="text" title="seat${c.count }">
+	<input type="text" id="seat${c.count }" title="seat${c.count }">
 </c:forEach>
