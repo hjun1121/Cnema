@@ -18,5 +18,8 @@ public class WishDAO {
 		return sqlSession.selectList(NAMESPACE+"wishList",id);
 	}
 	
+	public int wishListDelete(int wish_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"wishListDelete",wish_num);
+	}
 	
 }

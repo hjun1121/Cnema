@@ -14,4 +14,7 @@ public class WishService {
 	public List<WishDTO> wishList(String id) throws Exception{
 		return wishDAO.wishList(id);
 	}
+	public int wishListDelete(int wish_num) throws Exception{
+		return wishDAO.wishListDelete(wish_num);
+	}
 }

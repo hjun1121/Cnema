@@ -124,22 +124,37 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		List<WishDTO> wList = new ArrayList<WishDTO>();
-		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		try {
 			wList = wishService.wishList(memberDTO.getId());
+			for(WishDTO wishDTO : wList ){
+				movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
+				wishDTO.setMovieDTO(movieDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int size=0;size<wList.size();size++){
-			try {
-				movieDTO = movieService.movieInfo(wList.get(size).getMovie_num());
-				mwList.add(movieDTO);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		mv.addObject("mwList", mwList);
+		
+		mv.addObject("wList", wList);
 		mv.setViewName("myPage/wishList");
+		return mv;
+	}
+	@RequestMapping(value="wishList",method=RequestMethod.POST)
+	public ModelAndView wishList(int wish_num,RedirectAttributes rd){
+		int result = 0;
+		try {
+			result = wishService.wishListDelete(wish_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		if(result>0){
+			rd.addFlashAttribute("message", "위시리스트 삭제 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "위시리스트 삭제 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
 	}
 	

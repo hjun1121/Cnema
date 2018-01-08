@@ -5,16 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>위시리스트</title>
+<title>위시리스트 &lt;무비로그&gt;</title>
 </head>
 <body>
 <h3>위시 리스트</h3>
-	<c:forEach items="${mwList}" var="mList">
-		사진 : ${mList.fileName}<br>
-		영화명 : ${mList.movie_name}<br>
-		개봉일 : ${mList.open_date}<br>
-		좋아요수 :${mList.wish}<br>
-		<button>예매</button><br>
+	<c:forEach items="${wList}" var="wishList">
+		<form action="wishList" method="POST">
+			<input type="hidden" name="wish_num" value="${wishList.wish_num }">
+			사진 : ${wishList.movieDTO.fileName}<br>
+			영화명 : ${wishList.movieDTO.movie_name}<br>
+			개봉일 : ${wishList.movieDTO.open_date}<br>
+			좋아요수 :${wishList.movieDTO.wish}<br>
+			<button>예매</button><br>
+			<input type="submit" value="X"><br>
+		</form> 
 		----<br>
 	</c:forEach>
 </body>
