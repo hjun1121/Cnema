@@ -134,7 +134,7 @@
 				alert("시간을 선택해주세요");
 			}else{
 				$.ajax({
-					url:"../ajax/qrSeatList",
+					url:"../ajax/qrSeatBox",
 					type:"post",
 					data:{
 						theater_num:theater_num,
@@ -149,86 +149,108 @@
 		});
 		/*  */
 		$("#all").on("click", ".adult" , function(){
-			var theater_num = $("#theater_num").val();
-			var day_num = $("#day_num").val();
-			var schedule_num = $("#schedule_num").val();
-			$(".adult").css("background-color","");
-			$(this).css("background-color","white");
 			var adult = $(this).attr("title");
 			var teen = $("#teen_num").val();
-			$("#adult_num").val(adult);
-			if(adult=='0'){
-				$("#adult_num").val("");
-				if(teen == ''){
-					$("#people").val("");
-				}else{
-					$("#people").val("청소년"+teen+"명");
-				}
+			var newCount = (adult*1+teen*1);
+			if(sCount>newCount){
+				alert("인원수보다 선택 자리수가 더 많습니다")
 			}else{
-				if(teen == ''){
-					$("#people").val("성인"+adult+"명");
+				var theater_num = $("#theater_num").val();
+				var day_num = $("#day_num").val();
+				var schedule_num = $("#schedule_num").val();
+				$(".adult").css("background-color","");
+				$(this).css("background-color","white");
+				$("#adult_num").val(adult);
+				if(adult=='0'){
+					$("#adult_num").val("");
+					if(teen == ''){
+						$("#people").val("");
+					}else{
+						$("#people").val("청소년"+teen+"명");
+					}
 				}else{
-					$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
+					if(teen == ''){
+						$("#people").val("성인"+adult+"명");
+					}else{
+						$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
+					}
 				}
+				var people = $("#people").val();
+				$("#pCount").val(adult*1+teen*1);
+				$.ajax({
+					url:"../ajax/qrSchedule",
+					type:"post",
+					data:{
+						theater_num:theater_num,
+						day_num: day_num,
+						schedule_num:schedule_num,
+						people: people
+					},
+					success:function(data){
+						$("#qrTheater").html(data);
+					}
+				});
 			}
-			var people = $("#people").val();
-			$("#pCount").val(adult*1+teen*1);
-			$.ajax({
-				url:"../ajax/qrSchedule",
-				type:"post",
-				data:{
-					theater_num:theater_num,
-					day_num: day_num,
-					schedule_num:schedule_num,
-					people: people
-				},
-				success:function(data){
-					$("#qrTheater").html(data);
-				}
-			});
 		});
 		/*  */
 		$("#all").on("click", ".teen" , function(){
-			var theater_num = $("#theater_num").val();
-			var day_num = $("#day_num").val();
-			var schedule_num = $("#schedule_num").val();
-			$(".teen").css("background-color","");
-			$(this).css("background-color","white");
 			var teen = $(this).attr("title");
 			var adult = $("#adult_num").val();
-			$("#teen_num").val(teen);
-			if(teen=='0'){
-				$("#teen_num").val("");
-				if(adult==''){
-					$("#people").val("");
-				}else{
-					$("#people").val("성인"+adult+"명");
-				}
+			var newCount = (adult*1+teen*1);
+			if(sCount>newCount){
+				alert("인원수보다 선택 자리수가 더 많습니다")
 			}else{
-				if(adult == ''){
-					$("#people").val("청소년"+teen+"명");
+				var theater_num = $("#theater_num").val();
+				var day_num = $("#day_num").val();
+				var schedule_num = $("#schedule_num").val();
+				$(".teen").css("background-color","");
+				$(this).css("background-color","white");
+				$("#teen_num").val(teen);
+				if(teen=='0'){
+					$("#teen_num").val("");
+					if(adult==''){
+						$("#people").val("");
+					}else{
+						$("#people").val("성인"+adult+"명");
+					}
 				}else{
-					$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
+					if(adult == ''){
+						$("#people").val("청소년"+teen+"명");
+					}else{
+						$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
+					}
 				}
+				var people = $("#people").val();
+				$("#pCount").val(adult*1+teen*1);
+				$.ajax({
+					url:"../ajax/qrSchedule",
+					type:"post",
+					data:{
+						theater_num:theater_num,
+						day_num: day_num,
+						schedule_num:schedule_num,
+						people: people
+					},
+					success:function(data){
+						$("#qrTheater").html(data);
+					}
+				});
 			}
-			var people = $("#people").val();
-			$("#pCount").val(adult*1+teen*1);
-			$.ajax({
-				url:"../ajax/qrSchedule",
-				type:"post",
-				data:{
-					theater_num:theater_num,
-					day_num: day_num,
-					schedule_num:schedule_num,
-					people: people
-				},
-				success:function(data){
-					$("#qrTheater").html(data);
-				}
-			});
-			
 		});
 		/*  */
+		$("#all").on("click", ".seat" , function(){
+			var pCount = $("#pCount").val();
+			$.ajax({
+				url:"../ajax/qrSeatList",
+				type:"post",
+				data:{
+					pCount:pCount
+				},
+				success:function(data){
+					$("#seatList").html(data);
+				}
+			});
+		});
 		/*  */
 		var sCount = 0;
 		$("#all").on("click", ".seats" , function(){
@@ -418,11 +440,13 @@
 			t<input type="text" id="theater_num" name="theater_num">
 			d<input type="text" id="day_num" name="day_num">
 			sc<input type="text" id="schedule_num" name="schedule_num">
-			se<input type="text" id="seat_num" name="seat_num"><br>
 			ad<input type="text" id="adult_num" name="adult_num">
 			te<input type="text" id="teen_num" name="teen_num">
 			pe<input type="text" id="people" name="people">
-			pC<input type="text" id="pCount" name="pCount">
+			pC<input type="text" id="pCount" name="pCount" value="0">
+			<div id="seatList">
+			
+			</div>
 		</form>
 	</div>
 </body>

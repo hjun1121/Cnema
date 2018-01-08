@@ -55,8 +55,8 @@ public class AjaxController {
 		return mv;
 	}
 
-	@RequestMapping(value="qrSeatList", method=RequestMethod.POST)
-	public void qrSeatList(int schedule_num, Model model){
+	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
+	public void qrSeatBox(int schedule_num, Model model){
 		
 		ScheduleDTO scheduleDTO=null;
 		ScreenDTO screenDTO = null;
@@ -166,6 +166,11 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value="qrSeatList", method=RequestMethod.POST)
+	public void qrSeatList(int pCount, Model model){
+		model.addAttribute("pCount", pCount);
 	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
