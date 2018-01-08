@@ -5,6 +5,24 @@ import java.sql.Date;
 public class DayDTO {
 
 	private Date day_num;
+	private int day;
+	private String week;
+	
+	public String getWeek() {
+		return week;
+	}
+
+	public void setWeek(String week) {
+		this.week = week;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
 
 	public Date getDay_num() {
 		return day_num;

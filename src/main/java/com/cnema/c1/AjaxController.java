@@ -1,5 +1,6 @@
 package com.cnema.c1;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,12 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScheduleService;
+import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 
@@ -28,6 +33,8 @@ public class AjaxController {
 	private TheaterService theaterService;
 	@Inject
 	private MovieService movieService;
+	@Inject
+	private ScheduleService scheduleService;
 	
 	
 	//movieWish
@@ -61,7 +68,41 @@ public class AjaxController {
 		
 		model.addAttribute("theater", theaterDTO);
 		
+	}
+	
+	@RequestMapping(value="qrDay", method=RequestMethod.POST)
+	public String qrTheater(@RequestParam(defaultValue="2000-01-01", required=false)Date day, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
+		TheaterDTO theaterDTO = null;
+		try {
+			theaterDTO = theaterService.selectOne(theater_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("day", day);
+		model.addAttribute("theater", theaterDTO);
+		return "ajax/qrTheater";
+	}
+
+	@RequestMapping(value="qrSchedule", method=RequestMethod.POST)
+	public String qrTheater(int schedule_num ,@RequestParam(defaultValue="2000-01-01", required=false)Date day_num, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
+		TheaterDTO theaterDTO = null;
+		ScheduleDTO scheduleDTO = null;
+		ScreenDTO screenDTO = null;
 		
+		try {
+			theaterDTO = theaterService.selectOne(theater_num);
+			scheduleDTO = scheduleService.scheduleOne(schedule_num);
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("screen", screenDTO);
+		model.addAttribute("day", day_num);
+		model.addAttribute("theater", theaterDTO);
+		
+		return "ajax/qrTheater";
 	}
 	
 	@RequestMapping(value="qrMovie", method=RequestMethod.POST)
@@ -75,6 +116,21 @@ public class AjaxController {
 		}
 		model.addAttribute("movie", movieDTO);
 		
+	}
+	
+	@RequestMapping(value="qrScheduleList", method=RequestMethod.POST)
+	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
+		try {
+			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
+			model.addAttribute("screenList", ar);
+			for(ScreenDTO screenDTO : ar){
+				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num);
+				screenDTO.setAr(ar2);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
