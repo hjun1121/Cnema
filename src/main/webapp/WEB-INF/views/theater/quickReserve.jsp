@@ -66,6 +66,7 @@
 			var day = $(this).attr("title");
 			var theater_num = $("#theater_num").val();
 			$("#day_num").val(day);
+			$("#schedule_num").val("");
 			$.ajax({
 				url:"../ajax/qrDay",
 				type:"post",
@@ -125,6 +126,75 @@
 			
 		});
 		
+		$("#seatBtn").click(function(){
+			var movie_num = $("#movie_num").val();
+			var theater_num = $("#theater_num").val();
+			var day_num = $("#day_num").val();
+			var schedule_num = $("#schedule_num").val();
+			if(movie_num == ''){
+				alert("영화를 선택해주세요");
+			}else if(theater_num==''){
+				alert("극장을 선택해주세요");
+			}else if(day_num==''){
+				alert("날짜를 선택해주세요");
+			}else if(schedule_num==''){
+				alert("시간을 선택해주세요");
+			}else{
+				$.ajax({
+					url:"../ajax/qrSeatList",
+					type:"post",
+					data:{
+						theater_num:theater_num,
+						day_num: day_num,
+						schedule_num:schedule_num
+					},
+					success:function(data){
+						$("#all").html(data);
+					}
+				});
+				
+			}
+			
+		});
+		
+		$("#all").on("click", ".seats" , function(){
+			var seat_num = $(this).attr("title");
+			$("#seat_num").val(seat_num);
+		})
+		
+		$("#all").on("click", ".adult" , function(){
+			var adult = $(this).attr("title");
+			var teen = $("#teen_num").val();
+			$("#adult_num").val(adult);
+			
+			if(adult=='0'){
+				$("#adult_num").val("");
+			}
+			
+			if(teen == ''){
+				$("#people").val("성인"+adult+"명");
+			}else{
+				$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
+			}
+			
+		})
+
+		$("#all").on("click", ".teen" , function(){
+			var teen = $(this).attr("title");
+			var adult = $("#adult_num").val();
+			$("#teen_num").val(teen);
+			
+			if(teen=='0'){
+				$("#teen_num").val("");
+			}
+			
+			if(adult == ''){
+				$("#people").val("청소년"+teen+"명");
+			}else{
+				$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
+			}
+			
+		})
 		
 	});
 </script>
@@ -259,29 +329,47 @@
 				<h2>시간</h2>
 			</div>
 				<ul id="scheduleList">
-					<h4> 영화, 극장, 날짜를 선택해주세요</h4>
+					<li><h4> 영화, 극장, 날짜를 선택해주세요</h4></li>
 				</ul>
 		</div>
 	</div>
 	<div id="bottom_area">
 		<form action="">
-			<table border="1" style="float: left;" id="qrMovie">
+			<table border="1"  style="float: left; width: 217px; height: 118px;" id="qrMovie">
 				<tr>
-					<td>빈칸</td>
+					<td>영화선택</td>
 				</tr>
 			</table>
-			<table border="1" style="float: left; margin-left: 10px" id="qrTheater">
+			<table border="1" style="float: left; margin-left: 10px; width: 214px; height: 118px;" id="qrTheater">
 				<tr>
-					<td>빈칸</td>
+					<td>극장선택</td>
 				</tr>											
 			</table>
+			<table border="1" style="float: left; margin-left: 10px" id="qrSeat">
+				<tr>
+					<td>좌석선택</td>
+				</tr>											
+			</table>
+			<input type="button" id="seatBtn" value="좌석선택">
+			
 		</form>
 		<form action="" style="clear: both;">
 			<input type="text" id="movie_num" name="movie_num">
 			<input type="text" id="theater_num" name="theater_num">
 			<input type="text" id="day_num" name="day_num">
 			<input type="text" id="schedule_num" name="schedule_num">
+			<input type="text" id="seat_num" name="seat_num">
+			<input type="text" id="adult_num" name="adult_num">
+			<input type="text" id="teen_num" name="teen_num">
+			<input type="text" id="people" name="people">
 		</form>
 	</div>
 </body>
+
 </html>
+
+
+
+
+
+

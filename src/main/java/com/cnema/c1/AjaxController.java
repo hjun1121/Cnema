@@ -55,6 +55,22 @@ public class AjaxController {
 		return mv;
 	}
 
+	@RequestMapping(value="qrSeatList", method=RequestMethod.POST)
+	public void qrSeatList(int schedule_num, Model model){
+		
+		ScheduleDTO scheduleDTO=null;
+		ScreenDTO screenDTO = null;
+		try {
+			scheduleDTO = scheduleService.scheduleOne(schedule_num);
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+			model.addAttribute("screenDTO", screenDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
 	public void qrTheater(int theater_num, Model model){
 		TheaterDTO theaterDTO = null;
