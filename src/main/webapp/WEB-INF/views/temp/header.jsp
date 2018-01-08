@@ -46,7 +46,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="booking headbtn" title="booking headbtn"><a href="/ticket/">예매</a>
+						<li class="booking headbtn" title="booking headbtn"><a href="./theater/quickReserve">예매</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">

@@ -9,9 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		/*  */
 		$(".area").click(function(){
 			var area = $(this).attr("title");
-			
 			$.ajax({
 				url:"../ajax/locationList",
 				type:"post",
@@ -25,10 +25,10 @@
 			});
 			
 		});
+		/*  */
 		$(".movies").click(function(){
 			var num = $(this).attr("title");
 			$("#movie_num").val(num);
-			
 			$.ajax({
 				url:"../ajax/qrMovie",
 				type:"post",
@@ -39,11 +39,8 @@
 					$("#qrMovie").html(data);
 				}
 			});
-			
-			
-			
 		});
-		
+		/*  */
 		$("#list").on("click", ".location" , function(){
 			var num = $(this).attr("title");
 			$("#theater_num").val(num);
@@ -59,9 +56,8 @@
 					$("#qrTheater").html(data);
 				}
 			});
-			
 		});
-		
+		/*  */
 		$(".days").click(function(){
 			var day = $(this).attr("title");
 			var theater_num = $("#theater_num").val();
@@ -80,7 +76,7 @@
 			});
 			
 		})
-		
+		/*  */
 		$(".time").click(function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
@@ -88,7 +84,6 @@
 			
 			if(movie_num == '' || theater_num=='' || day_num==''){
 			}else{
-				
 				$.ajax({
 					url:"../ajax/qrScheduleList",
 					type:"post",
@@ -101,11 +96,9 @@
 						$("#scheduleList").html(data);
 					}
 				});
-				
 			}
-			
 		});
-		
+		/*  */
 		$("#scheduleList").on("click", ".schedules" , function(){
 			var schedule_num = $(this).attr("title");
 			$("#schedule_num").val(schedule_num);
@@ -125,7 +118,7 @@
 			});
 			
 		});
-		
+		/*  */
 		$("#seatBtn").click(function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
@@ -154,18 +147,13 @@
 				});
 			}
 		});
-		
-		$("#all").on("click", ".seats" , function(){
-			var seat_num = $(this).attr("title");
-			$("#seat_num").val(seat_num);
-		});
-		
+		/*  */
 		$("#all").on("click", ".adult" , function(){
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();
 			var schedule_num = $("#schedule_num").val();
-			$(".adult").attr("style","");
-			$(this).attr("style","background-color: white;");
+			$(".adult").css("background-color","");
+			$(this).css("background-color","white");
 			var adult = $(this).attr("title");
 			var teen = $("#teen_num").val();
 			$("#adult_num").val(adult);
@@ -184,6 +172,7 @@
 				}
 			}
 			var people = $("#people").val();
+			$("#pCount").val(adult*1+teen*1);
 			$.ajax({
 				url:"../ajax/qrSchedule",
 				type:"post",
@@ -198,13 +187,13 @@
 				}
 			});
 		});
-		
+		/*  */
 		$("#all").on("click", ".teen" , function(){
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();
 			var schedule_num = $("#schedule_num").val();
-			$(".teen").attr("style","");
-			$(this).attr("style","background-color: white;");
+			$(".teen").css("background-color","");
+			$(this).css("background-color","white");
 			var teen = $(this).attr("title");
 			var adult = $("#adult_num").val();
 			$("#teen_num").val(teen);
@@ -223,6 +212,7 @@
 				}
 			}
 			var people = $("#people").val();
+			$("#pCount").val(adult*1+teen*1);
 			$.ajax({
 				url:"../ajax/qrSchedule",
 				type:"post",
@@ -239,7 +229,32 @@
 			
 		});
 		/*  */
-		
+		/*  */
+		var sCount = 0;
+		$("#all").on("click", ".seats" , function(){
+			var pCount = $("#pCount").val();
+			if(sCount < pCount){
+				$(this).attr("class","seatOn");
+				$(this).css("background-color","pink")
+				var seat_num = $(this).attr("title");
+				sCount++;
+			}else{
+				alert("인원보다 많은자리입니다");
+			}
+		});
+		/*  */
+		$("#all").on("click", ".seatOn" , function(){
+			if(confirm("이 좌석을 취소하시겠습니까?")){
+				$(this).attr("class","seats");
+				$(this).css("background-color","")
+				sCount--;
+			}else{
+				
+			}
+			
+			var seat_num = $(this).attr("title");
+			var seatList = $("#seat_num").val();
+		});
 		/*  */
 	});
 </script>
@@ -407,6 +422,7 @@
 			ad<input type="text" id="adult_num" name="adult_num">
 			te<input type="text" id="teen_num" name="teen_num">
 			pe<input type="text" id="people" name="people">
+			pC<input type="text" id="pCount" name="pCount">
 		</form>
 	</div>
 </body>
