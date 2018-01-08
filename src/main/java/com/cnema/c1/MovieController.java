@@ -25,15 +25,13 @@ public class MovieController {
 	
 	
 	//selectOne
-	@RequestMapping(value="movie_view")
-	public ModelAndView selectOne(String id,ModelAndView mv,RedirectAttributes rd) throws Exception {
+	@RequestMapping(value="movie_view", method=RequestMethod.GET)
+	public ModelAndView selectOne(int movie_num, ModelAndView mv, RedirectAttributes rd) throws Exception {
 		MovieDTO movieDTO = null;
-		int num = 1;
-		movieDTO = movieService.selectOne(num);
-		System.out.println(movieDTO.getMovie_name());
+		movieDTO = movieService.selectOne(movie_num);
 		
 		mv.addObject("movie", movieDTO);
-		mv.setViewName("movie/movieView");
+		mv.setViewName("movie/movie_view");
 		return mv;
 	}
 
@@ -46,21 +44,27 @@ public class MovieController {
 
 	//movieList
 	@RequestMapping(value = "movie_chart", method=RequestMethod.GET)
-	public ModelAndView movieList(String kind, HttpSession session) throws Exception {
+	public ModelAndView movieList(String kind, HttpSession session, RedirectAttributes rd) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		String id = memberDTO.getId();
-		
+		String id = "";
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			id = memberDTO.getId();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		if(kind == null) {
 			kind = "reserve_rate";
 		}
-		
-		List<WishDTO> wish = movieService.wishList(id);
-		System.out.println(wish.size());
+
 		List<MovieDTO> ar = movieService.movieList(kind);
-		System.out.println(ar.size());
 		mv.addObject("movie_list", ar);
-		mv.addObject("wish_list", wish);
+		if(id != null) {
+			List<WishDTO> wish = movieService.wishList(id);
+			mv.addObject("wish_list", wish);
+			mv.addObject("kind", kind);
+		}
+
 		return mv;
 	}
 

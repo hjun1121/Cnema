@@ -20,8 +20,8 @@ public class MovieDAO {
 
 
 	//selectOne
-	public MovieDTO selectOne(int num) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"selectOne", num);
+	public MovieDTO selectOne(int movie_num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"selectOne", movie_num);
 	}
 
 	//insert
@@ -51,20 +51,24 @@ public class MovieDAO {
 		return sqlSession.insert(NAMESPACE+"wishInsert", map);
 	}
 	
+	//wishDelete
+	public int wishDelete(String id, int movie_num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("movie_num", movie_num);
+		return sqlSession.delete(NAMESPACE+"wishDelete", map);
+	}
+
 	//wish
-	public int movieWish(String id, int movie_num) throws Exception {
+	public int movieWish(int movie_num) throws Exception {
 		return sqlSession.update(NAMESPACE+"movieWish", movie_num);
 	}
-	public int movieWish1(int movie_num) throws Exception{
-		System.out.println("innnnnnnnnnnnnnnnnnnnnnn ");
-		System.out.println(movie_num);
-		movie_num =  sqlSession.update(NAMESPACE+"movieWish", movie_num);
-		System.out.println("===========" + movie_num + "+++++++++++++++++++++");
-		//return sqlSession.update(NAMESPACE+"movieWish", movie_num);
-		return movie_num;
-		
-	}
 	
+	//wishReturn
+	public int movieWishReturn(int movie_num) throws Exception {
+		return sqlSession.update(NAMESPACE+"movieWishReturn", movie_num);
+	}
+
 	//selectList
 	public List<MovieDTO> movieList(String kind) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();

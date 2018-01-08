@@ -17,7 +17,7 @@ public class WishDAO {
 	public List<WishDTO> wishList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"wishList",id);
 	}
-	
+
 	public int wishListDelete(int wish_num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"wishListDelete",wish_num);
 	}
