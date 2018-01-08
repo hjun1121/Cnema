@@ -31,7 +31,7 @@
 			<a href="../util/download?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a>
 		</c:forEach> --%>
 		
-		<a href="./qnaDelete?num=${list.num }" class="btn btn-default">DELETE</a>
+		<a href="qnaDelete?num=${list.num }" class="btn btn-default">DELETE</a>
 		<a href="./qnaList" class="btn btn-default">List</a>
 		
 	</div>

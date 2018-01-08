@@ -23,9 +23,11 @@
 	<context:component-scan base-package="com.cnema.reserve" />
 	<context:component-scan base-package="com.cnema.theater"/>
 	<context:component-scan base-package="com.cnema.coupon"/>
+	
+	<!-- 게시판 -->
 	<context:component-scan base-package="com.cnema.notice"/>
-
 	<context:component-scan base-package="com.cnema.qna"/>
+	<context:component-scan base-package="com.cnema.event"/>
 
 	
 
