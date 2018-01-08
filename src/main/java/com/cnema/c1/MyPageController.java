@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
+import com.cnema.member.MemberService;
 import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
@@ -46,6 +47,8 @@ public class MyPageController {
 	private PointService pointService;
 	@Inject
 	private MyCouponService myCouponService;
+	@Inject
+	private MemberService memberService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
@@ -201,26 +204,44 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="withdrawal", method=RequestMethod.GET)
-	public ModelAndView widhdrawal(HttpSession session){
+	@RequestMapping(value="withdrawalCheck", method=RequestMethod.GET)
+	public ModelAndView withdrawalCheck(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 	
 		mv.addObject("member",memberDTO);
 		
+		mv.setViewName("myPage/withdrawalCheck");
+		return mv;
+	}
+	
+	@RequestMapping(value="withdrawalCheck", method=RequestMethod.POST)
+	public ModelAndView withdrawalCheck(HttpSession session,String pwd){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("memberDTO",memberDTO);
+		
 		mv.setViewName("myPage/withdrawal");
 		return mv;
 	}
 	
-	@RequestMapping(value="widhdrawal", method=RequestMethod.POST)
-	public ModelAndView widhdrawal(HttpSession session,String pwd){
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+	@RequestMapping(value="withdrawal", method=RequestMethod.POST)
+	public ModelAndView widhdrawal(String id,RedirectAttributes rd){
+		int result = 0;
+		try {
+			result = memberService.withdrawal(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		ModelAndView mv = new ModelAndView();
-		System.out.println(pwd);
-		mv.addObject("memberDTO",memberDTO);
 		
-		mv.setViewName("myPage/widhdrawal");
+		if(result>0){
+			rd.addFlashAttribute("message", "회원 탈퇴 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "회원 탈퇴 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
 	}
-	
 }
