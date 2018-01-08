@@ -20,6 +20,18 @@
 	if(message != ""){
 		alert(message);
 	}
+	
+	$(function(){
+		$(".headbtn").mouseenter(function(){
+			var a = $(this).attr("title");  //booking
+			$(this).attr("class", a+" on");
+		})
+		$(".headbtn").mouseleave(function(){
+			var a = $(this).attr("title");  //booking
+			$(this).attr("class", a);
+		})
+	});
+	
 </script>
 
 <script type="text/javascript">
