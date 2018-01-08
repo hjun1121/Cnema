@@ -30,16 +30,16 @@
 		
 		
 		$("#idFind").click(function(){
-			location.href="./memberIdFind.member?library=${library}&ln=${ln}";
+			location.href="./idFind";
 			
 		});
 		
 		$("#pwFind").click(function(){
-			location.href="./memberPwFind.member?library=${library}&ln=${ln}";
+			location.href="./pwFind";
 		});
 		
 		$("#joinF").click(function(){
-			location.href="./memberJoinAgree.member?library=${library}&ln=${ln}";
+			location.href="./joinF";
 		});
 	});
 
@@ -95,9 +95,9 @@
 						</div>
 						
 						<ul class="btns">
-							<li id="idf"><a href="#" id="idFind" >아이디찾기</a></li>
-							<li><a href="#" id="pwFind">비밀번호찾기</a></li>
-							<li id="join"><a href="#" id="joinF">회원가입</a></li>
+							<li id="idf"><a href="#" id="idFind" onclick="return false;" >아이디찾기</a></li>
+							<li><a href="#" id="pwFind" onclick="return false;">비밀번호찾기</a></li>
+							<li id="join"><a href="#" id="joinF" onclick="return false;">회원가입</a></li>
 						</ul>
 						
         			</div>
