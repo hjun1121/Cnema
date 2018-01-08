@@ -40,7 +40,7 @@ $(function(){
 		<c:forEach items="${rList}" var="reserveList">
 			<input type="text" id="reserve_num" name="reserve_num" value='${reserveList.reserve_num}'>
 			사진 : <img alt='${reserveList.movieDTO.movie_name}' src='/resource/movie/${reserveList.movieDTO.fileName}'><br>
-			<a href="">영화명: ${reserveList.movieDTO.movie_name}<br></a>
+			<a href="../movie/movie_view?movie_num=${reserveList.movieDTO.movie_num }">영화명: ${reserveList.movieDTO.movie_name}<br></a>
 			날짜 : ${reserveList.scheduleDTO.day}<br>
 			시간 :<fmt:formatDate value="${reserveList.scheduleDTO.in_time}" type="time" pattern="HH:mm"/>
 			~<fmt:formatDate value="${reserveList.scheduleDTO.out_time}" type="time" pattern="HH:mm"/><br>

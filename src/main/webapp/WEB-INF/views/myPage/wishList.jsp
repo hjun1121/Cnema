@@ -13,7 +13,7 @@
 	<form action="wishList" method="POST">
 		<c:forEach items="${wList}" var="wishList">
 			<input type="hidden" name="wish_num" value="${wishList.wish_num }">
-			사진 : ${wishList.movieDTO.fileName}<br>
+			<a href="../movie/movie_view?movie_num?${wishList.movieDTO.movie_num}">사진 : ${wishList.movieDTO.fileName}</a><br>
 			영화명 : ${wishList.movieDTO.movie_name}<br>
 			개봉일 : ${wishList.movieDTO.open_date}<br>
 			좋아요수 :${wishList.movieDTO.wish}<br>

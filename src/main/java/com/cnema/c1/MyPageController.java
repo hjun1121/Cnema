@@ -57,7 +57,6 @@ public class MyPageController {
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
-		System.out.println("kind:"+kind);
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		try {
 			if(kind==null){
