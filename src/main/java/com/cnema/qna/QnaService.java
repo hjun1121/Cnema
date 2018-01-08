@@ -6,10 +6,12 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.qna.QnaDAO;
 import com.cnema.board.BoardDTO;
+import com.cnema.util.FileSaver;
 import com.cnema.util.ListData;
 import com.cnema.util.Pager;
 import com.cnema.util.RowNum;
@@ -19,6 +21,8 @@ public class QnaService {
 
 	@Inject
 	private QnaDAO qnaDAO;
+	@Inject
+	private FileSaver fileSaver;
 	
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -36,8 +40,15 @@ public class QnaService {
 		return boardDTO;
 	}
 	
-	public int insert(QnaDTO boardDTO, HttpSession session) throws Exception {
-		int result = qnaDAO.insert(boardDTO);
+	public int insert(QnaDTO qnaDTO, HttpSession session) throws Exception {
+		
+	
+		MultipartFile file = qnaDTO.getFile();
+		String name = fileSaver.fileSave(file, session, "board");
+		qnaDTO.setFileName(name);
+		qnaDTO.setOriName(file.getOriginalFilename());
+		int result = qnaDAO.insert(qnaDTO);
+
 		return result;
 	}
 	

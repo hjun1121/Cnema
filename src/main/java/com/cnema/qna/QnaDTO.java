@@ -2,6 +2,8 @@ package com.cnema.qna;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.cnema.board.BoardDTO;
 
 public class QnaDTO extends BoardDTO {
@@ -11,7 +13,14 @@ public class QnaDTO extends BoardDTO {
 	private String reply;
 	private String reply_id;
 	private Date reply_date;
+	private MultipartFile file;
 	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public int getArea() {
 		return area;
 	}
