@@ -53,9 +53,6 @@ public class MyPageController {
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		/*if(kind == null) {
-			kind = "2018";
-		}*/
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
@@ -66,7 +63,6 @@ public class MyPageController {
 		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
 		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		try {
-			/*rList = reserveService.reserveList(id,kind);*/
 			rList = reserveService.reserveList(memberDTO.getId());
 			for(int size=0;size<rList.size();size++){
 				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
@@ -119,7 +115,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="wishList",method=RequestMethod.GET)
-	public ModelAndView wishList(HttpSession session,RedirectAttributes rd){
+	public ModelAndView wishList(String kind, HttpSession session,RedirectAttributes rd){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
@@ -133,13 +129,18 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+		if(kind == null){
+			kind= "regist_date";
+		}
+		mv.addObject("kind", kind);
 		mv.addObject("wList", wList);
 		mv.setViewName("myPage/wishList");
 		return mv;
 	}
 	@RequestMapping(value="wishList",method=RequestMethod.POST)
-	public ModelAndView wishList(int wish_num,RedirectAttributes rd){
+	public ModelAndView wishList(int wish_num,String sKind,RedirectAttributes rd){
+		System.out.println("sKind:"+sKind);
 		int result = 0;
 		try {
 			result = wishService.wishListDelete(wish_num);
