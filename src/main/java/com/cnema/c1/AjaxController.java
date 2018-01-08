@@ -120,7 +120,7 @@ public class AjaxController {
 	}
 
 	@RequestMapping(value="qrSchedule", method=RequestMethod.POST)
-	public String qrTheater(int schedule_num ,@RequestParam(defaultValue="2000-01-01", required=false)Date day_num, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
+	public String qrTheater(String people, int schedule_num ,@RequestParam(defaultValue="2000-01-01", required=false)Date day_num, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
 		TheaterDTO theaterDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		ScreenDTO screenDTO = null;
@@ -136,7 +136,7 @@ public class AjaxController {
 		model.addAttribute("screen", screenDTO);
 		model.addAttribute("day", day_num);
 		model.addAttribute("theater", theaterDTO);
-		
+		model.addAttribute("people", people);
 		return "ajax/qrTheater";
 	}
 	
