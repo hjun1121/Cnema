@@ -5,21 +5,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>나의 예매 내역</title>
+<script type="text/javascript">
+$(function(){
+	var kind='${kind}';
+	$(".kind").each(function(){
+		if($(this).val()==kind){
+			$(this).attr("selected",true);
+		}
+	});
+	$("#date_search").click(function(){
+		var sKind = $("#kind").val();
+		location.href="./movieHistory?kind="+kind;
+	});
+});
+</script>
 </head>
 <body>
 <h3>나의 예매 내역</h3>
 	<form action="movieHistory" method="POST">
-		<!-- <div>
+		<div>
 			<select id="kind">
 				<option class = "kind" value="2013">2013</option>
 				<option class = "kind" value="2013">2014</option>
 				<option class = "kind" value="2013">2015</option>
 				<option class = "kind" value="2013">2016</option>
 				<option class = "kind" value="2013">2017</option>
+				<option class = "kind" value="2013">2018</option>
 			</select>
 			<input type="button" id="date_search" value="GO">
-		</div> -->
+		</div>
 		<c:forEach items="${allList[0]}" var="rList" varStatus="i">
 			<input type="text" id="reserve_num" name="reserve_num" value='${rList.reserve_num}'>
 			사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>

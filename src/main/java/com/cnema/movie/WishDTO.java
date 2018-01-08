@@ -4,6 +4,7 @@ public class WishDTO {
 	private int wish_num;
 	private int movie_num;
 	private String id;
+	private MovieDTO movieDTO;
 	
 	public int getWish_num() {
 		return wish_num;
@@ -22,5 +23,11 @@ public class WishDTO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public MovieDTO getMovieDTO() {
+		return movieDTO;
+	}
+	public void setMovieDTO(MovieDTO movieDTO) {
+		this.movieDTO = movieDTO;
 	}
 }
