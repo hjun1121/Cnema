@@ -28,4 +28,9 @@
   	<select id="memberList" resultType="memberDTO">
   		select * from member
   	</select>
+  	<!-- heeseong -->
+  	<delete id="withdrawal" parameterType="String">
+  		delete from member where id=#{id}
+  	</delete>
+  	
   </mapper>

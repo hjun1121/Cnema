@@ -42,6 +42,8 @@ public class MemberService {
 		return result;
 	}
 	
+	
+	
 	/*heeseong*/
 	public MemberDTO memberInfo(String id) throws Exception{
 		return memberDAO.memberInfo(id);
@@ -50,5 +52,9 @@ public class MemberService {
 	public List<MemberDTO> memberList() throws Exception{
 		//return memberDAO.memberList();
 		return null;
+	}
+	/*heeseong*/
+	public int withdrawal(String id) throws Exception{
+		return memberDAO.withdrawal(id);
 	}
 }

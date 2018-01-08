@@ -5,10 +5,18 @@ import java.sql.Date;
 public class ScheduleDTO {
 	private int schedule_num;
 	private int screen_num;
+	private int movie_num;
 	private Date in_time;
 	private Date out_time;
 	private Date day;
 	
+	
+	public int getMovie_num() {
+		return movie_num;
+	}
+	public void setMovie_num(int movie_num) {
+		this.movie_num = movie_num;
+	}
 	public int getSchedule_num() {
 		return schedule_num;
 	}

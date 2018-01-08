@@ -54,4 +54,34 @@ public class QnaController {
 		
 		return "redirect:../home/park";
 	}
+	
+	@RequestMapping(value="qnaView")
+	public String selectOne(Model model, QnaDTO qnaDTO) {
+		QnaDTO boardDTO = null;
+		try {
+			 boardDTO = qnaService.selectOne(qnaDTO.getNum());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("list", boardDTO);
+		return "qna/qnaView";
+	}
+	
+	@RequestMapping(value="qnaDelete")
+	public String delete(int num, RedirectAttributes rd){
+		int result = 0;
+		try {
+			result = qnaService.delete(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String message = "삭제 실패";
+		if(result>0){
+			message = "삭제 성공";
+		}
+		rd.addAttribute("message", message);
+		return "redirect:./qnaList";
+	}
 }

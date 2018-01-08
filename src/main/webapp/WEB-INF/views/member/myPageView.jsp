@@ -32,7 +32,7 @@
 	<h3>Point 내역</h3>
 	<a href="../myPage/pointHistory">Point 내역</a>
 	<h3>나의 쿠폰</h3>
-	<a href="">나의 쿠폰</a>
+	<a href="../myPage/couponHistory">나의 쿠폰</a>
 
 	<!-- 정보 수정 -->
 	<h3>정보 수정</h3>
@@ -40,7 +40,7 @@
 	<h3>프로필 관리</h3>
 	<a href="">프로필 관리</a>
 	<h3>회원 탈퇴</h3>
-	<a href="">회원 탈퇴</a>
+	<a href="../myPage/withdrawalCheck">회원 탈퇴</a>
 	
 	<!-- 나의 문의내역 -->
 	<h3>나의 문의 내역</h3>

@@ -3,6 +3,37 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="scheduleMapper">
+  
+  
+   	<select id="screenList" resultType="screenDTO" parameterType="int">
+   		select * from screen where theater_num =#{theater_num}
+  	</select>
+  
+  	<select id="scheduleList" resultType="scheduleDTO" parameterType="java.util.Map">
+  		select * from schedule where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num}
+  	</select>
+  	
+  	<resultMap type="scheduleDTO" id="mmap">
+  		<id property="schedule_num" column="schedule_num"/>
+  		<result property="screen_num" column="screen_num"/>
+  		<result property="movie_num" column="movie_num"/>
+  		<result property="in_time" column="inttime"/>
+  		<result property="out_time" column="outtime"/>
+  		<result property="day" column="day"/>
+  	</resultMap>
+  	
+    <select id="scheduleList2" resultMap="mmap" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH:mi') inttime ,to_char(out_time,'HH:mi') outtime from schedule S where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num}
+  	</select>	
+  
+  	<select id="scheduleOne" resultType="scheduleDTO" parameterType="int">
+  		select * from schedule where schedule_num=#{schedule_num}
+  	</select>
+  
+  	<select id="screenOne" resultType="screenDTO" parameterType="int">
+  		select * from screen where screen_num=#{screen_num}
+  	</select>
+  
   	<!-- heeseong -->
   	<select id="scheduleInfo" resultType="scheduleDTO" parameterType="int">
   		select * from schedule where schedule_num=#{sNum}
