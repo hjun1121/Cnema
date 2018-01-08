@@ -14,4 +14,21 @@ public class EventController {
 	@Inject
 	private EventService eventService;
 	
-}
+	//selectList
+		@RequestMapping(value="eventList")
+		public void selectList() throws Exception{
+		}
+	
+	//insert
+		@RequestMapping(value="eventWrite")
+		public void insert() throws Exception{
+				
+		
+		}
+	
+		
+		
+		
+		
+		
+}//end

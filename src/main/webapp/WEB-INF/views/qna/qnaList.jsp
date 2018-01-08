@@ -44,7 +44,7 @@
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td>${dto.fileName}</td>
+			<td> ${dto.fileName}</td>
 			<td>
 			<a href="qnaView?num=${dto.num}">${dto.title}</a>
 			</td>
