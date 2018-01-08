@@ -8,61 +8,47 @@
 <title>Insert title here</title>
 </head>
 
-<script type="text/javascript">
-	$(function(){
-		var message = '${message}';
-		if(message != ""){
-			alert(message);
-		}
-		
-		$(".list").click(function(){
-			var cur = $(this).attr("title");
-			var s = '${pager.search}';
-			var t = '${pager.kind}';
-			document.frm.curPage.value=cur;
-			document.frm.search.value=s;
-			document.frm.kind.value=t;
-			document.frm.submit();
-		});
-	});
-</script>
-<style type="text/css">
-	.list{
-		cursor: pointer; 
-	}
-</style>
-</head>
 <body>
-	<h1>Notice list Page</h1>
-	<form name="frm" action="./noticeList" method="get">
-	<input type="hidden" name="curPage" value="1">
-		<select name="kind">
-			<option>Title</option>
-			<option>Contents</option>
-		</select>
-		<input type="text" name="search">
-		<button>검색</button>
-	</form>
-	<table>
-		<tr>
-			<th>no.</th>
-			<th>글제목</th>
-			<th>글쓴이</th>
-			<th>등록일</th>
-			<th>조회수</th>
-		</tr>
-		<c:forEach items="${list}" var="dto">
-		<tr>
-			<td>${dto.num}</td>
-			<td>
-			<a href="./noticeView?num=${dto.num}">${dto.title}</a>
-			</td> 
-			<td>${dto.writer}</td>
-			<td>${dto.reg_date}</td>
-			<td>${dto.hit}</td>
-		</tr>
-		</c:forEach>
-	</table>
+	<div class="eventTitle">
+    <h3>EVENT</h3>
+    <hr>
+    <div class="submenu">
+    <button id="ingEvent">진행중인 이벤트</button>
+    <button id="endEvent">종료된 이벤트</button>
+    
+    </div>
+</div>
+	<div>
+		<ul>
+			<c:forEach items="${list}" var="dto">
+			<li>
+			<!-- 리스트의 이미지 -->
+           	<div class="box-image">
+        	<a href="eventView?num=${dto.num}">
+            <span>
+             <img src="${dto.fileName}">
+            </span>
+            </a>
+            </div>
+            <!--리스트의 제목  -->
+             <div class="box-title">
+                 <a href="eventView?num=${dto.num}">
+                <strong>${dto.title }</strong>
+                </a>
+                   <em class="date">
+                            <span>기간: </span>
+                            ${dto.s_date} ~ ${dto.e_date}
+                        </em>
+                    </div>
+                </li>
+		
+			</c:forEach>
+		</ul>
+	
+	
+	</div>
+
+	
 	
 	<div>
 		<c:if test="${pager.curBlock gt 1}">
@@ -76,6 +62,6 @@
 		</c:if>
 	</div>
 	
-	<a href="./noticeWrite">글쓰기</a>
+	<a href="./eventWrite">글쓰기</a>
 </body>
 </html>
