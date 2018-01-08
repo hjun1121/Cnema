@@ -7,6 +7,7 @@
   	<select id="wishList" resultType="wishDTO" parameterType="java.lang.String">
   		select * from wish where id=#{id}
   	</select>
+  	<!-- heeseong -->
   	<delete id="wishListDelete" parameterType="int">
   		delete from wish where wish_num=#{wish_num}
   	</delete>
