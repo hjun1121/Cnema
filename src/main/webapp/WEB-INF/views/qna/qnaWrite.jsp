@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="qnaWrite" method="post">
+<form action="qnaWrite" method="post" enctype="multipart/form-data">
 		<table>
 		<tr>
 			<th>이른</th>
@@ -71,7 +71,7 @@
 		<!-- 파일 추가  -->
 		<tr>
 			<th>첨부파일</th>
-			<td><input type="file" name="fileName"></td>
+			<td><input type="file" name="file"></td>
 		</tr>
 			</table>
 				

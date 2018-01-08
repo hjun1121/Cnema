@@ -34,13 +34,19 @@ public class MovieService {
 		return movieDAO.wishList(id);
 	}
 	
-	public MovieDTO selectOne(int num) throws Exception{
-		return movieDAO.selectOne(num);
+	public MovieDTO selectOne(int movie_num) throws Exception{
+		return movieDAO.selectOne(movie_num);
 	}
 	
 	public int movieWish(String id, int movie_num) throws Exception {
-		int result = movieDAO.movieWish(id, movie_num);
+		int result = movieDAO.movieWish(movie_num);
 		result = movieDAO.wishInsert(id, movie_num);
+		return result;
+	}
+
+	public int movieWishReturn(String id, int movie_num) throws Exception {
+		int result = movieDAO.movieWishReturn(movie_num);
+		result = movieDAO.wishDelete(id, movie_num);
 		return result;
 	}
 
@@ -53,6 +59,7 @@ public class MovieService {
 
 		return result;
 	}
+	
 	/*heeseong*/
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return movieDAO.movieInfo(movie_num);

@@ -46,9 +46,9 @@ public class AjaxController {
 		int result = 0;
 		result = movieService.movieWish(id, movie_num);
 		if(result > 0) {
-			mv.addObject("message", "성공");
+			mv.addObject("message", "❤ 성공");
 		} else {
-			mv.addObject("message", "실패");
+			mv.addObject("message", "❤ 실패");
 		}
 		mv.setViewName("ajax/movie_wish");
 
@@ -71,6 +71,25 @@ public class AjaxController {
 		
 	}
 	
+	//movieWishReturn
+	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
+	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = memberDTO.getId();
+		int result = 0;
+		result = movieService.movieWishReturn(id, movie_num);
+
+		if(result > 0) {
+			mv.addObject("message", "♡ 성공");
+		} else {
+			mv.addObject("message", "♡ 실패");
+		}
+		mv.setViewName("ajax/movie_wish_return");
+		
+		return mv;
+	}
+
 	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
 	public void qrTheater(int theater_num, Model model){
 		TheaterDTO theaterDTO = null;

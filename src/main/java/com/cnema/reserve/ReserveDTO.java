@@ -1,5 +1,10 @@
 package com.cnema.reserve;
 
+import java.sql.Date;
+
+import com.cnema.movie.MovieDTO;
+import com.cnema.theater.ScheduleDTO;
+
 public class ReserveDTO {
 	private int reserve_num;
 	private int theater_num;
@@ -10,6 +15,11 @@ public class ReserveDTO {
 	private String id;
 	private int age_type;
 	private int tp_num;
+	private Date reg_date;
+	
+	private ScheduleDTO scheduleDTO;
+	private TicketPriceDTO ticketPriceDTO;
+	private MovieDTO movieDTO;
 	
 	public int getReserve_num() {
 		return reserve_num;
@@ -65,6 +75,28 @@ public class ReserveDTO {
 	public void setTp_num(int tp_num) {
 		this.tp_num = tp_num;
 	}
-	
-	
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	public ScheduleDTO getScheduleDTO() {
+		return scheduleDTO;
+	}
+	public void setScheduleDTO(ScheduleDTO scheduleDTO) {
+		this.scheduleDTO = scheduleDTO;
+	}
+	public TicketPriceDTO getTicketPriceDTO() {
+		return ticketPriceDTO;
+	}
+	public void setTicketPriceDTO(TicketPriceDTO ticketPriceDTO) {
+		this.ticketPriceDTO = ticketPriceDTO;
+	}
+	public MovieDTO getMovieDTO() {
+		return movieDTO;
+	}
+	public void setMovieDTO(MovieDTO movieDTO) {
+		this.movieDTO = movieDTO;
+	}
 }

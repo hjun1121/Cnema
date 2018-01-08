@@ -11,8 +11,11 @@
 	
 
 	<a href="../notice/noticeList">Notice List</a>
+	<hr>
 	<a href="../qna/qnaList">Qna List</a>
 	<a href="../qna/qnaWrite">문의하기</a>
+	<hr>
+	<a href="../event/eventList">Event List</a>
 	
 	<br>
 	<a href="../">home</a>

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
+import com.cnema.member.MemberService;
 import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
@@ -46,51 +47,39 @@ public class MyPageController {
 	private PointService pointService;
 	@Inject
 	private MyCouponService myCouponService;
+	@Inject
+	private MemberService memberService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		/*if(kind == null) {
-			kind = "2018";
-		}*/
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
-		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
-		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
-		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		try {
-			/*rList = reserveService.reserveList(id,kind);*/
-			rList = reserveService.reserveList(memberDTO.getId());
-			for(int size=0;size<rList.size();size++){
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
-				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
-				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
-				schList.add(scheduleDTO);
-				tpList.add(ticketPriceDTO);
-				mrList.add(movieDTO);
+			if(kind==null){
+				rList = reserveService.reserveAList(memberDTO.getId());
+			}else{
+				rList = reserveService.reserveList(memberDTO.getId(),kind);
+			}
+			for(ReserveDTO reserveDTO : rList){
+				scheduleDTO = scheduleService.scheduleInfo(reserveDTO.getSchedule_num());
+				reserveDTO.setScheduleDTO(scheduleDTO);
+				
+				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO.getTp_num());
+				reserveDTO.setTicketPriceDTO(ticketPriceDTO);
+				
+				movieDTO = movieService.movieInfo(reserveDTO.getMovie_num());
+				reserveDTO.setMovieDTO(movieDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int num = 0;num<rList.size();num++){
-			try {
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		
-		List<Object> reserveList = new ArrayList<Object>();
-		reserveList.add(rList);
-		reserveList.add(schList);
-		reserveList.add(tpList);
-		reserveList.add(mrList);
-		
-		mv.addObject("allList", reserveList);
+		mv.addObject("kind",kind);
+		mv.addObject("rList",rList);
 		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}
@@ -116,27 +105,47 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="wishList",method=RequestMethod.GET)
-	public ModelAndView wishList(HttpSession session,RedirectAttributes rd){
+	public ModelAndView wishList(String kind, HttpSession session,RedirectAttributes rd){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		List<WishDTO> wList = new ArrayList<WishDTO>();
-		List<MovieDTO> mwList = new ArrayList<MovieDTO>();
 		try {
 			wList = wishService.wishList(memberDTO.getId());
+			for(WishDTO wishDTO : wList ){
+				movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
+				wishDTO.setMovieDTO(movieDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int size=0;size<wList.size();size++){
-			try {
-				movieDTO = movieService.movieInfo(wList.get(size).getMovie_num());
-				mwList.add(movieDTO);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+
+		if(kind == null){
+			kind= "regist_date";
 		}
-		mv.addObject("mwList", mwList);
+		mv.addObject("kind", kind);
+		mv.addObject("wList", wList);
 		mv.setViewName("myPage/wishList");
+		return mv;
+	}
+	@RequestMapping(value="wishList",method=RequestMethod.POST)
+	public ModelAndView wishList(int wish_num,String sKind,RedirectAttributes rd){
+		System.out.println("sKind:"+sKind);
+		int result = 0;
+		try {
+			result = wishService.wishListDelete(wish_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		if(result>0){
+			rd.addFlashAttribute("message", "위시리스트 삭제 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "위시리스트 삭제 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
 	}
 	
@@ -201,26 +210,44 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="withdrawal", method=RequestMethod.GET)
-	public ModelAndView widhdrawal(HttpSession session){
+	@RequestMapping(value="withdrawalCheck", method=RequestMethod.GET)
+	public ModelAndView withdrawalCheck(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 	
 		mv.addObject("member",memberDTO);
 		
+		mv.setViewName("myPage/withdrawalCheck");
+		return mv;
+	}
+	
+	@RequestMapping(value="withdrawalCheck", method=RequestMethod.POST)
+	public ModelAndView withdrawalCheck(HttpSession session,String pwd){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("memberDTO",memberDTO);
+		
 		mv.setViewName("myPage/withdrawal");
 		return mv;
 	}
 	
-	@RequestMapping(value="widhdrawal", method=RequestMethod.POST)
-	public ModelAndView widhdrawal(HttpSession session,String pwd){
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+	@RequestMapping(value="withdrawal", method=RequestMethod.POST)
+	public ModelAndView widhdrawal(String id,RedirectAttributes rd){
+		int result = 0;
+		try {
+			result = memberService.withdrawal(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		ModelAndView mv = new ModelAndView();
-		System.out.println(pwd);
-		mv.addObject("memberDTO",memberDTO);
 		
-		mv.setViewName("myPage/widhdrawal");
+		if(result>0){
+			rd.addFlashAttribute("message", "회원 탈퇴 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "회원 탈퇴 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
 	}
-	
 }
