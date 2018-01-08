@@ -37,6 +37,10 @@ public class MemberController {
 	public void pwFind(){
 		
 	}
+	@RequestMapping(value="joinAgree", method=RequestMethod.GET)
+	public void joinAgree(){
+		
+	}
 	
 	@RequestMapping(value="memberLogout")
 	public String logout(HttpSession session){
