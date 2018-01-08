@@ -20,7 +20,7 @@
 	if(message != ""){
 		alert(message);
 	}
-	
+
 	$(function(){
 		$(".headbtn").mouseenter(function(){
 			var a = $(this).attr("title");  //booking
