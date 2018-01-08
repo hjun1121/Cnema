@@ -16,6 +16,7 @@
 	<a href="../qna/qnaWrite">문의하기</a>
 	<hr>
 	<a href="../event/eventList">Event List</a>
+	
 	<br>
 	<a href="../">home</a>
 </body>
