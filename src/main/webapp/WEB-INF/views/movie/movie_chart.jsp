@@ -22,7 +22,6 @@
 
 		$(".wish_btn").click(function() {
 			var movie_num = $(this).attr("name");
-			alert(movie_num);
 			var title = $(this).attr("title");
 
 			if (title == 1) {
@@ -40,7 +39,7 @@
 
 			} else if (title == 0) {
 				$.ajax({
-					url: "../ajax/movie_wish",
+					url: "../ajax/movie_wish_return",
 					type: "POST",
 					data: {
 						movie_num:movie_num,
@@ -71,14 +70,14 @@
 	<c:forEach items="${movie_list}" var = "movie">
 	<table>
 		<tr><td><img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'></td></tr>
-		<tr><td>${movie.movie_name}</td></tr>
+		<tr><td><a href = "movie_view?movie_num=${movie.movie_num}">${movie.movie_name}</a></td></tr>
 		<tr><td>예매율 : ${movie.reserve_rate}</td></tr>
 		<tr><td>장르 : ${movie.type}</td></tr>
 		<tr><td>개봉일 : ${movie.open_date}</td></tr>
 		<c:set var="heart1" value="0" ></c:set>
 		<c:set var="heart2" value="0" ></c:set>
 							<c:if test="${ not empty member }"><c:forEach items="${wish_list}" var="wish">
-								<c:if test="${wish.wish_num eq movie.movie_num}">										
+								<c:if test="${wish.movie_num eq movie.movie_num}">										
 									<c:choose>
 										<c:when test="${heart1 == 0}">
 											<tr><td><input type="button" class="wish_btn"  value="❤" name="${movie.movie_num}" title="1"></td></tr>
@@ -92,7 +91,6 @@
 									<tr><td><input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"></td></tr>
 								</c:if>
 							</c:if>
-<%-- 		<tr><td>❤ ${movie.wish}</td></tr> --%>
 		<tr><td><input type="button" id="reserveBtn" value="예매"></td></tr>
 		<tr><td>${movie.contents}</td></tr>
 		<tr><td><iframe width="560" height="315" src="${movie.teaser_url}"></iframe></td></tr>

@@ -22,7 +22,7 @@ public class MovieServiceTest extends AbstractTest {
 		int movie_num = 26;
 		int result = 0;
 		try {
-			result = movieDAO.movieWish(id, movie_num);
+			result = movieDAO.movieWish(movie_num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
