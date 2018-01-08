@@ -5,11 +5,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
-<title>Insert title here</title>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/memberLogin.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#login_btn").click(function(){
+			
+			if($("#id_text").val()==""){
+				alert("아이디를 입력해주세요");
+				$("#id_text").focus();
+			}else if($("#pw_text").val()==""){
+				alert("비밀번호를 입력해주세요");
+				$("#pw_text").focus();
+			}else{
+				document.frm.submit();
+			}
+		});
+		
+		
+		$("#idFind").click(function(){
+			location.href="./memberIdFind.member?library=${library}&ln=${ln}";
+			
+		});
+		
+		$("#pwFind").click(function(){
+			location.href="./memberPwFind.member?library=${library}&ln=${ln}";
+		});
+		
+		$("#joinF").click(function(){
+			location.href="./memberJoinAgree.member?library=${library}&ln=${ln}";
+		});
+	});
+
+
+</script>
 </head>
 <body>
 	<div id="cgvwrap">
@@ -37,15 +72,37 @@
         	</div>
         	<!-- 상단바 끝 -->
         	
-        	<!-- 내용 시작 -->
-        	<h2>Member Login</h2>
-	
-			<form action="memberLogin" method="post">
-				<p><input type="text" name="id"></p>
-				<p><input type="text" name="pw"></p>
-				<button>Login</button>
-			</form>
         	
+        	<!-- 내용 시작 -->
+        	<form action="memberLogin" method="post">
+				<div id="login_form">
+					<div id="login_all">
+					
+						<div id="login_menu">
+							<a href="#" class="login_login"><span>로그인</span></a>
+						</div>
+			
+						<div id="login_id">
+							<p><input type="text" id="id_text" name="id" placeholder="아이디 입력"></p>
+						</div>
+						
+						<div id="login_pw">
+							<p><input type="text" id="pw_text" name="pw" placeholder="비밀번호 입력"></p>
+						</div>
+						
+						<div id="login_btn">
+							<a href="#" onclick="return false;" id="login">로그인</a>
+						</div>
+						
+						<ul class="btns">
+							<li id="idf"><a href="#" id="idFind" >아이디찾기</a></li>
+							<li><a href="#" id="pwFind">비밀번호찾기</a></li>
+							<li id="join"><a href="#" id="joinF">회원가입</a></li>
+						</ul>
+						
+        			</div>
+        		</div>
+        	</form>
         	<!-- 내용 끝 -->
 			</div>
 			<!-- ///////////////////////////////// -->
