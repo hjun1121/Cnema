@@ -16,14 +16,15 @@ public class ReserveDAO {
 	private final String NAMESPACE="reserveMapper.";
 	
 	/*heeseong*/
-	/*public List<ReserveDTO> reserveList(String id,String kind) throws Exception{
-		Map<String, String> reserveMap = new HashMap<>();
-		reserveMap.put("id",id);
-		reserveMap.put("kind",kind);
-		return sqlSession.selectList(NAMESPACE+"reserveList", reserveMap);
-	}*/
-	public List<ReserveDTO> reserveList(String id) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"reserveList", id);
+	public List<ReserveDTO> reserveList(String id,String kind) throws Exception{
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("id", id);
+		rMap.put("kind", kind);
+		return sqlSession.selectList(NAMESPACE+"reserveList", rMap);
+	}
+	/*heeseong*/
+	public List<ReserveDTO> reserveAList(String id) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"reserveAList", id);
 	}
 	/*heeseong*/
 	public int reserveDel(int reserve_num) throws Exception{

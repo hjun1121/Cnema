@@ -57,39 +57,29 @@ public class MyPageController {
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
-		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
-		List<ScheduleDTO> schList = new ArrayList<ScheduleDTO>();
-		List<TicketPriceDTO> tpList = new ArrayList<TicketPriceDTO>();
-		List<MovieDTO> mrList = new ArrayList<MovieDTO>();
 		try {
-			rList = reserveService.reserveList(memberDTO.getId());
-			for(int size=0;size<rList.size();size++){
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(size).getSchedule_num());
-				ticketPriceDTO = ticketPriceService.ticketPInfo(rList.get(size).getTp_num());
-				movieDTO = movieService.movieInfo(rList.get(size).getMovie_num());
-				schList.add(scheduleDTO);
-				tpList.add(ticketPriceDTO);
-				mrList.add(movieDTO);
+			if(kind==null){
+				rList = reserveService.reserveAList(memberDTO.getId());
+			}else{
+				rList = reserveService.reserveList(memberDTO.getId(),kind);
+			}
+			for(ReserveDTO reserveDTO : rList){
+				scheduleDTO = scheduleService.scheduleInfo(reserveDTO.getSchedule_num());
+				reserveDTO.setScheduleDTO(scheduleDTO);
+				
+				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO.getTp_num());
+				reserveDTO.setTicketPriceDTO(ticketPriceDTO);
+				
+				movieDTO = movieService.movieInfo(reserveDTO.getMovie_num());
+				reserveDTO.setMovieDTO(movieDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int num = 0;num<rList.size();num++){
-			try {
-				scheduleDTO = scheduleService.scheduleInfo(rList.get(num).getSchedule_num());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		
-		List<Object> reserveList = new ArrayList<Object>();
-		reserveList.add(rList);
-		reserveList.add(schList);
-		reserveList.add(tpList);
-		reserveList.add(mrList);
-		
-		mv.addObject("allList", reserveList);
+		mv.addObject("kind",kind);
+		mv.addObject("rList",rList);
 		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}

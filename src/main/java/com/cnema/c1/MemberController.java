@@ -56,7 +56,6 @@ public class MemberController {
 			String ip = addr.toString();
 			ip = ip.substring(ip.lastIndexOf("/")+1);
 			
-			System.out.println(ip);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

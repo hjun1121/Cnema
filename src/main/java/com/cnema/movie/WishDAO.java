@@ -19,7 +19,7 @@ public class WishDAO {
 	public List<WishDTO> wishList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"wishList",id);
 	}
-	/*희성*/
+
 	public int wishListDelete(int wish_num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"wishListDelete",wish_num);
 	}
