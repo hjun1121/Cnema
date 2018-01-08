@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@ $(function(){
 	});
 	$("#date_search").click(function(){
 		var sKind = $("#kind").val();
-		location.href="./movieHistory?kind="+kind;
+		location.href="./movieHistory?kind="+sKind;
 	});
 });
 </script>
@@ -28,23 +29,24 @@ $(function(){
 		<div>
 			<select id="kind">
 				<option class = "kind" value="2013">2013</option>
-				<option class = "kind" value="2013">2014</option>
-				<option class = "kind" value="2013">2015</option>
-				<option class = "kind" value="2013">2016</option>
-				<option class = "kind" value="2013">2017</option>
-				<option class = "kind" value="2013">2018</option>
+				<option class = "kind" value="2014">2014</option>
+				<option class = "kind" value="2015">2015</option>
+				<option class = "kind" value="2016">2016</option>
+				<option class = "kind" value="2017">2017</option>
+				<option class = "kind" value="2018" selected="selected">2018</option>
 			</select>
 			<input type="button" id="date_search" value="GO">
 		</div>
-		<c:forEach items="${allList[0]}" var="rList" varStatus="i">
-			<input type="text" id="reserve_num" name="reserve_num" value='${rList.reserve_num}'>
-			사진 : <img alt='${allList["3"][i.index].movie_name}' src='/resource/movie/${allList["3"][i.index].fileName}'><br>
-			<a href="">영화명: ${allList["3"][i.index].movie_name}<br></a>
-			날짜 : ${allList["1"][i.index].day}<br>
-			시간 : ${allList["1"][i.index].in_time}~${allList["1"][i.index].out_time}<br>
-			지점 : ${rList.theater_num }<br>
-			상영관 번호 : ${rList.screen_num }<br>
-			몇명 : ${allList["2"][i.index].people}<br>
+		<c:forEach items="${rList}" var="reserveList">
+			<input type="text" id="reserve_num" name="reserve_num" value='${reserveList.reserve_num}'>
+			사진 : <img alt='${reserveList.movieDTO.movie_name}' src='/resource/movie/${reserveList.movieDTO.fileName}'><br>
+			<a href="">영화명: ${reserveList.movieDTO.movie_name}<br></a>
+			날짜 : ${reserveList.scheduleDTO.day}<br>
+			시간 :<fmt:formatDate value="${reserveList.scheduleDTO.in_time}" type="time" pattern="HH:mm"/>
+			~<fmt:formatDate value="${reserveList.scheduleDTO.out_time}" type="time" pattern="HH:mm"/><br>
+			지점 : ${reserveList.theater_num }<br>
+			상영관 번호 : ${reserveList.screen_num }<br>
+			몇명 : ${reserveList.ticketPriceDTO.people}<br>
 			<button>x</button>
 			------ <br>
 		</c:forEach>
