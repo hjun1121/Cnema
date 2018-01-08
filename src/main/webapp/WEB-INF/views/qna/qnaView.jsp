@@ -35,14 +35,16 @@
 		<a href="./qnaList" class="btn btn-default">List</a>
 		
 	</div>
+	<!--  답글 표시 하기 (관리자일때만 보이게 하기) -->
 	<c:if test="${member.type == 20}">
 	<div id="reply">
-	<form action="qnaUpdate">
+	<form action="qnaUpdate" id="frm">
 		<h3>답변 달기</h3>
 		<textarea name="reply" rows="5" cols="30"></textarea>
 		<button type="submit">답변 달기</button>
 		</form>
 	</div>
 	</c:if>
+	<!-- 답변 단 내용 보여주기  -->
 </body>
 </html>
