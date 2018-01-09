@@ -26,7 +26,7 @@
            	<div class="box-image">
         	<a href="eventView?num=${dto.num}">
             <span>
-             <img src="${dto.fileName}">
+             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}">
             </span>
             </a>
             </div>

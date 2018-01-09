@@ -28,9 +28,22 @@
 <table border="1" style="background-color: yellow;">
 	<c:forEach begin="1" end="${screenDTO.x_num }" varStatus="c">
 		<tr>
+			<c:if test="${c.count eq 1 }"><td>A</td></c:if>
+			<c:if test="${c.count eq 2 }"><td>B</td></c:if>
+			<c:if test="${c.count eq 3 }"><td>C</td></c:if>
+			<c:if test="${c.count eq 4 }"><td>D</td></c:if>
+			<c:if test="${c.count eq 5 }"><td>E</td></c:if>
+			<c:if test="${c.count eq 6 }"><td>F</td></c:if>
+			<c:if test="${c.count eq 7 }"><td>G</td></c:if>
+			<c:if test="${c.count eq 8 }"><td>H</td></c:if>
+			<c:if test="${c.count eq 9 }"><td>I</td></c:if>
+			<c:if test="${c.count eq 10 }"><td>J</td></c:if>
+			<c:if test="${c.count eq 11 }"><td>K</td></c:if>
+			<c:if test="${c.count eq 12 }"><td>L</td></c:if>
+			
 			<c:forEach begin="1" end="${screenDTO.y_num }" varStatus="co">
 				<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" title="${(c.count-1)*screenDTO.y_num+ co.count }">
-					<a href="#"  onclick="return false;">${(c.count-1)*screenDTO.y_num+ co.count }</a>
+					<a href="#"  onclick="return false;">${co.count }</a>
 				</td>	
 			</c:forEach>
 		</tr>

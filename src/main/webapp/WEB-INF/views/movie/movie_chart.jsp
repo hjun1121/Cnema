@@ -26,6 +26,10 @@
 				$(this).attr("selected", true);
 			}
 		});
+		
+		$("#kind_btn").click(function(){
+			document.frm.submit();
+		});
 
 
 		$(".wish_btn").click(function() {
@@ -42,6 +46,7 @@
 					},
 					success: function(data) {
 						alert(data);
+						location.href="movie_chart?kind=${kind}";
 					}
 				});
 
@@ -55,6 +60,7 @@
 					},
 					success: function(data) {
 						alert(data);
+						location.href="movie_chart?kind=${kind}";
 					}
 				});
 			}
@@ -72,22 +78,22 @@
 	<h2 style="font-size: 38px; text-align: left; font-weight: bold; color: #222;">무비차트</h2>
 </div>
 
-<form action="movie_chart">
+<form action="movie_chart" name="frm" method="GET">
 
 	<input type="button" id="kind_btn" value="GO" style="float: right; height: 29px; color: #7b7b7b; border: 2px solid #7b7b7b; margin-top: 2">
-	<select id="kind" style="float: right;  font-size: 12px; height: 29px; border: 1px solid #b4b3aa; padding: 3px 10px; margin-top: 20px;">
-		<option title="현재 선택됨" selected value="1">예매율순</option>
-		<option value="2">평점순</option>
-		<option value="3">최신순</option>
+	<select id="kind" name="kind" style="float: right;  font-size: 12px; height: 29px; border: 1px solid #b4b3aa; padding: 3px 10px; margin-top: 20px;">
+		<option class="kind" title="현재 선택됨" selected="selected" value="reserve_rate">예매율순</option>
+		<option class="kind" value="grade">평점순</option>
+		<option class="kind" value="open_date">최신순</option>
 	</select>
 	
 	<c:forEach items="${movie_list}" var="movie">
-	
+	<div style="width: 300px; height: 375px; display:block;">
 	<div style="margin-top: 30px;">
 		<ol style="padding-top: 0px; margin-left: -64px; border-bottom: 3px solid #241d1e; list-style: none;">
 			<li style="float: left; width: 197px; margin-left: 64px; padding-bottom: 30px;">
-				<div style="margin-bottom: 10px;">
-					<a href="movie_view?movie_num=${movie.movie_num}">
+				<div style="margin-bottom: 10px; min-height: 272px;">
+					<a href="movie_view?movie_num=${movie.movie_num}" style="display: block;">
 						<span style="border: 6px solid #000000; display: block;">
 							<img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'>
 						</span>
@@ -139,6 +145,7 @@
 	</span>
 	<a href="" style="width: 57px; height: 25px; background-position: -96px 0px;">예매</a>
 	
+	</div>
 	</c:forEach>
 	
 <!-- 	<select id="kind"> -->

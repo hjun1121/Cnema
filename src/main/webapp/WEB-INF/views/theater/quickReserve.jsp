@@ -415,11 +415,7 @@
 					<td>극장선택</td>
 				</tr>											
 			</table>
-			<table border="1" style="float: left; margin-left: 10px" id="qrSeat">
-				<tr>
-					<td>좌석선택</td>
-				</tr>											
-			</table>
+
 			<input type="button" id="seatBtn" value="좌석선택">
 			
 		</form>
