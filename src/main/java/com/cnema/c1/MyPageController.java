@@ -152,31 +152,22 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="pointHistory", method=RequestMethod.GET)
-	public ModelAndView pointHistory(HttpSession session){
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		ModelAndView mv = new ModelAndView();
-		List<PointDTO> pList = new ArrayList<PointDTO>();
-		try {
-			pList = pointService.pointAList(memberDTO.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.addObject("pList",pList);
-		mv.setViewName("myPage/pointHistory");
-		return mv;
-	}
-	
-	@RequestMapping(value="pointHistory", method=RequestMethod.POST)
 	public ModelAndView pointHistory(HttpSession session, String testDatepicker1, String testDatepicker2){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
-			pList = pointService.pointList(memberDTO.getId(), testDatepicker1,testDatepicker2);
+			if(testDatepicker1==null && testDatepicker2==null){
+				pList = pointService.pointAList(memberDTO.getId());
+			}else{
+				pList = pointService.pointList(memberDTO.getId(), testDatepicker1,testDatepicker2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("pList",pList);
+		mv.addObject("testDatepicker1", testDatepicker1);
+		mv.addObject("testDatepicker2", testDatepicker2);
 		mv.setViewName("myPage/pointHistory");
 		return mv;
 	}

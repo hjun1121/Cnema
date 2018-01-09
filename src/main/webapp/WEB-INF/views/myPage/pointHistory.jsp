@@ -13,6 +13,9 @@
 <title>포인트 적립/사용내역</title>
 <script type="text/javascript">
 $(function() {
+	$( "#testDatepicker1" ).val('${testDatepicker1}');
+	$( "#testDatepicker2" ).val('${testDatepicker2}');
+	
     $( "#testDatepicker1" ).datepicker({
     	changeMonth: true, 
         changeYear: true,
@@ -42,7 +45,7 @@ $(function() {
 </head>
 <body>
 	<h3>Point 내역</h3>
-	<form name="frm" action="pointHistory" method="post">
+	<form name="frm" action="pointHistory" method="get">
 		<input type="text" name="testDatepicker1" id="testDatepicker1">~
 		<input type="text" name="testDatepicker2" id="testDatepicker2"> 
 		<input type="submit" value="조회하기">
@@ -50,19 +53,19 @@ $(function() {
 	<c:forEach items="${pList}" var="pointList">
 		<table>
 			<tr>
-				<td>구매 구분</td>
 				<td>적립일</td>
-				<td>적립</td>
+				<td>금액</td>
+				<td>구매 구분</td>
 			</tr>
 			<tr>
-				<c:if test="${pointList.type eq 10}">
-					<td>적립</td>
-				</c:if>
-				<c:if test="${pointList.type eq 11}">
-					<td>사용</td>
-				</c:if>
 				<td>${pointList.use_day }</td>
 				<td>${pointList.point_price }점</td>
+				<c:if test="${pointList.type eq 11}">
+					<td>적립</td>
+				</c:if>
+				<c:if test="${pointList.type eq 12}">
+					<td>사용</td>
+				</c:if>
 			</tr>
 		</table>
 	</c:forEach>
