@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
 public class MyCouponDAO {
 	@Inject
 	private SqlSession sqlSession;
@@ -23,6 +22,14 @@ public class MyCouponDAO {
 		cMap.put("id", id);
 		cMap.put("type", type);
 		return sqlSession.selectList(NAMESPACE+"myCouponList",cMap);
+	}
+	/*heeseong*/
+	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2) throws Exception{
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("id", id);
+		cMap.put("dp1", dp1);
+		cMap.put("dp2", dp2);
+		return sqlSession.selectList(NAMESPACE+"myCouponDList",cMap);
 	}
 	/*heeseong*/
 	public List<MyCouponDTO> myCouponAList(String id) throws Exception{
