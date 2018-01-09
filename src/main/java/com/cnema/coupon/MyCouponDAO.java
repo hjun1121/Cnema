@@ -8,8 +8,10 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class MyCouponDAO {
 	@Inject
 	private SqlSession sqlSession;
@@ -25,5 +27,10 @@ public class MyCouponDAO {
 	/*heeseong*/
 	public List<MyCouponDTO> myCouponAList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"myCouponAList",id);
+	}
+	
+	/*heeseong*/
+	public int dateUpdate(String id) throws Exception{
+		return sqlSession.update(NAMESPACE+"dateUpdate",id);
 	}
 }
