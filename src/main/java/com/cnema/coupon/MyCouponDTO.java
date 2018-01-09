@@ -9,6 +9,7 @@ public class MyCouponDTO {
 	private Date v_date;
 	private Date publish_date;
 	private Date use_date;
+	private int type;
 	
 	public int getNum() {
 		return num;
@@ -45,5 +46,11 @@ public class MyCouponDTO {
 	}
 	public void setUse_date(Date use_date) {
 		this.use_date = use_date;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 }

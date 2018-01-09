@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/memberJoin.css">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -173,60 +179,241 @@
 </script>
 </head>
 <body>
-	<h2>Member Join</h2>
-	<form action="memberJoin" method="post" name="frm" enctype="multipart/form-data">
-		프사<input type="file" name="file">
-		<p>id <input type="text" id="id" name="id"></p>
-		<div id="id_ch"></div>
-		<p>pw <input type="text" id="pw1" name="pw"></p>
-		<p>pwC <input type="text" id="pw2" ></p>
-		<div id="pw_ch"></div>
-		<p>name <input type="text" name="name"></p>
-		<p>birth <input type="date" name="birth"></p>
-		<p>남<input type="radio" name="gender" value="m" checked="checked">
-		여<input type="radio" name="gender" value="f"> </p>
-		
-		<p>phone 
-			<select id="f" >
-   				<option value="">선택하세요</option>
-   				<option value="010">010</option>
-				<option value="011">011</option>
-			</select>
-			-
-			<input type="text" id="m">
-			-
-			<input type="text" id="l">
-		</p>
-		<input type="hidden" id="phone" name="phone">
-		
-		<p>email
-		<input type="text" id="email1">@
-		<input type="text" id="email2">
-		<select id = "mailList">
-   			<option value="0">직접입력</option>
-			<option value="naver.com">naver.com</option>
-			<option value="daum.net">daum.net</option>
-			<option value="gmail.com">gmail.com</option>
-			<option value="hotmail.com">hotmail.com</option>
-		</select>
-		<input type="button" id="mailCheck" value="이메일 인증">
-		</p>
-		<div id="email_ch">
-		
+	<div id="cgvwrap">
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+
+			<!-- //////////////////////////////// -->
+			<div id="contaniner" class="">
+        	<!-- 상단바 시작 -->
+        	<div class="linemap-wrap">
+           		<div class="sect-linemap">
+                	<div class="sect-bcrumb">
+                    	<ul>
+                        	<li>
+                        		<a href="#"><img alt="home" src="${pageContext.request.contextPath }/resources/images/common/btn/btn_home.png"></a>
+                        	</li>
+                            <li>
+                                <a href="#">회원서비스</a>
+                            </li>
+                            <li class="last">
+                            	회원가입 
+                            </li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 상단바 끝 -->
+        	
+        	<!-- /////////////////////////////// -->
+        	
+        	<div class="joinWrap" style="width: 1040px; margin: 0 auto;">	
+			<div class="joinCont mt50">
+			
+			<form action="memberJoin" method="post" id="frm" name="frm" enctype="multipart/form-data">
+			
+				<div class="joinForm mt10">
+					<dl class="plusInfo pull_down_group mt50">
+						<dd class="pull_down_con" style="display: block;">	
+						<ul>
+							<li>회원가입 양식</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>아이디
+								</div>
+								<div class="ansBox">
+									<input type="text" placeholder="아이디" id ="id" name="id">
+									<span class="pwinfo">(아이디는 6자리 이상 가능)</span>
+									<div id="ch_id"></div>
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>비밀번호
+								</div>
+								<div class="ansBox">
+									<input type="password" name="pw" id="pw1">
+									<span class="pwinfo">(영문,숫자 특수문자를 조합한 8~12자리)</span>
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>비밀번호 확인
+								</div>
+								<div class="ansBox">
+									<input type="password" id="pw2" >
+									<div id="ch_pw"></div>
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>이름
+								</div>
+								<div class="ansBox">
+									<input type="text"  id="name" name="name">
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>생년월일
+								</div>
+								<div class="ansBox">
+									<input type="date" id="birth" name="birth">
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>성별
+								</div>
+								<div class="ansBox">
+									<span class="radioForm">
+										<input type="radio" value="m" checked="checked" name="gender">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;남자
+									</span>
+									<span class="radioForm">
+										<input type="radio"  value="f" name="gender">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;여자
+									</span>
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>주소
+								</div>
+								<div class="ansBox">
+									<div class="addressBox">
+										<input type="text" placeholder="주소를 입력해주세요." id="postCode" name="postCode" placeholder="우편번호" readonly="readonly">
+										<span class="button1"><input type="button" id="addrCheck" value="우편번호 찾기" readonly="readonly" style="margin-top: 5px;"></span>
+										<input type="text" class="mt5"  id="addr" name="addr1" placeholder="주소" readonly="readonly">
+										<input type="text" class="mt5" id="addr2" name="addr2" placeholder="나머지주소">
+									</div>
+								</div>
+							</li>
+							
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>전화번호
+								</div>
+								<div class="ansBox">
+									<select id="f" name="f" class="sel_size" style="margin-bottom: 5px;">
+   										<option value="">선택하세요</option>
+    									<option value="010">010</option>
+										<option value="011">011</option>
+									</select>
+									<div class="phoneNumBox">
+										<input type="text" name="homePhoneNo1" id="m">
+											-
+										<input type="text" name="homePhoneNo1"  id="l">
+										<input type="hidden" id="phone" name="phone">
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="questBox writeTit">
+									<span class="writePoint"></span>이메일
+								</div>
+									<div class="ansBox">
+										<div class="mailBox">
+											<input type="text" id="email1">
+											<span class="betweenTxt">@</span>
+											<input type="text" id="email2">
+											<select id = "mailList"  class="sel_size">
+   												<option  value="0">직접입력</option>
+												<option  value="naver.com">naver.com</option>
+												<option  value="daum.net">daum.net</option>
+												<option  value="gmail.com">gmail.com</option>
+												<option  value="hotmail.com">hotmail.com</option>
+											</select>
+											<input type="hidden" id="email" name="email" >
+											<input type="button" id="mailCheck" value="이메일 인증" style="margin-top: 5px;">
+											<div id="ch_email"></div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="questBox writeTit">
+										<span class="writePoint"></span>프로필 사진
+									</div>
+									<div class="ansBox">
+										<input type="file" name="file">
+									</div>
+								</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			
+			<div class="btnCenter mt30" id="center">
+				<span class="button1"><a href="../" class="type4 large">취소</a></span>
+				<span class="button1"><input type="button" id="btn" value="가입" class="type1 large"></span>  
+			</div>
+			</form>
+			</div>
 		</div>
-		
-		<input type="hidden" id="email" name="email">
-		<p></p>
-		<input type="text" id="postCode" name="postCode" placeholder="우편번호" readonly="readonly">
-		<input type="button" id="addrCheck" value="우편번호 찾기" readonly="readonly" >
-		<br>
-		<input type="text" id="addr" name="addr1" placeholder="주소" readonly="readonly">
-		<input type="text" id="addr2" name="addr2" placeholder="나머지주소">
-		
-		<br>
-		<input type="button" id="joinBtn" value="조인">
-	</form>
-	
+        	
+        	<!-- /////////////////////////////// -->
+        	
+        	<!-- 형준꺼 -->
+        	<!-- 내용 시작 -->
+			<!-- <h2>Member Join</h2>
+			<form action="memberJoin" method="post" name="frm" enctype="multipart/form-data">
+				프사<input type="file" name="file">
+				<p>id <input type="text" id="id" name="id"></p>
+				<div id="id_ch"></div>
+				<p>pw <input type="text" id="pw1" name="pw"></p>
+				<p>pwC <input type="text" id="pw2" ></p>
+				<div id="pw_ch"></div>
+				<p>name <input type="text" name="name"></p>
+				<p>birth <input type="date" name="birth"></p>
+				<p>남<input type="radio" name="gender" value="m" checked="checked">
+				여<input type="radio" name="gender" value="f"> </p>
+				
+				<p>phone 
+					<select id="f" >
+		   				<option value="">선택하세요</option>
+		   				<option value="010">010</option>
+						<option value="011">011</option>
+					</select>
+					-
+					<input type="text" id="m">
+					-
+					<input type="text" id="l">
+				</p>
+				<input type="hidden" id="phone" name="phone">
+				
+				<p>email
+				<input type="text" id="email1">@
+				<input type="text" id="email2">
+				<select id = "mailList">
+		   			<option value="0">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="daum.net">daum.net</option>
+					<option value="gmail.com">gmail.com</option>
+					<option value="hotmail.com">hotmail.com</option>
+				</select>
+				<input type="button" id="mailCheck" value="이메일 인증">
+				</p>
+				<div id="email_ch">
+				
+				</div>
+				
+				<input type="hidden" id="email" name="email">
+				<p></p>
+				<input type="text" id="postCode" name="postCode" placeholder="우편번호" readonly="readonly">
+				<input type="button" id="addrCheck" value="우편번호 찾기" readonly="readonly" >
+				<br>
+				<input type="text" id="addr" name="addr1" placeholder="주소" readonly="readonly">
+				<input type="text" id="addr2" name="addr2" placeholder="나머지주소">
+				
+				<br>
+				<input type="button" id="joinBtn" value="조인">
+			</form> -->
+			<!-- 내용 끝 -->
+			
+			
+			</div>
+			<!-- ///////////////////////////////// -->
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
+	</div>
 	
 	
 </body>

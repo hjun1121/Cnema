@@ -21,6 +21,10 @@ public class QnaDAO {
 	public List<BoardDTO> selectList(RowNum rowNum) throws Exception {
 		return sqlSession.selectList(namespace+"selectList", rowNum);
 	}
+	
+	public List<BoardDTO> selectMyList(String id) throws Exception {
+		return sqlSession.selectList(namespace+"selectMyList",id);
+	}
 
 	public QnaDTO selectOne(int num) throws Exception {
 		return sqlSession.selectOne(namespace+"selectOne", num);
@@ -31,10 +35,10 @@ public class QnaDAO {
 		return sqlSession.insert(namespace+"insert", boardDTO);
 	}
 	
-	//update 필요없음
-	public int update(BoardDTO boardDTO) throws Exception {
+	//qna 답글 다는 것으로 표현
+	public int update(QnaDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"update",boardDTO);
 	}
 
 	public int delete(int num) throws Exception {

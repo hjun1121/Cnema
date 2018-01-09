@@ -80,11 +80,11 @@
     <input type="text" name="title" value=""> 
     <input type="hidden" name="writer" value="${member.id}">
     <br>
-    <em class="date">
+    <p class="date">
         <span>기간: </span>
-        <input type="date" name="s_date" value="">~ 
+        <input type="date" name="s_date" value=""> <strong>~</strong> 
         <input type="date" name="e_date" value="">
-    </em>
+    </p>
 </div>
 
 <div class="eventViewContents">
