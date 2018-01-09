@@ -7,7 +7,13 @@
   <select id="myCouponList" resultType="myCouponDTO" parameterType="java.lang.String">
   	select * from myCoupon where id=#{id} and type=#{type}
   </select>
+  
+  <!-- heeseong -->
   <select id="myCouponAList" resultType="myCouponDTO" parameterType="java.lang.String">
-  	select * from myCoupon where id=#{id}
+  	select * from myCoupon where id=#{id} 
   </select>
+  <!-- heeseong -->
+  <update id="dateUpdate" parameterType="java.lang.String">
+  	update MYCOUPON set type=12 where v_date &lt; sysdate and id=#{id}
+  </update>
   </mapper>
