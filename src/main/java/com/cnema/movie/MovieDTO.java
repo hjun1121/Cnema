@@ -20,8 +20,15 @@ public class MovieDTO {
 	private String contents;
 	private int age_limit;
 	private MultipartFile file;
+	private String actor;
 
 
+	public String getActor() {
+		return actor;
+	}
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
 	public MultipartFile getFile() {
 		return file;
 	}
