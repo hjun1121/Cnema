@@ -88,7 +88,7 @@
         	
         <!-- 약관 폼 시작 -->
         <div class="Joinwrap" style="width: 1040px; margin: 0 auto;">
-		<form name="frm" action="./memberJoin" method="post">
+		<form name="frm" action="./memberJoin" method="get">
 		<div class="joinCont mt50">
 			<h2 class="jsTxt clauseTxt">회원가입 및 정상적인 서비스 이용을 위해 아래 약관을 읽고, 동의 여부 결정해 주세요.</h2>
 			
