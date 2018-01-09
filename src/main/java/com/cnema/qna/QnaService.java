@@ -34,6 +34,15 @@ public class QnaService {
 		mv.setViewName("qna/qnaList");
 		return mv;
 	}
+
+	//member 자신의 Qna List만 보여주는 것
+	public ModelAndView selectMyList(String id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<BoardDTO> ar = qnaDAO.selectMyList(id);
+		mv.addObject("list", ar);
+		mv.setViewName("qna/qnaList");
+		return mv;
+	}
 	
 	public QnaDTO selectOne(int num) throws Exception {
 		QnaDTO boardDTO = qnaDAO.selectOne(num);
@@ -45,6 +54,7 @@ public class QnaService {
 	
 		MultipartFile file = qnaDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "board");
+		
 		qnaDTO.setFileName(name);
 		qnaDTO.setOriName(file.getOriginalFilename());
 		int result = qnaDAO.insert(qnaDTO);
@@ -54,6 +64,12 @@ public class QnaService {
 	
 	public int delete(int num) throws Exception {
 		int result = qnaDAO.delete(num);
+		return result;
+	}
+	
+	/*******************Qna 답글 부분 **************/
+	public int update(QnaDTO boardDTO) throws Exception {
+		int result = qnaDAO.update(boardDTO);
 		return result;
 	}
 	

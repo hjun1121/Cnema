@@ -118,8 +118,8 @@
 			});
 			
 		});
-		/*  */
-		$("#seatBtn").click(function(){
+		/* seatBtn */
+		$("#rightBtn1").click(function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();
@@ -143,8 +143,18 @@
 					},
 					success:function(data){
 						$("#all").html(data);
+						
+						$("#leftBtn1").val("영화선택");
+						$("#leftBtn1").attr("type","button");
+						$("#leftBtn1").attr("id","leftBtn2");
+						
+						$("#rightBtn1").val("결제");
+						$("#rightBtn1").attr("id","rightBtn2");
+						
 					}
 				});
+				
+				
 			}
 		});
 		/*  */
@@ -265,7 +275,17 @@
 			var seat_num = $(this).attr("title");
 			var seatList = $("#seat_num").val();
 		});
-		/*  */g
+		/*  */
+	$("#bottom_area").on("click", "#leftBtn2" , function(){
+		alert("이전");
+	});		
+	$("#bottom_area").on("click", "#rightBtn2" , function(){
+		alert("결제");
+	});	
+
+
+		
+		/*  */
 	});
 </script>
 <style type="text/css">
@@ -389,8 +409,6 @@
 					</c:forEach>
 				</ul>
 			<ul>
-			
-			
 			</ul>
 		</div>
 		
@@ -404,7 +422,9 @@
 		</div>
 	</div>
 	<div id="bottom_area">
+		
 		<form action="">
+		<input type="hidden" id="leftBtn1" value="이전" style="float: left;">
 			<table border="1"  style="float: left; width: 217px; height: 118px;" id="qrMovie">
 				<tr>
 					<td>영화선택</td>
@@ -416,10 +436,10 @@
 				</tr>											
 			</table>
 
-			<input type="button" id="seatBtn" value="좌석선택">
+		<input type="button" id="rightBtn1" value="다음">
 			
 		</form>
-		<form action="" style="clear: both;">
+		<form action="" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num">
 			t<input type="text" id="theater_num" name="theater_num">
 			d<input type="text" id="day_num" name="day_num">
