@@ -10,10 +10,11 @@
 <body>
 	<h2>박세나꺼</h2>
 	
-
+	<h4>NOTICE</h4>
 	<a href="../notice/noticeList">Notice List</a>
 	<hr>
-	
+	<br>
+	<h4>QNA</h4>
 	<!--member  --> 
 	<form action="../qna/qnaMyList" method="post">
 	<input type="hidden" name="id" value="${member.id }">
@@ -28,8 +29,10 @@
 	
 	
 	<hr>
+	<h4>EVENT</h4>
 	<a href="../event/eventList">Event List</a>
 	
+	<hr>
 	<br>
 	<a href="../">home</a>
 </body>
