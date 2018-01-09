@@ -32,7 +32,7 @@
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie"><a href="/movies/">영화</a>
+						<li class="movie headbtn" title="movie headbtn"><a href="/movies/">영화</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -46,18 +46,18 @@
 								</div>
 							</div>
 						</li>
-						<li class="booking"><a href="/ticket/">예매</a>
+						<li class="booking headbtn" title="booking headbtn"><a href="./theater/quickReserve">예매</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="#">빠른예매</a></li>
-										<li><a href="#">상영시간표</a></li>
+										<li><a href="./theater/quickReserve">빠른예매</a></li>
+										<li><a href="./theater/scheduleList">상영시간표</a></li>
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="theaters"><a href="#">극장</a>
+						<li class="theaters headbtn" title="theaters headbtn"><a href="#">극장</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -69,7 +69,7 @@
 								</div>
 							</div>
 						</li>
-                        <li class="culture"><a href="home/park">이벤트&amp;컬쳐</a>
+                        <li class="culture headbtn" title="culture headbtn"><a href="home/park">이벤트&amp;컬쳐</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">

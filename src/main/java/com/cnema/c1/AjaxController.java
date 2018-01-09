@@ -55,6 +55,22 @@ public class AjaxController {
 		return mv;
 	}
 
+	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
+	public void qrSeatBox(int schedule_num, Model model){
+		
+		ScheduleDTO scheduleDTO=null;
+		ScreenDTO screenDTO = null;
+		try {
+			scheduleDTO = scheduleService.scheduleOne(schedule_num);
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+			model.addAttribute("screenDTO", screenDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	//movieWishReturn
 	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
 	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {
@@ -104,7 +120,7 @@ public class AjaxController {
 	}
 
 	@RequestMapping(value="qrSchedule", method=RequestMethod.POST)
-	public String qrTheater(int schedule_num ,@RequestParam(defaultValue="2000-01-01", required=false)Date day_num, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
+	public String qrTheater(String people, int schedule_num ,@RequestParam(defaultValue="2000-01-01", required=false)Date day_num, @RequestParam(defaultValue="0", required=false)int theater_num, Model model){
 		TheaterDTO theaterDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		ScreenDTO screenDTO = null;
@@ -120,7 +136,7 @@ public class AjaxController {
 		model.addAttribute("screen", screenDTO);
 		model.addAttribute("day", day_num);
 		model.addAttribute("theater", theaterDTO);
-		
+		model.addAttribute("people", people);
 		return "ajax/qrTheater";
 	}
 	
@@ -150,6 +166,11 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value="qrSeatList", method=RequestMethod.POST)
+	public void qrSeatList(int pCount, Model model){
+		model.addAttribute("pCount", pCount);
 	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)

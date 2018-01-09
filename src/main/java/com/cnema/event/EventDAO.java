@@ -21,43 +21,37 @@ public class EventDAO implements BoardDAO{
 	
 	@Override
 	public List<BoardDTO> selectList(RowNum rowNum) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+"selectList", rowNum);
 	}
 	@Override
 	public BoardDTO selectOne(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"selectOne", num);
 	}
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlSession.insert(namespace+"insert", boardDTO);
+		return result;
 	}
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"update", boardDTO);
 	}
 	@Override
 	public int delete(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("delete num : "+num);
+		return sqlSession.delete(namespace+"delete", num);
 	}
 	@Override
 	public int totalCount(RowNum rowNum) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace+"totalCount", rowNum);
 	}
 	@Override
 	public int hitUpdate(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(namespace+"hitUpdate", num);
 	}
 	@Override
 	public int getNum() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace+"getNum");
 	}
 	
 	

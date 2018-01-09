@@ -17,5 +17,5 @@
 	</td>
 </tr>
 <tr>
-	<td>인원</td><td></td>
+	<td>인원</td><td>${people }</td>
 </tr>
