@@ -1,8 +1,11 @@
 package com.cnema.c1;
 
+import java.text.SimpleDateFormat;
 /*heeseong 코드*/
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -130,7 +133,6 @@ public class MyPageController {
 	}
 	@RequestMapping(value="wishList",method=RequestMethod.POST)
 	public ModelAndView wishList(int wish_num,String sKind,RedirectAttributes rd){
-		System.out.println("sKind:"+sKind);
 		int result = 0;
 		try {
 			result = wishService.wishListDelete(wish_num);
@@ -155,7 +157,7 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
 		try {
-			pList = pointService.pointList(memberDTO.getId(),"2017-12-05","2018-01-05");
+			pList = pointService.pointAList(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -180,31 +182,35 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="couponHistory", method=RequestMethod.GET)
-	public ModelAndView couponHistory(HttpSession session){
+	public ModelAndView couponHistory(HttpSession session,String type,String testDatepicker1, String testDatepicker2){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
-		try {
-			mcList = myCouponService.myCouponAList(memberDTO.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(type==null){
+			type="11";
 		}
-		mv.addObject("mcList",mcList);
-		
-		mv.setViewName("myPage/couponHistory");
-		return mv;
-	}
-	@RequestMapping(value="couponHistory", method=RequestMethod.POST)
-	public ModelAndView couponHistory(HttpSession session,String type){
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		ModelAndView mv = new ModelAndView();
-		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
 		try {
+			myCouponService.dateUpdate(memberDTO.getId());
 			mcList = myCouponService.myCouponList(memberDTO.getId(),type);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("type", type);
 		mv.addObject("mcList",mcList);
+		
+		List<MyCouponDTO> cdList = new ArrayList<MyCouponDTO>();
+		try {
+			if(testDatepicker1==null&&testDatepicker2==null){
+				cdList = myCouponService.myCouponAList(memberDTO.getId());
+			}else{
+				cdList = myCouponService.myCouponDList(memberDTO.getId(),testDatepicker1,testDatepicker2);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("testDatepicker1", testDatepicker1);
+		mv.addObject("testDatepicker2", testDatepicker2);
+		mv.addObject("cdList",cdList);
 		
 		mv.setViewName("myPage/couponHistory");
 		return mv;

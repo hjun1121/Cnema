@@ -36,15 +36,32 @@
 		
 	</div>
 	<!--  답글 표시 하기 (관리자일때만 보이게 하기) -->
-	<c:if test="${member.type == 20}">
+	<c:if test="${member.type == 20 }"></c:if>
 	<div id="reply">
-	<form action="qnaUpdate" id="frm">
+	<form action="qnaUpdate" id="frm" method="post">
 		<h3>답변 달기</h3>
+		<input type="hidden" name="num" value="${list.num}">
+		<input type="hidden" name="reply_id" value="${member.id}">
 		<textarea name="reply" rows="5" cols="30"></textarea>
+		<c:if test="${list.reply==null}">
 		<button type="submit">답변 달기</button>
+		</c:if>
+		<c:if test="${list.reply != null}">
+		<button type="submit">답변 수정</button>
+		</c:if>
 		</form>
 	</div>
-	</c:if>
+	
+	
 	<!-- 답변 단 내용 보여주기  -->
+	<div class="reply-contents">
+        <ul class="writerinfo">
+            <li>${list.reply_id }</li>
+            <li class="day-writerinfo">${list.reply_date }</li>
+        </ul>
+         <p>${list.reply }</p>
+    </div>
+		
+	
 </body>
 </html>

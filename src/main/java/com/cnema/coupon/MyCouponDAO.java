@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class MyCouponDAO {
@@ -23,7 +24,20 @@ public class MyCouponDAO {
 		return sqlSession.selectList(NAMESPACE+"myCouponList",cMap);
 	}
 	/*heeseong*/
+	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2) throws Exception{
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("id", id);
+		cMap.put("dp1", dp1);
+		cMap.put("dp2", dp2);
+		return sqlSession.selectList(NAMESPACE+"myCouponDList",cMap);
+	}
+	/*heeseong*/
 	public List<MyCouponDTO> myCouponAList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"myCouponAList",id);
+	}
+	
+	/*heeseong*/
+	public int dateUpdate(String id) throws Exception{
+		return sqlSession.update(NAMESPACE+"dateUpdate",id);
 	}
 }

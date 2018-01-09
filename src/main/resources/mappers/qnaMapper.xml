@@ -34,7 +34,7 @@
   		where r between #{startRow} and #{lastRow}
   </select>
   
-  <!-- 수정하기  -->
+
   <insert id="insert" parameterType="com.cnema.board.BoardDTO">
   	<selectKey keyProperty="num" resultType="int" order="BEFORE">
   		select board_seq.nextval from dual
@@ -42,9 +42,10 @@
   	insert into qna
   	values(#{num},0,0,#{type},#{title},#{writer},#{contents},sysdate,#{fileName},#{oriName},null,null,null)
   </insert>
-  
-  <update id="update" parameterType="com.cnema.board.BoardDTO">
-  	update qna set reply=#{reply}, reply=#{reply_id} reply_date=sysdate where num=#{num}
+   
+   <!-- 수정하기  -->
+  <update id="update" parameterType="QnaDTO">
+  	update qna set reply=#{reply}, reply_id=#{reply_id}, reply_date=sysdate where num=#{num}
   </update>
   
   <delete id="delete" parameterType="int">
@@ -54,6 +55,12 @@
   <select id="totalCount" parameterType="com.cnema.util.RowNum" resultType="int">
   	select count(*) from qna
   
+  </select>
+  
+  <!--회원자신의 리스트만 보여주기  -->
+  <select id="selectMyList" parameterType="java.lang.String"  resultType="QnaDTO">
+	select * from qna where writer=#{id} order by num desc
+  	
   </select>
   
 

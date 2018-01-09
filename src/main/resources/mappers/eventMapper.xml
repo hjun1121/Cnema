@@ -5,8 +5,37 @@
    
    <mapper namespace="eventMapper">
   
+  <select id="selectList" parameterType="com.cnema.util.RowNum" resultType="EventDTO">
+  		select * from
+  		(select rownum r, N.* from
+  		(select * from event
+		<if test="kind == 'Title'">
+			where Title like '%'||#{search}||'%'
+		</if>
+	
+		<if test="kind == 'Contents'">
+			where Contents like '%'||#{search}||'%'
+		</if>
+		order by num desc) N)
+  		where r between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<select id="totalCount" parameterType="com.cnema.util.RowNum" resultType="int">
+  		select count(num) from event
+  		<if test="kind == 'Title'">
+  			where title like '%'||#{search}||'%'
+  		</if>
   
+  		<if test="kind == 'Contents'">
+  			where contents like '%'||#{search}||'%'
+  		</if>
+  	</select>
   
+    <insert id="insert" parameterType="com.cnema.board.BoardDTO">
+  
+  	insert into event
+  	values(event_seq.nextval,#{title},#{writer},#{contents},#{fileName},#{oriName},#{s_date},#{e_date},#{type})
+  </insert>
   
   
   
