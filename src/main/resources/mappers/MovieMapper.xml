@@ -61,4 +61,8 @@
   	<select id="movieAList" resultType="movieDTO">
   		select * from movie order by movie_num desc
   	</select>
+  	<!-- heeseong -->
+  	<update id="movieRevision" parameterType="movieDTO">
+  		update movie set movie_name=#{movie_name}, teaser_url=#{teaser_url},open_date=#{open_date},run_time=#{run_time},type=#{type},contents=#{contents},age_limit=#{age_limit},actor=#{actor} where movie_num=#{movie_num}
+  	</update>
 </mapper>

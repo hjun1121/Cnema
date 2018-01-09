@@ -23,7 +23,7 @@
 	<tr>
 		<td>${mList.fileName }</td>
 		<td><a href="./movieView?movie_num=${mList.movie_num }">${mList.movie_name }</a></td>
-		<td>${mList.type }</td>
+		<td>${mList.actor }</td>
 		<td>${mList.open_date }</td>
 		<td>${mList.run_time }</td>
 		<td>${mList.age_limit }</td>

@@ -85,4 +85,8 @@ public class MovieDAO {
 	public List<MovieDTO> movieAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieAList");
 	}
+	/*heeseong*/
+	public int movieRevision(MovieDTO movieDTO) {
+		return sqlSession.update(NAMESPACE+"movieRevision",movieDTO);
+	}
 }

@@ -68,4 +68,8 @@ public class MovieService {
 	public List<MovieDTO> movieAList() throws Exception {
 		return movieDAO.movieAList();
 	}
+	/*heeseong*/
+	public int movieRevision(MovieDTO movieDTO) throws Exception{
+		return movieDAO.movieRevision(movieDTO);
+	}
 }
