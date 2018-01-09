@@ -1,11 +1,8 @@
 package com.cnema.c1;
 
-import java.text.SimpleDateFormat;
 /*heeseong 코드*/
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
