@@ -47,6 +47,7 @@
 	<a href="">나의 문의 내역</a>
 	
 	<!-- Admin -->
+	<h1>관리자</h1>
 	<h3>영화 목록</h3>
 	<a href="../admin/movieList">영화 목록</a>
 	<h3>회원 목록</h3>
