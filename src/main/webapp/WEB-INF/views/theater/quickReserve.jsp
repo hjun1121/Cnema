@@ -146,10 +146,10 @@
 						
 						$("#leftBtn1").val("영화선택");
 						$("#leftBtn1").attr("type","button");
-						$("#leftBtn1").attr("id","leftBtn2");
+						$("#leftBtn1").attr("class","leftBtn2");
 						
-						$("#rightBtn1").val("결제");
-						$("#rightBtn1").attr("id","rightBtn2");
+						$("#rightBtn1").attr("type","hidden");
+						$("#rightBtn2").attr("type","button");
 						
 					}
 				});
@@ -255,7 +255,7 @@
 				$(this).attr("class","seatOn");
 				$(this).css("background-color","pink")
 				var seat_num = $(this).attr("title");
-				$("#seatList").append("<input type='text' name='seat_num' id='s"+seat_num+"' value='"+seat_num+"'>");
+				$("#seatList").append("<input type='text' class='ss' name='seat_num' id='s"+seat_num+"' value='"+seat_num+"'>");
 				sCount++;
 			}else{
 				alert("인원보다 많은자리입니다");
@@ -276,13 +276,24 @@
 			var seatList = $("#seat_num").val();
 		});
 		/*  */
-	$("#bottom_area").on("click", "#leftBtn2" , function(){
-		alert("이전");
-	});		
-	$("#bottom_area").on("click", "#rightBtn2" , function(){
-		alert("결제");
-	});	
-
+		$("#leftBtn1").click(function(){
+			var s = $(".ss").val();
+		});
+		$("#rightBtn2").click(function(){
+			var movie_num = $("#movie_num").val();
+			var theater_num = $("#theater_num").val();
+			var day_num = $("#day_num").val();
+			var schedule_num = $("#schedule_num").val();
+			var adult_num = $("#adult_num").val();
+			var teen_num = $("#teen_num").val();
+			var pCount = $("#pCount").val();
+			if(sCount==pCount && sCount != 0){
+				alert("movie_num :"+movie_num+"\n theater_num :"+theater_num+"\n day_num :"+day_num
+					+"\n schedule_num :"+schedule_num+"\n adult_num :"+adult_num+"\n teen_num :"+teen_num+"\n pCount :"+pCount);
+			}else{
+				alert("인원수와 자리를 확인해주세요");
+			}
+		});
 
 		
 		/*  */
@@ -437,7 +448,7 @@
 			</table>
 
 		<input type="button" id="rightBtn1" value="다음">
-			
+		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
 		<form action="" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num">
