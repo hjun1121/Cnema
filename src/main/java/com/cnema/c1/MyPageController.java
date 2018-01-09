@@ -182,7 +182,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="couponHistory", method=RequestMethod.GET)
-	public ModelAndView couponHistory(HttpSession session,String type){
+	public ModelAndView couponHistory(HttpSession session,String type,String testDatepicker1, String testDatepicker2){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
@@ -192,20 +192,30 @@ public class MyPageController {
 		try {
 			myCouponService.dateUpdate(memberDTO.getId());
 			mcList = myCouponService.myCouponList(memberDTO.getId(),type);
-			/*if(type==null){
-				mcList = myCouponService.myCouponAList(memberDTO.getId());
-			}else{
-				mcList = myCouponService.myCouponList(memberDTO.getId(),type);
-			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("type", type);
 		mv.addObject("mcList",mcList);
 		
+		List<MyCouponDTO> cdList = new ArrayList<MyCouponDTO>();
+		try {
+			if(testDatepicker1==null&&testDatepicker2==null){
+				cdList = myCouponService.myCouponAList(memberDTO.getId());
+			}else{
+				cdList = myCouponService.myCouponDList(memberDTO.getId(),testDatepicker1,testDatepicker2);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("testDatepicker1", testDatepicker1);
+		mv.addObject("testDatepicker2", testDatepicker2);
+		mv.addObject("cdList",cdList);
+		
 		mv.setViewName("myPage/couponHistory");
 		return mv;
 	}
+	
 	@RequestMapping(value="withdrawalCheck", method=RequestMethod.GET)
 	public ModelAndView withdrawalCheck(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");

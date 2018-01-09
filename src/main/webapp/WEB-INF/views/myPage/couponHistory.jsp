@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- 캘린더 추가 -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 <title>나의 쿠폰</title>
 <script type="text/javascript">
 	$(function() {
@@ -20,6 +23,34 @@
 			var cType = $("#type").val();
 			location.href="./couponHistory?type="+cType;
 		});
+		
+		$("#testDatepicker1").val('${testDatepicker1}');
+		$("#testDatepicker2").val('${testDatepicker2}');
+		
+		$( "#testDatepicker1" ).datepicker({
+	    	changeMonth: true, 
+	        changeYear: true,
+	        nextText: '>',
+	        prevText: '<',
+	        dateFormat : 'yy-mm-dd',
+	        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	        dayNamesMin: ['일','월','화','수','목','금','토'],
+	   	 	changeMonth: true,
+	        changeYear: true,
+	   		showMonthAfterYear: true,
+	    });
+	    $( "#testDatepicker2" ).datepicker({
+	    	changeMonth: true, 
+	        changeYear: true,
+	        nextText: '>',
+	        prevText: '<',
+	        dateFormat : 'yy-mm-dd',
+	        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	        dayNamesMin: ['일','월','화','수','목','금','토'],
+	   	 	changeMonth: true,
+	        changeYear: true,
+	   		showMonthAfterYear: true,
+	    });
 	});
 </script>
 </head>
@@ -37,7 +68,6 @@
 		<tr>
 			<td>쿠폰이름</td>
 			<td>쿠폰번호</td>
-			<td>발행일</td>
 			<td>사용일</td>
 			<td>상태</td>
 		</tr>
@@ -56,6 +86,27 @@
 				<c:if test="${mCouponList.type eq 12 }">
 					<td>기간만료</td>
 				</c:if>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	
+	<form name="frm" action="couponHistory" method="get">
+		<input type="text" name="testDatepicker1" id="testDatepicker1">~
+		<input type="text" name="testDatepicker2" id="testDatepicker2"> 
+		<input type="submit" id="cBtn" value="조회하기">
+	</form>
+	<table>
+		<tr>
+			<td>쿠폰이름</td>
+			<td>쿠폰번호</td>
+			<td>사용일</td>
+		</tr>
+		<c:forEach items="${cdList }" var="mCouponList">
+			<tr>
+				<td>${mCouponList.name }</td>
+				<td>${mCouponList.num }</td>
+				<td>${mCouponList.use_date }</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -23,4 +23,8 @@ public class MyCouponService {
 	public int dateUpdate(String id) throws Exception{
 		return myCouponDAO.dateUpdate(id);
 	}
+	/*희성*/
+	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2) throws Exception{
+		return myCouponDAO.myCouponDList(id,dp1,dp2);
+	}
 }
