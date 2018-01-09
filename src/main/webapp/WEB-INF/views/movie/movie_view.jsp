@@ -133,7 +133,13 @@
 	
 </div>
 <iframe width="560" height="315" src="${movie.teaser_url}"></iframe>
-	
+
+<div style="">
+	<ul style="border-top: 1px solid #999999;margin: 0 auto -2px!important; padding: 0 25px; list-style: none;">
+		<li style="width: 374px; border-right: 1px solid #ceccc1; float: left;">
+	</ul>
+</div>
+
 <!-- 	<table> -->
 <%-- 		<tr><td><img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'></td></tr> --%>
 <%-- 		<tr><td>${movie.movie_name}</td></tr> --%>
