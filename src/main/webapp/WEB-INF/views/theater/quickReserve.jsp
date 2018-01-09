@@ -277,7 +277,7 @@
 			var seat_num = $(this).attr("title");
 			var seatList = $("#seat_num").val();
 		});
-		/*  */
+		/*  */g
 	});
 </script>
 <style type="text/css">
