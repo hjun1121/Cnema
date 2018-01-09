@@ -86,8 +86,8 @@
 	<div style="margin-top: 30px;">
 		<ol style="padding-top: 0px; margin-left: -64px; border-bottom: 3px solid #241d1e; list-style: none;">
 			<li style="float: left; width: 197px; margin-left: 64px; padding-bottom: 30px;">
-				<div style="margin-bottom: 10px;">
-					<a href="movie_view?movie_num=${movie.movie_num}">
+				<div style="margin-bottom: 10px; min-height: 272px;">
+					<a href="movie_view?movie_num=${movie.movie_num}" style="display: block;">
 						<span style="border: 6px solid #000000; display: block;">
 							<img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'>
 						</span>
