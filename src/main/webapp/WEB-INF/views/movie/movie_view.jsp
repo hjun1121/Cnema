@@ -6,6 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${movie.movie_name} &gt; 상세정보</title>
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
+
 <script type="text/javascript">
 
 	$(function() {
@@ -45,8 +53,12 @@
 </script>
 </head>
 <body>
-<h1>영화 상세정보</h1>
-
+<div id="cgvwrap"  style="text-align: center;">
+<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+<div style="width: 980px; margin: 0 auto;">
+<div style="height: 51px; margin-top: 30px; border-bottom: 3px solid #241d1e;">
+	<h2 style="font-size: 38px; text-align: left; font-weight: bold; color: #222;">영화상세</h2>
+</div>
 	<table>
 		<tr><td><img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'></td></tr>
 		<tr><td>${movie.movie_name}</td></tr>
@@ -78,6 +90,9 @@
 		<tr><td><iframe width="560" height="315" src="${movie.teaser_url}"></iframe></td></tr>
 		<tr><td>평점 : ${movie.grade}</tr>
 	</table>
-	
+</div>
+</div>
+<br>
+<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	
 </body>
 </html>

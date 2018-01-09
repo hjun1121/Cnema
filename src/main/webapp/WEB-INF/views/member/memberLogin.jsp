@@ -39,7 +39,7 @@
 		});
 		
 		$("#joinF").click(function(){
-			location.href="./joinF";
+			location.href="./joinAgree";
 		});
 	});
 
@@ -74,7 +74,7 @@
         	
         	
         	<!-- 내용 시작 -->
-        	<form action="memberLogin" method="post">
+        	<form action="memberLogin" id="frm" name="frm" method="post">
 				<div id="login_form">
 					<div id="login_all">
 					
@@ -87,7 +87,7 @@
 						</div>
 						
 						<div id="login_pw">
-							<p><input type="text" id="pw_text" name="pw" placeholder="비밀번호 입력"></p>
+							<p><input type="password" id="pw_text" name="pw" placeholder="비밀번호 입력"></p>
 						</div>
 						
 						<div id="login_btn">
