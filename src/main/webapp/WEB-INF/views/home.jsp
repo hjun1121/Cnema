@@ -177,7 +177,7 @@ function showSlides(n) {
 	<a href="home/park">박</a>
 	<br><br><br>
 	<c:if test="${empty member }">
-		<a href="member/memberJoin">Join</a>
+		<a href="member/joinAgree">Join</a>
 		<a href="member/memberLogin">Login</a>
 		<a href="member/idFind">Id Find</a>
 		<a href="member/pwFind">Pw Find</a>
