@@ -238,20 +238,6 @@
 			}
 		});
 		/*  */
-		$("#all").on("click", ".seat" , function(){
-			var pCount = $("#pCount").val();
-			$.ajax({
-				url:"../ajax/qrSeatList",
-				type:"post",
-				data:{
-					pCount:pCount
-				},
-				success:function(data){
-					$("#seatList").html(data);
-				}
-			});
-		});
-		/*  */
 		var sCount = 0;
 		$("#all").on("click", ".seats" , function(){
 			var pCount = $("#pCount").val();
@@ -259,7 +245,7 @@
 				$(this).attr("class","seatOn");
 				$(this).css("background-color","pink")
 				var seat_num = $(this).attr("title");
-				$("#seat1").val(seat_num);
+				$("#seatList").append("<input type='text' name='seat_num' id='s"+seat_num+"' value='"+seat_num+"'>");
 				sCount++;
 			}else{
 				alert("인원보다 많은자리입니다");
@@ -270,6 +256,8 @@
 			if(confirm("이 좌석을 취소하시겠습니까?")){
 				$(this).attr("class","seats");
 				$(this).css("background-color","")
+				var seat_num = $(this).attr("title");
+				$("#s"+seat_num).remove();	
 				sCount--;
 			}else{
 				
