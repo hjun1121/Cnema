@@ -34,4 +34,26 @@ public class AdminController {
 		mv.setViewName("admin/movieList");
 		return mv;
 	}
+	
+	@RequestMapping(value="movieView",method=RequestMethod.GET)
+	public ModelAndView movieView(int movie_num){
+		ModelAndView mv = new ModelAndView();
+		MovieDTO movieDTO = null;
+		try {
+			movieDTO = movieService.movieInfo(movie_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("movieDTO", movieDTO);
+		mv.setViewName("admin/movieView");
+		return mv;
+	}
+	
+	@RequestMapping(value="movieRevision",method=RequestMethod.POST)
+	public ModelAndView movieRevision(MovieDTO movieDTO){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("movieDTO", movieDTO);
+		mv.setViewName("admin/movieRevision");
+		return mv;
+	}
 }
