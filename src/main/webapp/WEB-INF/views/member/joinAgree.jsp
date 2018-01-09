@@ -11,6 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/joinAgree.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
@@ -44,14 +45,14 @@
 		
 		
 		$("#btn_NO").click(function(){
-			location.href="../home.jsp"
+			location.href="../"
 		});
 	
 		$("#btn_OK").click(function(){
 			if($("#chAll").prop("checked")==true ){
 				frm.submit();
 			}else{
-				alert("동의하세요.");
+				alert("동의하지 않으면 가입하실 수 없습니다.");
 				$("#chAll").focus();
 			}
 		});
@@ -87,7 +88,7 @@
         	
         <!-- 약관 폼 시작 -->
         <div class="Joinwrap" style="width: 1040px; margin: 0 auto;">
-		<form name="frm" action="./memberJoinAgree.member?library=${library}&ln=${ln}" method="post">
+		<form name="frm" action="./memberJoin" method="post">
 		<div class="joinCont mt50">
 			<h2 class="jsTxt clauseTxt">회원가입 및 정상적인 서비스 이용을 위해 아래 약관을 읽고, 동의 여부 결정해 주세요.</h2>
 			
