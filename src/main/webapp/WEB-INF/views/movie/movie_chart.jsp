@@ -34,7 +34,7 @@
 
 			if (title == 1) {
 				$.ajax({
-					url: "../ajax/movie_wish",
+					url: "../ajax/movie_wish_return",
 					type: "POST",
 					data: {
 						movie_num:movie_num,
@@ -47,7 +47,7 @@
 
 			} else if (title == 0) {
 				$.ajax({
-					url: "../ajax/movie_wish_return",
+					url: "../ajax/movie_wish",
 					type: "POST",
 					data: {
 						movie_num:movie_num,
@@ -59,7 +59,7 @@
 				});
 			}
 		});
-
+																
 	});
 
 </script>
