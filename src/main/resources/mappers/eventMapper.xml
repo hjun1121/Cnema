@@ -36,7 +36,25 @@
   	insert into event
   	values(event_seq.nextval,#{title},#{writer},#{contents},#{fileName},#{oriName},#{s_date},#{e_date},#{type})
   </insert>
+ 
+ <!--View보여줄때 사용  -->
+  <select id="selectOne" parameterType="int" resultType="EventDTO">
+  		select * from event where num=#{num}
+  	</select>
+  	
+  	<!-- 테이블 고치면 사용함!  -->
+  	<update id="hitUpdate" parameterType="int">
+  		update event set hit=hit+1 where num=#{num}
+  	</update>
   
-  
+ 	 <delete id="delete" parameterType="int">
+  		delete event where num=#{num}
+  	</delete>
+  	
+  	<update id="update" parameterType="com.cnema.board.BoardDTO">
+  		update event set
+  		title=#{title}, contents=#{contents}, filename=#{fileName},oriname=#{oriName},s_date=#{s_date},e_date=#{e_date},type=#{type}
+  		where num=#{num}
+  	</update>
   
    </mapper>
