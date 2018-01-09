@@ -34,7 +34,7 @@
   		where r between #{startRow} and #{lastRow}
   </select>
   
-  <!-- 수정하기  -->
+
   <insert id="insert" parameterType="com.cnema.board.BoardDTO">
   	<selectKey keyProperty="num" resultType="int" order="BEFORE">
   		select board_seq.nextval from dual
@@ -42,7 +42,8 @@
   	insert into qna
   	values(#{num},0,0,#{type},#{title},#{writer},#{contents},sysdate,#{fileName},#{oriName},null,null,null)
   </insert>
-  
+   
+   <!-- 수정하기  -->
   <update id="update" parameterType="QnaDTO">
   	update qna set reply=#{reply}, reply_id=#{reply_id}, reply_date=sysdate where num=#{num}
   </update>

@@ -2,13 +2,22 @@ package com.cnema.event;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.cnema.board.BoardDTO;
 
 public class EventDTO extends BoardDTO{
 	private Date s_date;
 	private Date e_date;
 	private int type;
+	private MultipartFile file;
 	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public Date getS_date() {
 		return s_date;
 	}

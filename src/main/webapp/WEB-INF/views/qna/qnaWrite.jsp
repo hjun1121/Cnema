@@ -32,6 +32,9 @@
 			</td>
 		</tr>
 		<tr>
+		
+	
+		<!-- 지점 정보 불러오기!!  -->
 			<th>영화관 선택</th>
 			<td>
 				<select id="areasel" name="areasel">
@@ -50,6 +53,10 @@
 				</select>
 			</td>
 		</tr>
+		<!-- 지점 정보 불러올 부분!! -->
+		
+		
+		
 		<tr>
 			<th>제목</th>
 			<td>
