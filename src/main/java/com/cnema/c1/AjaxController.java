@@ -50,6 +50,7 @@ public class AjaxController {
 		} else {
 			mv.addObject("message", "❤ 실패");
 		}
+		mv.addObject("movie_num", movie_num);
 		mv.setViewName("ajax/movie_wish");
 
 		return mv;
@@ -85,6 +86,7 @@ public class AjaxController {
 		} else {
 			mv.addObject("message", "♡ 실패");
 		}
+		mv.addObject("movie_num", movie_num);
 		mv.setViewName("ajax/movie_wish_return");
 		
 		return mv;

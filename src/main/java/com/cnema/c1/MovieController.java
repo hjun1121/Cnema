@@ -26,11 +26,24 @@ public class MovieController {
 	
 	//selectOne
 	@RequestMapping(value="movie_view", method=RequestMethod.GET)
-	public ModelAndView selectOne(int movie_num, ModelAndView mv, RedirectAttributes rd) throws Exception {
+	public ModelAndView selectOne(int movie_num, ModelAndView mv, HttpSession session, RedirectAttributes rd) throws Exception {
 		MovieDTO movieDTO = null;
 		movieDTO = movieService.selectOne(movie_num);
+		String id = "";
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			id = memberDTO.getId();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		if(id != null) {
+			List<WishDTO> wish = movieService.wishList(id);
+			mv.addObject("wish_list", wish);
+		}
 		
 		mv.addObject("movie", movieDTO);
+		mv.addObject("movie_num", movie_num);
 		mv.setViewName("movie/movie_view");
 		return mv;
 	}

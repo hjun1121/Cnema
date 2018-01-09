@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>${movie.movie_name} &gt; 상세정보</title>
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
@@ -21,18 +22,18 @@
 		$(".wish_btn").click(function() {
 			var movie_num = $(this).attr("name");
 			var title = $(this).attr("title");
+			alert(movie_num);
 
 			if (title == 1) {
 				$.ajax({
 					url: "../ajax/movie_wish_return",
 					type: "POST",
 					data: {
-						movie_num:movie_num,
-						kind:'${kind}'
+						movie_num:movie_num
 					},
 					success: function(data) {
 						alert(data);
-						location.href="movie_chart?kind=${kind}";
+						location.href="movie_view?movie_num=${movie_num}";
 					}
 				});
 
@@ -41,16 +42,18 @@
 					url: "../ajax/movie_wish",
 					type: "POST",
 					data: {
-						movie_num:movie_num,
-						kind:'${kind}'
+						movie_num:movie_num
 					},
 					success: function(data) {
 						alert(data);
-						location.href="movie_chart?kind=${kind}";
+						location.href="movie_view?movie_num=${movie_num}";
 					}
 				});
 			}
+			
 		});
+		
+	});
 
 </script>
 </head>
@@ -110,7 +113,6 @@
 					<input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"
 					style="display: inline-block; width: 30px; height: 28px;">
 				</c:if>
-			${movie.wish}
 			</c:if>
 			<c:if test="${empty member }">
 					<a href="../member/memberLogin"><input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"
