@@ -1,6 +1,8 @@
 package com.cnema.theater;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,5 +31,18 @@ public class TheaterDAO {
 	
 	public List<TheaterDTO> locationList(String area){
 		return sqlSession.selectList(NAMESPACE+"locationList", area);
+	}
+
+	/*heeseong*/
+	public List<TheaterDTO> theatherAList() {
+		return sqlSession.selectList(NAMESPACE+"theatherAList");
+	}
+	/*heeseong*/
+	public List<TheaterDTO> thLocationList(String search) {
+		return sqlSession.selectList(NAMESPACE+"thLocationList",search);
+	}
+	/*heeseong*/
+	public List<TheaterDTO> thAreaList(String search) {
+		return sqlSession.selectList(NAMESPACE+"thAreaList",search);
 	}
 }
