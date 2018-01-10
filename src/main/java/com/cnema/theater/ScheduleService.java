@@ -32,7 +32,7 @@ public class ScheduleService {
 		return scheduleDAO.scheduleInfo(sNum);
 	}
 	/*heeseong*/
-	public List<ScheduleDTO> scheduleList() {
-		return scheduleDAO.scheduleList();
+	public List<ScheduleDTO> scheduleAList() {
+		return scheduleDAO.scheduleAList();
 	}
 }

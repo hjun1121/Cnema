@@ -39,7 +39,7 @@ public class ScheduleDAO {
 		return sqlSession.selectOne(NAMESPACE+"scheduleInfo", sNum);
 	}
 	/*heeseong*/
-	public List<ScheduleDTO> scheduleList() {
-		return sqlSession.selectList(NAMESPACE+"scheduleList");
+	public List<ScheduleDTO> scheduleAList() {
+		return sqlSession.selectList(NAMESPACE+"scheduleAList");
 	}
 }

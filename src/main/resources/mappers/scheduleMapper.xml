@@ -40,7 +40,7 @@
   	</select>
   	
   	<!-- heeseong -->
-  	<select id="scheduleList" resultType="scheduleDTO">
+  	<select id="scheduleAList" resultType="scheduleDTO">
   		select * from schedule
   	</select>
   </mapper>

@@ -218,7 +218,7 @@ public class AdminController {
 	public ModelAndView scheduleList() {
 		ModelAndView mv = new ModelAndView();
 		List<ScheduleDTO> sList = new ArrayList<>();
-		sList = scheduleService.scheduleList();
+		sList = scheduleService.scheduleAList();
 		mv.addObject("sList", sList);
 		mv.setViewName("admin/scheduleList");
 		return mv;
