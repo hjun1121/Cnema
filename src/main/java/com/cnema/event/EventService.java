@@ -22,6 +22,16 @@ public class EventService {
 	private EventDAO eventDAO;
 	@Inject
 	private FileSaver fileSaver;
+	@Inject
+	private EventJoinDAO eventJoinDAO;
+	
+	//이벤트 신청 당첨 유무
+	public int eventJoin(EventJoinDTO eventJoinDTO) throws Exception {
+		
+		int result=eventJoinDAO.insert(eventJoinDTO);
+		
+		return result;
+	}
 	
 	//기본 진행중인 이벤트 리스트 
 	public ModelAndView selectList(ListData listData) throws Exception {

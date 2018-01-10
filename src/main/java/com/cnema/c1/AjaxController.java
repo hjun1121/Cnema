@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.event.EventJoinDTO;
 import com.cnema.event.EventService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
@@ -39,6 +41,23 @@ public class AjaxController {
 	private ScheduleService scheduleService;
 	@Inject
 	private EventService eventService;
+	
+
+	@RequestMapping(value="eventJoin", method=RequestMethod.POST)
+	public String eventJoin(EventJoinDTO eventJoinDTO,RedirectAttributes rd) throws Exception{
+		
+		
+			int result = eventService.eventJoin(eventJoinDTO);
+			String message = "fail";
+			if(result>0){
+				message = "success";
+			}
+			rd.addFlashAttribute("message", message);
+			
+			return "redirect:./eventView";
+		
+	
+	}
 	
 	@RequestMapping(value="endList", method=RequestMethod.POST)
 	public ModelAndView endList(ListData listData,Boolean sel, ModelAndView mv) throws Exception{

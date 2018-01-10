@@ -15,13 +15,20 @@ $(function(){
 	}
 	
 	$("#join").click(function(){
-		/* var cur = $(this).attr("title");
-		var s = '${pager.search}';
-		var t = '${pager.kind}';
-		document.frm.curPage.value=cur;
-		document.frm.search.value=s;
-		document.frm.kind.value=t;
-		document.frm.submit(); */
+		
+		$.ajax({
+			url:"../ajax/eventJoin",
+			type:"POST",
+			data:{
+			 
+			},
+			success:function(data){
+				alert(data);
+				},
+			error : function(){
+				
+			}
+		});
 		
 		
 	});
@@ -47,9 +54,10 @@ ${view.contents}
 <div class="eventViewFile">
 첨부 파일 다운로드
 </div>
-
+<br>
+<hr>
 <div class="eventJoin">
-<p>이벤트 참여하기</p>
+<h3>이벤트 참여하기</h3>
 <button id="join">바로 참여하기</button>
 
 
