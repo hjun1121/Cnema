@@ -56,9 +56,10 @@ iframe#TopBanner {margin: 0 auto;display:block}
 .sect-person h2 {font:0px/0 a;}
 
 /* Display:block */
-.sect-service > .util li > a, .sect-service > .gnb li > a, .sect-service a.showtimes, .im-wrap .lnb > ul > li > a, .im-wrap > h2 > a, .im-wrap .ad-partner > a,
+.sect-service > .util li > a, .im-wrap .lnb > ul > li > a, .im-wrap > h2 > a, .im-wrap .ad-partner > a,
 .sect-booking > a,.sect-phototicket > a, .sect-person li > a, .sect-common li > a, .ciols-movie li > a, .sect-smuse li > a, .policy li a, .sect-cinfo .share a, .sect-bcrumb li > a,
-.sect-ad-external > a, .cols-banner .col-hd > a, .sect-showtimes .info-timetable a, .sect-aside-banner .aside-content-btm > a, .sect-aside-banner > .btn-top > a {display:block;}
+.sect-ad-external > a, .cols-banner .col-hd > a, .sect-showtimes .info-timetable a, .sect-aside-banner .aside-content-btm > a, .sect-aside-banner > .btn-top > a 
+{display:block;}
 
 
 
@@ -80,14 +81,15 @@ iframe#TopBanner {margin: 0 auto;display:block}
 .sect-service > .gnb li {background:url(../../../resources/images/common/bg/bg_v_line.gif) no-repeat 0 50%;}
 .sect-service > .gnb li:first-child {margin-left:0; background-image:none;}
 .sect-service > .gnb li > a {padding:0 10px; line-height:30px;}
-.sect-service > .gnb li > a.login {width:29px; background-position:10px 9px;}
-.sect-service > .gnb li > a.logout {width:43px; background-position:-521px 9px;}
-.sect-service > .gnb li > a.join {width:39px; background-position:-42px 9px;}
-.sect-service > .gnb li > a.mycgv {width:39px; background-position:-103px 9px;}
-.sect-service > .gnb li > a.vip {width:62px; background-position:-170px 9px;}
-.sect-service > .gnb li > a.club {width:53px; background-position:-254px 9px;}
-.sect-service > .gnb li > a.customer {width:38px; background-position:-328px 9px;}
-.sect-service > .gnb li > a.showtimes {width:106px; padding-right:0; background-position:-388px 9px;}
+.sect-service > .gnb li > a.login {width:29px;/*  background-position:10px 9px;  */background: none; font-weight: bold;}
+.sect-service > .gnb li > a.myPage{width:39px; background: none;font-weight: bold;}
+.sect-service > .gnb li > a.logout {width:43px;/*  background-position:-521px 9px; */background: none;font-weight: bold;}
+.sect-service > .gnb li > a.join {width:39px; /* background-position:-42px 9px; */background: none;font-weight: bold;}
+.sect-service > .gnb li > a.mycgv {width:39px;/*  background-position:-103px 9px; */background: none;font-weight: bold;}
+.sect-service > .gnb li > a.vip {width:62px;/*  background-position:-170px 9px; */background: none;font-weight: bold;}
+.sect-service > .gnb li > a.club {width:53px;/*  background-position:-254px 9px; */background: none;font-weight: bold;}
+.sect-service > .gnb li > a.customer {width:38px; /* background-position:-328px 9px; */background: none;font-weight: bold;}
+.sect-service > .gnb li > a.showtimes {width:106px; padding-right:0; /* background-position:-388px 9px; */background: none;font-weight: bold;}
 
 
 
