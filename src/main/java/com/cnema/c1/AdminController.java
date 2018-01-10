@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -182,6 +183,30 @@ public class AdminController {
 			rd.addFlashAttribute("message", "극장 글쓰기 실패");
 			mv.setViewName("redirect:../");
 		}
+		return mv;
+	}
+	
+	@RequestMapping(value="movie_insert", method=RequestMethod.GET)
+	public void insert() {
+	}
+
+	@RequestMapping(value="movie_insert", method=RequestMethod.POST)
+	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
+		int result = 0;
+		try {
+			result = movieService.insert(movieDTO, session);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView();
+		if(result>0) {
+			rd.addFlashAttribute("message", "영화 insert 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "영화 insert 실패");
+			mv.setViewName("redirect:../");
+		}
+		
 		return mv;
 	}
 }

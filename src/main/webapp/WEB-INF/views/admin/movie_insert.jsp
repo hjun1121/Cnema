@@ -17,7 +17,7 @@
 		<p>장르<input type="text" id="type" name="type"></p>
 		<p>영화설명<input type="text" id="contents" name="contents"></p>
 		<p>나이제한<input type="text" id="age_limit" name="age_limit"></p>
-		<p>출연배우<input type="text" id="actors" name="actors"></p>
+		<p>출연배우<input type="text" id="actor" name="actor"></p>
 		<input type="submit" id="insertBtn" value="insert">
 </form>
 </body>

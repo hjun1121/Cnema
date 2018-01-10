@@ -30,5 +30,6 @@
 	</tr>
 	</c:forEach>
 </table>
+<a href="./movie_insert"><input type="button" value="글쓰기"></a>
 </body>
 </html>
