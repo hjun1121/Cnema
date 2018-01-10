@@ -4,7 +4,7 @@
 	<!-- Header -->
 	<div id="header">
 		<div class="head">
-			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/Cnema_logo1.png" alt="CNEMA"></a></h1>
+			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">

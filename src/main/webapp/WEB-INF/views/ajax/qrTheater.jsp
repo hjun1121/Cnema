@@ -13,7 +13,7 @@
 </tr>
 <tr>
 	<td>상영관</td><td>${screen.room_num }
-	<c:if test="${!empty screen }">관</c:if>
+	<c:if test="${!empty screen }">관 ${screen.floor }층</c:if>
 	</td>
 </tr>
 <tr>

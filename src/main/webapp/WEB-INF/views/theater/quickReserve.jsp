@@ -133,147 +133,8 @@
 			}else if(schedule_num==''){
 				alert("시간을 선택해주세요");
 			}else{
-				$.ajax({
-					url:"../ajax/qrSeatBox",
-					type:"post",
-					data:{
-						theater_num:theater_num,
-						day_num: day_num,
-						schedule_num:schedule_num
-					},
-					success:function(data){
-						$("#all").html(data);
-						
-						$("#leftBtn1").val("영화선택");
-						$("#leftBtn1").attr("type","button");
-						$("#leftBtn1").attr("class","leftBtn2");
-						
-						$("#rightBtn1").attr("type","hidden");
-						$("#rightBtn2").attr("type","button");
-						
-					}
-				});
-				
-				
+				document.reserve.submit();
 			}
-		});
-		/*  */
-		$("#all").on("click", ".adult" , function(){
-			var adult = $(this).attr("title");
-			var teen = $("#teen_num").val();
-			var newCount = (adult*1+teen*1);
-			if(sCount>newCount){
-				alert("인원수보다 선택 자리수가 더 많습니다")
-			}else{
-				var theater_num = $("#theater_num").val();
-				var day_num = $("#day_num").val();
-				var schedule_num = $("#schedule_num").val();
-				$(".adult").css("background-color","");
-				$(this).css("background-color","white");
-				$("#adult_num").val(adult);
-				if(adult=='0'){
-					$("#adult_num").val("");
-					if(teen == ''){
-						$("#people").val("");
-					}else{
-						$("#people").val("청소년"+teen+"명");
-					}
-				}else{
-					if(teen == ''){
-						$("#people").val("성인"+adult+"명");
-					}else{
-						$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
-					}
-				}
-				var people = $("#people").val();
-				$("#pCount").val(adult*1+teen*1);
-				$.ajax({
-					url:"../ajax/qrSchedule",
-					type:"post",
-					data:{
-						theater_num:theater_num,
-						day_num: day_num,
-						schedule_num:schedule_num,
-						people: people
-					},
-					success:function(data){
-						$("#qrTheater").html(data);
-					}
-				});
-			}
-		});
-		/*  */
-		$("#all").on("click", ".teen" , function(){
-			var teen = $(this).attr("title");
-			var adult = $("#adult_num").val();
-			var newCount = (adult*1+teen*1);
-			if(sCount>newCount){
-				alert("인원수보다 선택 자리수가 더 많습니다")
-			}else{
-				var theater_num = $("#theater_num").val();
-				var day_num = $("#day_num").val();
-				var schedule_num = $("#schedule_num").val();
-				$(".teen").css("background-color","");
-				$(this).css("background-color","white");
-				$("#teen_num").val(teen);
-				if(teen=='0'){
-					$("#teen_num").val("");
-					if(adult==''){
-						$("#people").val("");
-					}else{
-						$("#people").val("성인"+adult+"명");
-					}
-				}else{
-					if(adult == ''){
-						$("#people").val("청소년"+teen+"명");
-					}else{
-						$("#people").val("성인"+adult+"명, 청소년"+teen+"명");
-					}
-				}
-				var people = $("#people").val();
-				$("#pCount").val(adult*1+teen*1);
-				$.ajax({
-					url:"../ajax/qrSchedule",
-					type:"post",
-					data:{
-						theater_num:theater_num,
-						day_num: day_num,
-						schedule_num:schedule_num,
-						people: people
-					},
-					success:function(data){
-						$("#qrTheater").html(data);
-					}
-				});
-			}
-		});
-		/*  */
-		var sCount = 0;
-		$("#all").on("click", ".seats" , function(){
-			var pCount = $("#pCount").val();
-			if(sCount < pCount){
-				$(this).attr("class","seatOn");
-				$(this).css("background-color","pink")
-				var seat_num = $(this).attr("title");
-				$("#seatList").append("<input type='text' class='ss' name='seat_num' id='s"+seat_num+"' value='"+seat_num+"'>");
-				sCount++;
-			}else{
-				alert("인원보다 많은자리입니다");
-			}
-		});
-		/*  */
-		$("#all").on("click", ".seatOn" , function(){
-			if(confirm("이 좌석을 취소하시겠습니까?")){
-				$(this).attr("class","seats");
-				$(this).css("background-color","")
-				var seat_num = $(this).attr("title");
-				$("#s"+seat_num).remove();	
-				sCount--;
-			}else{
-				
-			}
-			var seat_num = $(this).attr("title");
-			var seatList = $("#seat_num").val();
 		});
 		/*  */
 		$("#leftBtn1").click(function(){
@@ -295,26 +156,7 @@
 				}
 			});	
 			
-			
 		});
-		/*  */
-		$("#rightBtn2").click(function(){
-			var movie_num = $("#movie_num").val();
-			var theater_num = $("#theater_num").val();
-			var day_num = $("#day_num").val();
-			var schedule_num = $("#schedule_num").val();
-			var adult_num = $("#adult_num").val();
-			var teen_num = $("#teen_num").val();
-			var pCount = $("#pCount").val();
-			if(sCount==pCount && sCount != 0){
-				alert("movie_num :"+movie_num+"\n theater_num :"+theater_num+"\n day_num :"+day_num
-					+"\n schedule_num :"+schedule_num+"\n adult_num :"+adult_num+"\n teen_num :"+teen_num+"\n pCount :"+pCount);
-			}else{
-				alert("인원수와 자리를 확인해주세요");
-			}
-		});
-
-		
 		/*  */
 	});
 </script>
@@ -473,19 +315,11 @@
 		<input type="button" id="rightBtn1" value="다음">
 		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
-		<form action="" name="reserve" style="clear: both;">
+		<form action="./quickReserve2" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num">
 			t<input type="text" id="theater_num" name="theater_num">
 			d<input type="text" id="day_num" name="day_num">
 			sc<input type="text" id="schedule_num" name="schedule_num">
-			ad<input type="text" id="adult_num" name="adult_num">
-			te<input type="text" id="teen_num" name="teen_num">
-			pe<input type="text" id="people" name="people">
-			pC<input type="text" id="pCount" name="pCount" value="0">
-			sn<input type="text" id="seatName">
-			<div id="seatList">
-			
-			</div>
 		</form>
 	</div>
 </body>
