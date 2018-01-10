@@ -19,15 +19,17 @@
 
 	$(function() {
 		
-		$("#warning_btn").click(function() {
+		$(".warning_btn").click(function() {
 			var review_num = $(this).attr("title");
+			alert(review_num);
 			
 			$.ajax({
 				url:"../ajax/review_warning",
 				type: "POST",
 				data: {
 					id:id,
-					review_num:review_num
+					review_num:review_num,
+					movie_num:'${movie_num}'
 				},
 				success: function(data) {
 					alert(data);					
@@ -35,7 +37,8 @@
 				}
 			});
 		});
-		
+
+
 		$(".wish_btn").click(function() {
 			var movie_num = $(this).attr("name");
 			var title = $(this).attr("title");
@@ -156,22 +159,25 @@
 <div style="margin-top: 30px;">
 	<ul style="border-top: 1px solid #999999;margin: 0 auto -2px!important; padding: 0 25px; list-style: none;">
 		<li style="width: 374px; height:150px; padding: 30px 0; border-right: 1px solid #ceccc1; float: left; background-color: red;">
-			<div id = "profile">
-				<span style = "width: 62px; height: 62px;"><img alt="사용자 프로필" src='../resources/profil/${review.fileName}'></span>
+			<div id = "profile" style="width: 62px; height: 62px; display: inline-block; float: left;">
+				<span><img style="width: 62px; height: 62px;" alt="사용자 프로필" src='../resources/profil/${review.fileName}'></span>
 			</div>
-			<div id = "id">
+			<div id = "id" style="display: inline-block; float: left;">
 				<ul style="height: 24px; list-style: none;">
 					<li style="float: left;">${review.id}</li>
 					<li style="bottom: -146px;">
 						<span style="padding-right: 8px; margin-right: 6px;">${review.reg_date}</span>
 						<span style="color: #000000;">
-							<input type="button" id = "warning_btn" name = "warning" value = "신고" title="${review.review_num}">
+						<c:choose>
+							<c:when test="${not empty member}"><input type="button" class = "warning_btn" name = "warning" value = "신고" title="${review.review_num}"></c:when>
+							<c:otherwise><a href = "../member/memberLogin"><input type="button" class = "warning_btn" name = "warning" value = "신고" title="${review.review_num}"></a></c:otherwise>
+						</c:choose>
 							${review.warning}
 						</span>
 					</li>
 				</ul>
 			</div>
-			<div id = "contents" style="margin: 4px 40px 0 88px !important;">
+			<div id = "contents" style="margin: 4px 40px 0 88px !important; display: -webkit-box;">
 				<p style="font-size: 13px; color: #000000;">${review.contents}</p>
 			</div>
 		</li>
