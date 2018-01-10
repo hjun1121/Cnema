@@ -31,4 +31,8 @@ public class ScheduleService {
 	public ScheduleDTO scheduleInfo(int sNum) throws Exception{
 		return scheduleDAO.scheduleInfo(sNum);
 	}
+	/*heeseong*/
+	public List<ScheduleDTO> scheduleList() {
+		return scheduleDAO.scheduleList();
+	}
 }
