@@ -69,7 +69,6 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	//movieWishReturn
@@ -175,9 +174,31 @@ public class AjaxController {
 		model.addAttribute("pCount", pCount);
 	}
 	
-	@RequestMapping(value="qrSeat", method=RequestMethod.POST)
-	public void qrSeat(){
+	@RequestMapping(value="qrPrice", method=RequestMethod.POST)
+	public void qrPrice(Model model , @RequestParam(defaultValue="0", required=false)int adult_num, @RequestParam(defaultValue="0", required=false)int teen_num, int sCount){
+		//sCount = 선택 좌석 수
+		//adult_num = 어른 수
+		//teen_num = 청소년 수
+		//peopel = 총 사람 수
+		System.out.println("sCount:"+sCount);
+		System.out.println("adult_num"+adult_num);
+		System.out.println("teen_num:"+teen_num);
+		int people = adult_num+teen_num;
+		int count =1;
+		int price =0;
+		for(int i =1; i<=sCount; i++){
+			if(count<=adult_num){
+				System.out.println(i+"어른");
+				price = price+8000;
+				count++;
+			}else{
+				System.out.println(i+"청소년");
+				price = price+6000;
+			}	
+			System.out.println("========");
+		}
 		
+		model.addAttribute("price", price);
 	}
 	
 	
