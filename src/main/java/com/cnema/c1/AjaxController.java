@@ -37,6 +37,26 @@ public class AjaxController {
 	private ScheduleService scheduleService;
 	
 	
+	//review_Warning
+	@RequestMapping(value = "review_warning", method = RequestMethod.POST)
+	public ModelAndView reviewWarning(int movie_num, int review_num, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = memberDTO.getId();
+		int result = 0;
+		result = movieService.reviewWarning(id, review_num);
+		if(result > 0) {
+			mv.addObject("message", "신고 성공");
+		} else {
+			mv.addObject("message", "신고  실패");
+		}
+		mv.addObject("movie_num", movie_num);
+		mv.setViewName("ajax/review_warning");
+		
+		return mv;
+	}
+
+	
 	//movieWish
 	@RequestMapping(value = "movie_wish", method=RequestMethod.POST)
 	public ModelAndView movieWish(int movie_num, HttpSession session) throws Exception {

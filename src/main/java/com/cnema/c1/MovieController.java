@@ -46,9 +46,6 @@ public class MovieController {
 		//review
 		List<ReviewDTO> review_ar = movieService.reviewList(movie_num);
 
-		for(ReviewDTO reviewDTO : review_ar) {
-			System.out.println(reviewDTO.getContents());
-		}
 		
 		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
