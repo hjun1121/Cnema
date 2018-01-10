@@ -347,7 +347,7 @@
 			</table>
 			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" id="qrSeat">
 				<tr>
-					<td id="seatN"></td>
+					<td id="seatN">좌석선택</td>
 				</tr>											
 			</table>
 		<input type="button" id="rightBtn2" value="결제">	
