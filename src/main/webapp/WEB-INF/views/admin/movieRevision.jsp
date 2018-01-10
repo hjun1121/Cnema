@@ -8,7 +8,8 @@
 </head>
 <body>
 <h3>영화 수정하기</h3>
-	<form action="movieRevision" method="POST" enctype="multipart/form-data">
+	<form action="movieRevision" method="POST">
+		<input type="hidden" name="movie_num" value="${movieDTO.movie_num }">
 		<p>name <input type="text" name="movie_name" value="${movieDTO.movie_name }" ></p>
 		<p>티저영상<input type="text" name="teaser_url" value="${movieDTO.teaser_url }"></p>
 		<p>개봉일<input type="date" name="open_date" value="${movieDTO.open_date }"></p>

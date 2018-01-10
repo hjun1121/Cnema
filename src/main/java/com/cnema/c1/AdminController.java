@@ -67,7 +67,6 @@ public class AdminController {
 	@RequestMapping(value="movieRevision",method=RequestMethod.POST)
 	public ModelAndView movieRevision(MovieDTO movieDTO,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
-		
 		int result = 0;
 		try {
 			result = movieService.movieRevision(movieDTO);
