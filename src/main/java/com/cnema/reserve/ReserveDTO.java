@@ -20,7 +20,13 @@ public class ReserveDTO {
 	private ScheduleDTO scheduleDTO;
 	private TicketPriceDTO ticketPriceDTO;
 	private MovieDTO movieDTO;
-	
+	private String day_num;
+	public String getDay_num() {
+		return day_num;
+	}
+	public void setDay_num(String day_num) {
+		this.day_num = day_num;
+	}
 	public int getReserve_num() {
 		return reserve_num;
 	}
