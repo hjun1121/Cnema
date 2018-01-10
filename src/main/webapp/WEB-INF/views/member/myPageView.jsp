@@ -48,10 +48,12 @@
 	
 	<!-- Admin -->
 	<h1>관리자</h1>
-	<h3>영화 목록</h3>
-	<a href="../admin/movieList">영화 목록</a>
+	<h3>무비 리스트</h3>
+	<a href="../admin/movieList">무비 리스트</a>
 	<h3>극장목록</h3>
 	<a href="../admin/theaterList">극장 목록</a>
+	<h3>상영시간표 </h3>
+	<a href="../admin/scheduleList">상영시간표</a>
 	<h3>회원 목록</h3>
 	<a href="">회원 목록</a>
 </body>

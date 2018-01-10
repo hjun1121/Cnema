@@ -53,7 +53,9 @@
 .sect-cinfo .address p.vl > span:first-child {padding-left:0; margin-left:0; border-left:0;}
 .sect-cinfo .address p.copyright {position:absolute; right:0; bottom:0; font-family:Helvetica, verdana, sans-serif; font-size:11px;}
 
-
+.footer_logo{
+	width: 90px;
+}
 /* Background */
 .sect-service .util li > a, 
 .sect-service .gnb li > a, 
@@ -66,7 +68,9 @@
 .line-dot, 
 .sect-smuse li > a, 
 .sect-cinfo .share a, 
-.sect-cinfo .logo {overflow:hidden; background-image:url(../../../resources/images/common/sprite/common_sprite_area_v4_2016.png); background-repeat:no-repeat; text-indent:100%; white-space:nowrap;}
+.sect-cinfo .logo {
+	overflow:hidden; background-image:url(../../../resources/images/common/sprite/common_sprite_area_v4_2016.png); 
+	background-repeat:no-repeat; text-indent:100%; white-space:nowrap;}
 .lnb h2, 
 .sect-smuse h2, 
 .sect-cinfo h2 {font:0px/0 a; visibility:hidden;}
