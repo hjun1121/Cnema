@@ -17,6 +17,7 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.movie.WarningDTO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
@@ -41,15 +42,26 @@ public class AjaxController {
 	@RequestMapping(value = "review_warning", method = RequestMethod.POST)
 	public ModelAndView reviewWarning(int movie_num, int review_num, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		List<WarningDTO> warning_ar = movieService.warningList(review_num); //리뷰 신고자 리스트
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		String id = memberDTO.getId();
 		int result = 0;
-		result = movieService.reviewWarning(id, review_num);
-		if(result > 0) {
-			mv.addObject("message", "신고 성공");
-		} else {
-			mv.addObject("message", "신고  실패");
+		
+		for(WarningDTO warningDTO : warning_ar) {
+			if(warningDTO.getId().equals(id)) { //신고자 리스트에 아이디가 있으면
+				mv.addObject("message", "이미 신고한 리뷰입니다.");
+				System.out.println("ddddddd");
+			} else {
+				System.out.println("aaaaaaaaa");
+				result = movieService.reviewWarning(id, review_num);
+				if(result > 0) {
+					mv.addObject("message", "신고 성공");
+				} else {
+					mv.addObject("message", "신고  실패");
+				}
+			}
 		}
+		
 		mv.addObject("movie_num", movie_num);
 		mv.setViewName("ajax/review_warning");
 		

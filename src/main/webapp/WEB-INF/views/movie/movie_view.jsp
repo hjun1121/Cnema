@@ -27,13 +27,12 @@
 				url:"../ajax/review_warning",
 				type: "POST",
 				data: {
-					id:id,
 					review_num:review_num,
 					movie_num:'${movie_num}'
 				},
 				success: function(data) {
 					alert(data);					
-					location.href="movie_view?movie_num=${movie_num}";
+					//location.href="movie_view?movie_num=${movie_num}";
 				}
 			});
 		});

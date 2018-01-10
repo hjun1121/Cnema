@@ -20,6 +20,12 @@ public class MovieDAO {
 	private static final String NAMESPACE = "movieMapper.";
 
 	
+	//warningList
+	public List<WarningDTO> warningList(int review_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"warningList", review_num);
+	}
+	
+	
 	//warningUpdate
 	public int warningUpdate(int review_num) throws Exception {
 		return sqlSession.update(NAMESPACE+"warningUpdate", review_num);
