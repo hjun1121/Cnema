@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>${movie.movie_name} &gt; 상세정보</title>
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
@@ -18,6 +19,23 @@
 
 	$(function() {
 		
+		$("#warning_btn").click(function() {
+			var review_num = $(this).attr("title");
+			
+			$.ajax({
+				url:"../ajax/review_warning",
+				type: "POST",
+				data: {
+					id:id,
+					review_num:review_num
+				},
+				success: function(data) {
+					alert(data);					
+					location.href="movie_view?movie_num=${movie_num}";
+				}
+			});
+		});
+		
 		$(".wish_btn").click(function() {
 			var movie_num = $(this).attr("name");
 			var title = $(this).attr("title");
@@ -27,12 +45,11 @@
 					url: "../ajax/movie_wish_return",
 					type: "POST",
 					data: {
-						movie_num:movie_num,
-						kind:'${kind}'
+						movie_num:movie_num
 					},
 					success: function(data) {
 						alert(data);
-						location.href="movie_chart?kind=${kind}";
+						location.href="movie_view?movie_num=${movie_num}";
 					}
 				});
 
@@ -41,16 +58,18 @@
 					url: "../ajax/movie_wish",
 					type: "POST",
 					data: {
-						movie_num:movie_num,
-						kind:'${kind}'
+						movie_num:movie_num
 					},
 					success: function(data) {
 						alert(data);
-						location.href="movie_chart?kind=${kind}";
+						location.href="movie_view?movie_num=${movie_num}";
 					}
 				});
 			}
+			
 		});
+		
+	});
 
 </script>
 </head>
@@ -110,9 +129,8 @@
 					<input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"
 					style="display: inline-block; width: 30px; height: 28px;">
 				</c:if>
-			${movie.wish}
 			</c:if>
-			<c:if test="${empty member }">
+			<c:if test="${empty member}">
 					<a href="../member/memberLogin"><input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"
 					style="display: inline-block; width: 30px; height: 28px;"></a>
 			</c:if>
@@ -130,15 +148,37 @@
 
 <div style="margin-bottom: 20px;width: 100%; height: 39px; background: #e2e0d2; clear:both;">
 	<h4 style="float: left; margin-left: 16px; line-height: 39px; color: #333333; font-size: 13px; letter-spacing: -1px;">트레일러</h4>
-	
 </div>
 <iframe width="560" height="315" src="${movie.teaser_url}"></iframe>
 
-<div style="">
+<h3>REVIEW</h3>
+<c:forEach items="${review}" var="review">
+<div style="margin-top: 30px;">
 	<ul style="border-top: 1px solid #999999;margin: 0 auto -2px!important; padding: 0 25px; list-style: none;">
-		<li style="width: 374px; border-right: 1px solid #ceccc1; float: left;">
+		<li style="width: 374px; height:150px; padding: 30px 0; border-right: 1px solid #ceccc1; float: left; background-color: red;">
+			<div id = "profile">
+				<span style = "width: 62px; height: 62px;"><img alt="사용자 프로필" src='../resources/profil/${review.fileName}'></span>
+			</div>
+			<div id = "id">
+				<ul style="height: 24px; list-style: none;">
+					<li style="float: left;">${review.id}</li>
+					<li style="bottom: -146px;">
+						<span style="padding-right: 8px; margin-right: 6px;">${review.reg_date}</span>
+						<span style="color: #000000;">
+							<input type="button" id = "warning_btn" name = "warning" value = "신고" title="${review.review_num}">
+							${review.warning}
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div id = "contents" style="margin: 4px 40px 0 88px !important;">
+				<p style="font-size: 13px; color: #000000;">${review.contents}</p>
+			</div>
+		</li>
 	</ul>
 </div>
+</c:forEach>
+
 
 <!-- 	<table> -->
 <%-- 		<tr><td><img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'></td></tr> --%>
@@ -173,8 +213,7 @@
 <!-- 	</table> -->
 </div>
 </div>
-<hr>
-<div style="height: 200px;"></div>
+<div style="height: 1000px;"></div>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	
 </body>
 </html>

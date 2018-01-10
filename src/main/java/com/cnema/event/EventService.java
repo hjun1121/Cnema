@@ -37,7 +37,7 @@ public class EventService {
 	}
 	
 	public BoardDTO selectOne(int num) throws Exception {
-		eventDAO.hitUpdate(num);
+		//eventDAO.hitUpdate(num);
 		BoardDTO boardDTO = eventDAO.selectOne(num);
 		//((eventDAODTO)boardDTO).setFileNames(fileDAO.selectList(num));
 		
@@ -58,8 +58,14 @@ public class EventService {
 	}
 
 
-	public int update(BoardDTO boardDTO) throws Exception {
-		int result = eventDAO.update(boardDTO);
+	public int update(EventDTO eventDTO, HttpSession session) throws Exception {
+		MultipartFile file = eventDTO.getFile();
+		String name = fileSaver.fileSave(file, session, "board");
+		
+		eventDTO.setFileName(name);
+		eventDTO.setOriName(file.getOriginalFilename());
+		
+		int result = eventDAO.update(eventDTO);
 		return result;
 	}
 	

@@ -14,10 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class MovieDAO {
+	
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "movieMapper.";
 
+	
+	//reviewList
+	public List<ReviewDTO> reviewList(int movie_num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("movie_num", movie_num);
+		return sqlSession.selectList(NAMESPACE+"reviewList", map);
+	}
 
 	//selectOne
 	public MovieDTO selectOne(int movie_num) throws Exception{
@@ -75,7 +83,7 @@ public class MovieDAO {
 		map.put("kind", kind);
 		return sqlSession.selectList(NAMESPACE+"movieList", map);
 	}
-	
+
 	/*heeseong*/
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"movieInfo",movie_num);
@@ -84,5 +92,9 @@ public class MovieDAO {
 	/*heeseong*/
 	public List<MovieDTO> movieAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"movieAList");
+	}
+	/*heeseong*/
+	public int movieRevision(MovieDTO movieDTO) {
+		return sqlSession.update(NAMESPACE+"movieRevision",movieDTO);
 	}
 }

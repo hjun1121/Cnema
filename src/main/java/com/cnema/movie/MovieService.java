@@ -5,12 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.mock.web.portlet.MockActionRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.cnema.member.MemberDTO;
 import com.cnema.util.FileSaver;
 
 
@@ -21,7 +18,12 @@ public class MovieService {
 	@Inject
 	private FileSaver fileSaver;
 	
-	
+
+	//review_list
+	public List<ReviewDTO> reviewList(int movie_num) throws Exception {
+		return movieDAO.reviewList(movie_num);
+	}
+
 	public List<MovieDTO> movieList(String kind) throws Exception {
 		return movieDAO.movieList(kind);
 	}
@@ -67,5 +69,9 @@ public class MovieService {
 	/*heeseong*/
 	public List<MovieDTO> movieAList() throws Exception {
 		return movieDAO.movieAList();
+	}
+	/*heeseong*/
+	public int movieRevision(MovieDTO movieDTO) throws Exception{
+		return movieDAO.movieRevision(movieDTO);
 	}
 }
