@@ -40,9 +40,10 @@ $(function(){
 		<c:forEach items="${theaterList }" var="tList">
 		<tr>
 			<td>${tList.area }</td>
-			<td>${tList.location }</td>
+			<td><a href="./theaterView?theater_num=${tList.theater_num}">${tList.location }</a></td>
 		</tr>
 		</c:forEach>
 	</table>
+	<a href="./theaterInsert"><Button>글쓰기</Button></a>
 </body>
 </html>

@@ -38,5 +38,17 @@ public class TheaterService {
 	public List<TheaterDTO> thAreaList(String search) throws Exception{
 		return theaterDAO.thAreaList(search);
 	}
+	/*heeseong*/
+	public TheaterDTO theaterInfo(int theater_num) {
+		return theaterDAO.theaterInfo(theater_num);
+	}
+	/*heeseong*/
+	public int theaterRevision(TheaterDTO theaterDTO) {
+		return theaterDAO.theaterRevision(theaterDTO);
+	}
+	/*heeseong*/
+	public int theaterRemove(int theater_num) {
+		return theaterDAO.theaterRemove(theater_num);
+	}
 	
 }

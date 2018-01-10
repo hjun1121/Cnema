@@ -113,4 +113,55 @@ public class AdminController {
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}
+	@RequestMapping(value="theaterView",method=RequestMethod.GET)
+	public ModelAndView theaterView(int theater_num){
+		ModelAndView mv = new ModelAndView();
+		
+		TheaterDTO theaterDTO = null;
+		theaterDTO = theaterService.theaterInfo(theater_num);
+		
+		mv.addObject("theaterDTO",theaterDTO);
+		mv.setViewName("admin/theaterView");
+		return mv;
+	}
+	@RequestMapping(value="theaterRevision",method=RequestMethod.GET)
+	public ModelAndView theaterRevision(int theater_num){
+		ModelAndView mv = new ModelAndView();
+		
+		TheaterDTO theaterDTO = null;
+		theaterDTO = theaterService.theaterInfo(theater_num);
+		
+		mv.addObject("theaterDTO",theaterDTO);
+		mv.setViewName("admin/theaterRevision");
+		return mv;
+	}
+	
+	@RequestMapping(value="theaterRevision",method=RequestMethod.POST)
+	public ModelAndView theaterRevision(TheaterDTO theaterDTO,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = theaterService.theaterRevision(theaterDTO);
+		if(result>0) {
+			rd.addFlashAttribute("message", "극장 수정 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "극장 수정 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	@RequestMapping(value="theaterRemove",method=RequestMethod.GET)
+	public ModelAndView theaterRemove(int theater_num,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = theaterService.theaterRemove(theater_num);
+		if(result>0) {
+			rd.addFlashAttribute("message", "극장 삭제 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "극장 삭제 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
 }
