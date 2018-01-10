@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cnema.member.MemberDTO;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.movie.ReviewDTO;
 import com.cnema.movie.WishDTO;
 
 @Controller
@@ -42,6 +43,14 @@ public class MovieController {
 			mv.addObject("wish_list", wish);
 		}
 		
+		//review
+		List<ReviewDTO> review_ar = movieService.reviewList(movie_num);
+
+		for(ReviewDTO reviewDTO : review_ar) {
+			System.out.println(reviewDTO.getContents());
+		}
+		
+		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
 		mv.addObject("movie_num", movie_num);
 		mv.setViewName("movie/movie_view");
