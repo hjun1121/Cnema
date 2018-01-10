@@ -164,4 +164,24 @@ public class AdminController {
 		}
 		return mv;
 	}
+	@RequestMapping(value="theaterInsert",method=RequestMethod.GET)
+	public ModelAndView theaterInsert(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/theaterInsert");
+		return mv;
+	}
+	@RequestMapping(value="theaterInsert",method=RequestMethod.POST)
+	public ModelAndView theaterInsert(TheaterDTO theaterDTO,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = theaterService.theaterInsert(theaterDTO);
+		if(result>0) {
+			rd.addFlashAttribute("message", "극장 글쓰기 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "극장 글쓰기 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
 }

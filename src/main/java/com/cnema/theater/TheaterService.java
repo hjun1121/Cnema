@@ -50,5 +50,9 @@ public class TheaterService {
 	public int theaterRemove(int theater_num) {
 		return theaterDAO.theaterRemove(theater_num);
 	}
+	/*heeseong*/
+	public int theaterInsert(TheaterDTO theaterDTO) {
+		return theaterDAO.theaterInsert(theaterDTO);
+	}
 	
 }

@@ -57,4 +57,8 @@ public class TheaterDAO {
 	public int theaterRemove(int theater_num) {
 		return sqlSession.delete(NAMESPACE+"theaterRemove",theater_num);
 	}
+	/*heeseong*/
+	public int theaterInsert(TheaterDTO theaterDTO) {
+		return sqlSession.insert(NAMESPACE+"theaterInsert",theaterDTO);
+	}
 }

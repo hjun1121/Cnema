@@ -37,5 +37,9 @@
   	<delete id="theaterRemove" parameterType="int">
   		delete from theater where theater_num=#{theater_num}
   	</delete>
+  	<!-- heeseong -->
+  	<insert id="theaterInsert" parameterType="theaterDTO">
+  		insert into theater values(movie_seq.nextval,#{area},#{location},#{x_position},#{y_position})
+  	</insert>
   	
   </mapper>
