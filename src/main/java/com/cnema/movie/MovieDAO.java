@@ -20,6 +20,27 @@ public class MovieDAO {
 	private static final String NAMESPACE = "movieMapper.";
 
 	
+	//warningList
+	public List<WarningDTO> warningList(int review_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"warningList", review_num);
+	}
+	
+	
+	//warningUpdate
+	public int warningUpdate(int review_num) throws Exception {
+		return sqlSession.update(NAMESPACE+"warningUpdate", review_num);
+	}
+	
+	
+	//warningInsert
+	public int warningInsert(String id, int review_num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("review_num", review_num);
+		return sqlSession.insert(NAMESPACE+"warningInsert", map);
+	}
+	
+	
 	//reviewList
 	public List<ReviewDTO> reviewList(int movie_num) throws Exception {
 		Map<String, Object> map = new HashMap<>();

@@ -5,20 +5,72 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+	
+$(function(){
+	
+	
+	
+	$("#endEvent").click(function(){
+		
+		$.ajax({
+			url:"../ajax/endList",
+			type:"POST",
+			data:{
+			 sel: false
+			},
+			success:function(data){
+				$("#firstList").hide();
+				$("#eventList").html(data);
+				},
+			error : function(){
+				
+			}
+		});
+	});
+	
+$("#ingEvent").click(function(){
+		
+		$.ajax({
+			url:"../ajax/endList",
+			type:"POST",
+			data:{
+				sel:true
+			},
+			success:function(data){
+				$("#eventList").html(data);
+				},
+			error : function(){
+				
+			}
+		});
+	});
+	
+	
+	
+});
+	
+</script>
 </head>
 
 <body>
 	<div class="eventTitle">
-    <h3>EVENT</h3>
-    <hr>
+    <h1>EVENT</h1>
+    
     <div class="submenu">
     <button id="ingEvent">진행중인 이벤트</button>
     <button id="endEvent">종료된 이벤트</button>
-    
     </div>
+    
+    <br>
+    <hr>
+   
 </div>
-	<div>
+	<div id="eventList"></div> 
+	
+	<div id="firstList">
 		<ul>
 			<c:forEach items="${list}" var="dto">
 			<li>
@@ -46,10 +98,6 @@
 		</ul>
 	
 	
-	</div>
-
-	
-	
 	<div>
 		<c:if test="${pager.curBlock gt 1}">
 			<span class="list" title="${pager.startNum-1}">[이전]</span>
@@ -61,7 +109,8 @@
 			<span class="list" title="${pager.lastNum+1}">[다음]</span>
 		</c:if>
 	</div>
-	
+
+</div>	
 	<a href="./eventWrite">글쓰기</a>
 </body>
 </html>
