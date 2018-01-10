@@ -111,17 +111,15 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
-		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		
 		try {
 			mList = movieService.movieAList();
-			memList = memberService.memberList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
 			mv.addObject("mList",mList);
-			mv.addObject("memList",memList);
 			
 			mv.setViewName("member/myPageView");
 		}else{

@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>극장상세페이지(관리자용)</title>
+<title>영화관수정페이지(관리자용)</title>
 </head>
 <body>
-<h3>극장상세페이지</h3>
+<h3>영화관수정페이지</h3>
 	<form action="./theaterRevision" method="POST">
 	<input type="hidden" name="theater_num" value="${theaterDTO.theater_num }">
 	<table>

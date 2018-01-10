@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.member.MemberDTO;
+import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.theater.ScheduleDTO;
@@ -29,6 +31,8 @@ public class AdminController {
 	TheaterService theaterService;
 	@Inject
 	ScheduleService scheduleService;
+	@Inject
+	MemberService memberService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(){
@@ -221,6 +225,44 @@ public class AdminController {
 		sList = scheduleService.scheduleAList();
 		mv.addObject("sList", sList);
 		mv.setViewName("admin/scheduleList");
+		return mv;
+	}
+	
+	@RequestMapping(value="scheduleView", method=RequestMethod.GET)
+	public ModelAndView scheduleView(int schedule_num) {
+		ModelAndView mv = new ModelAndView();
+		ScheduleDTO scheduleDTO = null;
+		try {
+			scheduleDTO = scheduleService.scheduleInfo(schedule_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("scheduleDTO", scheduleDTO);
+		mv.setViewName("admin/scheduleView");
+		return mv;
+	}
+	
+	@RequestMapping(value="scheduleRevision", method=RequestMethod.GET)
+	public ModelAndView scheduleRevision(ScheduleDTO scheduleDTO) {
+		ModelAndView mv = new ModelAndView();
+		List<ScheduleDTO> sList = new ArrayList<>();
+		sList = scheduleService.scheduleAList();
+		mv.addObject("sList", sList);
+		mv.setViewName("admin/scheduleList");
+		return mv;
+	}
+	
+	@RequestMapping(value="memberList", method=RequestMethod.GET)
+	public ModelAndView memberList() {
+		ModelAndView mv = new ModelAndView();
+		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		try {
+			memList = memberService.memberList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("memList", memList);
+		mv.setViewName("admin/memberList");
 		return mv;
 	}
 }

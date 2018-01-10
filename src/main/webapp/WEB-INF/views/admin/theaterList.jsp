@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>극장목록(관리자용)${fn:length(theaterList)}개</title>
+<title>영화관목록(관리자용)${fn:length(theaterList)}개</title>
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
@@ -25,7 +25,7 @@ $(function(){
 </script>
 </head>
 <body>
-<h3>극장목록</h3>
+<h3>영화관목록</h3>
 	<select id="kind">
 		<option class="kind" value="location">지점</option>
 		<option class="kind" value="area">지역</option>

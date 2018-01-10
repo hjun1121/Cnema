@@ -50,8 +50,7 @@ public class MemberService {
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberList() throws Exception{
-		//return memberDAO.memberList();
-		return null;
+		return memberDAO.memberList();
 	}
 	/*heeseong*/
 	public int withdrawal(String id) throws Exception{
