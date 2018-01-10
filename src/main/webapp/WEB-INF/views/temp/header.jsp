@@ -1,28 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 	<!-- Header -->
 	<div id="header">
 		<div class="head">
-			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/Cnema_logo1.png" alt="CGV"></a></h1>
+			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/Cnema_logo1.png" alt="CNEMA"></a></h1>
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
-					<!-- <li><a href="#" class="app" target="_blank" title="CGV앱 4.0 설치 새창"><span>CGV앱 4.0 설치</span></a></li> -->
 					<li><a href="#" class="like" target="_blank" title="Facebook 좋아요! 새창"><span>Facebook 좋아요!</span></a></li>
 				    <li><a href="#" class="insta" target="_blank" title="Instagram Follow"><span>Instagram Follow</span></a></li>
                 	
 				</ul>
 				<ul class="gnb">
-                    <li><a href="#" class="login"><span>로그인</span></a></li>
-					<li><a href="#" class="join"><span>회원가입</span></a></li>
-					<li><a href="#" class="mycgv required-login" data-url="/user/mycgv/"><span>MY CGV</span></a></li>
-					<li><a href="#" class="vip"><span>VIP LOUNGE</span></a></li>
-					<li><a href="#" title="새창" class="club specialclub"><span>CLUB 서비스</span></a></li>
-					<!-- 2014.12.8 리뉴얼-->
-					<li><a href="#" class="customer"><span>고객센터</span></a></li>
-				    <!-- 2014.12.8 리뉴얼-->
-					<!-- <li><a href="#" class="showtimes"><span>ENGLISH TICKETING</span></a></li> -->
+				<c:if test="${empty member }">
+                    <li><a href="#"  class="login" >로그인</a></li>
+					<li><a href="#" class="join">회원가입</a></li>
+				</c:if>
+				<c:if test="${!empty member }">
+					<li><a href="#" class="join">로그아웃</a></li>
+					<li><a href="#" class="myPage">마이페이지</a></li>
+				</c:if>
+					<li><a href="#" class="customer">고객센터</a></li>
+					<li><a href="#" class="vip">찾아오시는 길</a></li>
 				</ul>
 			</div>
             
