@@ -16,11 +16,17 @@ $(function(){
 	
 	$("#join").click(function(){
 		
+		var num = $("#num").val();
+		var id = $("#id").val();
+		var type= Math.floor(Math.random() * 2);//0 또는 1 만 나오게 한다.
 		$.ajax({
 			url:"../ajax/eventJoin",
 			type:"POST",
 			data:{
-			 
+			 num:num,
+			 id:id,
+			 type:type
+				 
 			},
 			success:function(data){
 				alert(data);
@@ -58,6 +64,9 @@ ${view.contents}
 <hr>
 <div class="eventJoin">
 <h3>이벤트 참여하기</h3>
+<input type="hidden" id="num" name="num" value="${view.num }">
+<input type="hidden" id="id" value="${member.id}">
+
 <button id="join">바로 참여하기</button>
 
 

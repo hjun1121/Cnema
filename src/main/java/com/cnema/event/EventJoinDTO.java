@@ -4,6 +4,7 @@ public class EventJoinDTO {
 	private int num;
 	private String id;
 	private int type;
+	
 	public int getNum() {
 		return num;
 	}
