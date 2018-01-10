@@ -136,6 +136,22 @@
 				}
 				sCount++;
 
+				var adult_num = $("#adult_num").val();
+				var teen_num = $("#teen_num").val();
+				$.ajax({
+					url:"../ajax/qrPrice",
+					type:"post",
+					data:{
+						sCount:sCount,
+						adult_num:adult_num,
+						teen_num:teen_num
+					},
+					success:function(data){
+						$("#qrPrice").html(data);
+					}
+				});
+				
+				
 			}else{
 				alert("인원보다 많은자리입니다");
 			}
@@ -152,6 +168,21 @@
 				$("#"+seat_num).remove();
 				sCount--;
 				
+				var adult_num = $("#adult_num").val();
+				var teen_num = $("#teen_num").val();
+				$.ajax({
+					url:"../ajax/qrPrice",
+					type:"post",
+					data:{
+						sCount:sCount,
+						adult_num:adult_num,
+						teen_num:teen_num
+					},
+					success:function(data){
+						$("#qrPrice").html(data);
+					}
+				});
+				
 			}else{
 				
 			}
@@ -160,22 +191,7 @@
 		});
 		/*  */
 		$("#leftBtn1").click(function(){
-			var sn = $("#seatName").val();
-			$(".ss").each(function(index, item){
-				alert(index);
-				var sName = $(this).val();
-				$("#seatName").val(sn+sName);
-			});
-			$.ajax({
-				url:"../ajax/qrSeat",
-				type:"post",
-				data:{
-					
-				},
-				success:function(data){
-					$("#qrSeat").html(data);
-				}
-			});	
+
 		});
 		/*  */
 		$("#rightBtn2").click(function(){
@@ -350,6 +366,9 @@
 					<td id="seatN">좌석선택</td>
 				</tr>											
 			</table>
+			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" id="qrPrice">
+															
+			</table>			
 		<input type="button" id="rightBtn2" value="결제">	
 		</form>
 		

@@ -6,6 +6,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+$(function(){
+	var message = '${message}';
+	if(message != ""){
+		alert(message);
+	}
+	
+	$("#join").click(function(){
+		
+		$.ajax({
+			url:"../ajax/eventJoin",
+			type:"POST",
+			data:{
+			 
+			},
+			success:function(data){
+				alert(data);
+				},
+			error : function(){
+				
+			}
+		});
+		
+		
+	});
+});
+
+
+</script>
 </head>
 <body>
 
@@ -24,9 +54,10 @@ ${view.contents}
 <div class="eventViewFile">
 첨부 파일 다운로드
 </div>
-
+<br>
+<hr>
 <div class="eventJoin">
-<p>이벤트 참여하기</p>
+<h3>이벤트 참여하기</h3>
 <button id="join">바로 참여하기</button>
 
 

@@ -32,7 +32,7 @@
 				},
 				success: function(data) {
 					alert(data);					
-					//location.href="movie_view?movie_num=${movie_num}";
+					location.href="movie_view?movie_num=${movie_num}";
 				}
 			});
 		});

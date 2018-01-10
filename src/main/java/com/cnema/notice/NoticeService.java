@@ -18,6 +18,7 @@ public class NoticeService {
 	@Inject
 	private NoticeDAO noticeDAO;
 	
+	
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		RowNum rowNum = listData.makeRow();

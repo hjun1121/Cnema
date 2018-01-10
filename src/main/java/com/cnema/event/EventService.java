@@ -22,7 +22,18 @@ public class EventService {
 	private EventDAO eventDAO;
 	@Inject
 	private FileSaver fileSaver;
+	@Inject
+	private EventJoinDAO eventJoinDAO;
 	
+	//이벤트 신청 당첨 유무
+	public int eventJoin(EventJoinDTO eventJoinDTO) throws Exception {
+		
+		int result=eventJoinDAO.insert(eventJoinDTO);
+		
+		return result;
+	}
+	
+	//기본 진행중인 이벤트 리스트 
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		RowNum rowNum = listData.makeRow();
@@ -33,6 +44,20 @@ public class EventService {
 		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
 		mv.setViewName("event/eventList");
+		return mv;
+	}
+	
+	//종류된 이벤트 리스트
+	public ModelAndView endSelectList(ListData listData) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(eventDAO.endTotalCount(rowNum));
+	
+		
+		List<EventDTO> ar = eventDAO.endSelectList(rowNum);
+		mv.addObject("pager", pager);
+		mv.addObject("list", ar);
+		mv.setViewName("ajax/endList");
 		return mv;
 	}
 	
@@ -59,9 +84,9 @@ public class EventService {
 
 
 	public int update(EventDTO eventDTO, HttpSession session) throws Exception {
+		
 		MultipartFile file = eventDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "board");
-		
 		eventDTO.setFileName(name);
 		eventDTO.setOriName(file.getOriginalFilename());
 		
