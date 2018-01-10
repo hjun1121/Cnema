@@ -5,30 +5,30 @@
    
    <mapper namespace="eventMapper">
   
-  <select id="selectList" parameterType="com.cnema.util.RowNum" resultType="EventDTO">
+  <select id="ingSelectList" parameterType="com.cnema.util.RowNum" resultType="EventDTO">
   		select * from
   		(select rownum r, N.* from
-  		(select * from event
-		<if test="kind == 'Title'">
-			where Title like '%'||#{search}||'%'
-		</if>
-	
-		<if test="kind == 'Contents'">
-			where Contents like '%'||#{search}||'%'
-		</if>
+  		(select * from event where to_date(e_date, 'YY-MM-DD')>= to_date(sysdate,'YY-MM-DD')
 		order by num desc) N)
   		where r between #{startRow} and #{lastRow}
   	</select>
   	
-  	<select id="totalCount" parameterType="com.cnema.util.RowNum" resultType="int">
-  		select count(num) from event
-  		<if test="kind == 'Title'">
-  			where title like '%'||#{search}||'%'
-  		</if>
-  
-  		<if test="kind == 'Contents'">
-  			where contents like '%'||#{search}||'%'
-  		</if>
+  <select id="endSelectList" parameterType="com.cnema.util.RowNum" resultType="EventDTO">
+  		select * from
+  		(select rownum r, N.* from
+  		(select * from event where to_date(e_date, 'YY-MM-DD') <![CDATA[ < ]]> to_date(sysdate,'YY-MM-DD')
+		order by num desc) N)
+  		where r between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<select id="ingTotalCount" parameterType="com.cnema.util.RowNum" resultType="int">
+  		select count(num) from event where to_date(e_date, 'YY-MM-DD')>= to_date(sysdate,'YY-MM-DD')
+  		
+  	</select>
+  	
+  	<select id="endTotalCount" parameterType="com.cnema.util.RowNum" resultType="int">
+  		select count(num) from event where to_date(e_date, 'YY-MM-DD') <![CDATA[ < ]]> to_date(sysdate,'YY-MM-DD')
+  		
   	</select>
   
     <insert id="insert" parameterType="com.cnema.board.BoardDTO">

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cnema.event.EventService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
@@ -22,6 +23,7 @@ import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.ListData;
 
 @Controller
 @RequestMapping(value="/ajax/*")
@@ -35,8 +37,26 @@ public class AjaxController {
 	private MovieService movieService;
 	@Inject
 	private ScheduleService scheduleService;
+	@Inject
+	private EventService eventService;
 	
+	@RequestMapping(value="endList", method=RequestMethod.POST)
+	public ModelAndView endList(ListData listData,Boolean sel, ModelAndView mv) throws Exception{
+		
+		//endList
+		if(sel){
+		mv = eventService.selectList(listData);
+		}
+		
+		//ingList
+		else{
+			mv = eventService.endSelectList(listData);
+		}
+		return mv;
+		
+	}
 	
+
 	//movieWish
 	@RequestMapping(value = "movie_wish", method=RequestMethod.POST)
 	public ModelAndView movieWish(int movie_num, HttpSession session) throws Exception {

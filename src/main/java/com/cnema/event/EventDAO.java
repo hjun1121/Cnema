@@ -21,7 +21,7 @@ public class EventDAO implements BoardDAO{
 	
 	@Override
 	public List<BoardDTO> selectList(RowNum rowNum) throws Exception {
-		return sqlSession.selectList(namespace+"selectList", rowNum);
+		return sqlSession.selectList(namespace+"ingSelectList", rowNum);
 	}
 	@Override
 	public BoardDTO selectOne(int num) throws Exception {
@@ -43,8 +43,18 @@ public class EventDAO implements BoardDAO{
 	}
 	@Override
 	public int totalCount(RowNum rowNum) throws Exception {
-		return sqlSession.selectOne(namespace+"totalCount", rowNum);
+		return sqlSession.selectOne(namespace+"ingTotalCount", rowNum);
 	}
+	//종료된 이벤트
+	public int endTotalCount(RowNum rowNum) throws Exception{
+		return sqlSession.selectOne(namespace+"endTotalCount", rowNum);
+	}
+	
+	public List<EventDTO> endSelectList(RowNum rowNum) throws Exception {
+		return sqlSession.selectList(namespace+"endSelectList", rowNum);
+	}
+	
+	
 	@Override
 	public int hitUpdate(int num) throws Exception {
 		return sqlSession.update(namespace+"hitUpdate", num);

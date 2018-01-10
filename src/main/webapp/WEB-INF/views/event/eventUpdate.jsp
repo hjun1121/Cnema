@@ -74,6 +74,7 @@
 <form action="eventUpdate" method="post" id="frm" enctype="multipart/form-data">
 <div class="eventViewhead">
     <h3><input type="text" name="title" value="${view.title }"></h3> 
+   <input type="hidden" name="num" value="${view.num }">
     <em class="date">
         <span>기간: </span>
         <input type="date" name="s_date" value="${view.s_date }">~ 

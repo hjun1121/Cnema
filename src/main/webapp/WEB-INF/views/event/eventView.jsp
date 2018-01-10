@@ -6,6 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+$(function(){
+	var message = '${message}';
+	if(message != ""){
+		alert(message);
+	}
+	
+	$("#join").click(function(){
+		/* var cur = $(this).attr("title");
+		var s = '${pager.search}';
+		var t = '${pager.kind}';
+		document.frm.curPage.value=cur;
+		document.frm.search.value=s;
+		document.frm.kind.value=t;
+		document.frm.submit(); */
+		
+		
+	});
+});
+
+
+</script>
 </head>
 <body>
 
