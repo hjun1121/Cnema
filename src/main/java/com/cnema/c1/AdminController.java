@@ -203,6 +203,24 @@ public class AdminController {
 		return mv;
 	}
 	
+	@RequestMapping(value="scheduleInsert", method=RequestMethod.GET)
+	public void scheduleInsert() {
+	}
+	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
+	public void scheduleInsert(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = scheduleService.scheduleInsert(scheduleDTO);
+		
+		if(result>0){
+			rd.addAttribute("message", "글쓰기 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message", "글쓰기 실패");
+			mv.setViewName("redirect:../");
+		}
+	}
+	
 	@RequestMapping(value="scheduleView", method=RequestMethod.GET)
 	public ModelAndView scheduleView(int schedule_num) {
 		ModelAndView mv = new ModelAndView();

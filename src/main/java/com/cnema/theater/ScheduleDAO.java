@@ -50,4 +50,8 @@ public class ScheduleDAO {
 	public int scheduleRemove(int schedule_num) {
 		return sqlSession.delete(NAMESPACE+"scheduleRemove",schedule_num);
 	}
+	/*heeseong*/
+	public int scheduleInsert(ScheduleDTO scheduleDTO) {
+		return sqlSession.insert(NAMESPACE+"scheduleInsert",scheduleDTO);
+	}
 }

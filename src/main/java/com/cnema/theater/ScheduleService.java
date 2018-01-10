@@ -43,4 +43,8 @@ public class ScheduleService {
 	public int scheduleRemove(int schedule_num) {
 		return scheduleDAO.scheduleRemove(schedule_num);
 	}
+	/*heeseong*/
+	public int scheduleInsert(ScheduleDTO scheduleDTO) {
+		return scheduleDAO.scheduleInsert(scheduleDTO);
+	}
 }

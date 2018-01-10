@@ -40,6 +40,11 @@
   	</select>
   	
   	<!-- heeseong -->
+  	<delete id="scheduleInsert" parameterType="scheduleDTO">
+  		insert into schedule values(movie_seq.nextval,#{screen_num},#{movie_num},#{in_time},#{out_time},#{day})
+  	</delete>
+  	
+  	<!-- heeseong -->
   	<select id="scheduleAList" resultType="scheduleDTO">
   		select * from schedule
   	</select>

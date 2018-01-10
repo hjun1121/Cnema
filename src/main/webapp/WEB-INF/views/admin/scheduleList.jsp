@@ -6,7 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>상영시간표(관리자용)</title>
+<script type="text/javascript">
+$(function(){
+	$("#schBtn").click(function(){
+		location.href="scheduleInsert";
+	});
+});
+</script>
 </head>
 <body>
 <h3>상영시간표${fn:length(sList)}개</h3>
@@ -28,6 +36,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="button" value="등록하기">
+	<input type="button" id="schBtn"value="등록하기">
 </body>
 </html>
