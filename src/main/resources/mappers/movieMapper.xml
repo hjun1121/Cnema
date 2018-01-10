@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movieMapper">
 
+	<select id="reviewList" parameterType="java.util.Map" resultType="reviewDTO">
+		select R.*, M.fileName from review R, member M where movie_num=${movie_num} and M.id=R.id
+	</select>
+
 	<delete id="wishDelete" parameterType="java.util.Map">
 		delete wish where movie_num=#{movie_num} and id=#{id}
 	</delete>
@@ -47,7 +51,7 @@
   		</choose>
 
   	</select>
- 
+
   	<insert id="insert" parameterType="movieDTO">
   		insert into movie values(movie_seq.nextval, #{movie_name}, #{fileName}, #{oriName}, #{teaser_url}, 0, 0, #{open_date}, #{run_time}, 0, #{type}, #{contents}, #{age_limit}, #{actor})
   	</insert>
