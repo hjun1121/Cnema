@@ -6,15 +6,57 @@
 <head>
 <title>메인</title>
 
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
 
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+/* 메인슬라이드 */
+$(function(){
+var myIndex = 0;
+carousel();
+	
+	function carousel() {
+	    var i;
+	    var x = document.getElementsByClassName("mainSlides");
+	    for (i = 0; i < x.length; i++) {
+	       x[i].style.display = "none";  
+	    }
+	    myIndex++;
+	    if (myIndex > x.length) {myIndex = 1}    
+	    x[myIndex-1].style.display = "block";  
+	    setTimeout(carousel, 2000); // Change image every 2 seconds
+	}
+})
+</script>
+
+
+<script type="text/javascript">
+/* 공지슬라이드 */
+ $(function(){
+	var slideIndex = 0;
+	carousel();
+	
+	function carousel() {
+	    var i;
+	    var x = document.getElementsByClassName("noticeSlides");
+	    for (i = 0; i < x.length; i++) {
+	      x[i].style.display = "none";
+	    }
+	    slideIndex++;
+	    if (slideIndex > x.length) {slideIndex = 1} 
+	    x[slideIndex-1].style.display = "block";
+	    setTimeout(carousel, 2000); 
+	}
+ })
+</script>
+
 <script type="text/javascript">
 	var message = '${message}';
 	if(message != ""){
@@ -82,19 +124,19 @@ function showSlides(n) {
 			<div class="sect-common">
 				<div class="slider" id="slider">
 					<div class="item-wrap">
-						<div class="mySlides" style="display: block;">
+						<div class="mySlides mainSlides" style="display: block;">
 						  <div class="numbertext">1 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/1.png" style="width:100%">
 						  <div class="text">Caption Text</div>
 						</div>
 						
-						<div class="mySlides">
+						<div class="mySlides mainSlides">
 						  <div class="numbertext">2 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/2.png" style="width:100%">
 						  <div class="text">Caption Two</div>
 						</div>
 						
-						<div class="mySlides">
+						<div class="mySlides mainSlides">
 						  <div class="numbertext">3 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/3.png" style="width:100%">
 						  <div class="text">Caption Three</div>
@@ -149,32 +191,62 @@ function showSlides(n) {
 					</div>
 				</div>
 			</div>
-			<div id="#" class="sect-notice-info cf">
+			<!-- ///////////공지사항 시작////////////// -->
+
+			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
 				<h3>공지사항</h3>
-    			<div class="sect-notice-list cf">
-        			<div class="inner" style="overflow: hidden; position: relative; height: 35px;">
-            			<ul style="position: absolute; margin: 0px; padding: 0px; top: 0px;">
-            				<li class="cf" style="margin: 0px; padding: 0px; height: 35px;">
-	        					<a href="#">
-                  	  				[내용]내용넣어야함
-              					</a>
-                				<span>XXXX.XX.XX</span>
-            				</li>
-            			</ul>
-        			</div>
-    			</div>
+			    <div class="sect-notice-list cf">
+			        <div class="inner" style="overflow: hidden; position: relative; height: 35px;">
+			            <ul style="position: absolute; margin: 0px; padding: 0px; top: 0px;">
+			            <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+			                <a href="#">
+		                    [시스템 점검]1월 정기 시스템 안내
+		                    </a>
+		                    <span>2018.01.05</span>
+		                </li>
+		                <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+			                <a href="#">
+		                    [극장] 판매 개시일 변경
+		                    </a>
+		                    <span>2017.11.14</span>
+		                </li>
+		                <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+			                <a href="#">
+		                    [기타]CGV 개인정보처리방침 개정 공지
+		                    </a>
+		                    <span>2017.09.28</span>
+		                </li>
+		                <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+			                <a href="#">
+		                    [기타]CGV 개인정보처리방침 개정 공지
+		                    </a>
+		                    <span>2017.08.18</span>
+		                </li>
+		                <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+			                <a href="#">
+		                    [시스템 점검]8월 정기 시스템 안내
+		                    </a>
+		                    <span>2017.08.08</span>
+			            <li>
+			            </ul>
+			        </div>
+			    </div>
 			</div>
+
+			<!-- ////////////공지사항 끝///////////// -->
+
 		</div>
 	</div>
 	<!-- /Contaniner -->
 	
 	<!-- //////////////////////////// -->
 	
-	
 	<br>
 	<a href="home/kim">김</a>
 	<a href="home/ssin">신</a>
 	<a href="home/park">박</a>
+			
+	
 	<br><br><br>
 	<c:if test="${empty member }">
 		<a href="member/joinAgree">Join</a>

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cnema.util.FileSaver;
@@ -18,6 +19,13 @@ public class MovieService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	
+	//reviewWarning
+	public int reviewWarning(String id, int review_num) throws Exception {
+		int result = movieDAO.warningUpdate(review_num);
+		result = movieDAO.warningInsert(id, review_num);
+		return result;
+	}
 
 	//review_list
 	public List<ReviewDTO> reviewList(int movie_num) throws Exception {

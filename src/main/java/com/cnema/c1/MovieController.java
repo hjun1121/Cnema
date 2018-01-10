@@ -46,9 +46,6 @@ public class MovieController {
 		//review
 		List<ReviewDTO> review_ar = movieService.reviewList(movie_num);
 
-		for(ReviewDTO reviewDTO : review_ar) {
-			System.out.println(reviewDTO.getContents());
-		}
 		
 		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
@@ -88,29 +85,7 @@ public class MovieController {
 	}
 
 	//insert
-	@RequestMapping(value="movie_insert", method=RequestMethod.GET)
-	public void insert() {
-	}
-
-	@RequestMapping(value="movie_insert", method=RequestMethod.POST)
-	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
-		int result = 0;
-		try {
-			result = movieService.insert(movieDTO, session);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		ModelAndView mv = new ModelAndView();
-		if(result>0) {
-			rd.addFlashAttribute("message", "영화 insert 성공");
-			mv.setViewName("redirect:../");
-		} else {
-			rd.addFlashAttribute("message", "영화 insert 실패");
-			mv.setViewName("redirect:../");
-		}
-		
-		return mv;
-	}
+	
 
 
 	//delete

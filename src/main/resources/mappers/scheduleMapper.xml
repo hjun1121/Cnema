@@ -38,4 +38,9 @@
   	<select id="scheduleInfo" resultType="scheduleDTO" parameterType="int">
   		select * from schedule where schedule_num=#{sNum}
   	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="scheduleAList" resultType="scheduleDTO">
+  		select * from schedule
+  	</select>
   </mapper>

@@ -24,7 +24,7 @@ public class ScheduleDAO {
 		Map<String, Object> map  =new HashMap<>();
 		map.put("screen_num", screen_num);
 		map.put("day_num", day_num);
-;		return sqlSession.selectList(NAMESPACE+"scheduleList", map);
+		return sqlSession.selectList(NAMESPACE+"scheduleList", map);
 	}
 	
 	public ScheduleDTO scheduleOne(int schedule_num)throws Exception{
@@ -37,5 +37,9 @@ public class ScheduleDAO {
 	/*heeseong*/
 	public ScheduleDTO scheduleInfo(int sNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"scheduleInfo", sNum);
+	}
+	/*heeseong*/
+	public List<ScheduleDTO> scheduleAList() {
+		return sqlSession.selectList(NAMESPACE+"scheduleAList");
 	}
 }

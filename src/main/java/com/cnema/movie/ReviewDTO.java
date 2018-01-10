@@ -11,7 +11,14 @@ public class ReviewDTO {
 	private int warning;
 	private int hit;
 	private Date reg_date;
+	private String fileName;
 
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public int getReview_num() {
 		return review_num;
 	}

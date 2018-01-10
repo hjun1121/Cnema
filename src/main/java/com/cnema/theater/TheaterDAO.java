@@ -45,4 +45,20 @@ public class TheaterDAO {
 	public List<TheaterDTO> thAreaList(String search) {
 		return sqlSession.selectList(NAMESPACE+"thAreaList",search);
 	}
+	/*heeseong*/
+	public TheaterDTO theaterInfo(int theater_num) {
+		return sqlSession.selectOne(NAMESPACE+"theaterInfo",theater_num);
+	}
+	/*heeseong*/
+	public int theaterRevision(TheaterDTO theaterDTO) {
+		return sqlSession.update(NAMESPACE+"theaterRevision",theaterDTO);
+	}
+	/*heeseong*/
+	public int theaterRemove(int theater_num) {
+		return sqlSession.delete(NAMESPACE+"theaterRemove",theater_num);
+	}
+	/*heeseong*/
+	public int theaterInsert(TheaterDTO theaterDTO) {
+		return sqlSession.insert(NAMESPACE+"theaterInsert",theaterDTO);
+	}
 }
