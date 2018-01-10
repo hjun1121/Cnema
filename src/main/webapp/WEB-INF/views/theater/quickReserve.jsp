@@ -277,8 +277,27 @@
 		});
 		/*  */
 		$("#leftBtn1").click(function(){
-			var s = $(".ss").val();
+			var sn = $("#seatName").val();
+			$(".ss").each(function(index, item){
+				alert(index);
+				var sName = $(this).val();
+				$("#seatName").val(sn+sName);
+			});
+			
+			$.ajax({
+				url:"../ajax/qrSeat",
+				type:"post",
+				data:{
+					
+				},
+				success:function(data){
+					$("#qrSeat").html(data);
+				}
+			});	
+			
+			
 		});
+		/*  */
 		$("#rightBtn2").click(function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
@@ -446,7 +465,11 @@
 					<td>극장선택</td>
 				</tr>											
 			</table>
-
+			<table border="1" style="float: left; margin-left: 10px; width: 214px; height: 120px;" id="qrSeat">
+				<tr>
+					<td>좌석선택</td>
+				</tr>											
+			</table>
 		<input type="button" id="rightBtn1" value="다음">
 		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
@@ -459,6 +482,7 @@
 			te<input type="text" id="teen_num" name="teen_num">
 			pe<input type="text" id="people" name="people">
 			pC<input type="text" id="pCount" name="pCount" value="0">
+			sn<input type="text" id="seatName">
 			<div id="seatList">
 			
 			</div>
