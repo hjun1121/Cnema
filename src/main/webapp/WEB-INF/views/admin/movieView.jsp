@@ -11,7 +11,7 @@
 	<form action="./movieRevision" method="GET">
 		<input type="hidden" name="movie_num" value="${movieDTO.movie_num}">
 		<p>name <input type="text" name="movie_name" value="${movieDTO.movie_name }" ></p>
-		포스터<input type="file" name="file" value="${movieDTO.fileName }">
+		포스터<input type="file" name="file"><input type="text" value="${movieDTO.oriName }">
 		<p>티저영상<input type="text" name="teaser_url" value="${movieDTO.teaser_url }"></p>
 		<p>개봉일<input type="date" name="open_date" value="${movieDTO.open_date }"></p>
 		<p>상영시간<input type="text"  name="run_time" value="${movieDTO.run_time }"></p>

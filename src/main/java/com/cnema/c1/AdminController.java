@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.theater.TheaterDTO;
+import com.cnema.theater.TheaterService;
 
 /*heeseong 코드*/
 @Controller
@@ -20,6 +22,8 @@ import com.cnema.movie.MovieService;
 public class AdminController {
 	@Inject
 	MovieService movieService;
+	@Inject
+	TheaterService theaterService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(){
@@ -67,7 +71,6 @@ public class AdminController {
 	@RequestMapping(value="movieRevision",method=RequestMethod.POST)
 	public ModelAndView movieRevision(MovieDTO movieDTO,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
-		
 		int result = 0;
 		try {
 			result = movieService.movieRevision(movieDTO);
@@ -81,6 +84,33 @@ public class AdminController {
 			rd.addFlashAttribute("message", "영화 수정 실패");
 			mv.setViewName("redirect:../");
 		}
+		return mv;
+	}
+	
+	@RequestMapping(value="theaterList",method=RequestMethod.GET)
+	public ModelAndView theaterList(String kind,String search){
+		ModelAndView mv = new ModelAndView();
+		List<TheaterDTO> theaterList = new ArrayList<>();
+		if(search==null){
+			search="";
+		}
+		try {
+			if(kind == null){
+				theaterList = theaterService.theatherAList();
+			}else{
+				if(kind.equals("location")){
+					theaterList = theaterService.thLocationList(search);
+				}
+				if(kind.equals("area")){
+					theaterList = theaterService.thAreaList(search);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("theaterList", theaterList);
+		mv.setViewName("admin/theaterList");
 		return mv;
 	}
 }

@@ -50,6 +50,8 @@
 	<h1>관리자</h1>
 	<h3>영화 목록</h3>
 	<a href="../admin/movieList">영화 목록</a>
+	<h3>극장목록</h3>
+	<a href="../admin/theaterList">극장 목록</a>
 	<h3>회원 목록</h3>
 	<a href="">회원 목록</a>
 </body>

@@ -175,6 +175,12 @@ public class AjaxController {
 		model.addAttribute("pCount", pCount);
 	}
 	
+	@RequestMapping(value="qrSeat", method=RequestMethod.POST)
+	public void qrSeat(){
+		
+	}
+	
+	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
 	public ModelAndView idFind(MemberDTO memberDTO){
 		ModelAndView mv = new ModelAndView();
