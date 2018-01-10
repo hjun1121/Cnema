@@ -20,6 +20,11 @@ public class MovieService {
 	private FileSaver fileSaver;
 	
 	
+	//warningList
+	public List<WarningDTO> warningList(int review_num) throws Exception {
+		return movieDAO.warningList(review_num);
+	}
+	
 	//reviewWarning
 	public int reviewWarning(String id, int review_num) throws Exception {
 		int result = movieDAO.warningUpdate(review_num);

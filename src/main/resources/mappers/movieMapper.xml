@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movieMapper">
 
+
+
 	<update id="warningUpdate" parameterType="int">
 		update review set warning=warning+1 where review_num=#{review_num} 
 	</update>
@@ -12,9 +14,6 @@
 		insert into warning values(movie_seq.nextval, #{review_num}, #{id})
 	</insert>
 
-	<select id="reviewList" parameterType="java.util.Map" resultType="reviewDTO">
-		select R.*, M.fileName from review R, member M where movie_num=${movie_num} and M.id=R.id
-	</select>
 
 	<delete id="wishDelete" parameterType="java.util.Map">
 		delete wish where movie_num=#{movie_num} and id=#{id}
@@ -57,7 +56,14 @@
   				order by reserve_rate desc
   			</when>
   		</choose>
-
+  	</select>
+  	
+	<select id="reviewList" parameterType="java.util.Map" resultType="reviewDTO">
+		select R.*, M.fileName from review R, member M where movie_num=${movie_num} and M.id=R.id order by R.reg_date desc
+	</select>
+  	
+  	<select id="warningList" parameterType="int" resultType="warningDTO">
+  		select * from warning where review_num=#{review_num}
   	</select>
 
   	<insert id="insert" parameterType="movieDTO">

@@ -27,7 +27,6 @@
 				url:"../ajax/review_warning",
 				type: "POST",
 				data: {
-					id:id,
 					review_num:review_num,
 					movie_num:'${movie_num}'
 				},

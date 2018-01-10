@@ -20,6 +20,7 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.movie.WarningDTO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
@@ -55,8 +56,35 @@ public class AjaxController {
 			rd.addFlashAttribute("message", message);
 			
 			return "redirect:./eventView";
-		
+	}
 	
+	//review_Warning
+	@RequestMapping(value = "review_warning", method = RequestMethod.POST)
+	public ModelAndView reviewWarning(int movie_num, int review_num, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<WarningDTO> warning_ar = movieService.warningList(review_num); //리뷰 신고자 리스트
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = memberDTO.getId();
+		int result = 0;
+		
+		for(WarningDTO warningDTO : warning_ar) {
+			if(warningDTO.getId().equals(id)) { //신고자 리스트에 아이디가 있으면
+				mv.addObject("message", "이미 신고한 리뷰입니다.");
+				System.out.println("ddddddd");
+			} else {
+				System.out.println("aaaaaaaaa");
+				result = movieService.reviewWarning(id, review_num);
+				if(result > 0) {
+					mv.addObject("message", "신고 성공");
+				} else {
+					mv.addObject("message", "신고  실패");
+				}
+			}
+		}
+		
+		mv.addObject("movie_num", movie_num);
+		mv.setViewName("ajax/review_warning");
+		return mv;
 	}
 	
 	@RequestMapping(value="endList", method=RequestMethod.POST)
@@ -108,7 +136,6 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	//movieWishReturn
@@ -214,9 +241,31 @@ public class AjaxController {
 		model.addAttribute("pCount", pCount);
 	}
 	
-	@RequestMapping(value="qrSeat", method=RequestMethod.POST)
-	public void qrSeat(){
+	@RequestMapping(value="qrPrice", method=RequestMethod.POST)
+	public void qrPrice(Model model , @RequestParam(defaultValue="0", required=false)int adult_num, @RequestParam(defaultValue="0", required=false)int teen_num, int sCount){
+		//sCount = 선택 좌석 수
+		//adult_num = 어른 수
+		//teen_num = 청소년 수
+		//peopel = 총 사람 수
+		System.out.println("sCount:"+sCount);
+		System.out.println("adult_num"+adult_num);
+		System.out.println("teen_num:"+teen_num);
+		int people = adult_num+teen_num;
+		int count =1;
+		int price =0;
+		for(int i =1; i<=sCount; i++){
+			if(count<=adult_num){
+				System.out.println(i+"어른");
+				price = price+8000;
+				count++;
+			}else{
+				System.out.println(i+"청소년");
+				price = price+6000;
+			}	
+			System.out.println("========");
+		}
 		
+		model.addAttribute("price", price);
 	}
 	
 	
