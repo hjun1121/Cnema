@@ -18,7 +18,7 @@ $(function(){
 </head>
 <body>
 <h3>영화관상세페이지</h3>
-	<form action="./theaterRevision" method="get">
+	<form action="./theaterRevision" method="POST">
 	<input type="hidden" name="theater_num" id="theater_num" value="${theaterDTO.theater_num }">
 	<table>
 		<tr>
@@ -28,10 +28,10 @@ $(function(){
 			<td>경도</td>
 		</tr>
 		<tr>
-			<td>${theaterDTO.area }</td>
-			<td>${theaterDTO.location }</td>
-			<td>${theaterDTO.x_position }</td>
-			<td>${theaterDTO.y_position }</td>
+			<td><input type="text" name="area" value="${theaterDTO.area }"></td>
+			<td><input type="text" name="location" value="${theaterDTO.location }"></td>
+			<td><input type="text" name="x_position" value="${theaterDTO.x_position }"></td>
+			<td><input type="text" name="y_position" value="${theaterDTO.y_position }"></td>
 		</tr>
 	</table>
 	<input type="submit" value="수정">

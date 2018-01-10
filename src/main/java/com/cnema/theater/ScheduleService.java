@@ -35,4 +35,12 @@ public class ScheduleService {
 	public List<ScheduleDTO> scheduleAList() {
 		return scheduleDAO.scheduleAList();
 	}
+	/*heeseong*/
+	public int scheduleRevision(ScheduleDTO scheduleDTO) {
+		return scheduleDAO.scheduleRevision(scheduleDTO);
+	}
+	/*heeseong*/
+	public int scheduleRemove(int schedule_num) {
+		return scheduleDAO.scheduleRemove(schedule_num);
+	}
 }

@@ -43,4 +43,14 @@
   	<select id="scheduleAList" resultType="scheduleDTO">
   		select * from schedule
   	</select>
+  	
+  	<!-- heeseong -->
+  	<update id="scheduleRevision" parameterType="scheduleDTO">
+  		update schedule set screen_num=#{screen_num},movie_num=#{movie_num},in_time=#{in_time},out_time=#{out_time},day=#{day} where schedule_num=#{schedule_num}
+  	</update>
+  	
+  	<!-- heeseong -->
+  	<delete id="scheduleRemove" parameterType="int">
+  		delete schedule where schedule_num=#{schedule_num}
+  	</delete>
   </mapper>

@@ -63,20 +63,6 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="movieRevision",method=RequestMethod.GET)
-	public ModelAndView movieRevision(int movie_num){
-		ModelAndView mv = new ModelAndView();
-		MovieDTO movieDTO = null;
-		try {
-			movieDTO = movieService.movieInfo(movie_num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.addObject("movieDTO", movieDTO);
-		mv.setViewName("admin/movieRevision");
-		return mv;
-	}
-	
 	@RequestMapping(value="movieRevision",method=RequestMethod.POST)
 	public ModelAndView movieRevision(MovieDTO movieDTO,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
@@ -131,17 +117,6 @@ public class AdminController {
 		
 		mv.addObject("theaterDTO",theaterDTO);
 		mv.setViewName("admin/theaterView");
-		return mv;
-	}
-	@RequestMapping(value="theaterRevision",method=RequestMethod.GET)
-	public ModelAndView theaterRevision(int theater_num){
-		ModelAndView mv = new ModelAndView();
-		
-		TheaterDTO theaterDTO = null;
-		theaterDTO = theaterService.theaterInfo(theater_num);
-		
-		mv.addObject("theaterDTO",theaterDTO);
-		mv.setViewName("admin/theaterRevision");
 		return mv;
 	}
 	
@@ -242,13 +217,35 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="scheduleRevision", method=RequestMethod.GET)
-	public ModelAndView scheduleRevision(ScheduleDTO scheduleDTO) {
+	@RequestMapping(value="scheduleRevision", method=RequestMethod.POST)
+	public ModelAndView scheduleRevision(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
-		List<ScheduleDTO> sList = new ArrayList<>();
-		sList = scheduleService.scheduleAList();
-		mv.addObject("sList", sList);
-		mv.setViewName("admin/scheduleList");
+		int result = 0;
+		result = scheduleService.scheduleRevision(scheduleDTO);
+		
+		if(result>0){
+			rd.addAttribute("message","상영시간표 수정 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","상영시간표 수정 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="scheduleRemove", method=RequestMethod.GET)
+	public ModelAndView scheduleRemove(int schedule_num,RedirectAttributes rd) {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = scheduleService.scheduleRemove(schedule_num);
+		
+		if(result>0){
+			rd.addAttribute("message","상영시간표 삭제 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","상영시간표 삭제 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
 	}
 	

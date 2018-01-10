@@ -42,4 +42,12 @@ public class ScheduleDAO {
 	public List<ScheduleDTO> scheduleAList() {
 		return sqlSession.selectList(NAMESPACE+"scheduleAList");
 	}
+	/*heeseong*/
+	public int scheduleRevision(ScheduleDTO scheduleDTO) {
+		return sqlSession.update(NAMESPACE+"scheduleRevision",scheduleDTO);
+	}
+	/*heeseong*/
+	public int scheduleRemove(int schedule_num) {
+		return sqlSession.delete(NAMESPACE+"scheduleRemove",schedule_num);
+	}
 }
