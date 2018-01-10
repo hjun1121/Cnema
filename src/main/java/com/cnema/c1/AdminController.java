@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScheduleService;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 
@@ -25,6 +27,8 @@ public class AdminController {
 	MovieService movieService;
 	@Inject
 	TheaterService theaterService;
+	@Inject
+	ScheduleService scheduleService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(){
@@ -207,6 +211,16 @@ public class AdminController {
 			mv.setViewName("redirect:../");
 		}
 		
+		return mv;
+	}
+	
+	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
+	public ModelAndView scheduleList() {
+		ModelAndView mv = new ModelAndView();
+		List<ScheduleDTO> sList = new ArrayList<>();
+		sList = scheduleService.scheduleList();
+		mv.addObject("sList", sList);
+		mv.setViewName("admin/scheduleList");
 		return mv;
 	}
 }
