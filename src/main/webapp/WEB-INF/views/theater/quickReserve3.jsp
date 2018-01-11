@@ -150,7 +150,7 @@
 		<input type="button" id="rightBtn3" value="결제">	
 		</form>
 		
-		<form action="./quickReserve3" name="reserve" style="clear: both;">
+		<form action="./quickReserveGO" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">
 			t<input type="text" id="theater_num" name="theater_num" value="${reserve.theater_num }">
 			d<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">

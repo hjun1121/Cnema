@@ -13,7 +13,6 @@ public class ReserveDTO {
 	private int[] seat_num;
 	private int movie_num;
 	private String id;
-	private int age_type;
 	private int tp_num;
 	private Date reg_date;
 	
@@ -68,12 +67,6 @@ public class ReserveDTO {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public int getAge_type() {
-		return age_type;
-	}
-	public void setAge_type(int age_type) {
-		this.age_type = age_type;
 	}
 	public int getTp_num() {
 		return tp_num;
