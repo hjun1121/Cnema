@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/common/**")
 public class CommonController {
 
+	@RequestMapping(value="result", method=RequestMethod.GET)
+	public void result(String message, Model model){
+		System.out.println(message);
+		model.addAttribute("message", message);
+	}
+	
 	@RequestMapping(value="resultClose", method=RequestMethod.GET)
 	public void resultClose(String message, Model model){
 		model.addAttribute("message", message);

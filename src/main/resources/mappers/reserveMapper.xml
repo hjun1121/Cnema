@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="reserveMapper">
+  
+ 	<insert id="reserveInsert" parameterType="reserveDTO">
+  		insert into reserve values(movie_seq.nextval,#{theater_num},#{screen_num},#{schedule_num},#{seat},#{movie_num},#{id},#{tp_num})
+  	</insert>
+  
   	<!-- heeseong -->
   	<select id="reserveList" resultType="reserveDTO" parameterType="java.util.Map">
   		select * from reserve where id=#{id} and to_char(reg_date,'yyyy')=#{kind}

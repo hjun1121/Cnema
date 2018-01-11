@@ -11,6 +11,9 @@ public class ReserveService {
 	@Inject
 	private ReserveDAO reserveDAO;
 	
+	public int reserveInsert(ReserveDTO reserveDTO) throws Exception{
+		return reserveDAO.reserveInsert(reserveDTO);
+	}
 	/*heeseong*/
 	public List<ReserveDTO> reserveList(String id,String kind) throws Exception{
 		return reserveDAO.reserveList(id,kind);

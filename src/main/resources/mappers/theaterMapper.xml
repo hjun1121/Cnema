@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="theaterMapper">
-  
 
   	<select id="selectOne" parameterType="int" resultType="theaterDTO">
   		select * from theater where theater_num=#{theater_num}
@@ -12,7 +11,6 @@
   	<select id="locationList" parameterType="String" resultType="theaterDTO">
   		select * from theater where area=#{area}
   	</select>
-  	
   	<!-- heeseong -->
   	<select id="theatherAList" resultType="theaterDTO">
   		select * from theater

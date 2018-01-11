@@ -1,5 +1,7 @@
 package com.cnema.reserve;
 
+import java.sql.Date;
+
 public class TicketPriceDTO {
 	private int tp_num;
 	private int people;
@@ -9,8 +11,29 @@ public class TicketPriceDTO {
 	private int c_num;
 	private int point;
 	private int price;
+	private String code;
+	private Date reg_date;
+	private String id;
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
 	public int getAdult_num() {
 		return adult_num;
 	}

@@ -14,8 +14,14 @@ public class ReserveDTO {
 	private int movie_num;
 	private String id;
 	private int tp_num;
-	private Date reg_date;
+	private int seat;
 	
+	public int getSeat() {
+		return seat;
+	}
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
 	private ScheduleDTO scheduleDTO;
 	private TicketPriceDTO ticketPriceDTO;
 	private MovieDTO movieDTO;
@@ -74,12 +80,7 @@ public class ReserveDTO {
 	public void setTp_num(int tp_num) {
 		this.tp_num = tp_num;
 	}
-	public Date getReg_date() {
-		return reg_date;
-	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
-	}
+
 	public ScheduleDTO getScheduleDTO() {
 		return scheduleDTO;
 	}

@@ -15,6 +15,10 @@ public class ReserveDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="reserveMapper.";
 	
+	public int reserveInsert(ReserveDTO reserveDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"reserveInsert", reserveDTO);
+	}
+	
 	/*heeseong*/
 	public List<ReserveDTO> reserveList(String id,String kind) throws Exception{
 		Map<String, Object> rMap = new HashMap<>();

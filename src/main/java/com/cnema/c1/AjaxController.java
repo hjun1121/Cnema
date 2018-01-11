@@ -247,9 +247,9 @@ public class AjaxController {
 		//adult_num = 어른 수
 		//teen_num = 청소년 수
 		//peopel = 총 사람 수
-		System.out.println("sCount:"+sCount);
-		System.out.println("adult_num"+adult_num);
-		System.out.println("teen_num:"+teen_num);
+		//System.out.println("sCount:"+sCount);
+		//System.out.println("adult_num"+adult_num);
+		//System.out.println("teen_num:"+teen_num);
 		int count =1;
 		int price =0;
 		for(int i =1; i<=sCount; i++){

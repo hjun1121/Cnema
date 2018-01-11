@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
    <mapper namespace="eventMapper">
-  
   <!--eventJoin insert   -->
   <insert id="joinInsert" parameterType="com.cnema.event.EventJoinDTO">
   
