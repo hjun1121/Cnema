@@ -4,7 +4,5 @@
 <c:if test="${price eq 0 }">
 </c:if>
 <c:if test="${price ne 0 }">
-<tr>
-	<td>${price}원</td>
-</tr>
+${price }
 </c:if>
