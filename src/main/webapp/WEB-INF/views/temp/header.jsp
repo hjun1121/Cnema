@@ -57,7 +57,7 @@
 										<li><a href="#">HD 트레일러</a></li>
 										<li><a href="#">무비파인더</a></li>
 										<li><a href="#">평점</a></li>
-										<li class="last"><a href="#">CGV아트하우스</a></li>
+										<li class="last"><a href="./community/mainPage">CGV아트하우스</a></li>
 									</ul>
 								</div>
 							</div>
