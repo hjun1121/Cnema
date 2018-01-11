@@ -14,14 +14,13 @@
 		var pwCheck = false;
 		
 		$("#pw1").change(function(){
-			$("#pwc").val('<input type="password" id="pw2" name="pw">');
+			$("#pwc").html('<input type="password" id="pw2" name="pw" readonly="readonly">');
 			var pw1= $("#pw1").val();
-			var pwpw=false; //특문 유무
+			var pwpw=false;
 			for(var i=0; i<pw1.length;i++){
 				if(pw1.charAt(i) == '!' || pw1.charAt(i) == '@' || pw1.charAt(i) =='#' || pw1.charAt(i) =='$' || pw1.charAt(i) =='%' || pw1.charAt(i) =='^' || pw1.charAt(i) =='&' || pw1.charAt(i) =='*'){
 					i= pw1.length;
 					pwpw=true;
-				}else{
 				}
 			}
 			
@@ -39,9 +38,7 @@
 				pwCheck = false;
 			}
 		});
-		
-		
-		$("#pw2").change(function(){
+		$("#pwc").on("change","#pw2",function(){
 			var pw1= $("#pw1").val();
 			var pw2= $("#pw2").val();
 			if(pw1 == pw2){
@@ -50,6 +47,13 @@
 			}else{
 				$("#pw_ch").html('<p style="color: red">비밀번호가 다릅니다</p>');
 				pwCheck = false;
+			}
+		});
+		
+		var p0='${p[0]}';
+		$(".f").each(function(){
+			if($(this).val()==p0){
+				$(this).attr("selected",true);
 			}
 		});
 		
@@ -97,7 +101,6 @@
 		});
 		//주소검색 끝
 		
-		//email List 시작
 		$("#mailList").change(function(){
 			var ml = $("#mailList").val();
 			
@@ -111,7 +114,6 @@
 			}
 		});
 		
-		//email List 끝
 		$("#mailCheck").click(function(){
 			var email1 = $("#email1").val();
 			var email2 = $("#email2").val();
@@ -130,13 +132,17 @@
 			
 		})
 		
-		$("#joinBtn").click(function(){
+		$("#revBtn").click(function(){
 			var f = $("#f").val();
 			var m = $("#m").val();
 			var l = $("#l").val();
 			var phone = f+'-'+m+'-'+l;
 			$("#phone").val(phone);
 			
+			var e1 = $("#email1").val();
+			var e2 = $("#email2").val();
+			var email = e1+'@'+e2;
+			$("#email").val(email);
 			document.frm.submit();
 		})
 	});
@@ -145,7 +151,7 @@
 </head>
 <body>
 	<h3>회원 정보 수정</h3>
-	<form action="memberJoin" method="post" name="frm" enctype="multipart/form-data">
+	<form action="myInfoRevision" method="post" name="frm">
 		<table>
 			<tr>
 				<td>ID</td>
@@ -171,11 +177,33 @@
 			</tr>
 			<tr>
 				<td>PHONE</td>
-				<td><input type="text" id="phone" name="phone" value="${memberDTO.phone }"></td>
+				<td>
+					<select id="f" >
+			   			<option class="f" value="">선택하세요</option>
+			   			<option class="f" value="010">010</option>
+						<option class="f" value="011">011</option>
+					</select>
+					-
+					<input type="text" id="m" value="${p[1] }">
+					-
+					<input type="text" id="l" value="${p[2] }">
+				</td>
 			</tr>
 			<tr>
 				<td>EMAIL</td>
-				<td><input type="text" id="email" name="email" value="${memberDTO.email }"></td>
+				<td>
+				<input type="text" id="email1" value="${e[0] }">@
+				<input type="text" id="email2" value="${e[1] }">
+				<select id = "mailList">
+		   			<option value="0">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="daum.net">daum.net</option>
+					<option value="gmail.com">gmail.com</option>
+					<option value="hotmail.com">hotmail.com</option>
+				</select>
+				<input type="button" id="mailCheck" value="이메일 인증">
+				<br>
+				<div id="email_ch"></td>
 			</tr>
 			<tr>
 				<td>POSTCODE</td>
@@ -188,7 +216,9 @@
 					<input type="text" id="addr2" name="addr2" placeholder="나머지주소" value="${memberDTO.addr2 }"></td>
 			</tr>
 		</table>
-		<input type="button" id="joinBtn" value="수정하기">
+		<input type="hidden" id="phone" name="phone">
+		<input type="hidden" id="email" name="email">
+		<input type="button"  id="revBtn" value="수정하기">
 	</form>
 </body>
 </html>
