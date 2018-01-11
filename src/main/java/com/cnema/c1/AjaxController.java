@@ -44,8 +44,8 @@ public class AjaxController {
 	private EventService eventService;
 	
 
-	@RequestMapping(value="eventJoin", method=RequestMethod.POST)
-	public String eventJoin(EventJoinDTO eventJoinDTO,RedirectAttributes rd) throws Exception{
+	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
+	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
 		
 		
 			int result = eventService.eventJoin(eventJoinDTO);
@@ -53,9 +53,11 @@ public class AjaxController {
 			if(result>0){
 				message = "success";
 			}
-			rd.addFlashAttribute("message", message);
+			mv.addObject("message", message);
+			mv.addObject("type",eventJoinDTO.getType());
+			mv.setViewName("ajax/eventCheck");
 			
-			return "redirect:./eventView";
+			return mv;
 	}
 	
 	//review_Warning
