@@ -85,6 +85,7 @@
 		<option class="kind" title="현재 선택됨" selected="selected" value="reserve_rate">예매율순</option>
 		<option class="kind" value="grade">평점순</option>
 		<option class="kind" value="open_date">최신순</option>
+		<option class="kind" value="wish">볼래요순</option>
 	</select>
 	
 	<c:forEach items="${movie_list}" var="movie">

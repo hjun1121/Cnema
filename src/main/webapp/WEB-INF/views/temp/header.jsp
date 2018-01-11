@@ -2,6 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 	<!-- Header -->
+	
+	<script type="text/javascript">
+	
+		$(function(){
+			$(".headbtn").mouseenter(function(){
+				var a = $(this).attr("title");  //booking
+				$(this).attr("class", a+" on");
+			})
+			$(".headbtn").mouseleave(function(){
+				var a = $(this).attr("title");  //booking
+				$(this).attr("class", a);
+			})
+		});
+		
+	</script>
+	
 	<div id="header">
 		<div class="head">
 			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
@@ -32,12 +48,12 @@
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie headbtn" title="movie headbtn"><a href="/movies/">영화</a>
+						<li class="movie headbtn" title="movie headbtn"><a href="./movie/movie_chart">영화</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="#">무비차트</a></li>
+										<li><a href="./movie/movie_chart">무비차트</a></li>
 										<li><a href="#">HD 트레일러</a></li>
 										<li><a href="#">무비파인더</a></li>
 										<li><a href="#">평점</a></li>

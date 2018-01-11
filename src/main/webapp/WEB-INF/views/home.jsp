@@ -21,7 +21,7 @@
 $(function(){
 var myIndex = 0;
 carousel();
-	
+
 	function carousel() {
 	    var i;
 	    var x = document.getElementsByClassName("mainSlides");
@@ -63,17 +63,6 @@ carousel();
 		alert(message);
 	}
 	
-
-	$(function(){
-		$(".headbtn").mouseenter(function(){
-			var a = $(this).attr("title");  //booking
-			$(this).attr("class", a+" on");
-		})
-		$(".headbtn").mouseleave(function(){
-			var a = $(this).attr("title");  //booking
-			$(this).attr("class", a);
-		})
-	});
 	
 </script>
 

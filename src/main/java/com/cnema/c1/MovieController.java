@@ -74,6 +74,7 @@ public class MovieController {
 		}
 
 		List<MovieDTO> ar = movieService.movieList(kind);
+		ar.get(0).getFileName();
 		mv.addObject("movie_list", ar);
 		if(id != null) {
 			List<WishDTO> wish = movieService.wishList(id);
