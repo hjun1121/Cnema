@@ -6,10 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>영화 리스트</title>
+<script type="text/javascript">
+$(function(){
+	var kind='${kind}';
+	$(".kind").each(function(){
+		if($(this).val()==kind){
+			$(this).attr("selected",true);
+		}
+	});
+	var search='${search}';
+	$("#search").val(search);
+	
+	$("#sBtn").click(function(){
+		var sKind = $("#kind").val();
+		var search = $("#search").val();
+		location.href="./movieList?kind="+sKind+"&search="+search;
+	});
+});
+</script>
 </head>
 <body>
 <h3>영화 리스트${fn:length(movieList)}개</h3>
+
+<select id="kind">
+		<option class="kind" value="title">제목</option>
+		<option class="kind" value="type">장르</option>
+		<option class="kind" value="actor">감독및출연진</option>
+	</select>
+<input type="text" name="search" id="search">
+<input type="button" id="sBtn" value="GO">
 <table>
 	<tr>
 		<td>사진</td>

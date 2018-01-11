@@ -95,4 +95,8 @@ public class MovieService {
 	public int movieRevision(MovieDTO movieDTO) throws Exception{
 		return movieDAO.movieRevision(movieDTO);
 	}
+	/*heeseong*/
+	public List<MovieDTO> movieSearchList(String type,String search) throws Exception {
+		return movieDAO.movieSearchList(type,search);
+	}
 }

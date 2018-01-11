@@ -35,15 +35,31 @@ public class AdminController {
 	MemberService memberService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
-	public ModelAndView movieList(){
+	public ModelAndView movieList(String kind,String search){
 		ModelAndView mv = new ModelAndView();
 		List<MovieDTO> movieList = new ArrayList<>();
+		if(search==null){
+			search="";
+		}
 		try {
-			movieList = movieService.movieAList();
+			if(kind == null){
+				movieList = movieService.movieAList();
+			}else{
+				if(kind.equals("title")){
+					movieList = movieService.movieSearchList(kind,search);
+				}
+				if(kind.equals("type")){
+					movieList = movieService.movieSearchList(kind,search);
+				}
+				if(kind.equals("actor")){
+					movieList = movieService.movieSearchList(kind,search);
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.addObject("kind", kind);
+		mv.addObject("search", search);
 		mv.addObject("movieList", movieList);
 		mv.setViewName("admin/movieList");
 		return mv;
