@@ -21,6 +21,7 @@ import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.movie.ReviewService;
 import com.cnema.movie.WishDTO;
 import com.cnema.movie.WishService;
 import com.cnema.reserve.ReserveDTO;
@@ -49,6 +50,8 @@ public class MyPageController {
 	private MyCouponService myCouponService;
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private ReviewService reviewService;
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
@@ -101,6 +104,40 @@ public class MyPageController {
 			rd.addFlashAttribute("message", "예매 내역 삭제 실패");
 			mv.setViewName("redirect:../");
 		}
+		return mv;
+	}
+	
+	@RequestMapping(value="movieReview",method=RequestMethod.GET)
+	public ModelAndView movieReview(int movie_num){
+		ModelAndView mv = new ModelAndView();
+		MovieDTO movieDTO = null;
+		
+		try {
+			movieDTO = movieService.movieInfo(movie_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("movieDTO", movieDTO);
+		mv.setViewName("myPage/movieReview");
+		
+		return mv;
+	}
+	@RequestMapping(value="movieReview",method=RequestMethod.POST)
+	public ModelAndView movieReview(int movie_num,String review,RedirectAttributes rd,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		int result = 0;
+		result = reviewService.reviewInsert(movie_num,memberDTO.getId(),review);
+		
+		if(result>0){
+			rd.addAttribute("message", "리뷰 작성 성공");
+			mv.setViewName("redirect:../common/resultClose");
+		}else{
+			rd.addAttribute("message", "리뷰 작성 실패");
+			mv.setViewName("redirect:../");
+		}
+		
 		return mv;
 	}
 	
