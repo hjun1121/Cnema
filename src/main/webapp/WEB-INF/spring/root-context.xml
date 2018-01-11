@@ -28,6 +28,7 @@
 	<context:component-scan base-package="com.cnema.notice"/>
 	<context:component-scan base-package="com.cnema.qna"/>
 	<context:component-scan base-package="com.cnema.event"/>
+	<context:component-scan base-package="com.cnema.file"/>
 
 	
 

@@ -20,6 +20,11 @@ public class MovieService {
 	private FileSaver fileSaver;
 	
 	
+	//warningCheck
+	public WarningDTO warningCheck(String id, int review_num) throws Exception {
+		return movieDAO.warningCheck(id, review_num);
+	}
+
 	//warningList
 	public List<WarningDTO> warningList(int review_num) throws Exception {
 		return movieDAO.warningList(review_num);
@@ -72,6 +77,9 @@ public class MovieService {
 		movieDTO.setOriName(file.getOriginalFilename());
 		int result = movieDAO.insert(movieDTO);
 
+		System.out.println(file.getOriginalFilename());
+		System.out.println(name);
+
 		return result;
 	}
 	
@@ -86,5 +94,9 @@ public class MovieService {
 	/*heeseong*/
 	public int movieRevision(MovieDTO movieDTO) throws Exception{
 		return movieDAO.movieRevision(movieDTO);
+	}
+	/*heeseong*/
+	public List<MovieDTO> movieSearchList(String type,String search) throws Exception {
+		return movieDAO.movieSearchList(type,search);
 	}
 }

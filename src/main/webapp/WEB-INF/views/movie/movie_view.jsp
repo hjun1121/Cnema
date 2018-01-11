@@ -31,7 +31,7 @@
 					movie_num:'${movie_num}'
 				},
 				success: function(data) {
-					alert(data);					
+					alert(data);
 					location.href="movie_view?movie_num=${movie_num}";
 				}
 			});
@@ -184,38 +184,8 @@
 </div>
 </c:forEach>
 
+<div style="height: 50px;float:left; text-align: center;"><a href="./movie_chart"><input type="button" value="무비차트"></a></div>
 
-<!-- 	<table> -->
-<%-- 		<tr><td><img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'></td></tr> --%>
-<%-- 		<tr><td>${movie.movie_name}</td></tr> --%>
-<%-- 		<tr><td>예매율 : ${movie.reserve_rate}</td></tr> --%>
-<%-- 		<tr><td>장르 : ${movie.type}</td></tr> --%>
-<%-- 		<tr><td>개봉일 : ${movie.open_date}</td></tr> --%>
-<%-- 		<c:set var="heart1" value="0" ></c:set> --%>
-<%-- 		<c:set var="heart2" value="0" ></c:set> --%>
-<!-- 							<tr> -->
-<%-- 							<c:if test="${ not empty member }"><c:forEach items="${wish_list}" var="wish"> --%>
-<%-- 								<c:if test="${wish.movie_num eq movie.movie_num}">										 --%>
-<%-- 									<c:choose> --%>
-<%-- 										<c:when test="${heart1 == 0}"> --%>
-<%-- 											<td><input type="button" class="wish_btn"  value="❤" name="${movie.movie_num}" title="1"></td> --%>
-<%-- 											<c:set var="heart1" value="1" ></c:set> --%>
-<%-- 											<c:set var="heart2" value="1" ></c:set> --%>
-<%-- 										</c:when> --%>
-<%-- 									</c:choose> --%>
-<%-- 								</c:if> --%>
-<%-- 							</c:forEach> --%>
-<%-- 								<c:if test="${heart2 == 0}"> --%>
-<%-- 									<td><input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0"></td> --%>
-<%-- 								</c:if> --%>
-<%-- 							<td>${movie.wish}</td> --%>
-<%-- 							</c:if> --%>
-<!-- 							</tr> -->
-<%-- 		<c:if test="${not empty member }"><tr><td><input type="button" id="reserveBtn" value="예매"></td></tr></c:if> --%>
-<%-- 		<tr><td>${movie.contents}</td></tr> --%>
-<%-- 		<tr><td><iframe width="560" height="315" src="${movie.teaser_url}"></iframe></td></tr> --%>
-<%-- 		<tr><td>평점 : ${movie.grade}</tr> --%>
-<!-- 	</table> -->
 </div>
 </div>
 <div style="height: 1000px;"></div>

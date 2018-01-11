@@ -56,4 +56,8 @@ public class MemberService {
 	public int withdrawal(String id) throws Exception{
 		return memberDAO.withdrawal(id);
 	}
+	/*heeseong*/
+	public int myInfoRevision(MemberDTO memberDTO) throws Exception{
+		return memberDAO.myInfoRevision(memberDTO);
+	}
 }

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,6 +53,56 @@ public class MyPageController {
 	private MemberService memberService;
 	@Inject
 	private ReviewService reviewService;
+	
+	@RequestMapping(value="myInfoCheck",method=RequestMethod.GET)
+	public ModelAndView myInfoCheck(HttpSession session){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id",memberDTO.getId());
+		mv.setViewName("myPage/myInfoCheck");
+		return mv;
+	}
+	
+	@RequestMapping(value="myInfoCheck",method=RequestMethod.POST)
+	public ModelAndView myInfoCheck(HttpSession session,String pwd,RedirectAttributes rd){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String phone = memberDTO.getPhone();
+		String[] p = phone.split("-");
+		
+		String email = memberDTO.getEmail();
+		String[] e = email.split("@");
+		
+		ModelAndView mv = new ModelAndView();
+		if(memberDTO.getPw().equals(pwd)){
+			mv.addObject("p", p);
+			mv.addObject("e", e);
+			mv.addObject("memberDTO", memberDTO);
+			mv.setViewName("myPage/myInfo");
+		}else{
+			rd.addFlashAttribute("message", "비밀번호 실패!");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="myInfoRevision",method=RequestMethod.POST)
+	public ModelAndView myInfoRevision(MemberDTO memberDTO,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = memberService.myInfoRevision(memberDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(result>0){
+			rd.addAttribute("message", "수정 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message", "수정 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){

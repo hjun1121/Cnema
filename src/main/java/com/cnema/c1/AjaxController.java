@@ -44,8 +44,8 @@ public class AjaxController {
 	private EventService eventService;
 	
 
-	@RequestMapping(value="eventJoin", method=RequestMethod.POST)
-	public String eventJoin(EventJoinDTO eventJoinDTO,RedirectAttributes rd) throws Exception{
+	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
+	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
 		
 		
 			int result = eventService.eventJoin(eventJoinDTO);
@@ -53,40 +53,41 @@ public class AjaxController {
 			if(result>0){
 				message = "success";
 			}
-			rd.addFlashAttribute("message", message);
+			mv.addObject("message", message);
+			mv.addObject("type",eventJoinDTO.getType());
+			mv.setViewName("ajax/eventCheck");
 			
-			return "redirect:./eventView";
+			return mv;
 	}
+
+	
 	
 	//review_Warning
 	@RequestMapping(value = "review_warning", method = RequestMethod.POST)
 	public ModelAndView reviewWarning(int movie_num, int review_num, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<WarningDTO> warning_ar = movieService.warningList(review_num); //리뷰 신고자 리스트
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		String id = memberDTO.getId();
 		int result = 0;
-		
-		for(WarningDTO warningDTO : warning_ar) {
-			if(warningDTO.getId().equals(id)) { //신고자 리스트에 아이디가 있으면
-				mv.addObject("message", "이미 신고한 리뷰입니다.");
-				System.out.println("ddddddd");
+		WarningDTO warningDTO = null;
+		warningDTO = movieService.warningCheck(id, review_num);
+		if(warningDTO == null) {
+			result = movieService.reviewWarning(id, review_num);
+			if(result > 0) {
+				mv.addObject("message", "리뷰 신고 성공");
 			} else {
-				System.out.println("aaaaaaaaa");
-				result = movieService.reviewWarning(id, review_num);
-				if(result > 0) {
-					mv.addObject("message", "신고 성공");
-				} else {
-					mv.addObject("message", "신고  실패");
-				}
+				mv.addObject("message", "리뷰 신고 실패");
 			}
+		} else {
+			mv.addObject("message", "이미 신고한 리뷰입니다.");
 		}
-		
+
 		mv.addObject("movie_num", movie_num);
 		mv.setViewName("ajax/review_warning");
 		return mv;
 	}
 	
+
 	@RequestMapping(value="endList", method=RequestMethod.POST)
 	public ModelAndView endList(ListData listData,Boolean sel, ModelAndView mv) throws Exception{
 		
@@ -94,7 +95,7 @@ public class AjaxController {
 		if(sel){
 		mv = eventService.selectList(listData);
 		}
-		
+
 		//ingList
 		else{
 			mv = eventService.endSelectList(listData);

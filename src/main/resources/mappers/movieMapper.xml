@@ -5,6 +5,9 @@
 <mapper namespace="movieMapper">
 
 
+	<select id="warningCheck" parameterType="java.util.Map" resultType="warningDTO">
+		select * from warning where id=#{id} and review_num=#{review_num}
+	</select>
 
 	<update id="warningUpdate" parameterType="int">
 		update review set warning=warning+1 where review_num=#{review_num} 
@@ -13,7 +16,6 @@
 	<insert id="warningInsert" parameterType="java.util.Map">
 		insert into warning values(movie_seq.nextval, #{review_num}, #{id})
 	</insert>
-
 
 	<delete id="wishDelete" parameterType="java.util.Map">
 		delete wish where movie_num=#{movie_num} and id=#{id}
@@ -55,6 +57,9 @@
   			<when test="kind == 'reserve_rate'">
   				order by reserve_rate desc
   			</when>
+  			<when test="kind == 'wish'">
+  				order by wish desc
+  			</when>
   		</choose>
   	</select>
   	
@@ -83,4 +88,20 @@
   	<update id="movieRevision" parameterType="movieDTO">
   		update movie set movie_name=#{movie_name}, teaser_url=#{teaser_url},open_date=#{open_date},run_time=#{run_time},type=#{type},contents=#{contents},age_limit=#{age_limit},actor=#{actor} where movie_num=#{movie_num}
   	</update>
+  	<!-- heeseong -->
+  	<select id="movieSearchList" parameterType="java.util.Map" resultType="movieDTO">
+  		select * from movie 
+  		<choose>
+  			<when test="type == 'title'">
+  				where title=<![CDATA['%#{search}%' ]]>
+  			</when>
+  			<when test="type == 'type'">
+  				where type=<![CDATA['%#{search}%' ]]>
+  			</when>
+  			<when test="type == 'actor'">
+  				where actor=<![CDATA['%#{search}%' ]]>
+  			</when>
+  			
+  		</choose>
+  	</select>
 </mapper>
