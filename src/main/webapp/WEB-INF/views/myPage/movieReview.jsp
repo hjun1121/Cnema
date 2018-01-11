@@ -9,10 +9,6 @@
 <title>평점 작성</title>
 <script type="text/javascript">
 $(function(){
-	$("#reBtn").click(function(){
-		document.rFrm.submit();
-	});
-	
 	var good = $("#good").val();
 	var bad = $("#bad").val();
 	$("#good").click(function(){
@@ -33,7 +29,7 @@ $(function(){
 <form action="movieReview" name="rFrm" method="POST">
 	<input type="hidden" name="movie_num" value="${movieDTO.movie_num }">
 	<textarea name="review" id="review"></textarea>
-	<input type="button" id="reBtn" value="작성완료">
+	<input type="submit" value="작성완료">
 </form>
 </body>
 </html>

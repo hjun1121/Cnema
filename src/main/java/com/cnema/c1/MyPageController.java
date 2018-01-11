@@ -135,7 +135,7 @@ public class MyPageController {
 			mv.setViewName("redirect:../common/resultClose");
 		}else{
 			rd.addAttribute("message", "리뷰 작성 실패");
-			mv.setViewName("redirect:../");
+			mv.setViewName("redirect:../common/resultClose");
 		}
 		
 		return mv;
