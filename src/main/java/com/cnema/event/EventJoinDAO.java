@@ -18,4 +18,8 @@ public class EventJoinDAO {
 		return result;
 	}
 	
+	public int selectOne(EventJoinDTO eventJoinDTO) throws Exception{
+		int check = sqlSession.selectOne(namespace+"joinCheck", eventJoinDTO);
+		return check;
+	}
 }

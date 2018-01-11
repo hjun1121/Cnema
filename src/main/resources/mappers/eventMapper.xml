@@ -5,6 +5,17 @@
    
    <mapper namespace="eventMapper">
   
+  <!--eventJoin insert   -->
+  <insert id="joinInsert" parameterType="com.cnema.event.EventJoinDTO">
+  
+  	insert into eventjoin
+  	values(#{num},#{id},#{type})
+  </insert>
+  <!-- event select One  -->
+  <select id="joinCheck" parameterType="com.cnema.event.EventJoinDTO" resultType="int">
+  		select count(*) from eventjoin where num=#{num} and id=#{id}
+  </select>
+  
   <select id="ingSelectList" parameterType="com.cnema.util.RowNum" resultType="EventDTO">
   		select * from
   		(select rownum r, N.* from
