@@ -17,7 +17,7 @@
 			<td><input type="text" name="writer" value="${member.id}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td class="content" colspan="2"><textarea id="contents" name="contents" draggable="false">내용을 입력해주세요.</textarea></td>
+			<td class="content" colspan="2"><textarea id="contents" name="contents" draggable="false" placeholder="내용을 입력해주세요."></textarea></td>
 		</tr>
 	</table>
 	

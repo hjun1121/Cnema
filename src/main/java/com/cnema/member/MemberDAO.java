@@ -43,5 +43,9 @@ public class MemberDAO {
 	public int withdrawal(String id) throws Exception{
 		return sqlSession.delete(NAMESPACE+"withdrawal",id);
 	}
+	/*heeseong*/
+	public int myInfoRevision(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"myInfoRevision",memberDTO);
+	}
 
 }
