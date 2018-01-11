@@ -2,6 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 	<!-- Header -->
+	
+	<script type="text/javascript">
+		var message = '${message}';
+		if(message != ""){
+			alert(message);
+		}
+	
+		$(function(){
+			$(".headbtn").mouseenter(function(){
+				var a = $(this).attr("title");  //booking
+				$(this).attr("class", a+" on");
+			})
+			$(".headbtn").mouseleave(function(){
+				var a = $(this).attr("title");  //booking
+				$(this).attr("class", a);
+			})
+		});
+		
+	</script>
+	
 	<div id="header">
 		<div class="head">
 			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
