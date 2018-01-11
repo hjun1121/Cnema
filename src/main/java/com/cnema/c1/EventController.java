@@ -12,7 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.board.BoardDTO;
 import com.cnema.event.EventDTO;
+import com.cnema.event.EventJoinDTO;
 import com.cnema.event.EventService;
+import com.cnema.member.MemberDTO;
 import com.cnema.util.ListData;
 
 @Controller
@@ -53,14 +55,25 @@ public class EventController {
 		
 		//View페이지
 		@RequestMapping(value="eventView")
-		public ModelAndView selectOne(ModelAndView mv, int num, RedirectAttributes rd) throws Exception{
+		public ModelAndView selectOne(ModelAndView mv, int num,HttpSession session, RedirectAttributes rd) throws Exception{
 			BoardDTO eventDTO = null;
+			String id=" ";
+			MemberDTO memberDTO= (MemberDTO) session.getAttribute("member");
 			
-				eventDTO = eventService.selectOne(num);
+			if(memberDTO !=null){
+			id=memberDTO.getId();
+			}
+			EventJoinDTO eventJoinDTO =new EventJoinDTO();
+			eventJoinDTO.setId(id);
+			eventJoinDTO.setNum(num);
+			
+			eventDTO = eventService.selectOne(num);
+			int check=eventService.eventJoinCheck(eventJoinDTO);
 			
 			
 			if(eventDTO != null){
 				mv.addObject("view", eventDTO);
+				mv.addObject("check", check);
 				mv.setViewName("event/eventView");
 			}else{
 				rd.addFlashAttribute("message","업습니다.");
