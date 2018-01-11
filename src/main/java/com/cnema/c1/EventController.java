@@ -57,9 +57,12 @@ public class EventController {
 		@RequestMapping(value="eventView")
 		public ModelAndView selectOne(ModelAndView mv, int num,HttpSession session, RedirectAttributes rd) throws Exception{
 			BoardDTO eventDTO = null;
+			String id=" ";
 			MemberDTO memberDTO= (MemberDTO) session.getAttribute("member");
-			String id=memberDTO.getId();
 			
+			if(memberDTO !=null){
+			id=memberDTO.getId();
+			}
 			EventJoinDTO eventJoinDTO =new EventJoinDTO();
 			eventJoinDTO.setId(id);
 			eventJoinDTO.setNum(num);

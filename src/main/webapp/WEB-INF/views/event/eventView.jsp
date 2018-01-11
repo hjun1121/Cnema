@@ -20,16 +20,16 @@ $(function(){
 		
 		if(id==''){
 			alert("로그인을 해주세요!");
-			location.href="../home/park";
+			location.href="../home/park";//로그인 페이지로 이동하기 **바꾸기
 		}
 		else{
 		var num = $("#num").val();
 		var type= Math.floor(Math.random() * 2);//0 또는 1 만 나오게 한다.
 		$(this).val('참여완료');
 		$(this).prop("disabled",true);
-		alert(type);
+		//alert(type);
 		$.ajax({
-			url:"../ajax/eventJoin",
+			url:"../ajax/eventCheck",
 			type:"POST",
 			data:{
 			 num:num,
