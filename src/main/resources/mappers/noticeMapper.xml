@@ -58,11 +58,8 @@
   	</delete>
   	
   	<insert id="insert" parameterType="com.cnema.board.BoardDTO">
-  		<selectKey keyProperty="num" resultType="int" order="BEFORE">
-  			select board_seq.nextval from dual
-  		</selectKey>
   		insert into notice 
-  		values(#{num},#{writer},#{title},#{contents},sysdate,0)
+  		values(movie_seq.nextval,#{title},#{writer},#{contents},sysdate,0,0,0)
   	</insert>
  </mapper>
  
