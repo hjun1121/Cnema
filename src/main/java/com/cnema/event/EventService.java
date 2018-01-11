@@ -32,6 +32,12 @@ public class EventService {
 		
 		return result;
 	}
+	//이벤트 데이터 조회
+	public int eventJoinCheck(EventJoinDTO eventJoinDTO) throws Exception{
+		int check= eventJoinDAO.selectOne(eventJoinDTO);
+		
+		return check;
+	}
 	
 	//기본 진행중인 이벤트 리스트 
 	public ModelAndView selectList(ListData listData) throws Exception {
