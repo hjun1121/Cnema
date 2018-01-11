@@ -191,7 +191,7 @@
 		});
 		/*  */
 		$("#leftBtn1").click(function(){
-
+			
 		});
 		/*  */
 		$("#rightBtn2").click(function(){
@@ -205,12 +205,19 @@
 			if(sCount==pCount && sCount != 0){
 				alert("movie_num :"+movie_num+"\n theater_num :"+theater_num+"\n day_num :"+day_num
 					+"\n schedule_num :"+schedule_num+"\n adult_num :"+adult_num+"\n teen_num :"+teen_num+"\n pCount :"+pCount);
+				if(adult_num ==""){
+					$("#adult_num").val("0");
+				}else if(teen_num ==""){
+					$("#teen_num").val("0");
+				}
+				$("#seatName").val($("#seatN").html());
+				$("#price").val($("#qrPrice").html());			
+				document.reserve.submit();
 			}else{
 				alert("인원수와 자리를 확인해주세요");
 			}
 		});
 
-		
 		/*  */
 	});
 </script>
@@ -358,7 +365,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>인원</td><td>${people }</td>
+					<td>인원</td><td></td>
 				</tr>										
 			</table>
 			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" id="qrSeat">
@@ -366,8 +373,10 @@
 					<td id="seatN">좌석선택</td>
 				</tr>											
 			</table>
-			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" id="qrPrice">
-															
+			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" >
+				<tr>
+					<td id="qrPrice"></td>
+				</tr>							
 			</table>			
 		<input type="button" id="rightBtn2" value="결제">	
 		</form>
@@ -378,10 +387,12 @@
 			d<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">
 			sc<input type="text" id="schedule_num" name="schedule_num" value="${reserve.schedule_num }">
 			<br>
-			ad<input type="text" id="adult_num" name="adult_num">
-			te<input type="text" id="teen_num" name="teen_num">
+			ad<input type="text" id="adult_num" name="adult_num" value="">
+			te<input type="text" id="teen_num" name="teen_num" value="">
 			pC<input type="text" id="pCount" name="pCount" value="0">
 			pe<input type="text" id="people" name="people">
+			<input type="text" id="seatName" name="seatName">
+			<input type="text" id="price" name="price">
 			<div id="seatList">
 			
 			</div>

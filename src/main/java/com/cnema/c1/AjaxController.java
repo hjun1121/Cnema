@@ -252,19 +252,18 @@ public class AjaxController {
 		System.out.println("sCount:"+sCount);
 		System.out.println("adult_num"+adult_num);
 		System.out.println("teen_num:"+teen_num);
-		int people = adult_num+teen_num;
 		int count =1;
 		int price =0;
 		for(int i =1; i<=sCount; i++){
 			if(count<=adult_num){
-				System.out.println(i+"어른");
+				//System.out.println(i+"어른");
 				price = price+8000;
 				count++;
 			}else{
-				System.out.println(i+"청소년");
+				//System.out.println(i+"청소년");
 				price = price+6000;
 			}	
-			System.out.println("========");
+			//System.out.println("========");
 		}
 		
 		model.addAttribute("price", price);

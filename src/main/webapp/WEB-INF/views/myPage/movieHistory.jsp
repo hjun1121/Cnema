@@ -21,6 +21,10 @@ $(function(){
 		var sKind = $("#kind").val();
 		location.href="./movieHistory?kind="+sKind;
 	});
+	$("#reviewBtn").click(function(){
+		var movie_num = $("#movie_num").val();
+		window.open("movieReview?movie_num="+movie_num,"평점작성","width=800,height=700,toolbar=no");
+	});
 });
 </script>
 </head>
@@ -39,6 +43,7 @@ $(function(){
 			<input type="button" id="date_search" value="GO">
 		</div>
 		<c:forEach items="${rList}" var="reserveList">
+			<input type="hidden" id="movie_num" name="movie_num" value="${reserveList.movieDTO.movie_num }">
 			<input type="text" id="reserve_num" name="reserve_num" value='${reserveList.reserve_num}'>
 			사진 : <img alt='${reserveList.movieDTO.movie_name}' src='/resource/movie/${reserveList.movieDTO.fileName}'><br>
 			<a href="../movie/movie_view?movie_num=${reserveList.movieDTO.movie_num }">영화명: ${reserveList.movieDTO.movie_name}<br></a>
@@ -48,7 +53,8 @@ $(function(){
 			지점 : ${reserveList.theater_num }<br>
 			상영관 번호 : ${reserveList.screen_num }<br>
 			몇명 : ${reserveList.ticketPriceDTO.people}<br>
-			<button>x</button>
+			<button>x</button><br>
+			<input type="button" id="reviewBtn" value="이 영화를 평가해 주세요"><br>
 			------ <br>
 		</c:forEach>
 	</form>

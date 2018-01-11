@@ -10,10 +10,9 @@ public class ReserveDTO {
 	private int theater_num;
 	private int screen_num;
 	private int schedule_num;
-	private String seat_num;
+	private int[] seat_num;
 	private int movie_num;
 	private String id;
-	private int age_type;
 	private int tp_num;
 	private Date reg_date;
 	
@@ -51,10 +50,10 @@ public class ReserveDTO {
 	public void setSchedule_num(int schedule_num) {
 		this.schedule_num = schedule_num;
 	}
-	public String getSeat_num() {
+	public int[] getSeat_num() {
 		return seat_num;
 	}
-	public void setSeat_num(String seat_num) {
+	public void setSeat_num(int[] seat_num) {
 		this.seat_num = seat_num;
 	}
 	public int getMovie_num() {
@@ -68,12 +67,6 @@ public class ReserveDTO {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public int getAge_type() {
-		return age_type;
-	}
-	public void setAge_type(int age_type) {
-		this.age_type = age_type;
 	}
 	public int getTp_num() {
 		return tp_num;
