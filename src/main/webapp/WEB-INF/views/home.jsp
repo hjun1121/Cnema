@@ -57,6 +57,14 @@ carousel();
  })
 </script>
 
+<script type="text/javascript">
+	var message = '${message}';
+	if(message != ""){
+		alert(message);
+	}
+	
+	
+</script>
 
 <script type="text/javascript">
 var slideIndex = 1;

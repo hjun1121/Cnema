@@ -4,10 +4,6 @@
 	<!-- Header -->
 	
 	<script type="text/javascript">
-		var message = '${message}';
-		if(message != ""){
-			alert(message);
-		}
 	
 		$(function(){
 			$(".headbtn").mouseenter(function(){
