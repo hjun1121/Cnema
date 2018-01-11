@@ -48,12 +48,12 @@
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie headbtn" title="movie headbtn"><a href="/movies/">영화</a>
+						<li class="movie headbtn" title="movie headbtn"><a href="./movie/movie_chart">영화</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="#">무비차트</a></li>
+										<li><a href="./movie/movie_chart">무비차트</a></li>
 										<li><a href="#">HD 트레일러</a></li>
 										<li><a href="#">무비파인더</a></li>
 										<li><a href="#">평점</a></li>
