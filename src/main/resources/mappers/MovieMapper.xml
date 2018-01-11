@@ -5,6 +5,9 @@
 <mapper namespace="movieMapper">
 
 
+	<select id="warningCheck" parameterType="java.util.Map" resultType="warningDTO">
+		select * from warning where id=#{id} and review_num=#{review_num}
+	</select>
 
 	<update id="warningUpdate" parameterType="int">
 		update review set warning=warning+1 where review_num=#{review_num} 
@@ -13,7 +16,6 @@
 	<insert id="warningInsert" parameterType="java.util.Map">
 		insert into warning values(movie_seq.nextval, #{review_num}, #{id})
 	</insert>
-
 
 	<delete id="wishDelete" parameterType="java.util.Map">
 		delete wish where movie_num=#{movie_num} and id=#{id}
@@ -54,6 +56,9 @@
   			</when>
   			<when test="kind == 'reserve_rate'">
   				order by reserve_rate desc
+  			</when>
+  			<when test="kind == 'wish'">
+  				order by wish desc
   			</when>
   		</choose>
   	</select>

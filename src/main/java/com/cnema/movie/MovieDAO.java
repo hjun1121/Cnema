@@ -20,6 +20,15 @@ public class MovieDAO {
 	private static final String NAMESPACE = "movieMapper.";
 
 	
+	//warningCheck
+	public WarningDTO warningCheck(String id, int review_num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("review_num", review_num);
+		return sqlSession.selectOne(NAMESPACE+"warningCheck", map);
+	}
+	
+	
 	//warningList
 	public List<WarningDTO> warningList(int review_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"warningList", review_num);

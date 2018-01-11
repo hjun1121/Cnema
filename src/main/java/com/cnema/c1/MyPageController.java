@@ -53,6 +53,27 @@ public class MyPageController {
 	@Inject
 	private ReviewService reviewService;
 	
+	@RequestMapping(value="myInfoCheck",method=RequestMethod.GET)
+	public ModelAndView myInfoCheck(HttpSession session){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id",memberDTO.getId());
+		mv.setViewName("myPage/myInfoCheck");
+		return mv;
+	}
+	@RequestMapping(value="myInfoCheck",method=RequestMethod.POST)
+	public ModelAndView myInfoCheck(HttpSession session,String pwd,RedirectAttributes rd){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		if(memberDTO.getPw().equals(pwd)){
+			mv.addObject("memberDTO", memberDTO);
+			mv.setViewName("myPage/myInfo");
+		}else{
+			rd.addFlashAttribute("message", "비밀번호 실패!");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
