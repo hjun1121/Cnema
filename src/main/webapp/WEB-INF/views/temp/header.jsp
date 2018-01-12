@@ -20,7 +20,7 @@
 	
 	<div id="header">
 		<div class="head">
-			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
+			<h1><a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
@@ -30,8 +30,8 @@
 				</ul>
 				<ul class="gnb">
 				<c:if test="${empty member }">
-                    <li><a href="#"  class="login" >로그인</a></li>
-					<li><a href="#" class="join">회원가입</a></li>
+                    <li><a href="${pageContext.request.contextPath }/member/memberLogin"  class="login" >로그인</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/joinAgree" class="join">회원가입</a></li>
 				</c:if>
 				<c:if test="${!empty member }">
 					<li><a href="#" class="join">로그아웃</a></li>
