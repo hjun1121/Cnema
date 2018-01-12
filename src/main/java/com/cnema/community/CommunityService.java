@@ -12,21 +12,20 @@ import com.cnema.util.FileSaver;
 public class CommunityService {
 
 	@Inject
-	private CommunityService communityService;
+	private PageDAO pageDAO;
 	@Inject
 	private FileSaver fileSaver;
 	
 	
 	//selectRecommendPage
 	public List<PageDTO> selectRecommendPage() throws Exception {
-		return communityService.selectRecommendPage();
-			//으휴 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		return pageDAO.selectRecommendPage();
 	}
 	
 	
 	//selectPageList
 	public List<PageDTO> selectPageList(String id) throws Exception {
-		return communityService.selectPageList(id);
+		return pageDAO.selectPageList(id);
 	}
 	
 

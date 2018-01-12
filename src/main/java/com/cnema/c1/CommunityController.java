@@ -25,8 +25,8 @@ public class CommunityController {
 	
 	//pageInsert
 	@RequestMapping(value = "pageInsert")
-	public ModelAndView pageInsert(ModelAndView mv, HttpSession session) throws Exception {
-		
+	public ModelAndView pageInsert(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		
 		return mv;
 	}
