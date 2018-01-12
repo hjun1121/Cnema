@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CouponDTO;
+import com.cnema.coupon.CouponService;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
@@ -33,6 +36,10 @@ public class AdminController {
 	ScheduleService scheduleService;
 	@Inject
 	MemberService memberService;
+	@Inject
+	MyCouponService myCouponService;
+	@Inject
+	CouponService couponService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(String kind,String search){
@@ -298,8 +305,26 @@ public class AdminController {
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
+	
 	@RequestMapping(value="couponGive",method=RequestMethod.GET)
-	public void couponGive(String type){
-		System.out.println("type="+type);
+	public ModelAndView couponGive(int ctype){
+		ModelAndView mv = new ModelAndView();
+		CouponDTO couponDTO = null;
+		List<CouponDTO> cpList = new ArrayList<>();
+		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		try {
+			memList = memberService.memberCList(ctype);
+			couponDTO = couponService.couponInfo(ctype);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for(MemberDTO memberDTO : memList){
+			try {
+				myCouponService.couponInsert(memberDTO,couponDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return mv;
 	}
 }

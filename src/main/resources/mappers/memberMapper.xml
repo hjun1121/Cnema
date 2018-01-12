@@ -29,6 +29,10 @@
   		select * from member
   	</select>
   	<!-- heeseong -->
+  	<select id="memberCList" resultType="memberDTO" parameterType="int">
+  		select * from member where to_char(birth,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
+  	</select>
+  	<!-- heeseong -->
   	<delete id="withdrawal" parameterType="String">
   		delete from member where id=#{id}
   	</delete>

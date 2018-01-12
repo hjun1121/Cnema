@@ -11,7 +11,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#birth").click(function(){
-		location.href="./couponGive?type=birth";
+		location.href="./couponGive?ctype=10";
 	});
 });
 </script>

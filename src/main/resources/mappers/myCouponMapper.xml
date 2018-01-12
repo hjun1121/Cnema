@@ -22,4 +22,8 @@
   <select id="myCouponAList" resultType="myCouponDTO" parameterType="java.lang.String">
   	select * from myCoupon where id=#{id} 
   </select>
+  <!-- heeseong -->
+  <insert id="couponInsert" parameterType="java.util.Map">
+  	insert into myCoupon values(movie_seq.nextval,#{memberDTO.name},#{memberDTO.id},#{couponDTO.v_day},sysdate,0,11);
+  </insert>
   </mapper>
