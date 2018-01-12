@@ -1,5 +1,8 @@
 package com.cnema.c1;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -222,11 +225,21 @@ public class AdminController {
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.GET)
 	public void scheduleInsert() {
 	}
+	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
 	public void scheduleInsert(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
+
+		 
+		System.out.println("screen :"+scheduleDTO.getScreen_num());
+		System.out.println("movie :"+scheduleDTO.getMovie_num());
+		System.out.println("in_time:"+scheduleDTO.getIn_time());
+		System.out.println("out_time:"+scheduleDTO.getOut_time());
+
+		String a = scheduleDTO.getIn_time()+139;
+		System.out.println(a);
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = scheduleService.scheduleInsert(scheduleDTO);
+		//result = scheduleService.scheduleInsert(scheduleDTO);
 		
 		if(result>0){
 			rd.addAttribute("message", "글쓰기 성공");
