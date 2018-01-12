@@ -110,16 +110,18 @@ public class AdminController {
 				theaterList = theaterService.theatherAList();
 			}else{
 				if(kind.equals("location")){
-					theaterList = theaterService.thLocationList(search);
+					theaterList = theaterService.thSearchList(kind,search);
 				}
 				if(kind.equals("area")){
-					theaterList = theaterService.thAreaList(search);
+					theaterList = theaterService.thSearchList(kind,search);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		mv.addObject("kind",kind);
+		mv.addObject("search",search);
 		mv.addObject("theaterList", theaterList);
 		mv.setViewName("admin/theaterList");
 		return mv;
@@ -295,5 +297,9 @@ public class AdminController {
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
+	}
+	@RequestMapping(value="couponGive",method=RequestMethod.GET)
+	public void couponGive(String type){
+		System.out.println("type="+type);
 	}
 }

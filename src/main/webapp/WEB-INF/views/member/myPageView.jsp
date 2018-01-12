@@ -326,7 +326,7 @@
 				<h3>상영시간표 </h3>
 				<a href="../admin/scheduleList">상영시간표</a>
 				<h3>회원 목록</h3>
-				<a href="">회원 목록</a>
+				<a href="../admin/memberList">회원 목록</a>
 				
 			<!-- 내용 끝 -->
 			
