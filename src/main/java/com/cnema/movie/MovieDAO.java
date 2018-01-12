@@ -128,9 +128,9 @@ public class MovieDAO {
 		return sqlSession.update(NAMESPACE+"movieRevision",movieDTO);
 	}
 	/*heeseong*/
-	public List<MovieDTO> movieSearchList(String type, String search) {
+	public List<MovieDTO> movieSearchList(String kind, String search) {
 		Map<String, Object> mMap = new HashMap<>();
-		mMap.put("type", type);
+		mMap.put("kind", kind);
 		mMap.put("search", search);
 		return sqlSession.selectList(NAMESPACE+"movieSearchList",mMap);
 	}
