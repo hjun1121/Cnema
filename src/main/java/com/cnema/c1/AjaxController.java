@@ -123,22 +123,6 @@ public class AjaxController {
 
 		return mv;
 	}
-
-	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
-	public void qrSeatBox(int schedule_num, Model model){
-		
-		ScheduleDTO scheduleDTO=null;
-		ScreenDTO screenDTO = null;
-		try {
-			scheduleDTO = scheduleService.scheduleOne(schedule_num);
-			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
-			model.addAttribute("screenDTO", screenDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	//movieWishReturn
 	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
 	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {
@@ -158,7 +142,22 @@ public class AjaxController {
 		
 		return mv;
 	}
-
+	
+	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
+	public void qrSeatBox(int schedule_num, Model model){
+		
+		ScheduleDTO scheduleDTO=null;
+		ScreenDTO screenDTO = null;
+		try {
+			scheduleDTO = scheduleService.scheduleOne(schedule_num);
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+			model.addAttribute("screenDTO", screenDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
 	public void qrTheater(int theater_num, Model model){
 		TheaterDTO theaterDTO = null;
@@ -226,11 +225,12 @@ public class AjaxController {
 	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
 		try {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
-			model.addAttribute("screenList", ar);
 			for(ScreenDTO screenDTO : ar){
-				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num);
+				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num, movie_num);
 				screenDTO.setAr(ar2);
 			}
+			
+			model.addAttribute("screenList", ar);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

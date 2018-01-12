@@ -20,10 +20,11 @@ public class ScheduleDAO {
 		return sqlSession.selectList(NAMESPACE+"screenList", theater_num);
 	}
 	
-	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num) throws Exception{
+	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num, int movie_num) throws Exception{
 		Map<String, Object> map  =new HashMap<>();
 		map.put("screen_num", screen_num);
 		map.put("day_num", day_num);
+		map.put("movie_num", movie_num);
 		return sqlSession.selectList(NAMESPACE+"scheduleList", map);
 	}
 	

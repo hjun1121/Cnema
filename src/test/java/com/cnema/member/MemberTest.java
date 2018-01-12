@@ -40,6 +40,7 @@ public class MemberTest extends AbstractTest {
 		
 		try {
 			Calendar sDay = Calendar.getInstance();
+			//
 			
 			int year = sDay.get(Calendar.YEAR);
 			int month = sDay.get(Calendar.MONTH)+1;
@@ -64,8 +65,7 @@ public class MemberTest extends AbstractTest {
 					i=1;
 					maxDay = i+14-count;
 				}
-				System.out.println(year+"년"+month+"월"+i);
-				System.out.println(str2);
+				//System.out.println(year+"년"+month+"월"+i+str2);
 				count++;
 			}
 			

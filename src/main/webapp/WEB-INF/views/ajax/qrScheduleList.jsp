@@ -7,9 +7,14 @@
 		<li>
 			${DTO.room_num} 관 ${DTO.floor }층 (총자리수 : ${DTO.x_num * DTO.y_num })
 			<c:forEach items="${DTO.ar }" var="ar">
-			<p><a href="#" class="schedules" title="${ar.schedule_num }" onclick="return false;"><fmt:formatDate value="${ar.in_time }" type="time" pattern="HH:mm"/>
+			<p><a href="#" class="schedules" title="${ar.schedule_num }" onclick="return false;">
+			${ar.in_time }
+			~${ar.out_time }
+<%-- 			<fmt:formatDate value="${ar.in_time }" type="time" pattern="HH:mm"/>
 			~
-			<fmt:formatDate value="${ar.out_time }" type="time" pattern="HH:mm"/></a></p>
+			<fmt:formatDate value="${ar.out_time }" type="time" pattern="HH:mm"/> --%>
+			
+			</a></p>
 			</c:forEach>
 		</li>
 	</c:if>

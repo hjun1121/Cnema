@@ -1,6 +1,8 @@
 package com.cnema.reserve;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -31,8 +33,7 @@ public class ReserveTest extends AbstractTest {
 				System.out.println((char)i+"열"+j);
 			}
 		}
-		
-		
+
 		/*int num = 65;
 		char ch = (char)num;
 		System.out.println("숫자 :"+num);
@@ -44,8 +45,7 @@ public class ReserveTest extends AbstractTest {
 		System.out.println("숫자 :"+num2);*/
 	}
 	
-	@Test
-	public void test() {
+	public void list(){
 		List<ScreenDTO> ar;
 		List<ScheduleDTO> ar2;
 		Calendar sDay = Calendar.getInstance();
@@ -56,8 +56,8 @@ public class ReserveTest extends AbstractTest {
 			for(ScreenDTO screenDTO : ar){
 				
 				System.out.println(screenDTO.getScreen_num());
-				ar2  =scheduleDAO.scheduleList(screenDTO.getScreen_num(),DTO);
-				screenDTO.setAr(ar2);
+				//ar2  =scheduleDAO.scheduleList(screenDTO.getScreen_num(),DTO);
+				//screenDTO.setAr(ar2);
 				
 /*				for(ScheduleDTO scheduleDTO : ar2){
 					System.out.println(scheduleDTO.getIn_time());
@@ -77,4 +77,52 @@ public class ReserveTest extends AbstractTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void test() {
+		Calendar sDay = Calendar.getInstance();
+		try {
+			
+			ScheduleDTO scheduleDTO = scheduleDAO.scheduleInfo(1);
+			System.out.println("in :"+scheduleDTO.getIn_time());
+			String in = scheduleDTO.getIn_time();
+			
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			java.util.Date d = sd.parse(in);
+			sDay.setTime(d);
+			System.out.println(sDay.getTimeInMillis());
+			System.out.println(sDay.getTime());
+			
+			SimpleDateFormat sd2 = new SimpleDateFormat("HH:mm");
+			String str = sd2.format(d);
+			System.out.println(str);
+			//long s = 130*60*1000;
+			//sDay.setTimeInMillis(sDay.getTimeInMillis()+s);
+			
+			sDay.add(Calendar.MINUTE, 130);
+			
+			System.out.println(sDay.getTime());
+			int ss = 130*60;
+			DateFormat df = DateFormat.getDateInstance();
+			int m = 130;
+			
+			
+			
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
