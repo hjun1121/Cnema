@@ -6,10 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>멤버리스트</title>
+<script type="text/javascript">
+$(function(){
+	$("#birth").click(function(){
+		location.href="./couponGive?ctype=10";
+	});
+});
+</script>
 </head>
 <body>
 <h3>멤버리스트</h3>
+<input type="button" id="birth" value="생일쿠폰">
+<input type="button" id="vip" value="VIP쿠폰">
 <table>
 	<tr>
 		<td>ID</td>

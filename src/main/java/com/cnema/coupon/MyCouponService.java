@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.cnema.member.MemberDTO;
+
 @Service
 public class MyCouponService {
 	@Inject
@@ -26,5 +28,9 @@ public class MyCouponService {
 	/*희성*/
 	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2) throws Exception{
 		return myCouponDAO.myCouponDList(id,dp1,dp2);
+	}
+	/*희성*/
+	public int couponInsert(MemberDTO memberDTO, CouponDTO couponDTO) throws Exception{
+		return myCouponDAO.couponInsert(memberDTO,couponDTO);
 	}
 }
