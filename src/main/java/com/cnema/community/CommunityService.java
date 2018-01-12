@@ -20,6 +20,7 @@ public class CommunityService {
 	//selectRecommendPage
 	public List<PageDTO> selectRecommendPage() throws Exception {
 		return communityService.selectRecommendPage();
+			//으휴 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	}
 	
 	
@@ -28,5 +29,5 @@ public class CommunityService {
 		return communityService.selectPageList(id);
 	}
 	
-	
+
 }

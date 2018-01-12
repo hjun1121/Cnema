@@ -5,12 +5,19 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PageDAO {
 	
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "communityMapper.";
 	
+	
+	//pageInsert
+	public int pageInsert(PageDTO pageDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"pageInsert", pageDTO);
+	}
 	
 	//selectRecommendPage
 	public List<PageDTO> selectRecommendPage() throws Exception {
