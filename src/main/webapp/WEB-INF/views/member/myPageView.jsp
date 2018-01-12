@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +26,8 @@
  -->
 
 <title>MY CNEMA HOME</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<div id="cgvwrap">
@@ -70,19 +74,19 @@
         				<h2 class="hidden">개인화 영역</h2> 
         					<div class="box-image">
 								<span class="thumb-image">
-									<img src="http://img.cgv.co.kr/R2014/images/common/default_profile.gif" alt="장희성님 프로필 사진">
+									<img src="${pageContext.request.contextPath }/resources/images/myPageView/default_profile.gif" alt="프로필 사진">
 									<span class="profile-mask"></span>
 								</span>
         					</div>
         					<div class="box-contents newtype">
 				        		<div class="person-info">
-				        			<strong>장희성님</strong>
-				        			<em>hsung0228</em>
+				        			<strong>${myInfo.name}님</strong>
+				        			<em>${myInfo.id}</em>
 				        			
 				        		</div>
         					<div class="grade-info">
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은  2017년 2월 <strong class="txt-purple">VIP</strong> 입니다.             
+                         			 고객님은 sysdate <strong class="txt-purple">${myInfo.type}</strong>회원 입니다.             
                    			 	</p>
         						
                     			<div class="mycgv_btn_special2">
@@ -114,14 +118,14 @@
 			        		<a href="#">CJ ONE POINT 더보기</a>
 			        		<ul>
 			        			<li>
-			        				<strong>CJ ONE 사용가능 포인트</strong>
-			        				<span><em class="txt-maroon">801</em> 점</span>
+			        				<strong>사용가능 포인트</strong>
+			        				<span><em class="txt-maroon">${myInfo.v_point}</em> 점</span>
 			        			</li>
 			        		    <li class="tooltip_list cf">
-			        				<strong>VIP선정 포인트</strong><a href="#" class="mycgv_tooltip"><img src="http://img.cgv.co.kr/R2014/images/common/mycgv_tooltip/ico_tooltip.png" alt="i"></a>
+			        				<strong>누적 포인트</strong>
 			
-			                        <div class="tooltip_con tc2"><span><img src="http://img.cgv.co.kr/R2014/images/common/mycgv_tooltip/tooltip_con2.png" alt=""></span></div>
-			        				<span><em>9,020</em> 점</span>
+			                        <div class="tooltip_con tc2"><span></span></div>
+			        				<span><em><fmt:formatNumber value="${myInfo.a_point}" type="number"/></em> 점</span>
 			        			</li>
 			        		</ul>
 			        	</div>
@@ -135,10 +139,10 @@
 			                            <li><a href="#"><span>4<em>순위</em></span></a></li>
 			                            <li><a href="#"><span>5<em>순위</em></span></a></li>
 					            </ul>
-					            <button id="btn_set_my_favorite" title="새창" type="button" class="setting">자주가는 CGV<br>설정하기</button><!-- ///// -->
+					            <button id="btn_set_my_favorite" title="새창" type="button" class="setting">자주가는 극장<br>설정하기</button><!-- ///// -->
 					        </div>
 				        </div>
-			            <!-- <div class="cols-point-wrap"></div> -->
+			          
 			        </div>
 			    </div>
 			</div>
@@ -157,31 +161,31 @@
 	            	<li>
 	            		<a href="#">나의 예매내역 <i></i></a>
 	            			<ul>                      
-		                        <li><a href="#">내가 본 영화</a></li>
-			                    <li><a href="#">위시 리스트</a></li>
+		                        <li><a href="../myPage/movieHistory">내가 본 영화</a></li>
+			                    <li><a href="../myPage/wishList">위시 리스트</a></li>
 	                        </ul>
                 	</li>
 	            	<li>
 	                	<a href="#">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
-	                        <li><a href="#">나의 VIP쿠폰</a></li>
-		                    <li><a href="#">CGV 영화관람권</a></li>
+	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
+		                    <!-- <li><a href="#">영화관람권</a></li> -->
 	                	</ul>
 	           		</li>
 	            	<li>
-                    	<a href="#">CJ ONE 포인트 <i></i></a>
+                    	<a href="#">나의 포인트 관리 <i></i></a>
 	                	<ul>
-	                    	<li><a href="#">매점이용 포인트 적립</a></li>
-                        	<li><a href="#">포인트 적립/사용내역</a></li>
+	                    	<!-- <li><a href="#">매점이용 포인트 적립</a></li> -->
+                        	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
 
 	            	<li>
                     	<a href="#">회원정보<i></i></a>
 	                	<ul>
-                        	<li><a href="#">회원정보수정</a></li>
-	                    	<li><a href="#">프로필관리</a></li>
-	                    	<li><a href="#">회원탈퇴</a></li>
+                        	<li><a href="../myPage/myInfoCheck">회원정보수정</a></li>
+	                    	<!-- <li><a href="#">프로필관리</a></li> -->
+	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
 		            <li>
@@ -190,6 +194,17 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
+		            <c:if test="${!empty member and member.type eq 10 }">
+		            <li>
+	                    <a href="#">관리자 <i></i></a>
+		                <ul>
+		                    <li><a href="../admin/movieList">무비 리스트</a></li>
+		                    <li><a href="../admin/theaterList">극장목록</a></li>
+		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
+		                    <li><a href="#">회원 목록</a></li>
+		                </ul>
+		            </li>
+		            </c:if>
 	        		</ul>
 	    			</div>
     			</div>
@@ -204,7 +219,7 @@
         	
         	<!-- /////////////////////////////////////////// -->
         	
-			<h1>My Page</h1>
+			<%-- <h1>My Page</h1>
 				<!-- 나의 정보 -->
 				${myInfo.name}님  ${myInfo.id}<br>
 				고객님은 sysdate ${myInfo.type}입니다.<br>
@@ -249,7 +264,7 @@
 				<h3>상영시간표 </h3>
 				<a href="../admin/scheduleList">상영시간표</a>
 				<h3>회원 목록</h3>
-				<a href="">회원 목록</a>
+				<a href="">회원 목록</a> --%>
 				
 			<!-- 내용 끝 -->
 			
