@@ -20,7 +20,7 @@
 	
 	<div id="header">
 		<div class="head">
-			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
+			<h1><a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
@@ -30,12 +30,12 @@
 				</ul>
 				<ul class="gnb">
 				<c:if test="${empty member }">
-                    <li><a href="#"  class="login" >로그인</a></li>
-					<li><a href="#" class="join">회원가입</a></li>
+                    <li><a href="${pageContext.request.contextPath }/member/memberLogin"  class="login" >로그인</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/joinAgree" class="join">회원가입</a></li>
 				</c:if>
 				<c:if test="${!empty member }">
 					<li><a href="#" class="join">로그아웃</a></li>
-					<li><a href="#" class="myPage">마이페이지</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/myPageView" class="myPage">마이페이지</a></li>
 				</c:if>
 					<li><a href="#" class="customer">고객센터</a></li>
 					<li><a href="#" class="vip">찾아오시는 길</a></li>
@@ -57,7 +57,7 @@
 										<li><a href="#">HD 트레일러</a></li>
 										<li><a href="#">무비파인더</a></li>
 										<li><a href="#">평점</a></li>
-										<li class="last"><a href="#">CGV아트하우스</a></li>
+										<li class="last"><a href="./community/mainPage">CGV아트하우스</a></li>
 									</ul>
 								</div>
 							</div>
