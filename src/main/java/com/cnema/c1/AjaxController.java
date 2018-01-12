@@ -229,6 +229,7 @@ public class AjaxController {
 				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num, movie_num);
 				screenDTO.setAr(ar2);
 			}
+			
 			model.addAttribute("screenList", ar);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
