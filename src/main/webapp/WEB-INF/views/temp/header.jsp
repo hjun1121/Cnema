@@ -35,7 +35,7 @@
 				</c:if>
 				<c:if test="${!empty member }">
 					<li><a href="#" class="join">로그아웃</a></li>
-					<li><a href="#" class="myPage">마이페이지</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/myPageView" class="myPage">마이페이지</a></li>
 				</c:if>
 					<li><a href="#" class="customer">고객센터</a></li>
 					<li><a href="#" class="vip">찾아오시는 길</a></li>
