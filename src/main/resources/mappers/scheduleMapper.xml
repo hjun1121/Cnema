@@ -10,7 +10,7 @@
   	</select>
   
   	<select id="scheduleList" resultType="scheduleDTO" parameterType="java.util.Map">
-  		select * from schedule where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num}
+  		select * from schedule where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num} and movie_num=#{movie_num}
   	</select>
   	
   	<resultMap type="scheduleDTO" id="mmap">

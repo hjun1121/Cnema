@@ -12,8 +12,8 @@ public class ScheduleService {
 	@Inject
 	private ScheduleDAO scheduleDAO;
 	
-	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num)throws Exception{
-		return scheduleDAO.scheduleList(screen_num, day_num);
+	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num, int movie_num)throws Exception{
+		return scheduleDAO.scheduleList(screen_num, day_num, movie_num);
 	}
 	
 	public List<ScreenDTO> screenList(int theater_num)throws Exception{

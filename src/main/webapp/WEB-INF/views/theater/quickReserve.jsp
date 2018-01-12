@@ -11,6 +11,8 @@
 	$(function(){
 		/*  */
 		$(".area").click(function(){
+			$(".area").css("background-color","");
+			$(this).css("background-color","red");
 			var area = $(this).attr("title");
 			$.ajax({
 				url:"../ajax/locationList",
@@ -23,10 +25,12 @@
 					$("#list").html(data);
 				}
 			});
-			
 		});
 		/*  */
 		$(".movies").click(function(){
+			$(".movies").css("background-color","");
+			$(this).css("background-color","red");
+			
 			var num = $(this).attr("title");
 			$("#movie_num").val(num);
 			$.ajax({
@@ -42,14 +46,16 @@
 		});
 		/*  */
 		$("#list").on("click", ".location" , function(){
-			var num = $(this).attr("title");
-			$("#theater_num").val(num);
+			$(".location").css("background-color","");
+			$(this).css("background-color","red");
+			var theater_num = $(this).attr("title");
+			$("#theater_num").val(theater_num);
 			var day = $("#day_num").val();
 			$.ajax({
 				url:"../ajax/qrDay",
 				type:"post",
 				data:{
-					theater_num:num,
+					theater_num:theater_num,
 					day: day
 				},
 				success:function(data){
@@ -59,6 +65,8 @@
 		});
 		/*  */
 		$(".days").click(function(){
+			$(".days").css("background-color","");
+			$(this).css("background-color","red");
 			var day = $(this).attr("title");
 			var theater_num = $("#theater_num").val();
 			$("#day_num").val(day);
@@ -77,7 +85,8 @@
 			
 		})
 		/*  */
-		$(".time").click(function(){
+		//$(".time").click(function(){
+		$("#all").on("click", ".time" , function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();
@@ -100,6 +109,8 @@
 		});
 		/*  */
 		$("#scheduleList").on("click", ".schedules" , function(){
+			$(".schedules").css("background-color","");
+			$(this).css("background-color","red");
 			var schedule_num = $(this).attr("title");
 			$("#schedule_num").val(schedule_num);
 			var theater_num = $("#theater_num").val();
@@ -215,7 +226,7 @@
 	.locationList{
 		float: right;
 		overflow: auto;
-		height: 200px;
+		height: 500px;
 	}
 </style>
 </head>
@@ -226,7 +237,7 @@
 			<div class="head">
 				<h2>영화</h2>
 			</div>
-			<ul>
+			<ul style="height: 500px; overflow: auto;">
 				<c:forEach items="${movie }" var="DTO">
 					<li>
 						<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
@@ -244,7 +255,7 @@
 			</div>
 			<ul>
 				<li>
-					<a href="#" class="area" id="area" title="서울" onclick="return false;">서울</a>
+					<a href="#" class="area" id="area" title="서울" onclick="return false;" style="background-color: red;">서울</a>
 					<div class="locationList" id="list">
 						<ul>
 							<c:forEach items="${location }" var="DTO">
