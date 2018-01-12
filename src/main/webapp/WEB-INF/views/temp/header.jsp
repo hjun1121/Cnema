@@ -48,27 +48,25 @@
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie headbtn" title="movie headbtn"><a href="./movie/movie_chart">영화</a>
+						<li class="movie headbtn" title="movie headbtn"><a href="${pageContext.request.contextPath}/movie/movie_chart">영화</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="./movie/movie_chart">무비차트</a></li>
-										<li><a href="#">HD 트레일러</a></li>
+										<li><a href="${pageContext.request.contextPath}/movie/movie_chart">무비차트</a></li>
 										<li><a href="#">무비파인더</a></li>
-										<li><a href="#">평점</a></li>
-										<li class="last"><a href="./community/mainPage">CGV아트하우스</a></li>
+										<li class="last"><a href="${pageContext.request.contextPath}/community/mainPage">CGV아트하우스</a></li>
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="booking headbtn" title="booking headbtn"><a href="./theater/quickReserve">예매</a>
+						<li class="booking headbtn" title="booking headbtn"><a href="${pageContext.request.contextPath}/theater/quickReserve">예매</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="./theater/quickReserve">빠른예매</a></li>
-										<li><a href="./theater/scheduleList">상영시간표</a></li>
+										<li><a href="${pageContext.request.contextPath}/theater/quickReserve">빠른예매</a></li>
+										<li><a href="${pageContext.request.contextPath}/theater/scheduleList">상영시간표</a></li>
 									</ul>
 								</div>
 							</div>

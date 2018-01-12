@@ -73,6 +73,10 @@ public class MovieController {
 			// TODO: handle exception
 		}
 
+		if(kind == null) {
+			kind = "reserve_rate";
+		}
+		
 		List<MovieDTO> ar = movieService.movieList(kind);
 		ar.get(0).getFileName();
 		mv.addObject("movie_list", ar);

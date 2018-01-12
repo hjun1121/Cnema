@@ -13,6 +13,7 @@ import com.cnema.util.FileSaver;
 
 
 @Service
+@Transactional
 public class MovieService {
 	@Inject
 	private MovieDAO movieDAO;

@@ -111,7 +111,7 @@
 	<div style="margin-top: 7px; font-size: 11px;">
 		<strong style="vertical-align: middle;">
 			예매율
-			<span style="vertical-align: initial; margin-left: 10px;">${movie.reserve_rate}</span>
+			<span style="vertical-align: initial; margin-left: 10px;">${movie.reserve_rate}%</span>
 		</strong>
 	</div>
 	<span style="margin-top: 3px; height: 13px; color: #666666; font-size: 11px; display: block;">
@@ -196,5 +196,3 @@
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	
 </body>
 </html>
-
-
