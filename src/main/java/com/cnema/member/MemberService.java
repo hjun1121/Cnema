@@ -53,6 +53,10 @@ public class MemberService {
 		return memberDAO.memberList();
 	}
 	/*heeseong*/
+	public List<MemberDTO> memberCList(int ctype) throws Exception{
+		return memberDAO.memberCList(ctype);
+	}
+	/*heeseong*/
 	public int withdrawal(String id) throws Exception{
 		return memberDAO.withdrawal(id);
 	}

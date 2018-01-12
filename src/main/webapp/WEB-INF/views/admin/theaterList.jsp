@@ -11,6 +11,8 @@
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
+	var search='${search}';
+	$("#search").val(search);
 	$(".kind").each(function(){
 		if($(this).val()==kind){
 			$(this).attr("selected",true);

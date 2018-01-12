@@ -264,7 +264,11 @@
 				<h3>상영시간표 </h3>
 				<a href="../admin/scheduleList">상영시간표</a>
 				<h3>회원 목록</h3>
+<<<<<<< HEAD
+				<a href="../admin/memberList">회원 목록</a>
+=======
 				<a href="">회원 목록</a> --%>
+>>>>>>> 6d703630f3c9bb14e8e219ecc6bb7f608e004b23
 				
 			<!-- 내용 끝 -->
 			
