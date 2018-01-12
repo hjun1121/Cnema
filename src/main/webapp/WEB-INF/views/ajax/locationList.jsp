@@ -4,7 +4,7 @@
 <ul>
 	<c:forEach items="${location }" var="DTO">
 		<li>
-			<a href="#" onclick="return false;" class="location" title="${DTO.theater_num }" >
+			<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
 			${DTO.location }
 			</a>
 		</li>

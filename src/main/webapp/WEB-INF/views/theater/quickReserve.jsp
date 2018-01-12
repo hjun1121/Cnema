@@ -50,6 +50,7 @@
 			$(this).css("background-color","red");
 			var theater_num = $(this).attr("title");
 			$("#theater_num").val(theater_num);
+			$("#schedule_num").val("");
 			var day = $("#day_num").val();
 			$.ajax({
 				url:"../ajax/qrDay",
@@ -147,27 +148,7 @@
 				document.reserve.submit();
 			}
 		});
-		/*  */
-		$("#leftBtn1").click(function(){
-			var sn = $("#seatName").val();
-			$(".ss").each(function(index, item){
-				alert(index);
-				var sName = $(this).val();
-				$("#seatName").val(sn+sName);
-			});
-			
-			$.ajax({
-				url:"../ajax/qrSeat",
-				type:"post",
-				data:{
-					
-				},
-				success:function(data){
-					$("#qrSeat").html(data);
-				}
-			});	
-			
-		});
+
 		/*  */
 	});
 </script>
