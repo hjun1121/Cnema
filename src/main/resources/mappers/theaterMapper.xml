@@ -11,6 +11,11 @@
   	<select id="locationList" parameterType="String" resultType="theaterDTO">
   		select * from theater where area=#{area}
   	</select>
+  	
+  	<select id="areaList" resultType="theaterDTO">
+  		select DISTINCT area from theater
+  	</select>
+  	
   	<!-- heeseong -->
   	<select id="theatherAList" resultType="theaterDTO">
   		select * from theater

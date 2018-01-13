@@ -33,4 +33,8 @@ public class MyCouponService {
 	public int couponInsert(MemberDTO memberDTO, CouponDTO couponDTO) throws Exception{
 		return myCouponDAO.couponInsert(memberDTO,couponDTO);
 	}
+	/*희성*/
+	public int couponCount(String id) throws Exception{
+		return myCouponDAO.couponCount(id);
+	}
 }

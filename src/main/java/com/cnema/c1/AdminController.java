@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
+import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
@@ -136,6 +139,7 @@ public class AdminController {
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}
+	
 	@RequestMapping(value="theaterView",method=RequestMethod.GET)
 	public ModelAndView theaterView(int theater_num){
 		ModelAndView mv = new ModelAndView();
@@ -307,8 +311,15 @@ public class AdminController {
 	public ModelAndView memberList() {
 		ModelAndView mv = new ModelAndView();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		int number = 1;
+		int result = 0;
 		try {
 			memList = memberService.memberList();
+			for(MemberDTO memberDTO : memList){
+				result = myCouponService.couponCount(memberDTO.getId());
+				mv.addObject("result"+number, result);
+				number++;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -318,24 +329,30 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="couponGive",method=RequestMethod.GET)
-	public ModelAndView couponGive(int ctype){
+	public ModelAndView couponGive(HttpSession session,int ctype){
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
-		List<CouponDTO> cpList = new ArrayList<>();
+		
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		List<MyCouponDTO> mcList = new ArrayList<>();
 		try {
 			memList = memberService.memberCList(ctype);
 			couponDTO = couponService.couponInfo(ctype);
+			mcList = myCouponService.myCouponAList(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(MemberDTO memberDTO : memList){
+		for(MemberDTO memberDTO2 : memList){
 			try {
-				myCouponService.couponInsert(memberDTO,couponDTO);
+				myCouponService.couponInsert(memberDTO2,couponDTO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		mv.addObject("memList", memList);
+		mv.setViewName("admin/memberList");
 		return mv;
 	}
 }

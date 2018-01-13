@@ -1,6 +1,8 @@
 package com.cnema.reserve;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +12,11 @@ import org.springframework.stereotype.Service;
 public class ReserveService {
 	@Inject
 	private ReserveDAO reserveDAO;
+	
+	
+	public List<Integer> seatCheck(int screen_num, int schedule_num) throws Exception{
+		return reserveDAO.seatCheck(screen_num,schedule_num);
+	}
 	
 	public int reserveInsert(ReserveDTO reserveDTO) throws Exception{
 		return reserveDAO.reserveInsert(reserveDTO);

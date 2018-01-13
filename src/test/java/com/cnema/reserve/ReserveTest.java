@@ -68,18 +68,13 @@ public class ReserveTest extends AbstractTest {
 					System.out.println(scheduleDTO.getIn_time());
 				}
 			}
-			
-			
-			
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	@Test
-	public void test() {
+	public void time(){
 		Calendar sDay = Calendar.getInstance();
 		try {
 			
@@ -109,6 +104,21 @@ public class ReserveTest extends AbstractTest {
 			
 			
 			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void test() {
+		try {
+			List<Integer> ar = reserveDAO.seatCheck(1, 3);
+			System.out.println(ar.size());
+			for(Integer i : ar){
+				System.out.println(i);
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

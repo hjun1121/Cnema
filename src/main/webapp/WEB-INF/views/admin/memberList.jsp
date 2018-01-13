@@ -26,17 +26,15 @@ $(function(){
 		<td>NAME</td>
 		<td>BIRTH</td>
 		<td>TYPE</td>
-		<td>V_POINT</td>
-		<td>A_POINT</td>
+		<td>쿠폰갯수</td>
 	</tr>
-	<c:forEach items="${memList }" var="mList">
+	<c:forEach items="${memList }" var="mList" varStatus="status">
 	<tr>
 		<td><a href="">${mList.id }</a></td>
 		<td>${mList.name }</td>
 		<td>${mList.birth }</td>
 		<td>${mList.type }</td>
-		<td>${mList.v_point }</td>
-		<td>${mList.a_point }</td>
+		<td>${reulst+status.count }</td>
 	</tr>
 	</c:forEach>
 </table>
