@@ -1,6 +1,7 @@
 package com.cnema.theater;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ScheduleDTO {
 	private int schedule_num;
@@ -9,6 +10,15 @@ public class ScheduleDTO {
 	private String in_time;
 	private String out_time;
 	private Date day;
+	
+	private int seatcheck;
+	
+	public int getSeatcheck() {
+		return seatcheck;
+	}
+	public void setSeatcheck(int seatcheck) {
+		this.seatcheck = seatcheck;
+	}
 	public int getSchedule_num() {
 		return schedule_num;
 	}

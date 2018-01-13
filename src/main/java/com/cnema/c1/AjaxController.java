@@ -22,6 +22,7 @@ import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.movie.WarningDTO;
+import com.cnema.reserve.ReserveService;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
@@ -43,7 +44,8 @@ public class AjaxController {
 	private ScheduleService scheduleService;
 	@Inject
 	private EventService eventService;
-	
+	@Inject
+	private ReserveService reserveService;
 
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
@@ -242,10 +244,16 @@ public class AjaxController {
 	
 	@RequestMapping(value="qrScheduleList", method=RequestMethod.POST)
 	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
+		List<Integer> seatCheck =null;
 		try {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
 			for(ScreenDTO screenDTO : ar){
 				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num, movie_num);
+				
+				for(ScheduleDTO scheduleDTO:ar2){
+					seatCheck = reserveService.seatCheck(screenDTO.getScreen_num(), scheduleDTO.getSchedule_num());
+					scheduleDTO.setSeatcheck(seatCheck.size());
+				}
 				screenDTO.setAr(ar2);
 			}
 			
