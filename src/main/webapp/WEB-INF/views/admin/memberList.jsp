@@ -40,9 +40,18 @@ $(function(){
 				type:"post",
 				data:{
 					groupVal:groupVal
-				}
+				},
 			});
 		});
+	});
+	
+	$("#51658").click(function(){
+		var number = $("#51658").val();
+		location.href="memberList?group_num=51658";
+	});
+	
+	$("#allMember").click(function(){
+		location.href="memberList?group_num=11";
 	});
 });
 </script>
@@ -52,6 +61,11 @@ $(function(){
 <!-- <input type="button" id="birth" value="생일쿠폰">
 <input type="button" id="vip" value="VIP쿠폰"> -->
 <input type="button" id="group" value="GROUP">
+
+<input type="button" id="allMember" value="모든멤버">
+<c:forEach items="${groupList }" var="gList">
+	<input type="button" id="${gList.group_num }" value="${gList.group_num }">
+</c:forEach>
 <table>
 	<tr>
 		<td><input type="checkbox" name="groupAll" id="groupAll" value="all"></td>
