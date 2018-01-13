@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="scheduleMapper">
   
+  	<select id="movieNumList" parameterType="java.util.Map" resultType="int">
+  		select DISTINCT movie_num from schedule where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} order by movie_num desc
+  	</select>
   
    	<select id="screenList" resultType="screenDTO" parameterType="int">
    		select * from screen where theater_num =#{theater_num}

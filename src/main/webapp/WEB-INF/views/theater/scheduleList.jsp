@@ -54,6 +54,7 @@
 			$(this).css("background-color","red");
 			
 			var day = $(this).attr("title");
+			$("#dayN").val(day);
 		});
 		
 	});
@@ -92,17 +93,26 @@ li{
 		</c:forEach>
 	</ul>	
 </div>
+<div id="dayList">
+	<ul style="clear: both;">
+	<c:forEach items="${dayList }" var="DTO" varStatus="count">
+		<li id="day${count.count }" class="days" title="${DTO.day_num }"  >
+			<a href="#"  onclick="return false;">${DTO.week} ${DTO.day }</a>
+		</li>
+	</c:forEach>	
+	</ul>
+</div>
 
-<ul style="clear: both;">
-<c:forEach items="${dayList }" var="DTO" varStatus="count">
-	<li id="day${count.count }" class="days" title="${DTO.day_num }"  >
-		<a href="#"  onclick="return false;">${DTO.week} ${DTO.day }</a>
-	</li>
-</c:forEach>	
-</ul>
+<div id="scheduleList">
+	<ul>
+		<li></li>
+	</ul>
+</div>
+
 <form action="../theater/scheduleList" name="frm" method="get">
 	<input type="text" id="areaN" name="area" value="${area }">
 	<input type="text" id="locationN" name="location" value="${location }">
+	<input type="text" id="dayN" name="day" value=${dayList[0].day_num }>
 </form>
 </body>
 </html>

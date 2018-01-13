@@ -16,6 +16,14 @@ public class ScheduleDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="scheduleMapper.";
 	
+	public List<Integer> movieNumList(int theater_num, String day) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		System.out.println(day);
+		map.put("day", day);
+		map.put("theater_num", theater_num);
+		return sqlSession.selectList(NAMESPACE+"movieNumList", map);
+	}
+	
 	public List<ScreenDTO> screenList(int theater_num) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"screenList", theater_num);
 	}
