@@ -1,12 +1,8 @@
 package com.cnema.c1;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,12 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
-import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.CoupongroupDTO;
+import com.cnema.coupon.CoupongroupService;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
@@ -46,6 +43,8 @@ public class AdminController {
 	MyCouponService myCouponService;
 	@Inject
 	CouponService couponService;
+	@Inject
+	CoupongroupService coupongroupService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(String kind,String search){
@@ -308,27 +307,41 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="memberList", method=RequestMethod.GET)
-	public ModelAndView memberList() {
+	public ModelAndView memberList(int group_num) {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		List<CoupongroupDTO> groupList = new ArrayList<>();
+		List<CoupongroupDTO> gList = new ArrayList<>();
 		int number = 1;
 		int result = 0;
+		
+		if(group_num==0){
+			group_num=51658;
+		}
 		try {
-			memList = memberService.memberList();
-			for(MemberDTO memberDTO : memList){
-				result = myCouponService.couponCount(memberDTO.getId());
+			groupList = coupongroupService.groupList();
+			for(int num=0;num<2;num++){
+				gList = coupongroupService.groupSList(group_num);
+				memberDTO = memberService.memberInfo(gList.get(num).getId());
+				memList.add(memberDTO);
+			}
+			/*memList = memberService.memberList();*/
+			for(MemberDTO memberDTO2 : memList){
+				result = myCouponService.couponCount(memberDTO2.getId());
 				mv.addObject("result"+number, result);
 				number++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("groupList", groupList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
 	
-	@RequestMapping(value="couponGive",method=RequestMethod.GET)
+	/*@RequestMapping(value="couponGive",method=RequestMethod.GET)
 	public ModelAndView couponGive(HttpSession session,int ctype){
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
@@ -353,6 +366,23 @@ public class AdminController {
 		
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
+		return mv;
+	}*/
+	
+	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
+	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
+		ModelAndView mv = new ModelAndView();
+		
+		Random ran = new Random();
+		int number = ran.nextInt(100000);
+		
+		for(int num=0;num<gList.size();num++){
+			try {
+				coupongroupService.groupInsert(gList.get(num),number);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return mv;
 	}
 }
