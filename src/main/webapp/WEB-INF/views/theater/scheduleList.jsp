@@ -18,22 +18,25 @@
 			 }
 		});
 		
-		$(".location").each(function(){
+	 	$(".location").each(function(){
 			 if($(this).attr("title") == location) {
 				 $(this).css("background-color","red");
 			 }
-		});
+		}); 
 		
+
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
 			$(this).css("background-color","red");
 			area = $(this).attr("title");
 			$("#areaN").val(area);
+			var locationN = $("#locationN").val();
 			$.ajax({
 				url:"../ajax/locationList",
 				type:"POST",
 				data:{
-					area : area
+					area : area,
+					location : locationN
 				},
 				success:function(data){
 					$("#locationList").html(data);
@@ -44,6 +47,10 @@
 			$(".location").css("background-color","");
 			$(this).css("background-color","red");
 			$("#locationN").val($(this).attr("title"));
+			$("#dayN").val("${dayList[0].day_num }");
+
+			var theaterName = $(this).html().trim();
+			$("#theaterName").html(theaterName);
 			document.frm.submit();
 		});
 		
@@ -54,6 +61,20 @@
 			$(this).css("background-color","red");
 			
 			var day = $(this).attr("title");
+			var location = $("#locationN").val();
+			$("#dayN").val(day);
+			
+			$.ajax({
+				url:"../ajax/slScheduleList",
+				type:"POST",
+				data:{
+					location : location,
+					day : day
+				},
+				success:function(data){
+					$("#scheduleList").html(data);
+				}
+			});
 		});
 		
 	});
@@ -92,17 +113,32 @@ li{
 		</c:forEach>
 	</ul>	
 </div>
+<div id="dayList">
+	<ul style="clear: both;">
+	<c:forEach items="${dayList }" var="DTO" varStatus="count">
+		<li id="day${count.count }" class="days" title="${DTO.day_num }"  >
+			<a href="#"  onclick="return false;">${DTO.week} ${DTO.day }</a>
+		</li>
+	</c:forEach>	
+	</ul>
+</div>
 
-<ul style="clear: both;">
-<c:forEach items="${dayList }" var="DTO" varStatus="count">
-	<li id="day${count.count }" class="days" title="${DTO.day_num }"  >
-		<a href="#"  onclick="return false;">${DTO.week} ${DTO.day }</a>
-	</li>
-</c:forEach>	
-</ul>
+<div id="scheduleList">
+	<ul style="clear: both;">
+		<c:forEach items="${movieList }" var="DTO">
+			<li style="float: none;">${DTO.movie_name }</li>
+			<c:forEach items="${DTO.sList}" var="sc" varStatus="count">
+				${sc.screen_num }관
+				${sc.in_time }
+			</c:forEach>
+		</c:forEach>
+	</ul>
+</div>
+
 <form action="../theater/scheduleList" name="frm" method="get">
 	<input type="text" id="areaN" name="area" value="${area }">
 	<input type="text" id="locationN" name="location" value="${location }">
+	<input type="text" id="dayN" name="day" value=${dayList[0].day_num }>
 </form>
 </body>
 </html>

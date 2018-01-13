@@ -34,7 +34,7 @@
 					<li><a href="${pageContext.request.contextPath }/member/joinAgree" class="join">회원가입</a></li>
 				</c:if>
 				<c:if test="${!empty member }">
-					<li><a href="#" class="join">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/memberLogout" class="join">로그아웃</a></li>
 					<li><a href="${pageContext.request.contextPath }/member/myPageView" class="myPage">마이페이지</a></li>
 				</c:if>
 					<li><a href="#" class="customer">고객센터</a></li>

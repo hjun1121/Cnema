@@ -1,5 +1,6 @@
 package com.cnema.c1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -125,11 +127,14 @@ public class TheaterController {
 		TheaterDTO theaterDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		ScreenDTO screenDTO = null;
+		List<Integer> seatCheck =null;
+		
 		try {
 			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
 			theaterDTO = theaterService.selectOne(reserveDTO.getTheater_num());
 			scheduleDTO = scheduleService.scheduleOne(reserveDTO.getSchedule_num());
-			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());			
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());		
+			seatCheck = reserveService.seatCheck(scheduleDTO.getScreen_num(), reserveDTO.getSchedule_num());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,7 +144,7 @@ public class TheaterController {
 		model.addAttribute("theater", theaterDTO);
 		model.addAttribute("movie", movieDTO);
 		model.addAttribute("reserve", reserveDTO);
-		
+		model.addAttribute("seatCheck", seatCheck);
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)
@@ -169,10 +174,11 @@ public class TheaterController {
 	
 	//SL 시작
 	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
-	public void scheduleList(Model model, String area, String location){
+	public void scheduleList(Model model, String area, @RequestParam(defaultValue="1", required=false)int location, String day){
 		List<DayDTO> dayList = null;
 		List<TheaterDTO> areaList = null;
 		List<TheaterDTO> locationList = null;
+		List<MovieDTO> movieList = new ArrayList<>();
 		if(area==null){
 			area="서울";
 		}
@@ -180,6 +186,18 @@ public class TheaterController {
 			dayList = theaterService.dayList();
 			areaList = theaterService.areaList();
 			locationList = theaterService.locationList(area);
+			
+			if(day==null){
+				day = dayList.get(0).getDay_num().toString();
+			}
+			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			for(Integer i : movieNumList){
+				MovieDTO movieDTO = movieService.selectOne(i);
+				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
+				movieDTO.setsList(sl);
+				movieList.add(movieDTO);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -189,6 +207,6 @@ public class TheaterController {
 		model.addAttribute("location", location);
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("dayList", dayList);
-		
+		model.addAttribute("movieList", movieList);
 	}
 }
