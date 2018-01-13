@@ -61,7 +61,9 @@
 </div> <!-- 프로필 바 끝 -->
 
 <div style="width: 980px; height: 1080px; background-color: #f0f0f0; margin: 0 auto; margin-top: 30px;">
+	<c:if test="${not empty member}">
 	<a href="./pageInsert"><input type="button" value="페이지 만들기"></a>
+	</c:if>
 </div>
 
 </div>

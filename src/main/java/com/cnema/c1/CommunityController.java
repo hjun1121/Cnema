@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
@@ -23,10 +24,33 @@ public class CommunityController {
 	private CommunityService communityService;
 	
 	
+	
 	//pageInsert
-	@RequestMapping(value = "pageInsert")
-	public ModelAndView pageInsert(HttpSession session) throws Exception {
+	@RequestMapping(value = "pageInsert", method=RequestMethod.GET)
+	public void pageInsert() {
+		
+	}
+	
+	//pageInsert
+	@RequestMapping(value = "pageInsert", method=RequestMethod.POST)
+	public ModelAndView pageInsert(PageDTO pageDTO, HttpSession session, RedirectAttributes rd) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		String id = "";
+		int result = 0;
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			id = memberDTO.getId();
+			result = communityService.pageInsert(pageDTO, id, session);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		if(result > 0) {
+			rd.addFlashAttribute("message", "페이지 만들기 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "페이지 만들기 실패");
+			mv.setViewName("redirect:../");
+		}
 		
 		return mv;
 	}

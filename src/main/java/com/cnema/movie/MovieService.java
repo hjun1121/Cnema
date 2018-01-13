@@ -78,9 +78,6 @@ public class MovieService {
 		movieDTO.setOriName(file.getOriginalFilename());
 		int result = movieDAO.insert(movieDTO);
 
-		System.out.println(file.getOriginalFilename());
-		System.out.println(name);
-
 		return result;
 	}
 	

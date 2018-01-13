@@ -2,6 +2,8 @@ package com.cnema.community;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PageDTO {
 	
 	private int page_num;
@@ -11,8 +13,15 @@ public class PageDTO {
 	private Date reg_date;
 	private int member_count;
 	private String owner_id;
+	private MultipartFile file;
 	
 	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public int getPage_num() {
 		return page_num;
 	}
