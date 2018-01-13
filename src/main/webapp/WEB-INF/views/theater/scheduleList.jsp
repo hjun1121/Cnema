@@ -18,11 +18,17 @@
 			 }
 		});
 		
-		$(".location").each(function(){
+	 	$(".location").each(function(){
 			 if($(this).attr("title") == location) {
 				 $(this).css("background-color","red");
 			 }
-		});
+		}); 
+		
+/* 		$("#locationList").on("each",".location",function(){
+			 if($(this).attr("title") == location) {
+				 $(this).css("background-color","red");
+			 }
+		}); */
 		
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
@@ -44,6 +50,10 @@
 			$(".location").css("background-color","");
 			$(this).css("background-color","red");
 			$("#locationN").val($(this).attr("title"));
+			$("#dayN").val("${dayList[0].day_num }");
+
+			var theaterName = $(this).html().trim();
+			$("#theaterName").html(theaterName);
 			document.frm.submit();
 		});
 		
@@ -54,7 +64,20 @@
 			$(this).css("background-color","red");
 			
 			var day = $(this).attr("title");
+			var location = $("#locationN").val();
 			$("#dayN").val(day);
+			
+			$.ajax({
+				url:"../ajax/slScheduleList",
+				type:"POST",
+				data:{
+					location : location,
+					day : day
+				},
+				success:function(data){
+					$("#scheduleList").html(data);
+				}
+			});
 		});
 		
 	});
@@ -104,11 +127,11 @@ li{
 </div>
 
 <div id="scheduleList">
+<h3 style="clear: both;"><span id="theaterName"></span>극장</h3>
 	<ul style="clear: both;">
 		<c:forEach items="${movieList }" var="DTO">
 			<li style="float: none;">${DTO.movie_name }</li>
-			
-			<c:forEach items="${DTO.sList}" var="sc">
+			<c:forEach items="${DTO.sList}" var="sc" varStatus="count">
 				${sc.screen_num }관
 				${sc.in_time }
 			</c:forEach>

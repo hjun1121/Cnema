@@ -1,6 +1,7 @@
 package com.cnema.c1;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -141,6 +142,24 @@ public class AjaxController {
 		mv.setViewName("ajax/movie_wish_return");
 		
 		return mv;
+	}
+	@RequestMapping(value="slScheduleList", method=RequestMethod.POST)
+	public void slScheduleList(int location, String day, Model model){
+		List<MovieDTO> movieList = new ArrayList<>();
+		try {
+			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			for(Integer i : movieNumList){
+				MovieDTO movieDTO = movieService.selectOne(i);
+				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
+				movieDTO.setsList(sl);
+				movieList.add(movieDTO);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("movieList", movieList);
 	}
 	
 	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
