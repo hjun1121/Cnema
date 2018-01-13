@@ -1,7 +1,9 @@
 package com.cnema.theater;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,6 +20,10 @@ public class ScheduleService {
 	
 	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num, int movie_num)throws Exception{
 		return scheduleDAO.scheduleList(screen_num, day_num, movie_num);
+	}
+	
+	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num) throws Exception{
+		return scheduleDAO.movieSchedule(theater_num, day, movie_num);
 	}
 	
 	public List<ScreenDTO> screenList(int theater_num)throws Exception{

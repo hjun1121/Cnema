@@ -28,6 +28,14 @@ public class ScheduleDAO {
 		return sqlSession.selectList(NAMESPACE+"screenList", theater_num);
 	}
 	
+	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num) throws Exception{
+		Map<String, Object> map  =new HashMap<>();
+		map.put("theater_num", theater_num);
+		map.put("day", day);
+		map.put("movie_num", movie_num);
+		return sqlSession.selectList(NAMESPACE+"movieSchedule", map);
+	}
+	
 	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num, int movie_num) throws Exception{
 		Map<String, Object> map  =new HashMap<>();
 		map.put("screen_num", screen_num);

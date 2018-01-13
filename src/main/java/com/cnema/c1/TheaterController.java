@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -170,14 +171,13 @@ public class TheaterController {
 	
 	//SL 시작
 	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
-	public void scheduleList(Model model, String area, String location, String day){
+	public void scheduleList(Model model, String area, @RequestParam(defaultValue="1", required=false)int location, String day){
 		List<DayDTO> dayList = null;
 		List<TheaterDTO> areaList = null;
 		List<TheaterDTO> locationList = null;
 		List<MovieDTO> movieList = new ArrayList<>();
 		if(area==null){
 			area="서울";
-			location="1";
 		}
 		try {
 			dayList = theaterService.dayList();
@@ -187,10 +187,12 @@ public class TheaterController {
 			if(day==null){
 				day = dayList.get(0).getDay_num().toString();
 			}
-			
-			List<Integer> aa = scheduleService.movieNumList(1, day);
-			for(Integer i : aa){
-				System.out.println(i);
+			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			for(Integer i : movieNumList){
+				MovieDTO movieDTO = movieService.selectOne(i);
+				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
+				movieDTO.setsList(sl);
+				movieList.add(movieDTO);
 			}
 			
 		} catch (Exception e) {
@@ -202,6 +204,6 @@ public class TheaterController {
 		model.addAttribute("location", location);
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("dayList", dayList);
-		
+		model.addAttribute("movieList", movieList);
 	}
 }

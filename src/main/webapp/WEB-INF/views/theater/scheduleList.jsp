@@ -104,8 +104,15 @@ li{
 </div>
 
 <div id="scheduleList">
-	<ul>
-		<li></li>
+	<ul style="clear: both;">
+		<c:forEach items="${movieList }" var="DTO">
+			<li style="float: none;">${DTO.movie_name }</li>
+			
+			<c:forEach items="${DTO.sList}" var="sc">
+				${sc.screen_num }관
+				${sc.in_time }
+			</c:forEach>
+		</c:forEach>
 	</ul>
 </div>
 
