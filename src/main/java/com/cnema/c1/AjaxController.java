@@ -304,7 +304,7 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
-	public ModelAndView locationList(String area){
+	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int location){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
@@ -313,6 +313,7 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("num", location);
 		mv.addObject("location", ar);
 		mv.setViewName("ajax/locationList");
 		

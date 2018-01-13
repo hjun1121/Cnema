@@ -24,22 +24,19 @@
 			 }
 		}); 
 		
-/* 		$("#locationList").on("each",".location",function(){
-			 if($(this).attr("title") == location) {
-				 $(this).css("background-color","red");
-			 }
-		}); */
-		
+
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
 			$(this).css("background-color","red");
 			area = $(this).attr("title");
 			$("#areaN").val(area);
+			var locationN = $("#locationN").val();
 			$.ajax({
 				url:"../ajax/locationList",
 				type:"POST",
 				data:{
-					area : area
+					area : area,
+					location : locationN
 				},
 				success:function(data){
 					$("#locationList").html(data);
