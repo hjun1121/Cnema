@@ -17,11 +17,8 @@ public class PageDAO {
 	
 	
 	//pageInsert
-	public int pageInsert(PageDTO pageDTO, String id) throws Exception {
-		Map<String, Object> map = new HashMap<>();
-		map.put("pageDTO", pageDTO);
-		map.put("id", id);
-		return sqlSession.insert(NAMESPACE+"pageInsert", map);
+	public int pageInsert(PageDTO pageDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"pageInsert", pageDTO);
 	}
 	
 	//selectRecommendPage

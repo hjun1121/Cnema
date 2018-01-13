@@ -43,26 +43,27 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<!-- 내가 가입한 페이지 LIST -->
-		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px; background-color: #433b90; margin-bottom: 30px;">
-			<c:forEach items="${pageList}" var="page">
-				<p><img style="width: 100px; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/community_logo/${page.fileName}"></p>
-				<p>${page.page_name}</p>
-			</c:forEach>
-		</div>
-		<!-- 추천 페이지 LIST -->
-		<div style="clear: both; border: 1px solid #dcdcdc; height: 300px; background-color: yellow;">
-			<c:forEach items="${recommendPage}" var="recommend" begin="1" end="3">
-				<p><img style="width: 100px; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/community_logo/${recommend.fileName}"></p>
-				<p>${recommend.page_name}</p>
-			</c:forEach>
-		</div>
+<!-- 		<!-- 내가 가입한 페이지 LIST -->
+<!-- 		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px; background-color: #433b90; margin-bottom: 30px;"> -->
+<%-- 			<c:forEach items="${pageList}" var="page"> --%>
+<%-- 				<p><img style="width: 100px; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/community_logo/${page.fileName}"></p> --%>
+<%-- 				<p>${page.page_name}</p> --%>
+<%-- 			</c:forEach> --%>
+<!-- 		</div> -->
+<!-- 		<!-- 추천 페이지 LIST -->
+<!-- 		<div style="clear: both; border: 1px solid #dcdcdc; height: 300px; background-color: yellow;"> -->
+<%-- 			<c:forEach items="${recommendPage}" var="recommend" begin="1" end="3"> --%>
+<%-- 				<p><img style="width: 100px; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/community_logo/${recommend.fileName}"></p> --%>
+<%-- 				<p>${recommend.page_name}</p> --%>
+<%-- 			</c:forEach> --%>
+<!-- 		</div> -->
 	</div>
-</div> <!-- 프로필 바 끝 -->
+	<!-- 프로필 바 끝 -->
+</div> 
 
 <div style="width: 980px; height: 1080px; background-color: #f0f0f0; margin: 0 auto; margin-top: 30px;">
 	<c:if test="${not empty member}">
-	<a href="./pageInsert"><input type="button" value="페이지 만들기"></a>
+		<a href="./pageInsert"><input type="button" value="페이지 만들기"></a>
 	</c:if>
 </div>
 

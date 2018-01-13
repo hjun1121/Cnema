@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="pageInsert" name="frm" method="POST">
+	<form action="pageInsert" name="frm" method="POST" enctype="multipart/form-data">
 		<p>name <input type="text" id="page_name" name="page_name"></p>
 		페이지 로고 <input type="file" name="file">
 		<p>그룹생성자 <input type="text" name="owner_id" readonly="readonly" value="${member.id}"></p>

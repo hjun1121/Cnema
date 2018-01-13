@@ -6,11 +6,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cnema.util.FileSaver;
 
 @Service
+@Transactional
 public class CommunityService {
 
 	@Inject
@@ -20,12 +22,12 @@ public class CommunityService {
 	
 	
 	//pageInsert
-	public int pageInsert(PageDTO pageDTO, String id, HttpSession session) throws Exception {
+	public int pageInsert(PageDTO pageDTO, HttpSession session) throws Exception {
 		MultipartFile file = pageDTO.getFile();
 		String name = fileSaver.fileSave(file,  session,  "page_logo");
 		pageDTO.setFileName(name);
 		pageDTO.setOriName(file.getOriginalFilename());
-		int result = pageDAO.pageInsert(pageDTO, id);
+		int result = pageDAO.pageInsert(pageDTO);
 		
 		return result;
 	}
