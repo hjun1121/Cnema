@@ -34,7 +34,8 @@ $(function(){
 		<td>${mList.name }</td>
 		<td>${mList.birth }</td>
 		<td>${mList.type }</td>
-		<td>${reulst+status.count }</td>
+		<c:set var="value">result${status.count }</c:set>
+		<td>${requestScope[value]}</td>
 	</tr>
 	</c:forEach>
 </table>
