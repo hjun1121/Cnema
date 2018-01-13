@@ -9,6 +9,44 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var area = '${area}';
+		var location = '${location}';
+		
+		$(".areas").each(function(){
+			 if($(this).attr("title") == area) {
+				 $(this).css("background-color","red");
+			 }
+		});
+		
+		$(".location").each(function(){
+			 if($(this).attr("title") == location) {
+				 $(this).css("background-color","red");
+			 }
+		});
+		
+		$(".areas").click(function(){
+			$(".areas").css("background-color","");
+			$(this).css("background-color","red");
+			area = $(this).attr("title");
+			$("#areaN").val(area);
+			$.ajax({
+				url:"../ajax/locationList",
+				type:"POST",
+				data:{
+					area : area
+				},
+				success:function(data){
+					$("#locationList").html(data);
+				}
+			});
+		});
+		$("#locationList").on("click",".location",function(){
+			$(".location").css("background-color","");
+			$(this).css("background-color","red");
+			$("#locationN").val($(this).attr("title"));
+			document.frm.submit();
+		});
+		
 		$("#day1").css("background-color","red");
 		
 		$(".days").click(function(){
@@ -16,7 +54,6 @@
 			$(this).css("background-color","red");
 			
 			var day = $(this).attr("title");
-			alert(day);
 		});
 		
 	});
@@ -24,6 +61,9 @@
 <style type="text/css">
 ul{
 	list-style: none;
+}
+#locationList ul{
+	clear: both;
 }
 li{
 	float: left; 
@@ -41,12 +81,17 @@ li{
 		</li>
 	</c:forEach>
 </ul>
-
-<ul style="clear: both;">
-	<c:forEach items="${locationList }" var="DTO">
-		<li>${DTO.location }</li>
-	</c:forEach>
-</ul>	
+<div id="locationList">
+	<ul>
+		<c:forEach items="${locationList }" var="DTO">
+			<li>
+				<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
+				${DTO.location }
+				</a>
+			</li>
+		</c:forEach>
+	</ul>	
+</div>
 
 <ul style="clear: both;">
 <c:forEach items="${dayList }" var="DTO" varStatus="count">
@@ -55,6 +100,9 @@ li{
 	</li>
 </c:forEach>	
 </ul>
-
+<form action="../theater/scheduleList" name="frm" method="get">
+	<input type="text" id="areaN" name="area" value="${area }">
+	<input type="text" id="locationN" name="location" value="${location }">
+</form>
 </body>
 </html>
