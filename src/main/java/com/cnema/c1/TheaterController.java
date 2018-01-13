@@ -166,8 +166,29 @@ public class TheaterController {
 		model.addAttribute("dayList", dayList);
 	}
 	
-	@RequestMapping(value="scheduleList")
-	public void scheduleList(){
+	
+	//SL 시작
+	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
+	public void scheduleList(Model model, String area, String location){
+		List<DayDTO> dayList = null;
+		List<TheaterDTO> areaList = null;
+		List<TheaterDTO> locationList = null;
+		if(area==null){
+			area="서울";
+		}
+		try {
+			dayList = theaterService.dayList();
+			areaList = theaterService.areaList();
+			locationList = theaterService.locationList(area);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("areaList", areaList);
+		model.addAttribute("area", area);
+		model.addAttribute("location", location);
+		model.addAttribute("locationList", locationList);
+		model.addAttribute("dayList", dayList);
 		
 	}
 }

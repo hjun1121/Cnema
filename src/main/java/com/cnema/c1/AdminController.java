@@ -136,6 +136,7 @@ public class AdminController {
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}
+	
 	@RequestMapping(value="theaterView",method=RequestMethod.GET)
 	public ModelAndView theaterView(int theater_num){
 		ModelAndView mv = new ModelAndView();
