@@ -10,8 +10,23 @@
 <title>멤버리스트</title>
 <script type="text/javascript">
 $(function(){
-	$("#birth").click(function(){
-		location.href="./couponGive?ctype=10";
+	$("#groupAll").click(function(){
+		if($("input[name='groupAll']").prop("checked")){
+			$("input[name='group']").prop("checked",true);
+		}else{
+			$("input[name='group']").prop("checked",false);
+		}
+	});
+	
+	$("input:checkbox[name='group']").change(function(){
+		var totalCount = $('input:checkbox[name="group"]').length;
+		var count = $('input:checkbox[name="group"]:checked').length;
+		if(totalCount==count){
+			$("input[name='groupAll']").prop("checked",true);
+		}
+		if(totalCount!=count){
+			$("input[name='groupAll']").prop("checked",false);
+		}
 	});
 });
 </script>
@@ -22,6 +37,7 @@ $(function(){
 <input type="button" id="vip" value="VIP쿠폰">
 <table>
 	<tr>
+		<td><input type="checkbox" name="groupAll" id="groupAll" value="all"></td>
 		<td>ID</td>
 		<td>NAME</td>
 		<td>BIRTH</td>
@@ -29,12 +45,13 @@ $(function(){
 		<td>쿠폰갯수</td>
 	</tr>
 	<c:forEach items="${memList }" var="mList" varStatus="status">
+	<c:set var="value">result${status.count }</c:set>
 	<tr>
+		<td><input type="checkbox" name="group" value="${mList.id }"></td>
 		<td><a href="">${mList.id }</a></td>
 		<td>${mList.name }</td>
 		<td>${mList.birth }</td>
 		<td>${mList.type }</td>
-		<c:set var="value">result${status.count }</c:set>
 		<td>${requestScope[value]}</td>
 	</tr>
 	</c:forEach>
