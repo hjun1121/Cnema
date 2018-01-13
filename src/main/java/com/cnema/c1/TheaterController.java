@@ -127,11 +127,14 @@ public class TheaterController {
 		TheaterDTO theaterDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		ScreenDTO screenDTO = null;
+		List<Integer> seatCheck =null;
+		
 		try {
 			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
 			theaterDTO = theaterService.selectOne(reserveDTO.getTheater_num());
 			scheduleDTO = scheduleService.scheduleOne(reserveDTO.getSchedule_num());
-			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());			
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());		
+			seatCheck = reserveService.seatCheck(scheduleDTO.getScreen_num(), reserveDTO.getSchedule_num());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -141,7 +144,7 @@ public class TheaterController {
 		model.addAttribute("theater", theaterDTO);
 		model.addAttribute("movie", movieDTO);
 		model.addAttribute("reserve", reserveDTO);
-		
+		model.addAttribute("seatCheck", seatCheck);
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)

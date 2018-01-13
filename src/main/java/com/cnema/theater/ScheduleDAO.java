@@ -18,7 +18,6 @@ public class ScheduleDAO {
 	
 	public List<Integer> movieNumList(int theater_num, String day) throws Exception{
 		Map<String, Object> map = new HashMap<>();
-		System.out.println(day);
 		map.put("day", day);
 		map.put("theater_num", theater_num);
 		return sqlSession.selectList(NAMESPACE+"movieNumList", map);

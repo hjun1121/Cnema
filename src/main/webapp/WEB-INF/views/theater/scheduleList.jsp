@@ -124,7 +124,6 @@ li{
 </div>
 
 <div id="scheduleList">
-<h3 style="clear: both;"><span id="theaterName"></span>극장</h3>
 	<ul style="clear: both;">
 		<c:forEach items="${movieList }" var="DTO">
 			<li style="float: none;">${DTO.movie_name }</li>
