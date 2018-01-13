@@ -28,15 +28,13 @@ $(function(){
 		<td>TYPE</td>
 		<td>쿠폰갯수</td>
 	</tr>
-	<c:forEach items="${memList }" var="mList">
+	<c:forEach items="${memList }" var="mList" varStatus="status">
 	<tr>
 		<td><a href="">${mList.id }</a></td>
 		<td>${mList.name }</td>
 		<td>${mList.birth }</td>
 		<td>${mList.type }</td>
-		<c:forEach items="${mcList }" var="myCoupon">
-			<td>${fn:length(myCoupon)}</td>
-		</c:forEach>
+		<td>${reulst+status.count }</td>
 	</tr>
 	</c:forEach>
 </table>

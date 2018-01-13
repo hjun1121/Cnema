@@ -48,4 +48,8 @@ public class MyCouponDAO {
 		cMap.put("memberDTO", memberDTO);
 		return sqlSession.insert(NAMESPACE+"dateUpdate",cMap);
 	}
+	/*heeseong*/
+	public int couponCount(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponCount",id);
+	}
 }

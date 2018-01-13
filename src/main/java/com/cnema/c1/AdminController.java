@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -309,17 +311,18 @@ public class AdminController {
 	public ModelAndView memberList() {
 		ModelAndView mv = new ModelAndView();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
-		List<MyCouponDTO> mcList = new ArrayList<>();
+		int number = 1;
+		int result = 0;
 		try {
 			memList = memberService.memberList();
 			for(MemberDTO memberDTO : memList){
-				mcList = myCouponService.myCouponAList(memberDTO.getId());
-				System.out.println("size:"+mcList.size());
+				result = myCouponService.couponCount(memberDTO.getId());
+				mv.addObject("result"+number, result);
+				number++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("mcList", mcList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
