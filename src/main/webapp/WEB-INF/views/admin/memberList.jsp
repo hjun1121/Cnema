@@ -26,8 +26,7 @@ $(function(){
 		<td>NAME</td>
 		<td>BIRTH</td>
 		<td>TYPE</td>
-		<td>V_POINT</td>
-		<td>A_POINT</td>
+		<td>쿠폰갯수</td>
 	</tr>
 	<c:forEach items="${memList }" var="mList">
 	<tr>
@@ -35,8 +34,9 @@ $(function(){
 		<td>${mList.name }</td>
 		<td>${mList.birth }</td>
 		<td>${mList.type }</td>
-		<td>${mList.v_point }</td>
-		<td>${mList.a_point }</td>
+		<c:forEach items="${mcList }" var="myCoupon">
+			<td>${fn:length(myCoupon)}</td>
+		</c:forEach>
 	</tr>
 	</c:forEach>
 </table>

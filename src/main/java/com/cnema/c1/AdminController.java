@@ -310,11 +310,17 @@ public class AdminController {
 	public ModelAndView memberList() {
 		ModelAndView mv = new ModelAndView();
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		List<MyCouponDTO> mcList = new ArrayList<>();
 		try {
 			memList = memberService.memberList();
+			for(MemberDTO memberDTO : memList){
+				mcList = myCouponService.myCouponAList(memberDTO.getId());
+				System.out.println("size:"+mcList.size());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("mcList", mcList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
