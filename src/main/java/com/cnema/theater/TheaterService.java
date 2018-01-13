@@ -25,6 +25,9 @@ public class TheaterService {
 	public List<TheaterDTO> locationList(String area) throws Exception{
 		return theaterDAO.locationList(area);
 	}
+	public List<TheaterDTO> areaList(){
+		return theaterDAO.areaList();
+	}	
 	
 	/*heeseong*/
 	public List<TheaterDTO> theatherAList() throws Exception{

@@ -59,4 +59,5 @@
   	<delete id="scheduleRemove" parameterType="int">
   		delete schedule where schedule_num=#{schedule_num}
   	</delete>
+  	
   </mapper>
