@@ -28,13 +28,30 @@ $(function(){
 			$("input[name='groupAll']").prop("checked",false);
 		}
 	});
+	
+	
+	$("#group").click(function(){
+		var groupVal = [];
+		
+		$("input[name='group']:checked").each(function(){
+			groupVal.push($(this).val());
+			$.ajax({
+				url:"./groupInsert",
+				type:"post",
+				data:{
+					groupVal:groupVal
+				}
+			});
+		});
+	});
 });
 </script>
 </head>
 <body>
 <h3>멤버리스트</h3>
-<input type="button" id="birth" value="생일쿠폰">
-<input type="button" id="vip" value="VIP쿠폰">
+<!-- <input type="button" id="birth" value="생일쿠폰">
+<input type="button" id="vip" value="VIP쿠폰"> -->
+<input type="button" id="group" value="GROUP">
 <table>
 	<tr>
 		<td><input type="checkbox" name="groupAll" id="groupAll" value="all"></td>

@@ -1,12 +1,7 @@
 package com.cnema.c1;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,12 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
-import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.CoupongroupService;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
@@ -46,6 +41,8 @@ public class AdminController {
 	MyCouponService myCouponService;
 	@Inject
 	CouponService couponService;
+	@Inject
+	CoupongroupService coupongroupService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(String kind,String search){
@@ -328,7 +325,7 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="couponGive",method=RequestMethod.GET)
+	/*@RequestMapping(value="couponGive",method=RequestMethod.GET)
 	public ModelAndView couponGive(HttpSession session,int ctype){
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
@@ -353,6 +350,19 @@ public class AdminController {
 		
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
+		return mv;
+	}*/
+	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
+	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
+		ModelAndView mv = new ModelAndView();
+		
+		for(int num=0;num<gList.size();num++){
+			try {
+				coupongroupService.groupInsert(gList.get(num));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return mv;
 	}
 }
