@@ -452,7 +452,7 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="groupInsert",method=RequestMethod.GET)
+	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
 	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
 		ModelAndView mv = new ModelAndView();
 		

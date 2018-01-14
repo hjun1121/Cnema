@@ -35,7 +35,13 @@ $(function(){
 		
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
-			location.href="./groupInsert?groupVal[]="+groupVal;
+			$.ajax({
+				url:"./groupInsert",
+				type:"post",
+				data:{
+					groupVal:groupVal
+				},
+			});
 		});
 	});
 	
