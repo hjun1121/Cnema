@@ -20,8 +20,8 @@ public class CouponDAO {
 		return sqlSession.selectList(NAMESPACE+"couponList");
 	}
 	/*heeseong*/
-	public CouponDTO couponInfo(int ctype) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"couponInfo",ctype);
+	public CouponDTO couponInfo(int name) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponInfo",name);
 	}
 	/*heeseong*/
 	public List<CouponDTO> couponSList(String kind, String search) throws Exception{

@@ -42,11 +42,11 @@ public class MyCouponDAO {
 		return sqlSession.update(NAMESPACE+"dateUpdate",id);
 	}
 	/*heeseong*/
-	public int couponInsert(MemberDTO memberDTO, CouponDTO couponDTO) throws Exception{
+	public int couponInsert(String id, CouponDTO couponDTO) throws Exception{
 		Map<Object, Object> cMap = new HashMap<>();
 		cMap.put("couponDTO", couponDTO);
-		cMap.put("memberDTO", memberDTO);
-		return sqlSession.insert(NAMESPACE+"dateUpdate",cMap);
+		cMap.put("id", id);
+		return sqlSession.insert(NAMESPACE+"couponInsert",cMap);
 	}
 	/*heeseong*/
 	public int couponCount(String id) throws Exception{

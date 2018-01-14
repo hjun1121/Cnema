@@ -9,7 +9,7 @@
   	</select>
   	<!-- heeseong -->
   	<select id="couponInfo" resultType="couponDTO" parameterType="int">
-  		select * from coupon where ctype=#{ctype}
+  		select * from coupon where name=#{name}
   	</select>
    <!-- heeseong -->
   	<select id="couponSList" resultType="couponDTO" parameterType="Map">

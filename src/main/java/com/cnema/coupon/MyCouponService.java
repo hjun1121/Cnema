@@ -30,8 +30,8 @@ public class MyCouponService {
 		return myCouponDAO.myCouponDList(id,dp1,dp2);
 	}
 	/*희성*/
-	public int couponInsert(MemberDTO memberDTO, CouponDTO couponDTO) throws Exception{
-		return myCouponDAO.couponInsert(memberDTO,couponDTO);
+	public int couponInsert(String id, CouponDTO couponDTO) throws Exception{
+		return myCouponDAO.couponInsert(id,couponDTO);
 	}
 	/*희성*/
 	public int couponCount(String id) throws Exception{

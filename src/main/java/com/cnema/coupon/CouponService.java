@@ -16,8 +16,8 @@ public class CouponService {
 		return couponDAO.couponList();
 	}
 	/*heeseong*/
-	public CouponDTO couponInfo(int ctype) throws Exception{
-		return couponDAO.couponInfo(ctype);
+	public CouponDTO couponInfo(int name) throws Exception{
+		return couponDAO.couponInfo(name);
 	}
 	/*heeseong*/
 	public List<CouponDTO> couponSList(String kind, String search) throws Exception{

@@ -395,12 +395,14 @@ public class AdminController {
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		List<CoupongroupDTO> gList = new ArrayList<>();
+		List<CouponDTO> cList = new ArrayList<>();
+		
 		int number = 1;
 		int result = 0;
 		
-		
 		try {
 			groupList = coupongroupService.groupList();
+			cList = couponService.couponList();
 			if(group_num==-1){
 				memList = memberService.memberList();
 			}else{
@@ -418,41 +420,39 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		mv.addObject("cList", cList);
 		mv.addObject("groupList", groupList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
 	
-	/*@RequestMapping(value="couponGive",method=RequestMethod.GET)
-	public ModelAndView couponGive(HttpSession session,int ctype){
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	@RequestMapping(value="couponGive",method=RequestMethod.GET)
+	public ModelAndView couponGive(String kind,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
-		
-		List<MemberDTO> memList = new ArrayList<MemberDTO>();
-		List<MyCouponDTO> mcList = new ArrayList<>();
+		int result = 0;
 		try {
-			memList = memberService.memberCList(ctype);
-			couponDTO = couponService.couponInfo(ctype);
-			mcList = myCouponService.myCouponAList(memberDTO.getId());
+			couponDTO = couponService.couponInfo(Integer.parseInt(kind));
+			for(int num=0;num<gList.size();num++){
+				result = myCouponService.couponInsert(gList.get(num),couponDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(MemberDTO memberDTO2 : memList){
-			try {
-				myCouponService.couponInsert(memberDTO2,couponDTO);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		
-		mv.addObject("memList", memList);
-		mv.setViewName("admin/memberList");
+		if(result>0){
+			rd.addAttribute("message","쿠폰 주기 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","쿠폰 주기 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
-	}*/
+	}
 	
-	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
+	@RequestMapping(value="groupInsert",method=RequestMethod.GET)
 	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
 		ModelAndView mv = new ModelAndView();
 		
