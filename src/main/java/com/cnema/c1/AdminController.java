@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
 import com.cnema.coupon.CoupongroupDTO;
 import com.cnema.coupon.CoupongroupService;
@@ -240,16 +241,9 @@ public class AdminController {
 	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
 	public void scheduleInsert(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
-
-		System.out.println("screen :"+scheduleDTO.getScreen_num());
-		System.out.println("movie :"+scheduleDTO.getMovie_num());
-		System.out.println("in_time:"+scheduleDTO.getIn_time());
-		System.out.println("out_time:"+scheduleDTO.getOut_time());
-		System.out.println("day:"+scheduleDTO.getDay());
-		
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		//result = scheduleService.scheduleInsert(scheduleDTO);
+		result = scheduleService.scheduleInsert(scheduleDTO);
 		
 		if(result>0){
 			rd.addAttribute("message", "글쓰기 성공");
@@ -306,6 +300,94 @@ public class AdminController {
 		return mv;
 	}
 	
+	@RequestMapping(value="couponList", method=RequestMethod.GET)
+	public ModelAndView couponList(String kind, String search) {
+		ModelAndView mv = new ModelAndView();
+		List<CouponDTO> cList = new ArrayList<>();
+		if(search == null){
+			search="";
+		}
+		if(kind==null){
+			try {
+				cList = couponService.couponList();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else{
+			try {
+				cList = couponService.couponSList(kind,search);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		mv.addObject("kind", kind);
+		mv.addObject("search", search);
+		mv.addObject("cList", cList);
+		mv.setViewName("admin/couponList");
+		return mv;
+	}
+	
+	@RequestMapping(value="couponInsert", method=RequestMethod.GET)
+	public void couponInsert() {
+	}
+	
+	@RequestMapping(value="couponInsert", method=RequestMethod.POST)
+	public ModelAndView couponInsert(CouponDTO couponDTO,RedirectAttributes rd) {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = couponService.couponInsert(couponDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			rd.addAttribute("message", "쿠폰 글쓰기 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message", "쿠폰 글쓰기 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="couponRevision", method=RequestMethod.GET)
+	public ModelAndView couponRevision(String name) {
+		ModelAndView mv = new ModelAndView();
+		CouponDTO couponDTO = null;
+		try {
+			couponDTO = couponService.couponRevisionInfo(name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("couponDTO", couponDTO);
+		mv.addObject("type", couponDTO.getType());
+		mv.setViewName("admin/couponView");
+		return mv;
+	}
+	
+	@RequestMapping(value="couponRevision", method=RequestMethod.POST)
+	public ModelAndView couponRevision(CouponDTO couponDTO,RedirectAttributes rd) {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = couponService.couponRevision(couponDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			rd.addAttribute("message","쿠폰 수정 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","쿠폰 수정 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
 	@RequestMapping(value="memberList", method=RequestMethod.GET)
 	public ModelAndView memberList(int group_num) {
 		ModelAndView mv = new ModelAndView();
@@ -313,20 +395,23 @@ public class AdminController {
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		List<CoupongroupDTO> gList = new ArrayList<>();
+		List<CouponDTO> cList = new ArrayList<>();
+		
 		int number = 1;
 		int result = 0;
 		
-		if(group_num==0){
-			group_num=51658;
-		}
 		try {
 			groupList = coupongroupService.groupList();
-			for(int num=0;num<2;num++){
-				gList = coupongroupService.groupSList(group_num);
-				memberDTO = memberService.memberInfo(gList.get(num).getId());
-				memList.add(memberDTO);
+			cList = couponService.couponList();
+			if(group_num==-1){
+				memList = memberService.memberList();
+			}else{
+				for(int num=0;num<2;num++){
+					gList = coupongroupService.groupSList(group_num);
+					memberDTO = memberService.memberInfo(gList.get(num).getId());
+					memList.add(memberDTO);
+				}
 			}
-			/*memList = memberService.memberList();*/
 			for(MemberDTO memberDTO2 : memList){
 				result = myCouponService.couponCount(memberDTO2.getId());
 				mv.addObject("result"+number, result);
@@ -335,39 +420,37 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		mv.addObject("cList", cList);
 		mv.addObject("groupList", groupList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
 	
-	/*@RequestMapping(value="couponGive",method=RequestMethod.GET)
-	public ModelAndView couponGive(HttpSession session,int ctype){
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	@RequestMapping(value="couponGive",method=RequestMethod.GET)
+	public ModelAndView couponGive(String kind,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
-		
-		List<MemberDTO> memList = new ArrayList<MemberDTO>();
-		List<MyCouponDTO> mcList = new ArrayList<>();
+		int result = 0;
 		try {
-			memList = memberService.memberCList(ctype);
-			couponDTO = couponService.couponInfo(ctype);
-			mcList = myCouponService.myCouponAList(memberDTO.getId());
+			couponDTO = couponService.couponInfo(Integer.parseInt(kind));
+			for(int num=0;num<gList.size();num++){
+				result = myCouponService.couponInsert(gList.get(num),couponDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(MemberDTO memberDTO2 : memList){
-			try {
-				myCouponService.couponInsert(memberDTO2,couponDTO);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		
-		mv.addObject("memList", memList);
-		mv.setViewName("admin/memberList");
+		if(result>0){
+			rd.addAttribute("message","쿠폰 주기 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","쿠폰 주기 실패");
+			mv.setViewName("redirect:../");
+		}
 		return mv;
-	}*/
+	}
 	
 	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
 	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
@@ -382,6 +465,47 @@ public class AdminController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="groupList",method=RequestMethod.GET)
+	public ModelAndView groupList(){
+		ModelAndView mv = new ModelAndView();
+		List<CoupongroupDTO> groupList = new ArrayList<>();
+		List<Object> groupCountList = new ArrayList<>();
+		List<CoupongroupDTO> groupCount = new ArrayList<>();
+		try {
+			groupList = coupongroupService.groupList();
+			for(int num=0;num<groupList.size();num++){
+				groupCount = coupongroupService.groupSList(groupList.get(num).getGroup_num());
+				groupCountList.add(groupCount.size());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("groupCountList", groupCountList);
+		mv.addObject("groupList", groupList);
+		mv.setViewName("admin/groupList");
+		return mv;
+	}
+	
+	@RequestMapping(value="groupRemove",method=RequestMethod.POST)
+	public ModelAndView groupRemove(int group_num, RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = coupongroupService.groupRemove(group_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			rd.addAttribute("message","그룹 삭제 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","그룹 삭제 실패");
+			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}

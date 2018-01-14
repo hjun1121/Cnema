@@ -15,7 +15,8 @@
   
   <!-- heeseong -->
   <update id="dateUpdate" parameterType="java.lang.String">
-  	update MYCOUPON set type=12 where v_date &lt; sysdate and id=#{id}
+  	<!-- update MYCOUPON set type=12 where v_date &lt; sysdate and id=#{id} -->
+  	update MYCOUPON set type=12 where id=#{id}
   </update>
   
   <!-- heeseong -->
@@ -30,6 +31,6 @@
   
   <!-- heeseong -->
   <insert id="couponInsert" parameterType="hashMap">
-  	insert into myCoupon values(movie_seq.nextval,#{memberDTO.name},#{memberDTO.id},#{couponDTO.v_day},sysdate,0,11);
+  	insert into myCoupon values(movie_seq.nextval,#{couponDTO.name},#{id},#{couponDTO.v_day},sysdate,0,11)
   </insert>
   </mapper>

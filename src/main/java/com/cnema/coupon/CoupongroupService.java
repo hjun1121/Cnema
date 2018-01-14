@@ -23,4 +23,8 @@ public class CoupongroupService {
 	public List<CoupongroupDTO> groupSList(int group_num) throws Exception{
 		return coupongroupDAO.groupSList(group_num);
 	}
+
+	public int groupRemove(int group_num) throws Exception{
+		return coupongroupDAO.groupRemove(group_num);
+	}
 }

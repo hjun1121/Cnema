@@ -15,18 +15,22 @@ public class CoupongroupDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="coupongroupMapper.";
 	
-	public int groupInsert(String id,int number) {
+	public int groupInsert(String id,int number) throws Exception{
 		Map<String, Object> gMap = new HashMap<>();
 		gMap.put("id", id);
 		gMap.put("number", number);
 		return sqlSession.insert(NAMESPACE+"groupInsert",gMap);
 	}
 
-	public List<CoupongroupDTO> groupList() {
+	public List<CoupongroupDTO> groupList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"groupList");
 	}
 
-	public List<CoupongroupDTO> groupSList(int group_num) {
+	public List<CoupongroupDTO> groupSList(int group_num) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"groupSList",group_num);
+	}
+
+	public int groupRemove(int group_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"groupRemove",group_num);
 	}
 }
