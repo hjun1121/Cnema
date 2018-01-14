@@ -322,10 +322,26 @@
 					<c:if test="${c.count eq 11 }"><td>K</td></c:if>
 					<c:if test="${c.count eq 12 }"><td>L</td></c:if>
 					
+
+					
 					<c:forEach begin="1" end="${screenDTO.y_num }" varStatus="co">
-						<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" title="${(c.count-1)*screenDTO.y_num+ co.count }">
-							<a href="#"  onclick="return false;">${co.count }</a>
-						</td>	
+					
+						<c:forEach items="${seatCheck }" var="seat">
+							<c:if test="${seat eq (c.count-1)*screenDTO.y_num+ co.count}">
+								<c:set var="check" value="${(c.count-1)*screenDTO.y_num+ co.count }"></c:set>
+							</c:if>
+						</c:forEach>
+						
+						<c:if test="${check eq (c.count-1)*screenDTO.y_num+ co.count }">
+							<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" style="background-color: blue;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
+								${co.count }
+							</td>					
+						</c:if>
+						<c:if test="${check ne (c.count-1)*screenDTO.y_num+ co.count }">
+							<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" title="${(c.count-1)*screenDTO.y_num+ co.count }">
+								<a href="#"  onclick="return false;">${co.count }</a>
+							</td>				
+						</c:if>
 					</c:forEach>
 				</tr>
 			</c:forEach>

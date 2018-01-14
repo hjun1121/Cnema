@@ -11,6 +11,11 @@
   	<select id="locationList" parameterType="String" resultType="theaterDTO">
   		select * from theater where area=#{area}
   	</select>
+  	
+  	<select id="areaList" resultType="theaterDTO">
+  		select DISTINCT area from theater
+  	</select>
+  	
   	<!-- heeseong -->
   	<select id="theatherAList" resultType="theaterDTO">
   		select * from theater
@@ -20,12 +25,16 @@
   		select * from theater where location=#{search}
   	</select>
   	<!-- heeseong -->
-  	<select id="thAreaList" resultType="theaterDTO" parameterType="String">
-  		select * from theater where area=#{search}
-  	</select>
-  	<!-- heeseong -->
-  	<select id="theaterInfo" resultType="theaterDTO" parameterType="int">
-  		select * from theater where theater_num=#{theater_num}
+  	<select id="thSearchList" resultType="theaterDTO" parameterType="String">
+  		select * from theater
+  		<choose>
+  			<when test="kind=='area'">
+  				where area like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind=='location'">
+  				where location like '%'||#{search}||'%'
+  			</when>
+  		</choose>
   	</select>
   	<!-- heeseong -->
   	<update id="theaterRevision" parameterType="theaterDTO">

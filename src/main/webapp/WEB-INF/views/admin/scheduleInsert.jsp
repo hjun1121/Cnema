@@ -20,8 +20,8 @@
 		<tr>
 			<td><input type="text" name="screen_num"></td>
 			<td><input type="text" name="movie_num"></td>
-			<td><input type="date" name="in_time"></td>
-			<td><input type="date" name="out_time"></td>
+			<td><input type="time" name="in_time"></td>
+			<td><input type="time" name="out_time"></td>
 			<td><input type="date" name="day"></td>
 		</tr>
 	</table>

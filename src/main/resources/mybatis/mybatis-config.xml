@@ -24,5 +24,8 @@
   		<typeAlias type="com.cnema.event.EventDTO" alias="EventDTO"/>
   		<typeAlias type="com.cnema.reserve.TicketPriceDTO" alias="ticketPriceDTO"/>
   		<typeAlias type="com.cnema.reserve.ReserveDTO" alias="reserveDTO"/>
+  		<typeAlias type="com.cnema.coupon.CouponDTO" alias="couponDTO"/>
+  		<typeAlias type="com.cnema.community.PageDTO" alias="pageDTO"/>
+  		<typeAlias type="com.cnema.coupon.CoupongroupDTO" alias="coupongroupDTO"/>
   	</typeAliases>
   </configuration>

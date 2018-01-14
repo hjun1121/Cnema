@@ -1,6 +1,7 @@
 package com.cnema.c1;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,6 +22,7 @@ import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.movie.WarningDTO;
+import com.cnema.reserve.ReserveService;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
@@ -42,7 +44,8 @@ public class AjaxController {
 	private ScheduleService scheduleService;
 	@Inject
 	private EventService eventService;
-	
+	@Inject
+	private ReserveService reserveService;
 
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
@@ -123,22 +126,6 @@ public class AjaxController {
 
 		return mv;
 	}
-
-	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
-	public void qrSeatBox(int schedule_num, Model model){
-		
-		ScheduleDTO scheduleDTO=null;
-		ScreenDTO screenDTO = null;
-		try {
-			scheduleDTO = scheduleService.scheduleOne(schedule_num);
-			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
-			model.addAttribute("screenDTO", screenDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	//movieWishReturn
 	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
 	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {
@@ -158,7 +145,40 @@ public class AjaxController {
 		
 		return mv;
 	}
-
+	@RequestMapping(value="slScheduleList", method=RequestMethod.POST)
+	public void slScheduleList(int location, String day, Model model){
+		List<MovieDTO> movieList = new ArrayList<>();
+		try {
+			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			for(Integer i : movieNumList){
+				MovieDTO movieDTO = movieService.selectOne(i);
+				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
+				movieDTO.setsList(sl);
+				movieList.add(movieDTO);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("movieList", movieList);
+	}
+	
+	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
+	public void qrSeatBox(int schedule_num, Model model){
+		
+		ScheduleDTO scheduleDTO=null;
+		ScreenDTO screenDTO = null;
+		try {
+			scheduleDTO = scheduleService.scheduleOne(schedule_num);
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+			model.addAttribute("screenDTO", screenDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping(value="qrTheater", method=RequestMethod.POST)
 	public void qrTheater(int theater_num, Model model){
 		TheaterDTO theaterDTO = null;
@@ -224,13 +244,20 @@ public class AjaxController {
 	
 	@RequestMapping(value="qrScheduleList", method=RequestMethod.POST)
 	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
+		List<Integer> seatCheck =null;
 		try {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
-			model.addAttribute("screenList", ar);
 			for(ScreenDTO screenDTO : ar){
-				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num);
+				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num, movie_num);
+				
+				for(ScheduleDTO scheduleDTO:ar2){
+					seatCheck = reserveService.seatCheck(screenDTO.getScreen_num(), scheduleDTO.getSchedule_num());
+					scheduleDTO.setSeatcheck(seatCheck.size());
+				}
 				screenDTO.setAr(ar2);
 			}
+			
+			model.addAttribute("screenList", ar);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -285,7 +312,7 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
-	public ModelAndView locationList(String area){
+	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int location){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
@@ -294,6 +321,7 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("num", location);
 		mv.addObject("location", ar);
 		mv.setViewName("ajax/locationList");
 		

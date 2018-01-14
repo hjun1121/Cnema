@@ -2,6 +2,7 @@ package com.cnema.c1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -9,9 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CouponService;
+import com.cnema.coupon.CoupongroupDTO;
+import com.cnema.coupon.CoupongroupService;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
@@ -33,6 +39,12 @@ public class AdminController {
 	ScheduleService scheduleService;
 	@Inject
 	MemberService memberService;
+	@Inject
+	MyCouponService myCouponService;
+	@Inject
+	CouponService couponService;
+	@Inject
+	CoupongroupService coupongroupService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(String kind,String search){
@@ -110,20 +122,23 @@ public class AdminController {
 				theaterList = theaterService.theatherAList();
 			}else{
 				if(kind.equals("location")){
-					theaterList = theaterService.thLocationList(search);
+					theaterList = theaterService.thSearchList(kind,search);
 				}
 				if(kind.equals("area")){
-					theaterList = theaterService.thAreaList(search);
+					theaterList = theaterService.thSearchList(kind,search);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		mv.addObject("kind",kind);
+		mv.addObject("search",search);
 		mv.addObject("theaterList", theaterList);
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}
+	
 	@RequestMapping(value="theaterView",method=RequestMethod.GET)
 	public ModelAndView theaterView(int theater_num){
 		ModelAndView mv = new ModelAndView();
@@ -222,11 +237,19 @@ public class AdminController {
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.GET)
 	public void scheduleInsert() {
 	}
+	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
 	public void scheduleInsert(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
+
+		System.out.println("screen :"+scheduleDTO.getScreen_num());
+		System.out.println("movie :"+scheduleDTO.getMovie_num());
+		System.out.println("in_time:"+scheduleDTO.getIn_time());
+		System.out.println("out_time:"+scheduleDTO.getOut_time());
+		System.out.println("day:"+scheduleDTO.getDay());
+		
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = scheduleService.scheduleInsert(scheduleDTO);
+		//result = scheduleService.scheduleInsert(scheduleDTO);
 		
 		if(result>0){
 			rd.addAttribute("message", "글쓰기 성공");
@@ -284,16 +307,82 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="memberList", method=RequestMethod.GET)
-	public ModelAndView memberList() {
+	public ModelAndView memberList(int group_num) {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		List<CoupongroupDTO> groupList = new ArrayList<>();
+		List<CoupongroupDTO> gList = new ArrayList<>();
+		int number = 1;
+		int result = 0;
+		
+		if(group_num==0){
+			group_num=51658;
+		}
 		try {
-			memList = memberService.memberList();
+			groupList = coupongroupService.groupList();
+			for(int num=0;num<2;num++){
+				gList = coupongroupService.groupSList(group_num);
+				memberDTO = memberService.memberInfo(gList.get(num).getId());
+				memList.add(memberDTO);
+			}
+			/*memList = memberService.memberList();*/
+			for(MemberDTO memberDTO2 : memList){
+				result = myCouponService.couponCount(memberDTO2.getId());
+				mv.addObject("result"+number, result);
+				number++;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("groupList", groupList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
+		return mv;
+	}
+	
+	/*@RequestMapping(value="couponGive",method=RequestMethod.GET)
+	public ModelAndView couponGive(HttpSession session,int ctype){
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		CouponDTO couponDTO = null;
+		
+		List<MemberDTO> memList = new ArrayList<MemberDTO>();
+		List<MyCouponDTO> mcList = new ArrayList<>();
+		try {
+			memList = memberService.memberCList(ctype);
+			couponDTO = couponService.couponInfo(ctype);
+			mcList = myCouponService.myCouponAList(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for(MemberDTO memberDTO2 : memList){
+			try {
+				myCouponService.couponInsert(memberDTO2,couponDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		mv.addObject("memList", memList);
+		mv.setViewName("admin/memberList");
+		return mv;
+	}*/
+	
+	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
+	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
+		ModelAndView mv = new ModelAndView();
+		
+		Random ran = new Random();
+		int number = ran.nextInt(100000);
+		
+		for(int num=0;num<gList.size();num++){
+			try {
+				coupongroupService.groupInsert(gList.get(num),number);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return mv;
 	}
 }

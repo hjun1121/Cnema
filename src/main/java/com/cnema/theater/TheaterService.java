@@ -25,18 +25,17 @@ public class TheaterService {
 	public List<TheaterDTO> locationList(String area) throws Exception{
 		return theaterDAO.locationList(area);
 	}
+	public List<TheaterDTO> areaList(){
+		return theaterDAO.areaList();
+	}	
 	
 	/*heeseong*/
 	public List<TheaterDTO> theatherAList() throws Exception{
 		return theaterDAO.theatherAList();
 	}
 	/*heeseong*/
-	public List<TheaterDTO> thLocationList(String search) throws Exception{
-		return theaterDAO.thLocationList(search);
-	}
-	/*heeseong*/
-	public List<TheaterDTO> thAreaList(String search) throws Exception{
-		return theaterDAO.thAreaList(search);
+	public List<TheaterDTO> thSearchList(String kind,String search) throws Exception{
+		return theaterDAO.thSearchList(kind,search);
 	}
 	/*heeseong*/
 	public TheaterDTO theaterInfo(int theater_num) {

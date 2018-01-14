@@ -4,9 +4,16 @@
 <ul>
 	<c:forEach items="${location }" var="DTO">
 		<li>
-			<a href="#" onclick="return false;" class="location" title="${DTO.theater_num }" >
+		<c:if test="${num eq DTO.theater_num}">
+			<a href="#" style="background-color: red;" onclick="return false;" class="location time" title="${DTO.theater_num }" >
 			${DTO.location }
 			</a>
+		</c:if>
+		<c:if test="${num ne DTO.theater_num}">
+			<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
+			${DTO.location }
+			</a>
+		</c:if>
 		</li>
 	</c:forEach>
 </ul>

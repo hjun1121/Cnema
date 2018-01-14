@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="coupongroupMapper">
+  	<insert id="groupInsert" parameterType="Map">
+  		insert into coupongroup values(movie_seq.nextval,#{number},#{id})
+  	</insert>
+  	
+  	<select id="groupList" resultType="coupongroupDTO">
+  		select * from coupongroup
+  	</select>
+  	
+  	<select id="groupSList" resultType="coupongroupDTO" parameterType="int">
+  		select * from coupongroup where group_num=#{group_num}
+  	</select>
+  
+  </mapper>

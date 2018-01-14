@@ -20,7 +20,7 @@
 	
 	<div id="header">
 		<div class="head">
-			<h1><a href="/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
+			<h1><a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/images/common/title/CnemaLogo.png" alt="CNEMA"></a></h1>
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
@@ -30,12 +30,12 @@
 				</ul>
 				<ul class="gnb">
 				<c:if test="${empty member }">
-                    <li><a href="#"  class="login" >로그인</a></li>
-					<li><a href="#" class="join">회원가입</a></li>
+                    <li><a href="${pageContext.request.contextPath }/member/memberLogin"  class="login" >로그인</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/joinAgree" class="join">회원가입</a></li>
 				</c:if>
 				<c:if test="${!empty member }">
-					<li><a href="#" class="join">로그아웃</a></li>
-					<li><a href="#" class="myPage">마이페이지</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/memberLogout" class="join">로그아웃</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/myPageView" class="myPage">마이페이지</a></li>
 				</c:if>
 					<li><a href="#" class="customer">고객센터</a></li>
 					<li><a href="#" class="vip">찾아오시는 길</a></li>
@@ -48,27 +48,25 @@
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie headbtn" title="movie headbtn"><a href="./movie/movie_chart">영화</a>
+						<li class="movie headbtn" title="movie headbtn"><a href="${pageContext.request.contextPath}/movie/movie_chart">영화</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="./movie/movie_chart">무비차트</a></li>
-										<li><a href="#">HD 트레일러</a></li>
-										<li><a href="#">무비파인더</a></li>
-										<li><a href="#">평점</a></li>
-										<li class="last"><a href="#">CGV아트하우스</a></li>
+										<li><a href="${pageContext.request.contextPath}/movie/movie_chart">무비차트</a></li>
+										<li><a href="${pageContext.request.contextPath}/community/pageInsert">페이지생성</a></li>
+										<li class="last"><a href="${pageContext.request.contextPath}/community/mainPage">CGV아트하우스</a></li>
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="booking headbtn" title="booking headbtn"><a href="./theater/quickReserve">예매</a>
+						<li class="booking headbtn" title="booking headbtn"><a href="${pageContext.request.contextPath}/theater/quickReserve">예매</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="./theater/quickReserve">빠른예매</a></li>
-										<li><a href="./theater/scheduleList">상영시간표</a></li>
+										<li><a href="${pageContext.request.contextPath}/theater/quickReserve">빠른예매</a></li>
+										<li><a href="${pageContext.request.contextPath}/theater/scheduleList">상영시간표</a></li>
 									</ul>
 								</div>
 							</div>
@@ -97,6 +95,7 @@
 								</div>
 							</div>
 						</li>
+						
 					</ul>
 				</div>
 			</div>

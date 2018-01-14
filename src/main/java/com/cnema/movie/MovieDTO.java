@@ -1,8 +1,11 @@
 package com.cnema.movie;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.cnema.theater.ScheduleDTO;
 
 public class MovieDTO {
 
@@ -22,7 +25,16 @@ public class MovieDTO {
 	private MultipartFile file;
 	private String actor;
 
+	
+	private List<ScheduleDTO> sList;
+	
 
+	public List<ScheduleDTO> getsList() {
+		return sList;
+	}
+	public void setsList(List<ScheduleDTO> sList) {
+		this.sList = sList;
+	}
 	public String getActor() {
 		return actor;
 	}

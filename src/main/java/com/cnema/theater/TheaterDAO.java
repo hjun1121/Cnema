@@ -19,8 +19,6 @@ public class TheaterDAO {
 	
 	private final String NAMESPACE="theaterMapper.";
 	
-
-	
 	public TheaterDTO selectOne(int theater_num){
 		return sqlSession.selectOne(NAMESPACE+"selectOne", theater_num);
 	}
@@ -33,17 +31,20 @@ public class TheaterDAO {
 		return sqlSession.selectList(NAMESPACE+"locationList", area);
 	}
 
+	public List<TheaterDTO> areaList(){
+		return sqlSession.selectList(NAMESPACE+"areaList");
+	}
+	
 	/*heeseong*/
 	public List<TheaterDTO> theatherAList() {
 		return sqlSession.selectList(NAMESPACE+"theatherAList");
 	}
 	/*heeseong*/
-	public List<TheaterDTO> thLocationList(String search) {
-		return sqlSession.selectList(NAMESPACE+"thLocationList",search);
-	}
-	/*heeseong*/
-	public List<TheaterDTO> thAreaList(String search) {
-		return sqlSession.selectList(NAMESPACE+"thAreaList",search);
+	public List<TheaterDTO> thSearchList(String kind, String search) {
+		Map<String, Object> thMap = new HashMap<>();
+		thMap.put("kind", kind);
+		thMap.put("search", search);
+		return sqlSession.selectList(NAMESPACE+"thSearchList",thMap);
 	}
 	/*heeseong*/
 	public TheaterDTO theaterInfo(int theater_num) {

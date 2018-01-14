@@ -13,6 +13,7 @@ import com.cnema.util.FileSaver;
 
 
 @Service
+@Transactional
 public class MovieService {
 	@Inject
 	private MovieDAO movieDAO;
@@ -77,9 +78,6 @@ public class MovieService {
 		movieDTO.setOriName(file.getOriginalFilename());
 		int result = movieDAO.insert(movieDTO);
 
-		System.out.println(file.getOriginalFilename());
-		System.out.println(name);
-
 		return result;
 	}
 	
@@ -96,7 +94,7 @@ public class MovieService {
 		return movieDAO.movieRevision(movieDTO);
 	}
 	/*heeseong*/
-	public List<MovieDTO> movieSearchList(String type,String search) throws Exception {
-		return movieDAO.movieSearchList(type,search);
+	public List<MovieDTO> movieSearchList(String kind,String search) throws Exception {
+		return movieDAO.movieSearchList(kind,search);
 	}
 }

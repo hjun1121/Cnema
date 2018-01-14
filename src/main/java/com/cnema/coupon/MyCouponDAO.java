@@ -8,7 +8,8 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
+import com.cnema.member.MemberDTO;
 
 @Repository
 public class MyCouponDAO {
@@ -39,5 +40,16 @@ public class MyCouponDAO {
 	/*heeseong*/
 	public int dateUpdate(String id) throws Exception{
 		return sqlSession.update(NAMESPACE+"dateUpdate",id);
+	}
+	/*heeseong*/
+	public int couponInsert(MemberDTO memberDTO, CouponDTO couponDTO) throws Exception{
+		Map<Object, Object> cMap = new HashMap<>();
+		cMap.put("couponDTO", couponDTO);
+		cMap.put("memberDTO", memberDTO);
+		return sqlSession.insert(NAMESPACE+"dateUpdate",cMap);
+	}
+	/*heeseong*/
+	public int couponCount(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponCount",id);
 	}
 }
