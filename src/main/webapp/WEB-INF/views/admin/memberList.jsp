@@ -45,6 +45,10 @@ $(function(){
 		});
 	});
 	
+	$("#groudAdmin").click(function(){
+		location.href="groupList";
+	});
+	
 	$("#91182").click(function(){
 		var number = $("#91182").val();
 		alert(number);
@@ -61,12 +65,15 @@ $(function(){
 <h3>멤버리스트</h3>
 <!-- <input type="button" id="birth" value="생일쿠폰">
 <input type="button" id="vip" value="VIP쿠폰"> -->
-<input type="button" id="group" value="GROUP">
+
+<input type="button" id="groudAdmin" value="그룹관리"><br>
+<input type="button" id="group" value="그룹만들기">
 
 <input type="button" id="allMember" value="모든멤버">
 <c:forEach items="${groupList }" var="gList">
 	<input type="button" id="${gList.group_num }" value="${gList.group_num }">
 </c:forEach>
+
 <table>
 	<tr>
 		<td><input type="checkbox" name="groupAll" id="groupAll" value="all"></td>

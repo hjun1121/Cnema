@@ -12,7 +12,10 @@
   	</select>
   	
   	<select id="groupSList" resultType="coupongroupDTO" parameterType="int">
-  		select from coupongroup where group_num=#{group_num}
+  		select * from coupongroup where group_num=#{group_num}
   	</select>
-  
+  	
+  	<delete id="groupRemove" parameterType="int">
+  		delete from coupongroup where group_num=#{group_num}
+  	</delete>
   </mapper>

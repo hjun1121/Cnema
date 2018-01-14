@@ -468,4 +468,45 @@ public class AdminController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(value="groupList",method=RequestMethod.GET)
+	public ModelAndView groupList(){
+		ModelAndView mv = new ModelAndView();
+		List<CoupongroupDTO> groupList = new ArrayList<>();
+		List<Object> groupCountList = new ArrayList<>();
+		List<CoupongroupDTO> groupCount = new ArrayList<>();
+		try {
+			groupList = coupongroupService.groupList();
+			for(int num=0;num<groupList.size();num++){
+				groupCount = coupongroupService.groupSList(groupList.get(num).getGroup_num());
+				groupCountList.add(groupCount.size());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("groupCountList", groupCountList);
+		mv.addObject("groupList", groupList);
+		mv.setViewName("admin/groupList");
+		return mv;
+	}
+	
+	@RequestMapping(value="groupRemove",method=RequestMethod.POST)
+	public ModelAndView groupRemove(int group_num, RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = coupongroupService.groupRemove(group_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			rd.addAttribute("message","그룹 삭제 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","그룹 삭제 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
 }
