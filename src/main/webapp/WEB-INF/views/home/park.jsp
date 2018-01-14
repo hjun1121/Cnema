@@ -45,24 +45,6 @@
         	<!-- 내용 시작 -->
         	
         	
-        	
-        	
-			<!-- 내용 끝 -->
-			
-			</div>
-			<!-- ///////////////////////////////// -->
-		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
-	</div>
-
-
-
-
-
-
-
-
-
-
 	<h2>박세나꺼</h2>
 	
 	<h4>NOTICE</h4>
@@ -90,5 +72,23 @@
 	<hr>
 	<br>
 	<a href="../">home</a>
+        	
+        	
+			<!-- 내용 끝 -->
+			
+			</div>
+			<!-- ///////////////////////////////// -->
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
+	</div>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
