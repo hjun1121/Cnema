@@ -45,13 +45,14 @@ $(function(){
 		});
 	});
 	
-	$("#51658").click(function(){
-		var number = $("#51658").val();
-		location.href="memberList?group_num=51658";
+	$("#91182").click(function(){
+		var number = $("#91182").val();
+		alert(number);
+		location.href="memberList?group_num=91182";
 	});
 	
 	$("#allMember").click(function(){
-		location.href="memberList?group_num=11";
+		location.href="memberList?group_num=-1";
 	});
 });
 </script>

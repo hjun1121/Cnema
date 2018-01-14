@@ -8,11 +8,11 @@
   	</insert>
   	
   	<select id="groupList" resultType="coupongroupDTO">
-  		select * from coupongroup
+  		select distinct group_num from coupongroup
   	</select>
   	
   	<select id="groupSList" resultType="coupongroupDTO" parameterType="int">
-  		select * from coupongroup where group_num=#{group_num}
+  		select from coupongroup where group_num=#{group_num}
   	</select>
   
   </mapper>

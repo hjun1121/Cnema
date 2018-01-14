@@ -1,6 +1,8 @@
 package com.cnema.coupon;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -13,12 +15,32 @@ public class CouponDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="couponMapper.";
 	
-	public List<CouponDTO> couponList() {
+	/*heeseong*/
+	public List<CouponDTO> couponList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"couponList");
 	}
-	
-	public CouponDTO couponInfo(int ctype) {
+	/*heeseong*/
+	public CouponDTO couponInfo(int ctype) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"couponInfo",ctype);
+	}
+	/*heeseong*/
+	public List<CouponDTO> couponSList(String kind, String search) throws Exception{
+		Map<String, Object> cMap = new HashMap<>();
+		cMap.put("kind", kind);
+		cMap.put("search", search);
+		return sqlSession.selectList(NAMESPACE+"couponSList",cMap);
+	}
+	/*heeseong*/
+	public int couponInsert(CouponDTO couponDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"couponInsert",couponDTO);
+	}
+	/*heeseong*/
+	public int couponRevision(CouponDTO couponDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"couponRevision",couponDTO);
+	}
+	/*heeseong*/
+	public CouponDTO couponRevisionInfo(String name) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponRevisionInfo",name);
 	}
 	
 }

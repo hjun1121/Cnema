@@ -5,7 +5,6 @@ public class CouponDTO {
 	private int type;
 	private String price;
 	private int v_day;
-	private int cType;
 	
 	public String getName() {
 		return name;
@@ -30,11 +29,5 @@ public class CouponDTO {
 	}
 	public void setV_day(int v_day) {
 		this.v_day = v_day;
-	}
-	public int getcType() {
-		return cType;
-	}
-	public void setcType(int cType) {
-		this.cType = cType;
 	}
 }
