@@ -5,7 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+
 <title>Insert title here</title>
+<style type="text/css">
+.board_container{
+	width: 1200px;
+	height:1000px;
+	margin:0 auto;
+	margin-top:40px;
+ 
+}
+</style>
 </head>
 <script type="text/javascript">
 	$(function(){
@@ -32,6 +47,40 @@
 </style>
 </head>
 <body>
+
+<div id="cgvwrap">
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+
+			<!-- //////////////////////////////// -->
+<div id="contaniner" class="">
+	<!-- 상단바 시작 -->
+        	<div class="linemap-wrap">
+           		<div class="sect-linemap">
+                	<div class="sect-bcrumb">
+                    	<ul>
+                        	<li>
+                        		<a href="../">
+                        		<img alt="home" src="${pageContext.request.contextPath }/resources/images/common/btn/btn_home.png"></a>
+                        	</li>
+                            <li>
+                                <a href="#">게시판</a>
+                            </li>
+                            <li>
+                                <a href="#">공지사항</a>
+                            </li>
+                            <li class="last">
+                            	글쓰기
+                            </li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 상단바 끝 -->
+        	
+	
+	
+	<div class="board_container">
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
 	<h1>Qna list Page</h1>
 
 	<table>
@@ -72,6 +121,14 @@
 	</div>
 	
 	
-
+		</div><!--게시판 내용  -->
+	
+	
+	</div>
+	
+	
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
+	
+</div>
 </body>
 </html>
