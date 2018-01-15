@@ -284,6 +284,7 @@
 				            </tr>
 				        </thead>
 				        <tbody>
+				        <c:if test="${fn:length(mcList) ne 0}">
 				        <c:forEach items="${mcList }" var="mCouponList">
 							<tr>
 								<td>${mCouponList.name }</td>
@@ -300,6 +301,7 @@
 								</c:if>
 							</tr>
 						</c:forEach>
+						</c:if>
                        <!--  <tr>
                             <td>
                                 <label for="chkItem1025668"><em>2</em></label>
@@ -315,7 +317,7 @@
                         </tr> -->
 							<c:if test="${fn:length(mcList) eq 0}">           
 					            <tr>
-					                <td colspan="3" class="nodata">CGV에서 사용 가능한 CJ ONE 쿠폰이 존재하지 않습니다.</td>
+					                <td colspan="4" class="nodata">쿠폰이 존재하지 않습니다.</td>
 					            </tr>
 				            </c:if>  
 				        </tbody>
