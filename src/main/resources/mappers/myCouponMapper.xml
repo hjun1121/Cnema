@@ -10,18 +10,17 @@
   
   <!-- heeseong -->
   <select id="myCouponDList" resultType="myCouponDTO" parameterType="java.util.Map">
-  	select * from myCoupon where id=#{id} and type=12 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1}
+  	select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1}
   </select>
   
   <!-- heeseong -->
   <update id="dateUpdate" parameterType="java.lang.String">
-  	<!-- update MYCOUPON set type=12 where v_date &lt; sysdate and id=#{id} -->
-  	update MYCOUPON set type=12 where id=#{id}
+  	update MYCOUPON set type=12 where v_date <![CDATA[<]]> sysdate and id=#{id} and type=11
   </update>
   
   <!-- heeseong -->
   <select id="myCouponAList" resultType="myCouponDTO" parameterType="java.lang.String">
-  	select * from myCoupon where id=#{id} 
+  	select * from myCoupon where id=#{id} and type=10 
   </select>
   
   <!-- heeseong -->

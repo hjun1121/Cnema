@@ -12,7 +12,6 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
 
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -107,7 +106,7 @@ function showSlides(n) {
 	<!-- 띄움 -->
 
 	<!-- //////////////////////////// -->
-	
+
 	<!-- Contaniner -->
 	<div id="contaniner" class="bg-bricks main bg-bricks">
 		<div id="contents">

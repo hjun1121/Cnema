@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>CNEMAGRAM</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
@@ -43,20 +43,26 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-<!-- 		<!-- 내가 가입한 페이지 LIST -->
-<!-- 		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px; background-color: #433b90; margin-bottom: 30px;"> -->
-<%-- 			<c:forEach items="${pageList}" var="page"> --%>
-<%-- 				<p><img style="width: 100px; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/community_logo/${page.fileName}"></p> --%>
-<%-- 				<p>${page.page_name}</p> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
-<!-- 		<!-- 추천 페이지 LIST -->
-<!-- 		<div style="clear: both; border: 1px solid #dcdcdc; height: 300px; background-color: yellow;"> -->
-<%-- 			<c:forEach items="${recommendPage}" var="recommend" begin="1" end="3"> --%>
-<%-- 				<p><img style="width: 100px; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/community_logo/${recommend.fileName}"></p> --%>
-<%-- 				<p>${recommend.page_name}</p> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
+		<!-- 내가 가입한 페이지 LIST -->
+		<c:if test="${not empty member}">
+		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px; background-color: #433b90; margin-bottom: 30px;">
+			<h2 style="font-size: 20px; color: #333333;">가입한 페이지</h2>
+			<br>
+			<c:forEach items="${pageList}" var="page">
+				<p><img style="width: 30px; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/community_logo/${page.fileName}"> ${page.page_name}</p>
+			</c:forEach>
+		</div>
+		</c:if>
+		<!-- 추천 페이지 LIST -->
+		<div style="clear: both; border: 1px solid #dcdcdc; height: 300px; background-color: yellow;">
+			<h2 style="font-size: 20px; color: #333333;">추천 페이지</h2>
+			<br>
+			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
+				<c:if test="${i.index < 3}">
+					<p><img style="width: 30px; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/community_logo/${recommend.fileName}"> ${recommend.page_name}</p>
+				</c:if>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- 프로필 바 끝 -->
 </div> 

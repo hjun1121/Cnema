@@ -14,6 +14,10 @@ public class ScheduleService {
 	@Inject
 	private ScheduleDAO scheduleDAO;
 	
+	public List<Integer> screenNumList(int theater_num, String day, int movie_num) throws Exception{
+		return scheduleDAO.screenNumList(theater_num, day, movie_num);
+	}
+	
 	public List<Integer> movieNumList(int theater_num, String day) throws Exception{
 		return scheduleDAO.movieNumList(theater_num, day);
 	}
@@ -22,8 +26,8 @@ public class ScheduleService {
 		return scheduleDAO.scheduleList(screen_num, day_num, movie_num);
 	}
 	
-	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num) throws Exception{
-		return scheduleDAO.movieSchedule(theater_num, day, movie_num);
+	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num, int screen_num) throws Exception{
+		return scheduleDAO.movieSchedule(theater_num, day, movie_num, screen_num);
 	}
 	
 	public List<ScreenDTO> screenList(int theater_num)throws Exception{
