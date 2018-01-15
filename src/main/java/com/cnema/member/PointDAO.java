@@ -28,4 +28,11 @@ public class PointDAO {
 	public List<PointDTO> pointAList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"pointAList",id);
 	}
+	/*HeeSeong*/
+	public int pointInsert(int price,String id) throws Exception{
+		Map<String, Object> pMap = new HashMap<>();
+		pMap.put("price", price);
+		pMap.put("id", id);
+		return sqlSession.insert(NAMESPACE+"pointInsert",pMap);
+	}
 }

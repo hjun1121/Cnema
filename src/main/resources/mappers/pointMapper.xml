@@ -11,4 +11,8 @@
 	<select id="pointAList" resultType="pointDTO">
 		select * from point where id=#{id}
 	</select>
+	<!-- 희성 -->
+	<insert id="pointInsert" parameterType="map">
+		insert into point (point_num,id,contents,point_price,type) values(movie_seq.nextval,#{id},0,#{price},20)
+	</insert>
   </mapper>

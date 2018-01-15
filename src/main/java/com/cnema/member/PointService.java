@@ -19,4 +19,8 @@ public class PointService {
 	public List<PointDTO> pointAList(String id) throws Exception{
 		return pointDAO.pointAList(id);
 	}
+	/*HeeSeong*/
+	public int pointInsert(int price, String id) throws Exception{
+		return pointDAO.pointInsert(price,id);
+	}
 }

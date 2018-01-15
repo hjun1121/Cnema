@@ -21,6 +21,8 @@ import com.cnema.coupon.CoupongroupService;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.member.PointDTO;
+import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.theater.ScheduleDTO;
@@ -46,6 +48,8 @@ public class AdminController {
 	CouponService couponService;
 	@Inject
 	CoupongroupService coupongroupService;
+	@Inject
+	PointService pointService;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(String kind,String search){
@@ -446,6 +450,29 @@ public class AdminController {
 			mv.setViewName("redirect:../");
 		}else{
 			rd.addAttribute("message","쿠폰 주기 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="pointGive",method=RequestMethod.GET)
+	public ModelAndView pointGive(int price,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		int result = 0;
+		try {
+			for(int num=0;num<gList.size();num++){
+				result = pointService.pointInsert(price,memberDTO.getId());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			rd.addAttribute("message","포인트 주기 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addAttribute("message","포인트 주기 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;

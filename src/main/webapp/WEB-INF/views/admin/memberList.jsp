@@ -35,13 +35,13 @@ $(function(){
 		
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
-			$.ajax({
-				url:"./groupInsert",
-				type:"post",
-				data:{
-					groupVal:groupVal
-				},
-			});
+		});
+		$.ajax({
+			url:"./groupInsert",
+			type:"post",
+			data:{
+				groupVal:groupVal
+			},
 		});
 	});
 	
@@ -49,8 +49,8 @@ $(function(){
 		location.href="groupList";
 	});
 	
-	$("#38716").click(function(){
-		var number = $("#38716").val();
+	$("#41500").click(function(){
+		var number = $("#41500").val();
 		location.href="memberList?group_num="+number;
 	});
 	
@@ -66,13 +66,20 @@ $(function(){
 		});
 		location.href="./couponGive?kind="+kind+"&groupVal[]="+groupVal;
 	});
+	
+	$("#pBtn").click(function(){
+		var price = $("#price").val();
+		var groupVal = [];
+		$("input[name='group']:checked").each(function(){
+			groupVal.push($(this).val());
+		});
+		location.href="./pointGive?price="+price+"&groupVal[]="+groupVal;
+	});
 });
 </script>
 </head>
 <body>
 <h3>멤버리스트</h3>
-<!-- <input type="button" id="birth" value="생일쿠폰">
-<input type="button" id="vip" value="VIP쿠폰"> -->
 
 <input type="button" id="groudAdmin" value="그룹관리"><br>
 
@@ -89,7 +96,9 @@ $(function(){
 		<option class="kind" value="${couponList.name }">${couponList.name }</option>
 	</c:forEach>
 </select>
-<input type="button" id="sBtn" value="쿠폰주기">
+<input type="button" id="sBtn" value="쿠폰주기"><br>
+<input type="number" id="price">
+<input type="button" id="pBtn" value="포인트주기">
 	
 <table>
 	<tr>
