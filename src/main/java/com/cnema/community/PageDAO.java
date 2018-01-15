@@ -24,10 +24,10 @@ public class PageDAO {
 		Map<String, Object> map = new HashMap<>();
 		map.put("page_num", page_num);
 		map.put("id", id);
+		System.out.println("zxc");
 		return sqlSession.selectOne(NAMESPACE+"memberCheck", map);
 	}
-	
-	
+
 	//selectPageMember
 	public List<PageMemberDTO> selectPageMemberList(int page_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"selectPageMemberList", page_num);
@@ -53,9 +53,9 @@ public class PageDAO {
 	
 	//selectPageOne
 	public PageDTO selectPageOne(int page_num) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"selectPage", page_num);
+		return sqlSession.selectOne(NAMESPACE+"selectPageOne", page_num);
 	}
-	
+
 	//selectRecommendPage
 	public List<PageDTO> selectRecommendPage() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"selectRecommendPage");

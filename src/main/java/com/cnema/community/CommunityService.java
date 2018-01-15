@@ -27,10 +27,11 @@ public class CommunityService {
 		PageMemberDTO pageMemberDTO = null;
 		int result = 0;
 		pageMemberDTO = pageDAO.memberCheck(page_num, id);
-		if(pageMemberDTO != null) {
+		if(pageMemberDTO != null) { //가입한 페이지일 경우
 			result = 1;
 		}
-		
+		System.out.println("asd");
+
 		return result;
 	}
 	
