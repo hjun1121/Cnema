@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
+import com.cnema.community.PageMemberDTO;
 import com.cnema.member.MemberDTO;
 
 @Controller
@@ -27,12 +28,39 @@ public class CommunityController {
 	private CommunityService communityService;
 	
 	
+	//pageMain
+	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
+	public void pageMain() {
+		
+	}
 	
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
-	public ModelAndView pageMain(HttpSession session) throws Exception {
+	public ModelAndView pageMain(HttpSession session, int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+		String id = "";
+		PageMemberDTO memberCheck = null;
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			id = memberDTO.getId();
+			if(id != null) {
+				memberCheck = communityService.memberCheck(page_num, id);
+			}
+			if(memberCheck != null) {
+				mv.addObject("memberCheck", true);
+			} else {
+				mv.addObject("memberCheck", false);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		PageDTO pageDTO = communityService.selectPageOne(page_num); //페이지 정보 가져오기
+		List<PageMemberDTO> pageMember = communityService.selectPageMemberList(page_num);
+
+
+		mv.addObject("page", pageDTO);
+		mv.addObject("pageMember", pageMember);
+		mv.setViewName("community/pageMain");
 		
 		return mv;
 	}
@@ -74,21 +102,20 @@ public class CommunityController {
 		String id = "";
 		List<PageDTO> pageList = null;
 		List<PageDTO> recommendPage = null;
+		recommendPage = communityService.selectRecommendPage();
+		mv.addObject("recommendPage", recommendPage);
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
-			recommendPage = communityService.selectRecommendPage();
 			
 			if(id != null) {
 				pageList = communityService.selectPageList(id);
 				mv.addObject("pageList", pageList);
 			}
 
-			mv.addObject("recommendPage", recommendPage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.setViewName("community/communityMain");
 		return mv;
 	}

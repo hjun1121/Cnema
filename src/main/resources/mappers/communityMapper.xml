@@ -3,6 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="communityMapper">
+
+	<select id="memberCheck" parameterType="java.util.Map" resultType="pageMemberDTO">
+		select * from pagemember where id=#{id} and page_num=#{page_num}
+	</select>
+
+	<select id="selectPageMemberList" resultType="pageMemberDTO">
+		select * from pagemember where page_num=#{page_num}
+	</select>
 	
 	<insert id="pageInsert" parameterType="pageDTO">
 		<selectKey order="BEFORE" resultType="int" keyProperty="page_num">
@@ -19,6 +27,14 @@
 		</choose>
 		)
 	</insert>
+
+	<update id="memberCount" parameterType="int">
+		update page set member_count=member_count+1 where page_num=#{page_num}
+	</update>
+	
+	<select id="selectPageOne" resultType="pageDTO">
+		select * from page where page_num=#{page_num}
+	</select>
 	
 	<select id="selectPageList" parameterType="String" resultType="pageDTO">
 		select P.* from page P, pagemember M where P.PAGE_NUM=M.PAGE_NUM and M.id=#{id}
