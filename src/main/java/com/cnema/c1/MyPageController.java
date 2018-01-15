@@ -78,7 +78,7 @@ public class MyPageController {
 			mv.addObject("memberDTO", memberDTO);
 			mv.setViewName("myPage/myInfo");
 		}else{
-			rd.addFlashAttribute("message", "비밀번호 실패!");
+			rd.addFlashAttribute("message", "비밀번호를 다시 입력해주세요.");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
@@ -96,7 +96,7 @@ public class MyPageController {
 		}
 		
 		if(result>0){
-			rd.addAttribute("message", "수정 성공");
+			rd.addAttribute("message", "회원 정보 수정 성공");
 			mv.setViewName("redirect:../");
 			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
 			memberDTO.setId(memberDTO2.getId());
@@ -105,7 +105,7 @@ public class MyPageController {
 			memberDTO.setBirth(memberDTO2.getBirth());
 			session.setAttribute("member", memberDTO);
 		}else{
-			rd.addAttribute("message", "수정 실패");
+			rd.addAttribute("message", "회원 정보 수정 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
@@ -189,10 +189,10 @@ public class MyPageController {
 		result = reviewService.reviewInsert(movie_num,memberDTO.getId(),review);
 		
 		if(result>0){
-			rd.addAttribute("message", "리뷰 작성 성공");
+			rd.addAttribute("message", "영화 리뷰 작성 성공");
 			mv.setViewName("redirect:../common/resultClose");
 		}else{
-			rd.addAttribute("message", "리뷰 작성 실패");
+			rd.addAttribute("message", "영화 리뷰 작성 실패");
 			mv.setViewName("redirect:../common/resultClose");
 		}
 		
