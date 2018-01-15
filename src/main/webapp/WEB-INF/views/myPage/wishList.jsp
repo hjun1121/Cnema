@@ -15,7 +15,7 @@
 			<input type="hidden" name="wish_num" value="${wishList.wish_num }">
 			<a href="../movie/movie_view?movie_num?${wishList.movieDTO.movie_num}">사진 : ${wishList.movieDTO.fileName}</a><br>
 			영화명 : ${wishList.movieDTO.movie_name}<br>
-			개봉일 : ${wishList.movieDTO.open_date}<br>
+			개봉일 : ${wishList.movieDTO.open_date} 개봉<br>
 			좋아요수 :${wishList.movieDTO.wish}<br>
 			<button>예매</button><br>
 			<input type="submit" value="X"><br>

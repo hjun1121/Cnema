@@ -26,13 +26,14 @@ public class MovieDTO {
 	private String actor;
 
 	
-	private List<ScheduleDTO> sList;
+	private List<List<ScheduleDTO>> sList;
 	
 
-	public List<ScheduleDTO> getsList() {
+
+	public List<List<ScheduleDTO>> getsList() {
 		return sList;
 	}
-	public void setsList(List<ScheduleDTO> sList) {
+	public void setsList(List<List<ScheduleDTO>> sList) {
 		this.sList = sList;
 	}
 	public String getActor() {

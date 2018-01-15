@@ -190,11 +190,28 @@ public class TheaterController {
 			if(day==null){
 				day = dayList.get(0).getDay_num().toString();
 			}
+			//그날있는 영화 번호들
 			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
-				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
-				movieDTO.setsList(sl);
+				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				//System.out.println(screenNumList.size()); //screenNum 모음
+				
+				List<List<ScheduleDTO>> sll = new ArrayList<>();
+				for(Integer s : screenNumList){
+					//영화관에 그 날에 그 영화에 그 관 스케줄 들
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					for(ScheduleDTO scheduleDTO : sl){
+						//System.out.println(scheduleDTO.getIn_time());
+					}
+					sll.add(sl);
+					movieDTO.setsList(sll);
+					//System.out.println("=========");
+				}
+				
+				//System.out.println("@@");
+				//그 영화의 스케쥴
+				
 				movieList.add(movieDTO);
 			}
 			
@@ -208,5 +225,6 @@ public class TheaterController {
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("dayList", dayList);
 		model.addAttribute("movieList", movieList);
+
 	}
 }

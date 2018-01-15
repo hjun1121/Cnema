@@ -7,6 +7,9 @@
   	<select id="movieNumList" parameterType="java.util.Map" resultType="int">
   		select DISTINCT movie_num from schedule where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} order by movie_num desc
   	</select>
+  	<select id ="screenNumList" parameterType="java.util.Map" resultType="int">
+  		select DISTINCT screen_num from schedule where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} and movie_num=#{movie_num} order by screen_num asc
+  	</select>
   
    	<select id="screenList" resultType="screenDTO" parameterType="int">
    		select * from screen where theater_num =#{theater_num}
@@ -27,7 +30,7 @@
   	</select>
   	
   	<select id="movieSchedule" resultMap="scheduleTime" parameterType="java.util.Map">
-  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} and movie_num=#{movie_num}
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} and movie_num=#{movie_num}  and screen_num =#{screen_num} order by inn asc
   	</select>
   	
   	<!-- <select id="scheduleList" resultType="scheduleDTO" parameterType="java.util.Map">

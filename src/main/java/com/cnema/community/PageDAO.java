@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.member.MemberDTO;
+
 @Repository
 public class PageDAO {
 	
@@ -20,6 +22,14 @@ public class PageDAO {
 	//pageInsert
 	public int pageInsert(PageDTO pageDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"pageInsert", pageDTO);
+	}
+	
+	//memberInsert
+	public int memberInsert(PageDTO pageDTO, String id) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("pageDTO", pageDTO);
+		map.put("id", id);
+		return sqlSession.insert(NAMESPACE+"memberInsert", map);
 	}
 	
 	//selectRecommendPage
