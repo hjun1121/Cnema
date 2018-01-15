@@ -1,5 +1,95 @@
 @CHARSET "UTF-8";
+.cols-content .tit-mycgv {
+    overflow: hidden;
+    position: relative;
+    line-height: 34px;
+}
+[class|="sect-mycgv"][class$="part"] .box-polaroid .box-inner li:first-child {
+    border-top: 2px solid #d6d4ca;
+}
+[class|="sect-mycgv"][class$="part"] .box-polaroid .box-inner .col-myqna li em {
+    width: 22px;
+    margin-right: 10px;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 12px;
+}
+[class|="sect-mycgv"][class$="part"] .box-polaroid.type1 .box-inner .col-myqna li a {
+    width: 645px;
+}
+[class|="sect-mycgv"][class$="part"] .box-polaroid .box-inner li a {
+    overflow: hidden;
+    /* width: 229px; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+[class|="sect-mycgv"][class$="part"] .box-polaroid .box-inner li span {
+    position: absolute;
+    top: 0;
+    right: 2px;
+}
+[class|="sect-mycgv"][class$="part"] .box-polaroid .box-inner li {
+    position: relative;
+    border-bottom: 1px solid #d6d4ca;
+    line-height: 41px;
+}
 
+[class|="sect-mycgv"][class$="part"] .box-polaroid.type1 .box-inner {
+    float: none;
+    width: auto;
+    height: auto;
+    padding: 29px 30px;
+}
+.cols-content .col-detail{ position:relative; width:800px; float:left}
+#mycgv_contents .sort_coupon, #mycgv_contents .sort_receipt {position:relative;margin:10px 0 10px 0;background:url(http://img.cgv.co.kr/R2014/images/common/bg/bg_coupon_sort.png) 0 35px repeat-x}
+#mycgv_contents .sort_coupon .opt_sort, #mycgv_contents .sort_receipt .opt_sort {position:absolute;top:0;right:0}
+#mycgv_contents .sort_coupon ul li, #mycgv_contents .sort_receipt ul li {float:left;width:170px;height:37px;padding:0 0 0 1px;background:#fffcf3}
+#mycgv_contents .sort_coupon ul li button, #mycgv_contents .sort_receipt ul li button{position:relative;display:block;background:#898987;color:#fff;text-align:center;width:170px;height:37px;font:normal 14px/37px NanumBarunGothicBold}
+#mycgv_contents .sort_coupon ul li button:before, .sort_coupon ul li button:after,
+#mycgv_contents .sort_receipt ul li button:before, .sort_receipt ul li button:after {position:absolute;top:0;width:5px;height:5px;background-image:url(http://img.cgv.co.kr/R2014/images/common/btn/tab_mask_coupon.png);background-repeat:no-repeat;content:'';z-index:10}
+#mycgv_contents .sort_coupon ul li button:before, #mycgv_contents .sort_receipt ul li button:before {background-position:0 -5px;left:0}
+#mycgv_contents .sort_coupon ul li button:after, #mycgv_contents .sort_receipt ul li button:after {background-position:-5px -5px;right:0}
+#mycgv_contents .sort_coupon ul li button.on, #mycgv_contents .sort_receipt ul li button.on {background:#d2180c}
+#mycgv_contents .sort_coupon ul li button.on:before, #mycgv_contents .sort_receipt ul li button.on:before {background-position:0 0}
+#mycgv_contents .sort_coupon ul li button.on:after, #mycgv_contents .sort_receipt ul li button.on:after {background-position:-5px 0}
+.box-polaroid {border:1px solid #000;}
+.box-polaroid .box-inner {} /* width:742px; padding:29px 27px; */
+.box-polaroid:after,
+.box-polaroid .box-inner:after {content:''; clear:both; display:block;}
+[class|="sect-base"][class$="booking"] .box-polaroid { position:relative;border:1px solid #656560;}
+.box-polaroid .box-inner:after {content:''; clear:both; display:block;}
+.box-polaroid {border:1px solid #000;}
+/* MY CGV detail Area */
+.cols-content .tit-mycgv {overflow:hidden; position:relative; line-height:34px;} /* 20140430 DanielKim Del margin-bottom:5px; */
+.cols-content .tit-mycgv:after {content:''; clear:both; display:block;}
+.cols-content .tit-mycgv > h3,
+.cols-content .tit-mycgv > h4 {float:left; height:34px; margin:0; background-image:none; color:#222; font-family:'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif; font-size:17px; line-height:34px; text-align:left;}
+.cols-content .tit-mycgv > h4 {font-size:14px;}
+.cols-content .tit-mycgv p {float:left; margin-left:5px;}
+.cols-content .tit-mycgv p > a {display:inline-block; width:20px; height:19px; margin-left:5px; background:url(../images/sprite/sprite_btn.png) no-repeat -50px -62px; font:0/0 a; vertical-align:middle; zoom:1;}
+.cols-content .tit-mycgv.type2 {padding-bottom:8px; border-bottom:2px solid #222;}
+.cols-content .tit-mycgv.type2 p {clear:both; float:none; margin-left:0; font-size:13px; line-height:1;}
+.cols-content .tit-mycgv.type2 p em {color:#fb4357;}
+.cols-content .tit-mycgv.type2 a.round {position:absolute; right:0; bottom:8px;}
+.cols-content .tit-mycgv.type2 a.round span {width:80px;}
+
+.cols-content .tit-mycgv.type3 {padding-bottom:36px;}
+.cols-content .tit-mycgv.type3 > h3 {height:41px;}
+.cols-content .tit-mycgv.type3 p {clear:both; float:none; margin-left:0; font-size:15px; line-height:1; color:#222;}
+
+.cols-content .tit-mycgv > span,
+.cols-content .tit-mycgv > .set-combo {position:absolute; top:0; right:0; margin:0; color:#666; text-align:left; line-height:1.2;}
+.cols-content .tit-mycgv > .set-combo > label {font:0/0 a; zoom:1;}
+.cols-content .tit-mycgv > .set-combo > select {margin-right:5px;}
+.cols-content .tit-mycgv > .set-combo > select + button {margin-right:10px;}
+.cols-content .tit-mycgv > .set-combo > .round > * {padding:0 10px;}
+.cols-content .tit-mycgv > button > span {color:#ffffff;}
+.cols-content .tit-mycgv > .sect-sorting {position:absolute; top:0; right:0; margin:0;}
+.cols-content .tit-mycgv + .tab-menu {margin:10px 0 30px;}
+
+.cols-content .tit-mycgv .opt_sort {position:absolute;top:0;right:0}
+
+[class|="sect-mycgv"][class$="part"] .tit-mycgv p > a {margin-top:5px;}
+[class|="sect-mycgv"][class$="part"] .box-polaroid .box-inner .col-myqna li em {width:22px; margin-right:10px; font-family:'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif; font-size:12px;}
 #contaniner.bg-bricks {
     background: url(../../../resources/images/common/bg/bg_c_bricks.png) repeat-x 0 29px;
 }

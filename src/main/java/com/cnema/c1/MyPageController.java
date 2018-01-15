@@ -78,26 +78,34 @@ public class MyPageController {
 			mv.addObject("memberDTO", memberDTO);
 			mv.setViewName("myPage/myInfo");
 		}else{
-			rd.addFlashAttribute("message", "비밀번호 실패!");
+			rd.addFlashAttribute("message", "비밀번호를 다시 입력해주세요.");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
 	
 	@RequestMapping(value="myInfoRevision",method=RequestMethod.POST)
-	public ModelAndView myInfoRevision(MemberDTO memberDTO,RedirectAttributes rd){
+	public ModelAndView myInfoRevision(HttpSession session,MemberDTO memberDTO,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
+		
 		try {
 			result = memberService.myInfoRevision(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		if(result>0){
-			rd.addAttribute("message", "수정 성공");
+			rd.addAttribute("message", "회원 정보 수정 성공");
 			mv.setViewName("redirect:../");
+			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
+			memberDTO.setId(memberDTO2.getId());
+			memberDTO.setGender(memberDTO2.getGender());
+			memberDTO.setName(memberDTO2.getName());
+			memberDTO.setBirth(memberDTO2.getBirth());
+			session.setAttribute("member", memberDTO);
 		}else{
-			rd.addAttribute("message", "수정 실패");
+			rd.addAttribute("message", "회원 정보 수정 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
@@ -181,10 +189,10 @@ public class MyPageController {
 		result = reviewService.reviewInsert(movie_num,memberDTO.getId(),review);
 		
 		if(result>0){
-			rd.addAttribute("message", "리뷰 작성 성공");
+			rd.addAttribute("message", "영화 리뷰 작성 성공");
 			mv.setViewName("redirect:../common/resultClose");
 		}else{
-			rd.addAttribute("message", "리뷰 작성 실패");
+			rd.addAttribute("message", "영화 리뷰 작성 실패");
 			mv.setViewName("redirect:../common/resultClose");
 		}
 		
@@ -313,7 +321,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="withdrawal", method=RequestMethod.POST)
-	public ModelAndView widhdrawal(String id,RedirectAttributes rd){
+	public ModelAndView widhdrawal(String id,RedirectAttributes rd, HttpSession session){
 		int result = 0;
 		try {
 			result = memberService.withdrawal(id);
@@ -323,6 +331,7 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(result>0){
+			session.invalidate();
 			rd.addFlashAttribute("message", "회원 탈퇴 성공");
 			mv.setViewName("redirect:../");
 		}else{
