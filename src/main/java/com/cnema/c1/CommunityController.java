@@ -46,7 +46,7 @@ public class CommunityController {
 			if(id != null) {
 				memberCheck = communityService.memberCheck(page_num, id);
 			}
-			System.out.println(memberCheck);
+			System.out.println("memberCheck:" + memberCheck);
 			mv.addObject("memberCheck", memberCheck);
 		} catch (Exception e) {
 			// TODO: handle exception
