@@ -50,7 +50,7 @@
   	</update>
   	
   	<select id="getNum" resultType="int">
-  		select board_seq.nextval from dual
+  		select movie_seq.nextval from dual
   	</select>
   	
   	<delete id="delete" parameterType="int">
