@@ -55,8 +55,8 @@ public class CommunityController {
 	}
 	
 	
-	//mainPage
-	@RequestMapping(value="mainPage", method=RequestMethod.GET)
+	//communityMain
+	@RequestMapping(value="communityMain", method=RequestMethod.GET)
 	public ModelAndView mainPage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String id = "";
@@ -65,16 +65,19 @@ public class CommunityController {
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
-//			recommendPage = communityService.selectRecommendPage();
-//			pageList = communityService.selectPageList(id);
-//			
-//			mv.addObject("recommendPage", recommendPage);
-//			mv.addObject("pageList", pageList);
+			recommendPage = communityService.selectRecommendPage();
+			pageList = communityService.selectPageList(id);
+			System.out.println("id : " + id);
+			System.out.println("가입페이지 : " + pageList.size());
+			System.out.println("추천페이지 : " + recommendPage.size());
+
+			mv.addObject("recommendPage", recommendPage);
+			mv.addObject("pageList", pageList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("community/mainPage");
+		mv.setViewName("community/communityMain");
 		return mv;
 	}
 
