@@ -47,11 +47,11 @@ $(function(){
 		<tr>
 			<td>${couList.name }</td>
 			<td>${couList.v_day }</td>
-			<c:if test="${couList.price eq 0} ">
-				<td>${couList.type }</td>
+			<c:if test="${couList.type eq 10}">
+				<td>${couList.price}% / 할인률</td>
 			</c:if>
-			<c:if test="${couList.price ne 0}} ">
-				<td>${couList.type }</td>
+			<c:if test="${couList.type eq 11}">
+				<td>${couList.price}원 / 금액 할인</td>
 			</c:if>
 			<td><a href="./couponRevision?name=${couList.name }"><Button>수정</Button></a></td>
 		</tr>

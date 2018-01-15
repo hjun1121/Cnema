@@ -19,6 +19,20 @@ public class PageDAO {
 	private static final String NAMESPACE = "communityMapper.";
 	
 	
+	//memberCheck
+	public PageMemberDTO memberCheck(int page_num, String id) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("page_num", page_num);
+		map.put("id", id);
+		return sqlSession.selectOne(NAMESPACE+"memberCheck", map);
+	}
+	
+	
+	//selectPageMember
+	public List<PageMemberDTO> selectPageMemberList(int page_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"selectPageMemberList", page_num);
+	}
+	
 	//pageInsert
 	public int pageInsert(PageDTO pageDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"pageInsert", pageDTO);
@@ -30,6 +44,16 @@ public class PageDAO {
 		map.put("pageDTO", pageDTO);
 		map.put("id", id);
 		return sqlSession.insert(NAMESPACE+"memberInsert", map);
+	}
+	
+	//memberCount
+	public int memberCount(int page_num) throws Exception {
+		return sqlSession.update(NAMESPACE+"memberCount", page_num);
+	}
+	
+	//selectPageOne
+	public PageDTO selectPageOne(int page_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectPage", page_num);
 	}
 	
 	//selectRecommendPage

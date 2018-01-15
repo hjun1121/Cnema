@@ -17,6 +17,10 @@
   	</select>
   	
   	<!-- heeseong -->
+  	<select id="theaterInfo" parameterType="int" resultType="theaterDTO">
+  		select * from theater where theater_num=#{theater_num}
+  	</select>
+  	<!-- heeseong -->
   	<select id="theatherAList" resultType="theaterDTO">
   		select * from theater
   	</select>

@@ -14,17 +14,6 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 
-
-<!-- 
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/layout.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/common.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/content.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/content_prepaid_card_170421.css">
-    
- -->
-
 <title>MY CNEMA HOME</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -194,24 +183,85 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 		            <li>
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
-		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
+		                    <li><a href="../admin/movieList">영화 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 목록</a></li>
+		                    <li><a href="#">상영관 목록</a></li>
 		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
 		                </ul>
 		            </li>
+		            
 		            </c:if>
 	        		</ul>
 	    			</div>
     			</div>
 			<div class="col-detail" id="mycgv_contents">
-				
-				<!-- 내용에 따라 달라짐 -->
+			<!-- /////// -->
+			<div class="sect-mycgv-part">
+			<div class="box-polaroid type1">
+				<div class="box-inner">
+		            <div class="tit-mycgv">
+						<h3>MY 예매내역</h3>
+						<p><em>2건</em> <a href="#">MY 예매내역 더보기</a></p>
+					</div>
+					<div class="col-myqna">
+						<ul>
+			                <li>
+								<em>년월일</em>
+								<a href="#"><strong>영화제목</strong></a>
+								<span>
+									지점
+			                    </span>
+							</li>
+			                <li>
+								<em>년월일</em>
+								<a href="#"><strong>영화제목</strong></a>
+								<span>
+									지점
+			                    </span>
+							</li>
+						</ul>
+					</div>
+		        </div>
+		     </div>
+		     </div>
+		     <div style="margin-top: 30px;"></div>
+		     <div class="sect-mycgv-part">
+			 <div class="box-polaroid type1">
+				<div class="box-inner">
+		            <div class="tit-mycgv">
+						<h3>MY Q&amp;A</h3>
+						<p><em>2건</em> <a href="#">MY Q&amp;A 더보기</a></p>
+					</div>
+					<div class="col-myqna">
+						<ul>
+			                <li>
+								<em>제안(문의유형)</em>
+								<a href="#"><strong>제목</strong></a>
+								<span>
+									접수완료
+			                    </span>
+							</li>
+			                <li>
+								<em>제안</em>
+								<a href="#">
+				                <strong>1</strong>
+				                </a>
+								<span> 
+									접수완료
+				                </span>
+							</li>
+						</ul>
+					</div>
+		        </div>
+		    </div>
+		    </div>
+			<!-- 내용에 따라 달라짐 -->
 				
 			</div>
 		</div>

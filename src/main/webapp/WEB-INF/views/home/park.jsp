@@ -5,11 +5,188 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <title>게시판</title>
+<style type="text/css">
+
+.board_container{
+	width: 1200px;
+	height:1000px;
+	margin:0 auto;
+	margin-top:40px;
+ 
+}
+
+#board_tab{
+	background-color: gray;
+	width:200px;
+	height: 500px;
+	display:inline-block;
+	float: left;
+
+}
+#board_contents{
+	background-color: black;
+	width:900px;
+	height: 700px;
+	display:inline-block;
+}	
+
+#event_contents{
+	background-color: navy;
+	height: 200px;
+	display: block;
+}
+#qna_contents{
+background-color: green;
+	height: 300px;
+	display: block;
+}
+
+#notice_contents{
+background-color:purple;
+	height: 200px;
+	display: block;
+}
+
+#board_tab ul {
+	margin:0 auto;
+    list-style-type: none;
+    width: 180px;
+    background-color: #f1f1f1;
+}
+
+#board_tab li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+#board_tab li a.active {
+    background-color: #e71a0f;
+    color: white;
+}
+
+#board_tab li a:hover:not(.active) {
+    background-color: #e71a0f;
+    color: white;
+}
+.submenu{
+
+    background-color: #e71a0f;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+	float:right;
+	border-radius: 10px;
+}
+.email_inquiry{
+	background-color: #ede9dd;
+	width:250px;
+	height: 300px;
+	display:inline-block;
+   float: left;
+}
+#email_image { 
+	width:100px;
+	display: block;
+	margin:0 auto;
+	margin-top:50px;
+}
+.email_tit{
+	text-align: center;
+	
+
+}
+
+.my_advice{
+	background-color: #edf1e9;
+	width:250px;
+	height: 300px;
+	display:inline-block;
+	 
+}
+#advice_image { 
+	width:100px;
+	display: block;
+	margin:0 auto;
+	margin-top:50px;
+}
+.advice_tit{
+	text-align: center;
+	
+
+}
+
+
+.board_button {
+    border: none;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #ede9dd; 
+    color: black; 
+    border: 2px solid #e71a0f;
+    
+    
+}
+.board_button2{
+	background-color:#edf1e9;
+	 border: none;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 10px;
+    color: black; 
+    border: 2px solid #e71a0f;
+}
+.board_button2:hover {
+    background-color: #e71a0f;
+    color: white;
+}
+
+.board_button:hover {
+    background-color: #e71a0f;
+    color: white;
+}
+
+.board_qna_btn{
+	width:120px;
+	height:70px;
+	margin: 0 auto;
+	margin-top:50px;
+	
+}
+.eventList_image{
+    width: 290px;
+    height:242px;
+
+}
+</style>
 </head>
 <body>
 	<div id="cgvwrap">
@@ -43,162 +220,67 @@
         	
         	
         	<!-- 내용 시작 -->
-        	
-        	
-	<h2>박세나꺼</h2>
-	<div class="totalBoardContens">
-	<!--탭부분  -->
-	<div class="snb">
-        <ul>
-            <li class="on"><a href="#">고객센터 메인<i></i></a></li>
-            <li class=""><a href="../notice/noticeList">공지/뉴스<i></i></a></li>
-            <li class=""><a href="../event/eventList">이벤트<i></i></a></li>
-            <li class=""><a href="../qna/qnaWrite">이메일 문의<i></i></a></li>
-        </ul>
-    </div>
-	
-	<div class="total-board">
-	<!--이벤트  -->
-	<div class="event_Contents">
-	 <div class="tit-heading-wrap tit-evt">
-       <h3>EVENT</h3>
+        	<div class="board_container">
+ 
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+
+  
+  <div id="board_contents">
+  	<div id="event_contents">
+  	
+       <h2>EVENT</h2>
 
       <div class="submenu">
-         <a href="../event/eventList" class="round red on"><i>진행중인 이벤트</i></a>
+         <a href="../event/eventList" ><i>진행중인 이벤트</i></a>
      </div>
-	</div>
-	<div class="sect-eventlist">
-    <ul>
-                <li>
-                    <div class="box-image">
-                        <a href="/culture-event/event/detail-view.aspx?idx=17384">
-                            <span class="thumb-image">
-                                <img src="http://img.cgv.co.kr/Event/Event/2018/0109/15154764404040.jpg" alt="스페셜이벤트 파코니게임 4탄! 주시팡" onerror="errorImage(this)">
-                            </span>
-                        </a>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/culture-event/event/detail-view.aspx?idx=17384">
-                            <em class="txt-lightblue">스페셜이벤트</em>
-                            <p>파코니게임 4탄! 주시팡</p>
-                        </a>
-                        <em class="date">
-                            <span>기간: </span>
-                            2018.01.09 ~ 2018.01.28
-                        </em>
-                    </div>
-                </li>
-            
-                <li>
-                    <div class="box-image">
-                        <a href="/culture-event/event/detail-view.aspx?idx=17337">
-                            <span class="thumb-image">
-                                <img src="http://img.cgv.co.kr/Event/Event/2017/1229/15145316165870.jpg" alt="아트하우스 아트하우스 이다혜의 에세이클래스" onerror="errorImage(this)">
-                            </span>
-                        </a>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/culture-event/event/detail-view.aspx?idx=17337">
-                            <em class="txt-lightblue">아트하우스</em>
-                            <p>아트하우스 이다혜의 에세이클래스</p>
-                        </a>
-                        <em class="date">
-                            <span>기간: </span>
-                            2017.12.28 ~ 2018.02.05
-                        </em>
-                    </div>
-                </li>
-            
-                <li>
-                    <div class="box-image">
-                        <a href="/culture-event/event/detail-view.aspx?idx=17334">
-                            <span class="thumb-image">
-                                <img src="http://img.cgv.co.kr/Event/Event/2017/1228/15144391218100.jpg" alt="스페셜이벤트 이달의CGV_1월" onerror="errorImage(this)">
-                            </span>
-                        </a>
-                    </div>
-                    <div class="box-contents">
-                        <a href="/culture-event/event/detail-view.aspx?idx=17334">
-                            <em class="txt-lightblue">스페셜이벤트</em>
-                            <p>이달의CGV_1월</p>
-                        </a>
-                        <em class="date">
-                            <span>기간: </span>
-                            2017.12.28 ~ 2018.01.31
-                        </em>
-                    </div>
-                </li>
-    </ul>
-</div>
-	</div><!--이벤트 보여주기 끝  -->
-		<!-- 이메일 문의 폼으로 넘어가기  -->
-		<div class="c_box emaile_inquiry" style="cursor:pointer;">
-			<strong class="c_tit email_tit">이메일 문의</strong>
-			<span class="c_txt">24시간 365일 언제든지 문의해주세요.</span>
-			<a class="round red" href="../qna/qnaWrite"><span style="padding:0 20px;">문의하기</span></a>
-         </div>
-         <!-- 본인 질문한거 보러가기 -->
-         <div class="c_box my_advice" style="cursor:pointer;">
-			<strong class="c_tit advice_tit">내 상담 내역 확인</strong>
-			<span class="c_txt">문의하신 내용을 확인하실 수 있습니다.</span>
-			<!-- <a class="round gray" href="../qna/qnaMyList" target="_blank" title="새창열기"><span style="padding:0 20px;">문의내역 조회</span></a> -->
+     <c:forEach items="${event_list}" var="dto">
+     <section> 
+     <a href="event/eventView?num=${dto.num}">
+     <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></a>
+     <p> <a href="event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
+     <br><br>
+	  <strong>기간:</strong>&nbsp; ${dto.s_date} &nbsp;~&nbsp; ${dto.e_date} <br>
+     </p>
+     </section>
+  	</c:forEach>
+  	
+  	
+  	</div>
+  
+  	<div id="qna_contents">
+  		
+  		<div class="email_inquiry">
+			<img id="email_image" alt="" src="${pageContext.request.contextPath }/resources/images/board/qnaicon.PNG">
+			<p class="email_tit"> <strong>이메일 문의</strong> <br><br>
+			24시간 365일 언제든지 문의해주세요.<br></p>
+			<div class="board_qna_btn"><a class="board_button" href="../qna/qnaWrite">문의하기</a></div>
+       </div>
+  
+  	 <div class="my_advice">
+		  	 <img id="advice_image" alt="" src="${pageContext.request.contextPath }/resources/images/board/myqna.PNG">
+			<p class="advice_tit">내 상담 내역 확인<br><br>
+				문의하신 내용을 확인하실 수 있습니다.<br></p>
            <form action="../qna/qnaMyList" method="post">
 			<input type="hidden" name="id" value="${member.id }">
-			<input type="submit" value="QnaList(MEMBER)">	
+			<div class="board_qna_btn"><input type="submit" class="board_button2" value="문의내역 조회"></div>	
 			</form>
            </div>
-	</div>
-	<div class="notice_area">
-        <a href="../notice/noticeList">
-		<span class="tit">공지/뉴스</span>
-        </a>
-		<ul class="txt">
-                    
-         <li><a href="/support/news/detail-view.aspx?idx=7163&amp;type=1">[시스템점검] 1월 정기 시스템 안내</a><span class="day">2018.01.05</span></li>
-                        
-        <li><a href="/support/news/detail-view.aspx?idx=7126&amp;type=2">[극장] &lt; 2018 CGV 캘린더 &gt; 판매 개시일 변경</a><span class="day">2017.11.14</span></li>
-                        
-         <li><a href="/support/news/detail-view.aspx?idx=7091&amp;type=4">[기타] CGV 개인정보처리방침 개정 공지</a><span class="day">2017.09.28</span></li>
-                        
-         <li><a href="/support/news/detail-view.aspx?idx=7058&amp;type=4">[기타] CGV 개인정보처리방침 개정 공지</a><span class="day">2017.08.18</span></li>
-                        
-          <li><a href="/support/news/detail-view.aspx?idx=7049&amp;type=1">[시스템점검] 8월 정기 시스템 안내</a><span class="day">2017.08.08</span></li>
-		</ul>
-		<a href="../notice/noticeList" class="more">공지/뉴스 더보기</a>
-		
-	</div>
-	
-	
-	
-	</div><!--전체 감싸는 div  -->
-	
-	
-	<h4>NOTICE</h4>
-	<a href="../notice/noticeList">Notice List</a>
-	<hr>
-	<br>
-	<h4>QNA</h4>
-	<!--member  --> 
-	<form action="../qna/qnaMyList" method="post">
-	<input type="hidden" name="id" value="${member.id }">
-	<input type="submit" value="QnaList(MEMBER)">	
-	</form>
-	<!-- Admin -->
-	<a href="../qna/qnaList">Qna(Admin)</a>
-	
-	<a href="../qna/qnaList">Qna(확인용)</a>
-	
-	<a href="../qna/qnaWrite">문의하기</a>
-	
-	
-	<hr>
-	<h4>EVENT</h4>
-	<a href="../event/eventList">Event List</a>
-	
-	<hr>
-	<br>
-	<a href="../">home</a>
-        	
+  	</div>
+  	
+  	
+  	<div id="notice_contents">
+  		 <a href="../notice/noticeList"><span class="tit">공지/뉴스</span></a>
+			<c:forEach items="${notice_list}" var="dto">
+			<ul class="txt">
+                <li><a href="notice/noticeView?num=${dto.num}">${dto.title}</a><span class="day">${dto.reg_date}</span></li>
+            </ul>
+			</c:forEach>
+				<a href="../notice/noticeList" class="more">공지/뉴스 더보기</a>
+  	</div>
+  
+  
+  </div>     
+  </div> 	
         	
 			<!-- 내용 끝 -->
 			

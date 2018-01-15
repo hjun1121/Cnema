@@ -19,7 +19,7 @@
 		<tr>
 			<td><input type="text" name="name"></td>
 			<td>
-			<select id="type">
+			<select id="type" name="type">
 				<option class="type" value="11">금액</option>
 				<option class="type" value="10">할인율</option>
 			</select>

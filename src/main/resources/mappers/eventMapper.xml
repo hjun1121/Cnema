@@ -44,7 +44,7 @@
     <insert id="insert" parameterType="com.cnema.board.BoardDTO">
   
   	insert into event
-  	values(event_seq.nextval,#{title},#{writer},#{contents},#{fileName},#{oriName},#{s_date},#{e_date},#{type})
+  	values(movie_seq.nextval,#{title},#{writer},#{contents},#{fileName},#{oriName},#{s_date},#{e_date},#{type})
   </insert>
  
  <!--View보여줄때 사용  -->
