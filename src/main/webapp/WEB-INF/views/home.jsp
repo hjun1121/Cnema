@@ -235,6 +235,7 @@ function showSlides(n) {
 	<a href="home/kim">김</a>
 	<a href="home/ssin">신</a>
 	<a href="home/park">박</a>
+	
 			
 	
 	<br><br><br>
