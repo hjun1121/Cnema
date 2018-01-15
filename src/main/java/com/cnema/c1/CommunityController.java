@@ -39,18 +39,15 @@ public class CommunityController {
 	public ModelAndView pageMain(HttpSession session, int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String id = "";
-		PageMemberDTO memberCheck = null;
+		int memberCheck = 0;
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
 			if(id != null) {
 				memberCheck = communityService.memberCheck(page_num, id);
 			}
-			if(memberCheck != null) {
-				mv.addObject("memberCheck", true);
-			} else {
-				mv.addObject("memberCheck", false);
-			}
+			System.out.println(memberCheck);
+			mv.addObject("memberCheck", memberCheck);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

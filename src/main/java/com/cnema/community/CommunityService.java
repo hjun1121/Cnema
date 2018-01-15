@@ -23,8 +23,15 @@ public class CommunityService {
 	
 	
 	//memberCheck
-	public PageMemberDTO memberCheck(int page_num, String id) throws Exception {
-		return pageDAO.memberCheck(page_num, id);
+	public int memberCheck(int page_num, String id) throws Exception {
+		PageMemberDTO pageMemberDTO = null;
+		int result = 0;
+		pageMemberDTO = pageDAO.memberCheck(page_num, id);
+		if(pageMemberDTO != null) {
+			result = 1;
+		}
+		
+		return result;
 	}
 	
 	

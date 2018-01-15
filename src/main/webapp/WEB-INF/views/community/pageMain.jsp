@@ -36,7 +36,7 @@
 	<h1>${page.page_name}</h1>
 
 	<c:choose>
-		<c:when test="${memberCheck eq true}">
+		<c:when test="${memberCheck eq 1}">
 				<input type="button" id="drop_btn" value="페이지 탈퇴하기">
 		</c:when>
 		<c:otherwise>
