@@ -361,7 +361,6 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.addObject("couponDTO", couponDTO);
 		mv.addObject("type", couponDTO.getType());
 		mv.setViewName("admin/couponView");
@@ -434,7 +433,7 @@ public class AdminController {
 		CouponDTO couponDTO = null;
 		int result = 0;
 		try {
-			couponDTO = couponService.couponInfo(Integer.parseInt(kind));
+			couponDTO = couponService.couponInfo(kind);
 			for(int num=0;num<gList.size();num++){
 				result = myCouponService.couponInsert(gList.get(num),couponDTO);
 			}

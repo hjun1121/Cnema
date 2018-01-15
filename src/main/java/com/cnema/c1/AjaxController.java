@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CouponDTO;
+import com.cnema.coupon.CouponService;
 import com.cnema.event.EventJoinDTO;
 import com.cnema.event.EventService;
 import com.cnema.member.MemberDTO;
@@ -46,7 +48,9 @@ public class AjaxController {
 	private EventService eventService;
 	@Inject
 	private ReserveService reserveService;
-
+	@Inject
+	private CouponService couponService;
+	
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
 		
@@ -301,6 +305,28 @@ public class AjaxController {
 		model.addAttribute("price", price);
 	}
 	
+	@RequestMapping(value="qrCoupon", method=RequestMethod.POST)
+	public void qrCoupon(int price, String coupon, Model model){
+		System.out.println(price);
+		System.out.println(coupon);
+		double nPrice = 0;
+		try {
+			CouponDTO couponDTO = couponService.couponOne(coupon);
+			//10이면 퍼센트 11이면 고정값
+			if(couponDTO.getType()==10){
+				nPrice = price* Double.parseDouble(couponDTO.getPrice());
+			}else{
+				nPrice = price - Integer.parseInt(couponDTO.getPrice());
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int discount = price -(int)nPrice;
+		System.out.println(discount);
+		model.addAttribute("discount", discount);
+	}
 	
 	@RequestMapping(value="idFind", method=RequestMethod.POST)
 	public ModelAndView idFind(MemberDTO memberDTO){

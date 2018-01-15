@@ -11,13 +11,17 @@ public class CouponService {
 	@Inject
 	private CouponDAO couponDAO;
 
+	public CouponDTO couponOne(String name) throws Exception{
+		return couponDAO.couponOne(name);
+	}
+	
 	/*heeseong*/
 	public List<CouponDTO> couponList() throws Exception{
 		return couponDAO.couponList();
 	}
 	/*heeseong*/
-	public CouponDTO couponInfo(int name) throws Exception{
-		return couponDAO.couponInfo(name);
+	public CouponDTO couponInfo(String kind) throws Exception{
+		return couponDAO.couponInfo(kind);
 	}
 	/*heeseong*/
 	public List<CouponDTO> couponSList(String kind, String search) throws Exception{

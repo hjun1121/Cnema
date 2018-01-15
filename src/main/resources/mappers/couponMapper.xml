@@ -3,12 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="couponMapper">
+  	
+  	<select id="couponOne" resultType="couponDTO" parameterType="String">
+  		select * from coupon where name=#{name}
+  	</select>
+  
   <!-- heeseong -->
   	<select id="couponList" resultType="couponDTO">
   		select * from coupon
   	</select>
   	<!-- heeseong -->
-  	<select id="couponInfo" resultType="couponDTO" parameterType="int">
+  	<select id="couponInfo" resultType="couponDTO" parameterType="java.lang.String">
   		select * from coupon where name=#{name}
   	</select>
    <!-- heeseong -->

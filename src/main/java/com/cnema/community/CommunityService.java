@@ -22,6 +22,34 @@ public class CommunityService {
 	private FileSaver fileSaver;
 	
 	
+	//memberCheck
+	public int memberCheck(int page_num, String id) throws Exception {
+		PageMemberDTO pageMemberDTO = null;
+		int result = 0;
+		pageMemberDTO = pageDAO.memberCheck(page_num, id);
+		if(pageMemberDTO != null) {
+			result = 1;
+		}
+		
+		return result;
+	}
+	
+	
+	//selectPageMemberList
+	public List<PageMemberDTO> selectPageMemberList(int page_num) throws Exception {
+		return pageDAO.selectPageMemberList(page_num);
+	}
+	
+	
+	//memberInsert
+	public int memberInsert(PageDTO pageDTO, String id) throws Exception {
+		int result = pageDAO.memberInsert(pageDTO, id);
+		result = pageDAO.memberCount(pageDTO.getPage_num());
+		
+		return result;
+	}
+	
+	
 	//pageInsert
 	public int pageInsert(PageDTO pageDTO, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -37,6 +65,12 @@ public class CommunityService {
 		result = pageDAO.memberInsert(pageDTO, id);
 
 		return result;
+	}
+	
+	
+	//selectPageOne
+	public PageDTO selectPageOne(int page_num) throws Exception {
+		return pageDAO.selectPageOne(page_num);
 	}
 	
 	

@@ -18,6 +18,45 @@
 		});
 		
 		/*  */
+		var v_point = ${member.v_point};
+		var price = ${reserve2.price };
+		
+		$(".coupons").click(function(){
+			var coupon = $(this).attr("title");
+			$.ajax({
+				url:"../ajax/qrCoupon",
+				type:"post",
+				data:{
+					price : price,
+					coupon : coupon
+				},
+				success:function(data){
+					$("#discount").html(data);
+				}
+			});
+		});
+		/*  */
+
+		$("#point").change(function(){
+			var point = $("#point").val();
+			if(v_point<point){
+				alert("현재 포인트보다 큰 값입니다.");
+				$("#point").val("");
+			}else{
+			}
+		});
+		
+		/*  */
+		$("#allPoint").click(function(){
+			if(price<v_point){
+				$("#point").val(price);
+			}else{
+				$("#point").val(v_point);
+			}
+			
+			
+		});
+		/*  */
 		$("#rightBtn3").click(function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
@@ -98,8 +137,20 @@
 		<table>
 			<tr>
 				<td>쿠폰</td>
+				<c:forEach items="${coupon }" var="c">
+					<td class="coupons" title="${c.name }">${c.name }</td>
+				</c:forEach>
 			</tr>
 		</table>
+		<table>
+			<tr>
+				<td>보유 포인트</td><td>${member.v_point } <input type="text" id="point" placeholder="사용할포인트 입력"><input type="button" id="allPoint" value="모두쓰기"> </td>
+			</tr>
+		</table>
+		
+		<div id="price">
+			총가격 :${reserve2DTO.price} <span id="discount"></span>
+		</div>
 	</div>
 	<div id="bottom_area">
 		

@@ -15,13 +15,17 @@ public class CouponDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="couponMapper.";
 	
+	public CouponDTO couponOne(String name) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponOne",name);
+	}
+	
 	/*heeseong*/
 	public List<CouponDTO> couponList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"couponList");
 	}
 	/*heeseong*/
-	public CouponDTO couponInfo(int name) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"couponInfo",name);
+	public CouponDTO couponInfo(String kind) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponInfo",kind);
 	}
 	/*heeseong*/
 	public List<CouponDTO> couponSList(String kind, String search) throws Exception{
