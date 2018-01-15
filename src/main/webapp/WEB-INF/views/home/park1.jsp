@@ -12,6 +12,14 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardIndex.css">
 <title>게시판</title>
+<style type="text/css">
+.totalBoardContens{
+	width: 1200px;
+	height:1000px;
+	margin:0 auto;
+	margin-top:40px;
+ 
+}</style>
 </head>
 <body>
 	<div id="cgvwrap">
@@ -50,15 +58,10 @@
 	<h2>박세나꺼</h2>
 	<div class="totalBoardContens">
 	<!--탭부분  -->
-	<div class="col-3 snb">
-        <ul>
-            <li class="on"><a href="#">고객센터 메인<i></i></a></li>
-            <li class=""><a href="../notice/noticeList">공지/뉴스<i></i></a></li>
-            <li class=""><a href="../event/eventList">이벤트<i></i></a></li>
-            <li class=""><a href="../qna/qnaWrite">이메일 문의<i></i></a></li>
-        </ul>
-    </div>
-	
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+
+
+
 	<div class="col-9 total-board">
 	<!--이벤트  -->
 	<div class="event_Contents">
