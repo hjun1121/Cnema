@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,8 +31,8 @@ $(function(){
 			<tr>
 				<td><a href="./scheduleView?schedule_num=${scheduleList.schedule_num }">${scheduleList.screen_num }</a></td>
 				<td>${scheduleList.movie_num }</td>
-				<td>${scheduleList.in_time }</td>
-				<td>${scheduleList.out_time }</td>
+				<td>${scheduleList.in_time}</td>
+				<td>${scheduleList.out_time}</td>
 				<td>${scheduleList.day }</td>
 			</tr>
 		</c:forEach>

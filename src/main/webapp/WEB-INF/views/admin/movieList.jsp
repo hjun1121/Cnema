@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>영화 리스트</title>
+<title>영화 목록</title>
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
@@ -28,7 +28,7 @@ $(function(){
 </script>
 </head>
 <body>
-<h3>영화 리스트${fn:length(movieList)}개</h3>
+<h3>영화 목록${fn:length(movieList)}개</h3>
 
 <select id="kind">
 		<option class="kind" value="title">제목</option>
