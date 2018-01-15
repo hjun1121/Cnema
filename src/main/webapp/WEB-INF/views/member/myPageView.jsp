@@ -183,12 +183,12 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 		            <li>
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
-		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
+		                    <li><a href="../admin/movieList">영화 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 목록</a></li>
 		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
