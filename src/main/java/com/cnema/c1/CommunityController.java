@@ -1,5 +1,7 @@
 package com.cnema.c1;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -24,6 +26,16 @@ public class CommunityController {
 	@Inject
 	private CommunityService communityService;
 	
+	
+	
+	//pageMain
+	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
+	public ModelAndView pageMain(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		
+		return mv;
+	}
 	
 	
 	//pageInsert
@@ -57,7 +69,7 @@ public class CommunityController {
 	
 	//communityMain
 	@RequestMapping(value="communityMain", method=RequestMethod.GET)
-	public ModelAndView mainPage(HttpSession session) throws Exception {
+	public ModelAndView communityMain(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String id = "";
 		List<PageDTO> pageList = null;
@@ -66,13 +78,13 @@ public class CommunityController {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
 			recommendPage = communityService.selectRecommendPage();
-			pageList = communityService.selectPageList(id);
-			System.out.println("id : " + id);
-			System.out.println("가입페이지 : " + pageList.size());
-			System.out.println("추천페이지 : " + recommendPage.size());
+			
+			if(id != null) {
+				pageList = communityService.selectPageList(id);
+				mv.addObject("pageList", pageList);
+			}
 
 			mv.addObject("recommendPage", recommendPage);
-			mv.addObject("pageList", pageList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

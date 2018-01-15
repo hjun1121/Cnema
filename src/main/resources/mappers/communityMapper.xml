@@ -5,7 +5,19 @@
 <mapper namespace="communityMapper">
 	
 	<insert id="pageInsert" parameterType="pageDTO">
-		 insert into page values(movie_seq.nextval, #{page_name}, #{fileName}, #{oriName}, sysdate, 1, #{owner_id})
+		<selectKey order="BEFORE" resultType="int" keyProperty="page_num">
+			select movie_seq.nextval from dual
+		</selectKey>
+		 insert into page values(#{page_num}, #{page_name}, #{fileName}, #{oriName}, sysdate, 1, #{owner_id})
+	</insert>
+	
+	<insert id="memberInsert" parameterType="java.util.Map">
+		insert into pagemember values(movie_seq.nextval, #{pageDTO.page_num}, #{id}, sysdate,
+		<choose>
+			<when test="pageDTO.owner_id==id"> 20 </when>
+			<otherwise> 11 </otherwise>
+		</choose>
+		)
 	</insert>
 	
 	<select id="selectPageList" parameterType="String" resultType="pageDTO">

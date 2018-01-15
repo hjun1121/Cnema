@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cnema.member.MemberDTO;
 import com.cnema.util.FileSaver;
 
 @Service
@@ -23,12 +24,18 @@ public class CommunityService {
 	
 	//pageInsert
 	public int pageInsert(PageDTO pageDTO, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = "";
+		id = memberDTO.getId();
+		System.out.println("communityServie id : " + id);
 		MultipartFile file = pageDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "page_logo");
 		pageDTO.setFileName(name);
 		pageDTO.setOriName(file.getOriginalFilename());
 		int result = pageDAO.pageInsert(pageDTO);
-		
+		System.out.println(pageDTO.getPage_num());
+		result = pageDAO.memberInsert(pageDTO, id);
+
 		return result;
 	}
 	
