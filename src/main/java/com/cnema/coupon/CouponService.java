@@ -11,6 +11,10 @@ public class CouponService {
 	@Inject
 	private CouponDAO couponDAO;
 
+	public CouponDTO couponOne(String name) throws Exception{
+		return couponDAO.couponOne(name);
+	}
+	
 	/*heeseong*/
 	public List<CouponDTO> couponList() throws Exception{
 		return couponDAO.couponList();
