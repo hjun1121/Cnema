@@ -8,7 +8,7 @@
   		select * from coupon
   	</select>
   	<!-- heeseong -->
-  	<select id="couponInfo" resultType="couponDTO" parameterType="int">
+  	<select id="couponInfo" resultType="couponDTO" parameterType="java.lang.String">
   		select * from coupon where name=#{name}
   	</select>
    <!-- heeseong -->
