@@ -252,7 +252,7 @@
 				<div class="tit-mycgv">
 					<h3>나의 쿠폰 관리</h3>
 				</div>
-				 <div class="tit-mycgv">
+				 <div class="tit-mycgv" style="padding-bottom: 10px;">
 					<h4>나의 쿠폰 ${fn:length(mcList)}개 &nbsp;&nbsp;</h4>
 					<form action="couponHistory">
 						<select id="type" name="type" class="f">

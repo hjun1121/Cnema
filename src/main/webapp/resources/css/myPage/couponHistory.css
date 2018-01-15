@@ -190,6 +190,7 @@ caption, th, td {
     line-height: 29px;
 }
 input.btnType3 {
+    margin-top: 5px;
     height: 30px;
     vertical-align: top;
     border: 1px solid #585858;
