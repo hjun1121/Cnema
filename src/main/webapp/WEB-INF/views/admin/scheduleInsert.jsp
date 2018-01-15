@@ -27,7 +27,7 @@ $(function(){
 </script>
 </head>
 <body>
-<h3>상영시간표 글쓰기</h3>
+<h3>상영시간표 글쓰기 </h3>
 	<form action="./scheduleInsert" name="frm" method="POST">
 	<table>
 		<tr>
