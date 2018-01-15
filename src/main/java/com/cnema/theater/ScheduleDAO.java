@@ -16,6 +16,14 @@ public class ScheduleDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="scheduleMapper.";
 	
+	public List<Integer> screenNumList(int theater_num, String day, int movie_num) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("day", day);
+		map.put("theater_num", theater_num);
+		map.put("movie_num", movie_num);
+		return sqlSession.selectList(NAMESPACE+"screenNumList", map);
+	}
+	
 	public List<Integer> movieNumList(int theater_num, String day) throws Exception{
 		Map<String, Object> map = new HashMap<>();
 		map.put("day", day);
@@ -27,11 +35,12 @@ public class ScheduleDAO {
 		return sqlSession.selectList(NAMESPACE+"screenList", theater_num);
 	}
 	
-	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num) throws Exception{
+	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num, int screen_num) throws Exception{
 		Map<String, Object> map  =new HashMap<>();
 		map.put("theater_num", theater_num);
 		map.put("day", day);
 		map.put("movie_num", movie_num);
+		map.put("screen_num", screen_num);
 		return sqlSession.selectList(NAMESPACE+"movieSchedule", map);
 	}
 	
