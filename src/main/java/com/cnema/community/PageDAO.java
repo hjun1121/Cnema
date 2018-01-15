@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PageDAO {
 	
+	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "communityMapper.";
 	

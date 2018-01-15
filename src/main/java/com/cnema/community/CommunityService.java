@@ -24,7 +24,7 @@ public class CommunityService {
 	//pageInsert
 	public int pageInsert(PageDTO pageDTO, HttpSession session) throws Exception {
 		MultipartFile file = pageDTO.getFile();
-		String name = fileSaver.fileSave(file,  session,  "page_logo");
+		String name = fileSaver.fileSave(file, session, "page_logo");
 		pageDTO.setFileName(name);
 		pageDTO.setOriName(file.getOriginalFilename());
 		int result = pageDAO.pageInsert(pageDTO);
