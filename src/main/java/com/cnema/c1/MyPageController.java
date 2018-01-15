@@ -313,7 +313,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="withdrawal", method=RequestMethod.POST)
-	public ModelAndView widhdrawal(String id,RedirectAttributes rd){
+	public ModelAndView widhdrawal(String id,RedirectAttributes rd, HttpSession session){
 		int result = 0;
 		try {
 			result = memberService.withdrawal(id);
@@ -323,6 +323,7 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(result>0){
+			session.invalidate();
 			rd.addFlashAttribute("message", "회원 탈퇴 성공");
 			mv.setViewName("redirect:../");
 		}else{
