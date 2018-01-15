@@ -194,9 +194,24 @@ public class TheaterController {
 			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
+				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				//System.out.println(screenNumList.size()); //screenNum 모음
+				
+				List<List<ScheduleDTO>> sll = new ArrayList<>();
+				for(Integer s : screenNumList){
+					//영화관에 그 날에 그 영화에 그 관 스케줄 들
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					for(ScheduleDTO scheduleDTO : sl){
+						//System.out.println(scheduleDTO.getIn_time());
+					}
+					sll.add(sl);
+					movieDTO.setsList(sll);
+					//System.out.println("=========");
+				}
+				
+				//System.out.println("@@");
 				//그 영화의 스케쥴
-				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
-				movieDTO.setsList(sl);
+				
 				movieList.add(movieDTO);
 			}
 			

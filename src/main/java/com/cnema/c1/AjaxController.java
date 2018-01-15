@@ -152,8 +152,14 @@ public class AjaxController {
 			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
-				List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i);
-				movieDTO.setsList(sl);
+				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				
+				List<List<ScheduleDTO>> sll = new ArrayList<>();
+				for(Integer s : screenNumList){
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					sll.add(sl);
+				}
+				movieDTO.setsList(sll);
 				movieList.add(movieDTO);
 			}
 		} catch (Exception e) {
