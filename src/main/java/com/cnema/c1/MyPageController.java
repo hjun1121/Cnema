@@ -85,17 +85,25 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="myInfoRevision",method=RequestMethod.POST)
-	public ModelAndView myInfoRevision(MemberDTO memberDTO,RedirectAttributes rd){
+	public ModelAndView myInfoRevision(HttpSession session,MemberDTO memberDTO,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
+		
 		try {
 			result = memberService.myInfoRevision(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		if(result>0){
 			rd.addAttribute("message", "수정 성공");
 			mv.setViewName("redirect:../");
+			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
+			memberDTO.setId(memberDTO2.getId());
+			memberDTO.setGender(memberDTO2.getGender());
+			memberDTO.setName(memberDTO2.getName());
+			memberDTO.setBirth(memberDTO2.getBirth());
+			session.setAttribute("member", memberDTO);
 		}else{
 			rd.addAttribute("message", "수정 실패");
 			mv.setViewName("redirect:../");

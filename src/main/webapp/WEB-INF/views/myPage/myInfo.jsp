@@ -20,7 +20,7 @@
 		var pwCheck = false;
 		
 		$("#pw1").change(function(){
-			$("#pwc").html('<input type="password" id="pw2" name="pw" readonly="readonly">');
+			$("#pwc").html('<input type="password" class="noneBorder" id="pw2" name="pw">');
 			var pw1= $("#pw1").val();
 			var pwpw=false;
 			for(var i=0; i<pw1.length;i++){
@@ -350,9 +350,11 @@
 					</tr>
 					
 					<tr>
-						<td>비밀번호</td>
-						<td><input type="password"  class="noneBorder" id="pw1" name="pw" value="${memberDTO.pw }"><br>
-							<div id="pwc"></div>
+						<td rowspan="2">비밀번호</td>
+						<td><input type="password"  class="noneBorder" id="pw1" name="pw" value="${memberDTO.pw }"><br></td>
+					</tr>
+					<tr>
+						<td><div id="pwc"></div>
 							<div id="pw_ch"></div></td>
 					</tr>
 					<tr>
@@ -365,7 +367,13 @@
 					</tr>
 					<tr>
 						<td>성별</td>
-						<td><input type="text"  class="noneBorder" id="gender" name="gender" value="${memberDTO.gender }" readonly="readonly"></td>
+						<c:if test="${memberDTO.gender eq 'f'}">
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
+						</c:if>
+						<c:if test="${memberDTO.gender eq 'm'}">
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
+						</c:if>
+						
 					</tr>
 					<tr>
 						<td>전화번호</td>
