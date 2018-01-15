@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@
 </script>
 </head>
 <body>
-	<h3>MY COUPON</h3>
+	<h3>MY COUPON ${fn:length(mcList)}개</h3>
 	<form action="couponHistory">
 		<select id="type" name="type">
 			<option class = "type" value="11">사용가능</option>
@@ -68,20 +69,19 @@
 		<tr>
 			<td>쿠폰이름</td>
 			<td>쿠폰번호</td>
-			<td>사용일</td>
+			<td>사용기간</td>
 			<td>상태</td>
 		</tr>
 		<c:forEach items="${mcList }" var="mCouponList">
 			<tr>
 				<td>${mCouponList.name }</td>
 				<td>${mCouponList.num }</td>
-				<td>${mCouponList.publish_date }</td>
-				<td>${mCouponList.use_date }</td>
+				<td>${mCouponList.publish_date }~${mCouponList.v_date }</td>
 				<c:if test="${mCouponList.type eq 11 }">
 					<td>사용가능</td>
 				</c:if>
 				<c:if test="${mCouponList.type eq 10 }">
-					<td>사용만료</td>
+					<td>사용완료</td>
 				</c:if>
 				<c:if test="${mCouponList.type eq 12 }">
 					<td>기간만료</td>
