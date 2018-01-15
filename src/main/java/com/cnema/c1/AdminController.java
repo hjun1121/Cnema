@@ -361,7 +361,6 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.addObject("couponDTO", couponDTO);
 		mv.addObject("type", couponDTO.getType());
 		mv.setViewName("admin/couponView");
