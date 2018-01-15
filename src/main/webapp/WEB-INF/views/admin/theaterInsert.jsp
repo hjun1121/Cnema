@@ -5,11 +5,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>극장 글쓰기</title>
+<script type="text/javascript">
+$(function(){
+	$("#tBtn").click(function(){
+		if($("#area").val()==""){
+			$("#area").focus();
+		}else if($("#location").val()==""){
+			$("#location").focus();
+		}else if($("#x_position").val()==""){
+			$("#x_position").focus();
+		}else if($("#y_position").val()==""){
+			$("#y_position").focus();
+		}else{
+			document.frm.submit();
+		}
+	});
+});
+</script>
 </head>
 <body>
 <h3>극장 글쓰기</h3>
-	<form action="./theaterInsert" method="POST">
+	<form action="./theaterInsert" name="frm" method="POST">
 	<table>
 		<tr>
 			<td>지역</td>
@@ -24,7 +42,7 @@
 			<td><input type="text" name="y_position" id="y_position"></td>
 		</tr>
 	</table>
-	<input type="submit" value="확인">
+	<input type="button" id="tBtn" value="확인">
 	</form>
 </body>
 </html>
