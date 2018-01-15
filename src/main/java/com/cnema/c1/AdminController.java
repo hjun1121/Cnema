@@ -102,10 +102,10 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		if(result>0) {
-			rd.addFlashAttribute("message", "영화 수정 성공");
+			rd.addFlashAttribute("message", "영화 정보 수정 성공");
 			mv.setViewName("redirect:../");
 		} else {
-			rd.addFlashAttribute("message", "영화 수정 실패");
+			rd.addFlashAttribute("message", "영화 정보 수정 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
@@ -215,10 +215,10 @@ public class AdminController {
 		}
 		ModelAndView mv = new ModelAndView();
 		if(result>0) {
-			rd.addFlashAttribute("message", "영화 insert 성공");
+			rd.addFlashAttribute("message", "영화 글쓰기 성공");
 			mv.setViewName("redirect:../");
 		} else {
-			rd.addFlashAttribute("message", "영화 insert 실패");
+			rd.addFlashAttribute("message", "영화 글쓰기 실패");
 			mv.setViewName("redirect:../");
 		}
 		

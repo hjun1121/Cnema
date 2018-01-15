@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+.info-check, .info-com {
+    padding-left: 10px;
+    background-color: #edebe1;
+    border-top: 1px solid #b8b6aa;
+    color: #222;
+    line-height: 33px;
+    text-align: left;
+}
+.confirm {
+    margin-bottom: 20px;
+    padding: 40px 0;
+    border-bottom: 1px solid #b8b6aa;
+}
+legend {
+    font: 0/0 a;
+    position: absolute;
+    right: -999em;
+    top: -999em;
+    zoom: 1;
+}
+.confirm > .info-confirm {
+    width: 300px;
+    margin: 0 auto;
+}
+.confirm > .info-confirm p {
+    margin-top: 10px;
+}
+.confirm > .info-confirm p > strong:first-child {
+    width: 110px;
+}
+.confirm > .info-confirm p > strong {
+    display: inline-block;
+    text-align: left;
+}
+strong {
+    font-family: 'NanumBarunGothicBold', sans-serif;
+    font-weight: normal;
+}
+.confirm > .info-confirm p > strong + strong {
+    color: #222;
+    font-size: 14px;
+}
+input[type='text'], input[type='password'] {
+    display: inline-block;
+    height: 25px;
+    line-height: 22px;
+    padding-left: 10px;
+    border: 1px solid #b5b5b5;
+}
+.small {
+    width: 150px;
+}
+.cols-content .set-btn {
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+.round.inred {
+    background: #e71a0f;
+    border: 2px solid #e71a0f;
+    color: #ffffff;
+    line-height: 21px;
+}
+.round {
+    line-height: 23px;
+    font-family: 'NanumBarunGothicBold';
+    text-align: center;
+    vertical-align: middle;
+}
+.round, .round > * {
+    display: inline-block;
+    position: relative;
+}
+.cols-content .set-btn > .round > * {
+    padding: 0 15px;
+}
+button, input[type='submit'], input[type='button'] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.round.gray {
+    border: 2px solid #7b7b7b;
+    color: #7b7b7b;
+}
