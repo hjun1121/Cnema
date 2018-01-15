@@ -5,7 +5,7 @@
   <mapper namespace="myCouponMapper">
   <!-- heeseong -->
   <select id="myCouponList" resultType="myCouponDTO" parameterType="java.lang.String">
-  	select * from myCoupon where id=#{id} and type=#{type}
+  	select * from myCoupon where id=#{id} and type=#{type} order by v_date asc
   </select>
   
   <!-- heeseong -->

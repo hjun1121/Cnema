@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
@@ -43,6 +45,8 @@ public class TheaterController {
 	private TicketPriceService ticketPriceService;
 	@Inject
 	private ReserveService reserveService;
+	@Inject
+	private MyCouponService myCouponService;
 	
 	@RequestMapping(value="quickReserveGo", method=RequestMethod.GET)
 	public ModelAndView quickReserveGo(RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO, HttpSession session){
@@ -98,16 +102,20 @@ public class TheaterController {
 	}
 	
 	@RequestMapping(value="quickReserve3", method=RequestMethod.GET)
-	public void quickReserve3(Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
+	public void quickReserve3(Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO, HttpSession session){
 		MovieDTO movieDTO = null;
 		TheaterDTO theaterDTO = null;
 		ScheduleDTO scheduleDTO = null;
 		ScreenDTO screenDTO = null;
+		MemberDTO memberDTO = null;
+		List<MyCouponDTO> couponList = null;
 		try {
+			memberDTO = (MemberDTO)session.getAttribute("member");
 			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
 			theaterDTO = theaterService.selectOne(reserveDTO.getTheater_num());
 			scheduleDTO = scheduleService.scheduleOne(reserveDTO.getSchedule_num());
-			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());			
+			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());		
+			couponList = myCouponService.myCouponList(memberDTO.getId(), "11");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,6 +127,7 @@ public class TheaterController {
 		model.addAttribute("reserve", reserveDTO);
 		model.addAttribute("seat_num", reserveDTO.getSeat_num());
 		model.addAttribute("reserve2", reserve2DTO);
+		model.addAttribute("coupon", couponList);
 	}
 	
 	@RequestMapping(value="quickReserve2", method=RequestMethod.GET)
