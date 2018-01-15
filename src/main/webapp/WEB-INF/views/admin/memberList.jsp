@@ -49,8 +49,8 @@ $(function(){
 		location.href="groupList";
 	});
 	
-	$("#91182").click(function(){
-		var number = $("#91182").val();
+	$("#38716").click(function(){
+		var number = $("#38716").val();
 		location.href="memberList?group_num="+number;
 	});
 	
@@ -84,7 +84,7 @@ $(function(){
 </c:forEach>
 
 <br>
-<select id="kind">
+<select id="kind" name="kind">
 	<c:forEach items="${cList}" var="couponList">
 		<option class="kind" value="${couponList.name }">${couponList.name }</option>
 	</c:forEach>
@@ -104,7 +104,7 @@ $(function(){
 	<c:set var="value">result${status.count }</c:set>
 	<tr>
 		<td><input type="checkbox" name="group" value="${mList.id }"></td>
-		<td><a href="">${mList.id }</a></td>
+		<td>${mList.id }</td>
 		<td>${mList.name }</td>
 		<td>${mList.birth }</td>
 		<td>${mList.type }</td>

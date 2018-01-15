@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +12,37 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
+
+<script type="text/javascript">
+	
+	$(function(){
+		
+		$("#join_btn").click(function() {
+			alert("가입하기");
+		});
+		
+		
+		$("#drop_btn").click(function() {
+			alert("탈퇴하기");
+		});
+		
+		
+	});
+
+</script>
+
 </head>
 <body>
+	<h1>${page.page_name}</h1>
 
-	<h1>${page.page_name} 페이지 입니다.</h1>
+	<c:choose>
+		<c:when test="${memberCheck eq 1}">
+				<input type="button" id="drop_btn" value="페이지 탈퇴하기">
+		</c:when>
+		<c:otherwise>
+			<input type="button" id="join_btn" value="페이지 가입하기">
+		</c:otherwise>
+	</c:choose>
 
 </body>
 </html>
