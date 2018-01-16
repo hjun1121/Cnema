@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.community.CommunityService;
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
 import com.cnema.event.EventJoinDTO;
@@ -50,6 +51,24 @@ public class AjaxController {
 	private ReserveService reserveService;
 	@Inject
 	private CouponService couponService;
+	@Inject
+	private CommunityService communityService;
+	
+	
+	@RequestMapping(value="memberDrop", method=RequestMethod.POST)
+	public ModelAndView memberDrop(int page_num, String id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = communityService.memberDrop(page_num, id);
+		String message = "탈퇴 실패";
+		if(result > 0) {
+			message = "탈퇴 성공";
+		}
+		mv.addObject("message", message);
+		mv.setViewName("ajax/memberDrop");
+		return mv;
+	}
+	
 	
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{

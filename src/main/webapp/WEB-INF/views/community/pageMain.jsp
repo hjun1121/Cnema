@@ -23,9 +23,18 @@
 		
 		
 		$("#drop_btn").click(function() {
-			alert("탈퇴하기");
+			$.ajax({
+				url: "../ajax/memberDrop",
+				type: "POST",
+				data: {
+					movie_num:${page.page_num},
+					id:${member.id}
+				},
+				success: function(data) {
+					alert(data);
+					location.href="pageMain?page_num=${page.page_num}";
+				}
 		});
-		
 		
 	});
 
