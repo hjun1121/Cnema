@@ -1,6 +1,5 @@
 package com.cnema.reserve;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.cnema.movie.MovieDTO;
@@ -16,6 +15,10 @@ public class ReserveDTO {
 	private String id;
 	private int tp_num;
 	private int seat;
+	private ScheduleDTO scheduleDTO;
+	private TicketPriceDTO ticketPriceDTO;
+	private MovieDTO movieDTO;
+	private String day_num;
 	
 	public int getSeat() {
 		return seat;
@@ -23,10 +26,6 @@ public class ReserveDTO {
 	public void setSeat(int seat) {
 		this.seat = seat;
 	}
-	private ScheduleDTO scheduleDTO;
-	private TicketPriceDTO ticketPriceDTO;
-	private MovieDTO movieDTO;
-	private String day_num;
 	public String getDay_num() {
 		return day_num;
 	}

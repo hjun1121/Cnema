@@ -235,10 +235,10 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		if(result>0){
 			rd.addFlashAttribute("message", "위시리스트 삭제 성공");
-			mv.setViewName("redirect:../");
+			mv.setViewName("redirect:../myPage/wishList");
 		}else{
 			rd.addFlashAttribute("message", "위시리스트 삭제 실패");
-			mv.setViewName("redirect:../");
+			mv.setViewName("redirect:../myPage/wishList");
 		}
 		return mv;
 	}
