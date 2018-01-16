@@ -49,8 +49,8 @@ $(function(){
 		location.href="groupList";
 	});
 	
-	$("#41500").click(function(){
-		var number = $("#41500").val();
+	$(".gList").click(function(){
+		var number = $(this).val();
 		location.href="memberList?group_num="+number;
 	});
 	
@@ -87,7 +87,7 @@ $(function(){
 <br>
 <input type="button" id="allMember" value="모든멤버">
 <c:forEach items="${groupList }" var="gList">
-	<input type="button" id="${gList.group_num }" value="${gList.group_num }">
+	<input type="button" class="gList" id="${gList.group_num }" value="${gList.group_num }">
 </c:forEach>
 
 <br>
