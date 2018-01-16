@@ -94,7 +94,7 @@
 					    <div class="movielog-detail-wrap">
 					        <div class="tit-mycgv">
 						        <h3>위시리스트</h3>
-						        <p><em>${fn:length(mList)}건</em></p>
+						        <p><em>${fn:length(wList)}건</em></p>
 						    </div>
 						    <div class="sect-wishlist-lst">
 						        <ul id="wishlist_container">
