@@ -1,7 +1,6 @@
 package com.cnema.theater;
 
 import java.sql.Date;
-import java.util.List;
 
 public class ScheduleDTO {
 	private int schedule_num;
