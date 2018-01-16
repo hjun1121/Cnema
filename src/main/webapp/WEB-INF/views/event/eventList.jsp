@@ -19,6 +19,14 @@
 	margin-top:40px;
  
 }
+.box-title{
+	text-align: center;
+	margin:0 auto;
+display: inline-block;
+}
+.box-image{
+	display: inline-block;
+}
 </style>
 <script type="text/javascript">
 	
@@ -124,7 +132,7 @@ $("#ingEvent").click(function(){
            	<div class="box-image">
         	<a href="eventView?num=${dto.num}">
             <span>
-             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}">
+             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}" width="240px" height="200px">
             </span>
             </a>
             </div>
