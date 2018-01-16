@@ -21,7 +21,49 @@
 	margin-top:40px;
  
 }
+#noticeForm{
+	display: inline-block;
+	width:700px;
+	height:600px;
+	margin-left:50px;
 
+
+
+}
+#savebutton{
+	
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+    float:right;
+}
+#titleInput, #writerInput{
+
+background-color: #f1f0e5;
+
+}
+#titleInput, #writerInput{
+ width:500px;
+ height: 30px;
+ border: 1px solid #ccc;
+}
+#writerInput{
+border: none;
+ width:100px;
+}
+#right_input{
+ float:right;
+}
 
 </style>
 
@@ -47,7 +89,7 @@
     });
      
     //전송버튼 클릭이벤트
-    $("#writeBtn").click(function(){
+    $("#savebutton").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
         editor_object.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
          
@@ -119,21 +161,21 @@
 	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
-<h1>Notice Write Form</h1>
 	
-	<form action="noticeWrite" method="post" id="frm">
+	<form action="noticeWrite" id="noticeForm" method="post" id="frm">
+	<h1>Notice Write Form</h1>
 		
 		<div>
-			<input type="text" name="title" placeholder="제목을 입력해주세요.">
-			<input type="text" name="writer" value="${member.id}" readonly="readonly">
+			<input type="text" id="titleInput" name="title" placeholder="제목을 입력해주세요.">
+			<div id="right_input"><strong>작성자 &nbsp;</strong><input type="text" name="writer" id="writerInput" value="${member.id}" readonly="readonly"></div>
 		</div>
-		
-			<textarea id="contents" name="contents" rows="20" cols="50" ></textarea>
+		<br>
+			<textarea id="contents" name="contents" rows="20" cols="40" ></textarea>
 	
 	
 	
-
-	<input type="submit" id="savebutton" value="글쓰기">
+	<br>
+	<input type="button" id="savebutton" value="글쓰기">
 	</form>
 	
 			</div><!--게시판 내용  -->

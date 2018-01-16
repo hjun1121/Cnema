@@ -22,7 +22,6 @@
   		<result property="in_time" column="inn" />
   		<result property="out_time" column="outt" />
   		<result property="day" column="day"/>
-  		
   	</resultMap>
   	
   	<select id="scheduleList" resultMap="scheduleTime" parameterType="java.util.Map">
@@ -46,8 +45,8 @@
   	</select>
   
   	<!-- heeseong -->
-  	<select id="scheduleInfo" resultType="scheduleDTO" parameterType="int">
-  		select * from schedule where schedule_num=#{sNum}
+  	<select id="scheduleInfo" resultMap="scheduleTime" parameterType="int">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where schedule_num=#{sNum}
   	</select>
   	
   	<!-- heeseong -->
@@ -56,8 +55,8 @@
   	</delete>
   	
   	<!-- heeseong -->
-  	<select id="scheduleAList" resultType="scheduleDTO">
-  		select * from schedule
+  	<select id="scheduleAList" resultMap="scheduleTime">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S
   	</select>
   	
   	<!-- heeseong -->
