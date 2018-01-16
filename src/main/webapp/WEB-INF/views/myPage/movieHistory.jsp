@@ -132,7 +132,11 @@ $(function(){
             		</form>
 		    		<div class="sect-movielog-lst">
 			    		<ul>
-			    		<c:forEach items="${rList}" var="reserveList">
+			    		<c:forEach items="${rList}" var="reserveList" varStatus="count">
+			    		
+			    		<c:if test="${count.first }">
+			    		
+			    		
 			    		<input type="hidden" id="movie_num" name="movie_num" value="${reserveList.movieDTO.movie_num }">
                             <li class="movie_info_78316">
                                 <div class="article-movie-info">
@@ -166,6 +170,7 @@ $(function(){
 				                    </button>
 				                </div>
 			                </li>
+						</c:if>			                
 			            </c:forEach>
 			    		</ul> 
 		    		</div>
