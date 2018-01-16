@@ -55,8 +55,8 @@
   	</delete>
   	
   	<!-- heeseong -->
-  	<select id="scheduleAList" resultType="scheduleDTO">
-  		select * from schedule
+  	<select id="scheduleAList" resultMap="scheduleTime">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S
   	</select>
   	
   	<!-- heeseong -->
