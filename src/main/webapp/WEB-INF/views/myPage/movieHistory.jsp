@@ -21,8 +21,8 @@ $(function(){
 		var sKind = $("#kind").val();
 		location.href="./movieHistory?kind="+sKind;
 	});
-	$("#reviewBtn").click(function(){
-		var movie_num = $("#movie_num").val();
+	$(".reviewBtn").click(function(){
+		var movie_num = $(this).attr("title");
 		window.open("movieReview?movie_num="+movie_num,"평점작성","width=800,height=700,toolbar=no");
 	});
 });
@@ -48,13 +48,13 @@ $(function(){
 			사진 : <img alt='${reserveList.movieDTO.movie_name}' src='/resource/movie/${reserveList.movieDTO.fileName}'><br>
 			<a href="../movie/movie_view?movie_num=${reserveList.movieDTO.movie_num }">영화명: ${reserveList.movieDTO.movie_name}<br></a>
 			날짜 : ${reserveList.scheduleDTO.day}<br>
-			시간 :<fmt:formatDate value="${reserveList.scheduleDTO.in_time}" type="time" pattern="HH:mm"/>
-			~<fmt:formatDate value="${reserveList.scheduleDTO.out_time}" type="time" pattern="HH:mm"/><br>
+			시간 :<input type="text" id="in_time" name="in_time" value="${reserveList.scheduleDTO.in_time }">
+			~<input type="text" id="out_time" name="out_time" value="${reserveList.scheduleDTO.out_time }"><br>
 			지점 : ${reserveList.theater_num }<br>
 			상영관 번호 : ${reserveList.screen_num }<br>
 			몇명 : ${reserveList.ticketPriceDTO.people}<br>
 			<button>x</button><br>
-			<input type="button" id="reviewBtn" value="이 영화를 평가해 주세요"><br>
+			<input type="button" class="reviewBtn" title="${reserveList.movieDTO.movie_num }" value="이 영화를 평가해 주세요"><br>
 			------ <br>
 		</c:forEach>
 	</form>
