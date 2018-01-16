@@ -19,12 +19,26 @@ public class PageDAO {
 	private static final String NAMESPACE = "communityMapper.";
 	
 	
+	//memberDropCount
+	public int memberDropCount(int page_num) throws Exception {
+		return sqlSession.update(NAMESPACE+"memberDropCount", page_num);
+	}
+	
+	
+	//memberDrop
+	public int memberDrop(int page_num, String id) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("page_num", page_num);
+		map.put("id", id);
+		return sqlSession.delete(NAMESPACE+"memberDrop", map);
+	}
+	
+	
 	//memberCheck
 	public PageMemberDTO memberCheck(int page_num, String id) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("page_num", page_num);
 		map.put("id", id);
-		System.out.println("zxc");
 		return sqlSession.selectOne(NAMESPACE+"memberCheck", map);
 	}
 

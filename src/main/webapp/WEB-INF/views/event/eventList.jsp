@@ -19,6 +19,14 @@
 	margin-top:40px;
  
 }
+.eventListPage{
+	display: inline-block;
+	width:800px;
+	height:600px;
+	margin-left:50px;
+	
+
+}
 .box-title{
 	text-align: center;
 	margin:0 auto;
@@ -26,6 +34,74 @@ display: inline-block;
 }
 .box-image{
 	display: inline-block;
+}
+
+.firstList ul {
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #b8b6aa;
+
+    list-style: none;
+}
+.firstList li:first-child {
+    border-top: 0 none;
+}
+.firstList .box-image {
+    margin-right: 20px;
+    margin-top: 4px;
+}
+.firstList li div {
+    float: left;
+}
+.box-image a {
+    display: block;
+        color: inherit;
+    text-decoration: none;
+}
+
+.firstList .box-contents {
+    position: relative;
+    width: 860px;
+    margin-top: 26px;
+    line-height: 1.6;
+}
+.firstList li div {
+    float: left;
+}
+.firstList .box-contents a {
+    display: inline-block;
+    margin-right: 80px;
+}
+.firstList .box-contents .date {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+}
+.firstList li em {
+    display: inline-block;
+    font-family: 'NanumBarunGothicBold';
+}
+
+#endEvent{
+
+	
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    font-weight:bold;
+    border: 2px solid #e71a0f;
+    float:right;
+
+
 }
 </style>
 <script type="text/javascript">
@@ -43,7 +119,7 @@ $(function(){
 			 sel: false
 			},
 			success:function(data){
-				$("#firstList").hide();
+				$(".firstList").hide();
 				$("#eventList").html(data);
 				},
 			error : function(){
@@ -110,7 +186,7 @@ $("#ingEvent").click(function(){
 	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
-	<div class="eventTitle">
+	<div class="eventListPage">
     <h1>EVENT</h1>
     
     <div class="submenu">
@@ -121,10 +197,10 @@ $("#ingEvent").click(function(){
     <br>
     <hr>
    
-</div>
+
 	<div id="eventList"></div> 
 	
-	<div id="firstList">
+	<div class="firstList">
 		<ul>
 			<c:forEach items="${list}" var="dto">
 			<li>
@@ -132,7 +208,7 @@ $("#ingEvent").click(function(){
            	<div class="box-image">
         	<a href="eventView?num=${dto.num}">
             <span>
-             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}" width="240px" height="200px">
+             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}" width="100px" height="83px">
             </span>
             </a>
             </div>
@@ -167,7 +243,7 @@ $("#ingEvent").click(function(){
 </div>	
 	<a href="./eventWrite">글쓰기</a>
 	
-			
+</div>			
 			</div><!--게시판 내용  -->
 	
 	

@@ -22,6 +22,15 @@ public class CommunityService {
 	private FileSaver fileSaver;
 	
 	
+	//memberDrop
+	public int memberDrop(int page_num, String id) throws Exception {
+		int result = pageDAO.memberDrop(page_num, id);
+		result = pageDAO.memberDropCount(page_num);
+		
+		return result;
+	}
+	
+	
 	//memberCheck
 	public int memberCheck(int page_num, String id) throws Exception {
 		PageMemberDTO pageMemberDTO = null;
@@ -30,7 +39,6 @@ public class CommunityService {
 		if(pageMemberDTO != null) { //가입한 페이지일 경우
 			result = 1;
 		}
-		System.out.println("asd");
 
 		return result;
 	}

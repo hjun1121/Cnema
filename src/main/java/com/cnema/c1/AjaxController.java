@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cnema.community.CommunityService;
+import com.cnema.community.PageDTO;
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
 import com.cnema.coupon.MyCouponDTO;
@@ -52,7 +54,40 @@ public class AjaxController {
 	@Inject
 	private CouponService couponService;
 	@Inject
+	private CommunityService communityService;
+	@Inject
 	private MyCouponService myCouponService;
+	
+	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
+	public ModelAndView memberJoin(int page_num, String id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		PageDTO pageDTO = communityService.selectPageOne(page_num);
+		int result = 0;
+		String message = "가입 실패";
+		result = communityService.memberInsert(pageDTO, id);
+		if(result > 0) {
+			message = "가입 성공";
+		}
+		
+		mv.addObject("message", message);
+		mv.setViewName("ajax/memberJoin");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="memberDrop", method=RequestMethod.POST)
+	public ModelAndView memberDrop(int page_num, String id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		result = communityService.memberDrop(page_num, id);
+		String message = "탈퇴 실패";
+		if(result > 0) {
+			message = "탈퇴 성공";
+		}
+		mv.addObject("message", message);
+		mv.setViewName("ajax/memberDrop");
+		return mv;
+	}
 	
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{

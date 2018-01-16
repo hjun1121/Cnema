@@ -4,6 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="communityMapper">
 
+	<delete id="memberDrop" parameterType="java.util.Map">
+		delete pagemember where page_num=#{page_num} and id=#{id}
+	</delete>
+
+	<!-- page 회원수 -1 -->
+	<update id="memberDropCount" parameterType="int">
+		update page set member_count=member_count-1 where page_num=#{page_num}		
+	</update>
+
 	<select id="memberCheck" parameterType="java.util.Map" resultType="pageMemberDTO">
 		select * from pagemember where id=#{id} and page_num=#{page_num}
 	</select>

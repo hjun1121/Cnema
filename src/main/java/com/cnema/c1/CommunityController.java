@@ -40,7 +40,6 @@ public class CommunityController {
 		ModelAndView mv = new ModelAndView();
 		String id = "";
 		int memberCheck = 0;
-		System.out.println("컨트롤러입니다");
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
@@ -59,7 +58,7 @@ public class CommunityController {
 
 		return mv;
 	}
-	
+
 	
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.GET)
