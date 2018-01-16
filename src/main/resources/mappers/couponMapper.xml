@@ -13,8 +13,8 @@
   		select * from coupon
   	</select>
   	<!-- heeseong -->
-  	<select id="couponInfo" resultType="couponDTO" parameterType="java.lang.String">
-  		select * from coupon where name=#{name}
+  	<select id="couponInfo" resultType="couponDTO" parameterType="int">
+  		select * from coupon where c_num=#{c_num}
   	</select>
    <!-- heeseong -->
   	<select id="couponSList" resultType="couponDTO" parameterType="Map">
@@ -33,7 +33,7 @@
   	</select>
   	<!-- heeseong -->
   	<insert id="couponInsert" parameterType="couponDTO">
-  	 	insert into coupon values(#{name},#{type},#{price},#{v_day})
+  	 	insert into coupon values(#{name},#{type},#{price},#{v_day},movie_seq.nextval)
   	</insert>
   	<!-- heeseong -->
   	<update id="couponRevision" parameterType="couponDTO">
