@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
+import com.cnema.coupon.MyCouponDTO;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.event.EventJoinDTO;
 import com.cnema.event.EventService;
 import com.cnema.member.MemberDTO;
@@ -50,6 +51,8 @@ public class AjaxController {
 	private ReserveService reserveService;
 	@Inject
 	private CouponService couponService;
+	@Inject
+	private MyCouponService myCouponService;
 	
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
@@ -303,6 +306,20 @@ public class AjaxController {
 		}
 		
 		model.addAttribute("price", price);
+	}
+
+	@RequestMapping(value="qrCouponList", method=RequestMethod.POST)
+	public void qrCouponList(Model model, HttpSession session){
+		MemberDTO memberDTO = null;
+		List<MyCouponDTO> couponList = null;
+		try {
+			memberDTO = (MemberDTO)session.getAttribute("member");
+			couponList = myCouponService.myCouponList(memberDTO.getId(), "11");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("coupon", couponList);
 	}
 	
 	@RequestMapping(value="qrCoupon", method=RequestMethod.POST)

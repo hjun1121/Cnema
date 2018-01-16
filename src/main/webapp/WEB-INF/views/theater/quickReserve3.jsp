@@ -21,8 +21,21 @@
 		var v_point = ${member.v_point};
 		var price = ${reserve2.price };
 		
-		$(".coupons").click(function(){
-			var coupon = $(this).attr("title");
+		/*  */
+		$("#couponBtn").click(function(){
+			$.ajax({
+				url:"../ajax/qrCouponList",
+				type:"post",
+				data:{
+				},
+				success:function(data){
+					$("#couponList").html(data);
+				}
+			});
+		});
+		/*  */
+		$("#couponList").on("click",".coupons",function(){
+			var coupon = $(this).val();
 			$.ajax({
 				url:"../ajax/qrCoupon",
 				type:"post",
@@ -36,25 +49,25 @@
 			});
 		});
 		/*  */
-
 		$("#point").change(function(){
 			var point = $("#point").val();
 			if(v_point<point){
 				alert("현재 포인트보다 큰 값입니다.");
 				$("#point").val("");
-			}else{
+			}else if(point<100){
+				alert("포인트는 100점이상 사용가능 합니다");
+				$("#point").val("");
 			}
 		});
-		
 		/*  */
 		$("#allPoint").click(function(){
 			if(price<v_point){
 				$("#point").val(price);
+			}else if(v_point<100){
+				alert("포인트는 100점이상 사용가능합니다")
 			}else{
 				$("#point").val(v_point);
 			}
-			
-			
 		});
 		/*  */
 		$("#rightBtn3").click(function(){
@@ -77,11 +90,9 @@
 		margin: 0px;
 		padding: 0px;
 	}
-	div{
-		height: 600px;
-	}
 
 	#all{
+		height: 600px;
 		background-color: red;
 		width: 1000px;
 	}
@@ -134,19 +145,21 @@
 <body>
 	<h2>Quick Reserve3</h2>
 	<div id="all">
-		<table>
-			<tr>
-				<td>쿠폰</td>
-				<c:forEach items="${coupon }" var="c">
-					<td class="coupons" title="${c.name }">${c.name }</td>
-				</c:forEach>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>보유 포인트</td><td>${member.v_point } <input type="text" id="point" placeholder="사용할포인트 입력"><input type="button" id="allPoint" value="모두쓰기"> </td>
-			</tr>
-		</table>
+		<div id="couponAll">
+			<ul>
+				<li>쿠폰 <input type="button" id="couponBtn" value="쿠폰불러오기"></li>
+			</ul>
+			<div id="couponList" style="height: 84px; width: 250px; overflow: auto;" >
+				
+			</div>
+		</div>
+		<div id="pointList">
+			<table>
+				<tr>
+					<td>보유 포인트</td><td>${member.v_point } <input type="text" id="point" placeholder="사용할포인트 입력"><input type="button" id="allPoint" value="모두쓰기"> </td>
+				</tr>
+			</table>
+		</div>
 		
 		<div id="price">
 			총가격 :${reserve2DTO.price} <span id="discount"></span>
