@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
+import com.cnema.community.PageDTO;
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
 import com.cnema.event.EventJoinDTO;
@@ -54,6 +55,23 @@ public class AjaxController {
 	@Inject
 	private CommunityService communityService;
 	
+	
+	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
+	public ModelAndView memberJoin(int page_num, String id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		PageDTO pageDTO = communityService.selectPageOne(page_num);
+		int result = 0;
+		String message = "가입 실패";
+		result = communityService.memberInsert(pageDTO, id);
+		if(result > 0) {
+			message = "가입 성공";
+		}
+		
+		mv.addObject("message", message);
+		mv.setViewName("ajax/memberJoin");
+		
+		return mv;
+	}
 	
 	@RequestMapping(value="memberDrop", method=RequestMethod.POST)
 	public ModelAndView memberDrop(int page_num, String id) throws Exception {

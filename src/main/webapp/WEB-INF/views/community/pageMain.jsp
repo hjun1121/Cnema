@@ -18,8 +18,19 @@
 	$(function(){
 		
 		$("#join_btn").click(function() {
-			alert("가입하기");
+			$.ajax({
+				url: "../ajax/memberJoin",
+				type: "POST",
+				data: {
+					page_num:${page.page_num},
+					id:${member.id }
+				},
+				success: function(data) {
+					alert(data);
+// 					location.href="../community/communityMain";
+				}
 		});
+	});
 		
 		
 		$("#drop_btn").click(function() {
@@ -27,16 +38,18 @@
 				url: "../ajax/memberDrop",
 				type: "POST",
 				data: {
-					movie_num:${page.page_num},
-					id:${member.id}
+					page_num:${page.page_num},
+					id:${member.id }
 				},
 				success: function(data) {
 					alert(data);
-					location.href="pageMain?page_num=${page.page_num}";
+// 					location.href="../community/communityMain";
 				}
 		});
 		
 	});
+
+});
 
 </script>
 
