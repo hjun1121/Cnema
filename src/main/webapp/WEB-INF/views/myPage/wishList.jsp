@@ -83,7 +83,7 @@
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
 				                <a href="#">
-				                    <em>${fn:length(wList)}</em>
+				                    <em>${fn:length(mList)}</em>
 				                    <strong>내가 본 영화</strong>
 				                </a>
 				            </div>
@@ -94,7 +94,7 @@
 					    <div class="movielog-detail-wrap">
 					        <div class="tit-mycgv">
 						        <h3>위시리스트</h3>
-						        <p><em>${fn:length(mList)}건</em></p>
+						        <p><em>${fn:length(wList)}건</em></p>
 						    </div>
 						    <div class="sect-wishlist-lst">
 						        <ul id="wishlist_container">

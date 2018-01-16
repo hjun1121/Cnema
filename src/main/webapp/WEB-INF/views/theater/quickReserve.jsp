@@ -167,25 +167,25 @@
 	}
 	
 	#movie{
-		background-color: yellow;
+		background-color: #f0f0f0;
 		width: 290px;
 		float: left;
 		margin-left: 2px;
 	}
 	#theater{
-		background-color: yellow;
+		background-color: #f0f0f0;
 		width: 290px;
 		float: left;
 		margin-left: 2px;
 	}
 	#day{
-		background-color: yellow;
+		background-color: #f0f0f0;
 		width: 100px;
 		float: left;
 		margin-left: 2px;
 	}
 	#schedule{
-		background-color: yellow;
+		background-color: #f0f0f0;
 		width: 310px;
 		float: left;
 		margin-left: 2px;
