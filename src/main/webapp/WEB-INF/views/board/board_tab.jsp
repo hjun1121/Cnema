@@ -15,8 +15,8 @@
 }
 
 #board_tab{
-	background-color: gray;
-	width:200px;
+/* 	background-color: gray;
+ */	width:200px;
 	height: 500px;
 	display:inline-block;
 	float: left;

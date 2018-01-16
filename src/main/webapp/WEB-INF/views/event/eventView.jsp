@@ -119,7 +119,7 @@ ${view.contents}
 
 </div>
 
-		<a href="./evnetList">목록으로</a>
+		<a href="./eventList">목록으로</a>
 		<a href="./eventUpdate?num=${view.num}">update</a>
 		<a href="./eventDelete?num=${view.num}">delete</a>
 				
