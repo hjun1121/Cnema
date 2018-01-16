@@ -1,12 +1,12 @@
 package com.cnema.coupon;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-
-import com.cnema.member.MemberDTO;
 
 @Service
 public class MyCouponService {
@@ -31,6 +31,15 @@ public class MyCouponService {
 	}
 	/*희성*/
 	public int couponInsert(String id, CouponDTO couponDTO) throws Exception{
+		Calendar cal = Calendar.getInstance();
+		
+		cal.add(Calendar.DATE, couponDTO.getV_day());
+		
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
+		String v_date = sd.format(cal.getTime());
+		
+		couponDTO.setV_date(v_date);
+		
 		return myCouponDAO.couponInsert(id,couponDTO);
 	}
 	/*희성*/

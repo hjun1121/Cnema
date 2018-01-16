@@ -40,5 +40,9 @@
   	<update id="myInfoRevision" parameterType="memberDTO">
   		update member set phone=#{phone},email=#{email},postCode=#{postCode},addr1=#{addr1},addr2=#{addr2} where id=#{id}
   	</update>
+  	<!-- heeseong -->
+  	<update id="pointUpdate" parameterType="map">
+  		update member set a_point=a_point+#{price} where id=#{id}
+  	</update>
   	
   </mapper>

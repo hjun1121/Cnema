@@ -24,8 +24,8 @@ public class CouponDAO {
 		return sqlSession.selectList(NAMESPACE+"couponList");
 	}
 	/*heeseong*/
-	public CouponDTO couponInfo(String kind) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"couponInfo",kind);
+	public CouponDTO couponInfo(int c_num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponInfo",c_num);
 	}
 	/*heeseong*/
 	public List<CouponDTO> couponSList(String kind, String search) throws Exception{

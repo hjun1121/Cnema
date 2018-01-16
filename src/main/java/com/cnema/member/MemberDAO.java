@@ -1,6 +1,8 @@
 package com.cnema.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -51,5 +53,11 @@ public class MemberDAO {
 	public int myInfoRevision(MemberDTO memberDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"myInfoRevision",memberDTO);
 	}
-
+	/*heeseong*/
+	public int pointUpdate(int price, String id) throws Exception{
+		Map<String, Object> pMap = new HashMap<>();
+		pMap.put("price", price);
+		pMap.put("id", id);
+		return sqlSession.update(NAMESPACE+"pointUpdate",pMap);
+	}
 }

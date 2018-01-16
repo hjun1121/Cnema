@@ -59,14 +59,14 @@ $(function(){
 	});
 	
 	$("#sBtn").click(function(){
-		var kind = $("#kind").val();
+		var c_num = $("#kind").val();
 		var groupVal = [];
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
 		});
-		location.href="./couponGive?kind="+kind+"&groupVal[]="+groupVal;
+		location.href="./couponGive?c_num="+c_num+"&groupVal[]="+groupVal;
 	});
-	
+	 
 	$("#pBtn").click(function(){
 		var price = $("#price").val();
 		var groupVal = [];
@@ -93,7 +93,7 @@ $(function(){
 <br>
 <select id="kind" name="kind">
 	<c:forEach items="${cList}" var="couponList">
-		<option class="kind" value="${couponList.name }">${couponList.name }</option>
+		<option class="kind" value="${couponList.c_num }">${couponList.name }</option>
 	</c:forEach>
 </select>
 <input type="button" id="sBtn" value="쿠폰주기"><br>
