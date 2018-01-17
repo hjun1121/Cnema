@@ -102,7 +102,6 @@ background-color: #f1f0e5;
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     cursor: pointer;
-    line-height: 21px;
     border-radius: 5px;
     background-color: #e71a0f; 
     color: #ffffff; 
