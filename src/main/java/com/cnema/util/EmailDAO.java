@@ -17,6 +17,49 @@ import com.cnema.member.MemberDAO;
 import com.cnema.member.MemberDTO;
 
 public class EmailDAO {
+
+	public int qnaReplySend(String email) {
+		int result=0;
+		String host     = "smtp.naver.com";
+		  final String user   = "library_4";
+		  final String password  = "gudwns93";
+		  String to     = email;
+		  // Get the session object
+		  Properties props = new Properties();
+		  props.put("mail.smtp.host", host);
+		  props.put("mail.smtp.auth", "true");
+		  
+		  Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+		   protected PasswordAuthentication getPasswordAuthentication() {
+		    return new PasswordAuthentication(user, password);
+		   }
+		  });
+
+		  // Compose the message
+		  try {
+		   MimeMessage message = new MimeMessage(session);
+		   message.setFrom(new InternetAddress(user));
+		   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+		   // Subject
+		   message.setSubject("[Cnema]답글이 달렸습니다.");
+		   
+		   
+		   String mes = "답글내용";
+		   message.setText(mes); //보내는 내용
+
+		   // send the message
+		   Transport.send(message);
+		   System.out.println("message sent successfully...");
+		   result=1;
+
+		  } catch (MessagingException e) {
+		   e.printStackTrace();
+		   result=0;
+		  }
+		  return result;
+	}
+	
 	
 	public int send(HttpSession session2 ,String email) {
 		int result=0;
