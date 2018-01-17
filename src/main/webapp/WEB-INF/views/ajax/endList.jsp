@@ -8,7 +8,7 @@
            	<div class="box-image">
         	<a href="eventView?num=${dto.num}">
             <span>
-             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}">
+             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"width="100px" height="83px">
             </span>
             </a>
             </div>

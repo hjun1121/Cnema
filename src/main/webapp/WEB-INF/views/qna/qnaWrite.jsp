@@ -87,6 +87,7 @@ background-color: #f1f0e5;
     background-color: #ede9dd; 
     color: #7b7b7b; 
  	border:  2px solid #7b7b7b;
+ 
 	
 
 }
@@ -106,6 +107,7 @@ background-color: #f1f0e5;
     background-color: #e71a0f; 
     color: #ffffff; 
     border: 2px solid #e71a0f;
+    float:right;
 }
 
 
@@ -126,7 +128,30 @@ function move() {
 
 			<!-- //////////////////////////////// -->
 <div id="contaniner" class="">
-	
+	<!-- 상단바 시작 -->
+        	<div class="linemap-wrap">
+           		<div class="sect-linemap">
+                	<div class="sect-bcrumb">
+                    	<ul>
+                        	<li>
+                        		<a href="../">
+                        		<img alt="home" src="${pageContext.request.contextPath }/resources/images/common/btn/btn_home.png"></a>
+                        	</li>
+                            <li>
+                                <a href="#">게시판</a>
+                            </li>
+                            <li>
+                                <a href="#">문의</a>
+                            </li>
+                            <li class="last">
+                            	글쓰기
+                            </li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 상단바 끝 -->
+        	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
 	
@@ -206,7 +231,7 @@ function move() {
 			<td><input type="file" name="file"></td>
 		</tr>
 			</table>
-				
+				<br>
 	<input type="hidden" name="writer" value="${member.id}">
 	<div id="btnSection">
 	<input type="button" id="btn1" onclick="move()" value="등록취소">

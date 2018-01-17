@@ -20,8 +20,8 @@ public class CouponService {
 		return couponDAO.couponList();
 	}
 	/*heeseong*/
-	public CouponDTO couponInfo(String kind) throws Exception{
-		return couponDAO.couponInfo(kind);
+	public CouponDTO couponInfo(int c_num) throws Exception{
+		return couponDAO.couponInfo(c_num);
 	}
 	/*heeseong*/
 	public List<CouponDTO> couponSList(String kind, String search) throws Exception{

@@ -29,13 +29,13 @@ public class CommunityController {
 	
 	
 	//pageMain
-	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
+	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
 	public void pageMain() {
 		
 	}
 	
 	//pageMain
-	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
+	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
 	public ModelAndView pageMain(HttpSession session, int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String id = "";
@@ -43,10 +43,7 @@ public class CommunityController {
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
-			if(id != null) {
-				memberCheck = communityService.memberCheck(page_num, id);
-			}
-			System.out.println("memberCheck:" + memberCheck);
+			memberCheck = communityService.memberCheck(page_num, id);
 			mv.addObject("memberCheck", memberCheck);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -58,10 +55,10 @@ public class CommunityController {
 		mv.addObject("page", pageDTO);
 		mv.addObject("pageMember", pageMember);
 		mv.setViewName("community/pageMain");
-		
+
 		return mv;
 	}
-	
+
 	
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.GET)

@@ -49,8 +49,8 @@ $(function(){
 		location.href="groupList";
 	});
 	
-	$("#41500").click(function(){
-		var number = $("#41500").val();
+	$(".gList").click(function(){
+		var number = $(this).val();
 		location.href="memberList?group_num="+number;
 	});
 	
@@ -59,14 +59,14 @@ $(function(){
 	});
 	
 	$("#sBtn").click(function(){
-		var kind = $("#kind").val();
+		var c_num = $("#kind").val();
 		var groupVal = [];
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
 		});
-		location.href="./couponGive?kind="+kind+"&groupVal[]="+groupVal;
+		location.href="./couponGive?c_num="+c_num+"&groupVal[]="+groupVal;
 	});
-	
+	 
 	$("#pBtn").click(function(){
 		var price = $("#price").val();
 		var groupVal = [];
@@ -87,13 +87,13 @@ $(function(){
 <br>
 <input type="button" id="allMember" value="모든멤버">
 <c:forEach items="${groupList }" var="gList">
-	<input type="button" id="${gList.group_num }" value="${gList.group_num }">
+	<input type="button" class="gList" id="${gList.group_num }" value="${gList.group_num }">
 </c:forEach>
 
 <br>
 <select id="kind" name="kind">
 	<c:forEach items="${cList}" var="couponList">
-		<option class="kind" value="${couponList.name }">${couponList.name }</option>
+		<option class="kind" value="${couponList.c_num }">${couponList.name }</option>
 	</c:forEach>
 </select>
 <input type="button" id="sBtn" value="쿠폰주기"><br>

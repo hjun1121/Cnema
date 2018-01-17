@@ -64,4 +64,8 @@ public class MemberService {
 	public int myInfoRevision(MemberDTO memberDTO) throws Exception{
 		return memberDAO.myInfoRevision(memberDTO);
 	}
+	/*heeseong*/
+	public int pointUpdate(int price, String id) throws Exception{
+		return memberDAO.pointUpdate(price,id);
+	}
 }

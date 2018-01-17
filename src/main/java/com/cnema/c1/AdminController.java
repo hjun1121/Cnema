@@ -21,7 +21,6 @@ import com.cnema.coupon.CoupongroupService;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
-import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
@@ -409,8 +408,8 @@ public class AdminController {
 			if(group_num==-1){
 				memList = memberService.memberList();
 			}else{
-				for(int num=0;num<2;num++){
-					gList = coupongroupService.groupSList(group_num);
+				gList = coupongroupService.groupSList(group_num);
+				for(int num=0;num<gList.size();num++){
 					memberDTO = memberService.memberInfo(gList.get(num).getId());
 					memList.add(memberDTO);
 				}
@@ -432,12 +431,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="couponGive",method=RequestMethod.GET)
-	public ModelAndView couponGive(String kind,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd){
+	public ModelAndView couponGive(int c_num,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
 		int result = 0;
 		try {
-			couponDTO = couponService.couponInfo(kind);
+			couponDTO = couponService.couponInfo(c_num);
 			for(int num=0;num<gList.size();num++){
 				result = myCouponService.couponInsert(gList.get(num),couponDTO);
 			}
@@ -462,7 +461,8 @@ public class AdminController {
 		int result = 0;
 		try {
 			for(int num=0;num<gList.size();num++){
-				result = pointService.pointInsert(price,memberDTO.getId());
+				result = pointService.pointInsert(price,gList.get(num));
+				result = memberService.pointUpdate(price,memberDTO.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -471,6 +471,9 @@ public class AdminController {
 		if(result>0){
 			rd.addAttribute("message","포인트 주기 성공");
 			mv.setViewName("redirect:../");
+			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
+			memberDTO.setA_point(memberDTO2.getA_point());
+			session.setAttribute("member", memberDTO);
 		}else{
 			rd.addAttribute("message","포인트 주기 실패");
 			mv.setViewName("redirect:../");
