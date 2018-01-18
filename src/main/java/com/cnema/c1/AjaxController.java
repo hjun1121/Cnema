@@ -65,6 +65,7 @@ public class AjaxController {
 		int result = 0;
 		String message = "가입 실패";
 		result = communityService.memberInsert(pageDTO, id);
+		System.out.println(result);
 		if(result > 0) {
 			message = "가입 성공";
 		}
@@ -168,6 +169,7 @@ public class AjaxController {
 
 		return mv;
 	}
+	
 	//movieWishReturn
 	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
 	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {
