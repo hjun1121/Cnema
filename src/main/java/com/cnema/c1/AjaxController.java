@@ -34,6 +34,7 @@ import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 import com.cnema.util.ListData;
+import com.cnema.util.TimeChange;
 
 @Controller
 @RequestMapping(value="/ajax/*")
@@ -57,8 +58,15 @@ public class AjaxController {
 	private CommunityService communityService;
 	@Inject
 	private MyCouponService myCouponService;
-	
+	@Inject
+	private TimeChange timeChange;
 	//admin 관련
+	@RequestMapping(value="inTime", method=RequestMethod.POST)
+	public void inTime(int movie_num, String in_time, String day, Model model){
+		String out_time = timeChange.getOutTime(day, in_time, movie_num);
+		model.addAttribute("out_time", out_time);
+	}
+	
 	@RequestMapping(value="adminScreenList", method=RequestMethod.POST)
 	public void adminScreenList(int theater_num, Model model){
 		List<ScreenDTO> ar = null;
@@ -97,6 +105,7 @@ public class AjaxController {
 		int result = 0;
 		String message = "가입 실패";
 		result = communityService.memberInsert(pageDTO, id);
+		System.out.println(result);
 		if(result > 0) {
 			message = "가입 성공";
 		}
@@ -201,6 +210,7 @@ public class AjaxController {
 
 		return mv;
 	}
+	
 	//movieWishReturn
 	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
 	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {

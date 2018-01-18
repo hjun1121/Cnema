@@ -1,5 +1,6 @@
 package com.cnema.c1;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,27 +31,30 @@ import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.TimeChange;
 
 /*heeseong 코드*/
 @Controller
 @RequestMapping(value="/admin/**")
 public class AdminController {
 	@Inject
-	MovieService movieService;
+	private MovieService movieService;
 	@Inject
-	TheaterService theaterService;
+	private TheaterService theaterService;
 	@Inject
-	ScheduleService scheduleService;
+	private ScheduleService scheduleService;
 	@Inject
-	MemberService memberService;
+	private MemberService memberService;
 	@Inject
-	MyCouponService myCouponService;
+	private MyCouponService myCouponService;
 	@Inject
-	CouponService couponService;
+	private CouponService couponService;
 	@Inject
-	CoupongroupService coupongroupService;
+	private CoupongroupService coupongroupService;
 	@Inject
-	PointService pointService;
+	private PointService pointService;
+	@Inject
+	private TimeChange timeChange;
 	
 	@RequestMapping(value="movieList",method=RequestMethod.GET)
 	public ModelAndView movieList(String kind,String search){
@@ -261,18 +265,29 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
-	public void scheduleInsert(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
+	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO,int count,RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
+		System.out.println("====");
+		System.out.println(scheduleDTO.getIn_time());
+		System.out.println(scheduleDTO.getMovie_num());
+		System.out.println(scheduleDTO.getOut_time());
+		System.out.println(scheduleDTO.getScreen_num());
+		System.out.println(scheduleDTO.getDay());
+		System.out.println(count);
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String day = sd.format(scheduleDTO.getDay());
+		String out = timeChange.getOutTime(day, scheduleDTO.getIn_time(), scheduleDTO.getMovie_num());
 		int result = 0;
-		result = scheduleService.scheduleInsert(scheduleDTO);
+		//result = scheduleService.scheduleInsert(scheduleDTO);
 		
 		if(result>0){
-			rd.addAttribute("message", "글쓰기 성공");
-			mv.setViewName("redirect:../");
+			rd.addFlashAttribute("message", "글쓰기 성공");
+			mv.setViewName("redirect:../admin/scheduleList");
 		}else{
-			rd.addAttribute("message", "글쓰기 실패");
-			mv.setViewName("redirect:../");
+			rd.addFlashAttribute("message", "글쓰기 실패");
+			mv.setViewName("redirect:../admin/scheduleList");
 		}
+		return mv;
 	}
 	
 	@RequestMapping(value="scheduleView", method=RequestMethod.GET)

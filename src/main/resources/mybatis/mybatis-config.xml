@@ -28,5 +28,6 @@
   		<typeAlias type="com.cnema.community.PageDTO" alias="pageDTO"/>
   		<typeAlias type="com.cnema.community.PageMemberDTO" alias="pageMemberDTO"/>
   		<typeAlias type="com.cnema.coupon.CoupongroupDTO" alias="coupongroupDTO"/>
+  		<typeAlias type="com.cnema.community.PageContentsDTO" alias="pageContentsDTO"/>
   	</typeAliases>
   </configuration>
