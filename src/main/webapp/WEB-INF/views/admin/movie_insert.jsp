@@ -30,8 +30,8 @@ $(function(){
 			$("#run_time").focus();
 		}else if($("#type").val()==""){
 			$("#type").focus();
-		}else if($("#contents").val()==""){
-			$("#contents").focus();
+		}else if($("#mcontents").val()==""){
+			$("#mcontents").focus();
 		}else if($("#age_limit").val()==""){
 			$("#age_limit").focus();
 		}else if($("#actor").val()==""){
@@ -265,7 +265,7 @@ $(function(){
 					</tr>
 					<tr>
 						<td>영화설명</td>
-						<td><input type="text" id="contents" name="contents" class="noneBorder" style="width: 500px;"></td>
+						<td><input type="text" id="mcontents" name="contents" class="noneBorder" style="width: 500px;"></td>
 					</tr>
 					<tr>
 						<td>나이제한</td>
