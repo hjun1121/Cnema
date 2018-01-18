@@ -11,7 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/couponHistory.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>극장 목록(관리자용)</title>
@@ -218,57 +218,57 @@ $(function(){
 			<!-- /////// -->
 			
 			<div class="tit-mycgv">
-					<h3>극장 목록</h3>
+				<h3>극장 목록</h3>
 			</div>
-				 <div class="tit-mycgv" style="padding-bottom: 10px;">
-					<h4>극장 목록 ${fn:length(theaterList)}개 &nbsp;&nbsp;</h4>
-						<select id="kind" class="f">
-							<option class = "kind" value="location">지점</option>
-							<option class = "kind" value="area">지역</option>
-						</select>
-						<input type="text" name="search" id="search">
-						<input type="button" class="btnType3" id="sBtn" value="GO">
-				</div>
-				
-				<div class="tbl-data">
-				    <table>
-				        <caption></caption>
-				        <colgroup>
-						    <col width="30%">
-						    <col width="30%">
-						</colgroup>
-				        <thead>
-				            <tr>
-				                <th scope="col">지점</th>
-				                <th scope="col">지역</th>
-				            </tr>
-				        </thead>
-				        <tbody>
-				        <c:if test="${fn:length(theaterList) ne 0}">
-					        <c:forEach items="${theaterList }" var="tList">
-								<tr>
-									<td>${tList.area }</td>
-									<td>
-										<a href="./theaterView?theater_num=${tList.theater_num}">
-											${tList.location }
-										</a>
-									</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-						<c:if test="${fn:length(theaterList) eq 0}">           
-				            <tr>
-				                <td colspan="2" class="nodata">지점이 존재하지 않습니다.</td>
-				            </tr>
-			            </c:if>  
-				        </tbody>
-				    </table>
-				    <div class="set-btn">
-				        <a href="./theaterInsert">
-				        	<button type="submit" id="save" class="round inred on"><span>추가</span></button>
-				        </a>
-			    	</div>
-				</div>
+			 <div class="tit-mycgv" style="padding-bottom: 10px;">
+				<h4>극장 목록 ${fn:length(theaterList)}개 &nbsp;&nbsp;</h4>
+					<select id="kind" class="f">
+						<option class = "kind" value="location">지점</option>
+						<option class = "kind" value="area">지역</option>
+					</select>
+					<input type="text" name="search" id="search">
+					<input type="button" class="btnType3" id="sBtn" value="GO">
+			</div>
+			<div class="tbl-data">
+			    <table>
+			        <caption></caption>
+			        <colgroup>
+					    <col width="30%">
+					    <col width="30%">
+					</colgroup>
+			        <thead>
+			            <tr>
+			                <th scope="col">지점</th>
+			                <th scope="col">지역</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        <c:if test="${fn:length(theaterList) ne 0}">
+				        <c:forEach items="${theaterList }" var="tList">
+							<tr>
+								<td>${tList.area }</td>
+								<td>
+									<a href="./theaterView?theater_num=${tList.theater_num}">
+										${tList.location }
+									</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${fn:length(theaterList) eq 0}">           
+			            <tr>
+			                <td colspan="2" class="nodata">지점이 존재하지 않습니다.</td>
+			            </tr>
+		            </c:if>  
+			        </tbody>
+			    </table>
+			    <div class="set-btn">
+			        <a href="./theaterInsert">
+			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
+			        </a>
+		    	</div>
+			</div>
+			<!-- /// -->
 			</div>
 			</div>
 			</div>

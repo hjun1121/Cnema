@@ -27,6 +27,8 @@ $(function(){
 			$("#age_limit").focus();
 		}else if($("#actor").val()==""){
 			$("#actor").focus();
+		}else if($("#show").val()==""){
+			$("#show").focus();
 		}else{
 			document.frm.submit();
 		}
@@ -46,6 +48,7 @@ $(function(){
 	<p>영화설명<input type="text" id="contents" name="contents"></p>
 	<p>나이제한<input type="text" id="age_limit" name="age_limit"></p>
 	<p>출연배우<input type="text" id="actor" name="actor"></p>
+	<p>상영유무(상영작 : 10 / 상영마감 : 20)<input type="text" id="show" name="show"></p>
 	<input type="button" id="iBtn" value="등록하기">
 </form>
 </body>

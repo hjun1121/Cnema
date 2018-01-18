@@ -24,12 +24,18 @@ public class MovieDTO {
 	private int age_limit;
 	private MultipartFile file;
 	private String actor;
+	private int show;
 
 	
 	private List<List<ScheduleDTO>> sList;
-	
 
 
+	public int getShow() {
+		return show;
+	}
+	public void setShow(int show) {
+		this.show = show;
+	}
 	public List<List<ScheduleDTO>> getsList() {
 		return sList;
 	}
