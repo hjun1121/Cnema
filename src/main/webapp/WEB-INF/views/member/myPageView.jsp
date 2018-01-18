@@ -202,7 +202,7 @@
 		                <ul>
 		                    <li><a href="../admin/movieList">영화 목록</a></li>
 		                    <li><a href="../admin/theaterList">극장 목록</a></li>
-		                    <li><a href="#">상영관 목록</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
 		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
