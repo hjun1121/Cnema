@@ -16,6 +16,8 @@ import com.cnema.theater.ScheduleDAO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScreenDTO;
 
+import oracle.net.aso.d;
+
 public class ReserveTest extends AbstractTest {
 
 	@Inject
@@ -101,9 +103,33 @@ public class ReserveTest extends AbstractTest {
 			DateFormat df = DateFormat.getDateInstance();
 			int m = 130;
 			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void intime(){
+		Calendar sDay = Calendar.getInstance();
+		try {
+			int count = 3;
+			int next = 180;
+			String day = "2018-01-19";
+			String in_time ="13:00";
+			String all = day+in_time;
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-ddHH:mm");
 			
+			java.util.Date d = sd.parse(all);
+			sDay.setTime(d);
 			
+			System.out.println("시작시간"+sDay.getTime());
+			sDay.add(Calendar.MINUTE, 130);
+			System.out.println("끝시작"+sDay.getTime());
 			
+			java.util.Date d2 = sDay.getTime();
+			SimpleDateFormat out = new SimpleDateFormat("HH:mm");
+			
+			String out_time = out.format(d2);
+			System.out.println(out_time);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -113,11 +139,40 @@ public class ReserveTest extends AbstractTest {
 	
 	@Test
 	public void test() {
+		Calendar sDay = Calendar.getInstance();
 		try {
-			List<Integer> ar = reserveDAO.seatCheck(1, 3);
-			System.out.println(ar.size());
-			for(Integer i : ar){
-				System.out.println(i);
+			int count = 3;
+			int next = 180-130;
+			String day = "2018-01-19";
+			String in_time ="13:00";
+			String all = day+in_time;
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+			
+			java.util.Date d = sd.parse(all);
+			sDay.setTime(d);
+			
+			for(int i =0; i<count; i++){
+				int next2=0;
+				if(i==0){
+				}else{
+					next2 = next;
+				}
+				SimpleDateFormat out = new SimpleDateFormat("HH:mm");
+				
+				sDay.add(Calendar.MINUTE, next2);
+				
+				java.util.Date d2 = sDay.getTime();
+				System.out.println("시작시간"+sDay.getTime());
+				
+				String New_in_time = out.format(d2);
+				
+				sDay.add(Calendar.MINUTE, 130);
+				System.out.println("끝시작"+sDay.getTime());
+				
+				d2 = sDay.getTime();
+				String out_time = out.format(d2);
+				System.out.println("in"+New_in_time);
+				System.out.println("out"+out_time);
 			}
 			
 		} catch (Exception e) {

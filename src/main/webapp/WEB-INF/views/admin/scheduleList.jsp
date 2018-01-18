@@ -11,6 +11,11 @@
 <title>상영시간표(관리자용)</title>
 <script type="text/javascript">
 $(function(){
+	var message = '${message}';
+	if(message != ""){
+		alert(message);
+	}
+	
 	$("#schBtn").click(function(){
 		location.href="scheduleInsert";
 	});
