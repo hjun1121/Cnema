@@ -10,6 +10,8 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
+
 <title>게시판</title>
 <style type="text/css">
 
@@ -187,6 +189,7 @@ background-color:purple;
 
 }
 </style>
+
 </head>
 <body>
 	<div id="cgvwrap">
@@ -216,13 +219,39 @@ background-color:purple;
                 	</div>
             	</div>
         	</div>
-        	<!-- 상단바 끝 -->
+        	<!-- 상단바 끝 -->	
         	
         	
         	<!-- 내용 시작 -->
         	<div class="board_container">
- 
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+ 	
+ 	<!--tab부분  -->
+	<div class="cols-content">
+	<div class="col-aside">
+    <h2>
+        고객센터 메뉴</h2>
+    <div class="snb">
+        <ul>
+            <li class="on" title="현재선택"><a href="#">게시판 메인<i></i></a></li>
+            <li class=""><a href="../notice/noticeList">공지/뉴스<i></i></a></li>
+            <li class=""><a href="../event/eventList">이벤트<i></i></a></li>            
+            <li class=""><a href="../qna/qnaWrite">이메일 문의<i></i></a></li>
+            
+          
+        </ul>
+    </div>
+    <div class="ad-area">
+        <div class="ad-partner01">
+            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@C_Rectangle" width="160" height="300" title="기업광고-씨티카드" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="C_Rectangle" id="C_Rectangle"></iframe>
+        </div>
+        <div class="ad-partner02">
+            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Image_text" width="160" height="35" title="영화광고-코코" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Image_text" id="Image_text"></iframe>
+        </div>
+    </div>
+</div>
+	
+	</div>
+	<!--tab end  -->
 
   
   <div id="board_contents">

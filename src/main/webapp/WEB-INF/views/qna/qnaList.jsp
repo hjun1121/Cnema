@@ -10,12 +10,12 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 
 <title>Insert title here</title>
 <style type="text/css">
 .board_container{
 	width: 1200px;
-	height:1000px;
 	margin:0 auto;
 	margin-top:40px;
  
@@ -80,7 +80,7 @@
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/mainTab.jsp"></c:import>
 	<h1>Qna list Page</h1>
 
 	<table>

@@ -10,15 +10,10 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	height:1000px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
+
 .eventListPage{
 	display: inline-block;
 	width:800px;
@@ -171,10 +166,10 @@ $("#ingEvent").click(function(){
                                 <a href="#">게시판</a>
                             </li>
                             <li>
-                                <a href="#">공지사항</a>
+                                <a href="#">이벤트</a>
                             </li>
                             <li class="last">
-                            	글쓰기
+                            	목록
                             </li>
                     	</ul>
                 	</div>
@@ -185,7 +180,11 @@ $("#ingEvent").click(function(){
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
+
+ 
+ 
+	
 	<div class="eventListPage">
     <h1>EVENT</h1>
     

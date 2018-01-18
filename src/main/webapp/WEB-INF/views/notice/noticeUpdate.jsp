@@ -12,12 +12,12 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 
 <title>Insert title here</title>
 <style type="text/css">
 .board_container{
 	width: 1200px;
-	height:1000px;
 	margin:0 auto;
 	margin-top:40px;
  
@@ -25,7 +25,6 @@
 #noticeForm{
 	display: inline-block;
 	width:800px;
-	height:600px;
 	margin-left:50px;
 
 
@@ -180,7 +179,7 @@ height: 10px;
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 	
 	<form action="noticeUpdate" id="noticeForm" method="post" id="frm">
 	<h1>공지사항 수정</h1>
