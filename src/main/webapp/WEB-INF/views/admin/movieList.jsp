@@ -274,7 +274,7 @@ $(function(){
 			    </table>
 			    <div class="set-btn">
 			        <a href="./movie_insert">
-			        	<input type="button" class="round inred on" style="width:58px;" value="글쓰기">
+			        	<input type="button" class="round inred on" style="width:58px;" value="등록">
 			        </a>
 		    	</div>
 			</div>
