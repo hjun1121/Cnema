@@ -58,6 +58,38 @@ public class AjaxController {
 	@Inject
 	private MyCouponService myCouponService;
 	
+	//admin 관련
+	@RequestMapping(value="adminScreenList", method=RequestMethod.POST)
+	public void adminScreenList(int theater_num, Model model){
+		List<ScreenDTO> ar = null;
+		try {
+			ar= scheduleService.screenList(theater_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("screenList", ar);
+	}
+	
+	@RequestMapping(value="adminLocationList", method=RequestMethod.POST)
+	public ModelAndView adminLocationList(String area){
+		List<TheaterDTO> ar = null;;
+		try {
+			ar = theaterService.locationList(area);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("locationList", ar);
+		mv.setViewName("ajax/adminLocationList");
+		
+		return mv;
+	}
+	
+	
+	//멤버관련 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
 	public ModelAndView memberJoin(int page_num, String id) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -89,6 +121,7 @@ public class AjaxController {
 		return mv;
 	}
 	
+	//이벤트관련
 	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
 		
@@ -187,6 +220,8 @@ public class AjaxController {
 		
 		return mv;
 	}
+	
+	//스케쥴리스트
 	@RequestMapping(value="slScheduleList", method=RequestMethod.POST)
 	public void slScheduleList(int location, String day, Model model){
 		List<MovieDTO> movieList = new ArrayList<>();
@@ -212,6 +247,8 @@ public class AjaxController {
 		model.addAttribute("movieList", movieList);
 	}
 	
+	
+	//빠른예매
 	@RequestMapping(value="qrSeatBox", method=RequestMethod.POST)
 	public void qrSeatBox(int schedule_num, Model model){
 		
@@ -380,21 +417,6 @@ public class AjaxController {
 		model.addAttribute("discount", discount);
 	}
 	
-	@RequestMapping(value="idFind", method=RequestMethod.POST)
-	public ModelAndView idFind(MemberDTO memberDTO){
-		ModelAndView mv = new ModelAndView();
-			List<MemberDTO> ar=null;
-		try {
-			ar = memberService.idFind(memberDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			mv.addObject("idList", ar);
-			mv.setViewName("ajax/idFindList");
-		return mv;
-	}
-	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
 	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int location){
 		List<TheaterDTO> ar = null;;
@@ -409,6 +431,22 @@ public class AjaxController {
 		mv.addObject("location", ar);
 		mv.setViewName("ajax/locationList");
 		
+		return mv;
+	}
+	
+	//찾기관련
+	@RequestMapping(value="idFind", method=RequestMethod.POST)
+	public ModelAndView idFind(MemberDTO memberDTO){
+		ModelAndView mv = new ModelAndView();
+			List<MemberDTO> ar=null;
+		try {
+			ar = memberService.idFind(memberDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			mv.addObject("idList", ar);
+			mv.setViewName("ajax/idFindList");
 		return mv;
 	}
 	

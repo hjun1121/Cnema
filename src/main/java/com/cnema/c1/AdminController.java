@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import com.cnema.member.MemberService;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.theater.DayDTO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.TheaterDTO;
@@ -239,8 +241,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.GET)
-	public void scheduleInsert() {
+	public void scheduleInsert(Model model) {
+		List<TheaterDTO> areaList = null;
+		List<MovieDTO> movieList =null;
+		List<DayDTO> dayList = null;
+		try {
+			areaList = theaterService.areaList();
+			movieList = movieService.qrMovieList();
+			dayList = theaterService.dayList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		model.addAttribute("areaList", areaList);
+		model.addAttribute("movieList", movieList);
+		model.addAttribute("dayList", dayList);
 	}
+	
 	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
 	public void scheduleInsert(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
