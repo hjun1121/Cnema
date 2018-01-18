@@ -23,14 +23,13 @@
 				type: "POST",
 				data: {
 					page_num:${page.page_num},
-					id:${member.id }
+					id:${member.id}
 				},
 				success: function(data) {
 					alert(data);
-// 					location.href="../community/communityMain";
 				}
+			});
 		});
-	});
 		
 		
 		$("#drop_btn").click(function() {
@@ -39,32 +38,59 @@
 				type: "POST",
 				data: {
 					page_num:${page.page_num},
-					id:${member.id }
+					id:${member.id}
 				},
 				success: function(data) {
 					alert(data);
-// 					location.href="../community/communityMain";
 				}
+			});
+		
 		});
 		
-	});
+		$("#deletePage_btn").click(function() {
+			alert("페이지 삭제하기");
+		});
+		
 
-});
+	});
 
 </script>
 
 </head>
 <body>
-	<h1>${page.page_name}</h1>
+<div id="cgvwrap"  style="text-align: center;">
+<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+</div>
+<div style="width: 980px; height: 1000px; background-color: #dcdcdc; text-align: center; margin: 50px auto;">
+	<!-- 페이지 로고 img -->
+	<div style = "width: 99%; margin-bottom: 30px;">
+		<img style="width: 100%; height: 300px; border: 3px solid gold; -webkit-border-radius: 50px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
+	</div>
+	<!-- 게시물 작성  -->
+	<div style="width: 100%; height: auto; background-color: white;">
+		<ul style="list-style: none; float: left;">
+			<li style="float: left; font-size: 20px;">상태</li>
+			<li style="float: left; font-size: 20px;">사진</li>
+		</ul>
+		<img alt="${member.id} 프로필" src="../resources/profil/${member.fileName}">
+		<input type="text" value="글쓰기....">
+		
+	</div>
+	
 
-	<c:choose>
-		<c:when test="${not empty member and memberCheck eq 1}">
-				<input type="button" id="drop_btn" value="페이지 탈퇴하기">
-		</c:when>
-		<c:otherwise>
-			<input type="button" id="join_btn" value="페이지 가입하기">
-		</c:otherwise>
-	</c:choose>
+<%-- 	<c:choose> --%>
+<%-- 		<c:when test="${not empty member and memberCheck eq 11}"> --%>
+<!-- 			<input type="button" id="drop_btn" value="페이지 탈퇴하기"> -->
+<%-- 		</c:when> --%>
+<%-- 		<c:when test="${not empty member and memberCheck eq 20}"> --%>
+<!-- 			<input type="button" id="deletePage_btn" value="페이지 삭제하기"> -->
+<%-- 		</c:when> --%>
+<%-- 		<c:otherwise> --%>
+<!-- 			<input type="button" id="join_btn" value="페이지 가입하기"> -->
+<%-- 		</c:otherwise> --%>
+<%-- 	</c:choose> --%>
 
+</div>
+<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 </body>
 </html>

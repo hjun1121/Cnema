@@ -37,7 +37,11 @@ public class CommunityService {
 		int result = 0;
 		pageMemberDTO = pageDAO.memberCheck(page_num, id);
 		if(pageMemberDTO != null) { //가입한 페이지일 경우
-			result = 1;
+			if(pageMemberDTO.getType() == 20) { //그룹장일 경우
+				result = 20;
+			} else {
+				result = 11; //일반회원일 경우
+			}
 		}
 
 		return result;
@@ -54,7 +58,7 @@ public class CommunityService {
 	public int memberInsert(PageDTO pageDTO, String id) throws Exception {
 		int result = pageDAO.memberInsert(pageDTO, id);
 		result = pageDAO.memberCount(pageDTO.getPage_num());
-		
+
 		return result;
 	}
 	
@@ -64,13 +68,11 @@ public class CommunityService {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		String id = "";
 		id = memberDTO.getId();
-		System.out.println("communityServie id : " + id);
 		MultipartFile file = pageDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "page_logo");
 		pageDTO.setFileName(name);
 		pageDTO.setOriName(file.getOriginalFilename());
 		int result = pageDAO.pageInsert(pageDTO);
-		System.out.println(pageDTO.getPage_num());
 		result = pageDAO.memberInsert(pageDTO, id);
 
 		return result;
