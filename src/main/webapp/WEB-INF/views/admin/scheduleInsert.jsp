@@ -98,6 +98,7 @@ $(function(){
 		var screen = $("#screen").val();
 		var movie = $("#movie").val();
 		var day = $("#day").val();
+		var count = $("#count").val();
  		if(area == 'x'){
 			alert("지역을 선택해주세요");
 			$("#area").focus();
@@ -114,7 +115,7 @@ $(function(){
 			alert("날짜를 선택해주세요");		
 			$("#day").focus();	
 		}else {
-			alert("완료");
+			document.frm.submit();
 		}
 	})
 });
@@ -150,12 +151,12 @@ $(function(){
 					</select>
 				</td>
 				<td>
-					<select id="screen" name="screen">
+					<select id="screen" name="screen_num">
 						<option value="x">극장선택</option>
 					</select>
 				</td>
 				<td>
-					<select id="movie" name="movie">
+					<select id="movie" name="movie_num">
 						<option value="x">영화선택</option>
 						<c:forEach items="${movieList }" var="movieDTO">
 						<option value="${movieDTO.movie_num }">${movieDTO.movie_name }</option>
