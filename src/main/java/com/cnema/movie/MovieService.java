@@ -43,6 +43,10 @@ public class MovieService {
 		return movieDAO.reviewList(movie_num);
 	}
 
+	public List<MovieDTO> qrMovieList() throws Exception {
+		return movieDAO.qrMovieList();
+	}
+	
 	public List<MovieDTO> movieList(String kind) throws Exception {
 		return movieDAO.movieList(kind);
 	}

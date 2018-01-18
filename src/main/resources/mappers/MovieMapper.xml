@@ -44,6 +44,10 @@
   	<select id="selectOne" resultType="movieDTO" parameterType="int">
   		SELECT * FROM movie WHERE movie_num=#{movie_num}
   	</select>
+ 
+   	<select id="qrMovieList" resultType="movieDTO">
+  		select * from movie where show=10
+  	</select>
   	
   	<select id="movieList" parameterType="java.util.Map" resultType="movieDTO">
   		select * from movie 
