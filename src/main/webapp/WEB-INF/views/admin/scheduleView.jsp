@@ -33,7 +33,7 @@ $(function(){
 		<tr>
 			<td><input type="text" name="screen_num" value="${scheduleDTO.screen_num }"></td>
 			<td><input type="text" name="movie_num" value="${scheduleDTO.movie_num }"></td>
-			<td><fmt:formatDate value="${reserveList.scheduleDTO.in_time}" type="time" name="in_time"pattern="HH:mm"/></td>
+			<td><input type="time" name="in_time" value="${scheduleDTO.in_time }"></td>
 			<td><input type="time" name="out_time" value="${scheduleDTO.out_time }"></td>
 			<td><input type="text" name="day" value="${scheduleDTO.day }"></td>
 		</tr>

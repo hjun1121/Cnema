@@ -157,8 +157,7 @@ public class TheaterController {
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)
-	public void quickReserve(Model model, String area, String kind){
-		
+	public void quickReserve(Model model, String area){
 		if(area == null){
 			area="서울";
 		}
@@ -167,7 +166,7 @@ public class TheaterController {
 		List<TheaterDTO> theaterList = null;
 		List<DayDTO> dayList = null;
 		try {
-			movieList = movieService.movieList(kind);
+			movieList = movieService.qrMovieList();
 			theaterList = theaterService.locationList(area);
 			dayList = theaterService.dayList();
 		} catch (Exception e) {

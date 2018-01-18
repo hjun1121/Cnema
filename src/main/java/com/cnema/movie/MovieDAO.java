@@ -112,7 +112,11 @@ public class MovieDAO {
 		map.put("kind", kind);
 		return sqlSession.selectList(NAMESPACE+"movieList", map);
 	}
-
+	
+	public List<MovieDTO> qrMovieList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"qrMovieList");
+	}
+	
 	/*heeseong*/
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"movieInfo",movie_num);
