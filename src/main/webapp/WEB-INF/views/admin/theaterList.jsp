@@ -264,7 +264,7 @@ $(function(){
 			    </table>
 			    <div class="set-btn">
 			        <a href="./theaterInsert">
-			        	<button type="submit" id="save" class="round inred on"><span>추가</span></button>
+			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
 			        </a>
 		    	</div>
 			</div>

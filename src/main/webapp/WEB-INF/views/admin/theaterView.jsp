@@ -44,8 +44,11 @@ $(function(){
                             <li>
                                 <a href="#">관리자</a>
                             </li>
+                            <li>
+                                <a href="#">극장 목록</a>
+                            </li>
                             <li class="last">
-                            	극장 목록
+                            	극장 상세페이지
                             </li>
                     	</ul>
                 	</div>
