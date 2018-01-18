@@ -61,7 +61,19 @@
 <div id="cgvwrap"  style="text-align: center;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 </div>
-<div style="width: 980px; height: 1000px; background-color: #dcdcdc; text-align: center; margin: 50px auto;">
+<div style="width: 1012px; height: 1000px; background-color: #f0f0f0; text-align: center; margin: 50px auto;">
+	<!-- 왼쪽 프로필 바 -->
+	<div style = "width: 180px; float: left; top: 86px;">
+		<c:choose>
+			<c:when test="${not empty member}">
+				<img alt="${member.id} 프로필" src="../resources/profil/${member.fileName}">
+			</c:when>		
+			<c:otherwise>
+				<img alt="기본 프로필" src="../resources/profil/defaultProfile.jpg">
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<div style = "width: 500px !important; right:320px; margin-left:12px; float:left; background-color: #dcdcdc;">
 	<!-- 페이지 로고 img -->
 	<div style = "width: 99%; margin-bottom: 30px;">
 		<img style="width: 100%; height: 300px; border: 3px solid gold; -webkit-border-radius: 50px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
@@ -72,7 +84,7 @@
 			<li style="float: left; font-size: 20px;">상태</li>
 			<li style="float: left; font-size: 20px;">사진</li>
 		</ul>
-		<img alt="${member.id} 프로필" src="../resources/profil/${member.fileName}">
+		<img style="width: " alt="${member.id} 프로필" src="../resources/profil/${member.fileName}">
 		<input type="text" value="글쓰기....">
 		
 	</div>
@@ -90,6 +102,7 @@
 <%-- 		</c:otherwise> --%>
 <%-- 	</c:choose> --%>
 
+</div>
 </div>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 </body>

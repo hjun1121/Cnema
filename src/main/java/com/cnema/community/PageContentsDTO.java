@@ -2,6 +2,8 @@ package com.cnema.community;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class PageContentsDTO {
 
 	private int contents_num;
@@ -16,8 +18,15 @@ public class PageContentsDTO {
 	private int reg;
 	private int step;
 	private int depth;
+	private MultipartFile file;
 	
 	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public int getContents_num() {
 		return contents_num;
 	}

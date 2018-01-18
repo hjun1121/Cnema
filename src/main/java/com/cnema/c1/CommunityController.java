@@ -33,7 +33,7 @@ public class CommunityController {
 	public void pageMain() {
 		
 	}
-	
+
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
 	public ModelAndView pageMain(HttpSession session, int page_num) throws Exception {
