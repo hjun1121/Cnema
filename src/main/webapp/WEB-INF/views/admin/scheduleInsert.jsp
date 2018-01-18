@@ -146,7 +146,7 @@ $(function(){
 					</select>
 				</td>
 				<td>
-					<select id="location" name="location">
+					<select id="location" name="theater_num">
 						<option value="x">지역선택</option>
 					</select>
 				</td>

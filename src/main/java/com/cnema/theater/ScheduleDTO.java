@@ -9,9 +9,17 @@ public class ScheduleDTO {
 	private String in_time;
 	private String out_time;
 	private Date day;
+	private int theater_num;
 	
 	private int seatcheck;
 	
+	
+	public int getTheater_num() {
+		return theater_num;
+	}
+	public void setTheater_num(int theater_num) {
+		this.theater_num = theater_num;
+	}
 	public int getSeatcheck() {
 		return seatcheck;
 	}

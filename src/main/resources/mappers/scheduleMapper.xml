@@ -51,7 +51,7 @@
   	
   	<!-- heeseong -->
   	<delete id="scheduleInsert" parameterType="scheduleDTO">
-  		insert into schedule values(movie_seq.nextval,#{screen_num},#{movie_num},#{in_time},#{out_time},#{day})
+  		insert into schedule values(movie_seq.nextval,#{screen_num},#{movie_num},to_date(#{in_time},'HH24:MI'),to_date(#{out_time},'HH24:MI'),#{day},#{theater_num})
   	</delete>
   	
   	<!-- heeseong -->

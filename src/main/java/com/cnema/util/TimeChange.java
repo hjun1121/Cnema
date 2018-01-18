@@ -66,20 +66,40 @@ public class TimeChange {
 			Date d = sd.parse(all);
 			sDay.setTime(d);
 			
-			System.out.println("시작시간"+sDay.getTime());
+			//System.out.println("시작시간"+sDay.getTime());
 			MovieDTO movieDTO = movieDAO.selectOne(movie_num);
 			int run_time = movieDTO.getRun_time();
 			sDay.add(Calendar.MINUTE, run_time);
-			System.out.println("끝시간"+sDay.getTime());
+			//System.out.println("끝시간"+sDay.getTime());
 			
 			Date d2 = sDay.getTime();
 			SimpleDateFormat out = new SimpleDateFormat("HH:mm");
 			
 			out_time = out.format(d2);
-			System.out.println(out_time);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}	
 		return out_time;
 	}
+	
+	public String getInTime(String day, String in_time, int next_time){
+		Calendar sDay = Calendar.getInstance();
+		try {
+			String all = day+in_time;
+			SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+			
+			Date d = sd.parse(all);
+			sDay.setTime(d);
+			
+			sDay.add(Calendar.MINUTE, next_time);
+			System.out.println("끝시간"+sDay.getTime());
+			
+			Date d2 = sDay.getTime();
+			SimpleDateFormat out = new SimpleDateFormat("HH:mm");
+			in_time = out.format(d2);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}	
+		return in_time;
+	}	
 }

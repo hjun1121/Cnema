@@ -265,26 +265,32 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
-	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO,int count,RedirectAttributes rd) {
+	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO,int count, int next_time, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("====");
-		System.out.println(scheduleDTO.getIn_time());
-		System.out.println(scheduleDTO.getMovie_num());
-		System.out.println(scheduleDTO.getOut_time());
-		System.out.println(scheduleDTO.getScreen_num());
-		System.out.println(scheduleDTO.getDay());
-		System.out.println(count);
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		String day = sd.format(scheduleDTO.getDay());
-		String out = timeChange.getOutTime(day, scheduleDTO.getIn_time(), scheduleDTO.getMovie_num());
 		int result = 0;
-		//result = scheduleService.scheduleInsert(scheduleDTO);
+		for(int i =1; i<=count; i++){
+			int next = 0;
+			if(i==1){
+				next =0;
+			}else{
+				next = next_time;
+			}
+			String in_time =timeChange.getInTime(day, scheduleDTO.getIn_time(), next);
+			scheduleDTO.setIn_time(in_time);
+			
+			String out_time = timeChange.getOutTime(day, scheduleDTO.getIn_time(), scheduleDTO.getMovie_num());
+			scheduleDTO.setOut_time(out_time);
+			result = scheduleService.scheduleInsert(scheduleDTO);
+			System.out.println(i);
+		}
 		
 		if(result>0){
-			rd.addFlashAttribute("message", "글쓰기 성공");
+			rd.addFlashAttribute("message", "스케줄 성공");
 			mv.setViewName("redirect:../admin/scheduleList");
 		}else{
-			rd.addFlashAttribute("message", "글쓰기 실패");
+			rd.addFlashAttribute("message", "스케줄 실패");
 			mv.setViewName("redirect:../admin/scheduleList");
 		}
 		return mv;

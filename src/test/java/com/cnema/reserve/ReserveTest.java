@@ -108,7 +108,7 @@ public class ReserveTest extends AbstractTest {
 			e.printStackTrace();
 		}
 	}
-	public void intime(){
+	public void getOutTime(){
 		Calendar sDay = Calendar.getInstance();
 		try {
 			int count = 3;
