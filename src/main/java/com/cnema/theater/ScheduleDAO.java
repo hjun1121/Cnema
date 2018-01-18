@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.sun.glass.ui.Screen;
+
 @Repository
 public class ScheduleDAO {
 	@Inject
@@ -59,6 +61,10 @@ public class ScheduleDAO {
 	public ScreenDTO screenOne(int screen_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"screenOne", screen_num);
 	}
+	public int screenInsert(ScreenDTO screenDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"screenInsert",screenDTO);
+	}
+	
 	/*heeseong*/
 	public ScheduleDTO scheduleInfo(int sNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"scheduleInfo", sNum);

@@ -38,6 +38,11 @@ public class ScheduleService {
 		return scheduleDAO.scheduleOne(schedule_num);
 	}
 	
+	public int screenInsert(ScreenDTO screenDTO) throws Exception{
+		return scheduleDAO.screenInsert(screenDTO);
+	}
+	
+	
 	public ScreenDTO screenOne(int screen_num) throws Exception{
 		return scheduleDAO.screenOne(screen_num);
 	}

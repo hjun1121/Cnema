@@ -44,15 +44,19 @@
   		select * from screen where screen_num=#{screen_num}
   	</select>
   
+  	<insert id="screenInsert" parameterType="screenDTO">
+  		insert into screen values(movie_seq.nextval,#{theater_num},#{room_num},#{floor},#{x_num},#{y_num})
+  	</insert>
+  
   	<!-- heeseong -->
   	<select id="scheduleInfo" resultMap="scheduleTime" parameterType="int">
   		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where schedule_num=#{sNum}
   	</select>
   	
   	<!-- heeseong -->
-  	<delete id="scheduleInsert" parameterType="scheduleDTO">
+  	<insert id="scheduleInsert" parameterType="scheduleDTO">
   		insert into schedule values(movie_seq.nextval,#{screen_num},#{movie_num},to_date(#{in_time},'HH24:MI'),to_date(#{out_time},'HH24:MI'),#{day},#{theater_num})
-  	</delete>
+  	</insert>
   	
   	<!-- heeseong -->
   	<select id="scheduleAList" resultMap="scheduleTime">

@@ -29,6 +29,7 @@ import com.cnema.movie.MovieService;
 import com.cnema.theater.DayDTO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
+import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
 import com.cnema.util.TimeChange;
@@ -233,7 +234,39 @@ public class AdminController {
 		
 		return mv;
 	}
-	
+
+	@RequestMapping(value="screenInsert", method=RequestMethod.GET)
+	public void screenInsert(Model model) {
+		List<TheaterDTO> areaList = null;
+		try {
+			areaList = theaterService.areaList();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		model.addAttribute("areaList", areaList);
+	}
+	@RequestMapping(value="screenInsert", method=RequestMethod.POST)
+	public ModelAndView screenInsert(ScreenDTO screenDTO, RedirectAttributes rd) {
+		ModelAndView mv = new ModelAndView();
+		int result =0;
+		try {
+			result = scheduleService.screenInsert(screenDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(result>0){
+			rd.addFlashAttribute("message", "스크린 성공");
+			mv.setViewName("redirect:../");
+		}else{
+			rd.addFlashAttribute("message", "스크린  실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+		
+	}
 	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
 	public ModelAndView scheduleList() {
 		ModelAndView mv = new ModelAndView();
@@ -283,7 +316,6 @@ public class AdminController {
 			String out_time = timeChange.getOutTime(day, scheduleDTO.getIn_time(), scheduleDTO.getMovie_num());
 			scheduleDTO.setOut_time(out_time);
 			result = scheduleService.scheduleInsert(scheduleDTO);
-			System.out.println(i);
 		}
 		
 		if(result>0){
