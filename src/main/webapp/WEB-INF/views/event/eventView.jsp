@@ -10,15 +10,24 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 
 <title>Insert title here</title>
 <style type="text/css">
 .board_container{
-	width: 1200px;
-	height:1000px;
+	width: 51%;
+	height:auto;
 	margin:0 auto;
 	margin-top:40px;
+	background-color: gray;
  
+}
+.eventViewPage{
+	display: inline-block;
+	width:81%;
+	margin-left:20px;
+
+
 }
 </style>
 <script type="text/javascript">
@@ -77,10 +86,10 @@ $(function(){
                                 <a href="#">게시판</a>
                             </li>
                             <li>
-                                <a href="#">공지사항</a>
+                                <a href="#">이벤트</a>
                             </li>
                             <li class="last">
-                            	글쓰기
+                            	글보기
                             </li>
                     	</ul>
                 	</div>
@@ -91,7 +100,9 @@ $(function(){
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
+
+<div class="eventViewPage">
 <div class="eventViewhead">
     <h3>${view.title } </h3> 
     <em class="date">
@@ -122,11 +133,13 @@ ${view.contents}
 		<a href="./eventList">목록으로</a>
 		<a href="./eventUpdate?num=${view.num}">update</a>
 		<a href="./eventDelete?num=${view.num}">delete</a>
-				
-			</div><!--게시판 내용  -->
 	
+
+
+			</div>
+</div><!--게시판 내용  -->
 	
-	</div>
+</div>
 	
 	
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>

@@ -13,11 +13,11 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
 .board_container{
 	width: 1200px;
-	height:1000px;
 	margin:0 auto;
 	margin-top:40px;
  
@@ -119,7 +119,7 @@
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
 <h2>이벤트 작성하기</h2>
 <form action="eventWrite" method="post" id="frm" enctype="multipart/form-data">
 

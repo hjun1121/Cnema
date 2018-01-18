@@ -10,6 +10,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
 table {
@@ -33,7 +34,6 @@ table {
 }
 .board_container{
 	width: 1200px;
-	height:1000px;
 	margin:0 auto;
 	margin-top:40px;
  
@@ -153,7 +153,7 @@ function move() {
         	<!-- 상단바 끝 -->
         	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
+	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/qnaTab.jsp"></c:import>
 	
 	<form action="qnaWrite" method="post" enctype="multipart/form-data" id="qnaWriteForm">
 	<div class="customer_top">

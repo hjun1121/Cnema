@@ -10,12 +10,12 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 
 <title>Insert title here</title>
 <style type="text/css">
 .board_container{
 	width: 1200px;
-	height:1000px;
 	margin:0 auto;
 	margin-top:40px;
  
