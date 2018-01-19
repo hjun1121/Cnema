@@ -237,7 +237,7 @@ public class MyPageController {
 				if(kind.equals("reg_date")){
 					wList = wishService.wishList(memberDTO.getId());
 				}else{
-					wList = wishService.wishSList(memberDTO.getId());
+					wList = wishService.wishList(memberDTO.getId());
 				}
 				movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
 				wishDTO.setMovieDTO(movieDTO);

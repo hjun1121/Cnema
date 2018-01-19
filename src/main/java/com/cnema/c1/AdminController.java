@@ -72,9 +72,6 @@ public class AdminController {
 				if (kind.equals("title")) {
 					movieList = movieService.movieSearchList(kind, search);
 				}
-				if (kind.equals("type")) {
-					movieList = movieService.movieSearchList(kind, search);
-				}
 				if (kind.equals("actor")) {
 					movieList = movieService.movieSearchList(kind, search);
 				}
@@ -91,7 +88,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "movieView", method = RequestMethod.GET)
-	public ModelAndView movieView(int movie_num) {
+	public ModelAndView movieView(int movie_num,HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		try {
@@ -99,6 +97,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("movieDTO", movieDTO);
 		mv.setViewName("admin/movieView");
 		return mv;
@@ -217,15 +216,20 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "movie_insert", method = RequestMethod.GET)
-	public void insert() {
+	@RequestMapping(value = "movieInsert", method = RequestMethod.GET)
+	public ModelAndView movieInsert(HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("myInfo", memberDTO);
+		mv.setViewName("admin/movieInsert");
+		return mv;
 	}
 
-	@RequestMapping(value = "movie_insert", method = RequestMethod.POST)
-	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
+	@RequestMapping(value = "movieInsert", method = RequestMethod.POST)
+	public ModelAndView movieInsert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
 		int result = 0;
 		try {
-			result = movieService.insert(movieDTO, session);
+			result = movieService.movieInsert(movieDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -247,7 +251,6 @@ public class AdminController {
 		try {
 			areaList = theaterService.areaList();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -261,7 +264,6 @@ public class AdminController {
 		try {
 			result = scheduleService.screenInsert(screenDTO);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (result > 0) {

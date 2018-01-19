@@ -62,8 +62,8 @@ public class MovieDAO {
 	}
 
 	//insert
-	public int insert(MovieDTO movieDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"insert", movieDTO);
+	public int movieInsert(MovieDTO movieDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"movieInsert", movieDTO);
 	}
 
 	//delete

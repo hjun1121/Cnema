@@ -15,7 +15,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>영화 목록</title>
+<title>무비 리스트</title>
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
@@ -31,6 +31,10 @@ $(function(){
 		var sKind = $("#kind").val();
 		var search = $("#search").val();
 		location.href="./movieList?kind="+sKind+"&search="+search;
+	});
+	
+	$(".round").click(function(){
+		location.href="movieInsert"
 	});
 });
 </script>
@@ -218,10 +222,11 @@ $(function(){
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li class="on"><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            
@@ -239,8 +244,7 @@ $(function(){
 				<h4>영화 목록 ${fn:length(movieList)}개 &nbsp;&nbsp;</h4>
 					<select id="kind" class="f">
 						<option class="kind" value="title">제목</option>
-						<option class="kind" value="type">장르</option>
-						<option class="kind" value="actor">감독및출연진</option>
+						<option class="kind" value="actor">감독 및 출연진</option>
 					</select>
 					<input type="text" name="search" id="search">
 					<input type="button" class="btnType3" id="sBtn" value="GO">
@@ -264,6 +268,7 @@ $(function(){
 							<th scope="col">개봉일</th>
 							<th scope="col">상영시간</th>
 							<th scope="col">나이제한</th>
+							<th scope="col">상태</th>
 			            </tr>
 			        </thead>
 			        <tbody>
@@ -274,8 +279,14 @@ $(function(){
 								<td><a href="./movieView?movie_num=${mList.movie_num }">${mList.movie_name }</a></td>
 								<td>${mList.actor }</td>
 								<td>${mList.open_date }</td>
-								<td>${mList.run_time }</td>
-								<td>${mList.age_limit }</td>
+								<td>${mList.run_time }분</td>
+								<td>${mList.age_limit }세 관람가</td>
+								<c:if test="${mList.show eq 10}">
+									<td>상영중</td>
+								</c:if>
+								<c:if test="${mList.show eq 20}">
+									<td>상영종료</td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -287,9 +298,7 @@ $(function(){
 			        </tbody>
 			    </table>
 			    <div class="set-btn">
-			        <a href="./movie_insert">
-			        	<input type="button" class="round inred on" style="width:58px;" value="등록">
-			        </a>
+			        <input type="button" class="round inred on" style="width:58px;" value="등록">
 		    	</div>
 			</div>
 			<!-- /// -->
