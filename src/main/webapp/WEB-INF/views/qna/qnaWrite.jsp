@@ -199,10 +199,10 @@ $(function(){
 		<tr>
 			<th>문의유형</th>
 			<td>
-			<input type="radio" name="type" value="10" checked="checked">문의
-			<input type="radio" name="type" value="11">불만
-			<input type="radio" name="type" value="12">칭찬
-			<input type="radio" name="type" value="13">제안
+			<input type="radio" name="type" value="문의" checked="checked">문의
+			<input type="radio" name="type" value="불만">불만
+			<input type="radio" name="type" value="칭찬">칭찬
+			<input type="radio" name="type" value="제안">제안
 			</td>
 		</tr>
 		<tr>
@@ -254,6 +254,7 @@ $(function(){
 			</table>
 				<br>
 	<input type="hidden" name="writer" value="${member.id}">
+	
 	<div id="btnSection">
 	<input type="button" id="btn1" onclick="move()" value="등록취소">
 	<input type="submit" id="btn2" value="등록하기">

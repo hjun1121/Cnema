@@ -15,10 +15,11 @@ import javax.servlet.http.HttpSession;
 
 import com.cnema.member.MemberDAO;
 import com.cnema.member.MemberDTO;
+import com.cnema.qna.QnaDTO;
 
 public class EmailDAO {
 
-	public int qnaReplySend(String email) {
+	public int qnaReplySend(QnaDTO qnaDTO,String email) {
 		int result=0;
 		String host     = "smtp.naver.com";
 		  final String user   = "library_4";
@@ -45,7 +46,7 @@ public class EmailDAO {
 		   message.setSubject("[Cnema]답글이 달렸습니다.");
 		   
 		   
-		   String mes = "답글내용";
+		   String mes = "답글내용입니다.\n--------------\n"+qnaDTO.getReply();
 		   message.setText(mes); //보내는 내용
 
 		   // send the message

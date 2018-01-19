@@ -10,7 +10,6 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 
 <title>Insert title here</title>
 <style type="text/css">
@@ -55,7 +54,6 @@
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/board/board_tab.jsp"></c:import>
 <h1>Qna View Page</h1>
 	<div>
 		<table class="table table-hover">
@@ -83,22 +81,6 @@
 		<a href="./qnaList" class="btn btn-default">List</a>
 		
 	</div>
-	<!--  답글 표시 하기 (관리자일때만 보이게 하기) -->
-	<c:if test="${member.type == 20 }"></c:if>
-	<div id="reply">
-	<form action="qnaUpdate" id="frm" method="post">
-		<h3>답변 달기</h3>
-		<input type="hidden" name="num" value="${list.num}">
-		<input type="hidden" name="reply_id" value="${member.id}">
-		<textarea name="reply" rows="5" cols="30"></textarea>
-		<c:if test="${list.reply==null}">
-		<button type="submit">답변 달기</button>
-		</c:if>
-		<c:if test="${list.reply != null}">
-		<button type="submit">답변 수정</button>
-		</c:if>
-		</form>
-	</div>
 	
 	
 	<!-- 답변 단 내용 보여주기  -->
@@ -110,6 +92,24 @@
          <p>${list.reply }</p>
     </div>
 		
+	<!--  답글 표시 하기 (관리자일때만 보이게 하기) -->
+	<c:if test="${member.type == 20 }"></c:if>
+	<div id="reply">
+	<form action="qnaUpdate" id="frm" method="post">
+		<h3>답변 달기</h3>
+		<input type="hidden" name="num" value="${list.num}">
+		<input type="hidden" name="reply_id" value="${member.id}">
+		<input type="hidden" name="email" value="psn1091@naver.com">
+		<textarea name="reply" rows="5" cols="30"></textarea>
+		<c:if test="${list.reply==null}">
+		<button type="submit">답변 달기</button>
+		</c:if>
+		<c:if test="${list.reply != null}">
+		<button type="submit">답변 수정</button>
+		</c:if>
+		</form>
+	</div>
+	
 			</div><!--게시판 내용  -->
 	
 	

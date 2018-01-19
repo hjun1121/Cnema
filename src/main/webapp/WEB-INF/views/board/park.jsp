@@ -271,7 +271,7 @@ background-color: green;
 			</c:forEach>
   	</div>
   
-  
+  <a href="../qna/qnaList">qnaList</a>
   </div>     
   </div> 	
         	

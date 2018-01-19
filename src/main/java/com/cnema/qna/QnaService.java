@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.qna.QnaDAO;
 import com.cnema.board.BoardDTO;
+import com.cnema.util.EmailDAO;
 import com.cnema.util.FileSaver;
 import com.cnema.util.ListData;
 import com.cnema.util.Pager;
@@ -23,6 +24,9 @@ public class QnaService {
 	private QnaDAO qnaDAO;
 	@Inject
 	private FileSaver fileSaver;
+	@Inject
+	private EmailDAO emailDAO;
+	
 	
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -68,8 +72,11 @@ public class QnaService {
 	}
 	
 	/*******************Qna 답글 부분 **************/
-	public int update(QnaDTO boardDTO) throws Exception {
+	public int update(QnaDTO boardDTO,String email) throws Exception {
 		int result = qnaDAO.update(boardDTO);
+		if(result>0){
+			emailDAO.qnaReplySend(boardDTO,email);
+		}
 		return result;
 	}
 	
