@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfo.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>영화 상세보기(관리자용)</title>
+<title>영화 상세보기</title>
 </head>
 <body>
 <div id="cgvwrap">
@@ -75,8 +76,21 @@
 				        			
 				        		</div>
         					<div class="grade-info">
+	        					<c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set> 
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은 sysdate <strong class="txt-purple">${myInfo.type}</strong>회원 입니다.             
+                         			 고객님은 <c:out value="${sysYear}" /> 
+                         			<strong class="txt-purple">
+                         			<c:if test="${myInfo.type eq 10}">
+                         				일반 회원
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 20}">
+                         				관리자
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 11}">
+                         				VIP 회원
+                         			</c:if>
+                         			</strong>입니다.             
                    			 	</p>
         						
                     			<div class="mycgv_btn_special2">
@@ -182,15 +196,16 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 		            <li class="on">
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li class="on"><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            
@@ -211,15 +226,17 @@
 				<table  class="revisionTable">
 					<tr>
 						<td>영화제목</td>
-						<td><input type="text" name="movie_name" class="noneBorder" value="${movieDTO.movie_name }"></td>
+						<td><input type="text" name="movie_name" class="noneBorder" value="${movieDTO.movie_name }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>포스터</td>
-						<td><input type="file" name="file" class="noneBorder"><input type="text" value="${movieDTO.oriName }" class="noneBorder"></td>
+						<td>
+						<img alt="${movieDTO.movie_name} 포스터" src="../resources/movie_poster/${movieDTO.fileName}" style="width: 60px; height: 70px;">
+						<input type="file" name="file" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>티저영상</td>
-						<td><input type="text" name="teaser_url" class="noneBorder" value="${movieDTO.teaser_url }"></td>
+						<td><input type="text" name="teaser_url" class="noneBorder" value="${movieDTO.teaser_url }" size="80"></td>
 					</tr>
 					<tr>
 						<td>개봉일</td>
@@ -227,7 +244,7 @@
 					</tr>
 					<tr>
 						<td>상영시간</td>
-						<td><input type="text"  name="run_time" class="noneBorder" value="${movieDTO.run_time }"></td>
+						<td><input type="text"  name="run_time" class="noneBorder" value="${movieDTO.run_time }" size="10"></td>
 					</tr>
 					<tr>
 						<td>장르</td>
@@ -235,20 +252,23 @@
 					</tr>
 					<tr>
 						<td>영화설명</td>
-						<td><input type="text" name="contents" class="noneBorder" value="${movieDTO.contents }"></td>
+						<td><input type="text" name="contents" class="noneBorder" value="${movieDTO.contents }" size="80"></td>
 					</tr>
 					<tr>
 						<td>나이제한</td>
-						<td><input type="text" name="age_limit" class="noneBorder" value="${movieDTO.age_limit }"></td>
+						<td><input type="text" name="age_limit" class="noneBorder" value="${movieDTO.age_limit }" size="10"></td>
 					</tr>
 					<tr>
 						<td>출연배우</td>
-						<td><input type="text" name="actor" class="noneBorder" value="${movieDTO.actor }"></td>
+						<td><input type="text" name="actor" class="noneBorder" value="${movieDTO.actor }" size="50"></td>
 					</tr>
-					
+					<tr>
+						<td>상영중</td>
+						<td><input type="number" name="show" class="noneBorder" value="${movieDTO.show }" size="10"></td>
+					</tr>
 				</table>
 				<div class="set-btn">
-					<input type="submit" class="round inred on" style="width: 58px;" value="등록">
+					<input type="submit" class="round inred on" style="width: 58px;" value="수정">
 			        <a href="../admin/movieList" class="round gray"><span>목록</span></a>
 			    </div>
 			</form>

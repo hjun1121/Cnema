@@ -15,7 +15,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>극장 목록(관리자용)</title>
+<title>극장 리스트</title>
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
@@ -217,10 +217,11 @@ $(function(){
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li class="on"><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li class="on"><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            

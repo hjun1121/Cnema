@@ -75,12 +75,12 @@ public class MovieService {
 		return result;
 	}
 
-	public int insert(MovieDTO movieDTO, HttpSession session) throws Exception {
+	public int movieInsert(MovieDTO movieDTO, HttpSession session) throws Exception {
 		MultipartFile file = movieDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "movie_poster");
 		movieDTO.setFileName(name);
 		movieDTO.setOriName(file.getOriginalFilename());
-		int result = movieDAO.insert(movieDTO);
+		int result = movieDAO.movieInsert(movieDTO);
 
 		return result;
 	}
@@ -89,7 +89,10 @@ public class MovieService {
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return movieDAO.movieInfo(movie_num);
 	}
-	
+	/*heeseong*/
+	public List<MovieDTO> movieAList() throws Exception {
+		return movieDAO.movieSList();
+	}
 	/*heeseong*/
 	public List<MovieDTO> movieSList() throws Exception {
 		return movieDAO.movieSList();

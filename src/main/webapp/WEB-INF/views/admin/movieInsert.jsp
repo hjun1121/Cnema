@@ -15,8 +15,6 @@
 <title>영화 등록하기</title>
 <script type="text/javascript">
 $(function(){
-	
-	
 	$("#iBtn").click(function(){
 		if($("#movie_name").val()==""){
 			$("#movie_name").focus();
@@ -213,15 +211,16 @@ $(function(){
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 		            <li class="on">
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li class="on"><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            
@@ -237,7 +236,7 @@ $(function(){
 			    <h3>영화 등록</h3>
 			</div>
 			<p class="info-com">&nbsp;</p>
-			<form action="movie_insert" method="post" name="frm" enctype="multipart/form-data">				
+			<form action="movieInsert" method="post" name="frm" enctype="multipart/form-data">				
 				<table  class="revisionTable">
 					<tr>
 						<td>영화제목</td>
@@ -257,11 +256,11 @@ $(function(){
 					</tr>
 					<tr>
 						<td>상영시간</td>
-						<td><input type="text" id="run_time" name="run_time" class="noneBorder"></td>
+						<td><input type="number" id="run_time" name="run_time" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>장르</td>
-						<td><input type="text" id="type" name="type" class="noneBorder"></td>
+						<td><input type="number" id="type" name="type" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>영화설명</td>
@@ -269,7 +268,7 @@ $(function(){
 					</tr>
 					<tr>
 						<td>나이제한</td>
-						<td><input type="text" id="age_limit" name="age_limit" class="noneBorder"></td>
+						<td><input type="number" id="age_limit" name="age_limit" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>출연배우</td>
@@ -277,7 +276,7 @@ $(function(){
 					</tr>
 					<tr>
 						<td>상영유무</td>
-						<td><input type="text" id="show" name="show" class="noneBorder"></td>
+						<td><input type="number" id="show" name="show" class="noneBorder"></td>
 					</tr>
 				</table>
 				<div class="set-btn">
