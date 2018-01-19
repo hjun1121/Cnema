@@ -14,14 +14,13 @@
 		$("#qrPrice").html('${reserve2DTO.price}');
 		/*  */
 		$("#leftBtn2").click(function(){
-			alert("이전")
+			alert("이전");
 		});
 		
 		/*  */
-		var v_point = ${member.v_point};
-		var price = ${reserve2.price };
-		
-		/*  */
+		var v_point = ${member.v_point};    //멤버에 잔여 포인트
+		var price = ${reserve2.price };  // 총 결제 돈
+		/* 쿠폰리스트 불러오기 */
 		$("#couponBtn").click(function(){
 			$.ajax({
 				url:"../ajax/qrCouponList",
@@ -33,7 +32,7 @@
 				}
 			});
 		});
-		/*  */
+		/* 쿠폰 사용 */
 		$("#couponList").on("click",".coupons",function(){
 			var coupon = $(this).val();
 			$.ajax({
@@ -44,29 +43,116 @@
 					coupon : coupon
 				},
 				success:function(data){
-					$("#discount").html(data);
+					$("#couponDiscount").css("display","");
+					$("#cDiscount").html(data.trim());
+					var cDiscount = $("#cDiscount").html();
+					$("#pDiscount").html("");
+					$("#point").val("");
+					$("#pointDiscount").css("display","none");
+					
+					var nowPrice = price-cDiscount;
+					$("#nowPrice").html(nowPrice);
 				}
 			});
 		});
-		/*  */
+		
+		/* 쿠폰 취소하기 */
+		$("#deleteBtn").click(function(){
+			$("#cDiscount").html("");
+			var cDiscount = $("#cDiscount").html();
+			var pDiscount = $("#pDiscount").html();
+			$(".coupons").prop("checked","");
+			
+			$("#couponDiscount").css("display","none");
+			
+			$("#nowPrice").html(price-cDiscount-pDiscount);
+		});
+		
+		/* 포인트 쓰기 */
 		$("#point").change(function(){
-			var point = $("#point").val();
+			var point = $("#point").val(); //입력 포인트
+			var cDiscount = $("#cDiscount").html(); // 쿠폰할인금액
+			var nowPrice = price-cDiscount;
 			if(v_point<point){
-				alert("현재 포인트보다 큰 값입니다.");
+				alert("잔여 포인트가 부족합니다.");
 				$("#point").val("");
+				
+				var pDiscount = $("#point").val();
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);	
+				$("#pointDiscount").css("display","none");
+				
+				$("#point").focus();
 			}else if(point<100){
-				alert("포인트는 100점이상 사용가능 합니다");
-				$("#point").val("");
+				if(point==""){
+					
+				}else{
+					alert("포인트는 100점이상 사용가능 합니다");
+					$("#point").val("");
+				}
+
+				var pDiscount = $("#point").val();
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);	
+				$("#pointDiscount").css("display","none");
+				
+				$("#point").focus();
+			}else if(nowPrice*1<point*1){
+				alert("최종가격보다 많이 쓸 수 없습니다.");
+				$("#point").val(nowPrice);
+				
+				var pDiscount = $("#point").val();
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);	
+				$("#pointDiscount").css("display","");
+				
+			}else{
+				var pDiscount = $("#point").val();
+				$("#pointDiscount").css("display","");
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);
 			}
 		});
-		/*  */
+		/* 모두쓰기 */
 		$("#allPoint").click(function(){
-			if(price<v_point){
-				$("#point").val(price);
-			}else if(v_point<100){
+			var point = $("#point").val(); //입력 포인트
+			var cDiscount = $("#cDiscount").html(); // 쿠폰할인금액
+			var nowPrice = price-cDiscount;
+			
+			if(v_point<100){
 				alert("포인트는 100점이상 사용가능합니다")
+				
+				$("#point").val("");
+
+				var pDiscount = $("#point").val();
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);	
+				$("#pointDiscount").css("display","none");
+				
+				$("#point").focus();
+				
+			}else if(nowPrice<v_point){
+				$("#point").val(nowPrice);
+				
+				var pDiscount = $("#point").val();
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);	
+				$("#pointDiscount").css("display","");
+				
 			}else{
 				$("#point").val(v_point);
+				
+				var pDiscount = $("#point").val();
+				$("#pDiscount").html(pDiscount);
+				var nowPrice = price-cDiscount-pDiscount;
+				$("#nowPrice").html(nowPrice);	
+				$("#pointDiscount").css("display","");
 			}
 		});
 		/*  */
@@ -147,7 +233,7 @@
 	<div id="all">
 		<div id="couponAll">
 			<ul>
-				<li>쿠폰 <input type="button" id="couponBtn" value="쿠폰불러오기"></li>
+				<li>쿠폰 <input type="button" id="couponBtn" value="쿠폰불러오기"> <input type="button" id="deleteBtn" value="쿠폰제거"></li>
 			</ul>
 			<div id="couponList" style="height: 84px; width: 250px; overflow: auto;" >
 				
@@ -161,8 +247,11 @@
 			</table>
 		</div>
 		
-		<div id="price">
-			총가격 :${reserve2DTO.price} <span id="discount"></span>
+		<div id="priceShow">
+			총가격 :<span id="allPrice">${reserve2DTO.price}</span> <br> 
+			<div id="couponDiscount" style="display: none;">쿠폰할인:<span id="cDiscount"></span></div> 
+			<div id="pointDiscount" style="display: none;">포인트할인:<span id="pDiscount"></span></div>
+			최종가격 :<span id="nowPrice">${reserve2DTO.price}</span>
 		</div>
 	</div>
 	<div id="bottom_area">
