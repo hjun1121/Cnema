@@ -51,12 +51,14 @@
 			alert("페이지 삭제하기");
 		});
 		
+		
 
 	});
 
 </script>
 
 </head>
+
 <body>
 <div id="cgvwrap"  style="text-align: center;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
@@ -89,6 +91,16 @@
 		
 	</div>
 	
+	<!-- 우측 접속자 바 -->
+	<div style="width: 308px; height: auto; background-color: yellow; right: 242px; top: 199px; position: fixed; z-index: 999;">
+		<!-- 페이지 멤버 LIST -->
+		<div style="width: 100%; height: 50%; border: 1px solid red;">
+			<c:forEach items="${pageMember}" var="pm">
+<%-- 				<img alt="${pm.id} 프로필" src="../resources/profil/${pm.fileName}"> ${pm.id} --%>
+				${pm.id}
+			</c:forEach>
+		</div>
+	</div>
 
 <%-- 	<c:choose> --%>
 <%-- 		<c:when test="${not empty member and memberCheck eq 11}"> --%>
