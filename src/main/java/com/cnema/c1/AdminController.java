@@ -36,7 +36,7 @@ import com.cnema.util.TimeChange;
 
 /*heeseong 코드*/
 @Controller
-@RequestMapping(value="/admin/**")
+@RequestMapping(value = "/admin/**")
 public class AdminController {
 	@Inject
 	private MovieService movieService;
@@ -56,26 +56,26 @@ public class AdminController {
 	private PointService pointService;
 	@Inject
 	private TimeChange timeChange;
-	
-	@RequestMapping(value="movieList",method=RequestMethod.GET)
-	public ModelAndView movieList(String kind,String search){
+
+	@RequestMapping(value = "movieList", method = RequestMethod.GET)
+	public ModelAndView movieList(String kind, String search) {
 		ModelAndView mv = new ModelAndView();
 		List<MovieDTO> movieList = new ArrayList<>();
-		if(search==null){
-			search="";
+		if (search == null) {
+			search = "";
 		}
 		try {
-			if(kind == null){
+			if (kind == null) {
 				movieList = movieService.movieAList();
-			}else{
-				if(kind.equals("title")){
-					movieList = movieService.movieSearchList(kind,search);
+			} else {
+				if (kind.equals("title")) {
+					movieList = movieService.movieSearchList(kind, search);
 				}
-				if(kind.equals("type")){
-					movieList = movieService.movieSearchList(kind,search);
+				if (kind.equals("type")) {
+					movieList = movieService.movieSearchList(kind, search);
 				}
-				if(kind.equals("actor")){
-					movieList = movieService.movieSearchList(kind,search);
+				if (kind.equals("actor")) {
+					movieList = movieService.movieSearchList(kind, search);
 				}
 			}
 		} catch (Exception e) {
@@ -87,9 +87,9 @@ public class AdminController {
 		mv.setViewName("admin/movieList");
 		return mv;
 	}
-	
-	@RequestMapping(value="movieView",method=RequestMethod.GET)
-	public ModelAndView movieView(int movie_num){
+
+	@RequestMapping(value = "movieView", method = RequestMethod.GET)
+	public ModelAndView movieView(int movie_num) {
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		try {
@@ -101,9 +101,9 @@ public class AdminController {
 		mv.setViewName("admin/movieView");
 		return mv;
 	}
-	
-	@RequestMapping(value="movieRevision",method=RequestMethod.POST)
-	public ModelAndView movieRevision(MovieDTO movieDTO,RedirectAttributes rd){
+
+	@RequestMapping(value = "movieRevision", method = RequestMethod.POST)
+	public ModelAndView movieRevision(MovieDTO movieDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
@@ -111,7 +111,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(result>0) {
+		if (result > 0) {
 			rd.addFlashAttribute("message", "영화 정보 수정 성공");
 			mv.setViewName("redirect:../");
 		} else {
@@ -120,54 +120,54 @@ public class AdminController {
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="theaterList",method=RequestMethod.GET)
-	public ModelAndView theaterList(String kind,String search){
+
+	@RequestMapping(value = "theaterList", method = RequestMethod.GET)
+	public ModelAndView theaterList(String kind, String search) {
 		ModelAndView mv = new ModelAndView();
 		List<TheaterDTO> theaterList = new ArrayList<>();
-		if(search==null){
-			search="";
+		if (search == null) {
+			search = "";
 		}
 		try {
-			if(kind == null){
+			if (kind == null) {
 				theaterList = theaterService.theatherAList();
-			}else{
-				if(kind.equals("location")){
-					theaterList = theaterService.thSearchList(kind,search);
+			} else {
+				if (kind.equals("location")) {
+					theaterList = theaterService.thSearchList(kind, search);
 				}
-				if(kind.equals("area")){
-					theaterList = theaterService.thSearchList(kind,search);
+				if (kind.equals("area")) {
+					theaterList = theaterService.thSearchList(kind, search);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		mv.addObject("kind",kind);
-		mv.addObject("search",search);
+
+		mv.addObject("kind", kind);
+		mv.addObject("search", search);
 		mv.addObject("theaterList", theaterList);
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}
-	
-	@RequestMapping(value="theaterView",method=RequestMethod.GET)
-	public ModelAndView theaterView(int theater_num){
+
+	@RequestMapping(value = "theaterView", method = RequestMethod.GET)
+	public ModelAndView theaterView(int theater_num) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		TheaterDTO theaterDTO = null;
 		theaterDTO = theaterService.theaterInfo(theater_num);
-		
-		mv.addObject("theaterDTO",theaterDTO);
+
+		mv.addObject("theaterDTO", theaterDTO);
 		mv.setViewName("admin/theaterView");
 		return mv;
 	}
-	
-	@RequestMapping(value="theaterRevision",method=RequestMethod.POST)
-	public ModelAndView theaterRevision(TheaterDTO theaterDTO,RedirectAttributes rd){
+
+	@RequestMapping(value = "theaterRevision", method = RequestMethod.POST)
+	public ModelAndView theaterRevision(TheaterDTO theaterDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		result = theaterService.theaterRevision(theaterDTO);
-		if(result>0) {
+		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 수정 성공");
 			mv.setViewName("redirect:../");
 		} else {
@@ -176,12 +176,13 @@ public class AdminController {
 		}
 		return mv;
 	}
-	@RequestMapping(value="theaterRemove",method=RequestMethod.GET)
-	public ModelAndView theaterRemove(int theater_num,RedirectAttributes rd){
+
+	@RequestMapping(value = "theaterRemove", method = RequestMethod.GET)
+	public ModelAndView theaterRemove(int theater_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		result = theaterService.theaterRemove(theater_num);
-		if(result>0) {
+		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 삭제 성공");
 			mv.setViewName("redirect:../");
 		} else {
@@ -190,18 +191,20 @@ public class AdminController {
 		}
 		return mv;
 	}
-	@RequestMapping(value="theaterInsert",method=RequestMethod.GET)
-	public ModelAndView theaterInsert(){
+
+	@RequestMapping(value = "theaterInsert", method = RequestMethod.GET)
+	public ModelAndView theaterInsert() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/theaterInsert");
 		return mv;
 	}
-	@RequestMapping(value="theaterInsert",method=RequestMethod.POST)
-	public ModelAndView theaterInsert(TheaterDTO theaterDTO,RedirectAttributes rd){
+
+	@RequestMapping(value = "theaterInsert", method = RequestMethod.POST)
+	public ModelAndView theaterInsert(TheaterDTO theaterDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		result = theaterService.theaterInsert(theaterDTO);
-		if(result>0) {
+		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 글쓰기 성공");
 			mv.setViewName("redirect:../");
 		} else {
@@ -210,12 +213,12 @@ public class AdminController {
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="movie_insert", method=RequestMethod.GET)
+
+	@RequestMapping(value = "movie_insert", method = RequestMethod.GET)
 	public void insert() {
 	}
 
-	@RequestMapping(value="movie_insert", method=RequestMethod.POST)
+	@RequestMapping(value = "movie_insert", method = RequestMethod.POST)
 	public ModelAndView insert(MovieDTO movieDTO, HttpSession session, RedirectAttributes rd) {
 		int result = 0;
 		try {
@@ -224,18 +227,18 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();
-		if(result>0) {
+		if (result > 0) {
 			rd.addFlashAttribute("message", "영화 글쓰기 성공");
 			mv.setViewName("redirect:../");
 		} else {
 			rd.addFlashAttribute("message", "영화 글쓰기 실패");
 			mv.setViewName("redirect:../");
 		}
-		
+
 		return mv;
 	}
 
-	@RequestMapping(value="screenInsert", method=RequestMethod.GET)
+	@RequestMapping(value = "screenInsert", method = RequestMethod.GET)
 	public void screenInsert(Model model) {
 		List<TheaterDTO> areaList = null;
 		try {
@@ -247,27 +250,29 @@ public class AdminController {
 
 		model.addAttribute("areaList", areaList);
 	}
-	@RequestMapping(value="screenInsert", method=RequestMethod.POST)
+
+	@RequestMapping(value = "screenInsert", method = RequestMethod.POST)
 	public ModelAndView screenInsert(ScreenDTO screenDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
-		int result =0;
+		int result = 0;
 		try {
 			result = scheduleService.screenInsert(screenDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(result>0){
+		if (result > 0) {
 			rd.addFlashAttribute("message", "스크린 성공");
 			mv.setViewName("redirect:../");
-		}else{
+		} else {
 			rd.addFlashAttribute("message", "스크린  실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
-		
+
 	}
-	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
+
+	@RequestMapping(value = "scheduleList", method = RequestMethod.GET)
 	public ModelAndView scheduleList() {
 		ModelAndView mv = new ModelAndView();
 		List<ScheduleDTO> sList = new ArrayList<>();
@@ -276,11 +281,11 @@ public class AdminController {
 		mv.setViewName("admin/scheduleList");
 		return mv;
 	}
-	
-	@RequestMapping(value="scheduleInsert", method=RequestMethod.GET)
+
+	@RequestMapping(value = "scheduleInsert", method = RequestMethod.GET)
 	public void scheduleInsert(Model model) {
 		List<TheaterDTO> areaList = null;
-		List<MovieDTO> movieList =null;
+		List<MovieDTO> movieList = null;
 		List<DayDTO> dayList = null;
 		try {
 			areaList = theaterService.areaList();
@@ -295,40 +300,39 @@ public class AdminController {
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("dayList", dayList);
 	}
-	
-	
-	@RequestMapping(value="scheduleInsert", method=RequestMethod.POST)
-	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO,int count, int next_time, RedirectAttributes rd) {
+
+	@RequestMapping(value = "scheduleInsert", method = RequestMethod.POST)
+	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO, int count, int next_time, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		String day = sd.format(scheduleDTO.getDay());
 		int result = 0;
-		for(int i =1; i<=count; i++){
+		for (int i = 1; i <= count; i++) {
 			int next = 0;
-			if(i==1){
-				next =0;
-			}else{
+			if (i == 1) {
+				next = 0;
+			} else {
 				next = next_time;
 			}
-			String in_time =timeChange.getInTime(day, scheduleDTO.getIn_time(), next);
+			String in_time = timeChange.getInTime(day, scheduleDTO.getIn_time(), next);
 			scheduleDTO.setIn_time(in_time);
-			
+
 			String out_time = timeChange.getOutTime(day, scheduleDTO.getIn_time(), scheduleDTO.getMovie_num());
 			scheduleDTO.setOut_time(out_time);
 			result = scheduleService.scheduleInsert(scheduleDTO);
 		}
-		
-		if(result>0){
+
+		if (result > 0) {
 			rd.addFlashAttribute("message", "스케줄 성공");
 			mv.setViewName("redirect:../admin/scheduleList");
-		}else{
+		} else {
 			rd.addFlashAttribute("message", "스케줄 실패");
 			mv.setViewName("redirect:../admin/scheduleList");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="scheduleView", method=RequestMethod.GET)
+
+	@RequestMapping(value = "scheduleView", method = RequestMethod.GET)
 	public ModelAndView scheduleView(int schedule_num) {
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
@@ -341,73 +345,73 @@ public class AdminController {
 		mv.setViewName("admin/scheduleView");
 		return mv;
 	}
-	
-	@RequestMapping(value="scheduleRevision", method=RequestMethod.POST)
-	public ModelAndView scheduleRevision(ScheduleDTO scheduleDTO,RedirectAttributes rd) {
+
+	@RequestMapping(value = "scheduleRevision", method = RequestMethod.POST)
+	public ModelAndView scheduleRevision(ScheduleDTO scheduleDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		result = scheduleService.scheduleRevision(scheduleDTO);
-		
-		if(result>0){
-			rd.addAttribute("message","상영시간표 수정 성공");
+
+		if (result > 0) {
+			rd.addAttribute("message", "상영시간표 수정 성공");
 			mv.setViewName("redirect:../");
-		}else{
-			rd.addAttribute("message","상영시간표 수정 실패");
+		} else {
+			rd.addAttribute("message", "상영시간표 수정 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="scheduleRemove", method=RequestMethod.GET)
-	public ModelAndView scheduleRemove(int schedule_num,RedirectAttributes rd) {
+
+	@RequestMapping(value = "scheduleRemove", method = RequestMethod.GET)
+	public ModelAndView scheduleRemove(int schedule_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		result = scheduleService.scheduleRemove(schedule_num);
-		
-		if(result>0){
-			rd.addAttribute("message","상영시간표 삭제 성공");
+
+		if (result > 0) {
+			rd.addAttribute("message", "상영시간표 삭제 성공");
 			mv.setViewName("redirect:../");
-		}else{
-			rd.addAttribute("message","상영시간표 삭제 실패");
+		} else {
+			rd.addAttribute("message", "상영시간표 삭제 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="couponList", method=RequestMethod.GET)
+
+	@RequestMapping(value = "couponList", method = RequestMethod.GET)
 	public ModelAndView couponList(String kind, String search) {
 		ModelAndView mv = new ModelAndView();
 		List<CouponDTO> cList = new ArrayList<>();
-		if(search == null){
-			search="";
+		if (search == null) {
+			search = "";
 		}
-		if(kind==null){
+		if (kind == null) {
 			try {
 				cList = couponService.couponList();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else{
+		} else {
 			try {
-				cList = couponService.couponSList(kind,search);
+				cList = couponService.couponSList(kind, search);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
 		mv.addObject("cList", cList);
 		mv.setViewName("admin/couponList");
 		return mv;
 	}
-	
-	@RequestMapping(value="couponInsert", method=RequestMethod.GET)
+
+	@RequestMapping(value = "couponInsert", method = RequestMethod.GET)
 	public void couponInsert() {
 	}
-	
-	@RequestMapping(value="couponInsert", method=RequestMethod.POST)
-	public ModelAndView couponInsert(CouponDTO couponDTO,RedirectAttributes rd) {
+
+	@RequestMapping(value = "couponInsert", method = RequestMethod.POST)
+	public ModelAndView couponInsert(CouponDTO couponDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
@@ -415,18 +419,18 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result>0){
+
+		if (result > 0) {
 			rd.addAttribute("message", "쿠폰 글쓰기 성공");
 			mv.setViewName("redirect:../");
-		}else{
+		} else {
 			rd.addAttribute("message", "쿠폰 글쓰기 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="couponRevision", method=RequestMethod.GET)
+
+	@RequestMapping(value = "couponRevision", method = RequestMethod.GET)
 	public ModelAndView couponRevision(String name) {
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
@@ -440,9 +444,9 @@ public class AdminController {
 		mv.setViewName("admin/couponView");
 		return mv;
 	}
-	
-	@RequestMapping(value="couponRevision", method=RequestMethod.POST)
-	public ModelAndView couponRevision(CouponDTO couponDTO,RedirectAttributes rd) {
+
+	@RequestMapping(value = "couponRevision", method = RequestMethod.POST)
+	public ModelAndView couponRevision(CouponDTO couponDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
@@ -450,18 +454,18 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result>0){
-			rd.addAttribute("message","쿠폰 수정 성공");
+
+		if (result > 0) {
+			rd.addAttribute("message", "쿠폰 수정 성공");
 			mv.setViewName("redirect:../");
-		}else{
-			rd.addAttribute("message","쿠폰 수정 실패");
+		} else {
+			rd.addAttribute("message", "쿠폰 수정 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="memberList", method=RequestMethod.GET)
+
+	@RequestMapping(value = "memberList", method = RequestMethod.GET)
 	public ModelAndView memberList(int group_num) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
@@ -469,115 +473,117 @@ public class AdminController {
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		List<CoupongroupDTO> gList = new ArrayList<>();
 		List<CouponDTO> cList = new ArrayList<>();
-		
+
 		int number = 1;
 		int result = 0;
-		
+
 		try {
 			groupList = coupongroupService.groupList();
 			cList = couponService.couponList();
-			if(group_num==-1){
+			if (group_num == -1) {
 				memList = memberService.memberList();
-			}else{
+			} else {
 				gList = coupongroupService.groupSList(group_num);
-				for(int num=0;num<gList.size();num++){
+				for (int num = 0; num < gList.size(); num++) {
 					memberDTO = memberService.memberInfo(gList.get(num).getId());
 					memList.add(memberDTO);
 				}
 			}
-			for(MemberDTO memberDTO2 : memList){
+			for (MemberDTO memberDTO2 : memList) {
 				result = myCouponService.couponCount(memberDTO2.getId());
-				mv.addObject("result"+number, result);
+				mv.addObject("result" + number, result);
 				number++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		mv.addObject("cList", cList);
 		mv.addObject("groupList", groupList);
 		mv.addObject("memList", memList);
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
-	
-	@RequestMapping(value="couponGive",method=RequestMethod.GET)
-	public ModelAndView couponGive(int c_num,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd){
+
+	@RequestMapping(value = "couponGive", method = RequestMethod.GET)
+	public ModelAndView couponGive(int c_num, @RequestParam(value = "groupVal[]") List<String> gList,
+			RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
 		int result = 0;
 		try {
 			couponDTO = couponService.couponInfo(c_num);
-			for(int num=0;num<gList.size();num++){
-				result = myCouponService.couponInsert(gList.get(num),couponDTO);
+			for (int num = 0; num < gList.size(); num++) {
+				result = myCouponService.couponInsert(gList.get(num), couponDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result>0){
-			rd.addAttribute("message","쿠폰 주기 성공");
+
+		if (result > 0) {
+			rd.addAttribute("message", "쿠폰 주기 성공");
 			mv.setViewName("redirect:../");
-		}else{
-			rd.addAttribute("message","쿠폰 주기 실패");
+		} else {
+			rd.addAttribute("message", "쿠폰 주기 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="pointGive",method=RequestMethod.GET)
-	public ModelAndView pointGive(int price,@RequestParam(value="groupVal[]")List<String> gList,RedirectAttributes rd,HttpSession session){
+
+	@RequestMapping(value = "pointGive", method = RequestMethod.GET)
+	public ModelAndView pointGive(int price, @RequestParam(value = "groupVal[]") List<String> gList,
+			RedirectAttributes rd, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		int result = 0;
 		try {
-			for(int num=0;num<gList.size();num++){
-				result = pointService.pointInsert(price,gList.get(num));
-				result = memberService.pointUpdate(price,memberDTO.getId());
+			for (int num = 0; num < gList.size(); num++) {
+				result = pointService.pointInsert(price, gList.get(num));
+				result = memberService.pointUpdate(price, memberDTO.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result>0){
-			rd.addAttribute("message","포인트 주기 성공");
+
+		if (result > 0) {
+			rd.addAttribute("message", "포인트 주기 성공");
 			mv.setViewName("redirect:../");
-			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
+			MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
 			memberDTO.setA_point(memberDTO2.getA_point());
 			session.setAttribute("member", memberDTO);
-		}else{
-			rd.addAttribute("message","포인트 주기 실패");
+		} else {
+			rd.addAttribute("message", "포인트 주기 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="groupInsert",method=RequestMethod.POST)
-	public ModelAndView groupInsert(@RequestParam(value="groupVal[]")List<String> gList){
+
+	@RequestMapping(value = "groupInsert", method = RequestMethod.POST)
+	public ModelAndView groupInsert(@RequestParam(value = "groupVal[]") List<String> gList) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		Random ran = new Random();
 		int number = ran.nextInt(100000);
-		
-		for(int num=0;num<gList.size();num++){
+
+		for (int num = 0; num < gList.size(); num++) {
 			try {
-				coupongroupService.groupInsert(gList.get(num),number);
+				coupongroupService.groupInsert(gList.get(num), number);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return mv;
 	}
-	
-	@RequestMapping(value="groupList",method=RequestMethod.GET)
-	public ModelAndView groupList(){
+
+	@RequestMapping(value = "groupList", method = RequestMethod.GET)
+	public ModelAndView groupList() {
 		ModelAndView mv = new ModelAndView();
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		List<Object> groupCountList = new ArrayList<>();
 		List<CoupongroupDTO> groupCount = new ArrayList<>();
 		try {
 			groupList = coupongroupService.groupList();
-			for(int num=0;num<groupList.size();num++){
+			for (int num = 0; num < groupList.size(); num++) {
 				groupCount = coupongroupService.groupSList(groupList.get(num).getGroup_num());
 				groupCountList.add(groupCount.size());
 			}
@@ -589,9 +595,9 @@ public class AdminController {
 		mv.setViewName("admin/groupList");
 		return mv;
 	}
-	
-	@RequestMapping(value="groupRemove",method=RequestMethod.POST)
-	public ModelAndView groupRemove(int group_num, RedirectAttributes rd){
+
+	@RequestMapping(value = "groupRemove", method = RequestMethod.POST)
+	public ModelAndView groupRemove(int group_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
@@ -599,12 +605,12 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result>0){
-			rd.addAttribute("message","그룹 삭제 성공");
+
+		if (result > 0) {
+			rd.addAttribute("message", "그룹 삭제 성공");
 			mv.setViewName("redirect:../");
-		}else{
-			rd.addAttribute("message","그룹 삭제 실패");
+		} else {
+			rd.addAttribute("message", "그룹 삭제 실패");
 			mv.setViewName("redirect:../");
 		}
 		return mv;

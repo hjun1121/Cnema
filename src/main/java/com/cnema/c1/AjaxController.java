@@ -80,6 +80,18 @@ public class AjaxController {
 		model.addAttribute("screenList", ar);
 	}
 	
+	@RequestMapping(value="adminScreenList2", method=RequestMethod.POST)
+	public void adminScreenList2(int theater_num, Model model){
+		List<ScreenDTO> ar = null;
+		try {
+			ar= scheduleService.screenList(theater_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("screenList", ar);
+	}	
 	@RequestMapping(value="adminLocationList", method=RequestMethod.POST)
 	public ModelAndView adminLocationList(String area){
 		List<TheaterDTO> ar = null;;

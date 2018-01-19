@@ -13,6 +13,7 @@
 			var area =$("#area").val();
 			if(area =='x'){
 				$("#location").html('<option value="x">지역선택</option>');
+				$("#screenList").html('');
 			} else{
 				$.ajax({
 					url:"../ajax/adminLocationList",
@@ -29,8 +30,52 @@
 			
 		});
 		
+		$("#location").change(function(){
+			var location = $("#location").val();
+			if(location =='x'){
+				$("#screenList").html('');
+			} else{
+				$.ajax({
+					url:"../ajax/adminScreenList2",
+					type:"POST",
+					data:{		
+						theater_num : location
+					},
+					success:function(data){
+						$("#screenList").html(data);
+					}
+				});
+			}
+		});
+		
 		$("#btn").click(function(){
-			document.frm.submit();
+			var area = $("#area").val();
+			var location = $("#location").val();
+			var room_num = $("#room_num").val();
+			var floor = $("#floor").val();
+			var x_num = $("#x_num").val();
+			var y_num = $("#y_num").val();
+			if(area=='x'){
+				alert("지역을 선택해주세요");
+				$("#area").focus();
+			}else if(location =='x'){
+				alert("극장을 선택해주세요");
+				$("#location").focus();
+			}else if(room_num ==""){
+				alert("관번호를 입력해주세요");
+				$("#room_num").focus();
+			}else if(floor ==""){
+				alert("층을 입력해주세요");
+				$("#floor").focus();
+			}else if(x_num ==""){
+				alert("행번호를 입력해주세요");
+				$("#x_num").focus();
+			}else if(y_num ==""){
+				alert("열번호를 입력해주세요");
+				$("#y_num").focus();
+			}else{
+				document.frm.submit();
+			}
 		});
 	});
 </script>
@@ -41,7 +86,7 @@
 	<table>
 		<tr>
 			<td>지역</td>
-			<td>지역극장</td>
+			<td>극장</td>
 			<td>관번호</td>
 			<td>층</td>
 			<td>열(x)</td>
@@ -68,6 +113,11 @@
 		</tr>
 		
 	</table>
+	
+	<table id="screenList">
+
+	</table>
+	
 	<input type="button" id="btn" value="확인">
 </form>
 
