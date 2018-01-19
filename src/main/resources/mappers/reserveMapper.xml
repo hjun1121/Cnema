@@ -14,7 +14,7 @@
   
   	<!-- heeseong -->
   	<select id="reserveList" resultType="reserveDTO" parameterType="java.util.Map">
-  		select * from reserve where id=#{id} and to_char(reg_date,'yyyy')=#{kind}
+  		select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind}
   	</select>
   	<!-- heeseong -->
   	<select id="reserveAList" resultType="reserveDTO" parameterType="java.lang.String">

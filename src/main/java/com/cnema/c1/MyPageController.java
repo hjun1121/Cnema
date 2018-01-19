@@ -127,14 +127,18 @@ public class MyPageController {
 		ReserveDTO reserveDTO2 = null;
 		TheaterDTO theaterDTO = null;
 		ScreenDTO screenDTO = null;
+		if(kind==null){
+			kind="0000";
+		}
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		try {
-			if(kind==null){
+			if(kind.equals("0000")){
 				rList = reserveService.reserveAList(memberDTO.getId());
 			}else{
-				rList = reserveService.reserveList(memberDTO.getId(),kind);
+				rList = reserveService.reserveList(memberDTO.getId(), kind);
 			}
+			
 			for(ReserveDTO reserveDTO : rList){
 				reserveDTO2 = reserveService.reserveBList(memberDTO.getId(), reserveDTO.getTp_num());
 				
@@ -163,12 +167,12 @@ public class MyPageController {
 		return mv;
 	}
 	
-	@RequestMapping(value="movieHistory",method=RequestMethod.POST)
+	@RequestMapping(value="movieRemove",method=RequestMethod.GET)
 	public ModelAndView movieHistory(int tp_num, RedirectAttributes rd){
-		System.out.println("tp_num: "+tp_num);
 		int result = 0;
 		try {
 			result = reserveService.reserveDel(tp_num);
+			result = ticketPriceService.ticketRemove(tp_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -224,9 +228,17 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		List<WishDTO> wList = new ArrayList<WishDTO>();
+		if(kind==null){
+			kind="reg_date";
+		}
+		
 		try {
-			wList = wishService.wishList(memberDTO.getId());
 			for(WishDTO wishDTO : wList ){
+				if(kind.equals("reg_date")){
+					wList = wishService.wishList(memberDTO.getId());
+				}else{
+					wList = wishService.wishSList(memberDTO.getId());
+				}
 				movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
 				wishDTO.setMovieDTO(movieDTO);
 			}
@@ -234,16 +246,13 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 
-		if(kind == null){
-			kind= "regist_date";
-		}
 		mv.addObject("kind", kind);
 		mv.addObject("wList", wList);
 		mv.setViewName("myPage/wishList");
 		return mv;
 	}
-	@RequestMapping(value="wishList",method=RequestMethod.POST)
-	public ModelAndView wishList(int wish_num,String sKind,RedirectAttributes rd){
+	@RequestMapping(value="wishListDel",method=RequestMethod.GET)
+	public ModelAndView wishListDel(int wish_num,RedirectAttributes rd){
 		int result = 0;
 		try {
 			result = wishService.wishListDelete(wish_num);

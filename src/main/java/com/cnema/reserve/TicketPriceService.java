@@ -23,4 +23,8 @@ public class TicketPriceService {
 	public TicketPriceDTO ticketPInfo(int tp_num) throws Exception{
 		return ticketPriceDAO.ticketPInfo(tp_num);
 	}
+	/*heeseong*/
+	public int ticketRemove(int tp_num) throws Exception{
+		return ticketPriceDAO.ticketRemove(tp_num);
+	}
 }

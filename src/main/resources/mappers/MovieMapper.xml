@@ -85,7 +85,16 @@
   	</select>
   	
   	<!-- heeseong -->
+  	<select id="movieSInfo" resultType="movieDTO" parameterType="java.util.Map">
+  		select W.* from wish W, movie M where W.id=#{id} and M.movie_num=#{movie_num} order by M.open_date asc
+  	</select>
+  	
+  	<!-- heeseong -->
   	<select id="movieAList" resultType="movieDTO">
+  		select * from movie order by movie_num desc
+  	</select>
+  	<!-- heeseong -->
+  	<select id="movieSList" resultType="movieDTO">
   		select * from movie order by movie_num desc
   	</select>
   	<!-- heeseong -->

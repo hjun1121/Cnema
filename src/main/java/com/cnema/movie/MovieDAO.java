@@ -121,10 +121,19 @@ public class MovieDAO {
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"movieInfo",movie_num);
 	}
+	/*heeseong*/
+	public MovieDTO movieSInfo(int movie_num,String id) throws Exception{
+		System.out.println(movie_num);
+		System.out.println(id);
+		Map<String, Object> mMap = new HashMap<>();
+		mMap.put("id", id);
+		mMap.put("movie_num", movie_num);
+		return sqlSession.selectOne(NAMESPACE+"movieSInfo",mMap);
+	}
 	
 	/*heeseong*/
-	public List<MovieDTO> movieAList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"movieAList");
+	public List<MovieDTO> movieSList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"movieSList");
 	}
 	/*heeseong*/
 	public int movieRevision(MovieDTO movieDTO) {

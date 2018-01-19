@@ -33,6 +33,10 @@ $(function(){
 		var movie_num = $(this).attr("title");
 		window.open("movieReview?movie_num="+movie_num,"평점작성","width=800,height=700,toolbar=no");
 	});
+	$(".btn-del").click(function(){
+		var tp_num = $(this).attr("title");
+		location.href="./movieRemove?tp_num="+tp_num;
+	});
 });
 </script>
 </head>
@@ -119,7 +123,7 @@ $(function(){
 				            <div class="set-combo">
 				                <label for="year">내가 본 영화 년도별 정렬</label>
 				                <select id="kind" name="year">
-				                    <option class = "kind" value="" selected="selected">전체</option>
+				                    <option class = "kind" value="0000" selected="selected">전체</option>
 		                            <option class = "kind" value="2014">2014</option>
 		                            <option class = "kind" value="2015">2015</option>
 		                            <option class = "kind" value="2016">2016</option>
@@ -161,7 +165,7 @@ $(function(){
                                         </ul>
 				                    </div>
 				                   
-				                    <button class="btn-del">
+				                    <button class="btn-del" title="${reserveList.tp_num }" type="button">
 				                    	<img src="${pageContext.request.contextPath }/resources/images/common/btn/btn_del.gif" alt="삭제">
 				                    </button>
 				                </div>

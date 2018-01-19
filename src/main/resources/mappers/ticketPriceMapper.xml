@@ -15,4 +15,9 @@
   	<select id="ticketPInfo" resultType="ticketPriceDTO" parameterType="int">
   		select * from ticketprice where tp_num=#{tp_num}
   	</select>
+  	<!-- heeseong -->
+  	
+  	<delete  id="ticketRemove" parameterType="int">
+  		delete from ticketprice where tp_num=#{tp_num}
+  	</delete>
   </mapper>

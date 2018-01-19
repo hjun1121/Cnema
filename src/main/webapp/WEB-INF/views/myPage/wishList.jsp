@@ -16,6 +16,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>위시리스트 &lt;무비로그&gt;</title>
+<script type="text/javascript">
+$(function(){
+	var kind='${kind}';
+	$(".kind").each(function(){
+		if($(this).val()==kind){
+			$(this).attr("selected",true);
+		}
+	});
+	$("#date_search").click(function(){
+		var sKind = $("#kind").val();
+		location.href="./wishList?kind="+sKind;
+	});
+	$(".btn-del").click(function(){
+		var wish_num = $(this).attr("title");
+		location.href="./wishListDel?wish_num="+wish_num;
+	});
+});
+</script>
 </head>
 <body>
 <div id="cgvwrap">
@@ -95,10 +113,17 @@
 					        <div class="tit-mycgv">
 						        <h3>위시리스트</h3>
 						        <p><em>${fn:length(wList)}건</em></p>
-						    </div>
+						         <div class="set-combo">
+				                <label for="year">내가 본 영화 년도별 정렬</label>
+				                <select id="kind" name="date">
+		                            <option class = "kind" value="reg_date" selected="selected">등록일 순</option>
+		                            <option class = "kind" value="open_date">개봉일 순</option>
+				                </select>
+				                <button type="button" id="date_search" class="round gray"><span>GO</span></button>
+				            </div>
+				        </div>
 						    <div class="sect-wishlist-lst">
 						        <ul id="wishlist_container">
-						        <form action="wishList" method="POST">
 						        <c:forEach items="${wList}" var="wishList">
 						        <input type="hidden" name="wish_num" value="${wishList.wish_num }">
 				                    <li>
@@ -134,10 +159,11 @@
 				                                <a class="link-reservation" href="#">예매</a>
 				                            </span>
 				                        </div>
-				                        <button type="submit" class="btn-del"><img src="${pageContext.request.contextPath }/resources/images/common/btn/btn_del02.png"></button>
+				                         <button class="btn-del" title="${wishList.wish_num }" type="button">
+					                    	<img src="${pageContext.request.contextPath }/resources/images/common/btn/btn_del02.png">
+					                    </button>
 				                    </li>
 				                </c:forEach>
-				                </form>
 						        </ul>
 						    </div>
 					    </div>

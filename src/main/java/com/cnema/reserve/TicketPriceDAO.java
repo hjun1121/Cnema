@@ -25,4 +25,8 @@ public class TicketPriceDAO {
 	public TicketPriceDTO ticketPInfo(int tp_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"ticketPInfo", tp_num);
 	}
+	/*heeseong*/
+	public int ticketRemove(int tp_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"ticketRemove", tp_num);
+	}
 }
