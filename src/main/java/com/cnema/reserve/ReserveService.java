@@ -30,7 +30,11 @@ public class ReserveService {
 		return reserveDAO.reserveAList(id);
 	}
 	/*heeseong*/
-	public int reserveDel(int reserve_num) throws Exception{
-		return reserveDAO.reserveDel(reserve_num);
+	public ReserveDTO reserveBList(String id,int tp_num) throws Exception{
+		return reserveDAO.reserveBList(id,tp_num);
+	}
+	/*heeseong*/
+	public int reserveDel(int tp_num) throws Exception{
+		return reserveDAO.reserveDel(tp_num);
 	}
 }

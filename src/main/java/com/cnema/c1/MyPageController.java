@@ -30,6 +30,9 @@ import com.cnema.reserve.TicketPriceDTO;
 import com.cnema.reserve.TicketPriceService;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
+import com.cnema.theater.ScreenDTO;
+import com.cnema.theater.TheaterDTO;
+import com.cnema.theater.TheaterService;
 
 @Controller
 @RequestMapping(value="/myPage/**")
@@ -52,12 +55,15 @@ public class MyPageController {
 	private MemberService memberService;
 	@Inject
 	private ReviewService reviewService;
+	@Inject
+	private TheaterService theaterService;
 	
 	@RequestMapping(value="myInfoCheck",method=RequestMethod.GET)
 	public ModelAndView myInfoCheck(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("id",memberDTO.getId());
+		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("myPage/myInfoCheck");
 		return mv;
 	}
@@ -75,7 +81,7 @@ public class MyPageController {
 		if(memberDTO.getPw().equals(pwd)){
 			mv.addObject("p", p);
 			mv.addObject("e", e);
-			mv.addObject("memberDTO", memberDTO);
+			mv.addObject("myInfo", memberDTO);
 			mv.setViewName("myPage/myInfo");
 		}else{
 			rd.addFlashAttribute("message", "비밀번호를 다시 입력해주세요.");
@@ -118,6 +124,10 @@ public class MyPageController {
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
+		ReserveDTO reserveDTO2 = null;
+		TheaterDTO theaterDTO = null;
+		ScreenDTO screenDTO = null;
+		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		try {
 			if(kind==null){
@@ -126,14 +136,22 @@ public class MyPageController {
 				rList = reserveService.reserveList(memberDTO.getId(),kind);
 			}
 			for(ReserveDTO reserveDTO : rList){
-				scheduleDTO = scheduleService.scheduleInfo(reserveDTO.getSchedule_num());
+				reserveDTO2 = reserveService.reserveBList(memberDTO.getId(), reserveDTO.getTp_num());
+				
+				scheduleDTO = scheduleService.scheduleInfo(reserveDTO2.getSchedule_num());
 				reserveDTO.setScheduleDTO(scheduleDTO);
 				
-				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO.getTp_num());
+				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO2.getTp_num());
 				reserveDTO.setTicketPriceDTO(ticketPriceDTO);
 				
-				movieDTO = movieService.movieInfo(reserveDTO.getMovie_num());
+				movieDTO = movieService.movieInfo(reserveDTO2.getMovie_num());
 				reserveDTO.setMovieDTO(movieDTO);
+				
+				theaterDTO = theaterService.theaterInfo(reserveDTO2.getTheater_num());
+				reserveDTO.setTheaterDTO(theaterDTO);
+				
+				screenDTO = scheduleService.screenOne(reserveDTO2.getScreen_num());
+				reserveDTO.setScreenDTO(screenDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -146,10 +164,11 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.POST)
-	public ModelAndView movieHistory(int reserve_num, RedirectAttributes rd){
+	public ModelAndView movieHistory(int tp_num, RedirectAttributes rd){
+		System.out.println("tp_num: "+tp_num);
 		int result = 0;
 		try {
-			result = reserveService.reserveDel(reserve_num);
+			result = reserveService.reserveDel(tp_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -257,6 +276,7 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("pList",pList);
 		mv.addObject("testDatepicker1", testDatepicker1);
 		mv.addObject("testDatepicker2", testDatepicker2);
@@ -291,6 +311,7 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("testDatepicker1", testDatepicker1);
 		mv.addObject("testDatepicker2", testDatepicker2);
 		mv.addObject("cdList",cdList);

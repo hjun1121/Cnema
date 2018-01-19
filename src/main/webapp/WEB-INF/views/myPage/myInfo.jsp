@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -210,8 +211,21 @@
 				        			
 				        		</div>
         					<div class="grade-info">
+	        					<c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set> 
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은 sysdate <strong class="txt-purple">${myInfo.type}</strong>회원 입니다.             
+                         			 고객님은 <c:out value="${sysYear}" /> 
+                         			<strong class="txt-purple">
+                         			<c:if test="${myInfo.type eq 10}">
+                         				일반 회원
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 20}">
+                         				관리자
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 11}">
+                         				VIP 회원
+                         			</c:if>
+                         			</strong>입니다.             
                    			 	</p>
         						
                     			<div class="mycgv_btn_special2">
@@ -319,7 +333,7 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 		            <li>
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
@@ -346,12 +360,12 @@
 				<table  class="revisionTable">
 					<tr>
 						<td>아이디</td>
-						<td><input type="text" class="noneBorder" id="id" name="id" value="${memberDTO.id }" readonly="readonly"></td>
+						<td><input type="text" class="noneBorder" id="id" name="id" value="${myInfo.id }" readonly="readonly"></td>
 					</tr>
 					
 					<tr>
 						<td rowspan="2">비밀번호</td>
-						<td><input type="password"  class="noneBorder" id="pw1" name="pw" value="${memberDTO.pw }"><br></td>
+						<td><input type="password"  class="noneBorder" id="pw1" name="pw" value="${myInfo.pw }"><br></td>
 					</tr>
 					<tr>
 						<td><div id="pwc"></div>
@@ -359,18 +373,18 @@
 					</tr>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" class="noneBorder" id="name" name="name" value="${memberDTO.name }" readonly="readonly"></td>
+						<td><input type="text" class="noneBorder" id="name" name="name" value="${myInfo.name }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="date" class="noneBorder" id="birth" name="birth" value="${memberDTO.birth }" readonly="readonly"></td>
+						<td><input type="date" class="noneBorder" id="birth" name="birth" value="${myInfo.birth }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>성별</td>
-						<c:if test="${memberDTO.gender eq 'f'}">
+						<c:if test="${myInfo.gender eq 'f'}">
 							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
 						</c:if>
-						<c:if test="${memberDTO.gender eq 'm'}">
+						<c:if test="${myInfo.gender eq 'm'}">
 							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
 						</c:if>
 						
@@ -407,13 +421,13 @@
 					</tr>
 					<tr>
 						<td>POSTCODE</td>
-						<td><input type="text" class="noneBorder" id="postCode" name="postCode" placeholder="우편번호" readonly="readonly" value="${memberDTO.postCode }">
+						<td><input type="text" class="noneBorder" id="postCode" name="postCode" placeholder="우편번호" readonly="readonly" value="${myInfo.postCode }">
 							<input type="button" class="btnType4" id="addrCheck" value="우편번호 찾기" readonly="readonly" ></td>
 					</tr>
 					<tr>
 						<td>나머지주소</td>
-						<td><input type="text" class="noneBorder" id="addr" name="addr1" placeholder="주소" readonly="readonly" value="${memberDTO.addr1 }">
-							<input type="text" class="noneBorder" id="addr2" name="addr2" placeholder="나머지주소" value="${memberDTO.addr2 }"></td>
+						<td><input type="text" class="noneBorder" id="addr" name="addr1" placeholder="주소" readonly="readonly" value="${myInfo.addr1 }">
+							<input type="text" class="noneBorder" id="addr2" name="addr2" placeholder="나머지주소" value="${myInfo.addr2 }"></td>
 					</tr>
 				</table>
 				<input type="hidden" id="phone" name="phone">
