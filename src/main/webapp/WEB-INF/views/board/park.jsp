@@ -15,24 +15,8 @@
 <title>게시판</title>
 <style type="text/css">
 
-.board_container{
-	width: 1200px;
-	height:1000px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
-
-#board_tab{
-	background-color: gray;
-	width:200px;
-	height: 500px;
-	display:inline-block;
-	float: left;
-
-}
 #board_contents{
-	background-color: black;
+	/* background-color: black; */
 	width:900px;
 	height: 700px;
 	display:inline-block;
@@ -47,37 +31,17 @@
 background-color: green;
 	height: 300px;
 	display: block;
+	margin-top:15px;
 }
 
 #notice_contents{
-background-color:purple;
+/* background-color:purple; */
 	height: 200px;
 	display: block;
+	margin-top:15px;
 }
 
-#board_tab ul {
-	margin:0 auto;
-    list-style-type: none;
-    width: 180px;
-    background-color: #f1f1f1;
-}
 
-#board_tab li a {
-    display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-}
-
-#board_tab li a.active {
-    background-color: #e71a0f;
-    color: white;
-}
-
-#board_tab li a:hover:not(.active) {
-    background-color: #e71a0f;
-    color: white;
-}
 .submenu{
 
     background-color: #e71a0f;
@@ -188,8 +152,34 @@ background-color:purple;
     height:242px;
 
 }
-</style>
+#notice_contents .tit {
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+}
+#notice_contents .txt {
+    margin-top: 15px;
+}
+#notice_contents .txt li a {
+    float: left;
+    overflow: hidden;
+    display: inline-block;
+    width: 400px;
+    color: #222;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+#notice_contents .txt li a:hover, .notice_area .txt li a:active {
+    font-weight: bold;
+    text-decoration: underline;
+}
 
+#notice_contents .txt .day {
+    color: #222;
+    font-size: 11px;
+}
+</style>
 </head>
 <body>
 	<div id="cgvwrap">
@@ -225,34 +215,8 @@ background-color:purple;
         	<!-- 내용 시작 -->
         	<div class="board_container">
  	
- 	<!--tab부분  -->
-	<div class="cols-content">
-	<div class="col-aside">
-    <h2>
-        고객센터 메뉴</h2>
-    <div class="snb">
-        <ul>
-            <li class="on" title="현재선택"><a href="#">게시판 메인<i></i></a></li>
-            <li class=""><a href="../notice/noticeList">공지/뉴스<i></i></a></li>
-            <li class=""><a href="../event/eventList">이벤트<i></i></a></li>            
-            <li class=""><a href="../qna/qnaWrite">이메일 문의<i></i></a></li>
-            
-          
-        </ul>
-    </div>
-    <div class="ad-area">
-        <div class="ad-partner01">
-            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@C_Rectangle" width="160" height="300" title="기업광고-씨티카드" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="C_Rectangle" id="C_Rectangle"></iframe>
-        </div>
-        <div class="ad-partner02">
-            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Image_text" width="160" height="35" title="영화광고-코코" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Image_text" id="Image_text"></iframe>
-        </div>
-    </div>
-</div>
-	
-	</div>
-	<!--tab end  -->
-
+<!-- tab부분 -->
+ <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/mainTab.jsp"></c:import>
   
   <div id="board_contents">
   	<div id="event_contents">
@@ -265,7 +229,7 @@ background-color:purple;
      <c:forEach items="${event_list}" var="dto">
      <section> 
      <a href="event/eventView?num=${dto.num}">
-     <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></a>
+     <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}" width="50px" height="40px"></a>
      <p> <a href="event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
      <br><br>
 	  <strong>기간:</strong>&nbsp; ${dto.s_date} &nbsp;~&nbsp; ${dto.e_date} <br>
@@ -299,12 +263,12 @@ background-color:purple;
   	
   	<div id="notice_contents">
   		 <a href="../notice/noticeList"><span class="tit">공지/뉴스</span></a>
+			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a>
 			<c:forEach items="${notice_list}" var="dto">
 			<ul class="txt">
-                <li><a href="notice/noticeView?num=${dto.num}">${dto.title}</a><span class="day">${dto.reg_date}</span></li>
+                <li><a href="${pageContext.request.contextPath }/notice/noticeView?num=${dto.num}">${dto.title}</a><span class="day">${dto.reg_date}</span></li>
             </ul>
 			</c:forEach>
-				<a href="../notice/noticeList" class="more">공지/뉴스 더보기</a>
   	</div>
   
   
