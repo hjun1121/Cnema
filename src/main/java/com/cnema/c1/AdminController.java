@@ -153,12 +153,14 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "theaterView", method = RequestMethod.GET)
-	public ModelAndView theaterView(int theater_num) {
+	public ModelAndView theaterView(int theater_num,HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 
 		TheaterDTO theaterDTO = null;
 		theaterDTO = theaterService.theaterInfo(theater_num);
-
+		
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("theaterDTO", theaterDTO);
 		mv.setViewName("admin/theaterView");
 		return mv;
@@ -195,8 +197,10 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "theaterInsert", method = RequestMethod.GET)
-	public ModelAndView theaterInsert() {
+	public ModelAndView theaterInsert(HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("admin/theaterInsert");
 		return mv;
 	}
