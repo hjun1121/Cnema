@@ -22,13 +22,7 @@
 	background-color: gray;
  
 }
-.eventViewPage{
-	display: inline-block;
-	width:81%;
-	margin-left:20px;
 
-
-}
 </style>
 <script type="text/javascript">
 
@@ -102,7 +96,7 @@ $(function(){
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
 
-<div class="eventViewPage">
+<div class="board_contents">
 <div class="eventViewhead">
     <h3>${view.title } </h3> 
     <em class="date">

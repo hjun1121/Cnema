@@ -13,18 +13,6 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
-.noticeViewPage{
-
-display: inline-block;
-	width:800px;
-	margin-left:50px;
-}
 
 #btn3{
     padding: 7px 10px;
@@ -186,7 +174,7 @@ em {
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 
-<div class="noticeViewPage">
+<div class="board_contents">
 			<div class="customer_top">
 				<h2>공지/뉴스</h2>
 				<p>CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p>

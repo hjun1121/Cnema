@@ -117,6 +117,7 @@
 	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
+<div class="board_contents">
 <h2>이벤트 수정하기</h2>
 <form action="eventUpdate" method="post" id="frm" enctype="multipart/form-data">
 <div class="eventViewhead">
@@ -144,6 +145,7 @@
 		
 <input type="submit" id="updateBtn" value="update"> 
 </form>	
+</div>
 			
 			</div><!--게시판 내용  -->
 	

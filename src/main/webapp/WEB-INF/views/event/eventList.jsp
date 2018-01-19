@@ -14,14 +14,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-.eventListPage{
-	display: inline-block;
-	width:800px;
-	height:600px;
-	margin-left:50px;
-	
 
-}
 .box-title{
 	text-align: center;
 	margin:0 auto;
@@ -185,7 +178,7 @@ $("#ingEvent").click(function(){
  
  
 	
-	<div class="eventListPage">
+	<div class="board_contents">
     <h1>EVENT</h1>
     
     <div class="submenu">

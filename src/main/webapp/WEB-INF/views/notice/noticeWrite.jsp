@@ -15,20 +15,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
-#noticeForm{
-	display: inline-block;
-	width:700px;
-	margin-left:50px;
 
-
-
-}
 #savebutton{
 	
     padding: 10px 15px;
@@ -160,7 +147,7 @@ border: none;
 	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
-	
+	<div class="board_contents">
 	<form action="noticeWrite" id="noticeForm" method="post" id="frm">
 	<h1>Notice Write Form</h1>
 		
@@ -169,14 +156,14 @@ border: none;
 			<div id="right_input"><strong>작성자 &nbsp;</strong><input type="text" name="writer" id="writerInput" value="${member.id}" readonly="readonly"></div>
 		</div>
 		<br>
-			<textarea id="contents" name="contents" rows="20" cols="40" ></textarea>
+			<textarea id="contents" name="contents" rows="20" cols="30" ></textarea>
 	
 	
 	
 	<br>
 	<input type="button" id="savebutton" value="글쓰기">
 	</form>
-	
+	</div>
 			</div><!--게시판 내용  -->
 	
 	

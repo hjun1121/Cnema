@@ -22,14 +22,7 @@
           
         </ul>
     </div>
-    <div class="ad-area">
-        <div class="ad-partner01">
-            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@C_Rectangle" width="160" height="300" title="기업광고-씨티카드" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="C_Rectangle" id="C_Rectangle"></iframe>
-        </div>
-        <div class="ad-partner02">
-            <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Image_text" width="160" height="35" title="영화광고-코코" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Image_text" id="Image_text"></iframe>
-        </div>
-    </div>
+    
 </div>
 	
 	</div>

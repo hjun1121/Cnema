@@ -16,20 +16,7 @@
 
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
- }
-#noticeForm{
-	display: inline-block;
-	width:800px;
-	margin-left:50px;
 
-
-
-}
 
 #btn1{
     padding: 10px 15px;
@@ -180,7 +167,7 @@ height: 10px;
 	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
-	
+	<div class="board_contents">
 	<form action="noticeUpdate" id="noticeForm" method="post" id="frm">
 	<h1>공지사항 수정</h1>
 		<input type="hidden" name="num" value="${view.num}">
@@ -202,6 +189,8 @@ height: 10px;
 		<a href="./noticeList" id="btn1">수정취소</a>
 		<input type="submit" id="savebutton" value="수정완료">
 	</form>
+	
+	</div>
 			
 			</div><!--게시판 내용  -->
 	

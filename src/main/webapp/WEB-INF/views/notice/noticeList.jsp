@@ -13,19 +13,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>공지사항</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
-#noticeListPage{
-	display: inline-block;
-	width:800px;
-	margin-left:50px;
-	
 
-}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -173,7 +161,7 @@ td{
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 	
 	
-	<div id="noticeListPage">
+	<div class="board_contents">
 	<form name="frm" action="./noticeList" method="get">
 	<h1>Notice list Page</h1>
 	<p>공지/뉴스<br>

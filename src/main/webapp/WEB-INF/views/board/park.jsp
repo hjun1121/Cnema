@@ -15,20 +15,15 @@
 <title>게시판</title>
 <style type="text/css">
 
-#board_contents{
-	/* background-color: black; */
-	width:900px;
-	height: 700px;
-	display:inline-block;
-}	
+
 
 #event_contents{
-	background-color: navy;
-	height: 200px;
+	
+	height: 380px;
 	display: block;
 }
 #qna_contents{
-background-color: green;
+/* background-color: green; */
 	height: 300px;
 	display: block;
 	margin-top:15px;
@@ -40,9 +35,19 @@ background-color: green;
 	display: block;
 	margin-top:15px;
 }
+hr{
+ width: 820px;
+ float: left;
+ margin-bottom: 10px;
 
-
+}
 .submenu{
+width:100%;
+height:50px;
+display: block;
+/* background-color: yellow; */
+}
+#ingBtn,#endBtn{
 
     background-color: #e71a0f;
     border: none;
@@ -56,6 +61,17 @@ background-color: green;
     cursor: pointer;
 	float:right;
 	border-radius: 10px;
+}
+#endBtn{
+	margin-right:30px;
+}
+.submenu .tit{
+	color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 30px;
+    text-align: left;
+    vertical-align: middle;
 }
 .email_inquiry{
 	background-color: #ede9dd;
@@ -147,10 +163,19 @@ background-color: green;
 	margin-top:50px;
 	
 }
+section{
+display:inline-block;
+width:32%;
+height: 250px;
+margin-right:5px;
+}
 .eventList_image{
-    width: 290px;
-    height:242px;
+    width: 95%;
+    height: 95%;
 
+}
+.tit{
+margin-left:15px;
 }
 #notice_contents .tit {
     color: #222;
@@ -213,23 +238,26 @@ background-color: green;
         	
         	
         	<!-- 내용 시작 -->
-        	<div class="board_container">
+<div class="board_container">
  	
 <!-- tab부분 -->
  <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/mainTab.jsp"></c:import>
   
-  <div id="board_contents">
+  <div class="board_contents">
   	<div id="event_contents">
   	
-       <h2>EVENT</h2>
 
       <div class="submenu">
-         <a href="../event/eventList" ><i>진행중인 이벤트</i></a>
+       <span class="tit">이벤트</span>
+         <a id="endBtn" href="../event/eventList" ><i>종료된 이벤트</i></a>
+         <a id="ingBtn" href="../event/eventList" ><i>진행중인 이벤트</i></a>
      </div>
+     <hr>
+     
      <c:forEach items="${event_list}" var="dto">
      <section> 
      <a href="event/eventView?num=${dto.num}">
-     <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}" width="50px" height="40px"></a>
+     <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></a>
      <p> <a href="event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
      <br><br>
 	  <strong>기간:</strong>&nbsp; ${dto.s_date} &nbsp;~&nbsp; ${dto.e_date} <br>
@@ -271,8 +299,8 @@ background-color: green;
 			</c:forEach>
   	</div>
   
-  <a href="../qna/qnaList">qnaList</a>
-  </div>     
+  	<a href="../qna/qnaList">qnaList</a>
+  		</div>     
   </div> 	
         	
 			<!-- 내용 끝 -->

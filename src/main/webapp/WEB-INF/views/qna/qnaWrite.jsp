@@ -24,20 +24,8 @@ table {
     border-collapse: separate;
     border-spacing: 0;
 }
-#qnaWriteForm{
-	display: inline-block;
-	width:700px;
-	height:600px;
-	margin-left:50px;
 
 
-}
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
 th{
     line-height: 27px;
     vertical-align: top;
@@ -177,7 +165,7 @@ $(function(){
         	
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/qnaTab.jsp"></c:import>
-	
+	<div class="board_contents">
 	<form action="qnaWrite" method="post" enctype="multipart/form-data" id="qnaWriteForm">
 	<div class="customer_top">
 		<h2 class="tit">이메일 문의</h2>
@@ -262,7 +250,7 @@ $(function(){
 </form>
 		
 		
-		
+		</div>
 		</div><!--게시판 내용  -->
 	
 	
