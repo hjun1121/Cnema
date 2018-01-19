@@ -38,7 +38,14 @@ public class ReserveDAO {
 		return sqlSession.selectList(NAMESPACE+"reserveAList", id);
 	}
 	/*heeseong*/
-	public int reserveDel(int reserve_num) throws Exception{
-		return sqlSession.delete(NAMESPACE+"reserveDel",reserve_num);
+	public ReserveDTO reserveBList(String id,int tp_num) throws Exception{
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("id", id);
+		rMap.put("tp_num", tp_num);
+		return sqlSession.selectOne(NAMESPACE+"reserveBList", rMap);
+	}
+	/*heeseong*/
+	public int reserveDel(int tp_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"reserveDel",tp_num);
 	}
 }

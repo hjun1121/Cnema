@@ -58,7 +58,8 @@ public class AdminController {
 	private TimeChange timeChange;
 
 	@RequestMapping(value = "movieList", method = RequestMethod.GET)
-	public ModelAndView movieList(String kind, String search) {
+	public ModelAndView movieList(HttpSession session, String kind, String search) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MovieDTO> movieList = new ArrayList<>();
 		if (search == null) {
@@ -81,6 +82,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
 		mv.addObject("movieList", movieList);
@@ -122,7 +124,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "theaterList", method = RequestMethod.GET)
-	public ModelAndView theaterList(String kind, String search) {
+	public ModelAndView theaterList(HttpSession session, String kind, String search) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<TheaterDTO> theaterList = new ArrayList<>();
 		if (search == null) {
@@ -142,7 +145,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
 		mv.addObject("theaterList", theaterList);

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.cnema.movie.MovieDTO;
 import com.cnema.theater.ScheduleDTO;
+import com.cnema.theater.ScreenDTO;
+import com.cnema.theater.TheaterDTO;
 
 public class ReserveDTO {
 	private int reserve_num;
@@ -15,23 +17,14 @@ public class ReserveDTO {
 	private String id;
 	private int tp_num;
 	private int seat;
+	private String day_num;
+	
 	private ScheduleDTO scheduleDTO;
 	private TicketPriceDTO ticketPriceDTO;
 	private MovieDTO movieDTO;
-	private String day_num;
+	private TheaterDTO theaterDTO;
+	private ScreenDTO screenDTO;
 	
-	public int getSeat() {
-		return seat;
-	}
-	public void setSeat(int seat) {
-		this.seat = seat;
-	}
-	public String getDay_num() {
-		return day_num;
-	}
-	public void setDay_num(String day_num) {
-		this.day_num = day_num;
-	}
 	public int getReserve_num() {
 		return reserve_num;
 	}
@@ -56,7 +49,6 @@ public class ReserveDTO {
 	public void setSchedule_num(int schedule_num) {
 		this.schedule_num = schedule_num;
 	}
-
 	public List<Integer> getSeat_num() {
 		return seat_num;
 	}
@@ -81,7 +73,18 @@ public class ReserveDTO {
 	public void setTp_num(int tp_num) {
 		this.tp_num = tp_num;
 	}
-
+	public int getSeat() {
+		return seat;
+	}
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
+	public String getDay_num() {
+		return day_num;
+	}
+	public void setDay_num(String day_num) {
+		this.day_num = day_num;
+	}
 	public ScheduleDTO getScheduleDTO() {
 		return scheduleDTO;
 	}
@@ -99,5 +102,17 @@ public class ReserveDTO {
 	}
 	public void setMovieDTO(MovieDTO movieDTO) {
 		this.movieDTO = movieDTO;
+	}
+	public TheaterDTO getTheaterDTO() {
+		return theaterDTO;
+	}
+	public void setTheaterDTO(TheaterDTO theaterDTO) {
+		this.theaterDTO = theaterDTO;
+	}
+	public ScreenDTO getScreenDTO() {
+		return screenDTO;
+	}
+	public void setScreenDTO(ScreenDTO screenDTO) {
+		this.screenDTO = screenDTO;
 	}
 }
