@@ -282,11 +282,13 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "scheduleList", method = RequestMethod.GET)
-	public ModelAndView scheduleList() {
+	public ModelAndView scheduleList(HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<ScheduleDTO> sList = new ArrayList<>();
 		sList = scheduleService.scheduleAList();
 		mv.addObject("sList", sList);
+		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("admin/scheduleList");
 		return mv;
 	}
