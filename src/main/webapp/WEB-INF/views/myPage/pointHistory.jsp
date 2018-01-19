@@ -238,6 +238,7 @@ $(function() {
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장목록</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
 		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
@@ -328,33 +329,6 @@ $(function() {
 					</div>
 				</form>
 				<!-- ///////////// -->
-
-				<%-- <h3>Point 내역</h3>
-				<form name="frm" action="pointHistory" method="get">
-					<input type="text" name="testDatepicker1" id="testDatepicker1">~
-					<input type="text" name="testDatepicker2" id="testDatepicker2"> 
-					<input type="submit" value="조회하기">
-				</form>
-				<c:forEach items="${pList}" var="pointList">
-					<table>
-						<tr>
-							<td>적립일</td>
-							<td>금액</td>
-							<td>구분</td>
-						</tr>
-						<tr>
-							<td>${pointList.use_day }</td>
-							<td>${pointList.point_price }점</td>
-							<c:if test="${pointList.type eq 11}">
-								<td>적립</td>
-							</c:if>
-							<c:if test="${pointList.type eq 12}">
-								<td>사용</td>
-							</c:if>
-						</tr>
-					</table>
-				</c:forEach> --%>
-				
 			<!-- //내용에 따라 바뀜// -->
 			</div>
 		</div>
