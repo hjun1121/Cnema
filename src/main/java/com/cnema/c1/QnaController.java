@@ -1,5 +1,7 @@
 package com.cnema.c1;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.qna.QnaService;
+import com.cnema.theater.TheaterDTO;
+import com.cnema.theater.TheaterService;
 import com.cnema.util.ListData;
 import com.cnema.qna.QnaDTO;
 
@@ -20,6 +24,20 @@ public class QnaController {
 	
 	@Inject
 	private QnaService qnaService;
+	@Inject
+	private TheaterService theaterService;
+	
+	@RequestMapping(value="locationList", method=RequestMethod.POST)
+	public ModelAndView locationList(String area,ModelAndView mv)throws Exception{
+		List<TheaterDTO> ar=theaterService.locationList(area);
+		
+		mv.addObject("location_list", ar);
+		mv.setViewName("board/locationList");
+		
+		return mv;
+		
+	}
+	
 	
 	@RequestMapping(value="qnaList")
 	public ModelAndView selectList(ListData listData, ModelAndView mv){
@@ -46,7 +64,13 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="qnaWrite", method=RequestMethod.GET)
-	public void insert(){
+	public ModelAndView insert(ModelAndView mv){
+		
+		 List<TheaterDTO> ar= theaterService.areaList();
+		 mv.addObject("area_list", ar);
+		mv.setViewName("qna/qnaWrite");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="qnaWrite", method=RequestMethod.POST)
@@ -64,7 +88,7 @@ public class QnaController {
 		}
 		rd.addFlashAttribute("message", message);
 		
-		return "redirect:../home/park";
+		return "redirect:../board/park";
 	}
 	
 	@RequestMapping(value="qnaView")

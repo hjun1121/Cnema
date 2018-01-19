@@ -40,7 +40,7 @@
   		select movie_seq.nextval from dual
   	</selectKey>
   	insert into qna
-  	values(#{num},0,0,#{type},#{title},#{writer},#{contents},sysdate,#{fileName},#{oriName},null,null,null)
+  	values(#{num},#{area},#{location},#{type},#{title},#{writer},#{contents},sysdate,#{fileName},#{oriName},null,null,null)
   </insert>
    
    <!-- 수정하기  -->

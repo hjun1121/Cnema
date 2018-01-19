@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cnema.board.BoardDTO;
 
 public class QnaDTO extends BoardDTO {
-	private int area;
-	private int location;
+	private String area;
+	private String location;
 	private int type;
 	private String reply;
 	private String reply_id;
@@ -21,16 +21,17 @@ public class QnaDTO extends BoardDTO {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public int getArea() {
+	
+	public String getArea() {
 		return area;
 	}
-	public void setArea(int area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
-	public int getLocation() {
+	public String getLocation() {
 		return location;
 	}
-	public void setLocation(int location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	public int getType() {

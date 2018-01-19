@@ -114,9 +114,32 @@ background-color: #f1f0e5;
 </style>
 <script type="text/javascript">
 function move() {
-	location.href="../home/park";
+	location.href="../board/park";
 	
 }
+
+$(function(){
+	
+	$("#areasel").change(function(){
+		var area=$("#areasel option:selected").text();
+		
+		$.ajax({
+			url:"../qna/locationList",
+			type:"POST",
+			data:{
+			 area:area
+				 
+			},
+			success:function(data){
+				$("#locationsel").html(data);
+				},
+			error : function(){
+				
+			}
+		});
+	});
+	
+});
 
 
 </script>
@@ -176,10 +199,10 @@ function move() {
 		<tr>
 			<th>문의유형</th>
 			<td>
-			<input type="radio" name="typesel" value="10" checked="checked">문의
-			<input type="radio" name="typesel" value="11">불만
-			<input type="radio" name="typesel" value="12">칭찬
-			<input type="radio" name="typesel" value="13">제안
+			<input type="radio" name="type" value="10" checked="checked">문의
+			<input type="radio" name="type" value="11">불만
+			<input type="radio" name="type" value="12">칭찬
+			<input type="radio" name="type" value="13">제안
 			</td>
 		</tr>
 		<tr>
@@ -188,18 +211,16 @@ function move() {
 		<!-- 지점 정보 불러오기!!  -->
 			<th>영화관 선택</th>
 			<td>
-				<select id="areasel" name="areasel">
-					<option selected="selected">지역선택</option>
+				<select id="areasel" name="area">
+					<option>지역선택</option>
 					<c:forEach items="${area_list}" var="dto">
 					<option>${dto.area}</option>
 					</c:forEach>
 				</select>
 			
-			<select id="locationsel" name="locationsel">
-					<option selected="selected">영화관선택</option>
-					<c:forEach items="${area_list}" var="dto">
-					<option>${dto.location}</option>
-					</c:forEach>
+			<select id="locationsel" name="location">
+					<option>영화관선택</option>
+					
 				</select>
 			</td>
 		</tr>
@@ -250,5 +271,6 @@ function move() {
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 	
 </div>
+
 	</body>
 </html>
