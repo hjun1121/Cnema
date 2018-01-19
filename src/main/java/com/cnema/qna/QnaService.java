@@ -72,10 +72,10 @@ public class QnaService {
 	}
 	
 	/*******************Qna 답글 부분 **************/
-	public int update(QnaDTO boardDTO,String email) throws Exception {
+	public int update(QnaDTO boardDTO) throws Exception {
 		int result = qnaDAO.update(boardDTO);
 		if(result>0){
-			emailDAO.qnaReplySend(boardDTO,email);
+			emailDAO.qnaReplySend(boardDTO);
 		}
 		return result;
 	}

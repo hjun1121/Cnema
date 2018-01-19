@@ -99,7 +99,7 @@
 		<h3>답변 달기</h3>
 		<input type="hidden" name="num" value="${list.num}">
 		<input type="hidden" name="reply_id" value="${member.id}">
-		<input type="hidden" name="email" value="psn1091@naver.com">
+		<input type="hidden" name="email" value="${list.email }">
 		<textarea name="reply" rows="5" cols="30"></textarea>
 		<c:if test="${list.reply==null}">
 		<button type="submit">답변 달기</button>

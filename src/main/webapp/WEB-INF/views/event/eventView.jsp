@@ -115,9 +115,9 @@ ${view.contents}
 
 </div>
 
-<div class="eventViewFile">
+<!-- <div class="eventViewFile">
 첨부 파일 다운로드
-</div>
+</div> -->
 <br>
 <hr>
 <div class="eventJoin">

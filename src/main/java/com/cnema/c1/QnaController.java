@@ -123,10 +123,10 @@ public class QnaController {
 	
 	//Qna 답글 부분 함수들
 	@RequestMapping(value="qnaUpdate", method=RequestMethod.POST)
-	public String update(QnaDTO qnaDTO,String email, RedirectAttributes rd){
+	public String update(QnaDTO qnaDTO,RedirectAttributes rd){
 		int result = 0;
 		try {
-			result = qnaService.update(qnaDTO,email);
+			result = qnaService.update(qnaDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

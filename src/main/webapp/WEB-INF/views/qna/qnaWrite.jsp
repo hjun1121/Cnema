@@ -254,7 +254,7 @@ $(function(){
 			</table>
 				<br>
 	<input type="hidden" name="writer" value="${member.id}">
-	
+	<input type="hidden" name="email" value="${member.email}">
 	<div id="btnSection">
 	<input type="button" id="btn1" onclick="move()" value="등록취소">
 	<input type="submit" id="btn2" value="등록하기">

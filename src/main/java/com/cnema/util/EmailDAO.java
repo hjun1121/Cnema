@@ -19,12 +19,12 @@ import com.cnema.qna.QnaDTO;
 
 public class EmailDAO {
 
-	public int qnaReplySend(QnaDTO qnaDTO,String email) {
+	public int qnaReplySend(QnaDTO qnaDTO) {
 		int result=0;
 		String host     = "smtp.naver.com";
 		  final String user   = "library_4";
 		  final String password  = "gudwns93";
-		  String to     = email;
+		  String to     = qnaDTO.getEmail();
 		  // Get the session object
 		  Properties props = new Properties();
 		  props.put("mail.smtp.host", host);

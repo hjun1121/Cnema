@@ -14,7 +14,14 @@ public class QnaDTO extends BoardDTO {
 	private String reply_id;
 	private Date reply_date;
 	private MultipartFile file;
+	private String email;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public MultipartFile getFile() {
 		return file;
 	}
