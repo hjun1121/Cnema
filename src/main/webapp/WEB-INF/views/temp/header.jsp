@@ -83,7 +83,7 @@
 								</div>
 							</div>
 						</li>
-                        <li class="culture headbtn" title="culture headbtn"><a href="home/park">이벤트&amp;컬쳐</a>
+                        <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;컬쳐</a>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">

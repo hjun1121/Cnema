@@ -14,7 +14,7 @@
         고객센터 메뉴</h2>
     <div class="snb">
         <ul>
-            <li class=""><a href="../home/park">게시판 메인<i></i></a></li>
+            <li class=""><a href="../board/park">게시판 메인<i></i></a></li>
             <li class=""><a href="../notice/noticeList">공지/뉴스<i></i></a></li>
             <li class="on" title="현재선택"><a href="../event/eventList">이벤트<i></i></a></li>            
             <li class=""><a href="../qna/qnaWrite">이메일 문의<i></i></a></li>
