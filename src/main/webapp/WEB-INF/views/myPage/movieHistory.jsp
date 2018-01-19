@@ -126,18 +126,15 @@ $(function(){
 		                            <option class = "kind" value="2017">2017</option>
 		                            <option class = "kind" value="2018">2018</option>
 				                </select>
-				                <button id="date_search" class="round gray"><span>GO</span></button>
+				                <button type="button" id="date_search" class="round gray"><span>GO</span></button>
 				            </div>
 				        </div>
-            		</form>
+            		
 		    		<div class="sect-movielog-lst">
 			    		<ul>
 			    		<c:forEach items="${rList}" var="reserveList" varStatus="count">
-			    		
-			    		<c:if test="${count.first }">
-			    		
-			    		
 			    		<input type="hidden" id="movie_num" name="movie_num" value="${reserveList.movieDTO.movie_num }">
+			    		<input type="hidden" id="tp_num" name="tp_num" value="${reserveList.tp_num }">
                             <li class="movie_info_78316">
                                 <div class="article-movie-info">
 				            		<div class="box-image"> 
@@ -154,10 +151,9 @@ $(function(){
 				                        	<a href="../movie/movie_view?movie_num=${reserveList.movieDTO.movie_num }">
                                                 <strong>${reserveList.movieDTO.movie_name}</strong>
                                             </a>
-                                            <p>예약번호: ${reserveList.reserve_num}</p>
 				                        </div>
                                         <p class="date"> ${reserveList.scheduleDTO.day} / ${reserveList.scheduleDTO.in_time } ~ ${reserveList.scheduleDTO.out_time }</p>
-				                        <p class="theater">${reserveList.theater_num } / ${reserveList.ticketPriceDTO.people}명</p>
+				                        <p class="theater">CGV${reserveList.theaterDTO.location } ${reserveList.screenDTO.room_num }관/ ${reserveList.ticketPriceDTO.people}명</p>
                                         <ul class="writerinfo">                                        
 	                                        <li class="writer-opinion">
 	                                        	<input type="button" class="reviewBtn" title="${reserveList.movieDTO.movie_num }" value="이 영화를 평가해 주세요">
@@ -170,11 +166,10 @@ $(function(){
 				                    </button>
 				                </div>
 			                </li>
-						</c:if>			                
 			            </c:forEach>
 			    		</ul> 
 		    		</div>
-		    		
+		    		</form>
 	    			</div>
 					</div>
 				</div>

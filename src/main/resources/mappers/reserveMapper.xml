@@ -18,11 +18,15 @@
   	</select>
   	<!-- heeseong -->
   	<select id="reserveAList" resultType="reserveDTO" parameterType="java.lang.String">
-  		select * from reserve where id=#{id}
+  		select distinct tp_num from reserve where id=#{id}
+  	</select>
+  	<!-- heeseong -->
+  	<select id="reserveBList" resultType="reserveDTO" parameterType="map">
+  		select * from (select rownum R, RE.* from reserve RE where tp_num=#{tp_num} and id=#{id}) where R=1
   	</select>
   	
   	<!-- heeseong -->
   	<delete id="reserveDel" parameterType="int" >
-  		delete reserve where reserve_num=#{reserve_num}
+  		delete reserve where tp_num=#{tp_num}
   	</delete>
   </mapper>
