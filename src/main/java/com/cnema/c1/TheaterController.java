@@ -48,8 +48,25 @@ public class TheaterController {
 	@Inject
 	private MyCouponService myCouponService;
 	
-	@RequestMapping(value="quickReserveGo", method=RequestMethod.GET)
-	public ModelAndView quickReserveGo(RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO, HttpSession session){
+	@RequestMapping(value="quickReservePay", method=RequestMethod.POST)
+	public void quickReservePay(Model model,ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO,HttpSession session){
+		MovieDTO movieDTO= null;
+		String movie =null;
+		try {
+			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
+			movie = movieDTO.getMovie_name();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("reserve", reserveDTO);
+		model.addAttribute("ticketPrice", ticketPriceDTO);
+		model.addAttribute("movie", movie);
+	}
+	
+	@RequestMapping(value="quickReserveGo", method=RequestMethod.POST)
+	public ModelAndView quickReserveGo(RedirectAttributes rd, ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO, HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		int tp_num=0;
@@ -67,14 +84,8 @@ public class TheaterController {
 		reserveDTO.setId(memberDTO.getId());
 
 		
-		TicketPriceDTO ticketPriceDTO = new TicketPriceDTO();
+		//TicketPriceDTO ticketPriceDTO = new TicketPriceDTO();
 		ticketPriceDTO.setTp_num(tp_num);
-		ticketPriceDTO.setPeople(reserve2DTO.getpCount());
-		ticketPriceDTO.setAdult_num(reserve2DTO.getAdult_num());
-		ticketPriceDTO.setTeen_num(reserve2DTO.getTeen_num());
-		ticketPriceDTO.setTotal_price(reserve2DTO.getPrice());
-		ticketPriceDTO.setC_num(1);
-		ticketPriceDTO.setPrice(reserve2DTO.getPrice());
 		ticketPriceDTO.setCode("asd");
 		ticketPriceDTO.setId(memberDTO.getId());
 		int result = 0;
