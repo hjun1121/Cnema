@@ -194,7 +194,7 @@ public class TheaterController {
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)
-	public void quickReserve(Model model, String area){
+	public void quickReserve(Model model, String area, @RequestParam(defaultValue="0", required=false)int movie_num, @RequestParam(defaultValue="0", required=false)int theater_num, String day_num, @RequestParam(defaultValue="0", required=false)int schedule_num){
 		if(area == null){
 			area="서울";
 		}
@@ -210,6 +210,12 @@ public class TheaterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		model.addAttribute("areaName", area);
+		model.addAttribute("movie_num", movie_num);
+		model.addAttribute("theater_num", theater_num);
+		model.addAttribute("day_num", day_num);
+		model.addAttribute("schedule_num", schedule_num);
 		
 		model.addAttribute("location", theaterList);
 		model.addAttribute("movie", movieList);

@@ -9,10 +9,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var m = $("#movie_num").val();
-		
+		var movieNum = $("#movie_num").val();
+		var areaName = $("#areaName").val();
+		var theaterNum = $("#theater_num").val();
+		var dayNum = $("#day_num").val();
+		var scheduleNum = $("#schedule_num").val();
+		/*  */
 		$(".movies").each(function() {
-			if($(this).attr("title") == m) {
+			if($(this).attr("title") == movieNum) {
 				var num = $(this).attr("title");
 				$(this).css("background-color","red");
 				$.ajax({
@@ -28,16 +32,67 @@
 			}
 		});
 		
-		var t = $("#theater_num").val();
 		$(".area").each(function(){
-			
+			if($(this).attr("title") == areaName){
+				var area = $(this).attr("title");
+				$(".area").css("background-color","");		
+				$(this).css("background-color","red");
+				
+				$.ajax({
+					url:"../ajax/locationList",
+					type:"post",
+					data:{
+						area:area,
+						location:theaterNum
+					},
+					success:function(data){
+						$("#list").html(data);
+					}
+				});
+			}
 		});
+		
+		$(".days").each(function(){
+			if($(this).attr("title") == dayNum){
+				$(this).css("background-color","red");
+				
+				$.ajax({
+					url:"../ajax/qrScheduleList",
+					type:"post",
+					data:{
+						theater_num:theaterNum,
+						movie_num:movieNum,
+						day_num:dayNum,
+						schedule_num:scheduleNum
+					},
+					success:function(data){
+						$("#scheduleList").html(data);
+					}
+				});
+				
+				$.ajax({
+					url:"../ajax/qrSchedule",
+					type:"post",
+					data:{
+						theater_num:theaterNum,
+						day_num: dayNum,
+						schedule_num:scheduleNum
+					},
+					success:function(data){
+						$("#qrTheater").html(data);
+					}
+				});
+				
+			}
+		});
+		
 		
 		/*  */
 		$(".area").click(function(){
 			$(".area").css("background-color","");
 			$(this).css("background-color","red");
 			var area = $(this).attr("title");
+			$("#areaName").val(area);
 			$.ajax({
 				url:"../ajax/locationList",
 				type:"post",
@@ -45,7 +100,7 @@
 					area:area
 				},
 				success:function(data){
-					$(".locationList").html("");
+					//$(".locationList").html("");
 					$("#list").html(data);
 				}
 			});
@@ -275,14 +330,8 @@
 				</li>
 				<li>
 					<a href="#" class="area" title="경기" onclick="return false;">경기</a>
-					<div class="locationList" id="경기">
-					</div>
 				</li>
-				<li>
-					<a href="#" class="area" title="인천" onclick="return false;">인천</a>
-					<div class="locationList" id="인천">
-					</div>
-				</li>
+
 			</ul>
 
 		</div>
@@ -332,11 +381,11 @@
 		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
 		<form action="./quickReserve2" method="post" name="reserve" style="clear: both;">
-			m<input type="text" id="movie_num" name="movie_num">
-			a<input type="text" id="area" name="area_num">
-			t<input type="text" id="theater_num" name="theater_num">
-			d<input type="text" id="day_num" name="day_num">
-			sc<input type="text" id="schedule_num" name="schedule_num">
+			m<input type="text" id="movie_num" name="movie_num" value="${movie_num }">
+			a<input type="text" id="areaName" name="areaName" value="${areaName }">
+			t<input type="text" id="theater_num" name="theater_num" value="${theater_num }">
+			d<input type="text" id="day_num" name="day_num" value="${day_num }">
+			sc<input type="text" id="schedule_num" name="schedule_num" value="${schedule_num }">
 		</form>
 	</div>
 </body>

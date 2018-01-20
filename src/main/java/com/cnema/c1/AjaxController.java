@@ -350,7 +350,7 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="qrScheduleList", method=RequestMethod.POST)
-	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
+	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model, @RequestParam(defaultValue="0", required=false)int schedule_num){
 		List<Integer> seatCheck =null;
 		try {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
@@ -365,6 +365,7 @@ public class AjaxController {
 			}
 			
 			model.addAttribute("screenList", ar);
+			model.addAttribute("num", schedule_num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
