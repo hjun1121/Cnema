@@ -24,12 +24,13 @@
 			 }
 		}); 
 		
-
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
 			$(this).css("background-color","red");
 			area = $(this).attr("title");
 			$("#areaN").val(area);
+			$("#scheduleList").html('<ul style="clear: both;"></ul>');
+			$("#locationN").val("");
 			var locationN = $("#locationN").val();
 			$.ajax({
 				url:"../ajax/locationList",
@@ -43,6 +44,7 @@
 				}
 			});
 		});
+		
 		$("#locationList").on("click",".location",function(){
 			$(".location").css("background-color","");
 			$(this).css("background-color","red");

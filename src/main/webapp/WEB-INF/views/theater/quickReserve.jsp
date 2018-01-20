@@ -329,9 +329,9 @@
 						</ul>
 					</div>
 				</li>
-				<c:forEach items="${areaList }" var="DTO">
+				<c:forEach items="${areaList }" var="area">
 					<li>
-						<a href="#" class="area"  title="${DTO }" onclick="return false;">${DTO}</a>
+						<a href="#" class="area"  title="${area }" onclick="return false;">${area}</a>
 					</li>
 				
 				</c:forEach>
