@@ -245,17 +245,17 @@ public class AjaxController {
 	
 	//스케쥴리스트
 	@RequestMapping(value="slScheduleList", method=RequestMethod.POST)
-	public void slScheduleList(int location, String day, Model model){
+	public void slScheduleList(int theater_num, String day, Model model){
 		List<MovieDTO> movieList = new ArrayList<>();
 		try {
-			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			List<Integer> movieNumList = scheduleService.movieNumList(theater_num, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
-				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				List<Integer> screenNumList = scheduleService.screenNumList(theater_num, day, i);
 				
 				List<List<ScheduleDTO>> sll = new ArrayList<>();
 				for(Integer s : screenNumList){
-					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(theater_num, day, i, s);
 					sll.add(sl);
 				}
 				movieDTO.setsList(sll);
@@ -438,7 +438,7 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
-	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int location){
+	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int theater_num){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
@@ -447,7 +447,7 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("num", location);
+		mv.addObject("num", theater_num);
 		mv.addObject("location", ar);
 		mv.setViewName("ajax/locationList");
 		

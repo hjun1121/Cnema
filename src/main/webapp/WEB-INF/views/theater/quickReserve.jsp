@@ -43,7 +43,7 @@
 					type:"post",
 					data:{
 						area:area,
-						location:theaterNum
+						theater_num:theaterNum
 					},
 					success:function(data){
 						$("#list").html(data);
@@ -100,8 +100,9 @@
 					area:area
 				},
 				success:function(data){
-					//$(".locationList").html("");
 					$("#list").html(data);
+					$("#scheduleList").html("<li><h4> 영화, 극장, 날짜를 선택해주세요</h4></li>");
+					$("#schedule_num").val("");
 				}
 			});
 		});
@@ -315,7 +316,7 @@
 			</div>
 			<ul>
 				<li>
-					<a href="#" class="area" id="area" title="서울" onclick="return false;" style="background-color: red;">서울</a>
+					<a href="#" class="area"  title="서울" onclick="return false;" style="background-color: red;">서울</a>
 					<div class="locationList" id="list">
 						<ul>
 							<c:forEach items="${location }" var="DTO">
@@ -381,11 +382,11 @@
 		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
 		<form action="./quickReserve2" method="post" name="reserve" style="clear: both;">
-			<input type="hidden" id="movie_num" name="movie_num" value="${movie_num }">
-			<input type="hidden" id="areaName" name="areaName" value="${areaName }">
-			<input type="hidden" id="theater_num" name="theater_num" value="${theater_num }">
-			<input type="hidden" id="day_num" name="day_num" value="${day_num }">
-			<input type="hidden" id="schedule_num" name="schedule_num" value="${schedule_num }">
+			<input type="text" id="movie_num" name="movie_num" value="${movie_num }">
+			<input type="text" id="areaName" name="areaName" value="${areaName }">
+			<input type="text" id="theater_num" name="theater_num" value="${theater_num }">
+			<input type="text" id="day_num" name="day_num" value="${day_num }">
+			<input type="text" id="schedule_num" name="schedule_num" value="${schedule_num }">
 		</form>
 	</div>
 </body>
