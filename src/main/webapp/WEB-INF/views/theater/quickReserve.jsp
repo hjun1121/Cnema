@@ -329,9 +329,12 @@
 						</ul>
 					</div>
 				</li>
-				<li>
-					<a href="#" class="area" title="경기" onclick="return false;">경기</a>
-				</li>
+				<c:forEach items="${areaList }" var="DTO">
+					<li>
+						<a href="#" class="area"  title="${DTO }" onclick="return false;">${DTO}</a>
+					</li>
+				
+				</c:forEach>
 
 			</ul>
 

@@ -34,6 +34,9 @@ public class TheaterDAO {
 	public List<TheaterDTO> areaList(){
 		return sqlSession.selectList(NAMESPACE+"areaList");
 	}
+	public List<TheaterDTO> qrAreaList(){
+		return sqlSession.selectList(NAMESPACE+"qrAreaList");
+	}
 	
 	/*heeseong*/
 	public List<TheaterDTO> theatherAList() {

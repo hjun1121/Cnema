@@ -197,11 +197,12 @@ public class TheaterController {
 		if(areaName == null){
 			areaName="서울";
 		}
-		
+		List<TheaterDTO> areaList = null;
 		List<MovieDTO> movieList = null;
 		List<TheaterDTO> theaterList = null;
 		List<DayDTO> dayList = null;
 		try {
+			areaList = theaterService.qrAreaList();
 			movieList = movieService.qrMovieList();
 			theaterList = theaterService.locationList(areaName);
 			dayList = theaterService.dayList();
@@ -216,6 +217,7 @@ public class TheaterController {
 		model.addAttribute("day_num", day_num);
 		model.addAttribute("schedule_num", schedule_num);
 		
+		model.addAttribute("areaList", areaList);
 		model.addAttribute("location", theaterList);
 		model.addAttribute("movie", movieList);
 		model.addAttribute("dayList", dayList);
