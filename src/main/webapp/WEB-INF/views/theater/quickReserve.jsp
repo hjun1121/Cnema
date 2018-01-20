@@ -381,11 +381,11 @@
 		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
 		<form action="./quickReserve2" method="post" name="reserve" style="clear: both;">
-			m<input type="text" id="movie_num" name="movie_num" value="${movie_num }">
-			a<input type="text" id="areaName" name="areaName" value="${areaName }">
-			t<input type="text" id="theater_num" name="theater_num" value="${theater_num }">
-			d<input type="text" id="day_num" name="day_num" value="${day_num }">
-			sc<input type="text" id="schedule_num" name="schedule_num" value="${schedule_num }">
+			<input type="hidden" id="movie_num" name="movie_num" value="${movie_num }">
+			<input type="hidden" id="areaName" name="areaName" value="${areaName }">
+			<input type="hidden" id="theater_num" name="theater_num" value="${theater_num }">
+			<input type="hidden" id="day_num" name="day_num" value="${day_num }">
+			<input type="hidden" id="schedule_num" name="schedule_num" value="${schedule_num }">
 		</form>
 	</div>
 </body>

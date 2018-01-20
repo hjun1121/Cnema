@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cnema.coupon.CouponService;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
