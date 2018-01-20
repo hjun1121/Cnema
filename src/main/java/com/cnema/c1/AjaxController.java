@@ -417,12 +417,10 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="qrCoupon", method=RequestMethod.POST)
-	public void qrCoupon(int price, String coupon, Model model){
-		System.out.println(price);
-		System.out.println(coupon);
+	public void qrCoupon(int price, int c_num, Model model){
 		double nPrice = 0;
 		try {
-			CouponDTO couponDTO = couponService.couponOne(coupon);
+			CouponDTO couponDTO = couponService.couponInfo(c_num);
 			//10이면 퍼센트 11이면 고정값
 			if(couponDTO.getType()==10){
 				nPrice = price* Double.parseDouble(couponDTO.getPrice());
@@ -435,7 +433,6 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		int discount = price -(int)nPrice;
-		System.out.println(discount);
 		model.addAttribute("discount", discount);
 	}
 	
