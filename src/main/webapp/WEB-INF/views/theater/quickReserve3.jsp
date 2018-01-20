@@ -339,8 +339,8 @@
 			<br>
 			ad<input type="text" id="adult_num" name="adult_num" value="${reserve2.adult_num }">
 			te<input type="text" id="teen_num" name="teen_num" value="${reserve2.teen_num }">
-			pC<input type="text" id="pCount" name="pCount" value="${reserve2.pCount }">
-			pe<input type="text" id="people" name="people" value="${reserve2.people }">
+			pC<input type="text" id="pCount" name="people" value="${reserve2.pCount }">
+			pe<input type="text" id="people" name="pCount" value="${reserve2.people }">
 			<input type="text" id="total_price" name="total_price" value="${reserve2.price }">
 			<div id="seatList">
 			<c:forEach items="${seat_num }" var="seat">
