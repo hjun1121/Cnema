@@ -9,6 +9,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var m = $("#movie_num").val();
+		
+		$(".movies").each(function() {
+			if($(this).attr("title") == m) {
+				var num = $(this).attr("title");
+				$(this).css("background-color","red");
+				$.ajax({
+					url:"../ajax/qrMovie",
+					type:"post",
+					data:{
+						movie_num:num
+					},
+					success:function(data){
+						$("#qrMovie").html(data);
+					}
+				});
+			}
+		});
+		
+		var t = $("#theater_num").val();
+		$(".area").each(function(){
+			
+		});
+		
 		/*  */
 		$(".area").click(function(){
 			$(".area").css("background-color","");
@@ -309,6 +333,7 @@
 		</form>
 		<form action="./quickReserve2" method="post" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num">
+			a<input type="text" id="area" name="area_num">
 			t<input type="text" id="theater_num" name="theater_num">
 			d<input type="text" id="day_num" name="day_num">
 			sc<input type="text" id="schedule_num" name="schedule_num">
