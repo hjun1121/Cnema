@@ -17,6 +17,12 @@ public class MyCouponDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="myCouponMapper.";
 	
+	public int qrCouponUpdate(int c_num, String id) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("c_num", c_num);
+		map.put("id", id);
+		return sqlSession.update(NAMESPACE+"qrCouponUpdate", map);
+	}
 	/*heeseong*/
 	public List<MyCouponDTO> myCouponList(String id,String type) throws Exception{
 		Map<String, Object> cMap = new HashMap<String, Object>();

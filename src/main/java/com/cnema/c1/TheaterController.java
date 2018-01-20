@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CouponService;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
+import com.cnema.member.MemberService;
+import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.reserve.Reserve2DTO;
@@ -47,6 +50,11 @@ public class TheaterController {
 	private ReserveService reserveService;
 	@Inject
 	private MyCouponService myCouponService;
+	@Inject
+	private MemberService memberService;
+	@Inject
+	private PointService pointService;
+	
 	
 	@RequestMapping(value="quickReservePay", method=RequestMethod.POST)
 	public void quickReservePay(Model model,ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO,HttpSession session){
@@ -99,6 +107,24 @@ public class TheaterController {
 				reserveService.reserveInsert(reserveDTO);
 				
 			}
+			double getPoint = 0;
+			int price = ticketPriceDTO.getPrice();
+			if(price>=10){
+				getPoint = price*0.1;
+			}else{
+				getPoint = 0;
+			}
+			memberService.qrPointUpdate(ticketPriceDTO.getPoint(), (int)getPoint, memberDTO.getId());
+			myCouponService.qrCouponUpdate(ticketPriceDTO.getC_num(), memberDTO.getId());
+			
+			if(ticketPriceDTO.getPoint()>0){
+				pointService.usePoint(memberDTO.getId(),"영화 구매 사용",ticketPriceDTO.getPoint());
+			}
+			if(getPoint>0){
+				pointService.getPoint(memberDTO.getId(),"영화 구매 적립", (int)getPoint);
+			}
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

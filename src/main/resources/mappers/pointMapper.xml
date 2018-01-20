@@ -3,6 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pointMapper">
+	<insert id="getPoint" parameterType="pointDTO">
+		insert into point values(movie_seq.nextval,#{id},#{contents},#{point_price},sysdate,20)
+	</insert>
+
+	<insert id="usePoint" parameterType="pointDTO">
+		insert into point values(movie_seq.nextval,#{id},#{contents},#{point_price},sysdate,10)
+	</insert>
+
 	<!-- 희성 -->
 	<select id="pointList" resultType="pointDTO">
 		select * from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2}

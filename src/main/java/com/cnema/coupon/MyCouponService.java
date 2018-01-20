@@ -13,6 +13,10 @@ public class MyCouponService {
 	@Inject
 	private MyCouponDAO myCouponDAO;
 	
+	public int qrCouponUpdate(int c_num, String id) throws Exception{
+		return myCouponDAO.qrCouponUpdate(c_num, id);
+	}
+	
 	/*희성*/
 	public List<MyCouponDTO> myCouponList(String id,String kind) throws Exception{
 		return myCouponDAO.myCouponList(id,kind);

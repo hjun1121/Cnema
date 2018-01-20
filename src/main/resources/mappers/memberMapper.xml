@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="memberMapper">
   	<!-- kim -->
+  	<update id="qrPointUpdate" parameterType="java.util.Map">
+  		update member set v_point=v_point-#{point}, a_point=a_point+#{getPoint} where id=#{id}
+  	</update>
+  	
   	<select id="idFind" parameterType="memberDTO" resultType="memberDTO">
 		select * from member where name=#{name} and email=#{email}  	
   	</select>

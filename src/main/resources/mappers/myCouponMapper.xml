@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="myCouponMapper">
+  
+  <update id="qrCouponUpdate" parameterType="java.util.Map">
+  	update mycoupon set type=10, use_date=sysdate where c_num=#{c_num} and id=#{id}
+  </update>
+  
+  
   <!-- heeseong -->
   <select id="myCouponList" resultType="myCouponDTO" parameterType="java.lang.String">
   	select * from myCoupon where id=#{id} and type=#{type} order by v_date asc

@@ -1,6 +1,8 @@
 package com.cnema.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,10 @@ public class MemberService {
 	private FileSaver fileSaver;
 	
 	/*kim*/
+	public int qrPointUpdate(int point, int getPoint, String id) throws Exception{
+		return memberDAO.qrPointUpdate(point, getPoint, id);
+	}
+	
 	public List<MemberDTO> idFind(MemberDTO memberDTO) throws Exception{
 		return memberDAO.idFind(memberDTO);
 	}

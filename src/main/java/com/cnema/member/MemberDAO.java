@@ -16,6 +16,14 @@ public class MemberDAO {
 	private final String NAMESPACE="memberMapper.";
 	
 	/*kim*/
+	public int qrPointUpdate(int point, int getPoint, String id) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("point", point);
+		map.put("getPoint", getPoint);
+		map.put("id", id);
+		return sqlSession.update(NAMESPACE+"qrPointUpdate", map);
+	}
+	
 	public List<MemberDTO> idFind(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"idFind", memberDTO);
 	}
