@@ -124,6 +124,14 @@
 					x='D';					
 				}else if(x<=5){
 					x='E';					
+				}else if(x<=6){
+					x='F';					
+				}else if(x<=7){
+					x='G';					
+				}else if(x<=8){
+					x='H';					
+				}else{
+					x='..';
 				}
 				
 				if(y==0){
