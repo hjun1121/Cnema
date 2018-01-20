@@ -307,7 +307,7 @@
 		<input type="button" id="rightBtn1" value="다음">
 		<input type="hidden" id="rightBtn2" value="결제">	
 		</form>
-		<form action="./quickReserve2" name="reserve" style="clear: both;">
+		<form action="./quickReserve2" method="post" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num">
 			t<input type="text" id="theater_num" name="theater_num">
 			d<input type="text" id="day_num" name="day_num">

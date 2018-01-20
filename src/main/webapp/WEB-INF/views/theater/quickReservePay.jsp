@@ -56,23 +56,22 @@
 <body>
 
 	<form action="./quickReserveGo" method="POST" name="frm">
-			<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">
-			<input type="text" id="theater_num" name="theater_num" value="${reserve.theater_num }">
-			<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">
-			<input type="text" id="schedule_num" name="schedule_num" value="${reserve.schedule_num }">
-			<br>
-			<input type="text" id="adult_num" name="adult_num" value="${ticketPrice.adult_num }">
-			<input type="text" id="teen_num" name="teen_num" value="${ticketPrice.teen_num }">
-			<input type="text" id="pCount" name="people" value="${ticketPrice.people }">
-			<input type="text" id="total_price" name="total_price" value="${ticketPrice.total_price }">
+			<input type="hidden" id="movie_num" name="movie_num" value="${reserve.movie_num }">
+			<input type="hidden" id="theater_num" name="theater_num" value="${reserve.theater_num }">
+			<input type="hidden" id="day_num" name="day_num" value="${reserve.day_num }">
+			<input type="hidden" id="schedule_num" name="schedule_num" value="${reserve.schedule_num }">
+			<input type="hidden" id="adult_num" name="adult_num" value="${ticketPrice.adult_num }">
+			<input type="hidden" id="teen_num" name="teen_num" value="${ticketPrice.teen_num }">
+			<input type="hidden" id="pCount" name="people" value="${ticketPrice.people }">
+			<input type="hidden" id="total_price" name="total_price" value="${ticketPrice.total_price }">
 			<div id="seatList">
 			<c:forEach items="${reserve.seat_num }" var="seat">
-				<input type="text" class="ss" name="seat_num" value="${seat }">
+				<input type="hidden" class="ss" name="seat_num" value="${seat }">
 			</c:forEach>
 			</div>
-			<input type="text" id="useCoupon" name="c_num" value="${ticketPrice.c_num}">
-			<input type="text" id="usePoint" name="point" value="${ticketPrice.point}">
-			<input type="text" id="price" name="price" value="${ticketPrice.price }">
+			<input type="hidden" id="useCoupon" name="c_num" value="${ticketPrice.c_num}">
+			<input type="hidden" id="usePoint" name="point" value="${ticketPrice.point}">
+			<input type="hidden" id="price" name="price" value="${ticketPrice.price }">
 	</form>
 	
 </body>

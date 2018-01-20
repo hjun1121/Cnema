@@ -138,7 +138,7 @@ public class TheaterController {
 		return mv;
 	}
 	
-	@RequestMapping(value="quickReserve3", method=RequestMethod.GET)
+	@RequestMapping(value="quickReserve3", method=RequestMethod.POST)
 	public void quickReserve3(Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO, HttpSession session){
 		MovieDTO movieDTO = null;
 		TheaterDTO theaterDTO = null;
@@ -167,7 +167,7 @@ public class TheaterController {
 		model.addAttribute("coupon", couponList);
 	}
 	
-	@RequestMapping(value="quickReserve2", method=RequestMethod.GET)
+	@RequestMapping(value="quickReserve2", method=RequestMethod.POST)
 	public void quickReserve2(Model model, ReserveDTO reserveDTO){
 		MovieDTO movieDTO = null;
 		TheaterDTO theaterDTO = null;
