@@ -82,7 +82,15 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
-	public void join(){
+	public ModelAndView join(HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		String agree = (String)session.getAttribute("agree");
+		if(agree.equals("ok")){
+			mv.setViewName("member/memberJoin");
+		}else{
+			mv.setViewName("member/joinAgree");
+		}
+		return mv;
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)

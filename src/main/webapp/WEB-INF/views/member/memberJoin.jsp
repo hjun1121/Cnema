@@ -179,6 +179,7 @@
 </script>
 </head>
 <body>
+<c:set scope="session" var="agree" value=""></c:set>
 	<div id="cgvwrap">
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 
