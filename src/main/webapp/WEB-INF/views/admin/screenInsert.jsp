@@ -19,9 +19,38 @@
 	$(function(){
 		var farea = $("#farea").val();
 		var flocation = $("#flocation").val();
+		
 		$(".kind").each(function(){
 			if($(this).val()==farea){
 				$(this).attr("selected",true);
+				$.ajax({
+					url:"../ajax/adminLocationList",
+					type:"POST",
+					data:{		
+						area:farea
+					},
+					success:function(data){
+						$("#location").html(data);
+						$("#location").focus();
+					}
+				});
+			}
+		});
+		
+		$(".lkind").each(function(){
+			if($(this).val()==flocation){
+				$(this).attr("selected",true);
+				$.ajax({
+					url:"../ajax/adminLocationList",
+					type:"POST",
+					data:{		
+						area:farea
+					},
+					success:function(data){
+						$("#location").html(data);
+						$("#location").focus();
+					}
+				});
 			}
 		});
 				
@@ -35,7 +64,7 @@
 					url:"../ajax/adminLocationList",
 					type:"POST",
 					data:{		
-						area:area,
+						area:area
 					},
 					success:function(data){
 						$("#location").html(data);
@@ -43,7 +72,6 @@
 					}
 				});
 			}
-			
 		});
 		
 		$("#location").change(function(){
@@ -314,7 +342,7 @@
 								</select>
 							</td>
 							<td>
-								<select id="location" name="theater_num">
+								<select id="location" name="theater_num" class="lkind">
 									<option value="x">극장선택</option>
 								</select>
 							</td>

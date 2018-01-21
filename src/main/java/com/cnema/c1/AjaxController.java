@@ -98,7 +98,6 @@ public class AjaxController {
 		try {
 			ar = theaterService.locationList(area);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();

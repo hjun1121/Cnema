@@ -30,7 +30,7 @@ $(function(){
 			type:"POST",
 			data:{		
 				movie_num:movie_num,
-				in_time:in_time,
+				in_time:in_time
 			},
 			success:function(data){
 				$("#out_time").val(data.trim());
