@@ -60,6 +60,7 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
+	
 	//admin 관련
 	@RequestMapping(value="inTime", method=RequestMethod.POST)
 	public void inTime(int movie_num, String in_time, String day, Model model){
@@ -73,7 +74,6 @@ public class AjaxController {
 		try {
 			ar= scheduleService.screenList(theater_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -86,14 +86,13 @@ public class AjaxController {
 		try {
 			ar= scheduleService.screenList(theater_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("screenList", ar);
 	}	
 	@RequestMapping(value="adminLocationList", method=RequestMethod.POST)
-	public ModelAndView adminLocationList(String area){
+	public ModelAndView adminLocationList(String area,int theater_num){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
@@ -102,6 +101,7 @@ public class AjaxController {
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("locationList", ar);
+		mv.addObject("theater_num", theater_num);
 		mv.setViewName("ajax/adminLocationList");
 		
 		return mv;

@@ -36,6 +36,6 @@
   
   <!-- heeseong -->
   <insert id="couponInsert" parameterType="java.util.Map">
-  	insert into myCoupon (num,name,id,v_date,publish_date,type,c_num) values(movie_seq.nextval,#{couponDTO.name},#{id},to_date(#{couponDTO.v_date},'YYYY/mm/DD'),sysdate,11,#{couponDTO.c_num})
+  	insert into myCoupon (num,name,id,v_date,publish_date,type,c_num) values(movie_seq.nextval,#{couponDTO.name},#{id},to_date(#{v_date},'YYYY/mm/DD'),sysdate,11,#{couponDTO.c_num})
   </insert>
   </mapper>

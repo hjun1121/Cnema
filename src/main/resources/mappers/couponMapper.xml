@@ -37,7 +37,7 @@
   	</insert>
   	<!-- heeseong -->
   	<update id="couponRevision" parameterType="couponDTO">
-  		update coupon set type=#{type}, price=#{price}, v_day=${v_day}
+  		update coupon set name=#{name}, type=#{type}, price=#{price}, v_day=${v_day} where c_num=#{c_num}
   	</update>
   	<!-- heeseong -->
   	<select id="couponRevisionInfo" parameterType="java.lang.String" resultType="couponDTO">

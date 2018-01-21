@@ -59,6 +59,10 @@ public class MemberService {
 		return memberDAO.memberList();
 	}
 	/*heeseong*/
+	public List<MemberDTO> memberSList(String kind) throws Exception{
+		return memberDAO.memberSList(kind);
+	}
+	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{
 		return memberDAO.memberCList(ctype);
 	}

@@ -6,11 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>그룹 리스트(관리자용)${fn:length(groupList)}개</title>
+<script type="text/javascript">
+$(function(){
+	$(".rBtn").click(function(){
+		var group_num = $(this).attr("title");
+		location.href="./groupRemove?group_num="+group_num;
+	});
+});
+</script>
 </head>
 <body>
 <h3>그룹 목록</h3>
-<form action="./groupRemove" method="POST">
+<form>
 	<table>
 		<tr>
 			<td>그룹이름</td>
@@ -18,11 +27,11 @@
 			<td></td>
 		</tr>
 		<c:forEach items="${groupList }" var="gList" varStatus="gc" >
+		<input type="hidden" class="gnClass" title="${gList.group_num }">
 		<tr>
-			<input type="hidden" name="group_num" value="${gList.group_num }">
 			<td>${gList.group_num }</td>
 			<td>${groupCountList[gc.index] }</td>
-			<td><input type="submit" value="X"></td>
+			<td><input type="button" class="rBtn" title="${gList.group_num }" value="X"></td>
 		</tr>
 		</c:forEach>
 	</table>

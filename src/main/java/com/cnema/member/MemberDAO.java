@@ -50,6 +50,10 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+"memberList");
 	}
 	/*heeseong*/
+	public List<MemberDTO> memberSList(String kind) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"memberSList",kind);
+	}
+	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"memberCList",ctype);
 	}

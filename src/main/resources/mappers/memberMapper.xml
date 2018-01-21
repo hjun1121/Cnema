@@ -33,6 +33,10 @@
   		select * from member
   	</select>
   	<!-- heeseong -->
+  	<select id="memberSList" resultType="memberDTO" parameterType="java.lang.String">
+  		select * from member order by #{kind} desc
+  	</select>
+  	<!-- heeseong -->
   	<select id="memberCList" resultType="memberDTO" parameterType="int">
   		select * from member where to_char(birth,'YY/MM/DD') = to_char(sysdate,'YY/MM/DD')
   	</select>

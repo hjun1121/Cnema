@@ -51,11 +51,19 @@ $(function(){
 	
 	$(".gList").click(function(){
 		var number = $(this).val();
-		location.href="memberList?group_num="+number;
+		location.href="memberList?group_num="+number+"&sort=-1";
 	});
 	
 	$("#allMember").click(function(){
-		location.href="memberList?group_num=-1";
+		location.href="memberList?group_num=-1&sort=-1";
+	});
+	
+	$("#bSort").click(function(){
+		location.href="memberList?group_num=-1&sort=10";
+	});
+	
+	$("#tSort").click(function(){
+		location.href="memberList?group_num=-1&sort=20";
 	});
 	
 	$("#sBtn").click(function(){
@@ -105,8 +113,8 @@ $(function(){
 		<td><input type="checkbox" name="groupAll" id="groupAll" value="all"></td>
 		<td>ID</td>
 		<td>NAME</td>
-		<td>BIRTH</td>
-		<td>TYPE</td>
+		<td>BIRTH<input type="button" id="bSort"value="^"></td>
+		<td>TYPE<input type="button" id="tSort"value="^"></td>
 		<td>쿠폰갯수</td>
 	</tr>
 	<c:forEach items="${memList }" var="mList" varStatus="status">

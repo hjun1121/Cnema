@@ -256,11 +256,12 @@ public class AdminController {
 		List<ScreenDTO> sList = new ArrayList<>();
 		TheaterDTO theaterDTO = null;
 		try {
-			if(theater_num!=0){
+			if(theater_num!=-1){
 				sList = scheduleService.screenList(theater_num);
 				mv.addObject("theater_num", theater_num);
 			}else{
 				sList = scheduleService.screenAList();
+				mv.addObject("theater_num", -1);
 			}
 			for(ScreenDTO screenDTO : sList){
 				theaterDTO = theaterService.selectOne(screenDTO.getTheater_num());
@@ -345,9 +346,11 @@ public class AdminController {
 		TheaterDTO theaterDTO = null;
 		try {
 			areaList = theaterService.areaList();
-			if(theater_num!=0){
+			if(theater_num!=-1){
 				theaterDTO = theaterService.selectOne(theater_num);
 				model.addAttribute("theaterDTO", theaterDTO);
+			}else{
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -452,13 +455,17 @@ public class AdminController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
+		List<DayDTO> dayList = null;
 		try {
 			scheduleDTO = scheduleService.scheduleInfo(schedule_num);
+			dayList = theaterService.dayList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("selectDay", scheduleDTO.getDay());
 		mv.addObject("scheduleDTO", scheduleDTO);
 		mv.addObject("myInfo", memberDTO);
+		mv.addObject("dayList", dayList);
 		mv.setViewName("admin/scheduleView");
 		return mv;
 	}
@@ -555,7 +562,7 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "couponRevision", method = RequestMethod.GET)
+	/*@RequestMapping(value = "couponRevision", method = RequestMethod.GET)
 	public ModelAndView couponRevision(String name) {
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
@@ -588,10 +595,10 @@ public class AdminController {
 			mv.setViewName("redirect:../");
 		}
 		return mv;
-	}
+	}*/
 
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
-	public ModelAndView memberList(int group_num) {
+	public ModelAndView memberList(int group_num,int sort) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
@@ -601,12 +608,17 @@ public class AdminController {
 
 		int number = 1;
 		int result = 0;
-
 		try {
 			groupList = coupongroupService.groupList();
 			cList = couponService.couponList();
 			if (group_num == -1) {
-				memList = memberService.memberList();
+				if(sort == 10){
+					memList = memberService.memberSList("birth");
+				}else if(sort==20){
+					memList = memberService.memberSList("type");
+				}else{
+					memList = memberService.memberList();
+				}
 			} else {
 				gList = coupongroupService.groupSList(group_num);
 				for (int num = 0; num < gList.size(); num++) {
@@ -664,7 +676,7 @@ public class AdminController {
 		try {
 			for (int num = 0; num < gList.size(); num++) {
 				result = pointService.pointInsert(price, gList.get(num));
-				result = memberService.pointUpdate(price, memberDTO.getId());
+				result = memberService.pointUpdate(price, gList.get(num));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -697,6 +709,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
+		mv.setViewName("redirect:./memberList?group_num=-1");
 		return mv;
 	}
 
@@ -721,7 +734,7 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "groupRemove", method = RequestMethod.POST)
+	@RequestMapping(value = "groupRemove", method = RequestMethod.GET)
 	public ModelAndView groupRemove(int group_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;

@@ -42,9 +42,7 @@ public class MyCouponService {
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
 		String v_date = sd.format(cal.getTime());
 		
-		couponDTO.setV_date(v_date);
-		
-		return myCouponDAO.couponInsert(id,couponDTO);
+		return myCouponDAO.couponInsert(id,couponDTO,v_date);
 	}
 	/*희성*/
 	public int couponCount(String id) throws Exception{

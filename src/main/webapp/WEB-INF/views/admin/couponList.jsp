@@ -53,7 +53,7 @@ $(function(){
 			<c:if test="${couList.type eq 11}">
 				<td>${couList.price}원 / 금액 할인</td>
 			</c:if>
-			<td><a href="./couponRevision?name=${couList.name }"><Button>수정</Button></a></td>
+			<%-- <td><a href="./couponRevision?name=${couList.name }"><Button>수정</Button></a></td> --%>
 		</tr>
 		</c:forEach>
 	</table>
