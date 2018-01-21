@@ -617,7 +617,7 @@ public class AdminController {
 				}else if(sort==20){
 					memList = memberService.memberSList("type");
 				}else{
-					memList = memberService.memberList();
+					memList = memberService.memberList();     
 				}
 			} else {
 				gList = coupongroupService.groupSList(group_num);
