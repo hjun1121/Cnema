@@ -98,7 +98,7 @@ function showSlides(n) {
 </head>
 	<title> CNEMA</title>
 <body>
-
+<c:set scope="session" var="agree" value=""></c:set> <!-- agree 관련 -->
 <div id="cgvwrap"  style="text-align: center;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 	<!-- 띄움 -->

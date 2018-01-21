@@ -1,0 +1,491 @@
+@CHARSET "UTF-8";
+#contents {
+    clear: both;
+    padding-bottom: 50px;
+}
+[class|="wrap-movie"][class*="chart"] {
+}
+.tit-heading-wrap {
+    position: relative;
+    height: 51px;
+    margin-top: 30px;
+    border-bottom: 3px solid #241d1e;
+}
+.tit-heading-wrap > h3 {
+    display: inline-block;
+    position: relative;
+    height: inherit;
+    margin: 0;
+    background-image: none;
+    color: #222;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 38px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+h3 {
+    height: 41px;
+    margin: 30px 0 15px;
+    background: url(../../../resources/images/movie/bg/bg_h3_line.jpg) repeat-x 0 50%;
+    line-height: 41px;
+    text-align: center;
+    font-weight: normal;
+    font-family: 'NanumBarunGothicBold';
+}
+div[class^="sect-"]:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+div[class^="sect-"] {
+    clear: both;
+    zoom: 1;
+}
+.sect-sorting {
+    position: relative;
+    margin-top: 20px;
+    text-align: right;
+}
+.hidden {
+    font: 0/0 a;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+    zoom: 1;
+}
+.sect-sorting > select {
+    padding: 3px 10px;
+}
+select {
+    font-size: 12px;
+    font-family: Verdana;
+    line-height: 27px;
+    height: 29px;
+    padding: 3px 5px;
+    border: 1px solid #b4b3aa;
+}
+.sect-sorting > select option {
+    height: 23px;
+    line-height: 23px;
+}
+select option {
+    font-size: 12px;
+    font-family: Verdana;
+    line-height: 20px;
+    height: 20px;
+    padding: 0 5px;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.round.gray {
+    border: 2px solid #7b7b7b;
+    color: #7b7b7b;
+}
+.round {
+    line-height: 23px;
+    font-family: 'NanumBarunGothicBold';
+    text-align: center;
+    vertical-align: middle;
+}
+.round, .round > * {
+    display: inline-block;
+    position: relative;
+}
+button, input[type='submit'], input[type='button'] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+button, input[type='submit'], input[type='reset'] {
+    padding: 0;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+}
+.round.gray:before {
+    left: -2px;
+    top: -2px;
+    background-position: -40px 0;
+}
+
+.round:before, .round:after, .round > *:before, .round > *:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #fdfcf0 url(../../../resources/images/movie/sprite_corner01.png) no-repeat;
+}
+
+.round.gray:after {
+    left: -2px;
+    bottom: -2px;
+    background-position: -40px -5px;
+}
+.round:before, .round:after, .round > *:before, .round > *:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #fdfcf0 url(../../../resources/images/movie/sprite_corner01.png) no-repeat;
+}
+[class|="wrap-movie"][class*="chart"] .sect-movie-chart {
+    margin-top: 30px;
+}
+[class|="sect"][class*="chart"] {
+    position: relative;
+    overflow: hidden;
+}
+div[class^="sect-"] {
+    clear: both;
+    zoom: 1;
+}
+[class|="sect"][class*="chart"] > h4 {
+    margin-top: 30px;
+    color: #222222;
+    font-size: 21px;
+    font-family: 'NanumBarunGothicBold';
+}
+[class|="sect"][class*="chart"] > h3:first-child + ol, [class|="sect"][class*="chart"] > h4:first-child + ol {
+    padding-top: 0;
+}
+[class|="sect"][class*="chart"] > h4 + ol {
+    /* padding-top: 20px; */
+}
+
+[class|="sect"][class*="chart"] > ol {
+    padding-top: 30px;
+    margin-left: -64px;
+    border-bottom: 3px solid #241d1e;
+    zoom: 1;
+}
+
+
+ol, ul {
+    list-style: none;
+}
+[class|="sect"][class*="chart"] > ol:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+dl:after, ul:after, ol:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+[class|="sect"][class*="chart"] > ol > li {
+    float: left;
+    width: 197px;
+    margin-left: 64px;
+    padding-bottom: 30px;
+}
+[class|="sect"][class*="chart"] .box-image {
+    position: relative;
+    width: 197px;
+    min-height: 272px;
+    margin-bottom: 10px;
+}
+[class|="sect"][class*="chart"] > h3:first-child + ol .rank, [class|="sect"][class*="chart"] > h4:first-child + ol .rank, [class|="sect"][class*="chart"] > .spec + ol .rank {
+    background: #e71a0f;
+}
+
+[class|="sect"][class*="chart"] .rank {
+    display: block;
+    height: 28px;
+    margin-bottom: 4px;
+    border: 6px solid #000000;
+    background: #333333;
+    color: #ffffff;
+    font-size: 19px;
+    text-align: center;
+    line-height: 28px;
+}
+.box-image a {
+    display: block;
+}
+[class|="sect"][class*="chart"] .thumb-image {
+    border: 6px solid #000000;
+}
+
+.thumb-image {
+    display: block;
+    position: relative;
+}
+[class|="sect"][class*="chart"] .thumb-image > img {
+    height: 260px;
+}
+
+.box-image img {
+    width: 100%;
+}
+
+input, select, img {
+    vertical-align: middle;
+}
+.ico-grade.grade-12 {
+    background-position: -51px 0;
+}
+
+.ico-grade {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 21px;
+    height: 21px;
+    background: url(../../../resources/images/movie/sprite_icon.png) no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+}
+[class|="sect"][class*="chart"] .no1 {
+    position: absolute;
+    right: -15px;
+    bottom: -45px;
+    display: block;
+    width: 48px;
+    height: 74px;
+    background: url(../../../resources/images/movie/sprite_icon.png) -300px -20px no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+    z-index: 1;
+}
+.wrap-movie-chart .box-contents {
+    height: 93px;
+}
+.box-contents > a {
+    display: block;
+}
+[class|="sect"][class*="chart"] > h4 + ol > li:first-child .title, [class|="sect"][class*="chart"] > h3 + ol > li:first-child .title {
+    width: 90%;
+}
+
+[class|="sect"][class*="chart"] .title {
+    font-size: 15px;
+}
+
+.title {
+    display: block;
+    color: #333333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+[class|="sect"][class*="chart"] .score {
+    margin-top: 7px;
+}
+
+.score {
+    font-size: 11px;
+}
+[class|="sect"][class*="chart"] > h4 + ol > li:first-child .title, [class|="sect"][class*="chart"] > h3 + ol > li:first-child .title {
+    width: 90%;
+}
+
+[class|="sect"][class*="chart"] .title {
+    font-size: 15px;
+}
+[class|="sect"][class*="chart"] .score {
+    margin-top: 7px;
+}[class|="sect"][class*="chart"] .score .percent span {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+.score .percent span {
+    color: #333333;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Verdana, Geneva, sans-serif;
+    vertical-align: -1px;
+}
+[class|="sect"][class*="chart"] .txt-info {
+    margin-top: 3px;
+    height: 13px;
+    color: #666666;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+}
+
+.txt-info {
+    display: block;
+    color: #999999;
+    font-size: 11px;
+}
+[class|="sect"][class*="chart"] .like {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.like {
+    display: inline-block;
+    margin-right: 3px;
+}
+[class|="sect"][class*="chart"] .btn-like {
+    width: 23px;
+    height: 23px;
+    background-position: -60px -66px;
+}
+
+.like .btn-like {
+    display: inline-block;
+    width: 30px;
+    height: 28px;
+    background: url(../../../resources/images/movie/sprite_icon.png) 0 -60px no-repeat;
+    vertical-align: middle;
+    font: 0/0 a;
+    zoom: 1;
+}
+.like .count {
+    display: inline-block;
+    position: relative;
+    height: 35px;
+    margin-right: 4px;
+    line-height: 33px;
+    vertical-align: middle;
+    width: auto;
+}
+[class|="sect"][class*="chart"] .like {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+[class|="sect"][class*="chart"] .count {
+    height: 25px;
+    line-height: 23px;
+    vertical-align: middle;
+}
+[class|="sect"][class*="chart"] .count strong {
+    padding: 0 4px;
+}
+
+.like .count strong {
+    display: inline-block;
+    padding: 0 7px;
+    border: 1px solid #999999;
+    color: #717171;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: normal;
+}
+
+.like .count strong span {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    background-color: transparent;
+}
+.like .count > .corner-RT {
+    right: 0;
+    top: 0;
+    background-position: -5px 0;
+}
+
+.like .count > .corner-LT {
+    left: 0;
+    top: 0;
+    background-position: 0 0;
+}
+
+.like .count > .corner-LB {
+    left: 0;
+    bottom: 0;
+    background-position: 0 -5px;
+}
+
+.like .count > .corner-RB {
+    right: 0;
+    bottom: 0;
+    background-position: -5px -5px;
+}
+
+.like .count > i {
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #ffffff url(../../../resources/images/movie/sprite_corner.png) no-repeat;
+}
+[class|="sect"][class*="chart"] .count .corner-arrow {
+    left: -3px;
+    top: 50%;
+    width: 4px;
+    height: 6px;
+    margin-top: -4px;
+    background-position: -10px 0;
+    background-color: #ffffff;
+}
+.like .count > .corner-arrow {
+    left: -3px;
+    top: 50%;
+    width: 4px;
+    height: 6px;
+    margin-top: -2px;
+    background-position: -10px 0;
+    background-color: #ffffff;
+}
+[class|="sect"][class*="chart"] .link-reservation {
+    width: 57px;
+    height: 25px;
+    background-position: -96px 0px;
+}
+
+.link-reservation {
+    display: inline-block;
+    width: 91px;
+    height: 35px;
+    background: url(../../../resources/images/movie/sprite_btn.png) 0 0 no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+    vertical-align: top;
+}
+[class|="sect"][class*="chart"] > ol > li {
+    float: left;
+    width: 197px;
+    margin-left: 64px;
+    padding-bottom: 30px;
+}
+.link-more {
+    display: inline-block;
+    width: 20px;
+    height: 19px;
+    background: url(../../../resources/images/movie/sprite_btn.png) -50px -62px no-repeat;
+    vertical-align: middle;
+    font: 0/0 a;
+    zoom: 1;
+}
+[class|="sect"][class*="chart"] .btn-more-fontbold {
+    float: right;
+    margin-top: 10px;
+}
+
+.btn-more-fontbold {
+    height: 20px;
+    font-size: 13px;
+    font-family: 'NanumBarunGothicBold';
+    color: #333333;
+    line-height: 20px;
+}
+[class|="sect"][class*="chart"] .btn-like.on {
+    background-position: -83px -66px;
+}
+[class|="sect"][class*="chart"] .btn-like {
+    width: 23px;
+    height: 23px;
+    background-position: -60px -66px;
+}

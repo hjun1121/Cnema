@@ -17,6 +17,7 @@
 	$(function(){
 		var idCheck = false;
 		var pwCheck = false;
+		var emailCheck = false;
 		//id 중복체크 시작
 		$("#id").change(function(){
 			var id = $("#id").val();
@@ -135,7 +136,7 @@
 		//email List 시작
 		$("#mailList").change(function(){
 			var ml = $("#mailList").val();
-			
+			emailCheck = false;
 			if(ml == 0){
 				$("#email2").prop('readonly', false)
 				$("#email2").val("");
@@ -151,19 +152,55 @@
 			var email1 = $("#email1").val();
 			var email2 = $("#email2").val();
 			var email = email1 +'@'+email2;
+			
+			if(email1 ==""){
+				alert("이메일 앞주소를 확인해주세요");
+				$("#email1").focus();
+			}else if(email2 ==""){
+				alert("뒷주소 확인");
+				$("#email2").focus();
+			}else if(emailCheck){
+				alert("이미 인증된 이메일입니다");
+			}else{
 			$("#email").val(email);
-			
-			$.ajax({
-				url:"../ajax/emailCheck",
-				type:"post",
-				data:{
-				},
-				success:function(data){
-					$("#email_ch").html(data);
-				}
-			});
-			
+				
+				$.ajax({
+					url:"../ajax/emailCheck",
+					type:"post",
+					data:{
+						email:email
+					},
+					success:function(data){
+						$("#email_ch").html(data);
+					}
+				});
+			}
 		})
+		
+		$("#email1").change(function(){
+			emailCheck=false;
+			$("#email_ch").html("<p style=\"color: red\">이메일 인증 필요</p>");
+		});
+		$("#email2").change(function(){
+			emailCheck=false;
+			$("#email_ch").html("<p style=\"color: red\">이메일 인증 필요</p>");
+		});
+		$("#mailList").change(function(){
+			emailCheck=false;
+			$("#email_ch").html("<p style=\"color: red\">이메일 인증 필요</p>");
+		});
+		
+		
+		$("#email_ch").on("click","#check",function(){
+			if($("#num").val() == $("#code").val()){
+				emailCheck=true;
+				$("#email_ch").html("<p style=\"color: green\">이메일 인증 완료</p>");
+				
+			}else{
+				$("#email_ch").html("<p style=\"color: red\">잘못된 인증번호</p>");
+				emailCheck=false;
+			}	
+		});
 		
 		$("#joinBtn").click(function(){
 			var f = $("#f").val();
@@ -172,13 +209,46 @@
 			var phone = f+'-'+m+'-'+l;
 			$("#phone").val(phone);
 			
-			document.frm.submit();
+			if(idCheck == false){
+				alert("아이디를 확인해 주세요.");
+				$("#id").focus();
+			}else if(pwCheck == false){
+				alert("비밀번호를 확인해 주세요.");
+				$("#pw1").focus();
+			}else if($("#name").val()==""){
+				alert("이름을 입력해 주세요");
+				$("#name").focus();
+			}else if($("#birth").val()==""){
+				alert("생년월일을 입력해 주세요");	
+				$("#birth").focus();
+			}else if($("#addr").val()==""){
+				alert("주소를 검색해주세요");	
+				$("#addrCheck").focus();	
+			}else if($("#addr2").val()==""){
+				alert("나머지 주소를 입력해 주세요");	
+				$("#addr2").focus();	
+			}else if($("#f").val()=="x"){
+				alert("첫번호를 확인해 주세요");
+				$("#f").focus();	
+			}else if($("#m").val()==""){
+				alert("중간번호를 확인해 주세요");
+				$("#m").focus();
+			}else if($("#l").val()==""){
+				alert("끝번호를 확인해 주세요");
+				$("#l").focus();
+			}else if(emailCheck == false){
+				alert("이메일을 확인해 주세요");
+				$("#email1").focus();
+			}else{
+				document.frm.submit();
+			}
 		})
 	});
 
 </script>
 </head>
 <body>
+<c:set scope="session" var="agree" value=""></c:set>
 	<div id="cgvwrap">
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 
@@ -221,9 +291,9 @@
 									<span class="writePoint"></span>아이디
 								</div>
 								<div class="ansBox">
-									<input type="text" placeholder="아이디" id ="id" name="id">
-									<span class="pwinfo">(아이디는 6자리 이상 가능)</span>
-									<div id="ch_id"></div>
+									<input type="text" placeholder="아이디" id="id" name="id">
+									<span class="pwinfo">(아이디는 6~12 자리)</span>
+									<div id="id_ch"></div>
 								</div>
 							</li>
 							<li>
@@ -232,7 +302,7 @@
 								</div>
 								<div class="ansBox">
 									<input type="password" name="pw" id="pw1">
-									<span class="pwinfo">(영문,숫자 특수문자를 조합한 8~12자리)</span>
+									<span class="pwinfo">(영문, 특수문자를 조합한 8~12자리)</span>
 								</div>
 							</li>
 							<li>
@@ -241,7 +311,7 @@
 								</div>
 								<div class="ansBox">
 									<input type="password" id="pw2" >
-									<div id="ch_pw"></div>
+									<div id="pw_ch"></div>
 								</div>
 							</li>
 							<li>
@@ -282,7 +352,7 @@
 								<div class="ansBox">
 									<div class="addressBox">
 										<input type="text" placeholder="주소를 입력해주세요." id="postCode" name="postCode" placeholder="우편번호" readonly="readonly">
-										<span class="button1"><input type="button" id="addrCheck" value="우편번호 찾기" readonly="readonly" style="margin-top: 5px;"></span>
+										<span class="button1"><input type="button" id="addrCheck" value="우편번호 찾기" readonly="readonly" style="margin-top: 5px; cursor: pointer;"></span>
 										<input type="text" class="mt5"  id="addr" name="addr1" placeholder="주소" readonly="readonly">
 										<input type="text" class="mt5" id="addr2" name="addr2" placeholder="나머지주소">
 									</div>
@@ -295,14 +365,15 @@
 								</div>
 								<div class="ansBox">
 									<select id="f" name="f" class="sel_size" style="margin-bottom: 5px;">
-   										<option value="">선택하세요</option>
+   										<option value="x">선택하세요</option>
     									<option value="010">010</option>
 										<option value="011">011</option>
 									</select>
-									<div class="phoneNumBox">
+									-
+									<div class="phoneNumBox" style="display: inline;">
 										<input type="text" name="homePhoneNo1" id="m">
 											-
-										<input type="text" name="homePhoneNo1"  id="l">
+										<input type="text" name="homePhoneNo1"  id="l" style="width: 110px;">
 										<input type="hidden" id="phone" name="phone">
 									</div>
 								</div>
@@ -323,9 +394,9 @@
 												<option  value="gmail.com">gmail.com</option>
 												<option  value="hotmail.com">hotmail.com</option>
 											</select>
-											<input type="hidden" id="email" name="email" >
-											<input type="button" id="mailCheck" value="이메일 인증" style="margin-top: 5px;">
-											<div id="ch_email"></div>
+											<input type="button" id="mailCheck" value="이메일 인증" style="margin-top: 5px; cursor: pointer;">
+											<input type="hidden" id="email" name="email">
+											<div id="email_ch"></div>
 										</div>
 									</div>
 								</li>
@@ -344,7 +415,7 @@
 			
 			<div class="btnCenter mt30" id="center">
 				<span class="button1"><a href="../" class="type4 large">취소</a></span>
-				<span class="button1"><input type="button" id="btn" value="가입" class="type1 large"></span>  
+				<span class="button1"><input type="button" id="joinBtn" value="가입" class="type1 large" style="cursor: pointer;"></span>  
 			</div>
 			</form>
 			</div>

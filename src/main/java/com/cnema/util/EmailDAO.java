@@ -3,6 +3,7 @@ package com.cnema.util;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -10,7 +11,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.cnema.member.MemberDAO;
@@ -18,7 +18,6 @@ import com.cnema.member.MemberDTO;
 import com.cnema.qna.QnaDTO;
 
 public class EmailDAO {
-
 	public int qnaReplySend(QnaDTO qnaDTO) {
 		int result=0;
 		String host     = "smtp.naver.com";
@@ -90,12 +89,15 @@ public class EmailDAO {
 		   
 		   // Textc 
 		   Random r = new Random();
-		   String str = String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
+			String p = "a1b2c3d4e5f6g7h8i9j";
+			String str = String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
 		   
 		   String mes = "인증번호 :"+str;
 		   session2.setAttribute("check", str);
@@ -113,8 +115,9 @@ public class EmailDAO {
 		  return result;
 	}
 	
-	public int sendPw(HttpServletRequest request, MemberDTO memberDTO) {
-		int result=0;
+	public String sendPw(MemberDTO memberDTO) {
+
+		String str = null;
 		String host     = "smtp.naver.com";
 		  final String user   = "library_4";
 		  final String password  = "gudwns93";
@@ -137,12 +140,12 @@ public class EmailDAO {
 		   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
 		   // Subject
-		   message.setSubject("FnW 비밀번호 찾기");
+		   message.setSubject("Cnema 임시 비밀번호");
 		   
 		   // Textc 
 		   Random r = new Random();
 			 String p = "a1b2c3d4e5f6g7h8i9j";
-			 String str = String.valueOf(p.charAt(r.nextInt(19)));
+			 str = String.valueOf(p.charAt(r.nextInt(19)));
 			 str = str + String.valueOf(p.charAt(r.nextInt(19)));
 			 str = str + String.valueOf(p.charAt(r.nextInt(19)));
 			 str = str + String.valueOf(p.charAt(r.nextInt(19)));
@@ -158,21 +161,11 @@ public class EmailDAO {
 		   Transport.send(message);
 		   System.out.println("message sent successfully...");
 		   
-		   result=1;
-		   MemberDAO memberDAO = new MemberDAO();
-		   try {
-			   
-		   } catch (Exception e) {
-			e.printStackTrace();
-			 result=0;
-		   }
-		   
 		   
 		  } catch (MessagingException e) {
 		   e.printStackTrace();
-		   result=0;
 		  }
-		  return result;
+		  return str;
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
@@ -33,6 +34,7 @@ import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.EmailDAO;
 import com.cnema.util.ListData;
 import com.cnema.util.TimeChange;
 
@@ -60,7 +62,12 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
+<<<<<<< HEAD
 	
+=======
+	@Inject
+	private EmailDAO emailDAO;
+>>>>>>> 3c142c7643aef304c20bcd03d5d5d46e66fad07e
 	//admin 관련
 	@RequestMapping(value="inTime", method=RequestMethod.POST)
 	public void inTime(int movie_num, String in_time, String day, Model model){
@@ -464,13 +471,42 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			mv.addObject("idList", ar);
+			mv.addObject("memberList", ar);
 			mv.setViewName("ajax/idFindList");
 		return mv;
 	}
 	
+	@RequestMapping(value="pwFind", method=RequestMethod.POST)
+	public ModelAndView pwFind(MemberDTO memberDTO){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = memberService.pwFind(memberDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			mv.addObject("result", "o");
+		}else{
+			mv.addObject("result", "x");
+		}
+		mv.setViewName("ajax/idCheck");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value="emailCheck", method=RequestMethod.POST)
-	public String emailCheck(){
+	public String emailCheck(HttpSession session2, String email, Model model){
+		int result = emailDAO.send(session2, email);
+		
+		if(result>0){
+			model.addAttribute("result", "ok");
+		}else{
+			model.addAttribute("result", "no");
+		}
+		
 		return "ajax/emailCheck";
 	}
 	
