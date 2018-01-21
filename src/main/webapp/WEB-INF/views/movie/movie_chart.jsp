@@ -175,7 +175,6 @@
             </c:forEach>
             </ol>
 
-           
             <button class="btn-more-fontbold">더보기 <i class="link-more">더보기</i></button>
             
         </div>
