@@ -8,10 +8,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>${movie.movie_name} &gt; 상세정보</title>
 
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
+    <!-- <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/layout.css">
     <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/eggupdate.css">
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/eggupdate.css"> -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
@@ -104,7 +104,6 @@
         	<!-- 상단바 끝 -->
         	
         	<!-- 내용시작 -->
-
 <div >
 	<div>
 		<img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}'>
@@ -219,7 +218,7 @@
 <!-- ///////////////////////////////////////// -->
 
 <div id="contents" class="">
-	<div class="wrap-movie-detail" id="select_main">
+	<div class="wrap-movie-detail">
 		<div class="tit-heading-wrap">
     		<h3>영화상세</h3>
 		</div>
@@ -237,18 +236,10 @@
    			<div class="box-contents">
 		        <div class="title"> 
 		            <strong>메이즈 러너: 데스 큐어</strong>
-		            <em class="round lightblue"><span>현재상영중</span></em>
-		            <p>Maze Runner: The Death Cure</p>
 		        </div>
 		        <div class="score"> 
 		            <strong class="percent">예매율&nbsp;<span>30.3%</span></strong>
-		            <div class="egg-gage small">
-		            <span class="egg great"></span>
-						<span class="percent"> 93% </span>
-					</div>
-		            <strong class="count">
-		                (<span class="view">실관람객 :&nbsp;<em>22,099명</em></span>) </strong> 
-		            </div>
+		        </div>
 		        <div class="spec">
 		            <dl>
 		                <dt>감독 :&nbsp;</dt>
@@ -287,19 +278,12 @@
 		                <i class="corner-arrow"></i>
 		            </span>
 		            <a class="link-reservation" href="#">예매</a> 
-		        <a href="#" class="round on brown"><span>예매 이벤트</span></a>
 		        </span>
 		    </div>
 		</div>
-	    <div class="cols-content" id="menu">
+	    <div class="cols-content">
 	        <div class="col-detail">
-	            <ul class="tab-menu">
-	                <li class="on"><a title="현재 선택됨" href="#">주요정보 </a></li>
-	                <li><a href="#">트레일러</a></li>
-	                <li><a href="#">스틸컷</a></li>
-	                <li><a href="#">평점/리뷰</a></li>
-	                <li class="last"><a href="#">상영시간표</a></li>
-	            </ul>
+	            
 	            <div class="sect-story-movie">
 	                <p>
 		                <strong>
@@ -318,11 +302,9 @@
 						</span>
 						</span>
 					</p>
-	            <div id="ctl00_PlaceHolderContent_Section_Trailer" class="sect-trailer">
+	            <div class="sect-trailer">
 	                <div class="heading">
 	                    <h4>트레일러</h4>
-	                    <span id="ctl00_PlaceHolderContent_TrailerTotalCount" class="count">9건</span>
-	                    <a class="link-more" href="#">더보기</a>
 	                </div>
 	                <ul>
 	                    <li>
@@ -334,153 +316,72 @@
 	                                </span>
 	                            </a>
 	                        </div>
-	                        <div class="box-contents">
-	                            <a href="#" title="새창" class="movie_player_popup">
-	                                <strong class="title">
-	                                    <span class="ico-trailer hd">HD</span> 내한 영상
-	                                </strong>
-	                            </a>
-	                            <span class="txt-info">2018.01.19</span>
-	                        </div>
-	                    </li>
-	                    <li>
-	                        <div class="box-image">
-	                            <a href="#" title="새창" class="movie_player_popup" data-gallery-idx="152107">
-	                                <span class="thumb-image">
-	                                    <img src="#" alt="#">
-	                                    <span class="ico-play">영상보기</span>
-	                                </span>
-	                            </a>
-	                        </div>
-	                        <div class="box-contents">
-	                            <a href="#" title="새창" class="movie_player_popup">
-	                                <strong class="title">
-	                                    <span class="ico-trailer hd">HD</span> 러너들의 극한 탈출 영상
-	                                </strong>
-	                            </a>
-	                            <span class="txt-info">2018.01.16</span>
-	                        </div>
-	                    </li>
-	                    <li>
-	                        <div class="box-image">
-	                            <a href="#" title="새창" class="movie_player_popup">
-	                                <span class="thumb-image">
-	                                    <img src="#" alt="#">
-	                                    <span class="ico-play">영상보기</span>
-	                                </span>
-	                            </a>
-	                        </div>
-	                        <div class="box-contents">
-	                            <a href="#" title="새창" class="movie_player_popup">
-	                                <strong class="title">
-	                                    <span class="ico-trailer hd">HD</span> 민호의 무삭제 질주 영상
-	                                </strong>
-	                            </a>
-	                            <span class="txt-info">2018.01.15</span>
-	                        </div>
 	                    </li>
 	                </ul>
 	            </div>
 				<div class="sect-grade">
 	                <div class="heading-new">
-	                    <a class="goto-link" name="commentReg"><h4>실관람객 평점</h4></a>
-	                    <p class="txt-write">관람일 포함 7일 이내 관람평을 남기시면 <strong>CJ ONE 20P</strong>가 적립됩니다. <a class="link-gradewrite" href="#"><span>평점작성</span></a><a class="link-reviewwrite" href="#"><span>내 평점</span></a></p>
+	                    <a class="goto-link"><h4>리뷰</h4></a>
 	                </div>
 	                
 	                <div class="wrap-persongrade">
-	                    <ul id="movie_point_list_container" class="point_col2">
-	                    	<li class="" id="liCommentFirst20995426" data-spoilercnt="0" data-reportcnt="0">
+	                    <ul class="point_col2">
+	                    	<li>
 	                    		<a href="#" class="screen_spoiler">&nbsp;</a>
 	                    		<div class="box-image">
 	                    			<span class="thumb-image">
 	                    				<img src="http://img.cgv.co.kr/R2014/images/common/default_profile.gif" alt="사용자 프로필"> 
 	                   						<span class="profile-mask"></span>
-	                   						<div class="theater-sticker"></div>
+	                   						
 	                    			</span>
 	                    		</div>
 	                    		<div class="box-contents">         
 	                    			<ul class="writerinfo">              
 	                    				<li class="writer-name">
 	                    					<a href="#" class="commentMore">
-	                    						<span class=" egg-icon "></span>cj**k1458
+	                    						cj**k1458
 	                    					</a>
 	                    				</li>
 	                    				<li class="writer-etc"> 
-	                     					<span class="vip">Movie Mania</span> 
 	                      					<span class="day">2018.01.21</span>    
-	                       					<span class="like point_like" id="cjstk145820995426">
+	                       					<span class="like point_like" >
 		                       					<a href="#" class="btn_point_like">
-		                       						<span><img src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" alt="like" class="like_red"></span>
-		                       						<span id="idLikeValue">0</span>
+		                       						<span>신고</span>
 		                       					</a>
 	                            			</span>
 	                            		</li>
-	                            		<li class="point_notify">
-											<a href="" class="btn_notify">스포일러, 욕설/비방 신고</a>
-											<div class="notify_wrap">
-												<ul>
-													<li>
-														<a href="#" class="ico_spoiler">
-															<span>스포일러 신고</span>
-														</a>
-													</li>
-													<li>
-														<a href="#" class="ico_swearword">
-															<span>욕설/비방 신고</span>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
+	                            		
 									</ul>
 								</div>
 								<div class="box-comment"> 
 									<p>그냥 의리로 봤다 역시 시리즈가많이나오면 나올수록 뻔해지고 재미없어진다</p>
 	 							</div>
 	 						</li>
-	 						<li class="" id="liCommentFirst20995426" data-spoilercnt="0" data-reportcnt="0">
+	 						<li>
 	                    		<a href="#" class="screen_spoiler">&nbsp;</a>
 	                    		<div class="box-image">
 	                    			<span class="thumb-image">
 	                    				<img src="http://img.cgv.co.kr/R2014/images/common/default_profile.gif" alt="사용자 프로필"> 
 	                   						<span class="profile-mask"></span>
-	                   						<div class="theater-sticker"></div>
+	                   						
 	                    			</span>
 	                    		</div>
 	                    		<div class="box-contents">         
 	                    			<ul class="writerinfo">              
 	                    				<li class="writer-name">
 	                    					<a href="#" class="commentMore">
-	                    						<span class=" egg-icon "></span>cj**k1458
+	                    						cj**k1458
 	                    					</a>
 	                    				</li>
 	                    				<li class="writer-etc"> 
-	                     					<span class="vip">Movie Mania</span> 
 	                      					<span class="day">2018.01.21</span>    
-	                       					<span class="like point_like" id="cjstk145820995426">
+	                       					<span class="like point_like">
 		                       					<a href="#" class="btn_point_like">
-		                       						<span><img src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" alt="like" class="like_red"></span>
-		                       						<span id="idLikeValue">0</span>
+		                       						<span>신고</span>
 		                       					</a>
 	                            			</span>
 	                            		</li>
-	                            		<li class="point_notify">
-											<a href="" class="btn_notify">스포일러, 욕설/비방 신고</a>
-											<div class="notify_wrap">
-												<ul>
-													<li>
-														<a href="#" class="ico_spoiler">
-															<span>스포일러 신고</span>
-														</a>
-													</li>
-													<li>
-														<a href="#" class="ico_swearword">
-															<span>욕설/비방 신고</span>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
+	                            		
 									</ul>
 								</div>
 								<div class="box-comment"> 
@@ -510,19 +411,10 @@
 						</li>
 					</ul>
 				</div>
-	
 	        </div>
-	       
-	
-	        
-	
-	
-	
-	</div>
-	
+		</div>
 	    </div>
-    <span style="display:none" class="modifyCommentDummy"></span>
-</div>
+	</div>
    
         	<!-- 내용끝 -->
         	

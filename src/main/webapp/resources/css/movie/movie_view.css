@@ -1,0 +1,986 @@
+@CHARSET "UTF-8";
+
+#contents {
+    clear: both;
+    padding-bottom: 50px;
+}
+.tit-heading-wrap {
+    position: relative;
+    height: 51px;
+    margin-top: 30px;
+    border-bottom: 3px solid #241d1e;
+}
+.tit-heading-wrap > h3 {
+    display: inline-block;
+    position: relative;
+    height: inherit;
+    margin: 0;
+    background-image: none;
+    color: #222;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 38px;
+    text-align: left;
+    vertical-align: middle;
+}
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    margin-top: 40px;
+}
+[class|="sect-base"][class$="movie"] {
+}
+div[class^="sect-"] {
+    clear: both;
+    zoom: 1;
+}
+div[class^="sect-"]:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+[class|="sect-base"] h3 {
+    font: 0/0 a;
+    zoom: 1;
+    height: auto;
+    margin: 0;
+    background: none;
+    text-align: left;
+}
+[class|="sect-base"][class$="movie"] .box-image {
+    margin-right: 30px;
+    width: 185px;
+    height: 260px;
+}
+
+[class|="sect-base"] .box-image {
+    float: left;
+}
+.box-image a {
+    display: block;
+}
+[class|="sect-base"][class$="movie"] .box-contents {
+    width: 765px;
+}
+
+[class|="sect-base"] .box-contents {
+    float: left;
+    position: relative;
+}
+.title {
+    display: block;
+    color: #333333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+[class|="sect-base"] .title strong {
+    color: #1a1919;
+    font-size: 25px;
+    vertical-align: middle;
+}
+[class|="sect-base"] .score {
+    margin-top: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d6c8;
+    font-size: 14px;
+}
+[class|="sect-base"] .score .egg-gage, [class|="sect-base"] .score .percent {
+    vertical-align: middle;
+}
+.score .percent span {
+    color: #333333;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Verdana, Geneva, sans-serif;
+    vertical-align: -1px;
+}
+[class|="sect-base"][class$="movie"] .spec {
+    padding-top: 18px;
+    line-height: 1.6;
+}
+
+.spec {
+    color: #333333;
+    font-size: 13px;
+    font-family: 'NanumBarunGothicBold';
+}
+[class|="sect-base"][class$="movie"] .spec:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+dl:after, ul:after, ol:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.spec dt {
+    float: left;
+}
+[class|="sect-base"][class*="movie"] .spec dd {
+    white-space: normal;
+    text-overflow: clip;
+    overflow: visible;
+}
+
+[class|="sect-base"][class*="movie"] .spec dd {
+    float: left;
+}
+[class|="sect-base"][class$="movie"] .spec .on {
+    float: none;
+}
+[class|="sect-base"][class*="movie"] .spec dd {
+    white-space: normal;
+    text-overflow: clip;
+    overflow: visible;
+}
+
+.spec dd {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+[class|="sect-base"] .like {
+    margin-top: 22px;
+}
+
+.like .btn-like.on {
+    background-position: -30px -60px;
+}
+
+.like .btn-like {
+    display: inline-block;
+    width: 30px;
+    height: 28px;
+    background: url(../../../resources/images/movie/sprite_icon.png) 0 -60px no-repeat;
+    vertical-align: middle;
+    font: 0/0 a;
+    zoom: 1;
+}
+button, input[type='submit'], input[type='button'] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+button, input[type='submit'], input[type='reset'] {
+    padding: 0;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+}
+.like .count {
+    display: inline-block;
+    position: relative;
+    height: 35px;
+    margin-right: 4px;
+    line-height: 33px;
+    vertical-align: middle;
+    width: auto;
+}
+.like .count strong {
+    display: inline-block;
+    padding: 0 7px;
+    border: 1px solid #999999;
+    color: #717171;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: normal;
+}
+.like .count strong span {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    background-color: transparent;
+}
+.like .count > .corner-RT {
+    right: 0;
+    top: 0;
+    background-position: -5px 0;
+}
+[class|="sect-base"] .like {
+    margin-top: 22px;
+}
+.like {
+    display: inline-block;
+    margin-right: 3px;
+}
+.like .count > i {
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #ffffff url(../../../resources/images/movie/sprite_corner.png) no-repeat;
+}
+.like .count > .corner-LT {
+    left: 0;
+    top: 0;
+    background-position: 0 0;
+}
+.like .count > .corner-LB {
+    left: 0;
+    bottom: 0;
+    background-position: 0 -5px;
+}
+.like .count > .corner-RB {
+    right: 0;
+    bottom: 0;
+    background-position: -5px -5px;
+}
+.heading {
+    position: relative;
+    width: 100%;
+    height: 39px;
+    background: #e2e0d2;
+}
+.like .count > .corner-arrow {
+    left: -3px;
+    top: 50%;
+    width: 4px;
+    height: 6px;
+    margin-top: -2px;
+    background-position: -10px 0;
+    background-color: #ffffff;
+}
+.link-reservation {
+    display: inline-block;
+    width: 91px;
+    height: 35px;
+    background: url(../../../resources/images/movie/sprite_btn.png) 0 0 no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+    vertical-align: top;
+}
+.wrap-movie-detail .cols-content {
+    margin-top: 30px;
+}
+.cols-content .col-detail:first-child {
+    float: left;
+}
+
+.cols-content .col-detail {
+    position: relative;
+    width: 800px;
+    float: left;
+}
+.tab-menu {
+    clear: both;
+    text-align: center;
+}
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    margin-top: 40px;
+}
+[class|="sect-story"][class*="movie"] {
+    margin-top: 35px;
+    color: #333333;
+    line-height: 1.8;
+}
+
+div[class^="sect-"]:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+[class|="sect-story"][class*="movie"] p {
+    margin-top: 10px;[class|="sect-story"][class*="movie"] strong {
+    font-size: 13px;
+}
+[class|="sect-story"][class*="movie"] strong {
+    font-size: 13px;
+}
+[class|="sect-story"][class*="movie"] p {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 2;
+}
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    margin-top: 40px;
+}
+
+[class|="sect-story"][class*="movie"] {
+    margin-top: 35px;
+    color: #333333;
+    line-height: 1.8;
+}
+[class|="wrap-movie"][class$="detail"] .heading {
+    margin-bottom: 20px;
+}
+.heading {
+    position: relative;
+    width: 100%;
+    height: 39px;
+    background: #e2e0d2;
+}
+.heading h4 {
+    float: left;
+    margin-left: 16px;
+    line-height: 39px;
+    color: #333333;
+    font-size: 13px;
+    font-family: 'NanumBarunGothicBold';
+    font-weight: normal;
+    letter-spacing: -1px;
+}
+.wrap-movie-detail .sect-trailer > ul {
+    margin-left: -10px;
+}
+.wrap-movie-detail .sect-trailer li {
+    width: 260px;
+    margin: 0 0 15px 10px;
+}
+.sect-trailer > ul > li {
+    float: left;
+}
+.wrap-movie-detail .sect-trailer li .box-image {
+    width: 260px;
+    height: 142px;
+}
+.box-image a {
+    display: block;
+}
+.wrap-movie-detail .sect-trailer li .thumb-image {
+    width: 260px;
+    height: 142px;
+}
+.thumb-image {
+    display: block;
+    position: relative;
+}
+.wrap-movie-detail .sect-trailer li .thumb-image img {
+    width: 260px;
+    height: 142px;
+}
+.box-image img {
+    width: 100%;
+}
+.ico-play {
+    position: absolute;
+    right: 5px;
+    bottom: 6px;
+    width: 44px;
+    height: 44px;
+    background: url(../../../resources/images/movie/sprite_icon.png) -60px -21px no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+}
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    margin-top: 40px;
+}
+
+.heading-new {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #e2e0d2;
+}
+.heading-new .goto-link {
+    display: inline-block;
+    padding: 0 18px;
+    background: #88867e;
+}
+.heading-new .goto-link h4 {
+    padding-right: 8px;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: 'NanumBarunGothicBold';
+    font-weight: normal;
+    letter-spacing: -1px;
+    background: url(../../../resources/images/movie/bg_arrow_dotw.png) no-repeat right center;
+}
+.wrap-movie-detail ul.point_col2 {
+    position: relative;
+    margin: 0 25px -2px;
+    overflow: hidden;
+}
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+.point_col2 {
+    margin: 0 auto -2px!important;
+    padding: 0 25px;
+}
+.wrap-grade .wrap-persongrade > ul.point_col2> li:nth-child(2n+1), .wrap-movie-detail .wrap-persongrade > ul.point_col2> li:nth-child(2n+1) {
+    width: 374px;
+    padding-left: 1px!important;
+    border-right: 1px solid #ceccc1;
+}
+
+.wrap-movie-detail ul.point_col2>li {
+    position: relative;
+    float: left;
+    margin-right: -1px;
+    border-right: none;
+    width: 50%;
+    height: 150px;
+    padding: 30px 0;
+    border-bottom: 1px solid #ceccc1;
+    zoom: 1;
+}
+
+.sect-grade .wrap-persongrade > ul > li {
+    padding: 30px 0;
+    border-bottom: 1px solid #ceccc1;
+    zoom: 1;
+}
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+.point_col2 li a.screen_spoiler, .point_col2 li.user_spolier a.screen_spoiler.hide, .point_col2 li.user_swearword a.screen_spoiler.hide, .point_col2 li.user_spolierswear a.screen_spoiler.hide {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 1px;
+    left: 1px;
+    bottom: 0;
+    width: 374px;
+    height: 100%;
+}
+.point_col2 li:nth-child(2n+1) div.box-image {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+.point_col2 li:nth-child(2n+1) div.box-image {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+
+.point_col2 li:nth-child(2n+1) div.box-image, .point_col2 li:nth-child(2n+1) div.box-comment {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+
+.sect-grade .wrap-persongrade .box-image {
+    float: left;
+    width: 62px;
+    height: 62px;
+    padding: 0 20px;
+}
+
+.point_col2 li div.box-image {
+    padding-right: 26px !important;
+}
+
+.point_col2 li div.box-image {
+    padding-right: 26px !important;
+}
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+.sect-grade .wrap-persongrade .box-image .thumb-image {
+    width: 62px;
+    height: 62px;
+}
+
+.sect-grade .wrap-persongrade .box-image .thumb-image img {
+    width: 62px;
+    height: 62px;
+}
+.sect-grade .wrap-persongrade .box-image .thumb-image .profile-mask {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 62px;
+    height: 62px;
+    background: url(../../../resources/images/movie/bg_photocircle.png) 0 0 no-repeat;
+}
+.point_col2 li:nth-child(2n+1) div.box-contents {
+    padding-left: 88px !important;
+}
+.point_col2 .writerinfo {
+    position: relative;
+    height: 24px;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li:first-child {
+    float: left;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li {
+    float: none;
+    background: none;
+}
+
+.writerinfo li:first-child {
+    background: none;
+    padding-left: 0;
+}
+.writerinfo .writer-name {
+    font-size: 12px;
+    cursor: pointer;
+}
+.writerinfo li {
+    float: left;
+    padding: 0 8px;
+    background: url(../../../resources/images/movie/bg_writeinfo.gif) 0 1px no-repeat;
+    color: #666666;
+    font-size: 11px;
+    font-family: 'NanumBarunGothicBold';
+    line-height: 14px;
+}
+div[class^="sect-"] .box-contents li a {
+    display: block;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.point_col2 .writerinfo li {
+    margin-bottom: 3px;
+    line-height: 20px!important;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li {
+    float: none;
+    background: none;
+}
+
+.point_col2 .writerinfo .writer-etc {
+    position: absolute;
+    left: 0;
+    bottom: -146px;
+    padding: 0 !important;
+}
+
+.point_col2 .writerinfo li {
+    margin-bottom: 3px;
+    line-height: 20px!important;
+}
+.point_col2 .writerinfo .writer-etc .day {
+    padding-right: 8px;
+    margin-right: 6px;
+    background: url(../../../resources/images/movie/bg_writeinfo.gif) no-repeat 100% 0;
+}
+
+.point_col2 .writerinfo .writer-etc .like {
+    color: #000000;
+}
+
+.point_col2 .writerinfo .writer-etc > * {
+    vertical-align: middle;
+}
+.like {
+    display: inline-block;
+    margin-right: 3px;
+}
+div[class^="sect-"] .box-contents li a {
+    display: block;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.point_col2 .btn_point_like span, .point_col1 .btn_point_like span {
+    display: inline-block;
+    line-height: 20px;
+    vertical-align: top;
+}
+.point_col2 > li:nth-child(2n+1) div.box-comment {
+    margin: 4px 40px 0 88px !important;
+}
+
+.point_col2 > li div.box-comment {
+    margin: 4px 21px 0 108px !important;
+}
+.point_col2 > li .box-comment {
+    margin: 15px 20px 0;
+}
+.wrap-movie-detail ul.point_col2>li .box-comment p {
+    color: #000000;
+}
+.wrap-movie-detail ul.point_col2>li .box-comment p {
+    font-size: 13px;
+}
+
+[class|="sect-story"][class*="movie"] p {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 2;
+}
+.heading h4 {
+    float: left;
+    margin-left: 16px;
+    line-height: 39px;
+    color: #333333;
+    font-size: 13px;
+    font-family: 'NanumBarunGothicBold';
+    font-weight: normal;
+    letter-spacing: -1px;
+}
+.wrap-movie-detail .sect-trailer > ul {
+    margin-left: -10px;
+}
+
+.wrap-movie-detail .sect-trailer li {
+    width: 260px;
+    margin: 0 0 15px 10px;
+}
+.sect-trailer > ul > li {
+    float: left;
+}
+.wrap-movie-detail .sect-trailer li .box-image {
+    width: 260px;
+    height: 142px;
+}
+.box-image a {
+    display: block;
+}
+.wrap-movie-detail .sect-trailer li .thumb-image {
+    width: 260px;
+    height: 142px;
+}
+[class|="sect-story"][class*="movie"] {
+    margin-top: 35px;
+    color: #333333;
+    line-height: 1.8;
+}
+.wrap-movie-detail .sect-trailer li .thumb-image {
+    width: 260px;
+    height: 142px;
+}
+
+.thumb-image {
+    display: block;
+    position: relative;
+}
+.wrap-movie-detail .sect-trailer li .thumb-image img {
+    width: 260px;
+    height: 142px;
+}
+.ico-play {
+    position: absolute;
+    right: 5px;
+    bottom: 6px;
+    width: 44px;
+    height: 44px;
+    background: url(../../../resources/images/movie/sprite_icon.png) -60px -21px no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+}
+[class|="wrap-movie"][class$="detail"] [class^="sect-"] {
+    margin-top: 40px;
+}
+div[class^="sect-"] {
+    clear: both;
+    zoom: 1;
+}
+.heading-new {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #e2e0d2;
+}
+.heading-new .goto-link {
+    display: inline-block;
+    padding: 0 18px;
+    background: #88867e;
+}
+.heading-new .goto-link h4 {
+    padding-right: 8px;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: 'NanumBarunGothicBold';
+    font-weight: normal;
+    letter-spacing: -1px;
+    background: url(../../../resources/images/movie/bg_arrow_dotw.png) no-repeat right center;
+}
+[class|="sect-story"][class*="movie"] {
+    margin-top: 35px;
+    color: #333333;
+    line-height: 1.8;
+}
+.wrap-movie-detail ul.point_col2 {
+    position: relative;
+    margin: 0 25px -2px;
+    overflow: hidden;
+}
+
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+
+.point_col2 {
+    margin: 0 auto -2px!important;
+    padding: 0 25px;
+}
+
+
+ol, ul {
+    list-style: none;
+}
+.wrap-grade .wrap-persongrade > ul.point_col2> li:nth-child(2n+1), .wrap-movie-detail .wrap-persongrade > ul.point_col2> li:nth-child(2n+1) {
+    width: 374px;
+    padding-left: 1px!important;
+    border-right: 1px solid #ceccc1;
+}
+.wrap-movie-detail ul.point_col2>li {
+    position: relative;
+    float: left;
+    margin-right: -1px;
+    border-right: none;
+    width: 50%;
+    height: 150px;
+    padding: 30px 0;
+    border-bottom: 1px solid #ceccc1;
+    zoom: 1;
+}
+.sect-grade .wrap-persongrade > ul > li {
+    padding: 30px 0;
+    border-bottom: 1px solid #ceccc1;
+    zoom: 1;
+}
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+.point_col2 li a.screen_spoiler, .point_col2 li.user_spolier a.screen_spoiler.hide, .point_col2 li.user_swearword a.screen_spoiler.hide, .point_col2 li.user_spolierswear a.screen_spoiler.hide {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 1px;
+    left: 1px;
+    bottom: 0;
+    width: 374px;
+    height: 100%;
+}
+.point_col2 li:nth-child(2n+1) div.box-image {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+.point_col2 li:nth-child(2n+1) div.box-image {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+.point_col2 li:nth-child(2n+1) div.box-image, .point_col2 li:nth-child(2n+1) div.box-comment {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+.sect-grade .wrap-persongrade .box-image {
+    float: left;
+    width: 62px;
+    height: 62px;
+    padding: 0 20px;
+}
+
+eggupdate.css:159
+.point_col2 li div.box-image {
+    padding-right: 26px !important;
+}
+.sect-grade .wrap-persongrade .box-image .thumb-image {
+    width: 62px;
+    height: 62px;
+}
+module.css:73
+.thumb-image {
+    display: block;
+    position: relative;
+}
+.sect-grade .wrap-persongrade .box-image .thumb-image img {
+    width: 62px;
+    height: 62px;
+}
+.sect-grade .wrap-persongrade .box-image .thumb-image .profile-mask {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 62px;
+    height: 62px;
+    background: url(../../../resources/images/movie/bg_photocircle.png) 0 0 no-repeat;
+}
+.point_col2 li:nth-child(2n+1) div.box-contents {
+    padding-left: 88px !important;
+}
+.point_col2 li:nth-child(2n+1) div.box-contents {
+    padding-left: 88px !important;
+}
+.point_col2 li:nth-child(2n+1) div.box-contents {
+    padding-left: 81px;
+}
+.sect-grade .wrap-persongrade .box-contents {
+    padding-left: 100px;
+}
+.point_col2 li div.box-contents {
+    padding-left: 108px !important;
+}
+.point_col2 li div.box-contents {
+    padding-left: 108px !important;
+}
+.point_col2 .writerinfo {
+    position: relative;
+    height: 24px;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li:first-child {
+    float: left;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li {
+    float: none;
+    background: none;
+}
+.point_col2 .writerinfo li {
+    margin-bottom: 3px;
+    line-height: 20px!important;
+}
+.writerinfo li:first-child {
+    background: none;
+    padding-left: 0;
+}
+.writerinfo .writer-name {
+    font-size: 12px;
+    cursor: pointer;
+}
+.writerinfo li {
+    float: left;
+    padding: 0 8px;
+    background: url(../../../resources/images/movie/bg_writeinfo.gif) 0 1px no-repeat;
+    color: #666666;
+    font-size: 11px;
+    font-family: 'NanumBarunGothicBold';
+    line-height: 14px;
+}
+div[class^="sect-"] .box-contents li a {
+    display: block;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.wrap-movie-detail ul.point_col2>li .writerinfo > li {
+    float: none;
+    background: none;
+}
+.point_col2 .writerinfo .writer-etc {
+    position: absolute;
+    left: 0;
+    bottom: -146px;
+    padding: 0 !important;
+}
+.point_col2 .writerinfo li {
+    margin-bottom: 3px;
+    line-height: 20px!important;
+}
+.point_col2 .writerinfo .writer-etc .day {
+    padding-right: 8px;
+    margin-right: 6px;
+    background: url(../../../resources/images/movie/bg_writeinfo.gif) no-repeat 100% 0;
+}
+.point_col2 .writerinfo .writer-etc > * {
+    vertical-align: middle;
+}
+.point_col2 .writerinfo .writer-etc .like {
+    color: #000000;
+}
+.point_col2 .writerinfo .writer-etc > * {
+    vertical-align: middle;
+}
+.like {
+    display: inline-block;
+    margin-right: 3px;
+}
+div[class^="sect-"] .box-contents li a {
+    display: block;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.point_col2 .btn_point_like span, .point_col1 .btn_point_like span {
+    display: inline-block;
+    line-height: 20px;
+    vertical-align: top;
+}
+div[class^="sect-"] .box-contents li a {
+    display: block;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.point_col2 > li:nth-child(2n+1) div.box-comment {
+    margin: 4px 40px 0 88px !important;
+}
+.point_col2 li:nth-child(2n+1) div.box-image, .point_col2 li:nth-child(2n+1) div.box-comment {
+    margin-left: 0!important;
+    padding-left: 0!important;
+}
+.point_col2 > li div.box-comment {
+    margin: 4px 21px 0 108px !important;
+}
+.point_col2 > li .box-comment {
+    margin: 15px 20px 0;
+}
+.sect-grade .wrap-persongrade > ul {
+    border-top: 1px solid #999999;
+    color: #333333;
+}
+.wrap-movie-detail ul.point_col2>li .box-comment p {
+    color: #000000;
+}
+.wrap-movie-detail ul.point_col2>li .box-comment p {
+    font-size: 13px;
+}
+[class|="sect-story"][class*="movie"] p {
+    margin-top: 10px;
+    font-size: 11px;
+    line-height: 2;
+}
+.paging {
+    text-align: center;
+    margin-top: 25px;
+}
+.paging > ul {
+    display: inline-block;
+    vertical-align: top;
+}
+.paging li.on, .paging li a:hover, .paging li a:focus {
+    color: #993333;
+    text-decoration: underline;
+}
+.paging li {
+    display: inline-block;
+    padding: 0 8px;
+    color: #333333;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 28px;
+}.paging li.paging-side {
+    padding: 0;
+}
+.btn-paging.next {
+    padding: 0 24px 0 10px;
+    background-position: right -52px;
+}
+.btn-paging {
+    display: inline-block;
+    min-width: 56px;
+    height: 28px;
+    margin: 0 2px;
+    border: 1px solid #cacac1;
+    background: url(../../../resources/images/movie/btn_paging.gif) no-repeat;
+    background-color: #faf9ed;
+    color: #333333;
+    font-size: 11px;
+    font-family: 'NanumBarunGothicBold';
+    line-height: 28px;
+    vertical-align: middle;
+}
+button, input[type='submit'], input[type='button'] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.paging li.paging-side {
+    padding: 0;
+}
+.btn-paging.end {
+    min-width: 27px;
+    padding: 0;
+    background-position: 5px -156px;
+    font: 0/0 a;
+    zoom: 1;
+}

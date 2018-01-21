@@ -62,12 +62,9 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
-<<<<<<< HEAD
-	
-=======
+
 	@Inject
 	private EmailDAO emailDAO;
->>>>>>> 3c142c7643aef304c20bcd03d5d5d46e66fad07e
 	//admin 관련
 	@RequestMapping(value="inTime", method=RequestMethod.POST)
 	public void inTime(int movie_num, String in_time, String day, Model model){
