@@ -77,7 +77,6 @@ public class MemberController {
 			addr = InetAddress.getLocalHost();
 			String ip = addr.toString();
 			ip = ip.substring(ip.lastIndexOf("/")+1);
-			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
