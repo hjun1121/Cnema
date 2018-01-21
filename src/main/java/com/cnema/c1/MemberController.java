@@ -45,7 +45,6 @@ public class MemberController {
 		String result = null;
 
 		result = emailDAO.sendPw(memberDTO);
-		System.out.println(result);
 		if(result!=null){
 			memberDTO.setPw(result);
 			memberService.pwUpdate(memberDTO);
