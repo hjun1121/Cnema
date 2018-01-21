@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DayDAO {
-
 	
 	public List<DayDTO> dayList(){
 		Calendar sDay = Calendar.getInstance();
@@ -27,7 +26,7 @@ public class DayDAO {
 		
 		SimpleDateFormat sd = new SimpleDateFormat("E");
 		
-		List<DayDTO> ar = new ArrayList();
+		List<DayDTO> ar = new ArrayList<>();
 		
 		for(int i = date; i <= maxDay; i++){
 			DayDTO dayDTO = new DayDTO();
@@ -43,7 +42,6 @@ public class DayDAO {
 				i=1;
 				maxDay = i+14-count;
 			}
-			
 			count++;
 		}
 		return ar;

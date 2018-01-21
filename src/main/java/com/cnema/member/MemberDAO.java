@@ -16,6 +16,10 @@ public class MemberDAO {
 	private final String NAMESPACE="memberMapper.";
 	
 	/*kim*/
+	public int pwUpdate(MemberDTO memberDTO){
+		return sqlSession.update(NAMESPACE+"pwUpdate", memberDTO);
+	}
+	
 	public int qrPointUpdate(int point, int getPoint, String id) throws Exception{
 		Map<String, Object> map = new HashMap<>();
 		map.put("point", point);
@@ -28,7 +32,7 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+"idFind", memberDTO);
 	}
 
-	public MemberDTO pwFind(MemberDTO memberDTO) throws Exception{
+	public int pwFind(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"pwFind", memberDTO);
 	}
 	
@@ -48,6 +52,10 @@ public class MemberDAO {
 	/*heeseong*/
 	public List<MemberDTO> memberList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"memberList");
+	}
+	/*heeseong*/
+	public List<MemberDTO> memberSList(String kind) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"memberSList",kind);
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{

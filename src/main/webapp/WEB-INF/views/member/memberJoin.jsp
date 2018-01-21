@@ -91,7 +91,6 @@
 		
 		//주소검색 시작
 		$("#addrCheck").click(function(){
-			alert("${check}");
 			new daum.Postcode({
 	            oncomplete: function(data) {
 	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -237,14 +236,12 @@
 			}else if($("#l").val()==""){
 				alert("끝번호를 확인해 주세요");
 				$("#l").focus();
-				
 			}else if(emailCheck == false){
 				alert("이메일을 확인해 주세요");
-				$("#email").focus();
+				$("#email1").focus();
 			}else{
-				alert("go");
+				document.frm.submit();
 			}
-			//document.frm.submit();
 		})
 	});
 

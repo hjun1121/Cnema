@@ -17,6 +17,14 @@
 <title>상영시간표 상세페이지(관리자용)</title>
 <script type="text/javascript">
 $(function(){
+	var selectDay='${selectDay}';
+	
+	$(".selectList").each(function(){
+		if($(this).val()==selectDay){
+			$(this).attr("selected",true);
+		}
+	});
+	
 	$("#removeBtn").click(function(){
 		var schedule_num = $("#schedule_num").val();
 		location.href="./scheduleRemove?schedule_num="+schedule_num;
@@ -24,13 +32,15 @@ $(function(){
 	
 	$("#in_time").change(function(){
 		var in_time = $("#in_time").val();
-		var movie_num = $("movie_num").val();
+		var movie_num = $("#movie_num").val();
+		var day = $("#day").val();
 		$.ajax({
 			url:"../ajax/inTime",
 			type:"POST",
 			data:{		
 				movie_num:movie_num,
-				in_time:in_time
+				in_time:in_time,
+				day:day
 			},
 			success:function(data){
 				$("#out_time").val(data.trim());
@@ -248,23 +258,29 @@ $(function(){
 				<table  class="revisionTable">
 					<tr>
 						<td>상영관번호</td>
-						<td><input type="text" name="screen_num" value="${scheduleDTO.screen_num }" class="noneBorder"></td>
+						<td><input type="text" name="screen_num" value="${scheduleDTO.screen_num }" class="noneBorder" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>영화번호</td>
-						<td><input type="text" name="movie_num" value="${scheduleDTO.movie_num }" class="noneBorder"></td>
+						<td><input type="text" name="movie_num" id="movie_num" value="${scheduleDTO.movie_num }" class="noneBorder" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>시작시간</td>
-						<td><input type="time" name="in_time" value="${scheduleDTO.in_time }" class="noneBorder"></td>
+						<td><input type="time" name="in_time" id="in_time" value="${scheduleDTO.in_time }" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>종료시간</td>
-						<td><input type="time" name="out_time" value="${scheduleDTO.out_time }" class="noneBorder"></td>
+						<td><input type="time" name="out_time" id="out_time" value="${scheduleDTO.out_time }" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>상영날짜</td>
-						<td><input type="text" name="day" value="${scheduleDTO.day }" class="noneBorder"></td>
+						<td>
+							<select id="day" name="day" class="selectList">
+								<c:forEach items="${dayList }" var="dayDTO">
+									<option value="${dayDTO.day_num }" class="selectList">${dayDTO.day_num }</option>
+								</c:forEach>
+							</select>
+						</td>
 					</tr>
 				</table>
 				<div class="set-btn">

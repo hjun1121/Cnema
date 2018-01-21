@@ -22,6 +22,7 @@ $(function(){
 <body>
 <h3>쿠폰 쿠폰 수정하기</h3>
 	<form action="./couponRevision" method="POST">
+	<input type="hidden" name="c_num" value="${couponDTO.c_num }">
 	<table>
 		<tr>
 			<td>쿠폰 이름</td>

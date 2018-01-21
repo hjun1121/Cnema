@@ -28,7 +28,8 @@ $(function(){
 				url:"../ajax/adminLocationList",
 				type:"POST",
 				data:{		
-					area:area
+					area:area,
+					theater_num:0
 				},
 				success:function(data){
 					$("#location").html(data);
@@ -379,7 +380,7 @@ $(function(){
 							<select id="day" name="day" class="selectList">
 								<option value="x">날짜선택</option>
 								<c:forEach items="${dayList }" var="dayDTO">
-								<option value="${dayDTO.day_num }">${dayDTO.day_num }</option>
+									<option value="${dayDTO.day_num }">${dayDTO.day_num }</option>
 								</c:forEach>
 							</select>
 						</td>

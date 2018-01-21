@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(function(){
 		var farea = $("#farea").val();
-		var flocation = $("#flocation").val();
+		var ftheater_num = $("#ftheater_num").val();
 		
 		$(".kind").each(function(){
 			if($(this).val()==farea){
@@ -27,7 +27,8 @@
 					url:"../ajax/adminLocationList",
 					type:"POST",
 					data:{		
-						area:farea
+						area:farea,
+						theater_num:ftheater_num
 					},
 					success:function(data){
 						$("#location").html(data);
@@ -37,22 +38,20 @@
 			}
 		});
 		
-		$(".lkind").each(function(){
-			if($(this).val()==flocation){
-				$(this).attr("selected",true);
-				$.ajax({
-					url:"../ajax/adminLocationList",
-					type:"POST",
-					data:{		
-						area:farea
-					},
-					success:function(data){
-						$("#location").html(data);
-						$("#location").focus();
-					}
-				});
-			}
+		$("#room_num").click(function(){
+			var location = $("#location").val();
+			$.ajax({
+				url:"../ajax/adminScreenList2",
+				type:"POST",
+				data:{		
+					theater_num : location
+				},
+				success:function(data){
+					$("#screenList").html(data);
+				}
+			});
 		});
+		
 				
 		$("#area").change(function(){
 			var area =$("#area").val();
@@ -64,7 +63,8 @@
 					url:"../ajax/adminLocationList",
 					type:"POST",
 					data:{		
-						area:area
+						area:area,
+						theater_num:0
 					},
 					success:function(data){
 						$("#location").html(data);
@@ -332,8 +332,14 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="hidden" id="farea" value="${theaterDTO.area }">
-								<input type="hidden" id="flocation" value="${theaterDTO.location }">
+								<c:if test="${theaterDTO ne null}">
+									<input type="hidden" id="farea" value="${theaterDTO.area }">
+									<input type="hidden" id="ftheater_num" value="${theaterDTO.theater_num }">
+								</c:if>
+								<c:if test="${theaterDTO eq null}">
+									<input type="hidden" id="farea" value="x">
+									<input type="hidden" id="ftheater_num" value="${areaDTO.theater_num }">
+								</c:if>
 								<select id="area" name="area" class="kind">
 									<option value="x">지역선택</option>
 									<c:forEach items="${areaList }" var="areaDTO">

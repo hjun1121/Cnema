@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
@@ -61,8 +62,12 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
+<<<<<<< HEAD
+	
+=======
 	@Inject
 	private EmailDAO emailDAO;
+>>>>>>> 3c142c7643aef304c20bcd03d5d5d46e66fad07e
 	//admin 관련
 	@RequestMapping(value="inTime", method=RequestMethod.POST)
 	public void inTime(int movie_num, String in_time, String day, Model model){
@@ -76,7 +81,6 @@ public class AjaxController {
 		try {
 			ar= scheduleService.screenList(theater_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -89,14 +93,13 @@ public class AjaxController {
 		try {
 			ar= scheduleService.screenList(theater_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("screenList", ar);
 	}	
 	@RequestMapping(value="adminLocationList", method=RequestMethod.POST)
-	public ModelAndView adminLocationList(String area){
+	public ModelAndView adminLocationList(String area,int theater_num){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
@@ -105,6 +108,7 @@ public class AjaxController {
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("locationList", ar);
+		mv.addObject("theater_num", theater_num);
 		mv.setViewName("ajax/adminLocationList");
 		
 		return mv;
@@ -467,8 +471,29 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			mv.addObject("idList", ar);
+			mv.addObject("memberList", ar);
 			mv.setViewName("ajax/idFindList");
+		return mv;
+	}
+	
+	@RequestMapping(value="pwFind", method=RequestMethod.POST)
+	public ModelAndView pwFind(MemberDTO memberDTO){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = memberService.pwFind(memberDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			mv.addObject("result", "o");
+		}else{
+			mv.addObject("result", "x");
+		}
+		mv.setViewName("ajax/idCheck");
+		
 		return mv;
 	}
 	

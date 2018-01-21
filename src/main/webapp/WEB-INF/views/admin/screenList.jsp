@@ -20,7 +20,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#schBtn").click(function(){
-		location.href="screenInsert?theater_num=0";
+		location.href="screenInsert?theater_num=-1";
 	});
 	$("#schBtn2").click(function(){
 		var theater_num = $("#schBtn2").attr("title");
@@ -272,10 +272,10 @@ $(function(){
 				        </tbody>
 				    </table>
 				    <div class="set-btn">
-				   		 <c:if test="${theater_num eq 0 }">
+				   		 <c:if test="${theater_num eq -1 }">
 				         	<input type="button" id="schBtn" class="round inred on" style="width: 58px;" value="등록">
 				         </c:if>
-						<c:if test="${theater_num ne 0 }">
+						<c:if test="${theater_num ne -1 }">
 				         	<input type="button" id="schBtn2" class="round inred on" title="${theater_num}" style="width: 58px;" value="등록">
 				         </c:if>
 			   		</div>

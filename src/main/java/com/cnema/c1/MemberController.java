@@ -18,6 +18,7 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.util.EmailDAO;
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -26,7 +27,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Inject
 	private MovieService movieService;
-	
+	@Inject
+	private EmailDAO emailDAO;
 	/*kim*/
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
 	public void idFind(){
@@ -37,6 +39,26 @@ public class MemberController {
 	public void pwFind(){
 		
 	}
+	@RequestMapping(value="pwFind", method=RequestMethod.POST)
+	public ModelAndView pwFind(MemberDTO memberDTO, RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		String result = null;
+
+		result = emailDAO.sendPw(memberDTO);
+		if(result!=null){
+			memberDTO.setPw(result);
+			memberService.pwUpdate(memberDTO);
+			
+			rd.addFlashAttribute("message", "임시비밀번호 발송");
+		}else{
+			rd.addFlashAttribute("message", "인증 오류");
+		}
+		mv.setViewName("redirect:../../member/memberLogin");
+
+		
+		return mv;
+	}
+	
 	@RequestMapping(value="joinAgree", method=RequestMethod.GET)
 	public void joinAgree(){
 		
@@ -55,7 +77,6 @@ public class MemberController {
 			addr = InetAddress.getLocalHost();
 			String ip = addr.toString();
 			ip = ip.substring(ip.lastIndexOf("/")+1);
-			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
