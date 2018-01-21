@@ -16,25 +16,41 @@
 	$(function(){
 		
 		$("#idFind_btn").click(function(){
+			var id = $("#id").val();
+			var name = $("#name").val();
+			var email = $("#email").val();
 			
-			if($("#id").val()==""){
+			if(id==""){
 				alert("아이디를 입력해주세요");
 				$("#id").focus();
-			}else if($("#name").val()==""){
+			}else if(name==""){
 				alert("이름을 입력해주세요");
-				$("name").focus();
-			}else if($("#email").val()==""){
+				$("#name").focus();
+			}else if(email==""){
 				alert("이메일을 입력해주세요");
-				$("email").focus();
+				$("#email").focus();
 			}else{
-				document.frm.submit();
+				$.ajax({
+					url:"../ajax/pwFind",
+					type:"POST",
+					data:{
+						name : name,
+						email : email,
+						id:id
+					},
+					success:function(data){
+						if(data.trim()=='x'){
+							$("#pwCheck").html("일치하는 정보가 없습니다");
+						}else{
+							document.frm.submit();
+						}
+					}
+				});
 			}
 		});
 		
-		
 		$("#login").click(function(){
 			location.href="./memberLogin";
-			
 		});
 		
 		$("#idFind").click(function(){
@@ -81,45 +97,41 @@
         	<!-- 내용 시작 -->
         	
         		
-				<form action="../ajax/pwFind" method="post">
+				<form action="./member/pwFind" name="frm" method="post">
 					<div id="idFind_form">
-					<div id="idFind_all">
+						<div id="idFind_all">
+							
+						<!-- menu -->	
+							<div id="idFind_menu">
+								<a href="#" class="idFind_idFind"><span>PW 찾기</span></a>
+							</div>
+						<!-- id -->
+							<div id="idFind_id">
+								<input type="text"  id="id" name="id" placeholder="아이디 입력">
+							</div>
+						<!-- name -->
+							<div id="idFind_id">
+								<input type="text"  id="name" name="name" placeholder="이름 입력">
+							</div>
+						<!-- email -->
+							<div id="idFind_pw">
+								<input type="text"  id="email" name="email" placeholder="이메일 입력">
+							</div>
+							
+						<h2 id="pwCheck"></h2>
+						<!-- 비밀번호 찾기 버튼 -->
+							<div id="idFind_btn">
+								<input type="button" id = "btn" class="btn_color" value="비밀번호 찾기" style="cursor: pointer;">
+							</div>	
+						<!-- 찾기버튼들 -->
+						<ul class="btns">
+							<li id="log"><a href="#" id="login" onclick="return false;">로그인</a></li>
+							<li><a href="#" id="idFind" onclick="return false;">아이디 찾기</a></li>
+							<li id="join"><a href="#" id="joinF" onclick="return false;">회원가입</a></li>
+						</ul>
 						
-					<!-- menu -->	
-						<div id="idFind_menu">
-							<a href="#" class="idFind_idFind"><span>PW 찾기</span></a>
 						</div>
-					<!-- id -->
-						<div id="idFind_id">
-							<input type="text"  id="id" name="id" placeholder="아이디 입력">
-						</div>
-					<!-- name -->
-						<div id="idFind_id">
-							<input type="text"  id="name" name="name" placeholder="이름 입력">
-						</div>
-					<!-- email -->
-						<div id="idFind_pw">
-							<input type="text"  id="email" name="email" placeholder="이메일 입력">
-						</div>
-						
-					<!-- 로그인버튼 -->
-					<div id="list">
 					</div>
-
-					<!-- 비밀번호 찾기 버튼 -->
-						<div id="idFind_btn">
-							<input type="button" id = "btn" class="btn_color" value="비밀번호 찾기">
-						</div>	
-					
-					<!-- 찾기버튼들 -->
-					<ul class="btns">
-						<li id="log"><a href="#" id="login" onclick="return false;">로그인</a></li>
-						<li><a href="#" id="pwFind" onclick="return false;">아이디 찾기</a></li>
-						<li id="join"><a href="#" id="joinF" onclick="return false;">회원가입</a></li>
-					</ul>
-					
-					</div>
-				</div>
 				</form>
         	
         	<!-- //////////////////////////////////////////// -->

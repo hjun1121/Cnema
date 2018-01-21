@@ -14,64 +14,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#login").click(function(){
+			location.href="./memberLogin";
+		});
+		$("#pwFind").click(function(){
+			location.href="./pwFind";
+		});
+		$("#joinF").click(function(){
+			location.href="./joinAgree";
+		});
+		
 		$("#btn").click(function(){
 			var name = $("#name").val();
 			var email = $("#email").val();
 			
-			
-			$.ajax({
-				url:"../ajax/idFind",
-				type:"POST",
-				data:{
-					name : name,
-					email : email
-				},
-				success:function(data){
-					alert(data)
-				},
-				error : function(request, status, error){
-					alert(request);
-					alert(error);
-					alert(status);
-				}
-			});
-			
-		});
-	});
-
-</script>
-<script type="text/javascript">
-	$(function(){
-		
-		$("#idFind_btn").click(function(){
-			
-			if($("#name").val()==""){
+			if(name==""){
 				alert("이름을 입력해주세요");
 				$("#name").focus();
-			}else if($("#email").val()==""){
+			}else if(email==""){
 				alert("이메일을 입력해주세요");
 				$("#email").focus();
 			}else{
-				document.frm.submit();
+				$.ajax({
+					url:"../ajax/idFind",
+					type:"POST",
+					data:{
+						name : name,
+						email : email
+					},
+					success:function(data){
+						$("#idList").html(data);
+					}
+				});
 			}
 		});
 		
-		
-		$("#login").click(function(){
-			location.href="./memberLogin";
-			
-		});
-		
-		$("#pwFind").click(function(){
-			location.href="./pwFind";
-		});
-		
-		$("#joinF").click(function(){
-			location.href="./joinAgree";
-		});
 	});
-
-
 </script>
 </head>
 <body>
@@ -122,12 +100,12 @@
 					</div>
 					
 				<!-- -->
-				<div id="list">
+				<div id="idList">
 				</div>
 					
 				<!-- 아이디 찾기 버튼 -->
 					<div id="idFind_btn">
-						<input type="button" id = "btn" class="btn_color" value="아아디 찾기">
+						<input type="button" id = "btn" class="btn_color" value="아아디 찾기" style="cursor: pointer;">
 					</div>	
 				
 				<!-- 찾기버튼들 -->

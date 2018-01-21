@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
@@ -467,8 +468,29 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			mv.addObject("idList", ar);
+			mv.addObject("memberList", ar);
 			mv.setViewName("ajax/idFindList");
+		return mv;
+	}
+	
+	@RequestMapping(value="pwFind", method=RequestMethod.POST)
+	public ModelAndView pwFind(MemberDTO memberDTO){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = memberService.pwFind(memberDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			mv.addObject("result", "o");
+		}else{
+			mv.addObject("result", "x");
+		}
+		mv.setViewName("ajax/idCheck");
+		
 		return mv;
 	}
 	
