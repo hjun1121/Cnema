@@ -17,17 +17,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var farea = $("#farea").val();
+		var flocation = $("#flocation").val();
+		$(".kind").each(function(){
+			if($(this).val()==farea){
+				$(this).attr("selected",true);
+			}
+		});
+				
 		$("#area").change(function(){
 			var area =$("#area").val();
 			if(area =='x'){
-				$("#location").html('<option value="x">지역선택</option>');
+				$("#location").html('<option value="x">지역 먼저 선택하세요.</option>');
 				$("#screenList").html('');
 			} else{
 				$.ajax({
 					url:"../ajax/adminLocationList",
 					type:"POST",
 					data:{		
-						area:area
+						area:area,
 					},
 					success:function(data){
 						$("#location").html(data);
@@ -265,13 +273,13 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
 			                <ul>
 			                    <li><a href="../admin/movieList">무비 리스트</a></li>
 			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
-			                    <li class="on"><a href="../admin/screenInsert">상영관 리스트</a></li>
+			                    <li class="on"><a href="../admin/screenList">상영관 리스트</a></li>
 			                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
 			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
@@ -296,16 +304,18 @@
 						</tr>
 						<tr>
 							<td>
-								<select id="area" name="area">
+								<input type="hidden" id="farea" value="${theaterDTO.area }">
+								<input type="hidden" id="flocation" value="${theaterDTO.location }">
+								<select id="area" name="area" class="kind">
 									<option value="x">지역선택</option>
 									<c:forEach items="${areaList }" var="areaDTO">
-									<option value="${areaDTO.area }">${areaDTO.area }</option>
+										<option value="${areaDTO.area }" class="kind">${areaDTO.area }</option>
 									</c:forEach>
 								</select>
 							</td>
 							<td>
 								<select id="location" name="theater_num">
-									<option value="x">지역선택</option>
+									<option value="x">극장선택</option>
 								</select>
 							</td>
 							<td><input type="number" id="room_num" name="room_num" ></td>

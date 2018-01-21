@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@ $(function(){
 	$("#area").change(function(){
 		var area =$("#area").val();
 		if(area =='x'){
-			$("#location").html('<option value="x">지역선택</option>');
+			$("#location").html('<option value="x">지역 선택</option>');
 			$("#screen").html('<option>극장선택</option>');
 		} else{
 			$.ajax({
@@ -189,9 +190,23 @@ $(function(){
 				        			
 				        		</div>
         					<div class="grade-info">
+	        					<c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set> 
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은 sysdate <strong class="txt-purple">${myInfo.type}</strong>회원 입니다.             
+                         			 고객님은 <c:out value="${sysYear}" /> 
+                         			<strong class="txt-purple">
+                         			<c:if test="${myInfo.type eq 10}">
+                         				일반 회원
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 20}">
+                         				관리자
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 11}">
+                         				VIP 회원
+                         			</c:if>
+                         			</strong>입니다.             
                    			 	</p>
+
         						
                     			<div class="mycgv_btn_special2">
                        				<h5 class="special_tit">SPECIAL MEMBERSHIP</h5><!-- special_tit (X) -->
@@ -296,16 +311,16 @@ $(function(){
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
 			                <ul>
-			                    <li><a href="../admin/movieList">무비 리스트</a></li>
-			                    <li><a href="../admin/theaterList">극장목록</a></li>
-			                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
-			                    <li class="on"><a href="../admin/scheduleList">상영 시간표</a></li>
-			                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-			                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+			                   <li><a href="../admin/movieList">무비 리스트</a></li>
+			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+			                    <li><a href="../admin/screenList?theater_num=0">상영관 리스트</a></li>
+			                    <li class="on"><a href="../admin/scheduleList">상영 리스트</a></li>
+			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 			                </ul>
 			            </li>
 		            </c:if>

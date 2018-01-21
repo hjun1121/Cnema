@@ -16,7 +16,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/couponHistory.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>상영시간표(관리자용)</title>
+<title>상영시간 리스트</title>
 <script type="text/javascript">
 $(function(){
 	var message = '${message}';
@@ -88,8 +88,21 @@ $(function(){
 				        			
 				        		</div>
         					<div class="grade-info">
+	        					<c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set> 
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은 sysdate <strong class="txt-purple">${myInfo.type}</strong>회원 입니다.             
+                         			 고객님은 <c:out value="${sysYear}" /> 
+                         			<strong class="txt-purple">
+                         			<c:if test="${myInfo.type eq 10}">
+                         				일반 회원
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 20}">
+                         				관리자
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 11}">
+                         				VIP 회원
+                         			</c:if>
+                         			</strong>입니다.             
                    			 	</p>
         						
                     			<div class="mycgv_btn_special2">
@@ -195,16 +208,16 @@ $(function(){
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
 			                <ul>
 			                    <li><a href="../admin/movieList">무비 리스트</a></li>
-			                    <li><a href="../admin/theaterList">극장목록</a></li>
-			                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
-			                    <li class="on"><a href="../admin/scheduleList">상영 시간표</a></li>
-			                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-			                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+			                    <li><a href="../admin/screenList?theater_num=0">상영관 리스트</a></li>
+			                    <li class="on"><a href="../admin/scheduleList">상영 리스트</a></li>
+			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 			                </ul>
 			            </li>
 		            </c:if>
@@ -214,11 +227,11 @@ $(function(){
 			<div class="col-detail" id="mycgv_contents">
 			
 				<div class="tit-mycgv">
-					<h3>상영 시간표</h3>
+					<h3>상영 시간 리스트</h3>
 				</div>
 				<form id="form1" novalidate="novalidate">
 				<div class="tit-mycgv" style="padding-bottom: 10px;">
-					<h4>상영시간 ${fn:length(sList)}개</h4>
+					<h4>상영 시간 리스트 ${fn:length(sList)}개</h4>
 				</div>
 				<div class="tbl-data">
 				    <table>

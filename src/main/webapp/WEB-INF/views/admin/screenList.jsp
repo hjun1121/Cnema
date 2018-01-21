@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,24 +12,19 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfo.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/couponHistory.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>극장 리스트</title>
+<title>상영관 리스트</title>
 <script type="text/javascript">
 $(function(){
-	var kind='${kind}';
-	var search='${search}';
-	$("#search").val(search);
-	$(".kind").each(function(){
-		if($(this).val()==kind){
-			$(this).attr("selected",true);
-		}
+	$("#schBtn").click(function(){
+		location.href="screenInsert?theater_num=0";
 	});
-	$("#sBtn").click(function(){
-		var sKind = $("#kind").val();
-		var search = $("#search").val();
-		location.href="./theaterList?kind="+sKind+"&search="+search;
+	$("#schBtn2").click(function(){
+		var theater_num = $("#schBtn2").attr("title");
+		location.href="screenInsert?theater_num="+theater_num;
 	});
 });
 </script>
@@ -56,7 +51,7 @@ $(function(){
                                 <a href="#">관리자</a>
                             </li>
                             <li class="last">
-                            	극장 목록
+                            	상영 시간표
                             </li>
                     	</ul>
                 	</div>
@@ -68,7 +63,7 @@ $(function(){
         	<!-- 내용 시작 -->
         	
         	
-        	<div id="contents" class="">
+        	<div id="contents"><!-- ////////////////////////////////////////////////////////////////// -->
             
             <!-- Contents Start -->
 
@@ -108,6 +103,7 @@ $(function(){
                          			</c:if>
                          			</strong>입니다.             
                    			 	</p>
+
         						
                     			<div class="mycgv_btn_special2">
                        				<h5 class="special_tit">SPECIAL MEMBERSHIP</h5><!-- special_tit (X) -->
@@ -213,86 +209,83 @@ $(function(){
 		                </ul>
 		            </li>
 		            <c:if test="${!empty member and member.type eq 20 }">
-		            <li class="on">
-	                    <a href="#">관리자 <i></i></a>
-		                <ul>
-		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li class="on"><a href="../admin/theaterList">극장 리스트</a></li>
-		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
-		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
-		                </ul>
-		            </li>
-		            
+			            <li class="on">
+		                    <a href="#">관리자 <i></i></a>
+			                <ul>
+			                    <li><a href="../admin/movieList">무비 리스트</a></li>
+			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+			                    <li class="on"><a href="../admin/screenList">상영관 리스트</a></li>
+			                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
+			                </ul>
+			            </li>
 		            </c:if>
 	        		</ul>
 	    			</div>
     			</div>
 			<div class="col-detail" id="mycgv_contents">
-			<!-- /////// -->
 			
-			<div class="tit-mycgv">
-				<h3>극장 목록</h3>
-			</div>
-			 <div class="tit-mycgv" style="padding-bottom: 10px;">
-				<h4>극장 목록 ${fn:length(theaterList)}개 &nbsp;&nbsp;</h4>
-					<select id="kind" class="f">
-						<option class = "kind" value="location">지점</option>
-						<option class = "kind" value="area">지역</option>
-					</select>
-					<input type="text" name="search" id="search">
-					<input type="button" class="btnType3" id="sBtn" value="GO">
-			</div>
-			<div class="tbl-data">
-			    <table>
-			        <caption></caption>
-			        <colgroup>
-					    <col width="30%">
-					    <col width="30%">
-					</colgroup>
-			        <thead>
-			            <tr>
-			                <th scope="col">지점</th>
-			                <th scope="col">지역</th>
-			                <th scope="col"></th>
-			            </tr>
-			        </thead>
-			        <tbody>
-			        <c:if test="${fn:length(theaterList) ne 0}">
-				        <c:forEach items="${theaterList }" var="tList">
+				<div class="tit-mycgv">
+					<h3>상영관 리스트</h3>
+				</div>
+				<form id="form1" novalidate="novalidate">
+				<div class="tit-mycgv" style="padding-bottom: 10px;">
+					<h4>상영관 리스트 ${fn:length(sList)}개</h4>
+				</div>
+				<div class="tbl-data">
+				    <table>
+				        <caption></caption>
+				        <colgroup>
+						    <col width="20%">
+						    <col width="20%">
+						    <col width="20%">
+						    <col width="20%">
+						    <col width="20%">
+						</colgroup>
+				        <thead>
+				            <tr>
+				                <th scope="col">지역</th>
+				                <th scope="col">극장</th>
+				                <th scope="col">관</th>
+				                <th scope="col">층</th>
+				                <th scope="col">좌석수</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				       <c:if test="${fn:length(sList) ne 0}">
+				       <c:forEach items="${sList }" var="screenList">
 							<tr>
-								<td>${tList.area }</td>
-								<td>
-									<a href="./theaterView?theater_num=${tList.theater_num}">
-										${tList.location }
-									</a>
-								</td>
-								<td>
-									<a href="./screenList?theater_num=${tList.theater_num}">
-										<input type="button" class="btnType3" value="GO">
-									</a>
-								</td>
+								<td>${screenList.theaterDTO.area }</td>
+								<td><a href="./screenView?screen_num=${screenList.screen_num }">${screenList.theaterDTO.location }</a></td>
+								<td>${screenList.room_num}관</td>
+								<td>${screenList.floor}층</td>
+								<td>${screenList.x_num * screenList.y_num}개</td>
 							</tr>
 						</c:forEach>
-					</c:if>
-					<c:if test="${fn:length(theaterList) eq 0}">           
-			            <tr>
-			                <td colspan="2" class="nodata">지점이 존재하지 않습니다.</td>
-			            </tr>
-		            </c:if>  
-			        </tbody>
-			    </table>
-			    <div class="set-btn">
-			        <a href="./theaterInsert">
-			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
-			        </a>
-		    	</div>
-			</div>
-			<!-- /// -->
-			</div>
-			</div>
-			</div>
+						</c:if>
+							<c:if test="${fn:length(sList) eq 0}">           
+					            <tr>
+					                <td colspan="3" class="nodata">상영관이 존재하지 않습니다.</td>
+					            </tr>
+				            </c:if>  
+				        </tbody>
+				    </table>
+				    <div class="set-btn">
+				   		 <c:if test="${theater_num eq 0 }">
+				         	<input type="button" id="schBtn" class="round inred on" style="width: 58px;" value="등록">
+				         </c:if>
+						<c:if test="${theater_num ne 0 }">
+				         	<input type="button" id="schBtn2" class="round inred on" title="${theater_num}" style="width: 58px;" value="등록">
+				         </c:if>
+			   		</div>
+				</div>
+				</form>
+			
+			<!-- //내용에 따라 바뀜// -->
+		</div>
+		</div>
+		</div>
 			</div>
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 	</div>

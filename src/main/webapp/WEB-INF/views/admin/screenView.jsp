@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -12,24 +11,15 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfo.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>극장 리스트</title>
+<title>영화관 상세페이지</title>
 <script type="text/javascript">
 $(function(){
-	var kind='${kind}';
-	var search='${search}';
-	$("#search").val(search);
-	$(".kind").each(function(){
-		if($(this).val()==kind){
-			$(this).attr("selected",true);
-		}
-	});
-	$("#sBtn").click(function(){
-		var sKind = $("#kind").val();
-		var search = $("#search").val();
-		location.href="./theaterList?kind="+sKind+"&search="+search;
+	$("#removeBtn").click(function(){
+		var screen_num = $("#screen_num").val();
+		location.href="./screenRemove?screen_num="+screen_num;
 	});
 });
 </script>
@@ -55,8 +45,11 @@ $(function(){
                             <li>
                                 <a href="#">관리자</a>
                             </li>
+                            <li>
+                                <a href="#">극장 목록</a>
+                            </li>
                             <li class="last">
-                            	극장 목록
+                            	극장 상세페이지
                             </li>
                     	</ul>
                 	</div>
@@ -217,8 +210,8 @@ $(function(){
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li class="on"><a href="../admin/theaterList">극장 리스트</a></li>
-		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li class="on"><a href="../admin/screenList">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
@@ -231,69 +224,49 @@ $(function(){
     			</div>
 			<div class="col-detail" id="mycgv_contents">
 			<!-- /////// -->
-			
 			<div class="tit-mycgv">
-				<h3>극장 목록</h3>
+			    <h3>영화관 상세페이지</h3>
 			</div>
-			 <div class="tit-mycgv" style="padding-bottom: 10px;">
-				<h4>극장 목록 ${fn:length(theaterList)}개 &nbsp;&nbsp;</h4>
-					<select id="kind" class="f">
-						<option class = "kind" value="location">지점</option>
-						<option class = "kind" value="area">지역</option>
-					</select>
-					<input type="text" name="search" id="search">
-					<input type="button" class="btnType3" id="sBtn" value="GO">
-			</div>
-			<div class="tbl-data">
-			    <table>
-			        <caption></caption>
-			        <colgroup>
-					    <col width="30%">
-					    <col width="30%">
-					</colgroup>
-			        <thead>
-			            <tr>
-			                <th scope="col">지점</th>
-			                <th scope="col">지역</th>
-			                <th scope="col"></th>
-			            </tr>
-			        </thead>
-			        <tbody>
-			        <c:if test="${fn:length(theaterList) ne 0}">
-				        <c:forEach items="${theaterList }" var="tList">
-							<tr>
-								<td>${tList.area }</td>
-								<td>
-									<a href="./theaterView?theater_num=${tList.theater_num}">
-										${tList.location }
-									</a>
-								</td>
-								<td>
-									<a href="./screenList?theater_num=${tList.theater_num}">
-										<input type="button" class="btnType3" value="GO">
-									</a>
-								</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					<c:if test="${fn:length(theaterList) eq 0}">           
-			            <tr>
-			                <td colspan="2" class="nodata">지점이 존재하지 않습니다.</td>
-			            </tr>
-		            </c:if>  
-			        </tbody>
-			    </table>
-			    <div class="set-btn">
-			        <a href="./theaterInsert">
-			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
-			        </a>
-		    	</div>
-			</div>
-			<!-- /// -->
+			<p class="info-com">&nbsp;</p>
+			<form action="./screenRevision" method="post">
+			<input type="hidden" name="screen_num" id="screen_num" value="${screenDTO.screen_num }">
+				<table  class="revisionTable">
+					<tr>
+						<td>지역</td>
+						<td><input type="text" class="noneBorder" name="area" value="${screenDTO.theaterDTO.area }" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td>극장</td>
+						<td><input type="text" class="noneBorder"  name="location" value="${screenDTO.theaterDTO.location }" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td>관</td>
+						<td><input type="number" class="noneBorder" name="room_num" value="${screenDTO.room_num }"></td>
+					</tr>
+					<tr>
+						<td>층</td>
+						<td><input type="number" class="noneBorder" name="floor" value="${screenDTO.floor }"></td>
+					</tr>
+					<tr>
+						<td>x</td>
+						<td><input type="number" class="noneBorder" name="x_num" value="${screenDTO.x_num }"></td>
+					</tr>
+					<tr>
+						<td>y</td>
+						<td><input type="number" class="noneBorder" name="y_num" value="${screenDTO.y_num }"></td>
+					</tr>
+				</table>
+				<div class="set-btn">
+					<input type="submit" class="round inred on 0" style="width:58px;" value="수정">
+					<input type="button" class="round gray" style="width:58px; background-color:#fdfcf0;" id="removeBtn" value="삭제">
+			    </div>
+			</form>
+			
+			<!-- /////// -->
 			</div>
 			</div>
 			</div>
-			</div>
+		</div>
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 	</div>
 </body>
