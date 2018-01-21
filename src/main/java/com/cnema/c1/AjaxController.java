@@ -33,6 +33,7 @@ import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.EmailDAO;
 import com.cnema.util.ListData;
 import com.cnema.util.TimeChange;
 
@@ -60,6 +61,8 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
+	@Inject
+	private EmailDAO emailDAO;
 	//admin 관련
 	@RequestMapping(value="inTime", method=RequestMethod.POST)
 	public void inTime(int movie_num, String in_time, String day, Model model){
@@ -470,7 +473,15 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="emailCheck", method=RequestMethod.POST)
-	public String emailCheck(){
+	public String emailCheck(HttpSession session2, String email, Model model){
+		int result = emailDAO.send(session2, email);
+		
+		if(result>0){
+			model.addAttribute("result", "ok");
+		}else{
+			model.addAttribute("result", "no");
+		}
+		
 		return "ajax/emailCheck";
 	}
 	

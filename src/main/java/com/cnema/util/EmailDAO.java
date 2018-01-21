@@ -90,14 +90,18 @@ public class EmailDAO {
 		   
 		   // Textc 
 		   Random r = new Random();
-		   String str = String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
-		   str = str + String.valueOf(r.nextInt(9));
+			String p = "a1b2c3d4e5f6g7h8i9j";
+			String str = String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
+			str = str + String.valueOf(p.charAt(r.nextInt(19)));
 		   
 		   String mes = "인증번호 :"+str;
+		   System.out.println(mes);
 		   session2.setAttribute("check", str);
 		   message.setText(mes); //보내는 내용
 
