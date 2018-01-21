@@ -218,7 +218,7 @@ $(function(){
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li class="on"><a href="../admin/theaterList">극장 리스트</a></li>
-		                    <li><a href="../admin/screenInsert">상영관 리스트</a></li>
+		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
@@ -255,6 +255,7 @@ $(function(){
 			            <tr>
 			                <th scope="col">지점</th>
 			                <th scope="col">지역</th>
+			                <th scope="col"></th>
 			            </tr>
 			        </thead>
 			        <tbody>
@@ -265,6 +266,11 @@ $(function(){
 								<td>
 									<a href="./theaterView?theater_num=${tList.theater_num}">
 										${tList.location }
+									</a>
+								</td>
+								<td>
+									<a href="./screenList?theater_num=${tList.theater_num}">
+										<input type="button" class="btnType3" value="GO">
 									</a>
 								</td>
 							</tr>

@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
+import com.cnema.member.MemberService;
+import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.reserve.Reserve2DTO;
@@ -47,9 +49,31 @@ public class TheaterController {
 	private ReserveService reserveService;
 	@Inject
 	private MyCouponService myCouponService;
+	@Inject
+	private MemberService memberService;
+	@Inject
+	private PointService pointService;
 	
-	@RequestMapping(value="quickReserveGo", method=RequestMethod.GET)
-	public ModelAndView quickReserveGo(RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO, HttpSession session){
+	
+	@RequestMapping(value="quickReservePay", method=RequestMethod.POST)
+	public void quickReservePay(Model model,ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO,HttpSession session){
+		MovieDTO movieDTO= null;
+		String movie =null;
+		try {
+			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
+			movie = movieDTO.getMovie_name();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("reserve", reserveDTO);
+		model.addAttribute("ticketPrice", ticketPriceDTO);
+		model.addAttribute("movie", movie);
+	}
+	
+	@RequestMapping(value="quickReserveGo", method=RequestMethod.POST)
+	public ModelAndView quickReserveGo(RedirectAttributes rd, ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO, HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		int tp_num=0;
@@ -67,14 +91,8 @@ public class TheaterController {
 		reserveDTO.setId(memberDTO.getId());
 
 		
-		TicketPriceDTO ticketPriceDTO = new TicketPriceDTO();
+		//TicketPriceDTO ticketPriceDTO = new TicketPriceDTO();
 		ticketPriceDTO.setTp_num(tp_num);
-		ticketPriceDTO.setPeople(reserve2DTO.getpCount());
-		ticketPriceDTO.setAdult_num(reserve2DTO.getAdult_num());
-		ticketPriceDTO.setTeen_num(reserve2DTO.getTeen_num());
-		ticketPriceDTO.setTotal_price(reserve2DTO.getPrice());
-		ticketPriceDTO.setC_num(1);
-		ticketPriceDTO.setPrice(reserve2DTO.getPrice());
 		ticketPriceDTO.setCode("asd");
 		ticketPriceDTO.setId(memberDTO.getId());
 		int result = 0;
@@ -88,6 +106,24 @@ public class TheaterController {
 				reserveService.reserveInsert(reserveDTO);
 				
 			}
+			double getPoint = 0;
+			int price = ticketPriceDTO.getPrice();
+			if(price>=10){
+				getPoint = price*0.1;
+			}else{
+				getPoint = 0;
+			}
+			memberService.qrPointUpdate(ticketPriceDTO.getPoint(), (int)getPoint, memberDTO.getId());
+			myCouponService.qrCouponUpdate(ticketPriceDTO.getC_num(), memberDTO.getId());
+			
+			if(ticketPriceDTO.getPoint()>0){
+				pointService.usePoint(memberDTO.getId(),"영화 구매 사용",ticketPriceDTO.getPoint());
+			}
+			if(getPoint>0){
+				pointService.getPoint(memberDTO.getId(),"영화 구매 적립", (int)getPoint);
+			}
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +137,7 @@ public class TheaterController {
 		return mv;
 	}
 	
-	@RequestMapping(value="quickReserve3", method=RequestMethod.GET)
+	@RequestMapping(value="quickReserve3", method=RequestMethod.POST)
 	public void quickReserve3(Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO, HttpSession session){
 		MovieDTO movieDTO = null;
 		TheaterDTO theaterDTO = null;
@@ -130,7 +166,7 @@ public class TheaterController {
 		model.addAttribute("coupon", couponList);
 	}
 	
-	@RequestMapping(value="quickReserve2", method=RequestMethod.GET)
+	@RequestMapping(value="quickReserve2", method=RequestMethod.POST)
 	public void quickReserve2(Model model, ReserveDTO reserveDTO){
 		MovieDTO movieDTO = null;
 		TheaterDTO theaterDTO = null;
@@ -157,23 +193,31 @@ public class TheaterController {
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)
-	public void quickReserve(Model model, String area){
-		if(area == null){
-			area="서울";
+	public void quickReserve(Model model, String areaName, @RequestParam(defaultValue="0", required=false)int movie_num, @RequestParam(defaultValue="0", required=false)int theater_num, String day_num, @RequestParam(defaultValue="0", required=false)int schedule_num){
+		if(areaName == null){
+			areaName="서울";
 		}
-		
+		List<TheaterDTO> areaList = null;
 		List<MovieDTO> movieList = null;
 		List<TheaterDTO> theaterList = null;
 		List<DayDTO> dayList = null;
 		try {
+			areaList = theaterService.qrAreaList();
 			movieList = movieService.qrMovieList();
-			theaterList = theaterService.locationList(area);
+			theaterList = theaterService.locationList(areaName);
 			dayList = theaterService.dayList();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		model.addAttribute("areaName", areaName);
+		model.addAttribute("movie_num", movie_num);
+		model.addAttribute("theater_num", theater_num);
+		model.addAttribute("day_num", day_num);
+		model.addAttribute("schedule_num", schedule_num);
 		
+		model.addAttribute("areaList", areaList);
 		model.addAttribute("location", theaterList);
 		model.addAttribute("movie", movieList);
 		model.addAttribute("dayList", dayList);
@@ -182,33 +226,33 @@ public class TheaterController {
 	
 	//SL 시작
 	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
-	public void scheduleList(Model model, String area, @RequestParam(defaultValue="1", required=false)int location, String day){
+	public void scheduleList(Model model, String areaName, @RequestParam(defaultValue="1", required=false)int theater_num, String day){
 		List<DayDTO> dayList = null;
 		List<TheaterDTO> areaList = null;
 		List<TheaterDTO> locationList = null;
 		List<MovieDTO> movieList = new ArrayList<>();
-		if(area==null){
-			area="서울";
+		if(areaName==null){
+			areaName="서울";
 		}
 		try {
 			dayList = theaterService.dayList();
 			areaList = theaterService.areaList();
-			locationList = theaterService.locationList(area);
+			locationList = theaterService.locationList(areaName);
 			
 			if(day==null){
 				day = dayList.get(0).getDay_num().toString();
 			}
 			//그날있는 영화 번호들
-			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			List<Integer> movieNumList = scheduleService.movieNumList(theater_num, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
-				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				List<Integer> screenNumList = scheduleService.screenNumList(theater_num, day, i);
 				//System.out.println(screenNumList.size()); //screenNum 모음
 				
 				List<List<ScheduleDTO>> sll = new ArrayList<>();
 				for(Integer s : screenNumList){
 					//영화관에 그 날에 그 영화에 그 관 스케줄 들
-					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(theater_num, day, i, s);
 					for(ScheduleDTO scheduleDTO : sl){
 						//System.out.println(scheduleDTO.getIn_time());
 					}
@@ -228,8 +272,8 @@ public class TheaterController {
 			e.printStackTrace();
 		}
 		model.addAttribute("areaList", areaList);
-		model.addAttribute("area", area);
-		model.addAttribute("location", location);
+		model.addAttribute("areaName", areaName);
+		model.addAttribute("theater_num", theater_num);
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("dayList", dayList);
 		model.addAttribute("movieList", movieList);

@@ -1,9 +1,7 @@
 package com.cnema.theater;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,7 +40,6 @@ public class ScheduleService {
 		return scheduleDAO.screenInsert(screenDTO);
 	}
 	
-	
 	public ScreenDTO screenOne(int screen_num) throws Exception{
 		return scheduleDAO.screenOne(screen_num);
 	}
@@ -51,19 +48,35 @@ public class ScheduleService {
 		return scheduleDAO.scheduleInfo(sNum);
 	}
 	/*heeseong*/
-	public List<ScheduleDTO> scheduleAList() {
+	public List<ScheduleDTO> scheduleAList() throws Exception{
 		return scheduleDAO.scheduleAList();
 	}
 	/*heeseong*/
-	public int scheduleRevision(ScheduleDTO scheduleDTO) {
+	public int scheduleRevision(ScheduleDTO scheduleDTO) throws Exception{
 		return scheduleDAO.scheduleRevision(scheduleDTO);
 	}
 	/*heeseong*/
-	public int scheduleRemove(int schedule_num) {
+	public int scheduleRemove(int schedule_num) throws Exception{
 		return scheduleDAO.scheduleRemove(schedule_num);
 	}
 	/*heeseong*/
-	public int scheduleInsert(ScheduleDTO scheduleDTO) {
+	public int scheduleInsert(ScheduleDTO scheduleDTO) throws Exception{
 		return scheduleDAO.scheduleInsert(scheduleDTO);
+	}
+	/*heeseong*/
+	public List<ScreenDTO> screenAList() throws Exception{
+		return scheduleDAO.screenAList();
+	}
+	/*heeseong*/
+	public int screenRevision(ScreenDTO screenDTO) throws Exception{
+		return scheduleDAO.screenRevision(screenDTO);
+	}
+	/*heeseong*/
+	public int screenRemove(int screen_num) throws Exception{
+		return scheduleDAO.screenRemove(screen_num);
+	}
+	/*heeseong*/
+	public ScreenDTO screenInfo(int theater_num) throws Exception{
+		return scheduleDAO.screenInfo(theater_num);
 	}
 }

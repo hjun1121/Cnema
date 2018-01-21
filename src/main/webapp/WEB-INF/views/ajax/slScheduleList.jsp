@@ -9,7 +9,7 @@
 					<c:if test="${count.first }">
 					${sc.screen_num }관
 					</c:if>
-				<a href="#" onclick="return false;" title="${sc.schedule_num }">${sc.in_time }</a>
+				<a href="#" class="schedules" id="${movieDTO.movie_num }" onclick="return false;" title="${sc.schedule_num }">${sc.in_time }</a>
 					<c:if test="${count.last }">
 					<br>
 					</c:if>

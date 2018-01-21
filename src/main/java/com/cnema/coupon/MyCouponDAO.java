@@ -17,6 +17,12 @@ public class MyCouponDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="myCouponMapper.";
 	
+	public int qrCouponUpdate(int c_num, String id) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("c_num", c_num);
+		map.put("id", id);
+		return sqlSession.update(NAMESPACE+"qrCouponUpdate", map);
+	}
 	/*heeseong*/
 	public List<MyCouponDTO> myCouponList(String id,String type) throws Exception{
 		Map<String, Object> cMap = new HashMap<String, Object>();
@@ -42,10 +48,11 @@ public class MyCouponDAO {
 		return sqlSession.update(NAMESPACE+"dateUpdate",id);
 	}
 	/*heeseong*/
-	public int couponInsert(String id, CouponDTO couponDTO) throws Exception{
+	public int couponInsert(String id, CouponDTO couponDTO,String v_date) throws Exception{
 		Map<Object, Object> cMap = new HashMap<>();
 		cMap.put("couponDTO", couponDTO);
 		cMap.put("id", id);
+		cMap.put("v_date", v_date);
 		return sqlSession.insert(NAMESPACE+"couponInsert",cMap);
 	}
 	/*heeseong*/

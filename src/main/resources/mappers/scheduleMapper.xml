@@ -65,12 +65,28 @@
   	
   	<!-- heeseong -->
   	<update id="scheduleRevision" parameterType="scheduleDTO">
-  		update schedule set screen_num=#{screen_num},movie_num=#{movie_num},in_time=#{in_time},out_time=#{out_time},day=#{day} where schedule_num=#{schedule_num}
+  		update schedule set screen_num=#{screen_num},movie_num=#{movie_num},in_time=#{in_time},out_time=#{out_time},day=to_date(#{day},'YYYY/mm/DD') where schedule_num=#{schedule_num}
   	</update>
   	
   	<!-- heeseong -->
   	<delete id="scheduleRemove" parameterType="int">
   		delete schedule where schedule_num=#{schedule_num}
   	</delete>
+  	<!-- heeseong -->
+  	<select id="screenAList" resultType="screenDTO">
+  		select * from screen
+  	</select>
+  	<!-- heeseong -->
+  	<update id="screenRevision" parameterType="screenDTO">
+  		update screen set room_num=#{room_num},floor=#{floor},x_num=#{x_num},y_num=#{y_num} where screen_num=#{screen_num}
+  	</update>
+  	<!-- heeseong -->
+  	<delete id="screenRemove" parameterType="int">
+  		delete from screen where screen_num=#{screen_num}
+  	</delete>
+  	<!-- heeseong -->
+  	<select id="screenInfo" resultType="screenDTO" parameterType="int">
+  		select * from screen where theater_num=#{theater_num}
+  	</select>
   	
   </mapper>

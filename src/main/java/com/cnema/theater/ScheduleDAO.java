@@ -70,19 +70,35 @@ public class ScheduleDAO {
 		return sqlSession.selectOne(NAMESPACE+"scheduleInfo", sNum);
 	}
 	/*heeseong*/
-	public List<ScheduleDTO> scheduleAList() {
+	public List<ScheduleDTO> scheduleAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"scheduleAList");
 	}
 	/*heeseong*/
-	public int scheduleRevision(ScheduleDTO scheduleDTO) {
+	public int scheduleRevision(ScheduleDTO scheduleDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"scheduleRevision",scheduleDTO);
 	}
 	/*heeseong*/
-	public int scheduleRemove(int schedule_num) {
+	public int scheduleRemove(int schedule_num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"scheduleRemove",schedule_num);
 	}
 	/*heeseong*/
-	public int scheduleInsert(ScheduleDTO scheduleDTO) {
+	public int scheduleInsert(ScheduleDTO scheduleDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"scheduleInsert",scheduleDTO);
+	}
+	/*heeseong*/
+	public List<ScreenDTO> screenAList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"screenAList");
+	}
+	/*heeseong*/
+	public int screenRevision(ScreenDTO screenDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"screenRevision",screenDTO);
+	}
+	/*heeseong*/
+	public int screenRemove(int screen_num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"screenRemove",screen_num);
+	}
+	/*heeseong*/
+	public ScreenDTO screenInfo(int theater_num) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"screenInfo", theater_num);
 	}
 }

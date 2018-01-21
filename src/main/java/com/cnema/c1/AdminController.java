@@ -248,16 +248,114 @@ public class AdminController {
 
 		return mv;
 	}
-
-	@RequestMapping(value = "screenInsert", method = RequestMethod.GET)
-	public void screenInsert(Model model) {
-		List<TheaterDTO> areaList = null;
+	
+	@RequestMapping(value = "screenList", method = RequestMethod.GET)
+	public ModelAndView screenList(HttpSession session,int theater_num) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		List<ScreenDTO> sList = new ArrayList<>();
+		TheaterDTO theaterDTO = null;
 		try {
-			areaList = theaterService.areaList();
+			if(theater_num!=-1){
+				sList = scheduleService.screenList(theater_num);
+				mv.addObject("theater_num", theater_num);
+			}else{
+				sList = scheduleService.screenAList();
+				mv.addObject("theater_num", -1);
+			}
+			for(ScreenDTO screenDTO : sList){
+				theaterDTO = theaterService.selectOne(screenDTO.getTheater_num());
+				screenDTO.setTheaterDTO(theaterDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		mv.addObject("myInfo", memberDTO);
+		mv.addObject("sList", sList);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="screenView", method = RequestMethod.GET)
+	public ModelAndView screenView(HttpSession session,int screen_num){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		
+		ScreenDTO screenDTO = null;
+		TheaterDTO theaterDTO = null;
+		try {
+			screenDTO = scheduleService.screenOne(screen_num);
+			theaterDTO = theaterService.theaterInfo(screenDTO.getTheater_num());
+			screenDTO.setTheaterDTO(theaterDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("screenDTO", screenDTO);
+		mv.addObject("myInfo", memberDTO);
+		return mv;
+	}
+	
+	@RequestMapping(value="screenRevision", method = RequestMethod.POST)
+	public ModelAndView screenRevision(HttpSession session,ScreenDTO screenDTO,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		int result = 0;
+		try {
+			result = scheduleService.screenRevision(screenDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (result > 0) {
+			rd.addFlashAttribute("message", "스크린 수정 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "스크린  수정 실패");
+			mv.setViewName("redirect:../");
+		}
+		mv.addObject("myInfo", memberDTO);
+		return mv;
+	}
+	
+	@RequestMapping(value="screenRemove", method = RequestMethod.GET)
+	public ModelAndView screenRemove(int screen_num,RedirectAttributes rd){
+		ModelAndView mv = new ModelAndView();
+		
+		int result = 0;
+		try {
+			result = scheduleService.screenRemove(screen_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (result > 0) {
+			rd.addFlashAttribute("message", "스크린 삭제 성공");
+			mv.setViewName("redirect:../");
+		} else {
+			rd.addFlashAttribute("message", "스크린  삭제 실패");
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "screenInsert", method = RequestMethod.GET)
+	public void screenInsert(HttpSession session,Model model,int theater_num) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<TheaterDTO> areaList = null;
+		TheaterDTO theaterDTO = null;
+		try {
+			areaList = theaterService.areaList();
+			if(theater_num!=-1){
+				theaterDTO = theaterService.selectOne(theater_num);
+				model.addAttribute("theaterDTO", theaterDTO);
+			}else{
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("myInfo", memberDTO);
 		model.addAttribute("areaList", areaList);
 	}
 
@@ -286,7 +384,11 @@ public class AdminController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<ScheduleDTO> sList = new ArrayList<>();
-		sList = scheduleService.scheduleAList();
+		try {
+			sList = scheduleService.scheduleAList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		mv.addObject("sList", sList);
 		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("admin/scheduleList");
@@ -294,7 +396,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "scheduleInsert", method = RequestMethod.GET)
-	public void scheduleInsert(Model model) {
+	public void scheduleInsert(Model model,HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<TheaterDTO> areaList = null;
 		List<MovieDTO> movieList = null;
 		List<DayDTO> dayList = null;
@@ -303,12 +406,12 @@ public class AdminController {
 			movieList = movieService.qrMovieList();
 			dayList = theaterService.dayList();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("movieList", movieList);
+		model.addAttribute("myInfo", memberDTO);
 		model.addAttribute("dayList", dayList);
 	}
 
@@ -330,7 +433,11 @@ public class AdminController {
 
 			String out_time = timeChange.getOutTime(day, scheduleDTO.getIn_time(), scheduleDTO.getMovie_num());
 			scheduleDTO.setOut_time(out_time);
-			result = scheduleService.scheduleInsert(scheduleDTO);
+			try {
+				result = scheduleService.scheduleInsert(scheduleDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (result > 0) {
@@ -344,15 +451,21 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "scheduleView", method = RequestMethod.GET)
-	public ModelAndView scheduleView(int schedule_num) {
+	public ModelAndView scheduleView(HttpSession session,int schedule_num) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
+		List<DayDTO> dayList = null;
 		try {
 			scheduleDTO = scheduleService.scheduleInfo(schedule_num);
+			dayList = theaterService.dayList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("selectDay", scheduleDTO.getDay());
 		mv.addObject("scheduleDTO", scheduleDTO);
+		mv.addObject("myInfo", memberDTO);
+		mv.addObject("dayList", dayList);
 		mv.setViewName("admin/scheduleView");
 		return mv;
 	}
@@ -361,7 +474,11 @@ public class AdminController {
 	public ModelAndView scheduleRevision(ScheduleDTO scheduleDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = scheduleService.scheduleRevision(scheduleDTO);
+		try {
+			result = scheduleService.scheduleRevision(scheduleDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		if (result > 0) {
 			rd.addAttribute("message", "상영시간표 수정 성공");
@@ -377,7 +494,11 @@ public class AdminController {
 	public ModelAndView scheduleRemove(int schedule_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = scheduleService.scheduleRemove(schedule_num);
+		try {
+			result = scheduleService.scheduleRemove(schedule_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		if (result > 0) {
 			rd.addAttribute("message", "상영시간표 삭제 성공");
@@ -441,7 +562,7 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "couponRevision", method = RequestMethod.GET)
+	/*@RequestMapping(value = "couponRevision", method = RequestMethod.GET)
 	public ModelAndView couponRevision(String name) {
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
@@ -474,10 +595,10 @@ public class AdminController {
 			mv.setViewName("redirect:../");
 		}
 		return mv;
-	}
+	}*/
 
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
-	public ModelAndView memberList(int group_num) {
+	public ModelAndView memberList(int group_num,int sort) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
@@ -487,12 +608,17 @@ public class AdminController {
 
 		int number = 1;
 		int result = 0;
-
 		try {
 			groupList = coupongroupService.groupList();
 			cList = couponService.couponList();
 			if (group_num == -1) {
-				memList = memberService.memberList();
+				if(sort == 10){
+					memList = memberService.memberSList("birth");
+				}else if(sort==20){
+					memList = memberService.memberSList("type");
+				}else{
+					memList = memberService.memberList();     
+				}
 			} else {
 				gList = coupongroupService.groupSList(group_num);
 				for (int num = 0; num < gList.size(); num++) {
@@ -550,7 +676,7 @@ public class AdminController {
 		try {
 			for (int num = 0; num < gList.size(); num++) {
 				result = pointService.pointInsert(price, gList.get(num));
-				result = memberService.pointUpdate(price, memberDTO.getId());
+				result = memberService.pointUpdate(price, gList.get(num));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -583,6 +709,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
+		mv.setViewName("redirect:./memberList?group_num=-1");
 		return mv;
 	}
 
@@ -607,7 +734,7 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "groupRemove", method = RequestMethod.POST)
+	@RequestMapping(value = "groupRemove", method = RequestMethod.GET)
 	public ModelAndView groupRemove(int group_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;

@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <ul>
 	<c:forEach items="${coupon }" var="c">
-		<li><input class="coupons" type="radio" name="coupon" value="${c.name }">${c.name }</li>
+		<li><input class="coupons" type="radio" name="coupon" value="${c.c_num }">${c.name }</li>
 	</c:forEach>
 </ul>

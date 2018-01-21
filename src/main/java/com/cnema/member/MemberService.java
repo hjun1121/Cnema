@@ -19,11 +19,19 @@ public class MemberService {
 	private FileSaver fileSaver;
 	
 	/*kim*/
+	public int pwUpdate(MemberDTO memberDTO){
+		return memberDAO.pwUpdate(memberDTO);
+	}
+	
+	public int qrPointUpdate(int point, int getPoint, String id) throws Exception{
+		return memberDAO.qrPointUpdate(point, getPoint, id);
+	}
+	
 	public List<MemberDTO> idFind(MemberDTO memberDTO) throws Exception{
 		return memberDAO.idFind(memberDTO);
 	}
 	
-	public MemberDTO pwFind(MemberDTO memberDTO) throws Exception{
+	public int pwFind(MemberDTO memberDTO) throws Exception{
 		return memberDAO.pwFind(memberDTO);
 	}
 	
@@ -32,11 +40,15 @@ public class MemberService {
 	}
 
 	public int join(MemberDTO memberDTO, HttpSession session) throws Exception{
-		
-		MultipartFile file = memberDTO.getFile();
-		String name = fileSaver.fileSave(file, session, "profil");
-		memberDTO.setFileName(name);
-		memberDTO.setOriName(file.getOriginalFilename());
+		if(memberDTO.getFile().getOriginalFilename() ==""){
+			memberDTO.setFileName("defaultProfile.jpg");
+			memberDTO.setOriName("defaultProfile.jpg");
+		}else{
+			MultipartFile file = memberDTO.getFile();
+			String name = fileSaver.fileSave(file, session, "profil");
+			memberDTO.setFileName(name);
+			memberDTO.setOriName(file.getOriginalFilename());
+		}
 		int result = memberDAO.join(memberDTO);
 		
 		return result;
@@ -51,6 +63,10 @@ public class MemberService {
 	/*heeseong*/
 	public List<MemberDTO> memberList() throws Exception{
 		return memberDAO.memberList();
+	}
+	/*heeseong*/
+	public List<MemberDTO> memberSList(String kind) throws Exception{
+		return memberDAO.memberSList(kind);
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{

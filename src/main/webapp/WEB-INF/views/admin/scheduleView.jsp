@@ -17,9 +17,35 @@
 <title>상영시간표 상세페이지(관리자용)</title>
 <script type="text/javascript">
 $(function(){
+	var selectDay='${selectDay}';
+	
+	$(".selectList").each(function(){
+		if($(this).val()==selectDay){
+			$(this).attr("selected",true);
+		}
+	});
+	
 	$("#removeBtn").click(function(){
 		var schedule_num = $("#schedule_num").val();
 		location.href="./scheduleRemove?schedule_num="+schedule_num;
+	});
+	
+	$("#in_time").change(function(){
+		var in_time = $("#in_time").val();
+		var movie_num = $("#movie_num").val();
+		var day = $("#day").val();
+		$.ajax({
+			url:"../ajax/inTime",
+			type:"POST",
+			data:{		
+				movie_num:movie_num,
+				in_time:in_time,
+				day:day
+			},
+			success:function(data){
+				$("#out_time").val(data.trim());
+			}
+		});
 	});
 });
 </script>
@@ -85,8 +111,21 @@ $(function(){
 				        			
 				        		</div>
         					<div class="grade-info">
+	        					<c:set var="now" value="<%=new java.util.Date()%>" />
+								<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set> 
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은 sysdate <strong class="txt-purple">${myInfo.type}</strong>회원 입니다.             
+                         			 고객님은 <c:out value="${sysYear}" /> 
+                         			<strong class="txt-purple">
+                         			<c:if test="${myInfo.type eq 10}">
+                         				일반 회원
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 20}">
+                         				관리자
+                         			</c:if>
+                         			<c:if test="${myInfo.type eq 11}">
+                         				VIP 회원
+                         			</c:if>
+                         			</strong>입니다.             
                    			 	</p>
         						
                     			<div class="mycgv_btn_special2">
@@ -192,16 +231,16 @@ $(function(){
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
 			                <ul>
 			                    <li><a href="../admin/movieList">무비 리스트</a></li>
-			                    <li><a href="../admin/theaterList">극장목록</a></li>
-			                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
-			                    <li class="on"><a href="../admin/scheduleList">상영 시간표</a></li>
-			                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-			                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+			                    <li><a href="../admin/screenList?theater_num=0">상영관 리스트</a></li>
+			                    <li class="on"><a href="../admin/scheduleList">상영 리스트</a></li>
+			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 			                </ul>
 			            </li>
 		            </c:if>
@@ -219,23 +258,29 @@ $(function(){
 				<table  class="revisionTable">
 					<tr>
 						<td>상영관번호</td>
-						<td><input type="text" name="screen_num" value="${scheduleDTO.screen_num }" class="noneBorder"></td>
+						<td><input type="text" name="screen_num" value="${scheduleDTO.screen_num }" class="noneBorder" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>영화번호</td>
-						<td><input type="text" name="movie_num" value="${scheduleDTO.movie_num }" class="noneBorder"></td>
+						<td><input type="text" name="movie_num" id="movie_num" value="${scheduleDTO.movie_num }" class="noneBorder" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>시작시간</td>
-						<td><input type="time" name="in_time" value="${scheduleDTO.in_time }" class="noneBorder"></td>
+						<td><input type="time" name="in_time" id="in_time" value="${scheduleDTO.in_time }" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>종료시간</td>
-						<td><input type="time" name="out_time" value="${scheduleDTO.out_time }" class="noneBorder"></td>
+						<td><input type="time" name="out_time" id="out_time" value="${scheduleDTO.out_time }" class="noneBorder"></td>
 					</tr>
 					<tr>
 						<td>상영날짜</td>
-						<td><input type="text" name="day" value="${scheduleDTO.day }" class="noneBorder"></td>
+						<td>
+							<select id="day" name="day" class="selectList">
+								<c:forEach items="${dayList }" var="dayDTO">
+									<option value="${dayDTO.day_num }" class="selectList">${dayDTO.day_num }</option>
+								</c:forEach>
+							</select>
+						</td>
 					</tr>
 				</table>
 				<div class="set-btn">

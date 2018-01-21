@@ -34,13 +34,13 @@
 		});
 		/* 쿠폰 사용 */
 		$("#couponList").on("click",".coupons",function(){
-			var coupon = $(this).val();
+			var c_num = $(this).val();	//c_num
 			$.ajax({
 				url:"../ajax/qrCoupon",
 				type:"post",
 				data:{
 					price : price,
-					coupon : coupon
+					c_num : c_num
 				},
 				success:function(data){
 					$("#couponDiscount").css("display","");
@@ -52,6 +52,10 @@
 					
 					var nowPrice = price-cDiscount;
 					$("#nowPrice").html(nowPrice);
+					$("#useCoupon").val(c_num);
+					$("#price").val(nowPrice);
+					$("#usePoint").val("0");
+					$("#price").val(nowPrice);
 				}
 			});
 		});
@@ -64,8 +68,11 @@
 			$(".coupons").prop("checked","");
 			
 			$("#couponDiscount").css("display","none");
+			var nowPrice = price-cDiscount-pDiscount;
+			$("#nowPrice").html(nowPrice);
+			$("#useCoupon").val("0");
+			$("#price").val(nowPrice);
 			
-			$("#nowPrice").html(price-cDiscount-pDiscount);
 		});
 		
 		/* 포인트 쓰기 */
@@ -76,12 +83,14 @@
 			if(v_point<point){
 				alert("잔여 포인트가 부족합니다.");
 				$("#point").val("");
-				
 				var pDiscount = $("#point").val();
 				$("#pDiscount").html(pDiscount);
 				var nowPrice = price-cDiscount-pDiscount;
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","none");
+				
+				$("#usePoint").val("0");
+				$("#price").val(nowPrice);
 				
 				$("#point").focus();
 			}else if(point<100){
@@ -98,6 +107,9 @@
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","none");
 				
+				$("#usePoint").val("0");
+				$("#price").val(nowPrice);
+				
 				$("#point").focus();
 			}else if(nowPrice*1<point*1){
 				alert("최종가격보다 많이 쓸 수 없습니다.");
@@ -109,12 +121,19 @@
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","");
 				
+				$("#usePoint").val(nowPrice);
+				$("#price").val(nowPrice);
+				
 			}else{
 				var pDiscount = $("#point").val();
 				$("#pointDiscount").css("display","");
 				$("#pDiscount").html(pDiscount);
 				var nowPrice = price-cDiscount-pDiscount;
 				$("#nowPrice").html(nowPrice);
+				
+				$("#usePoint").val(pDiscount);
+				$("#price").val(nowPrice);
+				
 			}
 		});
 		/* 모두쓰기 */
@@ -134,6 +153,9 @@
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","none");
 				
+				$("#usePoint").val("0");
+				$("#price").val(nowPrice);
+				
 				$("#point").focus();
 				
 			}else if(nowPrice<v_point){
@@ -145,6 +167,9 @@
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","");
 				
+				$("#usePoint").val(pDiscount);
+				$("#price").val(nowPrice);
+				
 			}else{
 				$("#point").val(v_point);
 				
@@ -153,6 +178,9 @@
 				var nowPrice = price-cDiscount-pDiscount;
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","");
+				
+				$("#usePoint").val(pDiscount);
+				$("#price").val(nowPrice);
 			}
 		});
 		/*  */
@@ -303,7 +331,7 @@
 		<input type="button" id="rightBtn3" value="결제">	
 		</form>
 		
-		<form action="./quickReserveGo" name="reserve" style="clear: both;">
+		<form action="./quickReservePay" method="post" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">
 			t<input type="text" id="theater_num" name="theater_num" value="${reserve.theater_num }">
 			d<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">
@@ -311,14 +339,17 @@
 			<br>
 			ad<input type="text" id="adult_num" name="adult_num" value="${reserve2.adult_num }">
 			te<input type="text" id="teen_num" name="teen_num" value="${reserve2.teen_num }">
-			pC<input type="text" id="pCount" name="pCount" value="${reserve2.pCount }">
-			pe<input type="text" id="people" name="people" value="${reserve2.people }">
-			<input type="text" id="price" name="price" value="${reserve2.price }">
+			pC<input type="text" id="pCount" name="people" value="${reserve2.pCount }">
+			pe<input type="text" id="people" name="pCount" value="${reserve2.people }">
+			<input type="text" id="total_price" name="total_price" value="${reserve2.price }">
 			<div id="seatList">
 			<c:forEach items="${seat_num }" var="seat">
 				<input type="text" class="ss" name="seat_num" value="${seat }">
 			</c:forEach>
 			</div>
+			c_num<input type="text" id="useCoupon" name="c_num" value="0">
+			point<input type="text" id="usePoint" name="point" value="0">
+			nowPrice<input type="text" id="price" name="price" value="${reserve2.price }">
 		</form>
 	</div>
 </body>

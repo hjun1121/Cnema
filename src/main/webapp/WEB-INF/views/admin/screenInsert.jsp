@@ -17,17 +17,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#area").change(function(){
-			var area =$("#area").val();
-			if(area =='x'){
-				$("#location").html('<option value="x">지역선택</option>');
-				$("#screenList").html('');
-			} else{
+		var farea = $("#farea").val();
+		var ftheater_num = $("#ftheater_num").val();
+		
+		$(".kind").each(function(){
+			if($(this).val()==farea){
+				$(this).attr("selected",true);
 				$.ajax({
 					url:"../ajax/adminLocationList",
 					type:"POST",
 					data:{		
-						area:area
+						area:farea,
+						theater_num:ftheater_num
 					},
 					success:function(data){
 						$("#location").html(data);
@@ -35,7 +36,42 @@
 					}
 				});
 			}
-			
+		});
+		
+		$("#room_num").click(function(){
+			var location = $("#location").val();
+			$.ajax({
+				url:"../ajax/adminScreenList2",
+				type:"POST",
+				data:{		
+					theater_num : location
+				},
+				success:function(data){
+					$("#screenList").html(data);
+				}
+			});
+		});
+		
+				
+		$("#area").change(function(){
+			var area =$("#area").val();
+			if(area =='x'){
+				$("#location").html('<option value="x">지역 먼저 선택하세요.</option>');
+				$("#screenList").html('');
+			} else{
+				$.ajax({
+					url:"../ajax/adminLocationList",
+					type:"POST",
+					data:{		
+						area:area,
+						theater_num:0
+					},
+					success:function(data){
+						$("#location").html(data);
+						$("#location").focus();
+					}
+				});
+			}
 		});
 		
 		$("#location").change(function(){
@@ -265,13 +301,13 @@
 		                    <li><a href="#">1:1 문의</a></li>
 		                </ul>
 		            </li>
-		            <c:if test="${!empty member and member.type eq 10 }">
+		            <c:if test="${!empty member and member.type eq 20 }">
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
 			                <ul>
 			                    <li><a href="../admin/movieList">무비 리스트</a></li>
 			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
-			                    <li class="on"><a href="../admin/screenInsert">상영관 리스트</a></li>
+			                    <li class="on"><a href="../admin/screenList">상영관 리스트</a></li>
 			                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
 			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
@@ -296,16 +332,24 @@
 						</tr>
 						<tr>
 							<td>
-								<select id="area" name="area">
+								<c:if test="${theaterDTO ne null}">
+									<input type="hidden" id="farea" value="${theaterDTO.area }">
+									<input type="hidden" id="ftheater_num" value="${theaterDTO.theater_num }">
+								</c:if>
+								<c:if test="${theaterDTO eq null}">
+									<input type="hidden" id="farea" value="x">
+									<input type="hidden" id="ftheater_num" value="${areaDTO.theater_num }">
+								</c:if>
+								<select id="area" name="area" class="kind">
 									<option value="x">지역선택</option>
 									<c:forEach items="${areaList }" var="areaDTO">
-									<option value="${areaDTO.area }">${areaDTO.area }</option>
+										<option value="${areaDTO.area }" class="kind">${areaDTO.area }</option>
 									</c:forEach>
 								</select>
 							</td>
 							<td>
-								<select id="location" name="theater_num">
-									<option value="x">지역선택</option>
+								<select id="location" name="theater_num" class="lkind">
+									<option value="x">극장선택</option>
 								</select>
 							</td>
 							<td><input type="number" id="room_num" name="room_num" ></td>

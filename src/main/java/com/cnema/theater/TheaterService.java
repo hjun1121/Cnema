@@ -28,7 +28,9 @@ public class TheaterService {
 	public List<TheaterDTO> areaList(){
 		return theaterDAO.areaList();
 	}	
-	
+	public List<TheaterDTO> qrAreaList(){
+		return theaterDAO.qrAreaList();
+	}		
 	/*heeseong*/
 	public List<TheaterDTO> theatherAList() throws Exception{
 		return theaterDAO.theatherAList();

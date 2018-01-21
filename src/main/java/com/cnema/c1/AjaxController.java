@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
@@ -33,6 +34,7 @@ import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.EmailDAO;
 import com.cnema.util.ListData;
 import com.cnema.util.TimeChange;
 
@@ -60,6 +62,12 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
+<<<<<<< HEAD
+	
+=======
+	@Inject
+	private EmailDAO emailDAO;
+>>>>>>> 3c142c7643aef304c20bcd03d5d5d46e66fad07e
 	//admin 관련
 	@RequestMapping(value="inTime", method=RequestMethod.POST)
 	public void inTime(int movie_num, String in_time, String day, Model model){
@@ -73,7 +81,6 @@ public class AjaxController {
 		try {
 			ar= scheduleService.screenList(theater_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -86,23 +93,22 @@ public class AjaxController {
 		try {
 			ar= scheduleService.screenList(theater_num);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		model.addAttribute("screenList", ar);
 	}	
 	@RequestMapping(value="adminLocationList", method=RequestMethod.POST)
-	public ModelAndView adminLocationList(String area){
+	public ModelAndView adminLocationList(String area,int theater_num){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("locationList", ar);
+		mv.addObject("theater_num", theater_num);
 		mv.setViewName("ajax/adminLocationList");
 		
 		return mv;
@@ -245,17 +251,17 @@ public class AjaxController {
 	
 	//스케쥴리스트
 	@RequestMapping(value="slScheduleList", method=RequestMethod.POST)
-	public void slScheduleList(int location, String day, Model model){
+	public void slScheduleList(int theater_num, String day, Model model){
 		List<MovieDTO> movieList = new ArrayList<>();
 		try {
-			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			List<Integer> movieNumList = scheduleService.movieNumList(theater_num, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
-				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				List<Integer> screenNumList = scheduleService.screenNumList(theater_num, day, i);
 				
 				List<List<ScheduleDTO>> sll = new ArrayList<>();
 				for(Integer s : screenNumList){
-					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(theater_num, day, i, s);
 					sll.add(sl);
 				}
 				movieDTO.setsList(sll);
@@ -350,7 +356,7 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="qrScheduleList", method=RequestMethod.POST)
-	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model){
+	public void qrSchedule(int theater_num, int movie_num, Date day_num, Model model, @RequestParam(defaultValue="0", required=false)int schedule_num){
 		List<Integer> seatCheck =null;
 		try {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
@@ -365,6 +371,7 @@ public class AjaxController {
 			}
 			
 			model.addAttribute("screenList", ar);
+			model.addAttribute("num", schedule_num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -417,12 +424,10 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="qrCoupon", method=RequestMethod.POST)
-	public void qrCoupon(int price, String coupon, Model model){
-		System.out.println(price);
-		System.out.println(coupon);
+	public void qrCoupon(int price, int c_num, Model model){
 		double nPrice = 0;
 		try {
-			CouponDTO couponDTO = couponService.couponOne(coupon);
+			CouponDTO couponDTO = couponService.couponInfo(c_num);
 			//10이면 퍼센트 11이면 고정값
 			if(couponDTO.getType()==10){
 				nPrice = price* Double.parseDouble(couponDTO.getPrice());
@@ -435,12 +440,11 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		int discount = price -(int)nPrice;
-		System.out.println(discount);
 		model.addAttribute("discount", discount);
 	}
 	
 	@RequestMapping(value="locationList", method=RequestMethod.POST)
-	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int location){
+	public ModelAndView locationList(String area, @RequestParam(defaultValue="0", required=false) int theater_num){
 		List<TheaterDTO> ar = null;;
 		try {
 			ar = theaterService.locationList(area);
@@ -449,7 +453,7 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("num", location);
+		mv.addObject("num", theater_num);
 		mv.addObject("location", ar);
 		mv.setViewName("ajax/locationList");
 		
@@ -467,13 +471,42 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			mv.addObject("idList", ar);
+			mv.addObject("memberList", ar);
 			mv.setViewName("ajax/idFindList");
 		return mv;
 	}
 	
+	@RequestMapping(value="pwFind", method=RequestMethod.POST)
+	public ModelAndView pwFind(MemberDTO memberDTO){
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		try {
+			result = memberService.pwFind(memberDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			mv.addObject("result", "o");
+		}else{
+			mv.addObject("result", "x");
+		}
+		mv.setViewName("ajax/idCheck");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value="emailCheck", method=RequestMethod.POST)
-	public String emailCheck(){
+	public String emailCheck(HttpSession session2, String email, Model model){
+		int result = emailDAO.send(session2, email);
+		
+		if(result>0){
+			model.addAttribute("result", "ok");
+		}else{
+			model.addAttribute("result", "no");
+		}
+		
 		return "ajax/emailCheck";
 	}
 	

@@ -202,10 +202,10 @@
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
-		                    <li><a href="../admin/screenInsert">상영관 리스트</a></li>
+		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            

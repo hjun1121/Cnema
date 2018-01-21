@@ -13,6 +13,10 @@ public class MyCouponService {
 	@Inject
 	private MyCouponDAO myCouponDAO;
 	
+	public int qrCouponUpdate(int c_num, String id) throws Exception{
+		return myCouponDAO.qrCouponUpdate(c_num, id);
+	}
+	
 	/*희성*/
 	public List<MyCouponDTO> myCouponList(String id,String kind) throws Exception{
 		return myCouponDAO.myCouponList(id,kind);
@@ -38,9 +42,7 @@ public class MyCouponService {
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
 		String v_date = sd.format(cal.getTime());
 		
-		couponDTO.setV_date(v_date);
-		
-		return myCouponDAO.couponInsert(id,couponDTO);
+		return myCouponDAO.couponInsert(id,couponDTO,v_date);
 	}
 	/*희성*/
 	public int couponCount(String id) throws Exception{

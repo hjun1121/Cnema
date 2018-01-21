@@ -4,12 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="memberMapper">
   	<!-- kim -->
+  	<update id="pwUpdate" parameterType="memberDTO">
+  		update member set pw=#{pw} where id=#{id}
+  	</update>
+  	
+  	<update id="qrPointUpdate" parameterType="java.util.Map">
+  		update member set v_point=v_point-#{point}, a_point=a_point+#{getPoint} where id=#{id}
+  	</update>
+  	
   	<select id="idFind" parameterType="memberDTO" resultType="memberDTO">
 		select * from member where name=#{name} and email=#{email}  	
   	</select>
   	
-  	<select id="pwFind" parameterType="memberDTO" resultType="memberDTO">
-  		select * from member where id=#{id} and name=#{name} and email=#{email}
+  	<select id="pwFind" parameterType="memberDTO" resultType="int">
+  		select count(id) from member where id=#{id} and name=#{name} and email=#{email}
   	</select>
   	
   	<insert id="join" parameterType="memberDTO">
@@ -27,6 +35,10 @@
   	<!-- heeseong -->
   	<select id="memberList" resultType="memberDTO">
   		select * from member
+  	</select>
+  	<!-- heeseong -->
+  	<select id="memberSList" resultType="memberDTO" parameterType="java.lang.String">
+  		select * from member order by #{kind} desc
   	</select>
   	<!-- heeseong -->
   	<select id="memberCList" resultType="memberDTO" parameterType="int">
