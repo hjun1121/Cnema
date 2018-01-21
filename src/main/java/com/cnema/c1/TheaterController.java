@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cnema.coupon.CouponService;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
@@ -194,29 +193,31 @@ public class TheaterController {
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)
-	public void quickReserve(Model model, String area, @RequestParam(defaultValue="0", required=false)int movie_num, @RequestParam(defaultValue="0", required=false)int theater_num, String day_num, @RequestParam(defaultValue="0", required=false)int schedule_num){
-		if(area == null){
-			area="서울";
+	public void quickReserve(Model model, String areaName, @RequestParam(defaultValue="0", required=false)int movie_num, @RequestParam(defaultValue="0", required=false)int theater_num, String day_num, @RequestParam(defaultValue="0", required=false)int schedule_num){
+		if(areaName == null){
+			areaName="서울";
 		}
-		
+		List<TheaterDTO> areaList = null;
 		List<MovieDTO> movieList = null;
 		List<TheaterDTO> theaterList = null;
 		List<DayDTO> dayList = null;
 		try {
+			areaList = theaterService.qrAreaList();
 			movieList = movieService.qrMovieList();
-			theaterList = theaterService.locationList(area);
+			theaterList = theaterService.locationList(areaName);
 			dayList = theaterService.dayList();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		model.addAttribute("areaName", area);
+		model.addAttribute("areaName", areaName);
 		model.addAttribute("movie_num", movie_num);
 		model.addAttribute("theater_num", theater_num);
 		model.addAttribute("day_num", day_num);
 		model.addAttribute("schedule_num", schedule_num);
 		
+		model.addAttribute("areaList", areaList);
 		model.addAttribute("location", theaterList);
 		model.addAttribute("movie", movieList);
 		model.addAttribute("dayList", dayList);
@@ -225,33 +226,33 @@ public class TheaterController {
 	
 	//SL 시작
 	@RequestMapping(value="scheduleList", method=RequestMethod.GET)
-	public void scheduleList(Model model, String area, @RequestParam(defaultValue="1", required=false)int location, String day){
+	public void scheduleList(Model model, String areaName, @RequestParam(defaultValue="1", required=false)int theater_num, String day){
 		List<DayDTO> dayList = null;
 		List<TheaterDTO> areaList = null;
 		List<TheaterDTO> locationList = null;
 		List<MovieDTO> movieList = new ArrayList<>();
-		if(area==null){
-			area="서울";
+		if(areaName==null){
+			areaName="서울";
 		}
 		try {
 			dayList = theaterService.dayList();
 			areaList = theaterService.areaList();
-			locationList = theaterService.locationList(area);
+			locationList = theaterService.locationList(areaName);
 			
 			if(day==null){
 				day = dayList.get(0).getDay_num().toString();
 			}
 			//그날있는 영화 번호들
-			List<Integer> movieNumList = scheduleService.movieNumList(location, day);
+			List<Integer> movieNumList = scheduleService.movieNumList(theater_num, day);
 			for(Integer i : movieNumList){
 				MovieDTO movieDTO = movieService.selectOne(i);
-				List<Integer> screenNumList = scheduleService.screenNumList(location, day, i);
+				List<Integer> screenNumList = scheduleService.screenNumList(theater_num, day, i);
 				//System.out.println(screenNumList.size()); //screenNum 모음
 				
 				List<List<ScheduleDTO>> sll = new ArrayList<>();
 				for(Integer s : screenNumList){
 					//영화관에 그 날에 그 영화에 그 관 스케줄 들
-					List<ScheduleDTO> sl = scheduleService.movieSchedule(location, day, i, s);
+					List<ScheduleDTO> sl = scheduleService.movieSchedule(theater_num, day, i, s);
 					for(ScheduleDTO scheduleDTO : sl){
 						//System.out.println(scheduleDTO.getIn_time());
 					}
@@ -271,8 +272,8 @@ public class TheaterController {
 			e.printStackTrace();
 		}
 		model.addAttribute("areaList", areaList);
-		model.addAttribute("area", area);
-		model.addAttribute("location", location);
+		model.addAttribute("areaName", areaName);
+		model.addAttribute("theater_num", theater_num);
 		model.addAttribute("locationList", locationList);
 		model.addAttribute("dayList", dayList);
 		model.addAttribute("movieList", movieList);

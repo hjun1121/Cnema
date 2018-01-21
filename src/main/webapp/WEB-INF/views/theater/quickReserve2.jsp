@@ -107,7 +107,7 @@
 				$(this).attr("class","seatOn");
 				$(this).css("background-color","pink")
 				var seat_num = $(this).attr("title");
-				$("#seatList").append("<input type='text' class='ss' name='seat_num' id='s"+seat_num+"' value='"+seat_num+"'>");
+				$("#seatList").append("<input type='hidden' class='ss' name='seat_num' id='s"+seat_num+"' value='"+seat_num+"'>");
 				
 				var x_num = ${screenDTO.x_num};//5
 				var y_num = ${screenDTO.y_num};//6
@@ -124,6 +124,14 @@
 					x='D';					
 				}else if(x<=5){
 					x='E';					
+				}else if(x<=6){
+					x='F';					
+				}else if(x<=7){
+					x='G';					
+				}else if(x<=8){
+					x='H';					
+				}else{
+					x='..';
 				}
 				
 				if(y==0){
@@ -203,8 +211,7 @@
 			var teen_num = $("#teen_num").val();
 			var pCount = $("#pCount").val();
 			if(sCount==pCount && sCount != 0){
-				alert("movie_num :"+movie_num+"\n theater_num :"+theater_num+"\n day_num :"+day_num
-					+"\n schedule_num :"+schedule_num+"\n adult_num :"+adult_num+"\n teen_num :"+teen_num+"\n pCount :"+pCount);
+				//alert("movie_num :"+movie_num+"\n theater_num :"+theater_num+"\n day_num :"+day_num +"\n schedule_num :"+schedule_num+"\n adult_num :"+adult_num+"\n teen_num :"+teen_num+"\n pCount :"+pCount);
 				if(adult_num ==""){
 					$("#adult_num").val("0");
 				}else if(teen_num ==""){
@@ -398,17 +405,17 @@
 		</form>
 		
 		<form action="./quickReserve3" method="post" name="reserve" style="clear: both;">
-			m<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">
-			t<input type="text" id="theater_num" name="theater_num" value="${reserve.theater_num }">
-			d<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">
-			sc<input type="text" id="schedule_num" name="schedule_num" value="${reserve.schedule_num }">
+			<input type="hidden" id="movie_num" name="movie_num" value="${reserve.movie_num }">
+			<input type="hidden" id="theater_num" name="theater_num" value="${reserve.theater_num }">
+			<input type="hidden" id="day_num" name="day_num" value="${reserve.day_num }">
+			<input type="hidden" id="schedule_num" name="schedule_num" value="${reserve.schedule_num }">
 			<br>
-			ad<input type="text" id="adult_num" name="adult_num" value="">
-			te<input type="text" id="teen_num" name="teen_num" value="">
-			pC<input type="text" id="pCount" name="pCount" value="0">
-			pe<input type="text" id="people" name="people">
-			<input type="text" id="seatName" name="seatName">
-			<input type="text" id="price" name="price">
+			<input type="hidden" id="adult_num" name="adult_num" value="">
+			<input type="hidden" id="teen_num" name="teen_num" value="">
+			<input type="hidden" id="pCount" name="pCount" value="0">
+			<input type="hidden" id="people" name="people">
+			<input type="hidden" id="seatName" name="seatName">
+			<input type="hidden" id="price" name="price">
 			<div id="seatList">
 			
 			</div>

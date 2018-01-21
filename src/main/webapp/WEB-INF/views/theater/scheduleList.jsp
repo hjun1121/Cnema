@@ -9,8 +9,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var area = '${area}';
-		var location = '${location}';
+		var area = '${areaName}';
+		var location = '${theater_num}';
 		
 		$(".areas").each(function(){
 			 if($(this).attr("title") == area) {
@@ -24,25 +24,27 @@
 			 }
 		}); 
 		
-
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
 			$(this).css("background-color","red");
 			area = $(this).attr("title");
 			$("#areaN").val(area);
+			$("#scheduleList").html('<ul style="clear: both;"></ul>');
+			$("#locationN").val("");
 			var locationN = $("#locationN").val();
 			$.ajax({
 				url:"../ajax/locationList",
 				type:"POST",
 				data:{
 					area : area,
-					location : locationN
+					theater_num : locationN
 				},
 				success:function(data){
 					$("#locationList").html(data);
 				}
 			});
 		});
+		
 		$("#locationList").on("click",".location",function(){
 			$(".location").css("background-color","");
 			$(this).css("background-color","red");
@@ -51,6 +53,7 @@
 
 			var theaterName = $(this).html().trim();
 			$("#theaterName").html(theaterName);
+			$("#frm").attr("action","../theater/scheduleList")
 			document.frm.submit();
 		});
 		
@@ -68,7 +71,7 @@
 				url:"../ajax/slScheduleList",
 				type:"POST",
 				data:{
-					location : location,
+					theater_num : location,
 					day : day
 				},
 				success:function(data){
@@ -76,6 +79,18 @@
 				}
 			});
 		});
+		
+		/*  */
+		$("#scheduleList").on("click",".schedules",function(){
+			var schedule_num = $(this).attr("title");
+			var movie_num = $(this).attr("id");
+			$("#movie_num").val(movie_num);
+			$("#schedule_num").val(schedule_num);
+			
+			$("#frm").attr("action","../theater/quickReserve")
+			document.frm.submit();
+		});
+		/*  */
 		
 	});
 </script>
@@ -132,7 +147,7 @@ li{
 					<c:if test="${count.first }">
 					${sc.screen_num }관
 					</c:if>
-				<a href="#" onclick="return false;" title="${sc.schedule_num }">${sc.in_time }</a>
+				<a href="#" class="schedules" id="${movieDTO.movie_num }" onclick="return false;" title="${sc.schedule_num }">${sc.in_time }</a>
 					<c:if test="${count.last }">
 					<br>
 					</c:if>
@@ -142,10 +157,12 @@ li{
 	</ul>
 </div>
 
-<form action="../theater/scheduleList" name="frm" method="get">
-	<input type="text" id="areaN" name="area" value="${area }">
-	<input type="text" id="locationN" name="location" value="${location }">
-	<input type="text" id="dayN" name="day" value=${dayList[0].day_num }>
+<form action="../theater/scheduleList" id="frm" name="frm" method="get">
+	<input type="text" id="movie_num" name="movie_num">
+	<input type="text" id="areaN" name="areaName" value="${areaName }">
+	<input type="text" id="locationN" name="theater_num" value="${theater_num }">
+	<input type="text" id="dayN" name="day_num" value="${dayList[0].day_num }">
+	<input type="text" id="schedule_num" name="schedule_num">
 </form>
 </body>
 </html>
