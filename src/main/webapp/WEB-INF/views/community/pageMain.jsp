@@ -51,6 +51,19 @@
 			alert("페이지 삭제하기");
 		});
 		
+		$("#chatting_btn").click(function() {
+			alert("채팅하기");
+			$.ajax({
+				url: "../ajax/chatting",
+				type: "POST",
+				data: {
+					
+				},
+				success: function(data) {
+					$("#chatting_div").append();
+				}
+			});
+		});
 		
 
 	});
@@ -91,14 +104,17 @@
 		
 	</div>
 	
-	<!-- 우측 접속자 바 -->
-	<div style="width: 308px; height: auto; background-color: yellow; right: 242px; top: 199px; position: fixed; z-index: 999;">
-		<!-- 페이지 멤버 LIST -->
-		<div style="width: 100%; height: 50%; border: 1px solid red;">
+	<!-- 우측 고정 바 -->
+	<div style="width: 308px; height: auto; background-color: yellow; right: 30px; bottom: 0; position: fixed; z-index: 999;">
+		<!-- 채팅 바 -->
+		<div id="chatting_div" style="width: 100%; height: 25px; border: 1px solid red; line-height: 25px;">
+		<c:if test="${not empty member}">
 			<c:forEach items="${pageMember}" var="pm">
 <%-- 				<img alt="${pm.id} 프로필" src="../resources/profil/${pm.fileName}"> ${pm.id} --%>
-				${pm.id}
+<%-- 				${pm.id} --%>
+				<input style="background-color: yellow; border: none;" type="button" id="chatting_btn" value="채팅하기">
 			</c:forEach>
+		</c:if>
 		</div>
 	</div>
 
