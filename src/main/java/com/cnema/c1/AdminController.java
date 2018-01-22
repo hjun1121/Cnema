@@ -2,6 +2,7 @@ package com.cnema.c1;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
@@ -56,7 +57,13 @@ public class AdminController {
 	private PointService pointService;
 	@Inject
 	private TimeChange timeChange;
-
+	
+	private int count = 0;
+	private int aCount = 0;
+	private Calendar ca = Calendar.getInstance();
+	private SimpleDateFormat sd = new SimpleDateFormat("YYYY년 MM월 DD일");
+	private String today = sd.format(ca.getTime());
+	
 	@RequestMapping(value = "movieList", method = RequestMethod.GET)
 	public ModelAndView movieList(HttpSession session, String kind, String search) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -76,9 +83,14 @@ public class AdminController {
 					movieList = movieService.movieSearchList(kind, search);
 				}
 			}
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
@@ -94,9 +106,14 @@ public class AdminController {
 		MovieDTO movieDTO = null;
 		try {
 			movieDTO = movieService.movieInfo(movie_num);
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("movieDTO", movieDTO);
 		mv.setViewName("admin/movieView");
@@ -141,9 +158,14 @@ public class AdminController {
 					theaterList = theaterService.thSearchList(kind, search);
 				}
 			}
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
@@ -156,10 +178,19 @@ public class AdminController {
 	public ModelAndView theaterView(@RequestParam(defaultValue="-1", required=false)int theater_num,HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-
-		TheaterDTO theaterDTO = null;
-		theaterDTO = theaterService.theaterInfo(theater_num);
 		
+		TheaterDTO theaterDTO = null;
+		try {
+			theaterDTO = theaterService.theaterInfo(theater_num);
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("theaterDTO", theaterDTO);
 		mv.setViewName("admin/theaterView");
@@ -170,7 +201,12 @@ public class AdminController {
 	public ModelAndView theaterRevision(TheaterDTO theaterDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = theaterService.theaterRevision(theaterDTO);
+		try {
+			result = theaterService.theaterRevision(theaterDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 수정 성공");
 			mv.setViewName("redirect:../");
@@ -185,7 +221,18 @@ public class AdminController {
 	public ModelAndView theaterRemove(@RequestParam(defaultValue="-1", required=false)int theater_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = theaterService.theaterRemove(theater_num);
+		ScreenDTO screenDTO = null;
+		try {
+			screenDTO = scheduleService.screenInfo(theater_num);
+			result = theaterService.theaterRemove(theater_num);
+			System.out.println("1:"+result);
+			result = scheduleService.screenRemove(theater_num);
+			System.out.println("2:"+result);
+			result = scheduleService.scheduleRemove(screenDTO.getScreen_num());
+			System.out.println("3:"+result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 삭제 성공");
 			mv.setViewName("redirect:../");
@@ -199,7 +246,16 @@ public class AdminController {
 	@RequestMapping(value = "theaterInsert", method = RequestMethod.GET)
 	public ModelAndView theaterInsert(HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("admin/theaterInsert");
 		return mv;
@@ -209,7 +265,11 @@ public class AdminController {
 	public ModelAndView theaterInsert(TheaterDTO theaterDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = theaterService.theaterInsert(theaterDTO);
+		try {
+			result = theaterService.theaterInsert(theaterDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 글쓰기 성공");
 			mv.setViewName("redirect:../");
@@ -267,10 +327,14 @@ public class AdminController {
 				theaterDTO = theaterService.selectOne(screenDTO.getTheater_num());
 				screenDTO.setTheaterDTO(theaterDTO);
 			}
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("sList", sList);
 		
@@ -288,9 +352,14 @@ public class AdminController {
 			screenDTO = scheduleService.screenOne(screen_num);
 			theaterDTO = theaterService.theaterInfo(screenDTO.getTheater_num());
 			screenDTO.setTheaterDTO(theaterDTO);
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("screenDTO", screenDTO);
 		mv.addObject("myInfo", memberDTO);
 		return mv;
@@ -352,9 +421,14 @@ public class AdminController {
 			}else{
 				
 			}
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("count", count);
+		model.addAttribute("aCount", aCount);
+		model.addAttribute("today", today);
 		model.addAttribute("myInfo", memberDTO);
 		model.addAttribute("areaList", areaList);
 	}
@@ -386,9 +460,14 @@ public class AdminController {
 		List<ScheduleDTO> sList = new ArrayList<>();
 		try {
 			sList = scheduleService.scheduleAList();
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("sList", sList);
 		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("admin/scheduleList");
@@ -405,10 +484,14 @@ public class AdminController {
 			areaList = theaterService.areaList();
 			movieList = movieService.qrMovieList();
 			dayList = theaterService.dayList();
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		model.addAttribute("count", count);
+		model.addAttribute("aCount", aCount);
+		model.addAttribute("today", today);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("movieList", movieList);
 		model.addAttribute("myInfo", memberDTO);
@@ -459,9 +542,14 @@ public class AdminController {
 		try {
 			scheduleDTO = scheduleService.scheduleInfo(schedule_num);
 			dayList = theaterService.dayList();
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("selectDay", scheduleDTO.getDay());
 		mv.addObject("scheduleDTO", scheduleDTO);
 		mv.addObject("myInfo", memberDTO);

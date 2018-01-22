@@ -25,10 +25,10 @@ public class TheaterService {
 	public List<TheaterDTO> locationList(String area) throws Exception{
 		return theaterDAO.locationList(area);
 	}
-	public List<TheaterDTO> areaList(){
+	public List<TheaterDTO> areaList() throws Exception{
 		return theaterDAO.areaList();
 	}	
-	public List<TheaterDTO> qrAreaList(){
+	public List<TheaterDTO> qrAreaList() throws Exception{
 		return theaterDAO.qrAreaList();
 	}		
 	/*heeseong*/
@@ -40,19 +40,19 @@ public class TheaterService {
 		return theaterDAO.thSearchList(kind,search);
 	}
 	/*heeseong*/
-	public TheaterDTO theaterInfo(int theater_num) {
+	public TheaterDTO theaterInfo(int theater_num) throws Exception{
 		return theaterDAO.theaterInfo(theater_num);
 	}
 	/*heeseong*/
-	public int theaterRevision(TheaterDTO theaterDTO) {
+	public int theaterRevision(TheaterDTO theaterDTO) throws Exception{
 		return theaterDAO.theaterRevision(theaterDTO);
 	}
 	/*heeseong*/
-	public int theaterRemove(int theater_num) {
+	public int theaterRemove(int theater_num) throws Exception{
 		return theaterDAO.theaterRemove(theater_num);
 	}
 	/*heeseong*/
-	public int theaterInsert(TheaterDTO theaterDTO) {
+	public int theaterInsert(TheaterDTO theaterDTO) throws Exception{
 		return theaterDAO.theaterInsert(theaterDTO);
 	}
 	
