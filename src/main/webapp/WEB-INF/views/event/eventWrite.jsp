@@ -22,6 +22,10 @@
 	margin-top:40px;
  
 }
+textarea{
+	width:600px;
+	
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -137,7 +141,7 @@
 </div>
 
 <div class="eventViewContents">
-<textarea id="contents" name="contents" rows="10" cols="30"> </textarea>
+<textarea id="contents" name="contents" rows="10" cols="20"  style="width: 600px;" > </textarea>
 </div>
 
 <!--  파일수정하기  -->

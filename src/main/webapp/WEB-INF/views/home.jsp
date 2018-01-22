@@ -98,7 +98,7 @@ function showSlides(n) {
 </head>
 	<title> CNEMA</title>
 <body>
-<c:set scope="session" var="agree" value=""></c:set> <!-- agree 관련 -->
+
 <div id="cgvwrap"  style="text-align: center;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 	<!-- 띄움 -->
@@ -231,26 +231,26 @@ function showSlides(n) {
 	<!-- //////////////////////////// -->
 	
 	<br>
-<!-- 	<a href="home/kim">김</a> -->
-<!-- 	<a href="home/ssin">신</a> -->
-<!-- 	<a href="home/park">박</a> -->
+	<a href="home/kim">김</a>
+	<a href="home/ssin">신</a>
+	<a href="home/park">박</a>
 	
 			
 	
-<!-- 	<br><br><br> -->
-<%-- 	<c:if test="${empty member }"> --%>
-<!-- 		<a href="member/joinAgree">Join</a> -->
-<!-- 		<a href="member/memberLogin">Login</a> -->
-<!-- 		<a href="member/idFind">Id Find</a> -->
-<!-- 		<a href="member/pwFind">Pw Find</a> -->
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${!empty member }"> --%>
+	<br><br><br>
+	<c:if test="${empty member }">
+		<a href="member/joinAgree">Join</a>
+		<a href="member/memberLogin">Login</a>
+		<a href="member/idFind">Id Find</a>
+		<a href="member/pwFind">Pw Find</a>
+	</c:if>
+	<c:if test="${!empty member }">
 
-<%-- 	<h2>${member.id } 님 환영합니다</h2> --%>
-<%-- 		<img height="100px" width="100px" src="resources/profil/${member.fileName }"> --%>
-<!-- 		<a href="member/myPageView">My Page</a> -->
-<!-- 		<a href="member/memberLogout">Logout</a> -->
-<%-- 	</c:if> --%>
+	<h2>${member.id } 님 환영합니다</h2>
+		<img height="100px" width="100px" src="resources/profil/${member.fileName }">
+		<a href="member/myPageView">My Page</a>
+		<a href="member/memberLogout">Logout</a>
+	</c:if>
 	
 </div>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	

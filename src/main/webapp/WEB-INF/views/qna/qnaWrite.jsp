@@ -187,7 +187,7 @@ $(function(){
 		<tr>
 			<th>문의유형</th>
 			<td>
-			<input type="radio" name="type" value="문의" checked="checked">문의
+			<input type="radio" name="type" value="1" checked="checked">문의
 			<input type="radio" name="type" value="불만">불만
 			<input type="radio" name="type" value="칭찬">칭찬
 			<input type="radio" name="type" value="제안">제안
@@ -237,7 +237,7 @@ $(function(){
 		<!-- 파일 추가  -->
 		<tr>
 			<th>첨부파일</th>
-			<td><input type="file" name="file" value=""></td>
+			<td><input type="file" name="file" value="null"></td>
 		</tr>
 			</table>
 				<br>
