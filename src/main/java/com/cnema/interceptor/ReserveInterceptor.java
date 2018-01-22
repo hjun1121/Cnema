@@ -1,5 +1,8 @@
 package com.cnema.interceptor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.cnema.member.MemberDTO;
+import com.cnema.reserve.Reserve2DTO;
+import com.cnema.reserve.ReserveDTO;
 
 public class ReserveInterceptor extends HandlerInterceptorAdapter {
 	
@@ -26,8 +31,6 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		String path = request.getServletPath();
 		path = path.substring(1);
 		
-		System.out.println(path);
-		
 		int movie_num = 0;
 		int theater_num = 0;
 		String day_num =null;
@@ -37,9 +40,6 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		String people = null;
 		int pCount = 0;
 		int price = 0;
-		int total_price=0;
-		String test = null;
-		String test1 = null;
 		try {
 			movie_num = Integer.parseInt(request.getParameter("movie_num"));
 			theater_num = Integer.parseInt(request.getParameter("theater_num"));
@@ -50,9 +50,6 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 			people = request.getParameter("people");
 			pCount = Integer.parseInt(request.getParameter("pCount"));
 			price = Integer.parseInt(request.getParameter("price"));
-			total_price = Integer.parseInt(request.getParameter("total_price"));
-			test = request.getParameter("test");
-			test1 = request.getParameter("test1");
 		} catch (Exception e) {
 			
 		}
@@ -66,20 +63,37 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("people"+people);
 		System.out.println("pCount"+pCount);
 		System.out.println("price"+price);
-		System.out.println("total_price"+total_price);
-		System.out.println("test"+test);
-		System.out.println("test1"+test1);
 		String[] ar = request.getParameterValues("seat_num");
+		
+		ReserveDTO reserveDTO = new ReserveDTO();
+		Reserve2DTO reserve2DTO = new Reserve2DTO();
+		
+		reserveDTO.setMovie_num(movie_num);
+		reserveDTO.setTheater_num(theater_num);
+		reserveDTO.setDay_num(day_num);
+		reserveDTO.setSchedule_num(schedule_num);
+		reserve2DTO.setAdult_num(adult_num);
+		reserve2DTO.setTeen_num(teen_num);
+		reserve2DTO.setpCount(pCount);
+		reserve2DTO.setPeople(people);
+		reserve2DTO.setPrice(price);
+		
+		List<Integer> seat_num = new ArrayList<>();
 		for(String s : ar){
-			System.out.println("seat"+s);
+			int seat = Integer.parseInt(s);
+			seat_num.add(seat);
 		}
+		reserveDTO.setSeat_num(seat_num);
 		
 
 		if(obj == null){
 			String message = "로그인 후 사용하세요";
-			
+			modelAndView.addObject("path", path);
+			modelAndView.addObject("reserve", reserveDTO);
+			modelAndView.addObject("reserve2", reserve2DTO);
+			modelAndView.addObject("seat_num", seat_num);
 			modelAndView.addObject("message", message);
-			modelAndView.setViewName("common/login");
+			modelAndView.setViewName("common/loginReserve");
 		}
 
 		

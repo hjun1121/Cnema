@@ -82,6 +82,15 @@
 				<div id="login_form">
 					<div id="login_all">
 					<input type="hidden" name="path" value="${path }">
+					<input type="hidden" name="movie_num" value="${reserve.movie_num }">	
+					<input type="hidden" name="theater_num" value="${reserve.theater_num }">	
+					<input type="hidden" name="day_num" value="${reserve.day_num }">	
+					<input type="hidden" name="schedule_num" value="${reserve.schedule_num }">	
+					<input type="hidden" name="adult_num" value="${reserve2.adult_num }">	
+					<input type="hidden" name="teen_num" value="${reserve2.teen_num }">	
+					<input type="hidden" name="people" value="${reserve2.people }">	
+					<input type="hidden" name="pCount" value="${reserve2.pCount }">	
+					<input type="hidden" name="price" value="${reserve2.price }">	
 						<div id="login_menu">
 							<a href="#" class="login_login"><span>로그인</span></a>
 						</div>
