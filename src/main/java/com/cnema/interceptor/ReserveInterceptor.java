@@ -7,12 +7,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+import com.cnema.member.MemberDTO;
+
+public class ReserveInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
 		
 		return true;
 	}
@@ -22,16 +23,31 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("member");
-		String path = request.getServletPath();
-		path = path.substring(1);
+
 		
+		int movie_num = 0;
+		int theater_num = 0;
+		try {
+			movie_num = Integer.parseInt(request.getParameter("movie_num"));
+			theater_num = Integer.parseInt(request.getParameter("theater_num"));
+		} catch (Exception e) {
+			
+		}
+		
+		
+		String[] ar = request.getParameterValues("seat_num");
+		for(String s : ar){
+			System.out.println(s);
+		}
+		
+
 		if(obj == null){
 			String message = "로그인 후 사용하세요";
 			
-			modelAndView.addObject("path", path);
 			modelAndView.addObject("message", message);
 			modelAndView.setViewName("common/login");
 		}
+
 		
 	}
 	

@@ -30,7 +30,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 			modelAndView.addObject("message", message);
 		}else if(memberDTO.getType() != 20){
 			String message = "접근 권한이 없습니다.";
-			modelAndView.setViewName("common/result");
 			modelAndView.addObject("message", message);
 		}
 
