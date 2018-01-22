@@ -178,15 +178,16 @@ public class AdminController {
 	public ModelAndView theaterView(@RequestParam(defaultValue="-1", required=false)int theater_num,HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
+		
+		TheaterDTO theaterDTO = null;
 		try {
+			theaterDTO = theaterService.theaterInfo(theater_num);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		TheaterDTO theaterDTO = null;
-		theaterDTO = theaterService.theaterInfo(theater_num);
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
@@ -200,7 +201,12 @@ public class AdminController {
 	public ModelAndView theaterRevision(TheaterDTO theaterDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = theaterService.theaterRevision(theaterDTO);
+		try {
+			result = theaterService.theaterRevision(theaterDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 수정 성공");
 			mv.setViewName("redirect:../");
@@ -215,7 +221,18 @@ public class AdminController {
 	public ModelAndView theaterRemove(@RequestParam(defaultValue="-1", required=false)int theater_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = theaterService.theaterRemove(theater_num);
+		ScreenDTO screenDTO = null;
+		try {
+			screenDTO = scheduleService.screenInfo(theater_num);
+			result = theaterService.theaterRemove(theater_num);
+			System.out.println("1:"+result);
+			result = scheduleService.screenRemove(theater_num);
+			System.out.println("2:"+result);
+			result = scheduleService.scheduleRemove(screenDTO.getScreen_num());
+			System.out.println("3:"+result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 삭제 성공");
 			mv.setViewName("redirect:../");
@@ -248,7 +265,11 @@ public class AdminController {
 	public ModelAndView theaterInsert(TheaterDTO theaterDTO, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = theaterService.theaterInsert(theaterDTO);
+		try {
+			result = theaterService.theaterInsert(theaterDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (result > 0) {
 			rd.addFlashAttribute("message", "극장 글쓰기 성공");
 			mv.setViewName("redirect:../");
