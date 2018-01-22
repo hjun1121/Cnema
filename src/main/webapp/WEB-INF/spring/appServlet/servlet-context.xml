@@ -13,11 +13,16 @@
 	<annotation-driven />
 
 	<beans:bean class="com.cnema.interceptor.LoginInterceptor" id="login"></beans:bean>
-
+	<beans:bean class="com.cnema.interceptor.AdminInterceptor" id="admin"></beans:bean>
 	<interceptors>
 		<interceptor>
-			<mapping path="/myPage/couponHistory"/>
+			<mapping path="/myPage/*"/>
 			<beans:ref bean="login"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/*"/>
+			<beans:ref bean="admin"/>
 		</interceptor>
 	</interceptors>
 
