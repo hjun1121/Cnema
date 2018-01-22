@@ -29,6 +29,8 @@ textarea{
 </style>
 <script type="text/javascript">
 	$(function(){
+		
+		
 		//SmartEditor start
 		//전역변수선언
     var editor_object = [];
@@ -54,9 +56,15 @@ textarea{
         editor_object.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
          
         // 이부분에 에디터 validation 검증
-         
-        //폼 submit
+        var file=$('#file').val();
+        	alert(file);
+		if(file==""){
+			alert("파일 확인");
+			file.focus();
+		}
+        else{
         $("#frm").submit();
+        }
     })
 		
 		//CKEDITOR.replace( 'contents' );
@@ -146,7 +154,7 @@ textarea{
 
 <!--  파일수정하기  -->
 <div class="eventViewFile">
-파일 첨부 : <input type="file" name="file">
+파일 첨부 : <input type="file" name="file" id="file">
 </div>
 
 <!-- 이벤트 당첨 타입  -->
@@ -157,7 +165,7 @@ textarea{
 </div>
 <a href="eventList">cancel</a>
 		
-<input type="submit" id="writeBtn" value="write"> 
+<input type="button" id="writeBtn" value="write"> 
 </form>	
 		</div>
 			</div><!--게시판 내용  -->
