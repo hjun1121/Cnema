@@ -163,6 +163,8 @@ public class MyPageController {
 		}
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+		List<WishDTO> wList = new ArrayList<>();
+		
 		try {
 			if(kind.equals("0000")){
 				rList = reserveService.reserveAList(memberDTO.getId());
@@ -188,12 +190,15 @@ public class MyPageController {
 				screenDTO = scheduleService.screenOne(reserveDTO2.getScreen_num());
 				reserveDTO.setScreenDTO(screenDTO);
 			}
+			wList = wishService.wishList(memberDTO.getId(),"reg_date");
+					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		mv.addObject("kind",kind);
 		mv.addObject("rList",rList);
+		mv.addObject("wList",wList);
 		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}
@@ -258,10 +263,12 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		List<WishDTO> wList = new ArrayList<WishDTO>();
+		List<ReserveDTO> rList = new ArrayList<>();
 		if(kind==null){
 			kind="reg_date";
 		}
 		try {
+			rList = reserveService.reserveAList(memberDTO.getId());
 			if(kind.equals("reg_date")){
 				wList = wishService.wishList(memberDTO.getId(),"reg_date");
 				for(WishDTO wishDTO : wList ){
@@ -281,6 +288,7 @@ public class MyPageController {
 
 		mv.addObject("kind", kind);
 		mv.addObject("wList", wList);
+		mv.addObject("rList", rList);
 		mv.setViewName("myPage/wishList");
 		return mv;
 	}

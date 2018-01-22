@@ -66,7 +66,12 @@ public class QnaController {
 	@RequestMapping(value="qnaWrite", method=RequestMethod.GET)
 	public ModelAndView insert(ModelAndView mv){
 		
-		 List<TheaterDTO> ar= theaterService.areaList();
+		List<TheaterDTO> ar;
+		try {
+			ar = theaterService.areaList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		 mv.addObject("area_list", ar);
 		mv.setViewName("qna/qnaWrite");
 		

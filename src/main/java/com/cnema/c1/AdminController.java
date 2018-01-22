@@ -775,6 +775,7 @@ public class AdminController {
 			mv.setViewName("redirect:../");
 			MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
 			memberDTO.setA_point(memberDTO2.getA_point());
+			memberDTO.setA_point(memberDTO2.getV_point());
 			session.setAttribute("member", memberDTO);
 		} else {
 			rd.addAttribute("message", "포인트 주기 실패");
