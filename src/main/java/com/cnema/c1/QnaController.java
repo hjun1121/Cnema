@@ -66,7 +66,7 @@ public class QnaController {
 	@RequestMapping(value="qnaWrite", method=RequestMethod.GET)
 	public ModelAndView insert(ModelAndView mv){
 		
-		List<TheaterDTO> ar;
+		List<TheaterDTO> ar = null;
 		try {
 			ar = theaterService.areaList();
 		} catch (Exception e) {
