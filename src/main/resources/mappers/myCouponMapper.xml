@@ -33,9 +33,17 @@
   <select id="couponCount" resultType="int" parameterType="java.lang.String">
   	select count(id) from myCoupon where id=#{id} 
   </select>
+  <!-- heeseong -->
+  <select id="couponACount" resultType="int" parameterType="java.lang.String">
+  	select count(id) from myCoupon where id=#{id} and type=11
+  </select>
   
   <!-- heeseong -->
   <insert id="couponInsert" parameterType="java.util.Map">
   	insert into myCoupon (num,name,id,v_date,publish_date,type,c_num) values(movie_seq.nextval,#{couponDTO.name},#{id},to_date(#{v_date},'YYYY/mm/DD'),sysdate,11,#{couponDTO.c_num})
   </insert>
+  <!-- heeseong -->
+  <delete id="withdrawal" parameterType="string">
+  	delete from myCoupon where id=#{id}
+  </delete>
   </mapper>

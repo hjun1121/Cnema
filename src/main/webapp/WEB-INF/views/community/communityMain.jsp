@@ -68,16 +68,24 @@
 </div> 
 
 <div style="width: 60%; height: 1080px; background-color: #f0f0f0; margin: 0 auto; margin-top: 30px;">
-	<c:if test="${not empty member}">
-		<a href="./pageInsert"><input type="button" value="페이지 만들기"></a>
-	</c:if>
+
+<!-- 페이지 만들기 버튼 -->
+<%-- 	<c:if test="${not empty member}"> --%>
+<!-- 		<a href="./pageInsert"><input type="button" value="페이지 만들기"></a> -->
+<%-- 	</c:if> --%>
 	<!-- 가입항 페이지  -->
 	<div style="height: 50%; background-color: blue;">
 		<c:forEach items="${pageList}" var="page" varStatus="count">
-						
+			<img alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
+			${page.page_name}
 		</c:forEach>
 	</div>
+	<!-- 추첨 페이지 -->
 	<div style="height: 50%; background-color: orange;">
+		<c:forEach items="${recommendPage}" var="recommend">
+			<img alt="${recommend.page_name}" src="../resources/page_logo/${recommend.fileName}">
+			${recommend.page_name}
+		</c:forEach>
 	</div>
 </div>
 

@@ -54,7 +54,7 @@
 									<ul>
 										<li><a href="${pageContext.request.contextPath}/movie/movie_chart">무비차트</a></li>
 										<li><a href="${pageContext.request.contextPath}/community/pageInsert">페이지생성</a></li>
-										<li class="last"><a href="${pageContext.request.contextPath}/community/communityMain">CnemaGram</a></li>
+										<li class="last"><a href="${pageContext.request.contextPath}/community/communityMain">씨네마그램</a></li>
 									</ul>
 								</div>
 							</div>
@@ -82,7 +82,12 @@
 								</div>
 							</div>
 						</li>
+<<<<<<< HEAD
                         <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;문의</a>
+=======
+						<!-- 소식지 -->
+                        <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;컬쳐</a>
+>>>>>>> 02364e6fc15e8ca7b84f3c3c6c2e911526a7b503
 							<div class="sub-wrap">
 								<i></i>
 								<!-- <div class="smenu">
@@ -94,7 +99,8 @@
 								</div> -->
 							</div>
 						</li>
-						
+<!-- 						씨네마그램 -->
+<%--                         <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/community/communityMain">CnemaGram</a> --%>
 					</ul>
 				</div>
 			</div>

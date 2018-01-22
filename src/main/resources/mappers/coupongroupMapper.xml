@@ -23,4 +23,8 @@
   			delete from coupongroup where group_num=#{group_num}
   		</if>
   	</delete>
+  	
+  <delete id="withdrawal" parameterType="string">
+  	delete from coupongroup where id=#{id}
+  </delete>
   </mapper>
