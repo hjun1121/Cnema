@@ -416,7 +416,6 @@
 			<input type="hidden" id="people" name="people">
 			<input type="hidden" id="seatName" name="seatName">
 			<input type="hidden" id="price" name="price">
-			<input type="text" id="test1" name="test1" value="gogo1">
 			<div id="seatList">
 			
 			</div>

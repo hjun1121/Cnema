@@ -7,11 +7,25 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	alert('${message}');
-	location.href="../member/memberLogin";
+	alert('sd'+'${message}');
+	$(function(){
+		document.frm.submit();
+	});
+	//location.href="../member/memberLogin?path=${path}";
 </script>
 </head>
 <body>
-
+	<form action="../member/memberLogin" id="frm" name="frm" method="get">
+		<input type="text" name="path" value="${path }">	
+		<input type="text" name="movie_num" value="${reserve.movie_num }">	
+		<input type="text" name="theater_num" value="${reserve.theater_num }">	
+		<input type="text" name="day_num" value="${reserve.day_num }">	
+		<input type="text" name="schedule_num" value="${reserve.schedule_num }">	
+		<input type="text" name="adult_num" value="${reserve2.adult_num }">	
+		<input type="text" name="teen_num" value="${reserve2.teen_num }">	
+		<input type="text" name="people" value="${reserve2.people }">	
+		<input type="text" name="pCount" value="${reserve2.pCount }">	
+		<input type="text" name="price" value="${reserve2.price }">	
+	</form>
 </body>
 </html>

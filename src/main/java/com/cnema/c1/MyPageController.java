@@ -77,6 +77,7 @@ public class MyPageController {
 		try {
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
+			mv.addObject("id",memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +85,6 @@ public class MyPageController {
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
-		mv.addObject("id",memberDTO.getId());
 		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("myPage/myInfoCheck");
 		return mv;
