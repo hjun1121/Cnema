@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="communityMapper">
 
+
+	<!--  -->
+	<insert id="pageContentsWrite" parameterType="pageContentsDTO">
+		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,movie_seq.nextval,0,0)
+	</insert>
+	
+	
+	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}
 	</delete>

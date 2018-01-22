@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.community.CommunityService;
+import com.cnema.community.PageContentsDTO;
 import com.cnema.community.PageDTO;
 import com.cnema.community.PageMemberDTO;
 import com.cnema.member.MemberDTO;
@@ -26,6 +27,16 @@ public class CommunityController {
 	
 	@Inject
 	private CommunityService communityService;
+	
+	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.GET)
+	public void pageContentsWrite()throws Exception {
+	}
+	
+	//pageContentsWrite
+	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.POST)
+	public void pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception {
+		communityService.pageContentsWrite(pageContentsDTO);
+	}
 	
 	
 	//pageMain

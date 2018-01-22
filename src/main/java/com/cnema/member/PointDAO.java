@@ -43,4 +43,8 @@ public class PointDAO {
 		pMap.put("id", id);
 		return sqlSession.insert(NAMESPACE+"pointInsert",pMap);
 	}
+	/*HeeSeong*/
+	public int withdrawal(String id) throws Exception{
+		return sqlSession.delete(NAMESPACE+"withdrawal",id);
+	}
 }

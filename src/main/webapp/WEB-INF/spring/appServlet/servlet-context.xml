@@ -48,4 +48,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.cnema.c1" />
+	<context:component-scan base-package="com.cnema.exception" />
 </beans:beans>

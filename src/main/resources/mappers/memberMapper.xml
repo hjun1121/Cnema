@@ -61,7 +61,7 @@
   	</update>
   	<!-- heeseong -->
   	<update id="pointUpdate" parameterType="map">
-  		update member set a_point=a_point+#{price} where id=#{id}
+  		update member set a_point=a_point+#{price},v_point=v_point+#{price} where id=#{id}
   	</update>
   	
   </mapper>

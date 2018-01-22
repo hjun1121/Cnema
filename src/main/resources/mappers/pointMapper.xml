@@ -23,4 +23,8 @@
 	<insert id="pointInsert" parameterType="map">
 		insert into point (point_num,id,contents,point_price,use_day,type) values(movie_seq.nextval,#{id},0,#{price},sysdate,20)
 	</insert>
+	<!-- heeseong -->
+  <delete id="withdrawal" parameterType="string">
+  	delete from point where id=#{id}
+  </delete>
   </mapper>
