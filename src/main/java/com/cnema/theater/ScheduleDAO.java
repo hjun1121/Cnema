@@ -75,6 +75,9 @@ public class ScheduleDAO {
 	}
 	/*heeseong*/
 	public int scheduleRevision(ScheduleDTO scheduleDTO) throws Exception{
+		System.out.println(scheduleDTO.getIn_time());
+		System.out.println(scheduleDTO.getOut_time());
+		System.out.println(scheduleDTO.getDay());
 		return sqlSession.update(NAMESPACE+"scheduleRevision",scheduleDTO);
 	}
 	/*heeseong*/

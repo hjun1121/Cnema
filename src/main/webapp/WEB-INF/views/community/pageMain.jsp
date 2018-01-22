@@ -107,15 +107,15 @@
 	<!-- 우측 고정 바 -->
 	<div style="width: 308px; height: auto; background-color: yellow; right: 30px; bottom: 0; position: fixed; z-index: 999;">
 		<!-- 채팅 바 -->
-		<div id="chatting_div" style="width: 100%; height: 25px; border: 1px solid red; line-height: 25px;">
 		<c:if test="${not empty member}">
+		<div id="chatting_div" style="width:276px; height: 28px; bottom: 0; right: 0; position: fixed; margin: 0 15px; border: 1px solid #dddfe2; background-color: #f6f7f9;">
 			<c:forEach items="${pageMember}" var="pm">
 <%-- 				<img alt="${pm.id} 프로필" src="../resources/profil/${pm.fileName}"> ${pm.id} --%>
 <%-- 				${pm.id} --%>
-				<input style="background-color: yellow; border: none;" type="button" id="chatting_btn" value="채팅하기">
+				<input style="background-color: #f6f7f9; line-height:28px; border: none;" type="button" id="chatting_btn" value="채팅하기">
 			</c:forEach>
-		</c:if>
 		</div>
+		</c:if>
 	</div>
 
 <%-- 	<c:choose> --%>

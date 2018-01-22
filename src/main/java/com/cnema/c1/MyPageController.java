@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -168,7 +169,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="movieRemove",method=RequestMethod.GET)
-	public ModelAndView movieHistory(int tp_num, RedirectAttributes rd){
+	public ModelAndView movieHistory(@RequestParam(defaultValue="-1", required=false)int tp_num, RedirectAttributes rd){
 		int result = 0;
 		try {
 			result = reserveService.reserveDel(tp_num);
@@ -189,7 +190,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="movieReview",method=RequestMethod.GET)
-	public ModelAndView movieReview(int movie_num){
+	public ModelAndView movieReview(@RequestParam(defaultValue="-1", required=false)int movie_num){
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		
@@ -205,7 +206,7 @@ public class MyPageController {
 		return mv;
 	}
 	@RequestMapping(value="movieReview",method=RequestMethod.POST)
-	public ModelAndView movieReview(int movie_num,String review,RedirectAttributes rd,HttpSession session){
+	public ModelAndView movieReview(@RequestParam(defaultValue="-1", required=false)int movie_num,String review,RedirectAttributes rd,HttpSession session){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		int result = 0;
@@ -231,16 +232,19 @@ public class MyPageController {
 		if(kind==null){
 			kind="reg_date";
 		}
-		
 		try {
-			for(WishDTO wishDTO : wList ){
-				if(kind.equals("reg_date")){
-					wList = wishService.wishList(memberDTO.getId());
-				}else{
-					wList = wishService.wishList(memberDTO.getId());
+			if(kind.equals("reg_date")){
+				wList = wishService.wishList(memberDTO.getId(),"reg_date");
+				for(WishDTO wishDTO : wList ){
+					movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
+					wishDTO.setMovieDTO(movieDTO);
 				}
-				movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
-				wishDTO.setMovieDTO(movieDTO);
+			}else{
+				wList = wishService.wishList(memberDTO.getId(),"open_date");
+				for(WishDTO wishDTO : wList ){
+					movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
+					wishDTO.setMovieDTO(movieDTO);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -252,14 +256,14 @@ public class MyPageController {
 		return mv;
 	}
 	@RequestMapping(value="wishListDel",method=RequestMethod.GET)
-	public ModelAndView wishListDel(int wish_num,RedirectAttributes rd){
+	public ModelAndView wishListDel(@RequestParam(defaultValue="-1", required=false)int wish_num,RedirectAttributes rd){
 		int result = 0;
 		try {
 			result = wishService.wishListDelete(wish_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ModelAndView mv = new ModelAndView();
 		if(result>0){
 			rd.addFlashAttribute("message", "위시리스트 삭제 성공");

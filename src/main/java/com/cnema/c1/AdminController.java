@@ -88,7 +88,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "movieView", method = RequestMethod.GET)
-	public ModelAndView movieView(int movie_num,HttpSession session) {
+	public ModelAndView movieView(@RequestParam(defaultValue="-1", required=false)int movie_num,HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
@@ -153,7 +153,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "theaterView", method = RequestMethod.GET)
-	public ModelAndView theaterView(int theater_num,HttpSession session) {
+	public ModelAndView theaterView(@RequestParam(defaultValue="-1", required=false)int theater_num,HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 
@@ -182,7 +182,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "theaterRemove", method = RequestMethod.GET)
-	public ModelAndView theaterRemove(int theater_num, RedirectAttributes rd) {
+	public ModelAndView theaterRemove(@RequestParam(defaultValue="-1", required=false)int theater_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		result = theaterService.theaterRemove(theater_num);
@@ -250,7 +250,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "screenList", method = RequestMethod.GET)
-	public ModelAndView screenList(HttpSession session,int theater_num) {
+	public ModelAndView screenList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int theater_num) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<ScreenDTO> sList = new ArrayList<>();
@@ -278,7 +278,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="screenView", method = RequestMethod.GET)
-	public ModelAndView screenView(HttpSession session,int screen_num){
+	public ModelAndView screenView(HttpSession session,@RequestParam(defaultValue="-1", required=false)int screen_num){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		
@@ -319,7 +319,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="screenRemove", method = RequestMethod.GET)
-	public ModelAndView screenRemove(int screen_num,RedirectAttributes rd){
+	public ModelAndView screenRemove(@RequestParam(defaultValue="-1", required=false)int screen_num,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		
 		int result = 0;
@@ -340,7 +340,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "screenInsert", method = RequestMethod.GET)
-	public void screenInsert(HttpSession session,Model model,int theater_num) {
+	public void screenInsert(HttpSession session,Model model,@RequestParam(defaultValue="-1", required=false)int theater_num) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<TheaterDTO> areaList = null;
 		TheaterDTO theaterDTO = null;
@@ -416,7 +416,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "scheduleInsert", method = RequestMethod.POST)
-	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO, int count, int next_time, RedirectAttributes rd) {
+	public ModelAndView scheduleInsert(ScheduleDTO scheduleDTO, @RequestParam(defaultValue="-1", required=false)int count, @RequestParam(defaultValue="-1", required=false)int next_time, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		String day = sd.format(scheduleDTO.getDay());
@@ -451,7 +451,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "scheduleView", method = RequestMethod.GET)
-	public ModelAndView scheduleView(HttpSession session,int schedule_num) {
+	public ModelAndView scheduleView(HttpSession session,@RequestParam(defaultValue="-1", required=false)int schedule_num) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;
@@ -491,7 +491,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "scheduleRemove", method = RequestMethod.GET)
-	public ModelAndView scheduleRemove(int schedule_num, RedirectAttributes rd) {
+	public ModelAndView scheduleRemove(@RequestParam(defaultValue="-1", required=false)int schedule_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
@@ -598,16 +598,16 @@ public class AdminController {
 	}*/
 
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
-	public ModelAndView memberList(int group_num,int sort) {
+	public ModelAndView memberList(@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		List<CoupongroupDTO> gList = new ArrayList<>();
 		List<CouponDTO> cList = new ArrayList<>();
-
 		int number = 1;
 		int result = 0;
+
 		try {
 			groupList = coupongroupService.groupList();
 			cList = couponService.couponList();
@@ -643,7 +643,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "couponGive", method = RequestMethod.GET)
-	public ModelAndView couponGive(int c_num, @RequestParam(value = "groupVal[]") List<String> gList,
+	public ModelAndView couponGive(@RequestParam(defaultValue="-1", required=false)int c_num, @RequestParam(value = "groupVal[]") List<String> gList,
 			RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		CouponDTO couponDTO = null;
@@ -668,7 +668,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "pointGive", method = RequestMethod.GET)
-	public ModelAndView pointGive(int price, @RequestParam(value = "groupVal[]") List<String> gList,
+	public ModelAndView pointGive(@RequestParam(defaultValue="-1", required=false)int price, @RequestParam(value = "groupVal[]") List<String> gList,
 			RedirectAttributes rd, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -695,7 +695,7 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping(value = "groupInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "groupInsert", method = RequestMethod.GET)
 	public ModelAndView groupInsert(@RequestParam(value = "groupVal[]") List<String> gList) {
 		ModelAndView mv = new ModelAndView();
 
@@ -709,7 +709,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
-		mv.setViewName("redirect:./memberList?group_num=-1");
+		mv.setViewName("redirect:../admin/memberList");
 		return mv;
 	}
 
@@ -735,11 +735,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "groupRemove", method = RequestMethod.GET)
-	public ModelAndView groupRemove(int group_num, RedirectAttributes rd) {
+	public ModelAndView groupRemove(@RequestParam(defaultValue="-1", required=false)int group_num, RedirectAttributes rd) {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
-			result = coupongroupService.groupRemove(group_num);
+			if(group_num!=-1){
+				result = coupongroupService.groupRemove(group_num);
+			}else{
+				result = coupongroupService.groupRemove(-1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
