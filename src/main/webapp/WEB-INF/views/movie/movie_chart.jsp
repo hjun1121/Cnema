@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +64,10 @@
 				});
 			}
 		});
+		
+		$("#more_btn").click(function(){
+			$("#more_contents_div").css("display","");
+		});
 																
 	});
 
@@ -97,7 +102,7 @@
         	<!-- 내용시작 -->
    
     
-    <div id="contents">
+    <div id="contents" style="border-bottom: 3px solid #241d1e;">
     <form action="movie_chart" name="frm" method="GET">
     <div class="wrap-movie-chart">
         <div class="tit-heading-wrap">
@@ -114,14 +119,25 @@
         </div>
         <div class="sect-movie-chart">
             <ol>
-            <c:forEach items="${movie_list}" var="movie">
-                <li>
+            <c:forEach items="${movie_list}" var="movie" varStatus="count">
+            
+            <c:if test="${count.count==9 }">  <div id="more_contents_div" style="display: none;" class="sect-movie-chart"></c:if>
+            
+            
+                <li style="border-bottom: 3px solid #241d1e; margin-top: 10px; margin-bottom: 10px;" >
                     <div class="box-image">
-                        <strong class="rank">No.1</strong>	
+                    	<c:choose>
+                        <c:when test="${count.count <= 8}">
+                        <strong class="rank">No.${count.count}</strong>
+                        </c:when>
+                        <c:otherwise>
+                        <strong class="rank" style="background-color: #fdfcf0; border: none;"></strong>
+                        </c:otherwise>
+                        </c:choose>
                         <a href="#">
                             <span class="thumb-image">
                             	<a href="movie_view?movie_num=${movie.movie_num}">
-                                	<img alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}' >
+                                	<img class="thumb-image" alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}' >
                                 </a>
                                <!--  <span class="ico-grade grade-12">12세 이상</span> -->
                             </span>
@@ -167,15 +183,19 @@
                                 <i class="corner-RT"></i><i class="corner-LT"></i><i class="corner-LB"></i><i class="corner-RB"></i><i class="corner-arrow"></i>
                             </span>
                         </c:if>
+                        	<a class=""></a>
                             <a class="link-reservation" href="#">예매</a>
                         </span>
                         
                     </div>    
                 </li>
+                
+                <c:if test="${count.last }">  </div> </c:if>
             </c:forEach>
             </ol>
 
-            <button class="btn-more-fontbold">더보기 <i class="link-more">더보기</i></button>
+            <button class="btn-more-fontbold" id="more_btn" type="button">더보기 <i class="link-more">더보기</i></button>
+            
             
         </div>
     </div>
