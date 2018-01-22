@@ -114,7 +114,7 @@ $(function(){
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
 				                <a href="#">
-				                    <em>${fn:length(mList)}</em>
+				                    <em>${fn:length(rList)}</em>
 				                    <strong>내가 본 영화</strong>
 				                </a>
 				            </div>

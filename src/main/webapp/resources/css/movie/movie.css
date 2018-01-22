@@ -2403,7 +2403,7 @@ div[class^="sect-"] .btn-itemmore {
 	height: 28px;
 	margin: 0 2px;
 	border: 1px solid #cacac1;
-	background: url('../images/sprite/btn_paging.gif') no-repeat;
+	background: url('../../../resources/images/movie/btn_paging.gif') no-repeat;
 	background-color: #faf9ed;
 	color: #333333;
 	font-size: 11px;
@@ -2822,6 +2822,7 @@ div[class^="sect-"] .btn-itemmore {
 	font-family: 'NanumBarunGothicBold';
 	font-weight: normal;
 	letter-spacing: -1px;
+	font-weight: bold;
 }
 
 .heading .count {
@@ -4198,6 +4199,8 @@ div[class^="sect-"] .btn-itemmore {
 
 /* 영화상세- 트레일러 */
 .wrap-movie-detail .sect-trailer>ul {
+	padding-left: 100px;
+	padding-bottom: 150px;
 	margin-left: -10px;
 }
 

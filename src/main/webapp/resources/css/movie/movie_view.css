@@ -21,6 +21,7 @@
     font-size: 38px;
     text-align: left;
     vertical-align: middle;
+    font-weight: bold;
 }
 
 [class|="sect-base"][class$="movie"] {
@@ -46,6 +47,7 @@ div[class^="sect-"]:after {
     margin-right: 30px;
     width: 185px;
     height: 260px;
+    text-align: center;
 }
 
 [class|="sect-base"] .box-image {
@@ -73,6 +75,7 @@ div[class^="sect-"]:after {
     color: #1a1919;
     font-size: 25px;
     vertical-align: middle;
+    font-weight: bold;
 }
 [class|="sect-base"] .score {
     margin-top: 25px;
@@ -313,6 +316,8 @@ div[class^="sect-"]:after {
     letter-spacing: -1px;
 }
 .wrap-movie-detail .sect-trailer > ul {
+	text-align: center;
+	padding-bottom: 150px;
     margin-left: -10px;
 }
 .wrap-movie-detail .sect-trailer li {
@@ -337,4 +342,9 @@ div[class^="sect-"]:after {
 }
 .box-image a {
     display: block;
+}
+
+input.warning_btn {
+	background-color: #eee8e2ad;
+	border: none;
 }

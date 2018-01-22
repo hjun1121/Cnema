@@ -263,6 +263,7 @@ input, select, img {
 }
 .wrap-movie-chart .box-contents {
     height: 93px;
+    text-align: center;
 }
 .box-contents > a {
     display: block;
