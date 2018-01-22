@@ -285,8 +285,6 @@
 									<input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0">
 								</a>
 						</c:if>
-					
-						<a href="" ><input type="button" value="예매"></a>
 		            <span class="count">
 		                <strong><i>${movie.wish}</i><span>명이 선택</span></strong> 
 		                <i class="corner-RT"></i>
@@ -375,7 +373,7 @@
 	 					</c:if>
 	 					<c:if test="${fn:length(review) eq 0}">
 	 					
-	 						<div style="padding-left: 320px;padding-top: 20px;">리뷰가 존재하지 않습니다.</div>
+	 						<div style="padding-left: 320px;padding-top: 20px; padding-bottom:20px;">리뷰가 존재하지 않습니다.</div>
 	 					</c:if>
 	 					</ul>
 	                </div>

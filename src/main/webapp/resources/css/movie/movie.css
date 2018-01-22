@@ -2403,7 +2403,7 @@ div[class^="sect-"] .btn-itemmore {
 	height: 28px;
 	margin: 0 2px;
 	border: 1px solid #cacac1;
-	background: url('../images/sprite/btn_paging.gif') no-repeat;
+	background: url('../../../resources/images/movie/btn_paging.gif') no-repeat;
 	background-color: #faf9ed;
 	color: #333333;
 	font-size: 11px;
