@@ -1,6 +1,8 @@
 package com.cnema.movie;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -14,8 +16,11 @@ public class WishDAO {
 	private static final String NAMESPACE = "wishMapper.";
 	
 	/*희성*/
-	public List<WishDTO> wishList(String id) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"wishList",id);
+	public List<WishDTO> wishList(String id,String kind) throws Exception{
+		Map<String, Object> wMap = new HashMap<>();
+		wMap.put("id", id);
+		wMap.put("kind", kind);
+		return sqlSession.selectList(NAMESPACE+"wishList",wMap);
 	}
 	/*희성*/
 	public int wishListDelete(int wish_num) throws Exception{
