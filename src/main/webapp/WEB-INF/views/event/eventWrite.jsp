@@ -57,10 +57,16 @@ textarea{
          
         // 이부분에 에디터 validation 검증
         var file=$('#file').val();
-        	alert(file);
-		if(file==""){
+		var title=$('#file').val();
+        
+		if(title==""){
+			alert("제목을 입력하세요");
+			title.focus();
+		}
+		else if(file==""){
 			alert("파일 확인");
 			file.focus();
+			return false;
 		}
         else{
         $("#frm").submit();
@@ -138,13 +144,13 @@ textarea{
 
 <div class="eventViewhead">
     <strong>제목</strong>
-    <input type="text" name="title" value=""> 
+    <input type="text" name="title" value="" id="title"> 
     <input type="hidden" name="writer" value="${member.id}">
     <br>
     <p class="date">
         <span>기간: </span>
-        <input type="date" name="s_date" value=""> <strong>~</strong> 
-        <input type="date" name="e_date" value="">
+        <input type="date" name="s_date" value="" id="s_date"> <strong>~</strong> 
+        <input type="date" name="e_date" value="" id="e_date">
     </p>
 </div>
 
