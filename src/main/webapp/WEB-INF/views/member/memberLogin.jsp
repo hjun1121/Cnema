@@ -81,17 +81,17 @@
         	<form action="memberLogin" id="frm" name="frm" method="post">
 				<div id="login_form">
 					<div id="login_all">
-					
+					<input type="hidden" name="path" value="${path }">
 						<div id="login_menu">
 							<a href="#" class="login_login"><span>로그인</span></a>
 						</div>
 			
 						<div id="login_id">
-							<p><input type="text" id="id_text" name="id" placeholder="아이디 입력" value="ssin"></p>
+							<p><input type="text" id="id_text" name="id" placeholder="아이디 입력"></p>
 						</div>
 						
 						<div id="login_pw">
-							<p><input type="password" id="pw_text" name="pw" placeholder="비밀번호 입력" value="ssin226"></p>
+							<p><input type="password" id="pw_text" name="pw" placeholder="비밀번호 입력"></p>
 						</div>
 						
 						<div id="login_btn">

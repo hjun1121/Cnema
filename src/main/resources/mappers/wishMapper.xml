@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="wishMapper">
   	<!-- heeseong -->
-  	<select id="wishList" resultType="wishDTO" parameterType="java.lang.String">
-  		select * from wish where id=#{id}
+  	<select id="wishList" resultType="wishDTO" parameterType="map">
+  		<choose>
+  			<when test="kind == 'reg_date'">select * from wish  where id=#{id}</when>
+  			<when test="kind == 'open_date'">select W.* from wish W, movie M where W.id=#{id} and W.movie_num=M.movie_num order by M.open_date asc</when>
+  			<otherwise></otherwise>
+  		</choose>
   	</select>
   	<!-- heeseong -->
   	<delete id="wishListDelete" parameterType="int">

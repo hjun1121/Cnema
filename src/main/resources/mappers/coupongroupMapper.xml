@@ -16,6 +16,15 @@
   	</select>
   	
   	<delete id="groupRemove" parameterType="int">
-  		delete from coupongroup where group_num=#{group_num}
+  		<if test="group_num == -1">
+  			delete from coupongroup
+  		</if>
+  		<if test="group_num != -1">
+  			delete from coupongroup where group_num=#{group_num}
+  		</if>
   	</delete>
+  	
+  <delete id="withdrawal" parameterType="string">
+  	delete from coupongroup where id=#{id}
+  </delete>
   </mapper>

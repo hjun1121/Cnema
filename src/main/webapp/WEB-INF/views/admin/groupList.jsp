@@ -14,6 +14,9 @@ $(function(){
 		var group_num = $(this).attr("title");
 		location.href="./groupRemove?group_num="+group_num;
 	});
+	$("#aBtn").click(function(){
+		location.href="./groupRemove?group_num=-1";
+	});
 });
 </script>
 </head>
@@ -24,7 +27,7 @@ $(function(){
 		<tr>
 			<td>그룹이름</td>
 			<td>명수</td>
-			<td></td>
+			<td><input type="button" name="aBtn" id="aBtn" value="전체삭제"></td>
 		</tr>
 		<c:forEach items="${groupList }" var="gList" varStatus="gc" >
 		<input type="hidden" class="gnClass" title="${gList.group_num }">

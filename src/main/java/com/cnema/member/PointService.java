@@ -39,4 +39,8 @@ public class PointService {
 	public int pointInsert(int price, String id) throws Exception{
 		return pointDAO.pointInsert(price,id);
 	}
+	/*HeeSeong*/
+	public int withdrawal(String id) throws Exception{
+		return pointDAO.withdrawal(id);
+	}
 }

@@ -40,5 +40,4 @@ public class CouponService {
 	public CouponDTO couponRevisionInfo(String name) throws Exception{
 		return couponDAO.couponRevisionInfo(name);
 	}
-	
 }

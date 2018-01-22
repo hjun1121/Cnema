@@ -14,7 +14,13 @@
 
 	<beans:bean class="com.cnema.interceptor.LoginInterceptor" id="login"></beans:bean>
 	<beans:bean class="com.cnema.interceptor.AdminInterceptor" id="admin"></beans:bean>
+	<beans:bean class="com.cnema.interceptor.ReserveInterceptor" id="reserve"></beans:bean>
 	<interceptors>
+		<interceptor>
+			<mapping path="/theater/quickReserve3"/>
+			<beans:ref bean="reserve"/>
+		</interceptor>
+	
 		<interceptor>
 			<mapping path="/myPage/*"/>
 			<beans:ref bean="login"/>
@@ -42,4 +48,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.cnema.c1" />
+	<context:component-scan base-package="com.cnema.exception" />
 </beans:beans>

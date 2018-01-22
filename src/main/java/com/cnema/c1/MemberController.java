@@ -2,23 +2,30 @@ package com.cnema.c1;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CouponDTO;
+import com.cnema.coupon.CouponService;
+import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.util.EmailDAO;
+
 
 @Controller
 @RequestMapping(value="/member/**")
@@ -27,6 +34,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Inject
 	private MovieService movieService;
+	@Inject
+	private MyCouponService myCouponService;
 	@Inject
 	private EmailDAO emailDAO;
 	/*kim*/
@@ -71,7 +80,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public void login(){
+	public void login(String path, Model model){
 		InetAddress addr = null;
 		try {
 			addr = InetAddress.getLocalHost();
@@ -81,10 +90,11 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("path", path);
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ModelAndView mv){
+	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ModelAndView mv){
 		MemberDTO member = null;
 		try {
 			member = memberService.login(memberDTO);
@@ -94,7 +104,13 @@ public class MemberController {
 
 		if(member != null){
 			session.setAttribute("member", member);
-			mv.setViewName("redirect:../");
+			
+			if(path !=null){
+				mv.setViewName("redirect:../"+path);
+			}else{
+				mv.setViewName("redirect:../");
+			}
+			
 		}else{
 			mv.setViewName("redirect:../member/memberLogin");
 		}
@@ -140,15 +156,27 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
+		int count = 0;
+		int aCount = 0;
+		
+		Calendar ca = Calendar.getInstance();
+		SimpleDateFormat sd = new SimpleDateFormat("YYYY년 MM월 DD일");
+		String today = sd.format(ca.getTime());
+		
 		
 		try {
 			mList = movieService.movieAList();
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
 			mv.addObject("mList",mList);
+			mv.addObject("count", count);
+			mv.addObject("aCount", aCount);
+			mv.addObject("today", today);
 			
 			mv.setViewName("member/myPageView");
 		}else{
