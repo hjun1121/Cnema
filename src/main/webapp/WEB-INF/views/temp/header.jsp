@@ -37,7 +37,6 @@
 					<li><a href="${pageContext.request.contextPath }/member/memberLogout" class="join">로그아웃</a></li>
 					<li><a href="${pageContext.request.contextPath }/member/myPageView" class="myPage">마이페이지</a></li>
 				</c:if>
-					<li><a href="#" class="customer">고객센터</a></li>
 					<li><a href="#" class="vip">찾아오시는 길</a></li>
 				</ul>
 			</div>
@@ -83,16 +82,16 @@
 								</div>
 							</div>
 						</li>
-                        <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;컬쳐</a>
+                        <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;문의</a>
 							<div class="sub-wrap">
 								<i></i>
-								<div class="smenu">
+								<!-- <div class="smenu">
 									<ul>
 										<li><a href="#">이벤트</a></li>
 										<li><a href="#">티켓·팝콘스토어</a></li>
 										<li><a href="#">매거진</a></li>
 									</ul>
-								</div>
+								</div> -->
 							</div>
 						</li>
 						

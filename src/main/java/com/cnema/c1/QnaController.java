@@ -76,6 +76,7 @@ public class QnaController {
 	@RequestMapping(value="qnaWrite", method=RequestMethod.POST)
 	public String insert(QnaDTO qnaDTO, RedirectAttributes rd, HttpSession session){
 		int result = 0;
+		System.out.println("1234");
 		try {
 			result = qnaService.insert(qnaDTO, session);
 		} catch (Exception e) {

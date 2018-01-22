@@ -237,7 +237,7 @@ $(function(){
 		<!-- 파일 추가  -->
 		<tr>
 			<th>첨부파일</th>
-			<td><input type="file" name="file" value="null"></td>
+			<td><input type="file" name="file" value=""></td>
 		</tr>
 			</table>
 				<br>
