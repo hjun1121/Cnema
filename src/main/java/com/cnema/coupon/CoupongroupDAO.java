@@ -35,4 +35,8 @@ public class CoupongroupDAO {
 		gMap.put("group_num",group_num);
 		return sqlSession.delete(NAMESPACE+"groupRemove",gMap);
 	}
+
+	public int withdrawal(String id) throws Exception{
+		return sqlSession.delete(NAMESPACE+"withdrawal",id);
+	}
 }

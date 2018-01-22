@@ -47,6 +47,9 @@
 	   	 	changeMonth: true,
 	        changeYear: true,
 	   		showMonthAfterYear: true,
+	   		showOn:"both",
+	   		buttonImage:"${pageContext.request.contextPath }/resources/images/common/ico/ico_datapicker.gif",
+	   		buttonImageOnly:true
 	    });
 	    $( "#testDatepicker2" ).datepicker({
 	    	changeMonth: true, 
@@ -59,6 +62,9 @@
 	   	 	changeMonth: true,
 	        changeYear: true,
 	   		showMonthAfterYear: true,
+	   		showOn:"both",
+	   		buttonImage:"${pageContext.request.contextPath }/resources/images/common/ico/ico_datapicker.gif",
+	   		buttonImageOnly:true
 	    });
 	});
 </script>
@@ -370,7 +376,7 @@
 								<td>${mCouponList.use_date }</td>
 							</tr>
 						</c:forEach>
-							<c:if test="${fn:length(mcList) eq 0}">           
+							<c:if test="${fn:length(cdList) eq 0}">           
 					            <tr>
 					                <td colspan="3" class="nodata">사용한 쿠폰이 존재하지 않습니다.</td>
 					            </tr>

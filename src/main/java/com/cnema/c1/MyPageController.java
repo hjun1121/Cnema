@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.coupon.CoupongroupService;
 import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
@@ -58,6 +59,8 @@ public class MyPageController {
 	private ReviewService reviewService;
 	@Inject
 	private TheaterService theaterService;
+	@Inject
+	private CoupongroupService coupongroupService;
 	
 	@RequestMapping(value="myInfoCheck",method=RequestMethod.GET)
 	public ModelAndView myInfoCheck(HttpSession session){
@@ -359,6 +362,9 @@ public class MyPageController {
 		int result = 0;
 		try {
 			result = memberService.withdrawal(id);
+			result = myCouponService.withdrawal(id);
+			result = coupongroupService.withdrawal(id);
+			result = pointService.withdrawal(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
