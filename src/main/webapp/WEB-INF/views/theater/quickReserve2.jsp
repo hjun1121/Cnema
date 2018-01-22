@@ -218,7 +218,7 @@
 					$("#teen_num").val("0");
 				}
 				$("#seatName").val($("#seatN").html());
-				$("#price").val($("#qrPrice").html());			
+				$("#price").val($("#qrPrice").html().trim());	
 				document.reserve.submit();
 			}else{
 				alert("인원수와 자리를 확인해주세요");
@@ -416,6 +416,7 @@
 			<input type="hidden" id="people" name="people">
 			<input type="hidden" id="seatName" name="seatName">
 			<input type="hidden" id="price" name="price">
+			<input type="text" id="test1" name="test1" value="gogo1">
 			<div id="seatList">
 			
 			</div>

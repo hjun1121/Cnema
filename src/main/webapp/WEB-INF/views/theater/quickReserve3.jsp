@@ -332,6 +332,7 @@
 		</form>
 		
 		<form action="./quickReservePay" method="post" name="reserve" style="clear: both;">
+			<input type="text" id="test" name="test" value="gogo">
 			m<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">
 			t<input type="text" id="theater_num" name="theater_num" value="${reserve.theater_num }">
 			d<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">
