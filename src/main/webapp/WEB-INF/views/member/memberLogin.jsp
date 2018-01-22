@@ -87,11 +87,11 @@
 						</div>
 			
 						<div id="login_id">
-							<p><input type="text" id="id_text" name="id" placeholder="아이디 입력"></p>
+							<p><input type="text" id="id_text" name="id" placeholder="아이디 입력" value="ssin"></p>
 						</div>
 						
 						<div id="login_pw">
-							<p><input type="password" id="pw_text" name="pw" placeholder="비밀번호 입력"></p>
+							<p><input type="password" id="pw_text" name="pw" placeholder="비밀번호 입력" value="ssin226"></p>
 						</div>
 						
 						<div id="login_btn">

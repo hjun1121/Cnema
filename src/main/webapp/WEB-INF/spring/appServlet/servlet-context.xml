@@ -12,6 +12,20 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<beans:bean class="com.cnema.interceptor.LoginInterceptor" id="login"></beans:bean>
+	<beans:bean class="com.cnema.interceptor.AdminInterceptor" id="admin"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<mapping path="/myPage/*"/>
+			<beans:ref bean="login"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/*"/>
+			<beans:ref bean="admin"/>
+		</interceptor>
+	</interceptors>
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 

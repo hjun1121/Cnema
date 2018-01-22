@@ -165,7 +165,7 @@ div[class^="sect-"] {
 [class|="sect"][class*="chart"] > ol {
     padding-top: 30px;
     margin-left: -64px;
-    border-bottom: 3px solid #241d1e;
+/*     border-bottom: 3px solid #241d1e; */
     zoom: 1;
 }
 
@@ -184,7 +184,7 @@ dl:after, ul:after, ol:after {
     clear: both;
     display: block;
 }
-[class|="sect"][class*="chart"] > ol > li {
+[class|="sect"][class*="chart"] > ol li {
     float: left;
     width: 197px;
     margin-left: 64px;
@@ -216,6 +216,7 @@ dl:after, ul:after, ol:after {
 }
 [class|="sect"][class*="chart"] .thumb-image {
     border: 6px solid #000000;
+    width: 185px;
 }
 
 .thumb-image {
