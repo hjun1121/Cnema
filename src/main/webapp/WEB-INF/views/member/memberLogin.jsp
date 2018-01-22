@@ -81,7 +81,7 @@
         	<form action="memberLogin" id="frm" name="frm" method="post">
 				<div id="login_form">
 					<div id="login_all">
-					
+					<input type="hidden" name="path" value="${path }">
 						<div id="login_menu">
 							<a href="#" class="login_login"><span>로그인</span></a>
 						</div>

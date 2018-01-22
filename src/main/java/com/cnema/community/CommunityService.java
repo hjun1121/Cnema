@@ -21,6 +21,13 @@ public class CommunityService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	//pageContentsWrite
+	public int pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception{
+		int result = pageDAO.pageContentsWrite(pageContentsDTO);
+		
+		return result;
+	}
+	
 	
 	//memberDrop
 	public int memberDrop(int page_num, String id) throws Exception {

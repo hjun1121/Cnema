@@ -73,6 +73,9 @@
 	</c:if>
 	<!-- 가입항 페이지  -->
 	<div style="height: 50%; background-color: blue;">
+		<c:forEach items="${pageList}" var="page" varStatus="count">
+						
+		</c:forEach>
 	</div>
 	<div style="height: 50%; background-color: orange;">
 	</div>

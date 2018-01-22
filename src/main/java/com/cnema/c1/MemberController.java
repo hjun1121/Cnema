@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,7 +72,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public void login(){
+	public void login(String path, Model model){
 		InetAddress addr = null;
 		try {
 			addr = InetAddress.getLocalHost();
@@ -81,10 +82,11 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("path", path);
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ModelAndView mv){
+	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ModelAndView mv){
 		MemberDTO member = null;
 		try {
 			member = memberService.login(memberDTO);
@@ -94,7 +96,13 @@ public class MemberController {
 
 		if(member != null){
 			session.setAttribute("member", member);
-			mv.setViewName("redirect:../");
+			
+			if(path !=null){
+				mv.setViewName("redirect:../"+path);
+			}else{
+				mv.setViewName("redirect:../");
+			}
+			
 		}else{
 			mv.setViewName("redirect:../member/memberLogin");
 		}

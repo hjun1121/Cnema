@@ -1,7 +1,5 @@
 package com.cnema.interceptor;
 
-import java.net.URLEncoder;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,12 +22,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("member");
+		String path = request.getServletPath();
+		path = path.substring(1);
 		
 		if(obj == null){
 			String message = "로그인 후 사용하세요";
 			
-			modelAndView.setViewName("common/login");
+			modelAndView.addObject("path", path);
 			modelAndView.addObject("message", message);
+			modelAndView.setViewName("common/login");
 		}
 		
 	}
