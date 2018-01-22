@@ -49,6 +49,10 @@ public class MyCouponService {
 		return myCouponDAO.couponCount(id);
 	}
 	/*희성*/
+	public int couponACount(String id) throws Exception{
+		return myCouponDAO.couponACount(id);
+	}
+	/*희성*/
 	public int withdrawal(String id) throws Exception{
 		return myCouponDAO.withdrawal(id);
 	}

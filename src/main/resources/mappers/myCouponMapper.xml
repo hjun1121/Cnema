@@ -33,6 +33,10 @@
   <select id="couponCount" resultType="int" parameterType="java.lang.String">
   	select count(id) from myCoupon where id=#{id} 
   </select>
+  <!-- heeseong -->
+  <select id="couponACount" resultType="int" parameterType="java.lang.String">
+  	select count(id) from myCoupon where id=#{id} and type=11
+  </select>
   
   <!-- heeseong -->
   <insert id="couponInsert" parameterType="java.util.Map">
