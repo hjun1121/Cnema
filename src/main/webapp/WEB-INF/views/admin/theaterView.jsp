@@ -85,10 +85,8 @@ $(function(){
 				        			
 				        		</div>
         					<div class="grade-info">
-	        					<c:set var="now" value="<%=new java.util.Date()%>" />
-								<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set> 
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
-                         			 고객님은 <c:out value="${sysYear}" /> 
+                         			 고객님은 ${today}
                          			<strong class="txt-purple">
                          			<c:if test="${myInfo.type eq 10}">
                          				일반 회원
@@ -111,18 +109,14 @@ $(function(){
         			<div class="cols-benefit-info">
 			        	<div class="col-my-coupon">
 			        		<h3>MY COUPON</h3>
-			        		<ul>
+							<ul>
 			        			<li>
-			        				<strong>VIP쿠폰</strong>
-			        				<span><em>7</em> 개</span>
+			        				<strong>전체 쿠폰</strong>
+			        				<span><em>${count }</em> 개</span>
 			        			</li>
 			        			<li>
-			        				<strong>CGV 할인쿠폰</strong>
-			        				<span><em>0</em> 개</span>
-			        			</li>
-			        			<li>
-			        				<strong>영화관람권</strong>
-			        				<span><em>0</em> 개</span>
+			        				<strong>사용 가능 쿠폰</strong>
+			        				<span><em>${aCount }</em> 개</span>
 			        			</li>
 			        		</ul>
 			        	</div>
