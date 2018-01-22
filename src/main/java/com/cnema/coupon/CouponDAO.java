@@ -46,5 +46,4 @@ public class CouponDAO {
 	public CouponDTO couponRevisionInfo(String name) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"couponRevisionInfo",name);
 	}
-	
 }

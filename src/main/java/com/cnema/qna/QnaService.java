@@ -55,14 +55,20 @@ public class QnaService {
 	
 	public int insert(QnaDTO qnaDTO, HttpSession session) throws Exception {
 		
-	
+		int result=0;
+		if(qnaDTO.getFile()==null){
+			qnaDTO.setFileName(" ");
+			qnaDTO.setOriName(" ");
+			result=qnaDAO.insert(qnaDTO);
+		}
+		else{
 		MultipartFile file = qnaDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "board");
 		
 		qnaDTO.setFileName(name);
 		qnaDTO.setOriName(file.getOriginalFilename());
-		int result = qnaDAO.insert(qnaDTO);
-
+		result = qnaDAO.insert(qnaDTO);
+		}
 		return result;
 	}
 	

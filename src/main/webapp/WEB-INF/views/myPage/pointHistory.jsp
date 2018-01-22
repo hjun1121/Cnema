@@ -36,6 +36,9 @@ $(function() {
    	 	changeMonth: true,
         changeYear: true,
    		showMonthAfterYear: true,
+   		showOn:"both",
+   		buttonImage:"${pageContext.request.contextPath }/resources/images/common/ico/ico_datapicker.gif",
+   		buttonImageOnly:true
     });
     $( "#testDatepicker2" ).datepicker({
     	changeMonth: true, 
@@ -48,6 +51,9 @@ $(function() {
    	 	changeMonth: true,
         changeYear: true,
    		showMonthAfterYear: true,
+   		showOn:"both",
+   		buttonImage:"${pageContext.request.contextPath }/resources/images/common/ico/ico_datapicker.gif",
+   		buttonImageOnly:true
     });
 });
 </script>

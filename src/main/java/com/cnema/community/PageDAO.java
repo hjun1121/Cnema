@@ -18,6 +18,11 @@ public class PageDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "communityMapper.";
 	
+	//pageContentsWrite
+	public int pageContentsWrite(PageContentsDTO pageContentsDTO){
+		return sqlSession.update(NAMESPACE+"pageContentsWrite", pageContentsDTO);
+	}
+	
 	
 	//memberDropCount
 	public int memberDropCount(int page_num) throws Exception {

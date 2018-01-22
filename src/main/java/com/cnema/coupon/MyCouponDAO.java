@@ -59,4 +59,12 @@ public class MyCouponDAO {
 	public int couponCount(String id) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"couponCount",id);
 	}
+	/*heeseong*/
+	public int couponACount(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"couponACount",id);
+	}
+	/*heeseong*/
+	public int withdrawal(String id) throws Exception{
+		return sqlSession.delete(NAMESPACE+"withdrawal",id);
+	}
 }
