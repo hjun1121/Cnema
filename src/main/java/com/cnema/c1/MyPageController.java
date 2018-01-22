@@ -263,7 +263,7 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ModelAndView mv = new ModelAndView();
 		if(result>0){
 			rd.addFlashAttribute("message", "위시리스트 삭제 성공");
