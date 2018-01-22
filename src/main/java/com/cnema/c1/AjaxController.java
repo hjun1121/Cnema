@@ -227,7 +227,7 @@ public class AjaxController {
 	
 	//movieWishReturn
 	@RequestMapping(value = "movie_wish_return", method=RequestMethod.POST)
-	public ModelAndView movieWishReturn(int movie_num, HttpSession session) throws Exception {
+	public ModelAndView movieWishReturn(int movie_num, HttpSession session, String kind) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		String id = memberDTO.getId();
@@ -239,6 +239,7 @@ public class AjaxController {
 		} else {
 			mv.addObject("message", "♡ 실패");
 		}
+		mv.addObject("kind", kind);
 		mv.addObject("movie_num", movie_num);
 		mv.setViewName("ajax/movie_wish_return");
 		

@@ -29,8 +29,21 @@ $(function(){
 		location.href="./wishList?kind="+sKind;
 	});
 	$(".btn-del").click(function(){
-		var wish_num = $(this).attr("title");
-		location.href="./wishListDel?wish_num="+wish_num;
+		
+		var movie_num = $(this).attr("title");
+		
+		$.ajax({
+			url: "../ajax/movie_wish_return",
+			type: "POST",
+			data: {
+				movie_num:movie_num,
+				kind:kind
+			},
+			success: function(data) {
+				location.href="wishList?kind=${kind}";
+			}
+		});
+		
 	});
 });
 </script>
@@ -139,12 +152,12 @@ $(function(){
 				                        </div>
 				                        <div class="box-contents">
 				                            <a href="#">
-				                                <strong class="title">${wishList.movieDTO.movie_name}</strong>
+				                                <strong class="title" style="text-align: center;">${wishList.movieDTO.movie_name}</strong>
 				                            </a>
-				                            <span class="txt-info">
+				                            <span class="txt-info" style="text-align: center;">
 				                                <i>${wishList.movieDTO.open_date}</i>
 				                                <strong>개봉</strong>
-				                                <em class="dday">D-1</em>
+<!-- 				                                <em class="dday">D-1</em> -->
 				                            </span>
 				                            <span class="like"> 
 				                                      <button class="btn-del">내가선택한영화</button>
@@ -159,7 +172,7 @@ $(function(){
 				                                <a class="link-reservation" href="#">예매</a>
 				                            </span>
 				                        </div>
-				                         <button class="btn-del" title="${wishList.wish_num }" type="button">
+				                         <button class="btn-del" title="${wishList.movie_num }" type="button">
 					                    	<img src="${pageContext.request.contextPath }/resources/images/common/btn/btn_del02.png">
 					                    </button>
 				                    </li>
