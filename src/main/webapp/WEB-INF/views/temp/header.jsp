@@ -55,7 +55,7 @@
 									<ul>
 										<li><a href="${pageContext.request.contextPath}/movie/movie_chart">무비차트</a></li>
 										<li><a href="${pageContext.request.contextPath}/community/pageInsert">페이지생성</a></li>
-										<li class="last"><a href="${pageContext.request.contextPath}/community/communityMain">CGV아트하우스</a></li>
+										<li class="last"><a href="${pageContext.request.contextPath}/community/communityMain">CnemaGram</a></li>
 									</ul>
 								</div>
 							</div>
