@@ -55,7 +55,9 @@ public class MemberDAO {
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberSList(String kind) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"memberSList",kind);
+		Map<String, String> map = new HashMap<>();
+		map.put("kind", kind);
+		return sqlSession.selectList(NAMESPACE+"memberSList",map);
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{

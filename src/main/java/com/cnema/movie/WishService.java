@@ -12,8 +12,8 @@ public class WishService {
 	private WishDAO wishDAO;
 	
 	/*희성*/
-	public List<WishDTO> wishList(String id) throws Exception{
-		return wishDAO.wishList(id);
+	public List<WishDTO> wishList(String id,String kind) throws Exception{
+		return wishDAO.wishList(id,kind);
 	}
 	/*희성*/
 	public int wishListDelete(int wish_num) throws Exception{

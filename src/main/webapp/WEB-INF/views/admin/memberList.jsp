@@ -36,13 +36,8 @@ $(function(){
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
 		});
-		$.ajax({
-			url:"./groupInsert",
-			type:"post",
-			data:{
-				groupVal:groupVal
-			},
-		});
+		
+		location.href="./groupInsert?groupVal[]="+groupVal;
 	});
 	
 	$("#groudAdmin").click(function(){

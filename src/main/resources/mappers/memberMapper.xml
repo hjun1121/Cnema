@@ -33,12 +33,19 @@
   		select * from member where id=#{id}
   	</select>
   	<!-- heeseong -->
-  	<select id="memberList" resultType="memberDTO">
+  	<select id="memberList" resultType="memberDTO" parameterType="java.lang.String">
   		select * from member
+  		
   	</select>
   	<!-- heeseong -->
   	<select id="memberSList" resultType="memberDTO" parameterType="java.lang.String">
-  		select * from member order by #{kind} desc
+  		select * from member
+  		<choose>
+  			<when test="kind == 'birth'">order by birth desc</when>
+  			<when test="kind == 'type'">order by type desc</when>
+  			<otherwise></otherwise>
+  		</choose>
+  		
   	</select>
   	<!-- heeseong -->
   	<select id="memberCList" resultType="memberDTO" parameterType="int">

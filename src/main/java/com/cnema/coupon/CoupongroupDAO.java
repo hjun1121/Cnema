@@ -31,6 +31,8 @@ public class CoupongroupDAO {
 	}
 
 	public int groupRemove(int group_num) throws Exception{
-		return sqlSession.delete(NAMESPACE+"groupRemove",group_num);
+		Map<String, Object> gMap = new HashMap<>();
+		gMap.put("group_num",group_num);
+		return sqlSession.delete(NAMESPACE+"groupRemove",gMap);
 	}
 }
