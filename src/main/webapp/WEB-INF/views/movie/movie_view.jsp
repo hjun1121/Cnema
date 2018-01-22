@@ -263,7 +263,28 @@
 		        </div>
 		        
 		        <span class="like">
-		            <button class="btn-like on" value="80446">영화 찜하기</button>
+					<c:set var="heart1" value="0" ></c:set>
+					<c:set var="heart2" value="0" ></c:set>
+						<c:if test="${ not empty member }"><c:forEach items="${wish_list}" var="wish">
+							<c:if test="${wish.movie_num eq movie.movie_num}">										
+								<c:choose>
+									<c:when test="${heart1 == 0}">
+										<button class="wish_btn btn-like on" name="${movie.movie_num}" title="1">영화 찜하기</button>
+										<c:set var="heart1" value="1" ></c:set>
+										<c:set var="heart2" value="1" ></c:set>
+									</c:when>
+								</c:choose>
+							</c:if>
+						</c:forEach>
+							<c:if test="${heart2 == 0}">
+								<button class="wish_btn btn-like"  name="${movie.movie_num}" title="0">영화 찜하기</button>
+							</c:if>
+						</c:if>
+						<c:if test="${empty member}">
+								<a href="../member/memberLogin">
+									<input type="button" class="wish_btn" value="♡" name="${movie.movie_num}" title="0">
+								</a>
+						</c:if>
 		            <span class="count">
 		                <strong><i>${movie.wish}</i><span>명이 선택</span></strong> 
 		                <i class="corner-RT"></i>
@@ -352,7 +373,7 @@
 	 					</c:if>
 	 					<c:if test="${fn:length(review) eq 0}">
 	 					
-	 						<div style="padding-left: 320px;padding-top: 20px;">리뷰가 존재하지 않습니다.</div>
+	 						<div style="padding-left: 320px;padding-top: 20px; padding-bottom:20px;">리뷰가 존재하지 않습니다.</div>
 	 					</c:if>
 	 					</ul>
 	                </div>

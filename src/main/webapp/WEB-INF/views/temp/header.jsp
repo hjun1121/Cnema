@@ -82,12 +82,8 @@
 								</div>
 							</div>
 						</li>
-<<<<<<< HEAD
-                        <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;문의</a>
-=======
-						<!-- 소식지 -->
+
                         <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;컬쳐</a>
->>>>>>> 02364e6fc15e8ca7b84f3c3c6c2e911526a7b503
 							<div class="sub-wrap">
 								<i></i>
 								<!-- <div class="smenu">
