@@ -27,24 +27,6 @@
 	height: 400px;
 	
 }
-#btn1{
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 auto;
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #ede9dd; 
-    color: #7b7b7b; 
- 	border:  2px solid #7b7b7b;
- 
-	
-
-}
 
 #writeBtn{
 	
@@ -77,6 +59,95 @@ background-color: #f1f0e5;
 #right_input{
  float:right;
 }
+
+
+table {
+    border-top: solid 1px #d6d4ca;
+    border-bottom: solid 1px #b8b6aa;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+th{
+    line-height: 27px;
+    vertical-align: top;
+    padding: 15px 0px 15px 13px;
+    border-top: 1px solid #d6d4ca;
+    text-align: left;
+    font-weight: normal
+}
+
+td{
+	padding: 15px 5px;
+    text-align: left;
+	border-top: solid 1px #d6d4ca;
+	font-weight: normal;
+    line-height: 1.5em;
+    vertical-align: middle
+}
+#titleInput{
+ width:620px;
+ height: 30px;
+border: 1px solid #ccc;
+}
+textarea{
+width:620px;
+border: 1px solid #ccc;
+}
+
+#titleInput, textarea,#areasel,#locationsel{
+
+background-color: #f1f0e5;
+
+}
+#btnSection{
+	width:100%;
+}
+#btn1{
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ede9dd; 
+    color: #7b7b7b; 
+ 	border:  2px solid #7b7b7b;
+ 
+	
+
+}
+
+#btn2{
+	
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+    float:right;
+}
+
+
+
 </style>
 <script type="text/javascript">
 	$(function(){

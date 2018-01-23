@@ -87,7 +87,7 @@ display: block;
 }
 .email_inquiry{
 	background-color: #ede9dd;
-	width:250px;
+width:29%;
 	height: 300px;
 	display:inline-block;
    float: left;
@@ -106,9 +106,10 @@ display: block;
 
 .my_advice{
 	background-color: #edf1e9;
-	width:250px;
+	width:29%;
 	height: 300px;
 	display:inline-block;
+	float:left;
 	 
 }
 #advice_image { 
@@ -122,8 +123,76 @@ display: block;
 	
 
 }
-
-
+.qna_search{
+width:29%;
+height: 300px;
+display:inline-block;
+background-color: #e71a0f;
+text-align: center;
+float:left;
+}
+.qna_search_tit{
+    display: block;
+    font-size: 22px;
+    margin-top:10px;
+    color: #fdfcf0;
+    font-family: 'NanumBarunGothicBold', sans-serif;
+    font-weight: normal;
+}
+.qna_search .search_box {
+    position: relative;
+    margin: 15px 0px 12px 0px;
+    display: inline-block;
+    width: 214px;
+    height: 36px;
+    background-color: #fdfcf0;
+    text-align: left;
+    }
+#qna_search_image{
+	width:70px;
+	display: block;
+	margin:0 auto;
+     margin-top:52px; 
+}
+.qna_search .search_box input {
+    margin-top: 10px;
+    width: 160px;
+    height: 15px;
+    line-height: 13px;
+    border-right: solid 1px #999;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    background-color: #fdfcf0;
+    }
+    input[type='text']{
+   display: inline-block;
+    height: 25px;
+    line-height: 22px;
+    padding-left: 10px;
+    border: 1px solid #b5b5b5;
+    }
+   
+   .qna_search .search_box .btn_search {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    width: 43px;
+    height: 36px;
+    line-height: 36px;
+    font-weight: bold;
+    font-size: 13px;
+}
+button, input[type='submit'], input[type='button'] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+        border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+    }
+    
 .board_button {
     border: none;
     padding: 10px 24px;
@@ -169,7 +238,7 @@ display: block;
 }
 
 .board_qna_btn{
-	width:120px;
+	width:130px;
 	height:70px;
 	margin: 0 auto;
 	margin-top:50px;
@@ -296,12 +365,19 @@ margin-left:15px;
 				문의하신 내용을 확인하실 수 있습니다.<br></p>
            <form action="../qna/qnaMyList" method="post">
 			<input type="hidden" name="id" value="${member.id }">
-			<div class="board_qna_btn"><input type="submit" class="board_button2" value="문의내역 조회"></div>	
+			<div class="board_qna_btn"><a class="board_button2" href="../qna/qnaWrite">문의내역 조회</a></div>	
 			</form>
            </div>
+  	
+  	<div class="qna_search">
+  	<img id="qna_search_image" alt="" src="${pageContext.request.contextPath }/resources/images/board/qna_search.PNG">
+	<strong class="qna_search_tit">공지사항 빠른검색</strong><br>
+		<div class="search_box">
+			<input id="searchtext" type="text" title="검색어 입력" placeholder="검색어를 입력해 주세요.">
+			<button type="button" class="btn_search" title="검색하기" id="btn_search">검색</button>
+		</div>
+	</div>
   	</div>
-  	
-  	
   	<div id="notice_contents">
   		 <a href="../notice/noticeList"><span class="tit">공지/뉴스</span></a>
 			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a><br>
