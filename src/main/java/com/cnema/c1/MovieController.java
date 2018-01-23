@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,11 +32,12 @@ public class MovieController {
 	
 	//selectOne
 	@RequestMapping(value="movie_view", method=RequestMethod.GET)
-	public ModelAndView selectOne(int movie_num, HttpSession session, RedirectAttributes rd, ListData listData) throws Exception {
+	public ModelAndView selectOne(int movie_num, HttpSession session, RedirectAttributes rd, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception {
 		ModelAndView mv = null;
 		MovieDTO movieDTO = null;
 		movieDTO = movieService.selectOne(movie_num);
 		String id = "";
+		
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
@@ -43,7 +45,7 @@ public class MovieController {
 			// TODO: handle exception
 		}
 
-		
+
 		//review
 //		Map<String, Object> map = mv.getModel();
 //		List<ReviewDTO> review_ar = (List<ReviewDTO>) map.get("list");
@@ -57,6 +59,7 @@ public class MovieController {
 //		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
 		mv.addObject("movie_num", movie_num);
+		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
 		mv.setViewName("movie/movie_view");
 		return mv;

@@ -75,7 +75,7 @@
 		select * from (
 		select rownum R, N.* from
 		(select RE.*, M.fileName from review RE, member M where 
-		movie_num=#{movie_num} and M.id=RE.id order by RE.reg_date desc) N)
+		movie_num=#{movie_num} and M.id=RE.id and RE.r_type=10 order by RE.reg_date desc) N)
 		where R between #{rowNum.startRow} and #{rowNum.lastRow}
 	</select>
   	

@@ -165,7 +165,7 @@ public class AjaxController {
 	
 	//review_Warning
 	@RequestMapping(value = "review_warning", method = RequestMethod.POST)
-	public ModelAndView reviewWarning(int movie_num, int review_num, HttpSession session) throws Exception {
+	public ModelAndView reviewWarning(int movie_num, int review_num, int curPage, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		String id = memberDTO.getId();
@@ -184,6 +184,7 @@ public class AjaxController {
 		}
 
 		mv.addObject("movie_num", movie_num);
+		mv.addObject("curPage", curPage);
 		mv.setViewName("ajax/review_warning");
 		return mv;
 	}
