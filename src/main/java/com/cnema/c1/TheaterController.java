@@ -156,6 +156,10 @@ public class TheaterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String seatName = reserve2DTO.getSeatName();
+		seatName = seatName.replace("\'", "\"");
+		reserve2DTO.setSeatName(seatName);
+		
 		model.addAttribute("screenDTO", screenDTO);
 		model.addAttribute("day", reserveDTO.getDay_num());
 		model.addAttribute("theater", theaterDTO);

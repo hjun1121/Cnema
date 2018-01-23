@@ -66,6 +66,8 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("pCount"+pCount);
 		System.out.println("price"+price);
 		System.out.println("sn"+seatName);
+		seatName = seatName.replace("\"", "\'");
+		
 		String[] ar = request.getParameterValues("seat_num");
 		
 		ReserveDTO reserveDTO = new ReserveDTO();
@@ -81,6 +83,7 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		reserve2DTO.setPeople(people);
 		reserve2DTO.setPrice(price);
 		reserve2DTO.setSeatName(seatName);
+		System.out.println(reserve2DTO.getSeatName());
 		List<Integer> seat_num = new ArrayList<>();
 		for(String s : ar){
 			int seat = Integer.parseInt(s);

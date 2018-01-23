@@ -10,6 +10,7 @@
 <script type="text/javascript">
 	alert('sd'+'${message}');
 	$(function(){
+		$("#seatName").val("${reserve2.seatName}");
 		document.frm.submit();
 	});
 	//location.href="../member/memberLogin?path=${path}";
@@ -31,7 +32,7 @@
 			<input type="text" name="seat_num" value="${seat }">	
 		</c:forEach>
 		
-		<input type="text" name="seatName" value="${reserve2.seatName }">
+		<input type="text" id="seatName" name="seatName">
 	</form>
 </body>
 </html>
