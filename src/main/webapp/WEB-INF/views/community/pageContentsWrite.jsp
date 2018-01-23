@@ -30,9 +30,9 @@
             // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
             bUseToolbar : true,             
             // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,     
+            bUseVerticalResizer : false,     
             // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true, 
+            bUseModeChanger : false, 
         }
     });
      
@@ -128,10 +128,18 @@ width:500px;
 height: 259px;
 margin :0 auto;
 }
-#smart_editor2{
+#contents{
 width:460px;
+height: 250px;
 	
 }
+
+.board_contents{
+	height: 500px;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -170,7 +178,7 @@ width:460px;
 	<div id="writeTab"> </div>
 	<form action="pageContentsWrite"  method="post" id="frm">
 		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
-		<textarea  name ="contents" id="contents" rows="10" cols="20"></textarea>
+		<textarea  name ="contents" id="contents" rows="10" cols="20" ></textarea>
 	
 	<div class="_51xa">
 	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton" data-testid="react-composer-post-button" type="submit" value="1">

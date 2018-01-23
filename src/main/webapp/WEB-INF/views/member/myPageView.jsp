@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -214,24 +215,26 @@
 				<div class="box-inner">
 		            <div class="tit-mycgv">
 						<h3>MY 예매내역</h3>
-						<p><em>2건</em> <a href="#">MY 예매내역 더보기</a></p>
+						<p><em>${fn:length(rList)}</em> <a href="#">MY 예매내역 더보기</a></p>
 					</div>
 					<div class="col-myqna">
 						<ul>
-			                <li>
-								<em>년월일</em>
-								<a href="#"><strong>영화제목</strong></a>
-								<span>
-									지점
-			                    </span>
-							</li>
-			                <li>
-								<em>년월일</em>
-								<a href="#"><strong>영화제목</strong></a>
-								<span>
-									지점
-			                    </span>
-							</li>
+								<li>
+									<em>날짜</em>
+									<a href="#"><strong>영화명</strong></a>
+									<span>
+										극장
+				                    </span>
+								</li>
+							<c:forEach items="${rList }" var="reserveDTO" begin="0" end="1">
+				                <li>
+									<em>${reserveDTO.ticketPriceDTO.reg_date }</em>
+									<a href="#"><strong>${reserveDTO.movieDTO.movie_name }</strong></a>
+									<span>
+										${reserveDTO.theater_num }
+				                    </span>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 		        </div>

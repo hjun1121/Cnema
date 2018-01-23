@@ -8,8 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.util.FileSaver;
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 
 @Service
@@ -37,10 +41,22 @@ public class MovieService {
 		result = movieDAO.warningInsert(id, review_num);
 		return result;
 	}
+	
+	//totalCount
+	public int totalCount(int movie_num) throws Exception {
+		return movieDAO.totalCount(movie_num);
+	}
 
 	//review_list
-	public List<ReviewDTO> reviewList(int movie_num) throws Exception {
-		return movieDAO.reviewList(movie_num);
+	public ModelAndView reviewList(int movie_num, ListData listData) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(movieDAO.totalCount(movie_num));
+
+		List<ReviewDTO> reviewList = movieDAO.reviewList(movie_num, rowNum);
+		mv.addObject("pager", pager);
+		mv.addObject("review", reviewList);
+		return mv;
 	}
 
 	public List<MovieDTO> qrMovieList() throws Exception {

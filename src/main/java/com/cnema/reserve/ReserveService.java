@@ -34,4 +34,8 @@ public class ReserveService {
 	public int reserveDel(int tp_num) throws Exception{
 		return reserveDAO.reserveDel(tp_num);
 	}
+	/*heeseong*/
+	public List<ReserveDTO> selectList(String id) throws Exception{
+		return reserveDAO.selectList(id);
+	}
 }
