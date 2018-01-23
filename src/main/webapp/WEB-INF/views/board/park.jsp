@@ -43,33 +43,45 @@ hr{
 }
 .submenu{
 width:100%;
-height:50px;
+height:45px;
 display: block;
 /* background-color: yellow; */
 }
-#ingBtn,#endBtn{
-
-    background-color: #e71a0f;
-    border: none;
-    color: white;
-    padding: 10px 25px;
+#ingBtn , #endBtn {
+	
+    padding: 5px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    margin: 4px 2px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
     cursor: pointer;
-	float:right;
-	border-radius: 10px;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+  	float:right;
+
+
 }
+
 #endBtn{
-	margin-right:30px;
+	  display: inline-block;
+    background-color: #5b5b58; 
+    color: #ffffff; 
+
+    border: 2px solid #5b5b58;
+    margin-left: 10px;
+    margin-right:30px;
+
 }
-.submenu .tit{
+.submenu .tit, #qna_contents .tit{
 	color: #222;
     font-weight: bold;
     display:inline-block;
-    font-size: 30px;
+    font-size: 26px;
     text-align: left;
     vertical-align: middle;
 }
@@ -267,9 +279,10 @@ margin-left:15px;
   	
   	
   	</div>
-  
+  	
   	<div id="qna_contents">
-  		
+  	<span class="tit">문의</span><br>
+  		<hr>
   		<div class="email_inquiry">
 			<img id="email_image" alt="" src="${pageContext.request.contextPath }/resources/images/board/qnaicon.PNG">
 			<p class="email_tit"> <strong>이메일 문의</strong> <br><br>

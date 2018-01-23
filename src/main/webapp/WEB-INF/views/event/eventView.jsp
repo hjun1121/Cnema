@@ -97,7 +97,7 @@ $(function(){
         ${view.s_date }~ ${view.e_date }
     </em>
 </div>
-<div class="eventViewContents">
+<div class="eventViewContents" style="width: 800px;">
 ${view.contents}
 
 </div>

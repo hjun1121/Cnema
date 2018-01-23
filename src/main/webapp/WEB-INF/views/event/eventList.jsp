@@ -54,7 +54,7 @@ display: inline-block;
 
 .submenu{
 	width:100%;
-	height: 50px;
+	height: 40px;
 
 }
 #btn1{
@@ -78,7 +78,6 @@ display: inline-block;
     color: white;
 }
 #ingEvent , #endEvent {
-
 	
     padding: 5px 10px;
     text-align: center;
@@ -92,7 +91,6 @@ display: inline-block;
     border-radius: 5px;
     background-color: #e71a0f; 
     color: #ffffff; 
-    font-weight:bold;
     border: 2px solid #e71a0f;
   	float:right;
 
@@ -103,10 +101,19 @@ display: inline-block;
 	  display: inline-block;
     background-color: #5b5b58; 
     color: #ffffff; 
-    font-weight:bold;
+
     border: 2px solid #5b5b58;
     margin-left: 10px;
 
+}
+
+.submenu .tit{
+	color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
 }
 </style>
 <script type="text/javascript">
@@ -198,14 +205,13 @@ $("#ingEvent").click(function(){
  
 	
 	<div class="board_contents">
-    <div class="top_contents">
-    <h1>EVENT</h1>
-    
+
     <div class="submenu">
+    	<span class="tit">이벤트</span>
     	<button id="endEvent">종료된 이벤트</button>
    		 <button id="ingEvent">진행중인 이벤트</button>
     </div>
-    </div>
+   
     <br>
    
    
