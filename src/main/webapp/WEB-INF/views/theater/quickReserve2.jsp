@@ -138,9 +138,11 @@
 					y= y_num;
 				}
 				if(sCount==0){
-					$("#seatN").html("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					//$("#seatN").html("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					$("#seatN").html('<span id="'+seat_num+'"> &nbsp; '+x+y+'번</span>');
 				}else{
-					$("#seatN").append("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					//$("#seatN").append("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					$("#seatN").append('<span id="'+seat_num+'"> &nbsp; '+x+y+'번</span>');
 				}
 				sCount++;
 

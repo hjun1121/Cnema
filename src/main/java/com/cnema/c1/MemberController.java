@@ -95,11 +95,12 @@ public class MemberController {
 		}
 		model.addAttribute("reserve2", reserve2DTO);
 		model.addAttribute("reserve", reserveDTO);
+		model.addAttribute("seat_num", reserveDTO.getSeat_num());
 		model.addAttribute("path", path);
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO){
+	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO member = null;
 		try {
@@ -113,10 +114,15 @@ public class MemberController {
 			
 			if(path !=null){
 				if(path.equals("theater/quickReserve3")){
-					//mv.addObject("reserve", reserveDTO);
-					//mv.addObject("reserve2", reserve2DTO);
+					mv.addObject("reserve", reserveDTO);
+					mv.addObject("reserve2", reserve2DTO);
+					mv.addObject("seat_num", reserveDTO.getSeat_num());
+					mv.addObject("path", path);
+					mv.setViewName("common/reserve");
+				}else{
+					
+					mv.setViewName("redirect:../"+path);
 				}
-				mv.setViewName("redirect:../"+path);
 				
 			}else{
 				mv.setViewName("redirect:../");

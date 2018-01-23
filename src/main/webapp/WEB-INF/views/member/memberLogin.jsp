@@ -90,7 +90,11 @@
 					<input type="hidden" name="teen_num" value="${reserve2.teen_num }">	
 					<input type="hidden" name="people" value="${reserve2.people }">	
 					<input type="hidden" name="pCount" value="${reserve2.pCount }">	
-					<input type="hidden" name="price" value="${reserve2.price }">	
+					<input type="hidden" name="price" value="${reserve2.price }">
+					<c:forEach items="${seat_num }" var="seat">
+						<input type="hidden" name="seat_num" value="${seat }">	
+					</c:forEach>	
+					<input type="hidden" name="seatName" value="${reserve2.seatName }">
 						<div id="login_menu">
 							<a href="#" class="login_login"><span>로그인</span></a>
 						</div>
