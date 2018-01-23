@@ -25,6 +25,7 @@ import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.movie.ReviewDTO;
 import com.cnema.movie.ReviewService;
 import com.cnema.movie.WishDTO;
 import com.cnema.movie.WishService;
@@ -158,12 +159,14 @@ public class MyPageController {
 		ReserveDTO reserveDTO2 = null;
 		TheaterDTO theaterDTO = null;
 		ScreenDTO screenDTO = null;
+		ReviewDTO reviewDTO = null;
 		if(kind==null){
 			kind="0000";
 		}
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
 		List<WishDTO> wList = new ArrayList<>();
+		int reviewCount = 0;
 		
 		try {
 			if(kind.equals("0000")){
@@ -189,9 +192,14 @@ public class MyPageController {
 				
 				screenDTO = scheduleService.screenOne(reserveDTO2.getScreen_num());
 				reserveDTO.setScreenDTO(screenDTO);
+				
+				reviewCount = reviewService.reviewCount(reserveDTO2.getMovie_num(),memberDTO.getId());
+				reserveDTO.setCount(reviewCount);
+				
+				reviewDTO = reviewService.reviewInfo(reserveDTO2.getMovie_num(), memberDTO.getId());
+				reserveDTO.setReviewDTO(reviewDTO);
 			}
 			wList = wishService.wishList(memberDTO.getId(),"reg_date");
-					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -239,12 +247,59 @@ public class MyPageController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="movieReviewView",method=RequestMethod.GET)
+	public ModelAndView movieReviewView(@RequestParam(defaultValue="-1", required=false)int movie_num,HttpSession session){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		MovieDTO movieDTO = null;
+		ReviewDTO reviewDTO = null;
+		try {
+			movieDTO = movieService.movieInfo(movie_num);
+			reviewDTO = reviewService.reviewInfo(movie_num,memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("movieDTO", movieDTO);
+		mv.addObject("myInfo", memberDTO);
+		mv.addObject("reviewDTO", reviewDTO);
+		mv.setViewName("myPage/movieReviewView");
+		
+		return mv;
+	}
+	@RequestMapping(value="movieReviewDel",method=RequestMethod.POST)
+	public ModelAndView movieReviewDel(@RequestParam(defaultValue="-1", required=false)int movie_num,RedirectAttributes rd,HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		int result = 0;
+		try {
+			result = reviewService.reviewRemove(movie_num,memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result>0){
+			rd.addAttribute("message", "영화 리뷰 삭제 성공");
+			mv.setViewName("redirect:../common/resultClose");
+		}else{
+			rd.addAttribute("message", "영화 리뷰 삭제 실패");
+			mv.setViewName("redirect:../common/resultClose");
+		}
+		
+		return mv;
+	}
+	
 	@RequestMapping(value="movieReview",method=RequestMethod.POST)
 	public ModelAndView movieReview(@RequestParam(defaultValue="-1", required=false)int movie_num,String review,RedirectAttributes rd,HttpSession session){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		int result = 0;
-		result = reviewService.reviewInsert(movie_num,memberDTO.getId(),review);
+		try {
+			result = reviewService.reviewInsert(movie_num,memberDTO.getId(),review);
+			result = memberService.pointUpdate(100, memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		if(result>0){
 			rd.addAttribute("message", "영화 리뷰 작성 성공");

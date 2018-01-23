@@ -12,13 +12,8 @@ public class ReviewDTO {
 	private int hit;
 	private Date reg_date;
 	private String fileName;
-
-	public String getFileName() {
-		return fileName;
-	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+	private int r_type;
+	
 	public int getReview_num() {
 		return review_num;
 	}
@@ -61,5 +56,16 @@ public class ReviewDTO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public int getR_type() {
+		return r_type;
+	}
+	public void setR_type(int r_type) {
+		this.r_type = r_type;
+	}
 }

@@ -48,4 +48,8 @@ public class ReserveDAO {
 	public int reserveDel(int tp_num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"reserveDel",tp_num);
 	}
+	/*heeseong*/
+	public List<ReserveDTO> selectList(String id) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"selectList", id);
+	}
 }
