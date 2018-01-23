@@ -22,9 +22,60 @@
 	margin-top:40px;
  
 }
-textarea{
-	width:600px;
+#contents{
+	width:650px;
+	height: 400px;
 	
+}
+#btn1{
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ede9dd; 
+    color: #7b7b7b; 
+ 	border:  2px solid #7b7b7b;
+ 
+	
+
+}
+
+#writeBtn{
+	
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+    float:right;
+}
+#titleInput, .dateInput{
+
+background-color: #f1f0e5;
+ width:500px;
+ height: 30px;
+ border: 1px solid #ccc;
+}
+.dateInput{
+
+ width:150px;
+}
+#right_input{
+ float:right;
 }
 </style>
 <script type="text/javascript">
@@ -144,13 +195,13 @@ textarea{
 
 <div class="eventViewhead">
     <strong>제목</strong>
-    <input type="text" name="title" value="" id="title"> 
+    <input type="text" name="title" value="" id="titleInput"> 
     <input type="hidden" name="writer" value="${member.id}">
     <br>
     <p class="date">
         <span>기간: </span>
-        <input type="date" name="s_date" value="" id="s_date"> <strong>~</strong> 
-        <input type="date" name="e_date" value="" id="e_date">
+        <input type="date" name="s_date" value="" id="s_date" class="dateInput"> <strong>~</strong> 
+        <input type="date" name="e_date" value="" id="e_date" class="dateInput">
     </p>
 </div>
 
@@ -166,10 +217,10 @@ textarea{
 <!-- 이벤트 당첨 타입  -->
 <div class="eventJoinType">
 <p>이벤트 쿠폰 타입 </p>
-1.쿠폰 <input type="radio" name="typeSel" value="10">
+1.쿠폰 <input type="radio" name="typeSel" value="10" checked="checked">
 2.포인트<input type="radio" name="typeSel" value="11">
 </div>
-<a href="eventList">cancel</a>
+<a href="eventList" id="btn1">cancel</a>
 		
 <input type="button" id="writeBtn" value="write"> 
 </form>	

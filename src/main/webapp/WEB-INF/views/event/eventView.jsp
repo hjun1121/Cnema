@@ -14,14 +14,7 @@
 
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 51%;
-	height:auto;
-	margin:0 auto;
-	margin-top:40px;
-	background-color: gray;
- 
-}
+
 
 </style>
 <script type="text/javascript">

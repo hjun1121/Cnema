@@ -1,6 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.box-title{
+	text-align: center;
+	margin:0 auto;
+display: inline-block;
+}
+.box-image{
+	display: inline-block;
+}
+
+.endList ul {
+ 
+    border-color: #b8b6aa;
+
+    list-style: none;
+}
+ .endList li{
+    height: 91px;
+    border-top: 1px solid #d6d4ca;
+}
+ .box-image {
+    margin-right: 20px;
+    margin-top: 4px;
+}
+
+.box-image a {
+    display: block;
+        color: inherit;
+    text-decoration: none;
+}
+
+ 
+
+.endList li em {
+    display: inline-block;
+    font-family: 'NanumBarunGothicBold';
+}
+
+
+</style>
+
+
+<div class="endList">
 	<ul>
 			<c:forEach items="${list}" var="dto">
 			<li>
@@ -38,4 +81,6 @@
 		<c:if test="${pager.curBlock lt pager.totalBlock}">
 			<span class="list" title="${pager.lastNum+1}">[다음]</span>
 		</c:if>
+	</div>
+	
 	</div>

@@ -256,9 +256,9 @@ margin-left:15px;
      
      <c:forEach items="${event_list}" var="dto">
      <section> 
-     <a href="event/eventView?num=${dto.num}">
+     <a href="../event/eventView?num=${dto.num}">
      <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></a>
-     <p> <a href="event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
+     <p> <a href="../event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
      <br><br>
 	  <strong>기간:</strong>&nbsp; ${dto.s_date} &nbsp;~&nbsp; ${dto.e_date} <br>
      </p>

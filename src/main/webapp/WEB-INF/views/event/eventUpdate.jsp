@@ -22,6 +22,11 @@
 	margin-top:40px;
  
 }
+#contents{
+	width:650px;
+	height: 400px;
+	
+}
 </style>
 <script type="text/javascript">
 	$(function(){
