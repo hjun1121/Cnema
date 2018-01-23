@@ -24,14 +24,14 @@
 }
 #qna_contents{
 /* background-color: green; */
-	height: 300px;
+	height: 380px;
 	display: block;
 	margin-top:15px;
 }
 
 #notice_contents{
 /* background-color:purple; */
-	height: 200px;
+	height: 270px;
 	display: block;
 	margin-top:15px;
 }
@@ -77,11 +77,11 @@ display: block;
     margin-right:30px;
 
 }
-.submenu .tit, #qna_contents .tit{
+ .tit{
 	color: #222;
     font-weight: bold;
     display:inline-block;
-    font-size: 26px;
+    font-size: 24px;
     text-align: left;
     vertical-align: middle;
 }
@@ -195,7 +195,7 @@ margin-left:15px;
     font-weight: bold;
 }
 #notice_contents .txt {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 #notice_contents .txt li a {
     float: left;
@@ -281,7 +281,7 @@ margin-left:15px;
   	</div>
   	
   	<div id="qna_contents">
-  	<span class="tit">문의</span><br>
+  	<span class="tit">문의</span><br><br>
   		<hr>
   		<div class="email_inquiry">
 			<img id="email_image" alt="" src="${pageContext.request.contextPath }/resources/images/board/qnaicon.PNG">
@@ -304,7 +304,8 @@ margin-left:15px;
   	
   	<div id="notice_contents">
   		 <a href="../notice/noticeList"><span class="tit">공지/뉴스</span></a>
-			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a>
+			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a><br>
+			<hr>
 			<c:forEach items="${notice_list}" var="dto">
 			<ul class="txt">
                 <li><a href="${pageContext.request.contextPath }/notice/noticeView?num=${dto.num}">${dto.title}</a><span class="day">${dto.reg_date}</span></li>

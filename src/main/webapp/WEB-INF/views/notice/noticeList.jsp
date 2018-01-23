@@ -171,7 +171,7 @@ color: #222;
 	<div class="board_contents">
 	<form name="frm" action="./noticeList" method="get">
 	<span class="tit">공지/뉴스</span>
-	CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.<br><br></p>
+	<p>CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p><br><br>
 	<input type="hidden" name="curPage" value="1">
 		<select name="kind" class="sizeChange">
 			<option>Title</option>
