@@ -8,16 +8,14 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	alert('sd'+'${message}');
 	$(function(){
-		$("#seatName").val("${reserve2.seatName}");
 		document.frm.submit();
 	});
-	//location.href="../member/memberLogin?path=${path}";
 </script>
 </head>
 <body>
-	<form action="../member/memberLogin" id="frm" name="frm" method="get">
+
+	<form action="../theater/quickReserve3" id="frm" name="frm" method="post">
 		<input type="text" name="path" value="${path }">	
 		<input type="text" name="movie_num" value="${reserve.movie_num }">	
 		<input type="text" name="theater_num" value="${reserve.theater_num }">	
@@ -31,8 +29,8 @@
 		<c:forEach items="${seat_num }" var="seat">
 			<input type="text" name="seat_num" value="${seat }">	
 		</c:forEach>
-		
-		<input type="text" id="seatName" name="seatName">
+		<input type="text" name="seatName" value="${reserve2.seatName }">	
 	</form>
+	
 </body>
 </html>

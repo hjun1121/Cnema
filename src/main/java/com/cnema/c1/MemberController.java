@@ -14,12 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cnema.coupon.CouponDTO;
-import com.cnema.coupon.CouponService;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
@@ -27,6 +24,9 @@ import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.reserve.Reserve2DTO;
 import com.cnema.reserve.ReserveDTO;
+import com.cnema.reserve.ReserveService;
+import com.cnema.reserve.TicketPriceDTO;
+import com.cnema.reserve.TicketPriceService;
 import com.cnema.util.EmailDAO;
 
 
@@ -39,6 +39,10 @@ public class MemberController {
 	private MovieService movieService;
 	@Inject
 	private MyCouponService myCouponService;
+	@Inject
+	private ReserveService reserveService;
+	@Inject
+	private TicketPriceService ticketPriceService;
 	@Inject
 	private EmailDAO emailDAO;
 	/*kim*/
@@ -95,11 +99,12 @@ public class MemberController {
 		}
 		model.addAttribute("reserve2", reserve2DTO);
 		model.addAttribute("reserve", reserveDTO);
+		model.addAttribute("seat_num", reserveDTO.getSeat_num());
 		model.addAttribute("path", path);
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO){
+	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO member = null;
 		try {
@@ -107,16 +112,20 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(path);
 		if(member != null){
 			session.setAttribute("member", member);
 			
 			if(path !=null){
 				if(path.equals("theater/quickReserve3")){
-					//mv.addObject("reserve", reserveDTO);
-					//mv.addObject("reserve2", reserve2DTO);
+					mv.addObject("reserve", reserveDTO);
+					mv.addObject("reserve2", reserve2DTO);
+					mv.addObject("seat_num", reserveDTO.getSeat_num());
+					mv.addObject("path", path);
+					mv.setViewName("common/reserve");
+				}else{
+					
+					mv.setViewName("redirect:../"+path);
 				}
-				mv.setViewName("redirect:../"+path);
 				
 			}else{
 				mv.setViewName("redirect:../");
@@ -167,6 +176,7 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
+		List<ReserveDTO> rList = new ArrayList<>();
 		int count = 0;
 		int aCount = 0;
 		
@@ -175,8 +185,19 @@ public class MemberController {
 		String today = sd.format(ca.getTime());
 		
 		
+		TicketPriceDTO ticketPriceDTO = null;
+		MovieDTO movieDTO = null;
+		
 		try {
 			mList = movieService.movieAList();
+			rList = reserveService.selectList(memberDTO.getId());
+			for(ReserveDTO reserveDTO : rList){
+				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO.getTp_num());
+				reserveDTO.setTicketPriceDTO(ticketPriceDTO);
+				movieDTO = movieService.movieInfo(reserveDTO.getMovie_num());
+				reserveDTO.setMovieDTO(movieDTO);
+				
+			}
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
@@ -185,6 +206,7 @@ public class MemberController {
 		if(memberDTO != null){
 			mv.addObject("myInfo",memberDTO);
 			mv.addObject("mList",mList);
+			mv.addObject("rList",rList);
 			mv.addObject("count", count);
 			mv.addObject("aCount", aCount);
 			mv.addObject("today", today);

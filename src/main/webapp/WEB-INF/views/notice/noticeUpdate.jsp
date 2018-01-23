@@ -72,6 +72,11 @@ border: none;
 #empty_td{
 height: 10px;
 }
+#contents{
+	width:100%;
+	height: 400px;
+	
+}
 </style>
 <script type="text/javascript">
 	$(function(){

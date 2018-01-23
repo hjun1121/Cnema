@@ -40,6 +40,7 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		String people = null;
 		int pCount = 0;
 		int price = 0;
+		String seatName = null;
 		try {
 			movie_num = Integer.parseInt(request.getParameter("movie_num"));
 			theater_num = Integer.parseInt(request.getParameter("theater_num"));
@@ -50,11 +51,12 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 			people = request.getParameter("people");
 			pCount = Integer.parseInt(request.getParameter("pCount"));
 			price = Integer.parseInt(request.getParameter("price"));
+			seatName = request.getParameter("seatName");
 		} catch (Exception e) {
 			
 		}
 		
-		System.out.println("movie_num"+movie_num);
+/*		System.out.println("movie_num"+movie_num);
 		System.out.println("theater_num"+theater_num);
 		System.out.println("day_num"+day_num);
 		System.out.println("schedule_num"+schedule_num);
@@ -63,6 +65,9 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("people"+people);
 		System.out.println("pCount"+pCount);
 		System.out.println("price"+price);
+		System.out.println("sn"+seatName);*/
+		seatName = seatName.replace("\"", "\'");
+		
 		String[] ar = request.getParameterValues("seat_num");
 		
 		ReserveDTO reserveDTO = new ReserveDTO();
@@ -77,7 +82,8 @@ public class ReserveInterceptor extends HandlerInterceptorAdapter {
 		reserve2DTO.setpCount(pCount);
 		reserve2DTO.setPeople(people);
 		reserve2DTO.setPrice(price);
-		
+		reserve2DTO.setSeatName(seatName);
+		//System.out.println(reserve2DTO.getSeatName());
 		List<Integer> seat_num = new ArrayList<>();
 		for(String s : ar){
 			int seat = Integer.parseInt(s);

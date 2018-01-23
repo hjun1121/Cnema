@@ -24,14 +24,14 @@
 }
 #qna_contents{
 /* background-color: green; */
-	height: 300px;
+	height: 380px;
 	display: block;
 	margin-top:15px;
 }
 
 #notice_contents{
 /* background-color:purple; */
-	height: 200px;
+	height: 270px;
 	display: block;
 	margin-top:15px;
 }
@@ -43,33 +43,45 @@ hr{
 }
 .submenu{
 width:100%;
-height:50px;
+height:45px;
 display: block;
 /* background-color: yellow; */
 }
-#ingBtn,#endBtn{
-
-    background-color: #e71a0f;
-    border: none;
-    color: white;
-    padding: 10px 25px;
+#ingBtn , #endBtn {
+	
+    padding: 5px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    margin: 4px 2px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
     cursor: pointer;
-	float:right;
-	border-radius: 10px;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+  	float:right;
+
+
 }
+
 #endBtn{
-	margin-right:30px;
+	  display: inline-block;
+    background-color: #5b5b58; 
+    color: #ffffff; 
+
+    border: 2px solid #5b5b58;
+    margin-left: 10px;
+    margin-right:30px;
+
 }
-.submenu .tit{
+ .tit{
 	color: #222;
     font-weight: bold;
     display:inline-block;
-    font-size: 30px;
+    font-size: 24px;
     text-align: left;
     vertical-align: middle;
 }
@@ -183,7 +195,7 @@ margin-left:15px;
     font-weight: bold;
 }
 #notice_contents .txt {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 #notice_contents .txt li a {
     float: left;
@@ -256,9 +268,9 @@ margin-left:15px;
      
      <c:forEach items="${event_list}" var="dto">
      <section> 
-     <a href="event/eventView?num=${dto.num}">
+     <a href="../event/eventView?num=${dto.num}">
      <img class="eventList_image" src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></a>
-     <p> <a href="event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
+     <p> <a href="../event/eventView?num=${dto.num}"><strong>${dto.title}</strong></a> 
      <br><br>
 	  <strong>기간:</strong>&nbsp; ${dto.s_date} &nbsp;~&nbsp; ${dto.e_date} <br>
      </p>
@@ -267,9 +279,10 @@ margin-left:15px;
   	
   	
   	</div>
-  
+  	
   	<div id="qna_contents">
-  		
+  	<span class="tit">문의</span><br><br>
+  		<hr>
   		<div class="email_inquiry">
 			<img id="email_image" alt="" src="${pageContext.request.contextPath }/resources/images/board/qnaicon.PNG">
 			<p class="email_tit"> <strong>이메일 문의</strong> <br><br>
@@ -291,7 +304,8 @@ margin-left:15px;
   	
   	<div id="notice_contents">
   		 <a href="../notice/noticeList"><span class="tit">공지/뉴스</span></a>
-			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a>
+			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a><br>
+			<hr>
 			<c:forEach items="${notice_list}" var="dto">
 			<ul class="txt">
                 <li><a href="${pageContext.request.contextPath }/notice/noticeView?num=${dto.num}">${dto.title}</a><span class="day">${dto.reg_date}</span></li>

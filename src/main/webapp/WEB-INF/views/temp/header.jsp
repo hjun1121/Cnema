@@ -85,14 +85,13 @@
 
                         <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;컬쳐</a>
 							<div class="sub-wrap">
-								<i></i>
-								<!-- <div class="smenu">
+								<div class="smenu">
 									<ul>
 										<li><a href="#">이벤트</a></li>
 										<li><a href="#">티켓·팝콘스토어</a></li>
 										<li><a href="#">매거진</a></li>
 									</ul>
-								</div> -->
+								</div>
 							</div>
 						</li>
 <!-- 						씨네마그램 -->

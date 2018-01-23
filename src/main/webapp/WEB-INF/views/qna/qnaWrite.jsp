@@ -97,7 +97,14 @@ background-color: #f1f0e5;
     border: 2px solid #e71a0f;
     float:right;
 }
-
+.tit{
+color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+    }
 
 </style>
 <script type="text/javascript">
@@ -168,7 +175,7 @@ $(function(){
 	<div class="board_contents">
 	<form action="qnaWrite" method="post" enctype="multipart/form-data" id="qnaWriteForm">
 	<div class="customer_top">
-		<h2 class="tit">이메일 문의</h2>
+		<span class="tit">이메일 문의</span>
 		<p class="stit">불편사항이나 문의사항을 남겨주시면 최대한 신속하게 답변 드리겠습니다.</p>
 	</div><br>
 		<table>

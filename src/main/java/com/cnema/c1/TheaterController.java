@@ -113,7 +113,8 @@ public class TheaterController {
 			}else{
 				getPoint = 0;
 			}
-			memberService.qrPointUpdate(ticketPriceDTO.getPoint(), (int)getPoint, memberDTO.getId());
+			int p = ticketPriceDTO.getPoint()-(int)getPoint;
+			memberService.qrPointUpdate(p, (int)getPoint, memberDTO.getId());
 			myCouponService.qrCouponUpdate(ticketPriceDTO.getC_num(), memberDTO.getId());
 			
 			if(ticketPriceDTO.getPoint()>0){
@@ -156,6 +157,10 @@ public class TheaterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String seatName = reserve2DTO.getSeatName();
+		seatName = seatName.replace("\'", "\"");
+		reserve2DTO.setSeatName(seatName);
+		
 		model.addAttribute("screenDTO", screenDTO);
 		model.addAttribute("day", reserveDTO.getDay_num());
 		model.addAttribute("theater", theaterDTO);
