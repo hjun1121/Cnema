@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -276,44 +277,57 @@
 			<div class="navi">
 			</div>
 			<div class="steps">
-				<div class="step step1" style="height: 595px; display: block;">
+				<div id="all" class="step step1" style="height: 595px; display: block;">
 					<div class="section section-movie" style="height: 593px;">
 						<div class="col-head" id="skip_movie_list">
 							<h3 class="sreader">영화</h3>
 							<a href="#" class="skip_to_something" >영화선택 건너뛰기</a>
 						</div>
 						<div class="col-body" style="height: 560px;">
-							<div class="movie-select">
+							<div id="movie" class="movie-select">
 								<div class="movie-list nano has-scrollbar has-scrollbar-y" id="movie_list" style="height: 462px;">
 									<ul class="content scroll-y" onscroll="movieSectionScrollEvent();" style="right: -17px;">
-										<li class="rating-12" >
-											<a href="#">
-												<span class="icon">&nbsp;</span>
-												<span class="text">메이즈러너-데스큐어</span>
-												<span class="sreader"></span>
-											</a>
-										</li>
-										<li class="rating-all selected">
-											<a href="#">
-												<span class="icon">&nbsp;</span>
-												<span class="text">코코</span>
-												<span class="sreader">선택됨</span>
-											</a>
-										</li>
-										<li class="rating-15" >
-											<a href="#">
-												<span class="icon">&nbsp;</span>
-												<span class="text">그것만이내세상</span>
-												<span class="sreader"></span>
-											</a>
-										</li>
+									<c:forEach items="${movie }" var="DTO">
+									
+
+										<c:choose>
+											<c:when test="${DTO.age_limit eq 12 }">
+												<li class="rating-12" >
+													<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+														<span class="icon">&nbsp;</span>
+														<span class="text">${DTO.movie_name }</span>
+													</a>
+												</li>
+											</c:when>
+											<c:when test="${DTO.age_limit eq 15 }">
+												<li class="rating-15" >
+													<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+														<span class="icon">&nbsp;</span>
+														<span class="text">${DTO.movie_name }</span>
+													</a>
+												</li>
+											</c:when>											
+											<c:when test="${DTO.age_limit eq 19 }">
+												<li class="rating-18" >
+													<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+														<span class="icon">&nbsp;</span>
+														<span class="text">${DTO.movie_name }</span>
+													</a>
+												</li>
+											</c:when>											
+											
+											<c:otherwise>
+												<li class="rating-all">
+													<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+														<span class="icon">&nbsp;</span>
+														<span class="text">${DTO.movie_name }</span>
+													</a>
+												</li>
+											</c:otherwise>
+										</c:choose>																								
+
+									</c:forEach>
 									</ul>
-									<div class="pane pane-y" style="display: block; opacity: 1; visibility: visible;">
-										<div class="slider slider-y" style="height: 50px; top: 0px;"></div>
-									</div>
-									<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
-										<div class="slider slider-x" style="width: 50px;"></div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -327,62 +341,35 @@
 						<div class="col-body" style="height: 560px;">
 							<div class="theater-select">
 								<div class="theater-list" style="height: 388px;">
-									<div class="theater-area-list" id="theater_area_list">
+									<div id="theater" class="theater-area-list">
 										<ul>
 											<li class="selected">
-												<a href="#" >
+												<a href="#" class="area"  title="서울" onclick="return false;" style="background-color: red;">
 													<span class="name">서울</span>
-													<span class="count">(29)</span>
+													<span class="count">${fn:length(location)}</span>
 												</a>
-												<div class="area_theater_list nano has-scrollbar has-scrollbar-y" style="height: 388px;">
+												<div class="locationList area_theater_list nano has-scrollbar has-scrollbar-y" id="list" style="height: 388px;">
 													<ul class="content scroll-y" style="right: -17px;">
-														<li class="selected" style="display: list-item;">
-															<a href="#" >강남<span class="sreader">선택됨</span></a>
-														</li>
-														<li class="" style="display: list-item;">
-															<a href="#">강동<span class="sreader"></span></a>
-														</li>
+														<c:forEach items="${location }" var="DTO">
+															<li class="selected" style="display: list-item;">
+																<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
+																	${DTO.location }
+																</a>
+															</li>
+														</c:forEach>
 													</ul>
-													<div class="pane pane-y" style="display: block; opacity: 1; visibility: visible;">
-														<div class="slider slider-y" style="height: 50px; top: 0px;"></div>
-													</div>
-													<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
-														<div class="slider slider-x" style="width: 50px;"></div>
-													</div>
 												</div>
 											</li>
-											<li>
-												<a href="#">
-													<span class="name">서울</span>
-													<span class="count">(29)</span>
-												</a>
-												<div class="area_theater_list nano has-scrollbar has-scrollbar-y" style="height: 388px;">
-													<ul class="content scroll-y" style="right: -17px;">
-														<li class="selected" style="display: list-item;">
-															<a href="#">강남<span class="sreader">선택됨</span></a>
-														</li>
-														<li class="" style="display: list-item;">
-															<a href="#" >강동<span class="sreader"></span></a>
-														</li>
-													</ul>
-													<div class="pane pane-y" style="display: block; opacity: 1; visibility: visible;">
-														<div class="slider slider-y" style="height: 50px; top: 0px;"></div>
-													</div>
-													<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
-														<div class="slider slider-x" style="width: 50px;"></div>
-													</div>
-												</div>
-											</li>
+											<c:forEach items="${areaList }" var="area">
+												<li>
+													<a href="#" class="area"  title="${area }" onclick="return false;">${area}</a>
+												</li>
+											</c:forEach>
+											
 										</ul>
 									</div>
 									<div class="theater-cgv-list nano has-scrollbar" id="theater_cgv_list">
 										<ul class="content scroll-y" style="right: -17px;"></ul>
-										<div class="pane pane-y" style="display: none; opacity: 1; visibility: visible;">
-											<div class="slider slider-y" style="height: 50px;"></div>
-										</div>
-										<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
-											<div class="slider slider-x" style="width: 50px;"></div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -396,59 +383,20 @@
 						</div>
 						<div class="col-body" style="height: 560px;">
 							<!-- 날짜선택 -->
-							<div class="date-list nano has-scrollbar has-scrollbar-y" id="date_list" style="height: 522px;">
+							<div id="day" class="date-list nano has-scrollbar has-scrollbar-y" style="height: 522px;">
 								<ul class="content scroll-y" tabindex="-1" style="right: -17px;">
 									<div>
-										<li class="month dimmed">
-											<div>
-												<span class="year">2018</span>
-												<span class="month">1</span>
-												<div></div>
-											</div>
-										</li>
+									<c:forEach items="${dayList }" var="DTO">
 										<li class="day">
-											<a href="#" >
-												<span class="dayweek">월</span>
-												<span class="day">22</span>
+											<a href="#" class="days time" title="${DTO.day_num }" onclick="return false;">
+												<span class="dayweek">${DTO.week}</span>
+												<span class="day">${DTO.day }</span>
 												<span class="sreader"></span>
 											</a>
 										</li>
-										<li class="day selected">
-											<a href="#" onclick="return false;">
-												<span class="dayweek">화</span>
-												<span class="day">23</span>
-												<span class="sreader">선택됨</span>
-											</a>
-										</li>
-										<li class="day dimmed">
-											<a href="#" >
-												<span class="dayweek">목</span>
-												<span class="day">25</span>
-												<span class="sreader">선택불가</span>
-											</a>
-										</li>
-										<li class="month dimmed">
-											<div>
-												<span class="year">2018</span>
-												<span class="month">2</span>
-												<div></div>
-											</div>
-										</li>
-										<li class="day dimmed">
-											<a href="#" onclick="return false;">
-												<span class="dayweek">목</span>
-												<span class="day">1</span>
-												<span class="sreader">선택불가</span>
-											</a>
-										</li>
+									</c:forEach>
 									</div>
 								</ul>
-								<div class="pane pane-y" style="display: block; opacity: 1; visibility: visible;">
-									<div class="slider slider-y" style="height: 50px; top: 0px;"></div>
-								</div>
-								<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
-									<div class="slider slider-x" style="width: 50px;"></div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -460,44 +408,14 @@
 						</div>
 						<div class="col-body" style="height: 560px;">
 							<!-- 시간선택 -->
-							<div class="time-option">
-								<span class="morning">조조</span>
-								<span class="night">심야</span>
-							</div>
 							<div class="placeholder hidden">영화, 극장, 날짜를 선택해주세요.</div>
-							<div class="time-list nano has-scrollbar">
+							<div id="schedule" class="time-list nano has-scrollbar">
 								<div class="content scroll-y" style="right: -17px;">
 									<div class="theater"  style="border: none;">
-										<span class="title">
-											<span class="name">2D(자막)</span>
-											<span class="floor">3관 8층</span>
-											<span class="seatcount">(총172석)</span>
-										</span>
-										<ul>
-											<li class="morning">
-												<a class="button" href="#">
-													<span class="time"><span>07:30</span></span>
-													<span class="count">151석</span>
-													<div class="sreader">종료시간 09:47</div>
-													<span class="sreader mod"> 조조</span>
-												</a>
-											</li>
-											<li class="selected">
-												<a class="button" href="#" title="">
-													<span class="time"><span>23:30</span></span>
-													<span class="count">154석</span>
-													<div class="sreader">종료시간 25:47</div>
-													<span class="sreader mod"></span>
-												</a>
-											</li>
+										<ul id="scheduleList">
+											<h4> 영화, 극장, 날짜를 선택해주세요</h4>
 										</ul>
 									</div>
-								</div>
-								<div class="pane pane-y" style="display: none; opacity: 1; visibility: visible;">
-									<div class="slider slider-y" style="height: 50px;"></div>
-								</div>
-								<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
-									<div class="slider slider-x" style="width: 50px;"></div>
 								</div>
 							</div>
 						</div>
@@ -592,76 +510,7 @@
    
    <!-- ////////////////////////////////////////// -->
    
-	<h2>Quick Reserve</h2>
-	<div id="all">
-		<div id="movie">
-			<div class="head">
-				<h2>영화</h2>
-			</div>
-			<ul style="height: 500px; overflow: auto;">
-				<c:forEach items="${movie }" var="DTO">
-					<li>
-						<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
-							<span>${DTO.age_limit }</span>
-							<span>${DTO.movie_name }</span>
-						</a>
-					</li>
-				</c:forEach>
-			</ul>
-		</div>
-		
-		<div id="theater">
-			<div class="head">
-				<h2>극장</h2>
-			</div>
-			<ul>
-				<li>
-					<a href="#" class="area"  title="서울" onclick="return false;" style="background-color: red;">서울</a>
-					<div class="locationList" id="list">
-						<ul>
-							<c:forEach items="${location }" var="DTO">
-								<li>
-									<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
-										${DTO.location }
-									</a>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-				</li>
-				<c:forEach items="${areaList }" var="area">
-					<li>
-						<a href="#" class="area"  title="${area }" onclick="return false;">${area}</a>
-					</li>
-				
-				</c:forEach>
-
-			</ul>
-
-		</div>
-		
-		<div id="day">
-			<div class="head">
-				<h2>날짜</h2>
-			</div>
-				<ul>
-					<c:forEach items="${dayList }" var="DTO">
-						<p><a href="#" class="days time" title="${DTO.day_num }" onclick="return false;">${DTO.week} ${DTO.day }</a></p>
-					</c:forEach>
-				</ul>
-			<ul>
-			</ul>
-		</div>
-		
-		<div id="schedule">
-			<div class="head">
-				<h2>시간</h2>
-			</div>
-				<ul id="scheduleList">
-					<li><h4> 영화, 극장, 날짜를 선택해주세요</h4></li>
-				</ul>
-		</div>
-	</div>
+	
 	<div id="bottom_area">
 		
 		<form action="">
