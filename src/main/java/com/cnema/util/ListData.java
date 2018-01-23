@@ -62,7 +62,7 @@ public class ListData {
 		
 		return pager;
 	}
-	
+
 	public int getCurPage() {
 		/*if(curPage == 0){
 			curPage = 1;

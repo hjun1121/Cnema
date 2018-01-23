@@ -1,6 +1,7 @@
 package com.cnema.c1;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,9 @@ import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.movie.ReviewDTO;
 import com.cnema.movie.WishDTO;
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 @Controller
 @RequestMapping(value = "/movie/*")
@@ -27,7 +31,8 @@ public class MovieController {
 	
 	//selectOne
 	@RequestMapping(value="movie_view", method=RequestMethod.GET)
-	public ModelAndView selectOne(int movie_num, ModelAndView mv, HttpSession session, RedirectAttributes rd) throws Exception {
+	public ModelAndView selectOne(int movie_num, HttpSession session, RedirectAttributes rd, ListData listData) throws Exception {
+		ModelAndView mv = null;
 		MovieDTO movieDTO = null;
 		movieDTO = movieService.selectOne(movie_num);
 		String id = "";
@@ -38,18 +43,21 @@ public class MovieController {
 			// TODO: handle exception
 		}
 
+		
+		//review
+//		Map<String, Object> map = mv.getModel();
+//		List<ReviewDTO> review_ar = (List<ReviewDTO>) map.get("list");
+		mv = movieService.reviewList(movie_num, listData);
+
 		if(id != null) {
 			List<WishDTO> wish = movieService.wishList(id);
 			mv.addObject("wish_list", wish);
 		}
 		
-		//review
-		List<ReviewDTO> review_ar = movieService.reviewList(movie_num);
-
-		
-		mv.addObject("review", review_ar);
+//		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
 		mv.addObject("movie_num", movie_num);
+		mv.addObject("page", listData);
 		mv.setViewName("movie/movie_view");
 		return mv;
 	}
