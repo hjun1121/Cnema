@@ -33,6 +33,24 @@
     border: 2px solid #e71a0f;
     float:right;
 }
+#btn1{
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ede9dd; 
+    color: #7b7b7b; 
+ 	border:  2px solid #7b7b7b;
+ 
+	
+
+}
 #titleInput, #writerInput{
 
 background-color: #f1f0e5;
@@ -49,6 +67,9 @@ border: none;
 }
 #right_input{
  float:right;
+}
+textarea{
+width:600px;
 }
 
 </style>
@@ -156,11 +177,12 @@ border: none;
 			<div id="right_input"><strong>작성자 &nbsp;</strong><input type="text" name="writer" id="writerInput" value="${member.id}" readonly="readonly"></div>
 		</div>
 		<br>
-			<textarea id="contents" name="contents" rows="20" cols="30" ></textarea>
+			<textarea id="contents" name="contents" rows="20" cols="30" style="width: 600px;"></textarea>
 	
 	
 	
 	<br>
+	<input type="button" id="btn1" value="취소">
 	<input type="button" id="savebutton" value="글쓰기">
 	</form>
 	</div>

@@ -25,52 +25,59 @@ display: inline-block;
 }
 
 .firstList ul {
-    border-width: 1px 0;
-    border-style: solid;
+  
+    
     border-color: #b8b6aa;
 
     list-style: none;
 }
-.firstList li:first-child {
-    border-top: 0 none;
+.firstList li{
+    height: 91px;
+    border-top: 1px solid #d6d4ca;
 }
 .firstList .box-image {
     margin-right: 20px;
     margin-top: 4px;
 }
-.firstList li div {
-    float: left;
-}
+
 .box-image a {
     display: block;
         color: inherit;
     text-decoration: none;
 }
 
-.firstList .box-contents {
-    position: relative;
-    width: 860px;
-    margin-top: 26px;
-    line-height: 1.6;
-}
-.firstList li div {
-    float: left;
-}
-.firstList .box-contents a {
-    display: inline-block;
-    margin-right: 80px;
-}
-.firstList .box-contents .date {
-    position: absolute;
-    top: 14px;
-    right: 12px;
-}
+
 .firstList li em {
     display: inline-block;
     font-family: 'NanumBarunGothicBold';
 }
 
-#endEvent{
+.submenu{
+	width:100%;
+	height: 50px;
+
+}
+#btn1{
+	
+    padding: 3px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #e71a0f; 
+    border: 2px solid #e71a0f;
+    margin-top:20px;
+}
+#btn1:hover {
+    background-color: #e71a0f;
+    color: white;
+}
+#ingEvent , #endEvent {
 
 	
     padding: 5px 10px;
@@ -87,8 +94,18 @@ display: inline-block;
     color: #ffffff; 
     font-weight:bold;
     border: 2px solid #e71a0f;
-    float:right;
+  	float:right;
 
+
+}
+
+#endEvent{
+	  display: inline-block;
+    background-color: #5b5b58; 
+    color: #ffffff; 
+    font-weight:bold;
+    border: 2px solid #5b5b58;
+    margin-left: 10px;
 
 }
 </style>
@@ -118,7 +135,7 @@ $(function(){
 	
 $("#ingEvent").click(function(){
 		
-		$.ajax({
+		/* $.ajax({
 			url:"../ajax/endList",
 			type:"POST",
 			data:{
@@ -130,7 +147,9 @@ $("#ingEvent").click(function(){
 			error : function(){
 				
 			}
-		});
+		}); */
+		
+		location.href="../event/eventList";
 	});
 	
 	
@@ -179,28 +198,29 @@ $("#ingEvent").click(function(){
  
 	
 	<div class="board_contents">
+    <div class="top_contents">
     <h1>EVENT</h1>
     
     <div class="submenu">
-    <button id="ingEvent">진행중인 이벤트</button>
-    <button id="endEvent">종료된 이벤트</button>
+    	<button id="endEvent">종료된 이벤트</button>
+   		 <button id="ingEvent">진행중인 이벤트</button>
     </div>
-    
+    </div>
     <br>
-    <hr>
+   
    
 
 	<div id="eventList"></div> 
 	
 	<div class="firstList">
-		<ul>
+	<ul>
 			<c:forEach items="${list}" var="dto">
 			<li>
 			<!-- 리스트의 이미지 -->
            	<div class="box-image">
         	<a href="eventView?num=${dto.num}">
             <span>
-             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}" width="100px" height="83px">
+             <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"width="100px" height="83px">
             </span>
             </a>
             </div>
@@ -233,7 +253,7 @@ $("#ingEvent").click(function(){
 	</div>
 
 </div>	
-	<a href="./eventWrite">글쓰기</a>
+	<div id="btn1"><a href="./eventWrite">글쓰기</a></div>
 	
 </div>			
 			</div><!--게시판 내용  -->
