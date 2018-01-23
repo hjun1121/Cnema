@@ -2,7 +2,7 @@
 
 
 .board_container{
-	width: 1200px;
+	width: 85%;
 	margin:0 auto;
 	margin-top:40px;
 	height: auto;
@@ -11,7 +11,7 @@
 
 .board_contents{
     /* background-color: black; */
-    width: 850px;
+    width: 60%;
     height: auto;
     display: inline-block;
     margin-left: 20px;

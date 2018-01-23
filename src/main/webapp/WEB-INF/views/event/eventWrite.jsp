@@ -16,12 +16,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
+
 #contents{
 	width:650px;
 	height: 400px;
@@ -289,7 +284,7 @@ background-color: #f1f0e5;
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
 <div class="board_contents">
 <form action="eventWrite" method="post" id="frm" enctype="multipart/form-data">
-<h2 id="sub_tit">이벤트 작성하기</h2>
+<h2 class="sub_tit">이벤트 작성하기</h2><br><br>
 
     <input type="hidden" name="writer" value="${member.id}">
 	<table>
@@ -302,7 +297,7 @@ background-color: #f1f0e5;
         <span>기간: </span>
     </th>
     <td>
-        <input type="date" name="s_date" value="" id="s_date" class="dateInput" required="required"> <strong>~</strong> 
+        <input type="date" name="s_date" value="" id="s_date" class="dateInput" required="required">&nbsp; <strong>~</strong>&nbsp; 
         <input type="date" name="e_date" value="" id="e_date" class="dateInput" required="required">
    	</td>
    	<tr>
@@ -320,16 +315,16 @@ background-color: #f1f0e5;
 
 
 <tr class="eventJoinType">
-<th>이벤트 쿠폰 타입 </th>
+<th>쿠폰 타입 </th>
 <td>
 1.쿠폰 <input type="radio" name="typeSel" value="10" checked="checked">
-</td>
-<td>
+
 2.포인트<input type="radio" name="typeSel" value="11">
 </td>
 
 </tr>
 </table>
+<br>	
 <a href="eventList" id="btn1">cancel</a>
 		
 <input type="submit" id="writeBtn" value="write"> 

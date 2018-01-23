@@ -129,7 +129,7 @@ height: 259px;
 margin :0 auto;
 }
 #contents{
-width:460px;
+width:500px;
 height: 250px;
 	
 }
