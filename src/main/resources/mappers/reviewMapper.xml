@@ -19,6 +19,4 @@
   	<update id="reviewRemove" parameterType="Map">
   		update review set r_type=11 where id=#{id} and movie_num=#{movie_num}
   	</update>
-
-  	
-  </mapper>
+ </mapper>
