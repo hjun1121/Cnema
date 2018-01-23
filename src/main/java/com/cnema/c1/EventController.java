@@ -40,7 +40,7 @@ public class EventController {
 	//insert
 		@RequestMapping(value="eventWrite",method=RequestMethod.POST )
 		public String insert(EventDTO eventDTO,HttpSession session,RedirectAttributes rd) throws Exception{
-			
+			System.out.println("1234");
 			int result=0;
 			result =eventService.insert(eventDTO, session);
 				

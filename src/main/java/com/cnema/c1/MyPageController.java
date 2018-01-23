@@ -1,7 +1,9 @@
 package com.cnema.c1;
 
+import java.text.SimpleDateFormat;
 /*heeseong 코드*/
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -62,11 +64,27 @@ public class MyPageController {
 	@Inject
 	private CoupongroupService coupongroupService;
 	
+	private int count = 0;
+	private int aCount = 0;
+	private Calendar ca = Calendar.getInstance();
+	private SimpleDateFormat sd = new SimpleDateFormat("YYYY년 MM월 DD일");
+	private String today = sd.format(ca.getTime());
+	
 	@RequestMapping(value="myInfoCheck",method=RequestMethod.GET)
 	public ModelAndView myInfoCheck(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("id",memberDTO.getId());
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+			mv.addObject("id",memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("myPage/myInfoCheck");
 		return mv;
@@ -83,6 +101,15 @@ public class MyPageController {
 		
 		ModelAndView mv = new ModelAndView();
 		if(memberDTO.getPw().equals(pwd)){
+			try {
+				count = myCouponService.couponCount(memberDTO.getId());
+				aCount = myCouponService.couponACount(memberDTO.getId());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			mv.addObject("count", count);
+			mv.addObject("aCount", aCount);
+			mv.addObject("today", today);
 			mv.addObject("p", p);
 			mv.addObject("e", e);
 			mv.addObject("myInfo", memberDTO);
@@ -136,6 +163,8 @@ public class MyPageController {
 		}
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
+		List<WishDTO> wList = new ArrayList<>();
+		
 		try {
 			if(kind.equals("0000")){
 				rList = reserveService.reserveAList(memberDTO.getId());
@@ -161,12 +190,15 @@ public class MyPageController {
 				screenDTO = scheduleService.screenOne(reserveDTO2.getScreen_num());
 				reserveDTO.setScreenDTO(screenDTO);
 			}
+			wList = wishService.wishList(memberDTO.getId(),"reg_date");
+					
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		mv.addObject("kind",kind);
 		mv.addObject("rList",rList);
+		mv.addObject("wList",wList);
 		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}
@@ -202,7 +234,6 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		mv.addObject("movieDTO", movieDTO);
 		mv.setViewName("myPage/movieReview");
 		
@@ -232,10 +263,12 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
 		List<WishDTO> wList = new ArrayList<WishDTO>();
+		List<ReserveDTO> rList = new ArrayList<>();
 		if(kind==null){
 			kind="reg_date";
 		}
 		try {
+			rList = reserveService.reserveAList(memberDTO.getId());
 			if(kind.equals("reg_date")){
 				wList = wishService.wishList(memberDTO.getId(),"reg_date");
 				for(WishDTO wishDTO : wList ){
@@ -255,6 +288,7 @@ public class MyPageController {
 
 		mv.addObject("kind", kind);
 		mv.addObject("wList", wList);
+		mv.addObject("rList", rList);
 		mv.setViewName("myPage/wishList");
 		return mv;
 	}
@@ -289,9 +323,14 @@ public class MyPageController {
 			}else{
 				pList = pointService.pointList(memberDTO.getId(), testDatepicker1,testDatepicker2);
 			}
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("pList",pList);
 		mv.addObject("testDatepicker1", testDatepicker1);
@@ -305,17 +344,23 @@ public class MyPageController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
+		
 		if(type==null){
 			type="11";
 		}
 		try {
 			myCouponService.dateUpdate(memberDTO.getId());
 			mcList = myCouponService.myCouponList(memberDTO.getId(),type);
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("type", type);
 		mv.addObject("mcList",mcList);
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		
 		List<MyCouponDTO> cdList = new ArrayList<MyCouponDTO>();
 		try {
@@ -324,6 +369,8 @@ public class MyPageController {
 			}else{
 				cdList = myCouponService.myCouponDList(memberDTO.getId(),testDatepicker1,testDatepicker2);
 			}
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -340,9 +387,18 @@ public class MyPageController {
 	public ModelAndView withdrawalCheck(HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-	
-		mv.addObject("member",memberDTO);
 		
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("myInfo",memberDTO);
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.setViewName("myPage/withdrawalCheck");
 		return mv;
 	}
@@ -351,8 +407,16 @@ public class MyPageController {
 	public ModelAndView withdrawalCheck(HttpSession session,String pwd){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("memberDTO",memberDTO);
-		
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("myInfo",memberDTO);
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.setViewName("myPage/withdrawal");
 		return mv;
 	}

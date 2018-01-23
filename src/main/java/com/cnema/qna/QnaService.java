@@ -56,9 +56,10 @@ public class QnaService {
 	public int insert(QnaDTO qnaDTO, HttpSession session) throws Exception {
 		
 		int result=0;
-		if(qnaDTO.getFile()==null){
-			qnaDTO.setFileName(" ");
-			qnaDTO.setOriName(" ");
+		if(qnaDTO.getFile().getOriginalFilename()==""){
+			
+			qnaDTO.setFileName("noFile");
+			qnaDTO.setOriName("noFile");
 			result=qnaDAO.insert(qnaDTO);
 		}
 		else{

@@ -66,7 +66,12 @@ public class QnaController {
 	@RequestMapping(value="qnaWrite", method=RequestMethod.GET)
 	public ModelAndView insert(ModelAndView mv){
 		
-		 List<TheaterDTO> ar= theaterService.areaList();
+		List<TheaterDTO> ar = null;
+		try {
+			ar = theaterService.areaList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		 mv.addObject("area_list", ar);
 		mv.setViewName("qna/qnaWrite");
 		
@@ -77,6 +82,7 @@ public class QnaController {
 	public String insert(QnaDTO qnaDTO, RedirectAttributes rd, HttpSession session){
 		int result = 0;
 		System.out.println("1234");
+		System.out.println(qnaDTO.getFile().getOriginalFilename() +"입니다");
 		try {
 			result = qnaService.insert(qnaDTO, session);
 		} catch (Exception e) {

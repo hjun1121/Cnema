@@ -6,6 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.cnema.theater.TheaterDAO;
+import com.cnema.theater.TheaterDTO;
+
 @Service
 public class PointService {
 	@Inject
@@ -16,6 +19,7 @@ public class PointService {
 		pointDTO.setId(id);
 		pointDTO.setContents(contents);
 		pointDTO.setPoint_price(point);
+		
 		return pointDAO.getPoint(pointDTO);
 	}
 	
@@ -24,6 +28,7 @@ public class PointService {
 		pointDTO.setId(id);
 		pointDTO.setContents(contents);
 		pointDTO.setPoint_price(point);
+		
 		return pointDAO.usePoint(pointDTO);
 	}
 	

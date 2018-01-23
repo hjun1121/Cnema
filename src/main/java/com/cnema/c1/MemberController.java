@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +25,8 @@ import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.reserve.Reserve2DTO;
+import com.cnema.reserve.ReserveDTO;
 import com.cnema.util.EmailDAO;
 
 
@@ -80,7 +83,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public void login(String path, Model model){
+	public void login(String path, Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		InetAddress addr = null;
 		try {
 			addr = InetAddress.getLocalHost();
@@ -90,23 +93,36 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("reserve2", reserve2DTO);
+		model.addAttribute("reserve", reserveDTO);
+		model.addAttribute("seat_num", reserveDTO.getSeat_num());
 		model.addAttribute("path", path);
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ModelAndView mv){
+	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
+		ModelAndView mv = new ModelAndView();
 		MemberDTO member = null;
 		try {
 			member = memberService.login(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		if(member != null){
 			session.setAttribute("member", member);
 			
 			if(path !=null){
-				mv.setViewName("redirect:../"+path);
+				if(path.equals("theater/quickReserve3")){
+					mv.addObject("reserve", reserveDTO);
+					mv.addObject("reserve2", reserve2DTO);
+					mv.addObject("seat_num", reserveDTO.getSeat_num());
+					mv.addObject("path", path);
+					mv.setViewName("common/reserve");
+				}else{
+					
+					mv.setViewName("redirect:../"+path);
+				}
+				
 			}else{
 				mv.setViewName("redirect:../");
 			}

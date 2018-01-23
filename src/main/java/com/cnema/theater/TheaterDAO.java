@@ -19,50 +19,50 @@ public class TheaterDAO {
 	
 	private final String NAMESPACE="theaterMapper.";
 	
-	public TheaterDTO selectOne(int theater_num){
+	public TheaterDTO selectOne(int theater_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"selectOne", theater_num);
 	}
 	
-	public List<MovieDTO> selectList(){
+	public List<MovieDTO> selectList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"selectList");
 	}
 	
-	public List<TheaterDTO> locationList(String area){
+	public List<TheaterDTO> locationList(String area) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"locationList", area);
 	}
 
-	public List<TheaterDTO> areaList(){
+	public List<TheaterDTO> areaList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"areaList");
 	}
-	public List<TheaterDTO> qrAreaList(){
+	public List<TheaterDTO> qrAreaList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"qrAreaList");
 	}
 	
 	/*heeseong*/
-	public List<TheaterDTO> theatherAList() {
+	public List<TheaterDTO> theatherAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"theatherAList");
 	}
 	/*heeseong*/
-	public List<TheaterDTO> thSearchList(String kind, String search) {
+	public List<TheaterDTO> thSearchList(String kind, String search)  throws Exception{
 		Map<String, Object> thMap = new HashMap<>();
 		thMap.put("kind", kind);
 		thMap.put("search", search);
 		return sqlSession.selectList(NAMESPACE+"thSearchList",thMap);
 	}
 	/*heeseong*/
-	public TheaterDTO theaterInfo(int theater_num) {
+	public TheaterDTO theaterInfo(int theater_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"theaterInfo",theater_num);
 	}
 	/*heeseong*/
-	public int theaterRevision(TheaterDTO theaterDTO) {
+	public int theaterRevision(TheaterDTO theaterDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"theaterRevision",theaterDTO);
 	}
 	/*heeseong*/
-	public int theaterRemove(int theater_num) {
+	public int theaterRemove(int theater_num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"theaterRemove",theater_num);
 	}
 	/*heeseong*/
-	public int theaterInsert(TheaterDTO theaterDTO) {
+	public int theaterInsert(TheaterDTO theaterDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"theaterInsert",theaterDTO);
 	}
 }

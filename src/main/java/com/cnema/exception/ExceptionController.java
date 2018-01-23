@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ExceptionController {
 	
-	@ExceptionHandler(NullPointerException.class)
+/*	@ExceptionHandler(NullPointerException.class)
 	public String test(){
 		
 		return "";
@@ -15,11 +15,10 @@ public class ExceptionController {
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ModelAndView test2(){
-		System.out.println("sda");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("message", "error");
 		mv.setViewName("common/error");
 		return mv;
-	}
+	}*/
 	
 }

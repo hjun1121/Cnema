@@ -138,9 +138,11 @@
 					y= y_num;
 				}
 				if(sCount==0){
-					$("#seatN").html("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					//$("#seatN").html("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					$("#seatN").html('<span id="'+seat_num+'"> &nbsp; '+x+y+'번</span>');
 				}else{
-					$("#seatN").append("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					//$("#seatN").append("<span id='"+seat_num+"'> &nbsp; "+x+y+"번</span>");
+					$("#seatN").append('<span id="'+seat_num+'"> &nbsp; '+x+y+'번</span>');
 				}
 				sCount++;
 
@@ -218,7 +220,7 @@
 					$("#teen_num").val("0");
 				}
 				$("#seatName").val($("#seatN").html());
-				$("#price").val($("#qrPrice").html());			
+				$("#price").val($("#qrPrice").html().trim());	
 				document.reserve.submit();
 			}else{
 				alert("인원수와 자리를 확인해주세요");
