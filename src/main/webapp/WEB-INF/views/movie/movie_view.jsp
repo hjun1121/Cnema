@@ -31,11 +31,12 @@
 				type: "POST",
 				data: {
 					review_num:review_num,
-					movie_num:'${movie_num}'
+					movie_num:'${movie_num}',
+					curPage:${page.curPage}
 				},
 				success: function(data) {
 					alert(data);
-					location.href="movie_view?movie_num=${movie_num}";
+					location.href="movie_view?movie_num=${movie_num}&curPage=${page.curPage}";
 				}
 			});
 		});
@@ -275,12 +276,12 @@
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${pager.lastNum+1}"><button class="btn-paging next" type="button">다음</button></a>
+								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
 					</ul>
 				</div>
-	            
+	            	
 
 <!-- 				페이징 -->
 <!-- 				<div> -->
