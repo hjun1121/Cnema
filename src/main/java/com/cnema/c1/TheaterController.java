@@ -113,7 +113,8 @@ public class TheaterController {
 			}else{
 				getPoint = 0;
 			}
-			memberService.qrPointUpdate(ticketPriceDTO.getPoint(), (int)getPoint, memberDTO.getId());
+			int p = ticketPriceDTO.getPoint()-(int)getPoint;
+			memberService.qrPointUpdate(p, (int)getPoint, memberDTO.getId());
 			myCouponService.qrCouponUpdate(ticketPriceDTO.getC_num(), memberDTO.getId());
 			
 			if(ticketPriceDTO.getPoint()>0){

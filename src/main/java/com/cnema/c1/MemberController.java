@@ -108,7 +108,6 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(path);
 		if(member != null){
 			session.setAttribute("member", member);
 			
