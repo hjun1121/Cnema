@@ -146,7 +146,14 @@ background-color: #f1f0e5;
     float:right;
 }
 
-
+.sub_tit{
+	color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+}
 
 </style>
 <script type="text/javascript">
@@ -281,36 +288,48 @@ background-color: #f1f0e5;
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
 <div class="board_contents">
-<h2>이벤트 작성하기</h2>
 <form action="eventWrite" method="post" id="frm" enctype="multipart/form-data">
+<h2 id="sub_tit">이벤트 작성하기</h2>
 
-<div class="eventViewhead">
-    <strong>제목</strong>
-    <input type="text" name="title" value="" id="title" required="required"> 
     <input type="hidden" name="writer" value="${member.id}">
-    <br>
-    <p class="date">
+	<table>
+	<tr>
+    <th>제목</th>
+    <td><input type="text" name="title" value="" id="title" required="required"></td> 
+    </tr>
+    <tr>
+    <th class="date">
         <span>기간: </span>
+    </th>
+    <td>
         <input type="date" name="s_date" value="" id="s_date" class="dateInput" required="required"> <strong>~</strong> 
         <input type="date" name="e_date" value="" id="e_date" class="dateInput" required="required">
-    </p>
-</div>
-
-<div class="eventViewContents">
+   	</td>
+   	<tr>
+<th>내용</th>
+<td>
 <textarea id="contents" name="contents" rows="10" cols="20"  style="width: 600px;" required="required"> </textarea>
-</div>
+</td>
+</tr>
 
-<!--  파일수정하기  -->
-<div class="eventViewFile">
-파일 첨부 : <input type="file" name="file" id="file" required="required">
-</div>
+<tr class="eventViewFile">
+<th>파일 첨부 </th> 
+<td>
+<input type="file" name="file" id="file" required="required">
+</td>
 
-<!-- 이벤트 당첨 타입  -->
-<div class="eventJoinType">
-<p>이벤트 쿠폰 타입 </p>
+
+<tr class="eventJoinType">
+<th>이벤트 쿠폰 타입 </th>
+<td>
 1.쿠폰 <input type="radio" name="typeSel" value="10" checked="checked">
+</td>
+<td>
 2.포인트<input type="radio" name="typeSel" value="11">
-</div>
+</td>
+
+</tr>
+</table>
 <a href="eventList" id="btn1">cancel</a>
 		
 <input type="submit" id="writeBtn" value="write"> 
