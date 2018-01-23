@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,17 +34,14 @@ public class NoticeController {
 	
 	//View페이지
 		@RequestMapping(value="noticeView")
-		public ModelAndView selectOne(ModelAndView mv, int num, RedirectAttributes rd) throws Exception{
+		public ModelAndView selectOne(ModelAndView mv, @RequestParam(defaultValue="0", required=false)int num, RedirectAttributes rd) throws Exception{
 			BoardDTO noticeDTO = null;
-			
-				noticeDTO = noticeService.selectOne(num);
-			
-			
+			noticeDTO = noticeService.selectOne(num);
 			if(noticeDTO != null){
 				mv.addObject("view", noticeDTO);
 				mv.setViewName("notice/noticeView");
 			}else{
-				rd.addFlashAttribute("message","업습니다.");
+				rd.addFlashAttribute("message","존재하지 않는 글입니다.");
 				mv.setViewName("redirect:./noticeList");
 			}
 			
@@ -61,10 +59,7 @@ public class NoticeController {
 		@RequestMapping(value="noticeWrite",method=RequestMethod.POST)
 		public String insert(RedirectAttributes rd, NoticeDTO boardDTO, HttpSession session) throws Exception{
 			int result = 0;
-			
-			
 				result = noticeService.insert(boardDTO, session);
-			
 			String message = "fail";
 			if(result>0){
 				message = "success";
@@ -76,7 +71,8 @@ public class NoticeController {
 		
 		//update --> form 
 		@RequestMapping(value="noticeUpdate",method=RequestMethod.GET)
-		public String update(Model model, int num) throws Exception{
+		public ModelAndView update(@RequestParam(defaultValue="0", required=false)int num, RedirectAttributes rd) throws Exception{
+			ModelAndView mv = new ModelAndView();
 			BoardDTO boardDTO = null;
 			try {
 				boardDTO = noticeService.selectOne(num);
@@ -84,8 +80,16 @@ public class NoticeController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			model.addAttribute("view", boardDTO);
-			return "notice/noticeUpdate";
+			
+			if(boardDTO != null){
+				mv.addObject("view", boardDTO);
+				mv.setViewName("notice/noticeUpdate");
+			}else{
+				rd.addFlashAttribute("message","존재하지 않는 글입니다.");
+				mv.setViewName("redirect:./noticeList");
+			}
+			
+			return mv;
 		}
 		
 		//update --> DB 

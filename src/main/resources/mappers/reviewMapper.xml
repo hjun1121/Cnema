@@ -5,7 +5,20 @@
   <mapper namespace="reviewMapper">
   	<!-- heeseong -->
   	<insert id="reviewInsert" parameterType="Map">
-  		insert into review values(movie_seq.nextval,#{movie_num},#{id},#{review},0,0,sysdate)
+  		insert into review values(movie_seq.nextval,#{movie_num},#{id},#{review},0,0,sysdate,10)
   	</insert>
+  	
+  	<select id="reviewCount" parameterType="Map" resultType="int">
+  	 	select count(movie_num) from review where id=#{id} and movie_num=#{movie_num}
+  	</select>
+  	
+  	<select id="reviewInfo" parameterType="Map" resultType="reviewDTO">
+  	 	select * from review where id=#{id} and movie_num=#{movie_num}
+  	</select>
+  	
+  	<update id="reviewRemove" parameterType="Map">
+  		update review set r_type=11 where id=#{id} and movie_num=#{movie_num}
+  	</update>
+
   	
   </mapper>

@@ -3,6 +3,7 @@ package com.cnema.reserve;
 import java.util.List;
 
 import com.cnema.movie.MovieDTO;
+import com.cnema.movie.ReviewDTO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
@@ -24,6 +25,8 @@ public class ReserveDTO {
 	private MovieDTO movieDTO;
 	private TheaterDTO theaterDTO;
 	private ScreenDTO screenDTO;
+	private int count;//리뷰갯수
+	private ReviewDTO reviewDTO;
 	
 	public int getReserve_num() {
 		return reserve_num;
@@ -114,5 +117,17 @@ public class ReserveDTO {
 	}
 	public void setScreenDTO(ScreenDTO screenDTO) {
 		this.screenDTO = screenDTO;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public ReviewDTO getReviewDTO() {
+		return reviewDTO;
+	}
+	public void setReviewDTO(ReviewDTO reviewDTO) {
+		this.reviewDTO = reviewDTO;
 	}
 }

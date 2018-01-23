@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cnema.util.RowNum;
+
 
 @Repository
 public class MovieDAO {
@@ -17,6 +19,15 @@ public class MovieDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "movieMapper.";
+
+	
+	//totalCount
+	public int totalCount(int movie_num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("movie_num", movie_num);
+		
+		return sqlSession.selectOne(NAMESPACE+"totalCount", map);
+	}
 
 	
 	//warningCheck
@@ -50,9 +61,10 @@ public class MovieDAO {
 	
 	
 	//reviewList
-	public List<ReviewDTO> reviewList(int movie_num) throws Exception {
+	public List<ReviewDTO> reviewList(int movie_num, RowNum rowNum) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("movie_num", movie_num);
+		map.put("rowNum", rowNum);
 		return sqlSession.selectList(NAMESPACE+"reviewList", map);
 	}
 
