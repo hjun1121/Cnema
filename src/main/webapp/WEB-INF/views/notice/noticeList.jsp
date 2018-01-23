@@ -87,7 +87,14 @@ td{
     border-top: solid 1px #d6d4ca;
     text-align: center;
 }
-
+.tit{
+color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+    }
 #btn1{
 	
     padding: 3px 9px;
@@ -163,8 +170,7 @@ td{
 	
 	<div class="board_contents">
 	<form name="frm" action="./noticeList" method="get">
-	<h1>Notice list Page</h1>
-	<p>공지/뉴스<br>
+	<span class="tit">공지/뉴스</span>
 	CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.<br><br></p>
 	<input type="hidden" name="curPage" value="1">
 		<select name="kind" class="sizeChange">

@@ -63,7 +63,7 @@
     border: 2px solid #e71a0f;
     float:right;
 }
-#titleInput, .dateInput{
+#title, .dateInput{
 
 background-color: #f1f0e5;
  width:500px;
@@ -107,21 +107,41 @@ background-color: #f1f0e5;
         editor_object.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
          
         // 이부분에 에디터 validation 검증
+		/* var title=$("#title").val();
         var file=$('#file').val();
-		var title=$('#file').val();
-        
-		if(title==""){
+		var contents=$("#contents").val();
+		var s_date=$("#s_date").val();
+		var e_date=$("#e_date").val();
+        alert(s_date);
+		
+        if(title==null){
 			alert("제목을 입력하세요");
-			title.focus();
+			$('#title').focus();
+			return false;
+		}
+		else if(contents=""){
+			alert("내용을 입력하세요"); 
+			$("contents").focus();
+			return false;
+		}
+		else if(s_date=null){
+			alert("시작날짜를 입력하세요"); 
+			$("s_date").focus();
+			return false;
+		}
+		else if(e_date=""){
+			alert("종료날짜를 입력하세요"); 
+			$("e_date").focus();
+			return false;
 		}
 		else if(file==""){
 			alert("파일 확인");
 			file.focus();
 			return false;
 		}
-        else{
-        $("#frm").submit();
-        }
+        else{ */
+      /*   $("#frm").submit(); */
+        
     })
 		
 		//CKEDITOR.replace( 'contents' );
@@ -195,23 +215,23 @@ background-color: #f1f0e5;
 
 <div class="eventViewhead">
     <strong>제목</strong>
-    <input type="text" name="title" value="" id="titleInput"> 
+    <input type="text" name="title" value="" id="title" required="required"> 
     <input type="hidden" name="writer" value="${member.id}">
     <br>
     <p class="date">
         <span>기간: </span>
-        <input type="date" name="s_date" value="" id="s_date" class="dateInput"> <strong>~</strong> 
-        <input type="date" name="e_date" value="" id="e_date" class="dateInput">
+        <input type="date" name="s_date" value="" id="s_date" class="dateInput" required="required"> <strong>~</strong> 
+        <input type="date" name="e_date" value="" id="e_date" class="dateInput" required="required">
     </p>
 </div>
 
 <div class="eventViewContents">
-<textarea id="contents" name="contents" rows="10" cols="20"  style="width: 600px;" > </textarea>
+<textarea id="contents" name="contents" rows="10" cols="20"  style="width: 600px;" required="required"> </textarea>
 </div>
 
 <!--  파일수정하기  -->
 <div class="eventViewFile">
-파일 첨부 : <input type="file" name="file" id="file">
+파일 첨부 : <input type="file" name="file" id="file" required="required">
 </div>
 
 <!-- 이벤트 당첨 타입  -->
@@ -222,7 +242,7 @@ background-color: #f1f0e5;
 </div>
 <a href="eventList" id="btn1">cancel</a>
 		
-<input type="button" id="writeBtn" value="write"> 
+<input type="submit" id="writeBtn" value="write"> 
 </form>	
 		</div>
 			</div><!--게시판 내용  -->
