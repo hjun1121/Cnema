@@ -42,6 +42,7 @@ public class MemberController {
 	@Inject
 	private EmailDAO emailDAO;
 	/*kim*/
+	
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
 	public void idFind(){
 		
@@ -100,7 +101,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
+	public ModelAndView login(@RequestParam(defaultValue="0", required=false)int num, String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO member = null;
 		try {
@@ -119,7 +120,7 @@ public class MemberController {
 					mv.addObject("path", path);
 					mv.setViewName("common/reserve");
 				}else{
-					
+					rd.addFlashAttribute("num", num);
 					mv.setViewName("redirect:../"+path);
 				}
 				

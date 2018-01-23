@@ -17,18 +17,21 @@
 	<beans:bean class="com.cnema.interceptor.ReserveInterceptor" id="reserve"></beans:bean>
 	<interceptors>
 		<interceptor>
-			<mapping path="/theater/quickReserve3"/>
-			<beans:ref bean="reserve"/>
-		</interceptor>
-	
-		<interceptor>
 			<mapping path="/myPage/*"/>
 			<beans:ref bean="login"/>
 		</interceptor>
 		
 		<interceptor>
 			<mapping path="/admin/*"/>
+			<mapping path="/notice/noticeWrite"/>
+			<mapping path="/notice/noticeUpdate"/>	
+			<mapping path="/notice/noticeDelete"/>
 			<beans:ref bean="admin"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/theater/quickReserve3"/>
+			<beans:ref bean="reserve"/>
 		</interceptor>
 	</interceptors>
 
