@@ -189,6 +189,7 @@
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장목록</a></li>
+		                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
 		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>

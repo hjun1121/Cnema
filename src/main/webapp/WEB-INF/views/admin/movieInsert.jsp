@@ -44,7 +44,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div id="cgvwrap">
+	<div id="cgvwrap">
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 
 			<!-- //////////////////////////////// -->

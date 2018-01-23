@@ -5,5 +5,5 @@
 	<td>${movie.movie_name }</td>
 </tr>
 <tr>
-	<td>${movie.age_limit }</td>
+	<td>${movie.age_limit }세 관람가</td>
 </tr>

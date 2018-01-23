@@ -24,8 +24,8 @@
 			<div class="sect-service">
 				<h2>서비스 메뉴</h2>
 				<ul class="util">
-					<li><a href="#" class="like" target="_blank" title="Facebook 좋아요! 새창"><span>Facebook 좋아요!</span></a></li>
-				    <li><a href="#" class="insta" target="_blank" title="Instagram Follow"><span>Instagram Follow</span></a></li>
+					<li><a href="https://www.facebook.com/Cnema-329387590895060" class="like" target="_blank" title="Facebook 좋아요! 새창"><span>Facebook 좋아요!</span></a></li>
+				    <li><a href="http://instagram.com/hseong_" class="insta" target="_blank" title="Instagram Follow"><span>Instagram Follow</span></a></li>
                 	
 				</ul>
 				<ul class="gnb">
