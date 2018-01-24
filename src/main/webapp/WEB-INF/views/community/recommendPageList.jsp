@@ -53,23 +53,21 @@
 		
 		$("#chatting_btn").click(function() {
 			alert("채팅하기");
-
-		});
-
-		$("#drop_btn").click(function(){
-			$("#frm").attr("action", "../community/pageMemberDrop");
-			document.frm.submit();
-		});
-		
-		$("#join_btn").click(function(){
-			$("#frm").attr("action", "../community/pageMemberJoin");
-			document.frm.submit();
+			$.ajax({
+				url: "../ajax/chatting",
+				type: "POST",
+				data: {
+					
+				},
+				success: function(data) {
+					$("#chatting_div").append();
+				}
+			});
 		});
 		
 
 	});
-	
-	
+
 </script>
 
 </head>
@@ -120,16 +118,13 @@
 		</c:if>
 	</div>
 
-	<form action="" id="frm">
-	</form>
-	
 	<c:choose>
 		<c:when test="${not empty member and memberCheck eq 11}">
 			<input type="button" id="drop_btn" value="페이지 탈퇴하기">
 		</c:when>
-<%-- 		<c:when test="${not empty member and memberCheck eq 20}"> --%>
-<!-- 			<input type="button" id="deletePage_btn" value="페이지 삭제하기"> -->
-<%-- 		</c:when> --%>
+		<c:when test="${not empty member and memberCheck eq 20}">
+			<input type="button" id="deletePage_btn" value="페이지 삭제하기">
+		</c:when>
 		<c:otherwise>
 			<input type="button" id="join_btn" value="페이지 가입하기">
 		</c:otherwise>

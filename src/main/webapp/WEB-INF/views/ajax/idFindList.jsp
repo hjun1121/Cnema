@@ -8,7 +8,7 @@
 	<table>
 		<tr>
 			<td>ID</td>
-			<td>Reg_date</td>
+			<td>가입일자</td>
 		</tr>
 		<c:forEach items="${memberList }" var="memberDTO">
 			<tr>

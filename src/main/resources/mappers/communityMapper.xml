@@ -10,8 +10,6 @@
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,movie_seq.nextval,0,0)
 	</insert>
 	
-	
-	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}
 	</delete>
@@ -57,9 +55,8 @@
 		select P.* from page P, pagemember M where P.PAGE_NUM=M.PAGE_NUM and M.id=#{id}
 	</select>
 	
-	<select id="selectRecommendPage" resultType="pageDTO">
-		select * from page order by reg_date desc
+	<select id="recommendPageList" resultType="pageDTO" parameterType="String">
+		select * from page where page_name like '%'||#{search}||'%'
 	</select>
-
 
 </mapper>

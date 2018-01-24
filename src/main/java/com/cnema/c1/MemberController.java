@@ -197,7 +197,7 @@ public class MemberController {
 		MovieDTO movieDTO = null;
 		
 		try {
-			mList = movieService.movieAList();
+			mList = movieService.movieList("","");
 			rList = reserveService.selectList(memberDTO.getId());
 			for(ReserveDTO reserveDTO : rList){
 				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO.getTp_num());

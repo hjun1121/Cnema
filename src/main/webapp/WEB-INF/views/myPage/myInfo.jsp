@@ -365,11 +365,11 @@
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            
@@ -410,10 +410,10 @@
 					<tr>
 						<td>성별</td>
 						<c:if test="${myInfo.gender eq 'f'}">
-							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
 						</c:if>
 						<c:if test="${myInfo.gender eq 'm'}">
-							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
 						</c:if>
 						
 					</tr>

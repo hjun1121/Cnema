@@ -1,17 +1,24 @@
-@charset "utf-8";
+@CHARSET "UTF-8";
+
 #bottom_area {
 	width: 996px;
 	height: 128px;
 	background-color: black;
 	font-weight: bold;
 }
+#leftBtn1 {
+	float: left;
+	width: 106px;
+	height: 108px;
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
 
 #qrMovie {
 	float: left;
 	width: 217px;
 	height: 118px;
-	margin-left: 20px;
-	font-size: 13px;
 }
 
 #qrTheater {
@@ -19,24 +26,29 @@
 	margin-left: 10px;
 	width: 214px;
 	height: 120px;
-	font-size: 13px;
 }
 
 #qrSeat {
 	float: left;
 	margin-left: 10px;
-	width: 214px;
+	width: 217px;
 	height: 120px;
-	font-size: 13px;
 }
 
-#rightBtn1 {
-	float: right;
+#rightBtn2 {
 	width: 106px;
 	height: 108px;
 	margin-top: 10px;
-	margin-right: 20px;
+	margin-left: 60px;
 }
+
+.qrPrice__ {
+	float: left;
+	margin-left: 10px;
+	width: 217px;
+	height: 120px;
+}
+
 
 .tnb_container {
 	position: fixed;
@@ -538,69 +550,7 @@
 #ticket.english .tnb .info.theater .row .data {
 	width: 125px;
 }
-/* @CHARSET "UTF-8";
 
-
-*{
-		margin: 0px;
-		padding: 0px;
-	}
-	div{
-		height: 600px;
-	}
-
-	#all{
-		background-color: red;
-		width: 1000px;
-	}
-	
-	#movie{
-		background-color: #f0f0f0;
-		width: 290px;
-		float: left;
-		margin-left: 2px;
-	}
-	#theater{
-		background-color: #f0f0f0;
-		width: 290px;
-		float: left;
-		margin-left: 2px;
-	}
-	#day{
-		background-color: #f0f0f0;
-		width: 100px;
-		float: left;
-		margin-left: 2px;
-	}
-	#schedule{
-		background-color: #f0f0f0;
-		width: 310px;
-		float: left;
-		margin-left: 2px;
-	}
-	
-	.head{
-		height: 35px;
-		background-color: black;
-		
-	}
-	
-	.head h2{
-		color: white;
-		text-align: center;
-	}
-	ul{
-		list-style: none;
-	}
-	.locationList{
-		float: right;
-		overflow: auto;
-		height: 500px;
-	} */
-@charset "utf-8";
-
-/*.ie9 *:focus{box-shadow:inset 0 0 4px 2px #f96;}*/
-/*.ie10 *:focus{box-shadow:inset 0 0 4px 2px #f96;}*/
 
 /* common */
 .button {
@@ -2511,7 +2461,8 @@ a:hover {
 
 #ticket .step2 .section-numberofpeople .col-body .numberofpeople-select
 	{
-	margin-left: 15px;
+	margin-left: 50px;
+    margin-top: 30px;
 	padding-right: 18px;
 	border-right: 1px solid #d4d3c9;
 }
