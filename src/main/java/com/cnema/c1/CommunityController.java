@@ -18,7 +18,7 @@ import com.cnema.community.PageMemberDTO;
 import com.cnema.member.MemberDTO;
 
 @Controller
-@RequestMapping(value = "/community/*")
+@RequestMapping(value = "/community2/*")
 public class CommunityController {
 	
 	@Inject
