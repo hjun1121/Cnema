@@ -9,7 +9,7 @@ import com.cnema.board.BoardDTO;
 public class QnaDTO extends BoardDTO {
 	private String area;
 	private String location;
-	private int type;
+	private String type;
 	private String reply;
 	private String reply_id;
 	private Date reply_date;
@@ -41,10 +41,11 @@ public class QnaDTO extends BoardDTO {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public int getType() {
+	
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getReply() {
