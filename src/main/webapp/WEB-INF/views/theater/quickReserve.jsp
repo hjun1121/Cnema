@@ -92,6 +92,11 @@
 				
 			}
 		});
+		/* 포인터 */
+		$(".pointer").click(function(){
+			$(".pointer").attr("class","pointer");
+			$(this).attr("class","pointer selected");
+		});
 		
 		
 		/*  */
@@ -173,7 +178,6 @@
 			
 		})
 		/*  */
-		//$(".time").click(function(){
 		$("#all").on("click", ".time" , function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
@@ -339,7 +343,7 @@
 								<div class="theater-list" style="height: 388px;">
 									<div id="theater" class="theater-area-list">
 										<ul>
-											<li class="selected">
+											<li class="pointer selected">
 												<a href="#" class="area"  title="서울" onclick="return false;" style="background-color: red;">
 													<span class="name">서울</span>
 													<span class="count">(${fn:length(location)})</span>
@@ -357,7 +361,7 @@
 												</div>
 											</li>
 											<c:forEach items="${areaList }" var="area">
-												<li>
+												<li class="pointer">
 													<a href="#" class="area"  title="${area }" onclick="return false;">
 														<span class="name">${area}</span>
 														<span class="count">(${fn:length(area)})</span>
