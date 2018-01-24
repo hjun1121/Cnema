@@ -25,6 +25,6 @@
   	</delete>
   	
   <delete id="withdrawal" parameterType="string">
-  	delete from coupongroup where id=#{id}
+  		delete from coupongroup where id=#{id}
   </delete>
   </mapper>

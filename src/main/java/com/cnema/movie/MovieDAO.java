@@ -144,18 +144,18 @@ public class MovieDAO {
 	}
 	
 	/*heeseong*/
-	public List<MovieDTO> movieSList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"movieSList");
-	}
+	/*public List<MovieDTO> movieList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"movieList");
+	}*/
 	/*heeseong*/
 	public int movieRevision(MovieDTO movieDTO) {
 		return sqlSession.update(NAMESPACE+"movieRevision",movieDTO);
 	}
 	/*heeseong*/
-	public List<MovieDTO> movieSearchList(String kind, String search) {
+	public List<MovieDTO> movieList(String kind, String search) {
 		Map<String, Object> mMap = new HashMap<>();
 		mMap.put("kind", kind);
 		mMap.put("search", search);
-		return sqlSession.selectList(NAMESPACE+"movieSearchList",mMap);
+		return sqlSession.selectList(NAMESPACE+"movieList",mMap);
 	}
 }
