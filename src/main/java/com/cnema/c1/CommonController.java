@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/common/**")
 public class CommonController {
 
+	@RequestMapping(value="map", method=RequestMethod.GET)
+	public void map(){
+		
+	}
+	
 	@RequestMapping(value="result", method=RequestMethod.GET)
 	public void result(String message, Model model){
 		System.out.println(message);
