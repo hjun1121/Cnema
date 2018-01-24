@@ -23,23 +23,20 @@
   	
   	
   		
-  	<!-- heeseong -->
-  	<select id="theaterInfo" parameterType="int" resultType="theaterDTO">
-  		select * from theater where theater_num=#{theater_num}
-  	</select>
+  	
   	
   	<!-- heeseong -->
-  	<select id="theatherAList" resultType="theaterDTO">
+  	<!-- <select id="theatherAList" resultType="theaterDTO">
   		select * from theater
-  	</select>
+  	</select> -->
   	
   	<!-- heeseong -->
-  	<select id="thLocationList" resultType="theaterDTO" parameterType="String">
+  	<!-- <select id="thLocationList" resultType="theaterDTO" parameterType="String">
   		select * from theater where location=#{search}
-  	</select>
+  	</select> -->
   	
   	<!-- heeseong -->
-  	<select id="thSearchList" resultType="theaterDTO" parameterType="String">
+  	<select id="theaterList" resultType="theaterDTO" parameterType="String">
   		select * from theater
   		<choose>
   			<when test="kind=='area'">
@@ -48,7 +45,14 @@
   			<when test="kind=='location'">
   				where location like '%'||#{search}||'%'
   			</when>
+  			<otherwise>
+  			</otherwise>
   		</choose>
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="theaterInfo" parameterType="int" resultType="theaterDTO">
+  		select * from theater where theater_num=#{theater_num}
   	</select>
   	
   	<!-- heeseong -->
