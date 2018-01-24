@@ -149,13 +149,13 @@ public class AdminController {
 		}
 		try {
 			if (kind == null) {
-				theaterList = theaterService.theatherAList();
+				theaterList = theaterService.theaterList("","");
 			} else {
 				if (kind.equals("location")) {
-					theaterList = theaterService.thSearchList(kind, search);
+					theaterList = theaterService.theaterList(kind, search);
 				}
 				if (kind.equals("area")) {
-					theaterList = theaterService.thSearchList(kind, search);
+					theaterList = theaterService.theaterList(kind, search);
 				}
 			}
 			count = myCouponService.couponCount(memberDTO.getId());
