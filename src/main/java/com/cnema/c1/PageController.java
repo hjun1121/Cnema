@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cnema.community.PageContentsDTO;
@@ -24,19 +25,40 @@ public class PageController {
 	private PageService pageService;
 	
 	
+	
 	//페이지 가입하기
 	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
-	public void pageMemberJoin() throws Exception {
+	public ModelAndView pageMemberJoin(int page_num, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = "";
+		int result = 0;
+		try {
+			id = memberDTO.getId();
+			PageDTO pageDTO = pageService.selectPageOne(page_num);
+			result = pageService.memberInsert(pageDTO, id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
+		String message = "가입 실패";
+		if(result > 0) { //가입 성공
+			message = "가입 성공";
+		}
+		
+		mv.addObject("message", message);
+		mv.addObject("path", "community/pageMain?page_num="+page_num);
+		mv.setViewName("/common/messagePath");
+		return mv ;
 	}
-	
-	
+
+
 	//페이지 탈퇴하기
 	@RequestMapping(value = "pageMemberDrop", method=RequestMethod.POST)
 	public void pageMemberDrop() throws Exception {
 		
 	}
-	
+
 
 	//pageContentsWrite
 	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.POST)
@@ -53,15 +75,19 @@ public class PageController {
 
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
-	public ModelAndView pageMain(HttpSession session, int page_num) throws Exception {
+	public ModelAndView pageMain(HttpSession session, @RequestParam(defaultValue="0", required=true)int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		int member_num = 0;
 		String id = "";
 		int memberCheck = 0;
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
 			memberCheck = pageService.memberCheck(page_num, id);
+			member_num = pageService.selectPageMemberOne(id).getMember_num();
+			
 			mv.addObject("memberCheck", memberCheck);
+			mv.addObject("member_num", member_num);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

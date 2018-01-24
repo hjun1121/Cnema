@@ -19,6 +19,7 @@
 		<interceptor>
 			<mapping path="/myPage/*"/>
 			<mapping path="/member/*"/>
+			<mapping path="/community/*"/>
 			<mapping path="/admin/myQnaList"/>
 			<exclude-mapping path="/member/memberLogin"/>
 			<exclude-mapping path="/member/memberJoin"/>

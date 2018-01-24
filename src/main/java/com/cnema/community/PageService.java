@@ -19,6 +19,12 @@ public class PageService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	
+	//selectPageMemberOne
+	public PageMemberDTO selectPageMemberOne(String id) throws Exception {
+		return pageDAO.selectPageMemberOne(id);
+	}
+	
 	//pageContentsWrite
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception{
 		int result = pageDAO.pageContentsWrite(pageContentsDTO);
