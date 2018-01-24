@@ -21,7 +21,7 @@ $(function() {
 		location.href="communityMain?search="+search;
 	});
 	$("#moreBtn").click(function(){
-		location.href="recommendPage";
+		location.href="recommendPageList";
 	});
 });
 </script>
@@ -52,7 +52,7 @@ $(function() {
 			<h2 style="font-size: 20px; color: #333333;">가입한 페이지</h2>
 			<br>
 			<c:forEach items="${pageList}" var="page">
-				<a href="pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
+				<a href="${pageScope.pageContext.request.contextPath }/pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
 			</c:forEach>
 		</div>
 		</c:if>
@@ -63,7 +63,7 @@ $(function() {
 			<br>
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 				<c:if test="${i.index < 3}">
-					<a href="pageMain?page_num=${recommend.page_num}"><p><img style="width: 30%; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}"> ${recommend.page_name}</p></a>
+					<a href="${pageScope.pageContext.request.contextPath }/pageMain?page_num=${recommend.page_num}"><p><img style="width: 30%; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}"> ${recommend.page_name}</p></a>
 				</c:if>
 			</c:forEach>
 		</div>

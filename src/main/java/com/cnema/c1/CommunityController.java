@@ -45,4 +45,9 @@ public class CommunityController {
 		mv.setViewName("community2/communityMain");
 		return mv;
 	}
+	@RequestMapping(value="recommnedPageList",method=RequestMethod.GET)
+	public ModelAndView recommendPageList() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
 }
