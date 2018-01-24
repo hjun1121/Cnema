@@ -32,12 +32,12 @@ public class TheaterService {
 		return theaterDAO.qrAreaList();
 	}		
 	/*heeseong*/
-	public List<TheaterDTO> theatherAList() throws Exception{
+	/*public List<TheaterDTO> theatherAList() throws Exception{
 		return theaterDAO.theatherAList();
-	}
+	}*/
 	/*heeseong*/
-	public List<TheaterDTO> thSearchList(String kind,String search) throws Exception{
-		return theaterDAO.thSearchList(kind,search);
+	public List<TheaterDTO> theaterList(String kind,String search) throws Exception{
+		return theaterDAO.theaterList(kind,search);
 	}
 	/*heeseong*/
 	public TheaterDTO theaterInfo(int theater_num) throws Exception{

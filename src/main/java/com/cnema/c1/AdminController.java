@@ -101,13 +101,13 @@ public class AdminController {
 		}
 		try {
 			if (kind == null) {
-				movieList = movieService.movieAList();
+				movieList = movieService.movieList("","");
 			} else {
 				if (kind.equals("title")) {
-					movieList = movieService.movieSearchList(kind, search);
+					movieList = movieService.movieList(kind, search);
 				}
 				if (kind.equals("actor")) {
-					movieList = movieService.movieSearchList(kind, search);
+					movieList = movieService.movieList(kind, search);
 				}
 			}
 			count = myCouponService.couponCount(memberDTO.getId());
@@ -176,13 +176,13 @@ public class AdminController {
 		}
 		try {
 			if (kind == null) {
-				theaterList = theaterService.theatherAList();
+				theaterList = theaterService.theaterList("","");
 			} else {
 				if (kind.equals("location")) {
-					theaterList = theaterService.thSearchList(kind, search);
+					theaterList = theaterService.theaterList(kind, search);
 				}
 				if (kind.equals("area")) {
-					theaterList = theaterService.thSearchList(kind, search);
+					theaterList = theaterService.theaterList(kind, search);
 				}
 			}
 			count = myCouponService.couponCount(memberDTO.getId());
@@ -634,13 +634,13 @@ public class AdminController {
 		}
 		if (kind == null) {
 			try {
-				cList = couponService.couponList();
+				cList = couponService.couponList("","");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				cList = couponService.couponSList(kind, search);
+				cList = couponService.couponList(kind, search);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -725,14 +725,14 @@ public class AdminController {
 
 		try {
 			groupList = coupongroupService.groupList();
-			cList = couponService.couponList();
+			cList = couponService.couponList("","");
 			if (group_num == -1) {
 				if(sort == 10){
-					memList = memberService.memberSList("birth");
+					memList = memberService.memberList("birth");
 				}else if(sort==20){
-					memList = memberService.memberSList("type");
+					memList = memberService.memberList("type");
 				}else{
-					memList = memberService.memberList();     
+					memList = memberService.memberList("");     
 				}
 			} else {
 				gList = coupongroupService.groupSList(group_num);

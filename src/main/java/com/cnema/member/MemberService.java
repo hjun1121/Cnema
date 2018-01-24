@@ -61,12 +61,12 @@ public class MemberService {
 		return memberDAO.memberInfo(id);
 	}
 	/*heeseong*/
-	public List<MemberDTO> memberList() throws Exception{
+	/*public List<MemberDTO> memberList() throws Exception{
 		return memberDAO.memberList();
-	}
+	}*/
 	/*heeseong*/
-	public List<MemberDTO> memberSList(String kind) throws Exception{
-		return memberDAO.memberSList(kind);
+	public List<MemberDTO> memberList(String kind) throws Exception{
+		return memberDAO.memberList(kind);
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{

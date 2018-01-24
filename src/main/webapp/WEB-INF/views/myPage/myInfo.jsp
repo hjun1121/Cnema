@@ -17,11 +17,24 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var idCheck = false;
-		var pwCheck = false;
+		var pwCheck = true;
+		var emailCheck = true;
+		
+		var p0='${p[0]}';
+		$(".f").each(function(){
+			if($(this).val()==p0){
+				$(this).attr("selected",true);
+			}
+		});
+		var e1 = '${e[1]}';
+		$(".mail").each(function(){
+			if($(this).val()==e1){
+				$(this).attr("selected",true);
+			}
+		});
 		
 		$("#pw1").change(function(){
-			$("#pwc").html('<input type="password" class="noneBorder" id="pw2" name="pw">');
+			$("#pwc").html('<input type="password" class="noneBorder" id="pw2">');
 			var pw1= $("#pw1").val();
 			var pwpw=false;
 			for(var i=0; i<pw1.length;i++){
@@ -30,7 +43,6 @@
 					pwpw=true;
 				}
 			}
-			
 			if(pwpw==true && pw1.length>7 && pw1.length<13 ){
 				$("#pw_ch").html('<p style="color: red">비밀번호를 확인해주세요</p>');
 				$("#pw2").val("");
@@ -45,6 +57,7 @@
 				pwCheck = false;
 			}
 		});
+		
 		$("#pwc").on("change","#pw2",function(){
 			var pw1= $("#pw1").val();
 			var pw2= $("#pw2").val();
@@ -57,12 +70,6 @@
 			}
 		});
 		
-		var p0='${p[0]}';
-		$(".f").each(function(){
-			if($(this).val()==p0){
-				$(this).attr("selected",true);
-			}
-		});
 		
 		//주소검색 시작
 		$("#addrCheck").click(function(){
@@ -101,6 +108,7 @@
 	                $("#postCode").val(data.zonecode);  //5자리 새우편번호 사용
 					$("#addr").val(fullAddr);
 	                // 커서를 상세주소 필드로 이동한다.
+	                 $("#addr2").val("");
 	                $("#addr2").focus();
 	            }
 	        }).open();
@@ -110,7 +118,6 @@
 		
 		$("#mailList").change(function(){
 			var ml = $("#mailList").val();
-			
 			if(ml == 0){
 				$("#email2").prop('readonly', false)
 				$("#email2").val("");
@@ -120,7 +127,7 @@
 				$("#email2").prop('readonly', true)
 			}
 		});
-		
+
 		$("#mailCheck").click(function(){
 			var email1 = $("#email1").val();
 			var email2 = $("#email2").val();
@@ -150,7 +157,33 @@
 			var e2 = $("#email2").val();
 			var email = e1+'@'+e2;
 			$("#email").val(email);
-			document.frm.submit();
+			
+			if(pwCheck == false){
+				alert("비밀번호를 확인해 주세요.");
+				$("#pw1").focus();
+			}else if($("#addr").val()==""){
+				alert("주소를 검색해주세요");	
+				$("#addrCheck").focus();	
+			}else if($("#addr2").val()==""){
+				alert("나머지 주소를 입력해 주세요");	
+				$("#addr2").focus();	
+			}else if($("#f").val()=="x"){
+				alert("첫번호를 확인해 주세요");
+				$("#f").focus();	
+			}else if($("#m").val()==""){
+				alert("중간번호를 확인해 주세요");
+				$("#m").focus();
+			}else if($("#l").val()==""){
+				alert("끝번호를 확인해 주세요");
+				$("#l").focus();
+			}else if(emailCheck == false){
+				alert("이메일을 확인해 주세요");
+				$("#email1").focus();
+			}else{
+				document.frm.submit();
+			}
+			
+			
 		})
 	});
 
@@ -332,11 +365,11 @@
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/screenInsert">상영관 목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            
@@ -377,10 +410,10 @@
 					<tr>
 						<td>성별</td>
 						<c:if test="${myInfo.gender eq 'f'}">
-							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
 						</c:if>
 						<c:if test="${myInfo.gender eq 'm'}">
-							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
 						</c:if>
 						
 					</tr>
@@ -404,11 +437,11 @@
 						<input type="text" id="email1" class="noneBorder" value="${e[0] }">@
 						<input type="text" id="email2" class="noneBorder" value="${e[1] }">
 						<select id = "mailList">
-				   			<option value="0">직접입력</option>
-							<option value="naver.com">naver.com</option>
-							<option value="daum.net">daum.net</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="hotmail.com">hotmail.com</option>
+				   			<option class="mail" value="0">직접입력</option>
+							<option class="mail" value="naver.com">naver.com</option>
+							<option class="mail" value="daum.net">daum.net</option>
+							<option class="mail" value="gmail.com">gmail.com</option>
+							<option class="mail" value="hotmail.com">hotmail.com</option>
 						</select>
 						<input type="button" id="mailCheck" class="btnType3" value="이메일 인증">
 						<br>
@@ -428,7 +461,7 @@
 				<input type="hidden" id="phone" name="phone">
 				<input type="hidden" id="email" name="email">
 				<div class="set-btn">
-			        <button id="revBtn" class="round inred on"><span>수정</span></button> 
+			        <button type="button" id="revBtn" class="round inred on"><span>수정</span></button> 
 			        <a href="../" class="round gray"><span>취소</span></a>
 			    </div>
 				

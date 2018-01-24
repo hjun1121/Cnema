@@ -39,15 +39,15 @@ public class TheaterDAO {
 	}
 	
 	/*heeseong*/
-	public List<TheaterDTO> theatherAList() throws Exception{
+	/*public List<TheaterDTO> theatherAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"theatherAList");
-	}
+	}*/
 	/*heeseong*/
-	public List<TheaterDTO> thSearchList(String kind, String search)  throws Exception{
+	public List<TheaterDTO> theaterList(String kind, String search)  throws Exception{
 		Map<String, Object> thMap = new HashMap<>();
 		thMap.put("kind", kind);
 		thMap.put("search", search);
-		return sqlSession.selectList(NAMESPACE+"thSearchList",thMap);
+		return sqlSession.selectList(NAMESPACE+"theaterList",thMap);
 	}
 	/*heeseong*/
 	public TheaterDTO theaterInfo(int theater_num) throws Exception{

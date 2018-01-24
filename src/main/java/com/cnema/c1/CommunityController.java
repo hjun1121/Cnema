@@ -1,10 +1,6 @@
 package com.cnema.c1;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -31,6 +27,22 @@ public class CommunityController {
 	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.GET)
 	public void pageContentsWrite()throws Exception {
 	}
+	
+	
+	
+	//페이지 가입하기
+	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
+	public void pageMemberJoin() throws Exception {
+		
+	}
+	
+	
+	//페이지 탈퇴하기
+	@RequestMapping(value = "pageMemberDrop", method=RequestMethod.POST)
+	public void pageMemberDrop() throws Exception {
+		
+	}
+	
 	
 	//pageContentsWrite
 	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.POST)
@@ -102,26 +114,33 @@ public class CommunityController {
 	
 	//communityMain
 	@RequestMapping(value="communityMain", method=RequestMethod.GET)
-	public ModelAndView communityMain(HttpSession session) throws Exception {
+	public ModelAndView communityMain(HttpSession session,String search) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		String id = "";
 		List<PageDTO> pageList = null;
 		List<PageDTO> recommendPage = null;
-		recommendPage = communityService.selectRecommendPage();
-		mv.addObject("recommendPage", recommendPage);
+		if(search==null){
+			search="";
+		}
+		recommendPage = communityService.recommendPageList(search);
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-			id = memberDTO.getId();
-			
-			if(id != null) {
-				pageList = communityService.selectPageList(id);
-				mv.addObject("pageList", pageList);
+			if(memberDTO.getId() != null) {
+				pageList = communityService.selectPageList(memberDTO.getId());
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		mv.addObject("recommendPage", recommendPage);
+		mv.addObject("pageList", pageList);
 		mv.setViewName("community/communityMain");
+		return mv;
+	}
+	@RequestMapping(value="recommendPage",method=RequestMethod.GET)
+	public ModelAndView recommendPage(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
 		return mv;
 	}
 

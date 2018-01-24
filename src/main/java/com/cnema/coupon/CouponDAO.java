@@ -19,20 +19,20 @@ public class CouponDAO {
 		return sqlSession.selectOne(NAMESPACE+"couponOne",name);
 	}
 	
-	/*heeseong*/
+	/*heeseong
 	public List<CouponDTO> couponList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"couponList");
-	}
+	}*/
 	/*heeseong*/
 	public CouponDTO couponInfo(int c_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"couponInfo",c_num);
 	}
 	/*heeseong*/
-	public List<CouponDTO> couponSList(String kind, String search) throws Exception{
+	public List<CouponDTO> couponList(String kind, String search) throws Exception{
 		Map<String, Object> cMap = new HashMap<>();
 		cMap.put("kind", kind);
 		cMap.put("search", search);
-		return sqlSession.selectList(NAMESPACE+"couponSList",cMap);
+		return sqlSession.selectList(NAMESPACE+"couponList",cMap);
 	}
 	/*heeseong*/
 	public int couponInsert(CouponDTO couponDTO) throws Exception{
