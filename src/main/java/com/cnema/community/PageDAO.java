@@ -16,7 +16,7 @@ public class PageDAO {
 	
 	@Inject
 	private SqlSession sqlSession;
-	private static final String NAMESPACE = "communityMapper.";
+	private static final String NAMESPACE = "pageMapper.";
 	
 	//pageContentsWrite
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO){
@@ -76,8 +76,8 @@ public class PageDAO {
 	}
 
 	//selectRecommendPage
-	public List<PageDTO> selectRecommendPage() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"selectRecommendPage");
+	public List<PageDTO> recommendPageList(String search) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"recommendPageList",search);
 	}
 	
 	//selectPageList 가입 페이지 목록

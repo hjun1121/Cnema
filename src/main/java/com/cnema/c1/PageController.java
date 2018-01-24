@@ -1,5 +1,7 @@
 package com.cnema.c1;
 
+
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,8 +20,8 @@ import com.cnema.community.PageMemberDTO;
 import com.cnema.member.MemberDTO;
 
 @Controller
-@RequestMapping(value = "/community2/*")
-public class CommunityController {
+@RequestMapping(value = "/community/*")
+public class PageController {
 	
 	@Inject
 	private CommunityService communityService;
@@ -112,36 +114,29 @@ public class CommunityController {
 	}
 	
 	
-	//communityMain
-	@RequestMapping(value="communityMain", method=RequestMethod.GET)
-	public ModelAndView communityMain(HttpSession session,String search) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		List<PageDTO> pageList = null;
-		List<PageDTO> recommendPage = null;
-		if(search==null){
-			search="";
-		}
-		recommendPage = communityService.recommendPageList(search);
-		try {
-			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-			if(memberDTO.getId() != null) {
-				pageList = communityService.selectPageList(memberDTO.getId());
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		mv.addObject("recommendPage", recommendPage);
-		mv.addObject("pageList", pageList);
-		mv.setViewName("community/communityMain");
-		return mv;
-	}
-	@RequestMapping(value="recommendPage",method=RequestMethod.GET)
-	public ModelAndView recommendPage(HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		return mv;
-	}
+//	//communityMain
+//	@RequestMapping(value="communityMain", method=RequestMethod.GET)
+//	public ModelAndView communityMain(HttpSession session) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		String id = "";
+//		List<PageDTO> pageList = null;
+//		List<PageDTO> recommendPage = null;
+//		recommendPage = communityService.selectRecommendPage();
+//		mv.addObject("recommendPage", recommendPage);
+//		try {
+//			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+//			id = memberDTO.getId();
+//			
+//			if(id != null) {
+//				pageList = communityService.selectPageList(id);
+//				mv.addObject("pageList", pageList);
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		mv.setViewName("community/communityMain");
+//		return mv;
+//	}
 
 }

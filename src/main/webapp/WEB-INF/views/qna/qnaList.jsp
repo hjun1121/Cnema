@@ -10,7 +10,6 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 
 <title>Insert title here</title>
 
@@ -37,6 +36,29 @@
 	.list{
 		cursor: pointer; 
 	}
+table{
+    padding-top: 10px;
+        border-top: solid 1px #d6d4ca;
+    border-bottom: solid 1px #b8b6aa;
+}
+th {
+    padding: 10px 0 8px 0px;
+    border-bottom: solid 1px #e1dfd5;
+    text-align: center;
+    background-color: #edebe1;
+    vertical-align: middle;
+    line-height: 1.5em;
+}
+tr{
+
+    display: table-row;
+ }
+td{
+
+    padding: 15px 0px 13px 0px;
+    border-top: solid 1px #d6d4ca;
+    text-align: center;
+}
 </style>
 </head>
 <body>
@@ -73,12 +95,11 @@
 	
 	
 	<div class="board_container">
-	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/mainTab.jsp"></c:import>
-	<h1>Qna list Page</h1>
 
 	<table>
 		<tr>
-			<th>이미지</th>
+			<th>no.</th>
+			<th>영화관</th>
 			<th>글제목</th>
 			<th>글쓴이</th>
 			<th>등록일</th>
@@ -86,9 +107,12 @@
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td><img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></td>
+			<%-- <td><img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></td> --%>
+			<td>${dto.num }</td>
+			<td>${dto.area} : ${dto.location}</td>
 			<td>
-			<a href="qnaView?num=${dto.num}">${dto.title}</a>
+			
+			<a href="qnaView?num=${dto.num}">[ ${dto.type} ] ${dto.title}</a>
 			</td>
 			<td>${dto.writer}</td>
 			<td>${dto.reg_date}</td>

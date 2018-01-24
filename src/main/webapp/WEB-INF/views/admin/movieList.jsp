@@ -206,9 +206,9 @@ $(function(){
 	                	</ul>
 	            	</li>
 		            <li>
-	                    <a href="#">나의 문의내역 <i></i></a>
+	                    <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
 		                <ul>
-		                    <li><a href="#">1:1 문의</a></li>
+		                    <li><a href="../admin/myQnaList">1:1문의</a></li>
 		                </ul>
 		            </li>
 		            <c:if test="${!empty member and member.type eq 20 }">
@@ -217,10 +217,10 @@ $(function(){
 		                <ul>
 		                    <li class="on"><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
-		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
+		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            
@@ -274,7 +274,13 @@ $(function(){
 								<td>${mList.actor }</td>
 								<td>${mList.open_date }</td>
 								<td>${mList.run_time }분</td>
-								<td>${mList.age_limit }세 관람가</td>
+								<c:if test="${mList.age_limit eq 0}">
+									<td>전체 관람가</td>
+								</c:if>
+								<c:if test="${mList.age_limit ne 0}">
+									<td>${mList.age_limit }세 관람가</td>
+								</c:if>
+								
 								<c:if test="${mList.show eq 10}">
 									<td>상영중</td>
 								</c:if>

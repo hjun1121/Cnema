@@ -32,6 +32,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String path = request.getServletPath();
 		path = path.substring(1);
 		
+
 		if(obj == null){
 			String message = "로그인 후 사용하세요";
 			modelAndView.addObject("path", path);

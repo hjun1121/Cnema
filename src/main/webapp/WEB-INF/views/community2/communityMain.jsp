@@ -15,16 +15,17 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
 
 <script type="text/javascript">
-
-	$(function() {
-		
-
-		$("#login_btn").click(function() {
-		});
-		
-		
+$(function() {
+	$("#login_btn").click(function() {
 	});
-
+	$("#sBtn").click(function(){
+		var search = $("#search").val();
+		location.href="communityMain?search="+search;
+	});
+	$("#moreBtn").click(function(){
+		location.href="recommendPage";
+	});
+});
 </script>
 
 </head>
@@ -73,15 +74,21 @@
 <%-- 	<c:if test="${not empty member}"> --%>
 <!-- 		<a href="./pageInsert"><input type="button" value="페이지 만들기"></a> -->
 <%-- 	</c:if> --%>
-	<!-- 가입항 페이지  -->
-	<div style="height: 50%; background-color: blue;">
+	<!-- 가입한 페이지  -->
+	<div style="height: 50%; background-color: gray;">
+		<label for="year">내가 본 영화 년도별 정렬</label>
+		<input type="button" value="+더보기" id="moreBtn"><br>
 		<c:forEach items="${pageList}" var="page" varStatus="count">
 			<img alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
 			${page.page_name}
 		</c:forEach>
 	</div>
-	<!-- 추첨 페이지 -->
-	<div style="height: 50%; background-color: orange;">
+	<!-- 추천 페이지 -->
+	<div style="height: 50%; background-color: #f0f0f0;">
+		<div>
+			<input type="search" name="search" id="search">
+			<input type="button" id="sBtn" class="round gray" value="GO">
+		</div>
 		<c:forEach items="${recommendPage}" var="recommend">
 			<img alt="${recommend.page_name}" src="../resources/page_logo/${recommend.fileName}">
 			${recommend.page_name}

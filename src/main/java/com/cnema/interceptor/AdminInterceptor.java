@@ -26,6 +26,13 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		String path = request.getServletPath();
 		path = path.substring(1);
 		
+		int num = 0;
+		try {
+			num = Integer.parseInt(request.getParameter("num"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		modelAndView.addObject("num", num);
 		if(memberDTO==null){
 			String message = "로그인이 필요한 서비스입니다.";
 			modelAndView.setViewName("common/login");

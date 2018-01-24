@@ -247,8 +247,9 @@ border: 1px solid #ccc;
 <input type="file" name="file">
 </td>
 </tr>
-
-</table>
+ </table>
+<input type="hidden" name="fileName" value="${view.fileName }">
+<input type="hidden" name="oriName" value="${view.oriName }">
 <br>
 <a id="btn1" href="eventList">cancel</a>
 		

@@ -126,9 +126,14 @@ $(function(){
 		
 		var num = $("#num").val();
 		var id = $("#id").val();
+		if(id==null)
+		{
+			alert('회원 로그인하세요');	
+		}
+		else{
 		var type= Math.floor(Math.random() * 2);//0 또는 1 만 나오게 한다.
 		$.ajax({
-			url:"../ajax/eventJoin",
+			url:"../ajax/eventCheck",
 			type:"POST",
 			data:{
 			 num:num,
@@ -144,7 +149,7 @@ $(function(){
 			}
 		});
 		
-		
+		}
 	});
 });
 
@@ -212,16 +217,19 @@ ${view.contents}
 <div class="eventJoin">
 
 <input type="hidden" id="num" name="num" value="${view.num }">
+<c:if test="${member.type==10 or member.type==11 }">
 <input type="hidden" id="id" value="${member.id}">
+</c:if>
 <div class="joinImgBtn">
 <a id="join" href=""><img alt="" src="../resources/images/common/btn/eventJoin.png"> </a>
 </div>
 
 </div>
 	<div class="btnSet">
+	<c:if test="${not empty member and member.type eq 20  }">
 		<a id="upBtn" href="./eventUpdate?num=${view.num}">update</a>
 		<a id="delBtn"  href="./eventDelete?num=${view.num}">delete</a>
-	
+	</c:if>
 		<a id="backList" href="./eventList">목록으로</a>
 	</div>
 </div>

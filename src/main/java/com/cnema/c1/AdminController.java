@@ -27,12 +27,14 @@ import com.cnema.member.MemberService;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.qna.QnaService;
 import com.cnema.theater.DayDTO;
 import com.cnema.theater.ScheduleDTO;
 import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.ListData;
 import com.cnema.util.TimeChange;
 
 /*heeseong 코드*/
@@ -57,12 +59,37 @@ public class AdminController {
 	private PointService pointService;
 	@Inject
 	private TimeChange timeChange;
+	@Inject
+	private QnaService qnaService;
 	
 	private int count = 0;
 	private int aCount = 0;
 	private Calendar ca = Calendar.getInstance();
 	private SimpleDateFormat sd = new SimpleDateFormat("YYYY년 MM월 DD일");
 	private String today = sd.format(ca.getTime());
+	
+	@RequestMapping(value="myQnaList")
+	public ModelAndView myQnaList(ListData listData,HttpSession session)  {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+			mv = qnaService.selectList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
+		mv.addObject("myInfo", memberDTO);
+		
+		
+		return mv;
+		
+	}
+	
 	
 	@RequestMapping(value = "movieList", method = RequestMethod.GET)
 	public ModelAndView movieList(HttpSession session, String kind, String search) {
@@ -149,13 +176,13 @@ public class AdminController {
 		}
 		try {
 			if (kind == null) {
-				theaterList = theaterService.theatherAList();
+				theaterList = theaterService.theaterList("","");
 			} else {
 				if (kind.equals("location")) {
-					theaterList = theaterService.thSearchList(kind, search);
+					theaterList = theaterService.theaterList(kind, search);
 				}
 				if (kind.equals("area")) {
-					theaterList = theaterService.thSearchList(kind, search);
+					theaterList = theaterService.theaterList(kind, search);
 				}
 			}
 			count = myCouponService.couponCount(memberDTO.getId());
