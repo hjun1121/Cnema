@@ -44,6 +44,4 @@
 	<select id="selectPageOne" resultType="pageDTO">
 		select * from page where page_num=#{page_num}
 	</select>
-	
-
 </mapper>

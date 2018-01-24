@@ -4,53 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="communityMapper">
 
-
-	<!--  -->
-	<insert id="pageContentsWrite" parameterType="pageContentsDTO">
-		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,movie_seq.nextval,0,0)
-	</insert>
-	
-	<delete id="memberDrop" parameterType="java.util.Map">
-		delete pagemember where page_num=#{page_num} and id=#{id}
-	</delete>
-
-	<!-- page 회원수 -1 -->
-	<update id="memberDropCount" parameterType="int">
-		update page set member_count=member_count-1 where page_num=#{page_num}		
-	</update>
-
-	<select id="memberCheck" parameterType="java.util.Map" resultType="pageMemberDTO">
-		select * from pagemember where id=#{id} and page_num=#{page_num}
-	</select>
-
-	<select id="selectPageMemberList" resultType="pageMemberDTO">
-		select * from pagemember where page_num=#{page_num}
-	</select>
-	
-	<insert id="pageInsert" parameterType="pageDTO">
-		<selectKey order="BEFORE" resultType="int" keyProperty="page_num">
-			select movie_seq.nextval from dual
-		</selectKey>
-		 insert into page values(#{page_num}, #{page_name}, #{fileName}, #{oriName}, sysdate, 1, #{owner_id})
-	</insert>
-	
-	<insert id="memberInsert" parameterType="java.util.Map">
-		insert into pagemember values(movie_seq.nextval, #{pageDTO.page_num}, #{id}, sysdate,
-		<choose>
-			<when test="pageDTO.owner_id==id"> 20 </when>
-			<otherwise> 11 </otherwise>
-		</choose>
-		)
-	</insert>
-
-	<update id="memberCount" parameterType="int">
-		update page set member_count=member_count+1 where page_num=#{page_num}
-	</update>
-	
-	<select id="selectPageOne" resultType="pageDTO">
-		select * from page where page_num=#{page_num}
-	</select>
-	
 	<select id="selectPageList" parameterType="String" resultType="pageDTO">
 		select P.* from page P, pagemember M where P.PAGE_NUM=M.PAGE_NUM and M.id=#{id}
 	</select>

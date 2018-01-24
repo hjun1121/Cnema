@@ -53,8 +53,6 @@
 								<div class="smenu">
 									<ul>
 										<li><a href="${pageContext.request.contextPath}/movie/movie_chart">무비차트</a></li>
-										<li><a href="${pageContext.request.contextPath}/community/pageInsert">페이지생성</a></li>
-										<li class="last"><a href="${pageContext.request.contextPath}/community/communityMain">씨네마그램</a></li>
 									</ul>
 								</div>
 							</div>
@@ -76,8 +74,8 @@
 								<div class="smenu">
 									<ul>
 										<li><a href="#">CGV 극장</a></li>
-										<li><a href="#">특별관</a></li>
-										<li class="last"><a href="#" title="새창" class="specialclub">Club서비스</a></li>
+										<li><a href="${pageContext.request.contextPath}/community/pageInsert">페이지생성</a></li>
+										<li class="last"><a href="${pageContext.request.contextPath}/community2/communityMain">씨네마그램</a></li>
 									</ul>
 								</div>
 							</div>
