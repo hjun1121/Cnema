@@ -105,7 +105,7 @@
 					
 				<!-- 아이디 찾기 버튼 -->
 					<div id="idFind_btn">
-						<input type="button" id = "btn" class="btn_color" value="아아디 찾기" style="cursor: pointer;">
+						<input type="button" id = "btn" class="btn_color" value="아이디 찾기" style="cursor: pointer;">
 					</div>	
 				
 				<!-- 찾기버튼들 -->

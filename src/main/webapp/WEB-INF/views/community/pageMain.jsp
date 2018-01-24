@@ -53,21 +53,18 @@
 		
 		$("#chatting_btn").click(function() {
 			alert("채팅하기");
-			$.ajax({
-				url: "../ajax/chatting",
-				type: "POST",
-				data: {
-					
-				},
-				success: function(data) {
-					$("#chatting_div").append();
-				}
-			});
+
+		});
+		
+		$("#drop_btn").click(function(){
+			$("#frm").attr("action", "../community/memberDrop");
+			
 		});
 		
 
 	});
-
+	
+	
 </script>
 
 </head>
@@ -118,17 +115,20 @@
 		</c:if>
 	</div>
 
-<%-- 	<c:choose> --%>
-<%-- 		<c:when test="${not empty member and memberCheck eq 11}"> --%>
-<!-- 			<input type="button" id="drop_btn" value="페이지 탈퇴하기"> -->
-<%-- 		</c:when> --%>
-<%-- 		<c:when test="${not empty member and memberCheck eq 20}"> --%>
-<!-- 			<input type="button" id="deletePage_btn" value="페이지 삭제하기"> -->
-<%-- 		</c:when> --%>
-<%-- 		<c:otherwise> --%>
-<!-- 			<input type="button" id="join_btn" value="페이지 가입하기"> -->
-<%-- 		</c:otherwise> --%>
-<%-- 	</c:choose> --%>
+	<form action="" id="frm">
+	</form>
+	
+	<c:choose>
+		<c:when test="${not empty member and memberCheck eq 11}">
+			<input type="button" id="drop_btn" value="페이지 탈퇴하기">
+		</c:when>
+		<c:when test="${not empty member and memberCheck eq 20}">
+			<input type="button" id="deletePage_btn" value="페이지 삭제하기">
+		</c:when>
+		<c:otherwise>
+			<input type="button" id="join_btn" value="페이지 가입하기">
+		</c:otherwise>
+	</c:choose>
 
 </div>
 </div>
