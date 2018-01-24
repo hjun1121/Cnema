@@ -1692,7 +1692,7 @@ a:hover {
 
 #ticket .section-theater .col-body .theater-select .theater-list .theater-area-list>ul>li>div
 	{
-	display: none;
+	/* display: none; */
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -1704,20 +1704,7 @@ a:hover {
 	{
 	display: block;
 }
-/*
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list{display:none;float:left;width:124px;height:100%;margin-left:2px;overflow:hidden;}
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul{width:154px;}
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li{clear:both;overflow:hidden;float:left;width:114px;height:35px;line-height:35px;margin-bottom:1px;}
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li a{display:block;color:#333333;font-size:12px;font-weight:bold;letter-spacing:-0.1em;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;vertical-align:middle;padding-left:7px;padding-right:7px;}
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li.dimmed{opacity:0.25; filter:alpha(opacity=25);}
-*/
-/*
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li.dimmed a {color:#666; background:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/step1/theatercgvlist_item_dimmed.png) no-repeat;}
-*/
-/*#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li.selected a {color:#fff;background:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/step1/theatercgvlist_item_selected.png) no-repeat;}*/
-/*#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li.selected{background-color:#333;width:112px;height:33px;line-height:33px;border:1px solid #000;}
-#ticket .section-theater .col-body .theater-select .theater-list .theater-cgv-list ul li.selected a{border:1px solid #5c5c5c;height:29px;line-height:29px;margin:1px;color:#fff;padding-left:5px;padding-right:5px;}
-*/
+
 #ticket .section-theater .col-body .theater-select .theater-list .area_theater_list ul
 	{
 	width: 154px;
