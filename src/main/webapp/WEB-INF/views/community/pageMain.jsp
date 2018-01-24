@@ -14,9 +14,9 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
 
 <script type="text/javascript">
-	
+
 	$(function(){
-		
+
 		$("#join_btn").click(function() {
 			$.ajax({
 				url: "../ajax/memberJoin",
