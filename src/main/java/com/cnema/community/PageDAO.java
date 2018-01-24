@@ -16,7 +16,7 @@ public class PageDAO {
 	
 	@Inject
 	private SqlSession sqlSession;
-	private static final String NAMESPACE = "communityMapper.";
+	private static final String NAMESPACE = "pageMapper.";
 	
 	//pageContentsWrite
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO){
