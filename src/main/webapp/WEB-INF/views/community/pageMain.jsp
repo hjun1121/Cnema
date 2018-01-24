@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,35 +17,6 @@
 
 	$(function(){
 
-		$("#join_btn").click(function() {
-			$.ajax({
-				url: "../ajax/memberJoin",
-				type: "POST",
-				data: {
-					page_num:${page.page_num},
-					id:${member.id}
-				},
-				success: function(data) {
-					alert(data);
-				}
-			});
-		});
-		
-		
-		$("#drop_btn").click(function() {
-			$.ajax({
-				url: "../ajax/memberDrop",
-				type: "POST",
-				data: {
-					page_num:${page.page_num},
-					id:${member.id}
-				},
-				success: function(data) {
-					alert(data);
-				}
-			});
-		
-		});
 		
 		$("#deletePage_btn").click(function() {
 			alert("페이지 삭제하기");
@@ -111,29 +82,32 @@
 		<!-- 채팅 바 -->
 		<c:if test="${not empty member}">
 		<div id="chatting_div" style="width:276px; height: 28px; bottom: 0; right: 0; position: fixed; margin: 0 15px; border: 1px solid #dddfe2; background-color: #f6f7f9;">
+			<input style="background-color: #f6f7f9; line-height:28px; border: none;" type="button" id="chatting_btn" value="채팅하기">
 			<c:forEach items="${pageMember}" var="pm">
 <%-- 				<img alt="${pm.id} 프로필" src="../resources/profil/${pm.fileName}"> ${pm.id} --%>
 <%-- 				${pm.id} --%>
-				<input style="background-color: #f6f7f9; line-height:28px; border: none;" type="button" id="chatting_btn" value="채팅하기">
 			</c:forEach>
 		</div>
 		</c:if>
 	</div>
 
-	<form action="" id="frm" method="POST">
+	<form action="" id="frm" name="frm" method="POST">
 		<input type="hidden" name="page_num" value="${page.page_num}">
-		<input type="hidden" name="pageMember_num" value="">
+		<c:if test="${memberCheck eq 11 }">
+			<input type="hidden" name="pageMember_num" value="${member_num}">
+		</c:if>
 	</form>
 	
-	<c:choose>
-		<c:when test="${not empty member and memberCheck eq 11}">
-			<input type="button" id="drop_btn" value="페이지 탈퇴하기">
-		</c:when>
 <%-- 		<c:when test="${not empty member and memberCheck eq 20}"> --%>
 <!-- 			<input type="button" id="deletePage_btn" value="페이지 삭제하기"> -->
 <%-- 		</c:when> --%>
+	<c:choose>
+		<c:when test="${memberCheck eq 11}">
+			<input type="button" id="drop_btn" value="페이지 탈퇴하기">
+		</c:when>
 		<c:otherwise>
-			<input type="button" id="join_btn" value="페이지 가입하기">
+			<c:if test="${memberCheck ne 20 || memberCheck ne 11}"><input type="button" id="join_btn" value="페이지 가입하기"></c:if>
+			<c:if test="${empty member}"></c:if> 
 		</c:otherwise>
 	</c:choose>
 
