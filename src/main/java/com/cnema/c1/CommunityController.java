@@ -28,6 +28,22 @@ public class CommunityController {
 	public void pageContentsWrite()throws Exception {
 	}
 	
+	
+	
+	//페이지 가입하기
+	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
+	public void pageMemberJoin() throws Exception {
+		
+	}
+	
+	
+	//페이지 탈퇴하기
+	@RequestMapping(value = "pageMemberDrop", method=RequestMethod.POST)
+	public void pageMemberDrop() throws Exception {
+		
+	}
+	
+	
 	//pageContentsWrite
 	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.POST)
 	public void pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception {
