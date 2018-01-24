@@ -19,6 +19,7 @@
 		<interceptor>
 			<mapping path="/myPage/*"/>
 			<mapping path="/member/*"/>
+			<mapping path="/admin/myQnaList"/>
 			<exclude-mapping path="/member/memberLogin"/>
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberLogout"/>
@@ -34,7 +35,7 @@
 			<exclude-mapping path="/notice/noticeView"/>
 			<exclude-mapping path="/event/eventList"/>
 			<exclude-mapping path="/event/eventView"/>
-			
+			<exclude-mapping path="/admin/myQnaList"/>
 			<beans:ref bean="admin"/>
 		</interceptor>
 		

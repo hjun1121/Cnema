@@ -128,7 +128,8 @@ $(function(){
 		var id = $("#id").val();
 		if(id==null)
 		{
-			alert('회원 로그인하세요');	
+			alert('회원 로그인하세요1');	
+			location.href="../member/memberLogin?path=event/eventView&num="+num;
 		}
 		else{
 		var type= Math.floor(Math.random() * 2);//0 또는 1 만 나오게 한다.
@@ -221,7 +222,7 @@ ${view.contents}
 <input type="hidden" id="id" value="${member.id}">
 </c:if>
 <div class="joinImgBtn">
-<a id="join" href=""><img alt="" src="../resources/images/common/btn/eventJoin.png"> </a>
+<a id="join" href="#" onclick="return false;"><img alt="" src="../resources/images/common/btn/eventJoin.png"> </a>
 </div>
 
 </div>

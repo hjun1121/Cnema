@@ -37,7 +37,7 @@
 					<li><a href="${pageContext.request.contextPath }/member/memberLogout" class="join">로그아웃</a></li>
 					<li><a href="${pageContext.request.contextPath }/member/myPageView" class="myPage">마이페이지</a></li>
 				</c:if>
-					<li><a href="#" class="vip">찾아오시는 길</a></li>
+					<li><a href="${pageContext.request.contextPath }/common/map" class="vip">찾아오시는 길</a></li>
 				</ul>
 			</div>
             
