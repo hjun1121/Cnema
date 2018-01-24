@@ -50,14 +50,14 @@ public class MemberDAO {
 	}
 	
 	/*heeseong*/
-	public List<MemberDTO> memberList() throws Exception{
+	/*public List<MemberDTO> memberList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"memberList");
-	}
+	}*/
 	/*heeseong*/
-	public List<MemberDTO> memberSList(String kind) throws Exception{
+	public List<MemberDTO> memberList(String kind) throws Exception{
 		Map<String, String> map = new HashMap<>();
 		map.put("kind", kind);
-		return sqlSession.selectList(NAMESPACE+"memberSList",map);
+		return sqlSession.selectList(NAMESPACE+"memberList",map);
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{
