@@ -28,7 +28,6 @@ public class CommunityService {
 		return result;
 	}
 	
-	
 	//memberDrop
 	public int memberDrop(int page_num, String id) throws Exception {
 		int result = pageDAO.memberDrop(page_num, id);
@@ -36,7 +35,6 @@ public class CommunityService {
 		
 		return result;
 	}
-	
 	
 	//memberCheck
 	public int memberCheck(int page_num, String id) throws Exception {
@@ -93,8 +91,8 @@ public class CommunityService {
 	
 	
 	//selectRecommendPage
-	public List<PageDTO> selectRecommendPage() throws Exception {
-		return pageDAO.selectRecommendPage();
+	public List<PageDTO> recommendPageList(String search) throws Exception {
+		return pageDAO.recommendPageList(search);
 	}
 	
 	
@@ -102,6 +100,4 @@ public class CommunityService {
 	public List<PageDTO> selectPageList(String id) throws Exception {
 		return pageDAO.selectPageList(id);
 	}
-	
-
 }
