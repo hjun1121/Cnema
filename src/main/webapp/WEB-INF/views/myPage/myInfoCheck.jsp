@@ -14,6 +14,12 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var message = '${message}';
+	if(message != ""){
+		alert(message);
+	}
+</script>
 <title>비밀번호 확인</title>
 </head>
 <body>
@@ -72,7 +78,7 @@
 			        <div class="info-confirm">
 			            <p>
 			                <strong>아이디</strong> 
-			                <strong>${id }</strong>
+			                <strong>${member.id }</strong>
 			            </p>
 			                <p>
 			                    <strong><label for="txtPassword">비밀번호</label></strong> 
