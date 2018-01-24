@@ -36,7 +36,7 @@ $(function(){
             			<strong id="pointTitle">${movieDTO.movie_name }</strong>
                     </div>
                     
-                    <!-- <div class="likeornot">
+                    <div class="likeornot">
                     	<div class="writerinfo">
                     		<div class="box-image">
                           		<span class="thumb-image">
@@ -62,7 +62,7 @@ $(function(){
                                 </label>         
                               </div>        
                         </div>       
-                        </div> -->
+                        </div>
                         <form action="movieReview" name="rFrm" method="POST">
 							<input type="hidden" name="movie_num" value="${movieDTO.movie_num }">
                        			<div class="textbox">       
