@@ -120,7 +120,9 @@
 		</c:if>
 	</div>
 
-	<form action="" id="frm">
+	<form action="" id="frm" method="POST">
+		<input type="hidden" name="page_num" value="${page.page_num}">
+		<input type="hidden" name="pageMember_num" value="">
 	</form>
 	
 	<c:choose>
