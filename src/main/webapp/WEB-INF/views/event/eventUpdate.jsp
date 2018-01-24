@@ -27,6 +27,94 @@
 	height: 400px;
 	
 }
+table {
+    border-top: solid 1px #d6d4ca;
+    border-bottom: solid 1px #b8b6aa;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+th{
+    line-height: 27px;
+    vertical-align: top;
+    padding: 15px 0px 15px 13px;
+    border-top: 1px solid #d6d4ca;
+    text-align: left;
+    font-weight: normal
+}
+
+td{
+	padding: 15px 5px;
+    text-align: left;
+	border-top: solid 1px #d6d4ca;
+	font-weight: normal;
+    line-height: 1.5em;
+    vertical-align: middle
+}
+#btn1{
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ede9dd; 
+    color: #7b7b7b; 
+ 	border:  2px solid #7b7b7b;
+ 
+	
+
+}
+#updateBtn{
+	
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+    float:right;
+}
+#title, .dateInput{
+
+background-color: #f1f0e5;
+ width:500px;
+ height: 30px;
+ border: 1px solid #ccc;
+}
+.dateInput{
+
+ width:150px;
+}
+textarea{
+width:620px;
+border: 1px solid #ccc;
+}
+.board_contents .tit{
+	color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -123,35 +211,50 @@
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
 <div class="board_contents">
-<h2>이벤트 수정하기</h2>
+<span class="tit">이벤트 수정하기</span><br><br>
 <form action="eventUpdate" method="post" id="frm" enctype="multipart/form-data">
-<div class="eventViewhead">
-    <h3><input type="text" name="title" value="${view.title }"></h3> 
    <input type="hidden" name="num" value="${view.num }">
-    <em class="date">
-        <span>기간: </span>
-        <input type="date" name="s_date" value="${view.s_date }">~ 
-        <input type="date" name="e_date" value="${view.e_date }">
-    </em>
-</div>
-<div class="eventViewContents">
+<table>
+	<tr>
+	<th>제목</th>
+	<td>
+    <input type="text" name="title" id="title" value="${view.title }"></td>
+    </tr>
+    
+    <tr>
+    
+    <th class="date">
+        <span>기간: </span></th>
+     <td>
+        <input type="date" name="s_date" class="dateInput" value="${view.s_date }"> &nbsp; <strong>~</strong>&nbsp;
+        <input type="date" name="e_date" class="dateInput" value="${view.e_date }">
+    </td>
+</tr>
+
+<tr>
+<th>내용</th>
+<td>
+
 <textarea id="contents" name="contents" rows="10" cols="30"> ${view.contents}</textarea>
 
-</div>
+</td>
+</tr>
 
-<!--  파일수정하기  -->
-<div class="eventViewFile">
-파일수정 : ${view.oriName }
+<tr>
+<th>파일수정</th>
+<td>
+현재 파일: ${view.oriName }<br>
 <input type="file" name="file">
-</div>
+</td>
+</tr>
 
-
-<a href="eventList">cancel</a>
+</table>
+<br>
+<a id="btn1" href="eventList">cancel</a>
 		
 <input type="submit" id="updateBtn" value="update"> 
 </form>	
 </div>
-			
 			</div><!--게시판 내용  -->
 	
 	
