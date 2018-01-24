@@ -10,7 +10,6 @@
 	</insert>
 	
 	
-	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}
 	</delete>
@@ -27,13 +26,7 @@
 	<select id="selectPageMemberList" resultType="pageMemberDTO">
 		select * from pagemember where page_num=#{page_num}
 	</select>
-	
-	<insert id="pageInsert" parameterType="pageDTO">
-		<selectKey order="BEFORE" resultType="int" keyProperty="page_num">
-			select movie_seq.nextval from dual
-		</selectKey>
-		 insert into page values(#{page_num}, #{page_name}, #{fileName}, #{oriName}, sysdate, 1, #{owner_id})
-	</insert>
+
 	
 	<insert id="memberInsert" parameterType="java.util.Map">
 		insert into pagemember values(movie_seq.nextval, #{pageDTO.page_num}, #{id}, sysdate,
@@ -52,12 +45,5 @@
 		select * from page where page_num=#{page_num}
 	</select>
 	
-	<select id="selectPageList" parameterType="String" resultType="pageDTO">
-		select P.* from page P, pagemember M where P.PAGE_NUM=M.PAGE_NUM and M.id=#{id}
-	</select>
-	
-	<select id="selectRecommendPage" resultType="pageDTO">
-		select * from page order by reg_date desc
-	</select>
 
 </mapper>
