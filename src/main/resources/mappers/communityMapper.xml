@@ -4,12 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="communityMapper">
 
-	<select id="selectPageList" parameterType="String" resultType="pageDTO">
-		select P.* from page P, pagemember M where P.PAGE_NUM=M.PAGE_NUM and M.id=#{id}
+	<select id="myPageList" parameterType="String" resultType="pageDTO">
+		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%'
 	</select>
 	
 	<select id="recommendPageList" resultType="pageDTO" parameterType="String">
 		select * from page where page_name like '%'||#{search}||'%'
 	</select>
-
+	
+	<!-- <select id="pageList" resultType="pageDTO">
+		select * from page where page_name like '%'||#{search}||'%'
+	</select> -->
 </mapper>

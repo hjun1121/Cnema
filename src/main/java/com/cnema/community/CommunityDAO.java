@@ -1,6 +1,8 @@
 package com.cnema.community;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -19,8 +21,15 @@ public class CommunityDAO {
 		return sqlSession.selectList(NAMESPACE+"recommendPageList",search);
 	}
 	
-	public List<PageDTO> selectPageList(String id) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"selectPageList", id);
+	public List<PageDTO> myPageList(String id,String search) throws Exception {
+		Map<String, Object> mpMap = new HashMap<>();
+		mpMap.put("id", id);
+		mpMap.put("search", search);
+		return sqlSession.selectList(NAMESPACE+"myPageList", mpMap);
 	}
+	
+	/*public List<PageDTO> pageList(String search) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"pageList",search);
+	}*/
 
 }

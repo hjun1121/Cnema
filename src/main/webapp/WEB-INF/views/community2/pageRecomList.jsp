@@ -13,24 +13,17 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
-
 <script type="text/javascript">
 $(function() {
+	var search='${search}';
+	$("#search").val(search);
+	
 	$("#sBtn").click(function(){
 		var search = $("#search").val();
-		location.href="communityMain?search="+search;
-	});
-	$("#moreBtn").click(function(){
-		location.href="pageRecomList";
-	});
-	$("#moreInsertBtn").click(function(){
-		location.href="pageInsertList";
+		location.href="pageRecomList?search="+search;
 	});
 });
 </script>
-
-</head>
-<body>
 <div id="cgvwrap"  style="text-align: center;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 <!-- 왼측 프로필 고정 바  -->
@@ -54,7 +47,7 @@ $(function() {
 		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px;">
 			<h2 style="font-size: 20px; color: #333333;">가입한 페이지</h2>
 			<br>
-			<c:forEach items="${pageList}" var="page">
+			<c:forEach items="${myPageList}" var="page">
 				<a href="${pageScope.pageContext.request.contextPath }/pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
 			</c:forEach>
 		</div>
@@ -75,23 +68,22 @@ $(function() {
 </div> 
 
 <div style="width: 60%; height: 1080px; background-color: #f0f0f0; margin: 0 auto; margin-top: 30px;">
-
-	<!-- 가입한 페이지  -->
-	<div style="height: 50%; background-color: gray;">
-		<input type="button" value="+더보기" id="moreInsertBtn"><br>
-		<c:forEach items="${pageList}" var="page" varStatus="count">
-			<img alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
-			${page.page_name}
-		</c:forEach>
+	<div>
+		<input type="search" name="search" id="search">
+		<input type="button" id="sBtn" class="round gray" value="GO">
 	</div>
-	<!-- 추천 페이지 -->
-	<div style="height: 50%; background-color: #f0f0f0;">
-		<input type="button" value="+더보기" id="moreBtn"><br>
-		<c:forEach items="${recommendPage}" var="recommend">
-			<img alt="${recommend.page_name}" src="../resources/page_logo/${recommend.fileName}">
-			${recommend.page_name}
-		</c:forEach>
-	</div>
+	<c:forEach items="${recommendPage }" var="pageDTO">
+		<div style="display: inline-block; float: left; border: 1px solid #dddfe2; margin-left: 35px; height: 282px; margin: 0 12px 12px 0; background-color: white;">
+			<div>
+				<img alt="${pageDTO.page_name}" src="../resources/page_logo/${pageDTO.fileName}" style="width: 222px; height: 222px;">
+			</div>
+			<div style="margin-top: 10px;">
+				<input type="text" name="page_name" value="${pageDTO.page_name }"
+				style="color: #1d2129; display: inline-block; font-size: 14px; font-weight: bold; border: none;"><br>
+				<input type="button" id="pageInsert" value="가입하기" style="display: inline-block; margin-left: 130px; background-color: #e9ebee; color: #4b4f56; border: 1px solid #ced0d4; border-radius: 2px;">
+			</div>
+		</div>
+	</c:forEach>
 </div>
 </div>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>

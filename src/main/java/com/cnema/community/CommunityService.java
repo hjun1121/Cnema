@@ -16,7 +16,11 @@ public class CommunityService {
 		return communityDAO.recommendPageList(search);
 	}
 	
-	public List<PageDTO> selectPageList(String id) throws Exception {
-		return communityDAO.selectPageList(id);
+	public List<PageDTO> myPageList(String id,String search) throws Exception {
+		return communityDAO.myPageList(id,search);
 	}
+	
+	/*public List<PageDTO> pageList(String search) throws Exception{
+		return communityDAO.pageList(search);
+	}*/
 }

@@ -99,7 +99,6 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(num);
 		model.addAttribute("num", num);
 		model.addAttribute("reserve2", reserve2DTO);
 		model.addAttribute("reserve", reserveDTO);
@@ -110,7 +109,6 @@ public class MemberController {
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam(defaultValue="0", required=false)int num, String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		ModelAndView mv = new ModelAndView();
-		System.out.println(num);
 		MemberDTO member = null;
 		try {
 			member = memberService.login(memberDTO);

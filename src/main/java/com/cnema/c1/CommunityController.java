@@ -1,5 +1,6 @@
 package com.cnema.c1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,20 +23,16 @@ public class CommunityController {
 	
 	//communityMain
 	@RequestMapping(value="communityMain", method=RequestMethod.GET)
-	public ModelAndView communityMain(HttpSession session,String search) throws Exception {
+	public ModelAndView communityMain(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<PageDTO> pageList = null;
-		List<PageDTO> recommendPage = null;
-		if(search==null){
-			search="";
-		}
-		recommendPage = communityService.recommendPageList(search);
+		List<PageDTO> pageList = new ArrayList<>();
+		List<PageDTO> recommendPage = new ArrayList<>();
+		recommendPage = communityService.recommendPageList("");
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
-				pageList = communityService.selectPageList(memberDTO.getId());
+				pageList = communityService.myPageList(memberDTO.getId(),"");
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,9 +42,52 @@ public class CommunityController {
 		mv.setViewName("community2/communityMain");
 		return mv;
 	}
-	@RequestMapping(value="recommnedPageList",method=RequestMethod.GET)
-	public ModelAndView recommendPageList() throws Exception{
+	
+	@RequestMapping(value="pageRecomList",method=RequestMethod.GET)
+	public ModelAndView pageRecomList(HttpSession session,String search) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		if(search==null){
+			search="";
+		}
+		
+		List<PageDTO> pageList = new ArrayList<>();
+		List<PageDTO> myPageList = new ArrayList<>();
+		List<PageDTO> recomPageList = new ArrayList<>();
+		
+ 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		pageList = communityService.recommendPageList(search);
+		myPageList = communityService.myPageList(memberDTO.getId(),"");
+		recomPageList = communityService.recommendPageList("");
+		
+		mv.addObject("search", search);
+		mv.addObject("recommendPage", recomPageList);
+		mv.addObject("myPageList", myPageList);
+		mv.addObject("pageList", pageList);
+		mv.setViewName("community2/pageRecomList");
+		return mv;
+	}
+	
+	@RequestMapping(value="pageInsertList",method=RequestMethod.GET)
+	public ModelAndView pageInsertList(HttpSession session,String search) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		if(search==null){
+			search="";
+		}
+		
+		List<PageDTO> pageList = new ArrayList<>();
+		List<PageDTO> myPageList = new ArrayList<>();
+		List<PageDTO> recomPageList = new ArrayList<>();
+		
+ 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		pageList = communityService.myPageList(memberDTO.getId(),search);
+		myPageList = communityService.myPageList(memberDTO.getId(),"");
+		recomPageList = communityService.recommendPageList("");
+		
+		mv.addObject("search", search);
+		mv.addObject("recommendPage", recomPageList);
+		mv.addObject("myPageList", myPageList);
+		mv.addObject("pageList", pageList);
+		mv.setViewName("community2/pageInsertList");
 		return mv;
 	}
 }
