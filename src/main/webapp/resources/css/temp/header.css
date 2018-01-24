@@ -1,138 +1,440 @@
 @CHARSET "UTF-8";
 
+#cgvwrap .cgv-ad-wrap .sect-head-ad, .head, .im-wrap, #contents, .foot,
+	.sect-smuse, .sect-cinfo {
+	position: relative;
+	width: 980px;
+	margin: 0 auto;
+}
 
-#cgvwrap .cgv-ad-wrap .sect-head-ad,
-.head, .im-wrap, 
-#contents, 
-.foot, 
-.sect-smuse, 
-.sect-cinfo {position:relative; width:980px; margin:0 auto;}
-.head h1, .sect-srh, .sect-booking,.sect-phototicket {position:absolute; z-index:1;}
-.cf:before,.cf:after                                                    {content: " "; /* 1 */display: table; /* 2 */}
-.cf:after                                                               {clear: both;}
-.cf                                                                     {*zoom: 1;}
+.head h1, .sect-srh, .sect-booking, .sect-phototicket {
+	position: absolute;
+	z-index: 1;
+}
 
+.cf:before, .cf:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
 
-#cgvwrap {position:relative; width:100%;min-width:980px}
-#cgvwrap #header {background:#fdfcf0 url(../../../resources/images/common/bg/bg_header.gif) repeat-x 0 0;}
-#cgvwrap #header > .head {position:relative; z-index:100;}
-#cgvwrap #header > .head h1 {top:40px; left:0; width:223px; height:85px; padding:18px 0 0 22px; z-index:110;}
-#cgvwrap #header > .head h1 > a {display:block;}
+.cf:after {
+	clear: both;
+}
 
+.cf {
+	*zoom: 1;
+}
+
+#cgvwrap {
+	position: relative;
+	width: 100%;
+	min-width: 980px
+}
+
+#cgvwrap #header {
+	background: #fdfcf0
+		url(../../../resources/images/common/bg/bg_header.gif) repeat-x 0 0;
+}
+
+#cgvwrap #header>.head {
+	position: relative;
+	z-index: 100;
+}
+
+#cgvwrap #header>.head h1 {
+	top: 40px;
+	left: 0;
+	width: 223px;
+	height: 85px;
+	padding: 18px 0 0 22px;
+	z-index: 110;
+}
+
+#cgvwrap #header>.head h1>a {
+	display: block;
+}
 
 /* Header AD Area */
-#cgvwrap .cgv-ad-wrap {width:100%; height:80px;}
-#cgvwrap .cgv-ad-wrap .sect-head-ad {width:100%; height:80px; margin:0 auto; text-align:center;}
-.sect_txt_banner {height:80px;background:#fefcef}
-.sect_txt_banner iframe,.sect_txt_banner .inner {display:block;width:980px;height:80px;margin:0 auto}
-iframe#TopBanner {margin: 0 auto;display:block}
-.adreduce {position:relative;height:80px;margin:0 auto}
-.adextend {position: absolute;left: 50%;top: 0px;z-index: 1000;margin: 0 auto;width: 980px;margin-left: -490px;}
+#cgvwrap .cgv-ad-wrap {
+	width: 100%;
+	height: 80px;
+}
 
+#cgvwrap .cgv-ad-wrap .sect-head-ad {
+	width: 100%;
+	height: 80px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.sect_txt_banner {
+	height: 80px;
+	background: #fefcef
+}
+
+.sect_txt_banner iframe, .sect_txt_banner .inner {
+	display: block;
+	width: 980px;
+	height: 80px;
+	margin: 0 auto
+}
+
+iframe#TopBanner {
+	margin: 0 auto;
+	display: block
+}
+
+.adreduce {
+	position: relative;
+	height: 80px;
+	margin: 0 auto
+}
+
+.adextend {
+	position: absolute;
+	left: 50%;
+	top: 0px;
+	z-index: 1000;
+	margin: 0 auto;
+	width: 980px;
+	margin-left: -490px;
+}
 
 /* Background */
-.sect-service .util li > a, 
-.sect-service .gnb li > a, 
-.lnb > ul > li > a, 
-.sect-service a.showtimes, 
-.sect-booking > a, 
-.sect-phototicket > a, 
-.sect-person li > a, 
-.line-v, 
-.line-dot, 
-.sect-smuse li > a, 
-.sect-cinfo .share a, 
-.sect-cinfo .logo {overflow:hidden; background-image:url(../../../resources/images/common/sprite/common_sprite_area_v4_2016.png); background-repeat:no-repeat; text-indent:100%; white-space:nowrap;}
-.lnb h2, 
-.sect-smuse h2, 
-.sect-cinfo h2 {font:0px/0 a; visibility:hidden;}
-.sect-service h2, 
-.im-wrap .lnb > ul > li > a, 
-.sect-srh h2, 
-.sect-booking h2, 
-.sect-booking > a, 
-.sect-phototicket h2, 
-.sect-phototicket > a, 
-.sect-person h2 {font:0px/0 a;}
+.sect-service .util li>a, .sect-service .gnb li>a, .lnb>ul>li>a,
+	.sect-service a.showtimes, .sect-booking>a, .sect-phototicket>a,
+	.sect-person li>a, .line-v, .line-dot, .sect-smuse li>a, .sect-cinfo .share a,
+	.sect-cinfo .logo {
+	overflow: hidden;
+	background-image:
+		url(../../../resources/images/common/sprite/common_sprite_area_v4_2016.png);
+	background-repeat: no-repeat;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+.lnb h2, .sect-smuse h2, .sect-cinfo h2 {
+	font: 0px/0 a;
+	visibility: hidden;
+}
+
+.sect-service h2, .im-wrap .lnb>ul>li>a, .sect-srh h2, .sect-booking h2,
+	.sect-booking>a, .sect-phototicket h2, .sect-phototicket>a,
+	.sect-person h2 {
+	font: 0px/0 a;
+}
 
 /* Display:block */
-.sect-service > .util li > a, .im-wrap .lnb > ul > li > a, .im-wrap > h2 > a, .im-wrap .ad-partner > a,
-.sect-booking > a,.sect-phototicket > a, .sect-person li > a, .sect-common li > a, .ciols-movie li > a, .sect-smuse li > a, .policy li a, .sect-cinfo .share a, .sect-bcrumb li > a,
-.sect-ad-external > a, .cols-banner .col-hd > a, .sect-showtimes .info-timetable a, .sect-aside-banner .aside-content-btm > a, .sect-aside-banner > .btn-top > a 
-{display:block;}
-
-
+.sect-service>.util li>a, .im-wrap .lnb>ul>li>a, .im-wrap>h2>a, .im-wrap .ad-partner>a,
+	.sect-booking>a, .sect-phototicket>a, .sect-person li>a, .sect-common li>a,
+	.ciols-movie li>a, .sect-smuse li>a, .policy li a, .sect-cinfo .share a,
+	.sect-bcrumb li>a, .sect-ad-external>a, .cols-banner .col-hd>a,
+	.sect-showtimes .info-timetable a, .sect-aside-banner .aside-content-btm>a,
+	.sect-aside-banner>.btn-top>a {
+	display: block;
+}
 
 /* 서비스 메뉴 영역 */
-.sect-service > .util li > a > span,
-.sect-service > .gnb li > a > span {visibility:hidden;}
+.sect-service>.util li>a>span, .sect-service>.gnb li>a>span {
+	visibility: hidden;
+}
 
-.sect-service {overflow:hidden; position:relative; height:30px;}
-.sect-service > .util {float:left;}
-.sect-service > .util > li, .sect-service > .gnb > li, .im-wrap .lnb li {display:inline-block; float:left;}
-.sect-service > .util li {border-right:1px solid #ddd;}
-.sect-service > .util li:first-child {border-left:1px solid #ddd;}
-.sect-service > .util li > a {padding:0 10px; line-height:30px;}
-.sect-service > .util li > a.app {width:74px; height:30px; background-position:10px -714px;}
-.sect-service > .util li > a.like {width:44px; height:30px; background-position:-85px -714px;}
-.sect-service > .util li > a.frugal {width:85px; height:30px; background-position:-151px -714px;}
-.sect-service > .util li > a.insta {width:60px; height:30px; background-position:-263px -714px;}
-.sect-service > .gnb {float:right; margin:0; text-align:left;}
-.sect-service > .gnb li {background:url(../../../resources/images/common/bg/bg_v_line.gif) no-repeat 0 50%;}
-.sect-service > .gnb li:first-child {margin-left:0; background-image:none;}
-.sect-service > .gnb li > a {padding:0 10px; line-height:30px;}
-.sect-service > .gnb li > a.login {width:29px;/*  background-position:10px 9px;  */background: none; font-weight: bold;}
-.sect-service > .gnb li > a.myPage{width:39px; background: none;font-weight: bold;}
-.sect-service > .gnb li > a.logout {width:43px;/*  background-position:-521px 9px; */background: none;font-weight: bold;}
-.sect-service > .gnb li > a.join {width:39px; /* background-position:-42px 9px; */background: none;font-weight: bold;}
-.sect-service > .gnb li > a.mycgv {width:39px;/*  background-position:-103px 9px; */background: none;font-weight: bold;}
-.sect-service > .gnb li > a.vip {width:62px;/*  background-position:-170px 9px; */background: none;font-weight: bold;}
-.sect-service > .gnb li > a.club {width:53px;/*  background-position:-254px 9px; */background: none;font-weight: bold;}
-.sect-service > .gnb li > a.customer {width:38px; /* background-position:-328px 9px; */background: none;font-weight: bold;}
-.sect-service > .gnb li > a.showtimes {width:106px; padding-right:0; /* background-position:-388px 9px; */background: none;font-weight: bold;}
+.sect-service {
+	overflow: hidden;
+	position: relative;
+	height: 30px;
+}
 
+.sect-service>.util {
+	float: left;
+}
 
+.sect-service>.util>li, .sect-service>.gnb>li, .im-wrap .lnb li {
+	display: inline-block;
+	float: left;
+}
+
+.sect-service>.util li {
+	border-right: 1px solid #ddd;
+}
+
+.sect-service>.util li:first-child {
+	border-left: 1px solid #ddd;
+}
+
+.sect-service>.util li>a {
+	padding: 0 10px;
+	line-height: 30px;
+}
+
+.sect-service>.util li>a.app {
+	width: 74px;
+	height: 30px;
+	background-position: 10px -714px;
+}
+
+.sect-service>.util li>a.like {
+	width: 44px;
+	height: 30px;
+	background-position: -85px -714px;
+}
+
+.sect-service>.util li>a.frugal {
+	width: 85px;
+	height: 30px;
+	background-position: -151px -714px;
+}
+
+.sect-service>.util li>a.insta {
+	width: 60px;
+	height: 30px;
+	background-position: -263px -714px;
+}
+
+.sect-service>.gnb {
+	float: right;
+	margin: 0;
+	text-align: left;
+}
+
+.sect-service>.gnb li {
+	background: url(../../../resources/images/common/bg/bg_v_line.gif)
+		no-repeat 0 50%;
+}
+
+.sect-service>.gnb li:first-child {
+	margin-left: 0;
+	background-image: none;
+}
+
+.sect-service>.gnb li>a {
+	padding: 0 10px;
+	line-height: 30px;
+}
+
+.sect-service>.gnb li>a.login {
+	width: 29px; /*  background-position:10px 9px;  */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.myPage {
+	width: 39px;
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.logout {
+	width: 43px; /*  background-position:-521px 9px; */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.join {
+	width: 39px; /* background-position:-42px 9px; */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.mycgv {
+	width: 39px; /*  background-position:-103px 9px; */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.vip {
+	width: 62px; /*  background-position:-170px 9px; */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.club {
+	width: 53px; /*  background-position:-254px 9px; */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.customer {
+	width: 38px; /* background-position:-328px 9px; */
+	background: none;
+	font-weight: bold;
+}
+
+.sect-service>.gnb li>a.showtimes {
+	width: 106px;
+	padding-right: 0; /* background-position:-388px 9px; */
+	background: none;
+	font-weight: bold;
+}
 
 /* 주메뉴 영역 */
-.im-wrap {position:relative; z-index:100; height:50px; padding-top:69px;}
-.im-wrap > h2 {position:absolute; top:28px; left:50%; width:428px; height:31px; margin-left:-214px; text-align:center;}
-.im-wrap .lnb {width:376px; margin:0 auto; clear:both;}
-.im-wrap .lnb > ul > li {position:relative; height:35px;}
-.im-wrap .lnb > ul > li:first-child {margin-left:0;}
-.im-wrap .lnb > ul > li.on .sub-wrap {display:block;}
-.im-wrap .lnb > ul > li.booking {margin-left:25px;}
-.im-wrap .lnb > ul > li.theaters {margin-left:25px;}
-.im-wrap .lnb > ul > li.event {margin-left:40px;}
-.im-wrap .lnb > ul > li.culture {margin-left:40px;}
-.im-wrap .lnb > ul > li.giftshop {margin-left:55px;}
-.im-wrap .lnb > ul > li.movie > a, 
-.im-wrap .lnb > ul > li.event > a, 
-.im-wrap .lnb > ul > li.theaters > a, 
-.im-wrap .lnb > ul > li.giftshop > a, 
-.im-wrap .lnb > ul > li.booking > a,
-.im-wrap .lnb > ul > li.culture > a {height:17px; text-align:center;}
-.im-wrap .lnb > ul > li.movie > a {width:60px; background-position:13px -28px;}
-.im-wrap .lnb > ul > li.booking > a {width:60px; background-position:-77px -28px;}
-.im-wrap .lnb > ul > li.theaters > a {width:60px; background-position:-166px -28px;}
-.im-wrap .lnb > ul > li.event > a {width:47px; background-position:-272px -28px;}
-.im-wrap .lnb > ul > li.culture > a {width:90px; background-position:-517px -28px;}
-.im-wrap .lnb > ul > li.giftshop > a {width:62px; background-position:-379px -28px;}
+.im-wrap {
+	position: relative;
+	z-index: 100;
+	height: 50px;
+	padding-top: 69px;
+}
 
-.im-wrap .lnb .sub-wrap {display:none; position:absolute; top:31px; z-index:100; width:164px; padding:3px; padding-bottom: 15px; background:url(../../../resources/images/common/bg/bg_smenu.png) repeat-y 0 0;}
-.im-wrap .lnb > ul > li.movie > .sub-wrap {left:-58px;}
-.im-wrap .lnb > ul > li.booking > .sub-wrap {left:-61px;}
-.im-wrap .lnb > ul > li.theaters > .sub-wrap {left:-58px;}
-.im-wrap .lnb > ul > li.event > .sub-wrap {left:-40px;}
-.im-wrap .lnb > ul > li.culture > .sub-wrap {left:-37px;}
+.im-wrap>h2 {
+	position: absolute;
+	top: 28px;
+	left: 50%;
+	width: 428px;
+	height: 31px;
+	margin-left: -214px;
+	text-align: center;
+}
 
-.im-wrap .lnb .sub-wrap > .smenu {padding:20px 15px;}
-.im-wrap .lnb .sub-wrap > i {display:block; position:absolute; top:-10px; left:50%; width:19px; height:10px; margin-left:-9px; background:url(../../../resources/images/common/ico/ico_smenu_arrow.png) no-repeat 0 0;}
-.im-wrap .lnb .sub-wrap > .smenu li {margin-top:15px;}
-.im-wrap .lnb .sub-wrap > .smenu li:first-child {margin-top:0;}
-.im-wrap .lnb .sub-wrap > .smenu li > a {display:block; width:130px; color:#fff; font-family:'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif; font-size:15px; line-height:15px;}
-.im-wrap .lnb .sub-wrap > .smenu li > a:hover, 
-.im-wrap .lnb .sub-wrap > .smenu li > a:focus, 
-.im-wrap .lnb .sub-wrap > .smenu li.on > a {background:url(../../../resources/images/common/ico/ico_smenu_hand.png) no-repeat 100% 1px; color:#e71a0f;}
-.im-wrap .lnb .sub-wrap > .smenu li.last {padding-top:15px; border-top:2px solid #828282;}
+.im-wrap .lnb {
+	width: 376px;
+	margin: 0 auto;
+	clear: both;
+}
 
+.im-wrap .lnb>ul>li {
+	position: relative;
+	height: 35px;
+}
 
+.im-wrap .lnb>ul>li:first-child {
+	margin-left: 0;
+}
+
+.im-wrap .lnb>ul>li.on .sub-wrap {
+	display: block;
+}
+
+.im-wrap .lnb>ul>li.booking {
+	margin-left: 25px;
+}
+
+.im-wrap .lnb>ul>li.theaters {
+	margin-left: 25px;
+}
+
+.im-wrap .lnb>ul>li.event {
+	margin-left: 40px;
+}
+
+.im-wrap .lnb>ul>li.culture {
+	margin-left: 40px;
+}
+
+.im-wrap .lnb>ul>li.giftshop {
+	margin-left: 55px;
+}
+
+.im-wrap .lnb>ul>li.movie>a, .im-wrap .lnb>ul>li.event>a, .im-wrap .lnb>ul>li.theaters>a,
+	.im-wrap .lnb>ul>li.giftshop>a, .im-wrap .lnb>ul>li.booking>a, .im-wrap .lnb>ul>li.culture>a
+	{
+	height: 17px;
+	text-align: center;
+}
+
+.im-wrap .lnb>ul>li.movie>a {
+	width: 60px;
+	background-position: 13px -28px;
+}
+
+.im-wrap .lnb>ul>li.booking>a {
+	width: 60px;
+	background-position: -77px -28px;
+}
+
+.im-wrap .lnb>ul>li.theaters>a {
+	width: 60px;
+	background-position: -166px -28px;
+}
+
+.im-wrap .lnb>ul>li.event>a {
+	width: 47px;
+	background-position: -272px -28px;
+}
+
+.im-wrap .lnb>ul>li.culture>a {
+	width: 90px;
+	background-position: -517px -28px;
+}
+
+.im-wrap .lnb>ul>li.giftshop>a {
+	width: 62px;
+	background-position: -379px -28px;
+}
+
+.im-wrap .lnb .sub-wrap {
+	display: none;
+	position: absolute;
+	top: 31px;
+	z-index: 100;
+	width: 164px;
+	padding: 3px;
+	padding-bottom: 15px;
+	background: url(../../../resources/images/common/bg/bg_smenu.png)
+		repeat-y 0 0;
+}
+
+.im-wrap .lnb>ul>li.movie>.sub-wrap {
+	left: -58px;
+}
+
+.im-wrap .lnb>ul>li.booking>.sub-wrap {
+	left: -61px;
+}
+
+.im-wrap .lnb>ul>li.theaters>.sub-wrap {
+	left: -58px;
+}
+
+.im-wrap .lnb>ul>li.event>.sub-wrap {
+	left: -40px;
+}
+
+.im-wrap .lnb>ul>li.culture>.sub-wrap {
+	left: -37px;
+}
+
+.im-wrap .lnb .sub-wrap>.smenu {
+	padding: 20px 15px;
+}
+
+.im-wrap .lnb .sub-wrap>i {
+	display: block;
+	position: absolute;
+	top: -10px;
+	left: 50%;
+	width: 19px;
+	height: 10px;
+	margin-left: -9px;
+	background:
+		url(../../../resources/images/common/ico/ico_smenu_arrow.png)
+		no-repeat 0 0;
+}
+
+.im-wrap .lnb .sub-wrap>.smenu li {
+	margin-top: 15px;
+}
+
+.im-wrap .lnb .sub-wrap>.smenu li:first-child {
+	margin-top: 0;
+}
+
+.im-wrap .lnb .sub-wrap>.smenu li>a {
+	display: block;
+	width: 130px;
+	color: #fff;
+	font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+	font-size: 15px;
+	line-height: 15px;
+}
+
+.im-wrap .lnb .sub-wrap>.smenu li>a:hover, .im-wrap .lnb .sub-wrap>.smenu li>a:focus,
+	.im-wrap .lnb .sub-wrap>.smenu li.on>a {
+	background: url(../../../resources/images/common/ico/ico_smenu_hand.png)
+		no-repeat 100% 1px;
+	color: #e71a0f;
+}
+
+.im-wrap .lnb .sub-wrap>.smenu li.last {
+	padding-top: 15px;
+	border-top: 2px solid #828282;
+}
