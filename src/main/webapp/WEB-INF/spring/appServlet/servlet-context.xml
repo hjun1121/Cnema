@@ -18,14 +18,19 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/myPage/*"/>
+			<mapping path="/member/*"/>
+			<exclude-mapping path="/member/memberLogin"/>
+			<exclude-mapping path="/member/memberJoin"/>
+			<exclude-mapping path="/member/joinAgree"/>
 			<beans:ref bean="login"/>
 		</interceptor>
 		
 		<interceptor>
 			<mapping path="/admin/*"/>
-			<mapping path="/notice/noticeWrite"/>
-			<mapping path="/notice/noticeUpdate"/>	
-			<mapping path="/notice/noticeDelete"/>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/noticeList"/>
+			<exclude-mapping path="/notice/noticeView"/>
+			
 			<beans:ref bean="admin"/>
 		</interceptor>
 		

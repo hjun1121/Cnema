@@ -159,13 +159,11 @@
 	                	<a href="#">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
-		                    <!-- <li><a href="#">영화관람권</a></li> -->
 	                	</ul>
 	           		</li>
 	            	<li>
                     	<a href="#">나의 포인트 관리 <i></i></a>
 	                	<ul>
-	                    	<!-- <li><a href="#">매점이용 포인트 적립</a></li> -->
                         	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
@@ -187,12 +185,13 @@
 		            <c:if test="${!empty member and member.type eq 20 }">
 		            <li>
 	                    <a href="#">관리자 <i></i></a>
-		                <ul>
+		               <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
-		                    <li><a href="../admin/theaterList">극장목록</a></li>
-		                    <li><a href="../admin/scheduleList">상영 시간표</a></li>
-		                    <li><a href="../admin/couponList">쿠폰 목록</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 목록</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            

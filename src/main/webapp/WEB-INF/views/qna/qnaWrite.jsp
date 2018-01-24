@@ -13,13 +13,14 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
+
 table {
-    border-top: solid 1px #d6d4ca;
+	border-top: solid 1px #d6d4ca;
     border-bottom: solid 1px #b8b6aa;
     font-size: 12px;
     line-height: 1.2;
-    color: #666;
-    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+	color: #666;
+	font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -194,7 +195,7 @@ $(function(){
 		<tr>
 			<th>문의유형</th>
 			<td>
-			<input type="radio" name="type" value="1" checked="checked">문의
+			<input type="radio" name="type" value="문의" checked="checked">문의
 			<input type="radio" name="type" value="불만">불만
 			<input type="radio" name="type" value="칭찬">칭찬
 			<input type="radio" name="type" value="제안">제안

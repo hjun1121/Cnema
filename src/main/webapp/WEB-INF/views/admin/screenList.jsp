@@ -206,13 +206,13 @@ $(function(){
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
 			                <ul>
-			                    <li><a href="../admin/movieList">무비 리스트</a></li>
-			                    <li><a href="../admin/theaterList">극장 리스트</a></li>
-			                    <li class="on"><a href="../admin/screenList">상영관 리스트</a></li>
-			                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
-			                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
-			                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
-			                </ul>
+		                    <li><a href="../admin/movieList">무비 리스트</a></li>
+		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
+		                    <li class="on"><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
+		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
+		                </ul>
 			            </li>
 		            </c:if>
 	        		</ul>
@@ -260,7 +260,7 @@ $(function(){
 						</c:if>
 							<c:if test="${fn:length(sList) eq 0}">           
 					            <tr>
-					                <td colspan="3" class="nodata">상영관이 존재하지 않습니다.</td>
+					                <td colspan="5" class="nodata">상영관이 존재하지 않습니다.</td>
 					            </tr>
 				            </c:if>  
 				        </tbody>

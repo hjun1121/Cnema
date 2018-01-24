@@ -116,8 +116,9 @@ public class MyPageController {
 			mv.addObject("myInfo", memberDTO);
 			mv.setViewName("myPage/myInfo");
 		}else{
-			rd.addFlashAttribute("message", "비밀번호를 다시 입력해주세요.");
-			mv.setViewName("redirect:../");
+			//rd.addFlashAttribute("message", "비밀번호를 다시 입력해주세요.");
+			mv.addObject("message", "비밀번호가 다릅니다.");
+			mv.setViewName("myPage/myInfoCheck");
 		}
 		return mv;
 	}
@@ -132,16 +133,19 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println(memberDTO.getPw());
 		if(result>0){
-			rd.addAttribute("message", "회원 정보 수정 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "회원정보 수정 성공");
+			mv.setViewName("common/result");
 			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
-			memberDTO.setId(memberDTO2.getId());
-			memberDTO.setGender(memberDTO2.getGender());
-			memberDTO.setName(memberDTO2.getName());
-			memberDTO.setBirth(memberDTO2.getBirth());
-			session.setAttribute("member", memberDTO);
+			memberDTO2.setPw(memberDTO.getPw());
+			memberDTO2.setPhone(memberDTO.getPhone());
+			memberDTO2.setPostCode(memberDTO.getPostCode());
+			memberDTO2.setAddr1(memberDTO.getAddr1());
+			memberDTO2.setAddr2(memberDTO.getAddr2());
+			memberDTO2.setEmail(memberDTO.getEmail());
+			
+			session.setAttribute("member", memberDTO2);
 		}else{
 			rd.addAttribute("message", "회원 정보 수정 실패");
 			mv.setViewName("redirect:../");

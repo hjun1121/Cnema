@@ -53,21 +53,18 @@
 		
 		$("#chatting_btn").click(function() {
 			alert("채팅하기");
-			$.ajax({
-				url: "../ajax/chatting",
-				type: "POST",
-				data: {
-					
-				},
-				success: function(data) {
-					$("#chatting_div").append();
-				}
-			});
+
+		});
+		
+		$("#drop_btn").click(function(){
+			$("#frm").attr("action", "../community/memberDrop");
+			
 		});
 		
 
 	});
-
+	
+	
 </script>
 
 </head>
@@ -118,6 +115,9 @@
 		</c:if>
 	</div>
 
+	<form action="" id="frm">
+	</form>
+	
 	<c:choose>
 		<c:when test="${not empty member and memberCheck eq 11}">
 			<input type="button" id="drop_btn" value="페이지 탈퇴하기">

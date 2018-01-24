@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="wishMapper">
+  
   	<!-- heeseong -->
   	<select id="wishList" resultType="wishDTO" parameterType="map">
   		<choose>
@@ -11,6 +12,7 @@
   			<otherwise></otherwise>
   		</choose>
   	</select>
+  	
   	<!-- heeseong -->
   	<delete id="wishListDelete" parameterType="int">
   		delete from wish where wish_num=#{wish_num}

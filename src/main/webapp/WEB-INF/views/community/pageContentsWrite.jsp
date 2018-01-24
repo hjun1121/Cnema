@@ -129,7 +129,7 @@ height: 259px;
 margin :0 auto;
 }
 #contents{
-width:460px;
+width:400px;
 height: 250px;
 	
 }
@@ -178,7 +178,7 @@ height: 250px;
 	<div id="writeTab"> </div>
 	<form action="pageContentsWrite"  method="post" id="frm">
 		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
-		<textarea  name ="contents" id="contents" rows="10" cols="20" ></textarea>
+		<textarea  name ="contents" id="contents" rows="10" cols="30" style="width: 400px;" ></textarea>
 	
 	<div class="_51xa">
 	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton" data-testid="react-composer-post-button" type="submit" value="1">

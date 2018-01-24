@@ -258,11 +258,8 @@ margin-right:5px;
 .tit{
 margin-left:15px;
 }
-#notice_contents .tit {
-    color: #222;
-    font-size: 16px;
-    font-weight: bold;
-}
+
+
 #notice_contents .txt {
     margin-top: 20px;
 }
@@ -379,7 +376,7 @@ margin-left:15px;
 	</div>
   	</div>
   	<div id="notice_contents">
-  		 <a href="../notice/noticeList"><span class="tit">공지/뉴스</span></a>
+  		 <a href="../notice/noticeList"><span class="tit">공지</span></a>
 			<a href="../notice/noticeList"><img alt="" src="${pageContext.request.contextPath }/resources/images/board/plus.PNG"> </a><br>
 			<hr>
 			<c:forEach items="${notice_list}" var="dto">

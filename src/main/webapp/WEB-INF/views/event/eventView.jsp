@@ -14,8 +14,105 @@
 
 <title>Insert title here</title>
 <style type="text/css">
+.eventViewhead {
+    height: 42px;
+    margin-top: 25px;
+    padding: 0 10px;
+    background-color: #edebe1;
+    border-width: 1px 0;
+    border-style: solid;
+    border-top-color: #b8b6aa;
+    border-bottom-color: #d6d4ca;
+    line-height: 42px;
+}
+.eventViewhead h3 {
+    float: left;
+    background: none;
+    margin: 0;
+    text-align: justify;
+    word-break: initial;
+}
+
+.eventViewhead .date {
+    float: right;
+}
+.eventViewContents {
+    padding-top: 10px;
+    text-align: center;
+}
+.board_contents{
+
+	width:980px;
+
+}
+
+.eventJoin h3{
+	color: #222;
+ 	font-weight: bold; 
+    display:inline-block;
+    font-size: 36px;
+    text-align: left;
+    vertical-align: middle;
+}
+#backList{
+
+    float: right;
+    height: 20px;
+    margin: 9px 2px 0 0;
+    padding-left: 20px;
+    background: url(../resources/images/common/btn/btn-prev.png) no-repeat 0 2px;
+    color: #333333;
+    font-family: 'NanumBarunGothicBold';
+    font-size: 16px;
+    	font-weight: bold; 
+}
+.submenu .tit{
+	color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+}
 
 
+.btnSet{
+	margin-top:10px;
+
+}
+#upBtn , #delBtn {
+	
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+  	/* float:right; */
+
+
+}
+
+#delBtn{
+	  display: inline-block;
+    background-color: #5b5b58; 
+    color: #ffffff; 
+
+    border: 2px solid #5b5b58;
+    margin-left: 10px;
+
+}
+.joinImgBtn{
+	width:400px;
+	margin:0 auto;
+}
 </style>
 <script type="text/javascript">
 
@@ -90,11 +187,15 @@ $(function(){
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/eventTab.jsp"></c:import>
 
 <div class="board_contents">
+<div class="submenu">
+	<span class="tit">이벤트 내용</span>
+	<p>진행중인 이벤트가 응모하세요.<br></p>
+</div>
 <div class="eventViewhead">
     <h3>${view.title } </h3> 
     <em class="date">
         <span>기간: </span>
-        ${view.s_date }~ ${view.e_date }
+        ${view.s_date } ~ ${view.e_date }
     </em>
 </div>
 <div class="eventViewContents" style="width: 800px;">
@@ -107,23 +208,23 @@ ${view.contents}
 </div> -->
 <br>
 <hr>
+
 <div class="eventJoin">
-<h3>이벤트 참여하기</h3>
+
 <input type="hidden" id="num" name="num" value="${view.num }">
 <input type="hidden" id="id" value="${member.id}">
-
-<button id="join">바로 참여하기</button>
-
-
+<div class="joinImgBtn">
+<a id="join" href=""><img alt="" src="../resources/images/common/btn/eventJoin.png"> </a>
 </div>
 
-		<a href="./eventList">목록으로</a>
-		<a href="./eventUpdate?num=${view.num}">update</a>
-		<a href="./eventDelete?num=${view.num}">delete</a>
+</div>
+	<div class="btnSet">
+		<a id="upBtn" href="./eventUpdate?num=${view.num}">update</a>
+		<a id="delBtn"  href="./eventDelete?num=${view.num}">delete</a>
 	
-
-
-			</div>
+		<a id="backList" href="./eventList">목록으로</a>
+	</div>
+</div>
 </div><!--게시판 내용  -->
 	
 </div>
