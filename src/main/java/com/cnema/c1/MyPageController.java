@@ -211,6 +211,11 @@ public class MyPageController {
 		mv.addObject("kind",kind);
 		mv.addObject("rList",rList);
 		mv.addObject("wList",wList);
+		for(ReserveDTO reserveDTO :rList ){
+			System.out.println(reserveDTO.getCount());
+		}
+			
+			
 		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}

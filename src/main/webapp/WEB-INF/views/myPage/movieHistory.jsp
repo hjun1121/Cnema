@@ -31,11 +31,11 @@ $(function(){
 	});
 	$(".reviewBtn").click(function(){
 		var movie_num = $(this).attr("title");
-		window.open("movieReview?movie_num="+movie_num,"평점작성","width=800,height=700,toolbar=no");
+		window.open("movieReview?movie_num="+movie_num,"평점작성","width=710,height=425,toolbar=no");
 	});
 	$(".reSeeBtn").click(function(){
 		var movie_num = $(this).attr("title");
-		window.open("movieReviewView?movie_num="+movie_num,"평점보기","width=800,height=700,toolbar=no");
+		window.open("movieReviewView?movie_num="+movie_num,"평점보기","width=710,height=425,toolbar=no");
 	});
 	$(".btn-del").click(function(){
 		var tp_num = $(this).attr("title");
@@ -173,12 +173,12 @@ $(function(){
 			                                        <li class="writer-opinion">
 			                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 완료">
 		                                            </li>
-                                          	  </c:if>
-                                          	  <c:if test="${reserveList.reviewDTO.r_type eq 11}">                      
-			                                        <li class="writer-opinion">
-			                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 삭제하셨습니다">
-		                                            </li>
-                                          	  </c:if>
+                                          	 	</c:if>
+	                                          	<c:if test="${reserveList.reviewDTO.r_type eq 11}">                      
+				                                        <li class="writer-opinion">
+				                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 삭제하셨습니다">
+			                                            </li>
+	                                          	</c:if>
                                             </c:if>  
                                         </ul>
 				                    </div>

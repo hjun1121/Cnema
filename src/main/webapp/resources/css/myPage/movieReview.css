@@ -1,0 +1,281 @@
+@CHARSET "UTF-8";
+.likeornot .writerinfo .box-image .thumb-image {
+    width: 62px;
+    height: 62px;
+}
+body, input, textarea, button, table {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+.box-image img {
+    width: 100%;
+}
+body, input, textarea, button, table {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+.layer-wrap .popwrap, .popup-general .popwrap {
+    position: relative;
+    padding: 5px;
+    background-color: #333;
+    text-align: left;
+}
+.layer-wrap .popwrap, .popup-general .popwrap {
+    position: relative;
+    padding: 5px;
+    background-color: #333;
+    text-align: left;
+}
+.layer-contents {
+    width: 980px;
+    height: 506px;
+}
+.popup-general {
+    width: 100%;
+    height: 100%;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+.layer-wrap .popwrap>h1, .popup-general .popwrap>h1 {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 19px;
+    border: 1px solid #707070;
+    color: #f2f0e5;
+    font-family: NanumBarunGothic,'맑은 고딕','돋움',Dotum,sans-serif;
+    font-size: 22px;
+}
+.layer-wrap .pop-contents, .popup-general .pop-contents {
+    margin-top: 5px;
+    padding: 40px;
+    background-color: white;
+    color: #333;
+}
+.round, .round > * {
+    display: inline-block;
+    position: relative;
+}
+.mygrade-cont .movietit {
+    padding-bottom: 15px;
+    font-size: 26px;
+    font-family: 'NanumBarunGothicBold';
+    text-align: center;
+    border-bottom: 1px dashed #ccc9c7;
+}
+.likeornot .likebox.t2 {
+    left: 372px;
+    background-position: 0 -310px;
+}
+strong {
+    font-family: 'NanumBarunGothicBold', sans-serif;
+    font-weight: normal;
+}
+.likeornot {
+    position: relative;
+    height: 140px;
+}
+.likeornot .writerinfo {
+    position: absolute;
+    left: 50%;
+    top: 35px;
+    width: 120px;
+    margin-left: -60px;
+    text-align: center;
+}
+.likeornot .writerinfo .box-image {
+    margin: 0 auto 7px;
+    width: 62px;
+    height: 62px;
+}
+.likeornot .writerinfo .box-image .thumb-image {
+    width: 62px;
+    height: 62px;
+}
+
+.thumb-image {
+    display: block;
+    position: relative;
+}
+.likeornot .writerinfo .box-image .thumb-image .profile-mask {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 62px;
+    height: 62px;
+    background: url(../../../resources/images/common/bg/bg_photocircle.png) 0 0 no-repeat;
+}
+.likeornot .likebox.t1 {
+    right: 372px;
+}
+
+.likeornot .likebox {
+    position: absolute;
+    top: 50px;
+    width: 190px;
+    background: url(../../../resources/images/myPageView/sprite_likeornot.png) no-repeat 100%
+ -62px;
+}
+.likeornot .likebox.t1 .likebox-inner {
+    margin: 0 24px 0 -14px;
+}
+.likeornot .likebox .likebox-inner {
+    font-family: 'NanumBarunGothicBold';
+    color: #000000;
+    text-align: center;
+    background: url(../../../resources/images/myPageView/sprite_likeornot.png) no-repeat 0 0;
+}
+.likeornot .likebox .likebox-inner>label {
+    display: block;
+    padding: 16px 10px;
+    height: 30px;
+}
+.likeornot .likebox .egg-icon.good {
+    width: 22px;
+    background-position: -42px -200px;
+}
+.likeornot .likebox .egg-icon {
+    position: relative;
+    overflow: hidden;
+    margin-right: 6px;
+    width: 32px;
+    height: 30px;
+    background: url(../images/sprite/sprite_egg.png) no-repeat 0 -200px;
+    vertical-align: middle;
+}
+.likeornot .likebox .egg-icon input {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+}
+.likeornot .likebox.t2.on {
+    background-position: 0 -434px;
+}
+.likeornot .likebox.t2 {
+    left: 372px;
+    background-position: 0 -310px;
+}
+.likeornot .likebox {
+    position: absolute;
+    top: 50px;
+    width: 190px;
+    background: url(../../../resources/images/myPageView/sprite_likeornot.png) no-repeat 100%
+ -62px;
+}
+.likeornot .likebox .likebox-inner>label {
+    display: block;
+    padding: 16px 10px;
+    height: 30px;
+}
+.likeornot .likebox .egg-icon {
+    position: relative;
+    overflow: hidden;
+    margin-right: 6px;
+    width: 32px;
+    height: 30px;
+    background: url(../images/sprite/sprite_egg.png) no-repeat 0 -200px;
+    vertical-align: middle;
+}
+.egg-icon {
+    display: inline-block;
+    margin-right: 6px;
+    width: 22px;
+    height: 22px;
+    background: url(../images/sprite/sprite_egg.png) no-repeat 0 0;
+    vertical-align: middle;
+}
+.likeornot .likebox .egg-icon input {
+    position: absolute;
+    left: 50%;
+    top: -50px;
+}
+.mygrade-cont .textbox {
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #999999;
+}
+.mygrade-cont .textbox textarea {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 13px;
+    color: #000000;
+}
+textarea {
+    border: 1px solid #ddd;
+    line-height: 1.7;
+    padding: 10px;
+}
+textarea {
+    resize: none;
+}
+.mygrade-cont .footbox {
+    margin-top: 8px;
+}
+.mygrade-cont .footbox .rbox {
+    float: right;
+}
+.mygrade-cont .footbox .rbox button {
+    margin-left: 8px;
+}
+
+.round.red {
+    border: 2px solid #e71a0f;
+    color: #e71a0f;
+}
+.round {
+    line-height: 23px;
+    font-family: 'NanumBarunGothicBold';
+    text-align: center;
+    vertical-align: middle;
+}
+
+.round.on.red:before {
+    left: -2px;
+    top: -2px;
+    background-position: 0 -20px;
+}
+
+.round.red:before {
+    left: -2px;
+    top: -2px;
+    background-position: 0 0;
+}
+
+
+.round.on.red:after {
+    left: -2px;
+    bottom: -2px;
+    background-position: 0 -25px;
+}
+
+.round.red:after {
+    left: -2px;
+    bottom: -2px;
+    background-position: 0 -5px;
+}
+.round > * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    /* height: 100%; */
+    padding: 0 5px 0;
+}
+
+
+.round.on.red {
+    border: 2px solid #e71a0f;
+    background-color: #e71a0f;
+    color: #ffffff;
+}
