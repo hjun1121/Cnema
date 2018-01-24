@@ -456,21 +456,21 @@
 										<div class="screen" title="SCREEN" style="width: 652px;"><span class="text"></span></div>
 										<div class="cnema_seats" style="width: 288px; height: 224px;">
 											<div>
-												<table border="1" style="background-color:white;">
+												<table border="1" style="background-color:white; border:1px solid #dcdcdc;">
 													<c:forEach begin="1" end="${screenDTO.x_num }" varStatus="c">
-														<tr>
-															<c:if test="${c.count eq 1 }"><td>A</td></c:if>
-															<c:if test="${c.count eq 2 }"><td>B</td></c:if>
-															<c:if test="${c.count eq 3 }"><td>C</td></c:if>
-															<c:if test="${c.count eq 4 }"><td>D</td></c:if>
-															<c:if test="${c.count eq 5 }"><td>E</td></c:if>
-															<c:if test="${c.count eq 6 }"><td>F</td></c:if>
-															<c:if test="${c.count eq 7 }"><td>G</td></c:if>
-															<c:if test="${c.count eq 8 }"><td>H</td></c:if>
-															<c:if test="${c.count eq 9 }"><td>I</td></c:if>
-															<c:if test="${c.count eq 10 }"><td>J</td></c:if>
-															<c:if test="${c.count eq 11 }"><td>K</td></c:if>
-															<c:if test="${c.count eq 12 }"><td>L</td></c:if>
+														<tr style="height: 32px;">
+															<c:if test="${c.count eq 1 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">A</td></c:if>
+															<c:if test="${c.count eq 2 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">B</td></c:if>
+															<c:if test="${c.count eq 3 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">C</td></c:if>
+															<c:if test="${c.count eq 4 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">D</td></c:if>
+															<c:if test="${c.count eq 5 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">E</td></c:if>
+															<c:if test="${c.count eq 6 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">F</td></c:if>
+															<c:if test="${c.count eq 7 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">G</td></c:if>
+															<c:if test="${c.count eq 8 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">H</td></c:if>
+															<c:if test="${c.count eq 9 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">I</td></c:if>
+															<c:if test="${c.count eq 10 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">J</td></c:if>
+															<c:if test="${c.count eq 11 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">K</td></c:if>
+															<c:if test="${c.count eq 12 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">L</td></c:if>
 															<c:forEach begin="1" end="${screenDTO.y_num }" varStatus="co">
 															
 																<c:forEach items="${seatCheck }" var="seat">
@@ -480,12 +480,12 @@
 																</c:forEach>
 																
 																<c:if test="${check eq (c.count-1)*screenDTO.y_num+ co.count }">
-																	<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" style="background-color: blue;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
+																	<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" style="background-color: blue; text-align: center; border:1px solid #dcdcdc;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
 																		${co.count }
 																	</td>					
 																</c:if>
 																<c:if test="${check ne (c.count-1)*screenDTO.y_num+ co.count }">
-																	<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" title="${(c.count-1)*screenDTO.y_num+ co.count }">
+																	<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" style=" text-align: center; border:1px solid #dcdcdc;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
 																		<a href="#"  onclick="return false;">${co.count }</a>
 																	</td>				
 																</c:if>
@@ -502,9 +502,8 @@
 									<div class="buttons">
 									</div>
 									<div class="seat-icon-desc">
-										<span class="icon selected"><span class="icon"></span>선택</span>
-										<span class="icon reserved"><span class="icon"></span>예매완료</span>
-										<span class="icon notavail"><span class="icon"></span>선택불가</span>
+										<span><span class="icon"></span>선택</span>
+										<span><span class="icon"></span>예매완료</span>
 									</div>
 								</div>
 							</div>
