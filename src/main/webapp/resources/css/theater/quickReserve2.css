@@ -2461,8 +2461,8 @@ a:hover {
 
 #ticket .step2 .section-numberofpeople .col-body .numberofpeople-select
 	{
-	margin-left: 50px;
-    margin-top: 30px;
+	margin-left: 76px;
+    margin-top: 33px;
 	padding-right: 18px;
 	border-right: 1px solid #d4d3c9;
 }
@@ -4810,7 +4810,7 @@ a:hover {
 
 .nano .content {
 	position: absolute;
-	/* overflow: scroll; */
+	overflow: scroll;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -4910,7 +4910,7 @@ a:hover {
 /*step2 playInfos*/
 #user-select-info {
 	width: auto;
-	margin: 25px 0 0 20px;
+	margin: 33px 0 0 40px;
 }
 
 #user-select-info p.theater-info span {
