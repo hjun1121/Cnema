@@ -259,8 +259,9 @@ $("#ingEvent").click(function(){
 	</div>
 
 </div>	
+	<c:if test="${not empty member and member.type eq 20  }">
 	<div id="btn1"><a href="./eventWrite">글쓰기</a></div>
-	
+	</c:if>
 </div>			
 			</div><!--게시판 내용  -->
 	
