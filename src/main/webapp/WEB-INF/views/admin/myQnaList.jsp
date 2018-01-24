@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,28 +12,63 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>쿠폰 목록${fn:length(cList)}개</title>
+<title>무비 리스트</title>
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
-	var search='${search}';
-	$("#search").val(search);
 	$(".kind").each(function(){
 		if($(this).val()==kind){
 			$(this).attr("selected",true);
 		}
 	});
+	var search='${search}';
+	$("#search").val(search);
+	
 	$("#sBtn").click(function(){
 		var sKind = $("#kind").val();
 		var search = $("#search").val();
-		location.href="./couponList?kind="+sKind+"&search="+search;
+		location.href="./movieList?kind="+sKind+"&search="+search;
 	});
 	
+	$(".round").click(function(){
+		location.href="movieInsert"
+	});
 });
 </script>
+<style>
+.list{
+		cursor: pointer; 
+	}
+table{
+    padding-top: 10px;
+        border-top: solid 1px #d6d4ca;
+    border-bottom: solid 1px #b8b6aa;
+}
+th {
+    padding: 10px 0 8px 0px;
+    border-bottom: solid 1px #e1dfd5;
+    text-align: center;
+    background-color: #edebe1;
+    vertical-align: middle;
+    line-height: 1.5em;
+}
+tr{
+
+    display: table-row;
+ }
+td{
+
+    padding: 15px 0px 13px 0px;
+    border-top: solid 1px #d6d4ca;
+    text-align: center;
+}
+.list_container{
+	width:600px;
+	display: inline-block;
+}
+</style>
 </head>
 <body>
 	<div id="cgvwrap">
@@ -56,7 +92,7 @@ $(function(){
                                 <a href="#">관리자</a>
                             </li>
                             <li class="last">
-                            	영화 목록
+                            	QnaList
                             </li>
                     	</ul>
                 	</div>
@@ -201,20 +237,20 @@ $(function(){
 	                	</ul>
 	            	</li>
 		            <li>
-	                     <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
+	                    <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
 		                <ul>
-		                    <li><a href="../admin/myQnaList">1:1문의</a></li>
+		                    <li class="on"><a href="../admin/myQnaList">1:1문의</a></li>
 		                </ul>
 		            </li>
 		            <c:if test="${!empty member and member.type eq 20 }">
-		            <li class="on">
+		            <li >
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
 		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
-		                    <li class="on"><a href="../admin/couponList">쿠폰 리스트</a></li>
+		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
@@ -223,66 +259,60 @@ $(function(){
 	        		</ul>
 	    			</div>
     			</div>
-			<div class="col-detail" id="mycgv_contents">
-			<!-- /////// -->
+		
+	<div class="list_container">
 
-			<div class="tit-mycgv">
-				<h3>쿠폰 목록</h3>
-			</div>
-			 <div class="tit-mycgv" style="padding-bottom: 10px;">
-				<h4>쿠폰 목록 ${fn:length(cList)}개 &nbsp;&nbsp;</h4>
-					<select id="kind" class="f">
-						<option class="kind" value="name">쿠폰 이름</option>
-						<option class="kind" value="price">금액 할인(전체)</option>
-						<option class="kind" value="rate">할인률(전체)</option>
-					</select>
-					<input type="text" name="search" id="search">
-					<input type="button" class="btnType3" id="sBtn" value="GO">
-			</div>
-			<div class="tbl-data">
-			    <table>
-			        <caption></caption>
-			        <colgroup>
-					    <col width="30%">
-					    <col width="20%">
-					    <col width="35%">
-					</colgroup>
-			        <thead>
-			            <tr>
-				            <th scope="col">쿠폰 이름</th>
-							<th scope="col">쿠폰 유효일</th>
-							<th scope="col">할인 분류 및 가격</th>
-			            </tr>
-			        </thead>
-			        <tbody>
-			        <c:if test="${fn:length(cList) ne 0}">
-				        <c:forEach items="${cList }" var="couList">
-							<tr>
-								<td>${couList.name }</td>
-								<td>${couList.v_day }</td>
-								<c:if test="${couList.type eq 10}">
-									<td>${couList.price}% / 할인률</td>
-								</c:if>
-								<c:if test="${couList.type eq 11}">
-									<td>${couList.price}원 / 금액 할인</td>
-								</c:if>
-							</tr>
-						</c:forEach>
-					</c:if>
-					<c:if test="${fn:length(cList) eq 0}">           
-			            <tr>
-			                <td colspan="3" class="nodata">쿠폰이 존재하지 않습니다.</td>
-			            </tr>
-		            </c:if>  
-			        </tbody>
-			    </table>
-			    <div class="set-btn">
-			    	<a href="./couponInsert"><Button class="round inred on">글쓰기</Button></a>
-		    	</div>
-			</div>
-
-			<!-- /// -->
-			</div>
+	<table>
+		<tr>
+			<th>no.</th>
+			<th>영화관</th>
+			<th>글제목</th>
+			<th>글쓴이</th>
+			<th>등록일</th>
+			<th>답변</th>
+		</tr>
+		<c:forEach items="${list}" var="dto">
+		<tr>
+			<%-- <td><img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></td> --%>
+			<td>${dto.num }</td>
+			<td>${dto.area} : ${dto.location}</td>
+			<td>
+			
+			<a href="qnaView?num=${dto.num}">[ ${dto.type} ] ${dto.title}</a>
+			</td>
+			<td>${dto.writer}</td>
+			<td>${dto.reg_date}</td>
+			<td>
+			<c:if test="${dto.reply != null }">
+			답변완료
+			</c:if>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
+	
+	<div>
+		<c:if test="${pager.curBlock gt 1}">
+			<span class="list" title="${pager.startNum-1}">[이전]</span>
+		</c:if>
+		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+			<span class="list" title="${i}">${i}</span>
+		</c:forEach>
+		<c:if test="${pager.curBlock lt pager.totalBlock}">
+			<span class="list" title="${pager.lastNum+1}">[다음]</span>
+		</c:if>
+	</div>
+	
+	
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
 			</div>
 			</div>
 			</div>
