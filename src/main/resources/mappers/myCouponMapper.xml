@@ -8,7 +8,6 @@
   	update mycoupon set type=10, use_date=sysdate where c_num=#{c_num} and id=#{id}
   </update>
   
-  
   <!-- heeseong -->
   <select id="myCouponList" resultType="myCouponDTO" parameterType="java.lang.String">
   	select * from myCoupon where id=#{id} and type=#{type} order by v_date asc
@@ -33,6 +32,7 @@
   <select id="couponCount" resultType="int" parameterType="java.lang.String">
   	select count(id) from myCoupon where id=#{id} 
   </select>
+  
   <!-- heeseong -->
   <select id="couponACount" resultType="int" parameterType="java.lang.String">
   	select count(id) from myCoupon where id=#{id} and type=11
@@ -42,6 +42,7 @@
   <insert id="couponInsert" parameterType="java.util.Map">
   	insert into myCoupon (num,name,id,v_date,publish_date,type,c_num) values(movie_seq.nextval,#{couponDTO.name},#{id},to_date(#{v_date},'YYYY/mm/DD'),sysdate,11,#{couponDTO.c_num})
   </insert>
+  
   <!-- heeseong -->
   <delete id="withdrawal" parameterType="string">
   	delete from myCoupon where id=#{id}

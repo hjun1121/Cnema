@@ -410,10 +410,10 @@
 					<tr>
 						<td>성별</td>
 						<c:if test="${myInfo.gender eq 'f'}">
-							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
 						</c:if>
 						<c:if test="${myInfo.gender eq 'm'}">
-							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="여자" readonly="readonly"></td>
+							<td><input type="text"  class="noneBorder" id="gender" name="gender" value="남자" readonly="readonly"></td>
 						</c:if>
 						
 					</tr>
