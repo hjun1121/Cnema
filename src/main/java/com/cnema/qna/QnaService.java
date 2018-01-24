@@ -44,7 +44,7 @@ public class QnaService {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = qnaDAO.selectMyList(id);
 		mv.addObject("list", ar);
-		mv.setViewName("qna/qnaList");
+		mv.setViewName("admin/myQnaList");
 		return mv;
 	}
 	

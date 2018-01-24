@@ -65,7 +65,9 @@ td{
     text-align: center;
 }
 .list_container{
-	width:600px;
+	position: relative;
+    width: 800px;
+	float: right;
 	display: inline-block;
 }
 </style>
@@ -290,7 +292,7 @@ td{
 		</tr>
 		</c:forEach>
 	</table>
-	
+	<br>
 	<div>
 		<c:if test="${pager.curBlock gt 1}">
 			<span class="list" title="${pager.startNum-1}">[이전]</span>
