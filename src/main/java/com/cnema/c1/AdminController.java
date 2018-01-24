@@ -650,7 +650,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "couponList", method = RequestMethod.GET)
-	public ModelAndView couponList(String kind, String search) {
+	public ModelAndView couponList(HttpSession session,String kind, String search) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<CouponDTO> cList = new ArrayList<>();
 		if (search == null) {
@@ -669,7 +670,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 		}
-
+		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
 		mv.addObject("cList", cList);

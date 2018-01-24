@@ -227,9 +227,10 @@ ${view.contents}
 
 </div>
 	<div class="btnSet">
+	<c:if test="${not empty member and member.type eq 20  }">
 		<a id="upBtn" href="./eventUpdate?num=${view.num}">update</a>
 		<a id="delBtn"  href="./eventDelete?num=${view.num}">delete</a>
-	
+	</c:if>
 		<a id="backList" href="./eventList">목록으로</a>
 	</div>
 </div>

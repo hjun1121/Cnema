@@ -10,26 +10,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.cnema.community.CommunityService;
 import com.cnema.community.PageContentsDTO;
 import com.cnema.community.PageDTO;
 import com.cnema.community.PageMemberDTO;
+import com.cnema.community.PageService;
 import com.cnema.member.MemberDTO;
 
 @Controller
-@RequestMapping(value = "/community2/*")
-public class CommunityController {
+@RequestMapping(value = "/community/*")
+public class PageController {
 	
 	@Inject
-	private CommunityService communityService;
-	
-	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.GET)
-	public void pageContentsWrite()throws Exception {
-	}
+	private PageService pageService;
 	
 	
-
 	//페이지 가입하기
 	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
 	public void pageMemberJoin() throws Exception {
@@ -43,14 +37,14 @@ public class CommunityController {
 		
 	}
 	
-	
+
 	//pageContentsWrite
 	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.POST)
 	public void pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception {
-		communityService.pageContentsWrite(pageContentsDTO);
+		pageService.pageContentsWrite(pageContentsDTO);
 	}
-	
-	
+
+
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
 	public void pageMain() {
@@ -66,13 +60,13 @@ public class CommunityController {
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
-			memberCheck = communityService.memberCheck(page_num, id);
+			memberCheck = pageService.memberCheck(page_num, id);
 			mv.addObject("memberCheck", memberCheck);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		PageDTO pageDTO = communityService.selectPageOne(page_num); //페이지 정보 가져오기
-		List<PageMemberDTO> pageMember = communityService.selectPageMemberList(page_num);
+		PageDTO pageDTO = pageService.selectPageOne(page_num); //페이지 정보 가져오기
+		List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
 
 
 		mv.addObject("page", pageDTO);
@@ -82,7 +76,7 @@ public class CommunityController {
 		return mv;
 	}
 
-	
+
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.GET)
 	public void pageInsert() {
@@ -95,7 +89,7 @@ public class CommunityController {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
-			result = communityService.pageInsert(pageDTO, session);
+			result = pageService.pageInsert(pageDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
@@ -112,36 +106,5 @@ public class CommunityController {
 	}
 	
 	
-	//communityMain
-	@RequestMapping(value="communityMain", method=RequestMethod.GET)
-	public ModelAndView communityMain(HttpSession session,String search) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		List<PageDTO> pageList = null;
-		List<PageDTO> recommendPage = null;
-		if(search==null){
-			search="";
-		}
-		recommendPage = communityService.recommendPageList(search);
-		try {
-			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-			if(memberDTO.getId() != null) {
-				pageList = communityService.selectPageList(memberDTO.getId());
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		mv.addObject("recommendPage", recommendPage);
-		mv.addObject("pageList", pageList);
-		mv.setViewName("community/communityMain");
-		return mv;
-	}
-	@RequestMapping(value="recommendPage",method=RequestMethod.GET)
-	public ModelAndView recommendPage(HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		return mv;
-	}
 
 }
