@@ -5,11 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cnema.member.MemberDTO;
 import com.cnema.util.FileSaver;
 
+@Service
 public class PageService {
 
 	@Inject
