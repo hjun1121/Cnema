@@ -16,17 +16,7 @@
 
 <title>Insert title here</title>
 <style type="text/css">
-.board_container{
-	width: 1200px;
-	margin:0 auto;
-	margin-top:40px;
- 
-}
-#contents{
-	width:650px;
-	height: 400px;
-	
-}
+
 table {
     border-top: solid 1px #d6d4ca;
     border-bottom: solid 1px #b8b6aa;
@@ -95,7 +85,7 @@ td{
 #title, .dateInput{
 
 background-color: #f1f0e5;
- width:500px;
+ width:720px;
  height: 30px;
  border: 1px solid #ccc;
 }
@@ -103,10 +93,7 @@ background-color: #f1f0e5;
 
  width:150px;
 }
-textarea{
-width:620px;
-border: 1px solid #ccc;
-}
+
 .board_contents .tit{
 	color: #222;
     font-weight: bold;
@@ -114,6 +101,9 @@ border: 1px solid #ccc;
     font-size: 26px;
     text-align: left;
     vertical-align: middle;
+}
+#frm #contents{
+ 	width: 720px;
 }
 </style>
 <script type="text/javascript">

@@ -40,11 +40,7 @@
     padding-top: 10px;
     text-align: center;
 }
-.board_contents{
 
-	width:980px;
-
-}
 
 .eventJoin h3{
 	color: #222;
@@ -123,24 +119,36 @@ $(function(){
 	}
 	
 	$("#join").click(function(){
-		
+		var check1=$("#check").val();
 		var num = $("#num").val();
 		var id = $("#id").val();
-		if(id==null)
+		/* alert(id); */
+		if($("#memType").val()==20){
+			alert("관리자는 참여하실수 없습니다.");
+		}
+		else if(id=="")
 		{
-			alert('회원 로그인하세요1');	
+			alert('회원 로그인하세요');	
 			location.href="../member/memberLogin?path=event/eventView&num="+num;
 		}
 		else{
+			
+			if(check1 != 0){
+				
+				alert("이미 참여하셨습니다.");
+			
+			}
+			else{
 		var type= Math.floor(Math.random() * 2);//0 또는 1 만 나오게 한다.
+		
 		$.ajax({
-			url:"../ajax/eventCheck",
+			url:"../ajax/eventJoin",
 			type:"POST",
 			data:{
 			 num:num,
 			 id:id,
-			 type:type
-				 
+			 type:type,
+			 check:check1
 			},
 			success:function(data){
 				alert(data);
@@ -150,6 +158,7 @@ $(function(){
 			}
 		});
 		
+			}
 		}
 	});
 });
@@ -218,9 +227,10 @@ ${view.contents}
 <div class="eventJoin">
 
 <input type="hidden" id="num" name="num" value="${view.num }">
-<c:if test="${member.type==10 or member.type==11 }">
+<input type="hidden" id="check" value="${check}">
 <input type="hidden" id="id" value="${member.id}">
-</c:if>
+<input type="hidden" id="memType" value="${member.type }">
+
 <div class="joinImgBtn">
 <a id="join" href="#" onclick="return false;"><img alt="" src="../resources/images/common/btn/eventJoin.png"> </a>
 </div>
