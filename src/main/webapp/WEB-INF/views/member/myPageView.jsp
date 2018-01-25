@@ -215,7 +215,7 @@
 				<div class="box-inner">
 		            <div class="tit-mycgv">
 						<h3>MY 예매내역</h3>
-						<p><em>${fn:length(rList)}</em> <a href="#">MY 예매내역 더보기</a></p>
+						<p><em>${fn:length(rList)}건</em> <a href="../myPage/movieHistory">MY 예매내역 더보기</a></p>
 					</div>
 					<div class="col-myqna">
 						<ul>

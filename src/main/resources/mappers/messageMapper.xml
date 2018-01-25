@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messageMapper">
+
+	<!-- 메일 읽기 -->
+	<update id="mailRead" parameterType="int">
+		update message set read_date=sysdate where message_num=#{message_num}
+	</update>
+
+	<!-- 메일 받기 -->
+	<select id="mailReceive" parameterType="java.util.Map" resultType="messageDTO">
+		select * from message where receive_id=#{id}
+	</select>
+
+	<!-- 메일 보내기 -->
+	<insert id="mailSend" parameterType="java.util.Map">
+		insert into message values(message_seq.nextval, #{send_id}, #{receive_id}, #{messageDTO.title}, #{messageDTO.contents}, sysdate, null, 12)
+	</insert>
+
+</mapper>

@@ -76,7 +76,7 @@
 		<input type="text" value="글쓰기....">
 		
 	</div>
-	
+
 	<!-- 우측 고정 바 -->
 	<div style="width: 308px; height: auto; background-color: yellow; right: 30px; bottom: 0; position: fixed; z-index: 999;">
 		<!-- 채팅 바 -->
@@ -105,9 +105,11 @@
 		<c:when test="${memberCheck eq 11}">
 			<input type="button" id="drop_btn" value="페이지 탈퇴하기">
 		</c:when>
+		<c:when test="${memberCheck eq 0}">
+			<input type="button" id="join_btn" value="페이지 가입하기">
+		</c:when>
 		<c:otherwise>
-			<c:if test="${memberCheck ne 20 || memberCheck ne 11}"><input type="button" id="join_btn" value="페이지 가입하기"></c:if>
-			<c:if test="${empty member}"></c:if> 
+			<input type="button" id="" value="그룹장이라 탈퇴안되지롱">
 		</c:otherwise>
 	</c:choose>
 

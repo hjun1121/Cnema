@@ -12,15 +12,15 @@ public class CommunityService {
 	@Inject
 	private CommunityDAO communityDAO;
 	
-	public List<PageDTO> recommendPageList(String search) throws Exception {
-		return communityDAO.recommendPageList(search);
+	public PageDTO recommendPageList(String search,int num) throws Exception {
+		return communityDAO.recommendPageList(search,num);
 	}
 	
 	public List<PageDTO> myPageList(String id,String search) throws Exception {
 		return communityDAO.myPageList(id,search);
 	}
 	
-	/*public List<PageDTO> pageList(String search) throws Exception{
-		return communityDAO.pageList(search);
-	}*/
+	public List<Integer> pageNumList(String id) throws Exception{
+		return communityDAO.pageNumList(id);
+	}
 }

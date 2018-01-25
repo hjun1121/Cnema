@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(function(){
 		var pwCheck = true;
-		var emailCheck = true;
+		var emailCheck = false;
 		
 		var p0='${p[0]}';
 		$(".f").each(function(){
@@ -132,19 +132,54 @@
 			var email1 = $("#email1").val();
 			var email2 = $("#email2").val();
 			var email = email1 +'@'+email2;
+			if(email1 ==""){
+				alert("이메일 앞주소를 확인해주세요");
+				$("#email1").focus();
+			}else if(email2 ==""){
+				alert("뒷주소 확인");
+				$("#email2").focus();
+			}else if(emailCheck){
+				alert("이미 인증된 이메일입니다");
+			}else{
 			$("#email").val(email);
-			
-			$.ajax({
-				url:"../ajax/emailCheck",
-				type:"post",
-				data:{
-				},
-				success:function(data){
-					$("#email_ch").html(data);
-				}
-			});
-			
-		})
+				
+				$.ajax({
+					url:"../ajax/emailCheck",
+					type:"post",
+					data:{
+						email:email
+					},
+					success:function(data){
+						$("#email_ch").html(data);
+					}
+				});
+			}
+		});
+		
+		$("#email1").change(function(){
+			emailCheck=false;
+			$("#email_ch").html("<p style=\"color: red\">이메일 인증 필요</p>");
+		});
+		$("#email2").change(function(){
+			emailCheck=false;
+			$("#email_ch").html("<p style=\"color: red\">이메일 인증 필요</p>");
+		});
+		$("#mailList").change(function(){
+			emailCheck=false;
+			$("#email_ch").html("<p style=\"color: red\">이메일 인증 필요</p>");
+		});
+		
+		
+		$("#email_ch").on("click","#check",function(){
+			if($("#num").val() == $("#code").val()){
+				emailCheck=true;
+				$("#email_ch").html("<p style=\"color: green\">이메일 인증 완료</p>");
+				
+			}else{
+				$("#email_ch").html("<p style=\"color: red\">잘못된 인증번호</p>");
+				emailCheck=false;
+			}	
+		});
 		
 		$("#revBtn").click(function(){
 			var f = $("#f").val();
@@ -152,11 +187,6 @@
 			var l = $("#l").val();
 			var phone = f+'-'+m+'-'+l;
 			$("#phone").val(phone);
-			
-			var e1 = $("#email1").val();
-			var e2 = $("#email2").val();
-			var email = e1+'@'+e2;
-			$("#email").val(email);
 			
 			if(pwCheck == false){
 				alert("비밀번호를 확인해 주세요.");
@@ -182,8 +212,6 @@
 			}else{
 				document.frm.submit();
 			}
-			
-			
 		})
 	});
 
@@ -443,9 +471,10 @@
 							<option class="mail" value="gmail.com">gmail.com</option>
 							<option class="mail" value="hotmail.com">hotmail.com</option>
 						</select>
-						<input type="button" id="mailCheck" class="btnType3" value="이메일 인증">
-						<br>
-						<div id="email_ch"></td>
+						<input type="button" id="mailCheck" value="이메일 인증" class="btnType4" style="margin-top: 5px; cursor: pointer;">
+						<input type="hidden" id="email" name="email" class="noneBorder">
+						
+						<div id="email_ch" style="margin-top: 5px;"></div></td>
 					</tr>
 					<tr>
 						<td>POSTCODE</td>
@@ -459,7 +488,6 @@
 					</tr>
 				</table>
 				<input type="hidden" id="phone" name="phone">
-				<input type="hidden" id="email" name="email">
 				<div class="set-btn">
 			        <button type="button" id="revBtn" class="round inred on"><span>수정</span></button> 
 			        <a href="../" class="round gray"><span>취소</span></a>

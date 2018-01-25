@@ -175,7 +175,7 @@
 					}
 				});
 			}
-		})
+		});
 		
 		$("#email1").change(function(){
 			emailCheck=false;
