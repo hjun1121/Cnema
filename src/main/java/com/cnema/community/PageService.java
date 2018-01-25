@@ -26,7 +26,7 @@ public class PageService {
 	}
 	
 	//pageContentsWrite
-	public int pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception{
+	public int pageContentsWrite(PageContentsDTO pageContentsDTO) throws Exception{
 		int result = pageDAO.pageContentsWrite(pageContentsDTO);
 		
 		return result;

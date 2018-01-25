@@ -106,8 +106,8 @@
 			<input type="button" id="drop_btn" value="페이지 탈퇴하기">
 		</c:when>
 		<c:otherwise>
-			<c:if test="${memberCheck ne 20 || memberCheck ne 11}"><input type="button" id="join_btn" value="페이지 가입하기"></c:if>
-			<c:if test="${empty member}"></c:if> 
+			<c:if test="${memberCheck eq 0}"><input type="button" id="join_btn" value="페이지 가입하기"></c:if>
+			<c:if test="${empty member}"></c:if>
 		</c:otherwise>
 	</c:choose>
 
