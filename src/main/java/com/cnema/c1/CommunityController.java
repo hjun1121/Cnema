@@ -1,6 +1,9 @@
 package com.cnema.c1;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,35 +28,42 @@ public class CommunityController {
 	@RequestMapping(value="communityMain", method=RequestMethod.GET)
 	public ModelAndView communityMain(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<PageDTO> pageList = new ArrayList<>();
 		List<PageDTO> myPageList = new ArrayList<>();
-		List<PageDTO> recomPageList = new ArrayList<>();
+		List<PageDTO> pageList = new ArrayList<>();
 		
 		List<Integer> pageNumList = new ArrayList<>();
 		List<String> pageIdList = new ArrayList<>();
-		PageDTO pageDTO = null;
-		
+		List<Integer> newPageNumList = new ArrayList<>();
+		List<Integer> newRecomPageList = new ArrayList<>();
+		List<PageDTO> recomPageList = new ArrayList<>();
+		List<PageDTO> recommendPageList = new ArrayList<>();
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
 				myPageList = communityService.myPageList(memberDTO.getId(),"");
 				pageList = communityService.myPageList(memberDTO.getId(),"");
 				
-				myPageList = communityService.myPageList(memberDTO.getId(),"");
-				
 				pageNumList = communityService.pageNumList(memberDTO.getId());
-				for (int num : pageNumList) {//257,386
+				for (int num : pageNumList) {
 					pageIdList = communityService.pageIdList(num);
 					for (String id : pageIdList) {
-						List<Integer> page_num = new ArrayList<>();
-						page_num = communityService.recommendPageList(id);
-						
-						for (int p_num : page_num) {
-							pageDTO = communityService.pageSelect("", p_num);
-							recomPageList.add(pageDTO);
-						}
+						newPageNumList = communityService.recommendPageList(id);
 					}
 				}
+				
+				newRecomPageList = communityService.pageList();
+				newPageNumList.addAll(newRecomPageList);
+				
+				HashSet<Integer> hs = new HashSet<>(newPageNumList);
+				Iterator<Integer> it = hs.iterator();
+				PageDTO pageDTO = null;
+				
+				for (int p_num : hs) {
+					pageDTO = communityService.pageSelect("", p_num);
+					recomPageList.add(pageDTO);
+				}
+				
+				Collections.reverse(recomPageList);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

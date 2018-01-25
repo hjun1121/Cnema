@@ -23,4 +23,9 @@
 	<select id="pageSelect" resultType="pageDTO" parameterType="java.util.Map">
 		select * from page where page_num=#{page_num} and page_name like '%'||#{search}||'%'
 	</select>
+	
+	<select id="pageList" resultType="int">
+		select page_num from page
+	</select>
+	
 </mapper>

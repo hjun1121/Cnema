@@ -45,4 +45,8 @@ public class CommunityDAO {
 		rMap.put("page_num", page_num);
 		return sqlSession.selectOne(NAMESPACE+"pageSelect",rMap);
 	}
+
+	public List<Integer> pageList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"pageList");
+	}
 }

@@ -33,4 +33,9 @@ public class CommunityService {
 	public PageDTO pageSelect(String search, int page_num) throws Exception{
 		return communityDAO.pageSelect(search,page_num);
 	}
+
+	public List<Integer> pageList() throws Exception{
+		return communityDAO.pageList();
+	}
+	
 }
