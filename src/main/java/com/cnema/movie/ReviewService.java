@@ -3,8 +3,10 @@ package com.cnema.movie;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ReviewService {
 	@Inject
 	private ReviewDAO reviewDAO;

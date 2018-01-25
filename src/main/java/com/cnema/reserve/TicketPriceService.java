@@ -1,12 +1,12 @@
 package com.cnema.reserve;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class TicketPriceService {
 	@Inject
 	private TicketPriceDAO ticketPriceDAO;

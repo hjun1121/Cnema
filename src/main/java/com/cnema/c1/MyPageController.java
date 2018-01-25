@@ -116,9 +116,8 @@ public class MyPageController {
 			mv.addObject("myInfo", memberDTO);
 			mv.setViewName("myPage/myInfo");
 		}else{
-			//rd.addFlashAttribute("message", "비밀번호를 다시 입력해주세요.");
 			mv.addObject("message", "비밀번호가 다릅니다.");
-			mv.setViewName("myPage/myInfoCheck");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -133,10 +132,9 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(memberDTO.getPw());
 		if(result>0){
-			mv.addObject("message", "회원정보 수정 성공");
-			mv.setViewName("common/result");
+			mv.addObject("message", "회원정보 수정 완료하였습니다.");
+			mv.setViewName("common/messagePath");
 			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
 			memberDTO2.setPw(memberDTO.getPw());
 			memberDTO2.setPhone(memberDTO.getPhone());
@@ -147,8 +145,8 @@ public class MyPageController {
 			
 			session.setAttribute("member", memberDTO2);
 		}else{
-			rd.addAttribute("message", "회원 정보 수정 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "회원 정보 수정 실패하였습니다.");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -211,10 +209,6 @@ public class MyPageController {
 		mv.addObject("kind",kind);
 		mv.addObject("rList",rList);
 		mv.addObject("wList",wList);
-		for(ReserveDTO reserveDTO :rList ){
-			System.out.println(reserveDTO.getCount());
-		}
-			
 			
 		mv.setViewName("myPage/movieHistory");
 		return mv;
@@ -232,11 +226,13 @@ public class MyPageController {
 		
 		ModelAndView mv = new ModelAndView();
 		if(result>0){
-			rd.addFlashAttribute("message", "예매 내역 삭제 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "예매 내역 삭제 성공하였습니다.");
+			mv.addObject("path", "./myPage/movieHistory");
+			mv.setViewName("common/messagePath");
 		}else{
-			rd.addFlashAttribute("message", "예매 내역 삭제 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "예매 내역 삭제 실패하였습니다.");
+			mv.addObject("path", "./myPage/movieHistory");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -288,10 +284,10 @@ public class MyPageController {
 		}
 		
 		if(result>0){
-			rd.addAttribute("message", "영화 리뷰 삭제 성공");
+			rd.addAttribute("message", "영화 리뷰 삭제 성공하였습니다.");
 			mv.setViewName("redirect:../common/resultClose");
 		}else{
-			rd.addAttribute("message", "영화 리뷰 삭제 실패");
+			rd.addAttribute("message", "영화 리뷰 삭제 실패하였습니다.");
 			mv.setViewName("redirect:../common/resultClose");
 		}
 		
@@ -311,10 +307,10 @@ public class MyPageController {
 		}
 		
 		if(result>0){
-			rd.addAttribute("message", "영화 리뷰 작성 성공");
+			rd.addAttribute("message", "영화 리뷰 작성 성공하였습니다.");
 			mv.setViewName("redirect:../common/resultClose");
 		}else{
-			rd.addAttribute("message", "영화 리뷰 작성 실패");
+			rd.addAttribute("message", "영화 리뷰 작성 실패하였습니다.");
 			mv.setViewName("redirect:../common/resultClose");
 		}
 		
@@ -367,11 +363,13 @@ public class MyPageController {
 
 		ModelAndView mv = new ModelAndView();
 		if(result>0){
-			rd.addFlashAttribute("message", "위시리스트 삭제 성공");
-			mv.setViewName("redirect:../myPage/wishList");
+			mv.addObject("message", "위시리스트 삭제 성공하였습니다.");
+			mv.addObject("path", "./myPage/wishList");
+			mv.setViewName("common/messagePath");
 		}else{
-			rd.addFlashAttribute("message", "위시리스트 삭제 실패");
-			mv.setViewName("redirect:../myPage/wishList");
+			mv.addObject("message", "위시리스트 삭제 실패하였습니다.");
+			mv.addObject("path", "./myPage/wishList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -500,11 +498,13 @@ public class MyPageController {
 		
 		if(result>0){
 			session.invalidate();
-			rd.addFlashAttribute("message", "회원 탈퇴 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "회원 탈퇴 성공하였습니다.");
+			mv.addObject("path", "../member/myPageView");
+			mv.setViewName("common/messagePath");
 		}else{
-			rd.addFlashAttribute("message", "회원 탈퇴 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "회원 탈퇴 실패하였습니다.");
+			mv.addObject("path", "../member/myPageView");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}

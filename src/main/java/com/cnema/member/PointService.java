@@ -5,11 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.cnema.theater.TheaterDAO;
-import com.cnema.theater.TheaterDTO;
 
 @Service
+@Transactional
 public class PointService {
 	@Inject
 	private PointDAO pointDAO;

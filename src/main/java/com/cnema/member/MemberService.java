@@ -6,11 +6,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cnema.util.FileSaver;
 
 @Service
+@Transactional
 public class MemberService {
 	@Inject
 	private MemberDAO memberDAO;
