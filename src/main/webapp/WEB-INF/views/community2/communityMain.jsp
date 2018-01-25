@@ -20,9 +20,11 @@ $(function() {
 		var search = $("#search").val();
 		location.href="communityMain?search="+search;
 	});
+	
 	$("#moreBtn").click(function(){
 		location.href="pageRecomList";
 	});
+	
 	$("#moreInsertBtn").click(function(){
 		location.href="pageInsertList";
 	});
@@ -54,8 +56,13 @@ $(function() {
 		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px;">
 			<h2 style="font-size: 20px; color: #333333;">가입한 페이지</h2>
 			<br>
+<<<<<<< HEAD
+			<c:forEach items="${myPageList}" var="page">
+				<a href="${pageScope.pageContext.request.contextPath }/community/pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
+=======
 			<c:forEach items="${pageList}" var="page">
 				<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
+>>>>>>> e689f79398ea4d3f8416e8fe62b7e6cd0d1654a7
 			</c:forEach>
 		</div>
 		</c:if>
@@ -66,7 +73,11 @@ $(function() {
 			<br>
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 				<c:if test="${i.index < 3}">
+<<<<<<< HEAD
+					<a href="${pageScope.pageContext.request.contextPath }/community/pageMain?page_num=${recommend.page_num}"><p><img style="width: 30%; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}"> ${recommend.page_name}</p></a>
+=======
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}"><p><img style="width: 30%; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}"> ${recommend.page_name}</p></a>
+>>>>>>> e689f79398ea4d3f8416e8fe62b7e6cd0d1654a7
 				</c:if>
 			</c:forEach>
 		</div>
@@ -79,7 +90,7 @@ $(function() {
 	<!-- 가입한 페이지  -->
 	<div style="height: 50%; background-color: gray;">
 		<input type="button" value="+더보기" id="moreInsertBtn"><br>
-		<c:forEach items="${pageList}" var="page" varStatus="count">
+		<c:forEach items="${myPageList}" var="page" varStatus="count">
 			<img alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
 			${page.page_name}
 		</c:forEach>

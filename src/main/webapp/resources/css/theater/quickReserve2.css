@@ -1,5 +1,12 @@
 @CHARSET "UTF-8";
 
+.reserve_img{
+	 width: 17px;
+	 height: 17px;
+	 border: 1px solid #dcdcdc;
+}
+
+
 #bottom_area {
 	width: 996px;
 	height: 128px;
@@ -31,7 +38,7 @@
 #qrSeat {
 	float: left;
 	margin-left: 10px;
-	width: 217px;
+	width: 150px;
 	height: 120px;
 }
 
@@ -45,7 +52,7 @@
 .qrPrice__ {
 	float: left;
 	margin-left: 10px;
-	width: 217px;
+	width: 60px;
 	height: 120px;
 }
 
