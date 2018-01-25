@@ -361,7 +361,7 @@
 													<c:forEach items="${areaList }" var="area">
 														<li class="pointer">
 															<a href="#" class="area"  title="${area.area }" onclick="return false;">
-																<span class="name">${area.area}</span>
+																<span class="name">${area.area }</span>
 																<span class="count">(${area.count })</span>
 															</a>
 														</li>

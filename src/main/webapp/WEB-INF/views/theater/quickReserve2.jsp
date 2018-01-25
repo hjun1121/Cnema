@@ -374,11 +374,11 @@
 										</span>
 										<span>
 											<span class="icon"></span>
-											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/MyReserve.PNG">&nbsp;나의선택
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/MyReserve.PNG">&nbsp;선택좌석
 										</span>
 										<span>
 											<span class="icon"></span>
-											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/notReserve.PNG">&nbsp;예매완료
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/notReserve.PNG">&nbsp;선택불가
 										</span>
 									</div>
 								</div>
