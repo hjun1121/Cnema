@@ -27,7 +27,7 @@ public class CommunityController {
 		ModelAndView mv = new ModelAndView();
 		List<PageDTO> pageList = new ArrayList<>();
 		List<PageDTO> recommendPage = new ArrayList<>();
-		recommendPage = communityService.recommendPageList("");
+		/*recommendPage = communityService.recommendPageList("");*/
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
@@ -52,12 +52,18 @@ public class CommunityController {
 		
 		List<PageDTO> pageList = new ArrayList<>();
 		List<PageDTO> myPageList = new ArrayList<>();
+		List<Integer> pageNumList = new ArrayList<>();
+		PageDTO pageDTO = null;
 		List<PageDTO> recomPageList = new ArrayList<>();
 		
  		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		pageList = communityService.recommendPageList(search);
 		myPageList = communityService.myPageList(memberDTO.getId(),"");
-		recomPageList = communityService.recommendPageList("");
+		pageNumList = communityService.pageNumList(memberDTO.getId());
+		/*pageList = communityService.recommendPageList(search,num);*/
+		for (int num : pageNumList) {
+			pageDTO = communityService.recommendPageList("",num);
+			recomPageList.add(pageDTO);
+		}
 		
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);
@@ -81,7 +87,7 @@ public class CommunityController {
  		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		pageList = communityService.myPageList(memberDTO.getId(),search);
 		myPageList = communityService.myPageList(memberDTO.getId(),"");
-		recomPageList = communityService.recommendPageList("");
+		/*recomPageList = communityService.recommendPageList("",3);*/
 		
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);

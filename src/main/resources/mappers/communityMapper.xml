@@ -9,10 +9,10 @@
 	</select>
 	
 	<select id="recommendPageList" resultType="pageDTO" parameterType="String">
-		select * from page where page_name like '%'||#{search}||'%'
+		select * from pagemember where page_num=#{num} and page_name like '%'||#{search}||'%'
 	</select>
 	
-	<!-- <select id="pageList" resultType="pageDTO">
-		select * from page where page_name like '%'||#{search}||'%'
-	</select> -->
+	<select id="pageNumList" resultType="int" parameterType="string">
+		select page_num from pagemember where id=#{id}
+	</select>
 </mapper>
