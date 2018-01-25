@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#all{
+	height: 600px;
+	background-color: red;
+	width: 1000px;
+}
+
+#movie{
+	background-color: yellow;
+	width: 290px;
+	float: left;
+	margin-left: 2px;
+}
+#theater{
+	background-color: yellow;
+	width: 290px;
+	float: left;
+	margin-left: 2px;
+}
+#day{
+	background-color: yellow;
+	width: 100px;
+	float: left;
+	margin-left: 2px;
+}
+#schedule{
+	background-color: yellow;
+	width: 310px;
+	float: left;
+	margin-left: 2px;
+}
+
+.head{
+	height: 35px;
+	background-color: black;
+	
+}
+
+.head h2{
+	color: white;
+	text-align: center;
+}
+ul{
+	list-style: none;
+}
+.locationList{
+	float: right;
+	overflow: auto;
+	height: 200px;
+}

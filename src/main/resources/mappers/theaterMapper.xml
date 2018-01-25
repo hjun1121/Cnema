@@ -16,7 +16,7 @@
   		select DISTINCT area from theater
   	</select>
   	
-  	<select id="qrAreaList" resultType="String">
+  	<select id="qrAreaList" resultType="theaterDTO">
 		select DISTINCT area from theater where area != '서울'
   	</select>  
   	
