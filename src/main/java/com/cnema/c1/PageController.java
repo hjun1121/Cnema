@@ -24,7 +24,13 @@ public class PageController {
 	@Inject
 	private PageService pageService;
 	
-	
+	//쪽지 보내기
+	@RequestMapping(value = "mailSend")
+	public ModelAndView mailSend() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 	
 	//페이지 가입하기
 	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
