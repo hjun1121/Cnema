@@ -146,17 +146,26 @@ public class AjaxController {
 	}
 	
 	//이벤트관련
-	@RequestMapping(value="eventCheck", method=RequestMethod.POST)
-	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,ModelAndView mv) throws Exception{
+	@RequestMapping(value="eventJoin", method=RequestMethod.POST)
+	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,int check,ModelAndView mv) throws Exception{
 		
-		
+			System.out.println(eventJoinDTO.getType());
+			System.out.println("ajax event check");
+			System.out.println(check+"입니다!!");
+			if(check!=0){
+				
+				mv.addObject("type","3");
+			}
+			else{
+			System.out.println("ajax 지나는중");
 			int result = eventService.eventJoin(eventJoinDTO);
 			String message = "fail";
 			if(result>0){
 				message = "success";
 			}
 			mv.addObject("message", message);
-			mv.addObject("type",eventJoinDTO.getType());
+			mv.addObject("type","3");
+			}
 			mv.setViewName("ajax/eventCheck");
 			
 			return mv;

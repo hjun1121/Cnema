@@ -61,22 +61,34 @@ background-color: #f1f0e5;
 
 }
 #titleInput, #writerInput{
- width:620px;
+ width:580px;
  height: 30px;
  border: 1px solid #ccc;
 }
 #writerInput{
 border: none;
- width:100px;
+ width:120px;
 }
 #empty_td{
 height: 10px;
 }
-#contents{
-	width:100%;
-	height: 400px;
-	
+#noticeForm #contents{
+width:780px;
 }
+#noticeForm .tit{
+color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+   }
+   
+  .inputText{
+  	font-weight: bold;
+  	color: #222;
+  	font-size: 12px;
+  }
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -174,12 +186,12 @@ height: 10px;
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 	<div class="board_contents">
 	<form action="noticeUpdate" id="noticeForm" method="post" id="frm">
-	<h1>공지사항 수정</h1>
+	<span class="tit">공지사항 수정</span><br><br>
 		<input type="hidden" name="num" value="${view.num}">
 		<table>
 		<tr>
-			<td><input type="text" id="titleInput" name="title" value="${view.title}"></td>
-			<td><strong>작성자 &nbsp;</strong><input type="text" id="writerInput" name="writer" value="${view.writer}" readonly="readonly"></td>
+			<td><strong class="inputText" >제목 &nbsp;</strong><input type="text" id="titleInput" name="title" value="${view.title}"></td>
+			<td><strong class="inputText" >작성자 &nbsp;</strong><input type="text" id="writerInput" name="writer" value="${view.writer}" readonly="readonly"></td>
 		</tr>
 		<tr id="empty_td"></tr>
 		<tr>
