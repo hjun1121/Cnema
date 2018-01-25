@@ -108,6 +108,9 @@
 		<c:when test="${memberCheck eq 0}">
 			<input type="button" id="join_btn" value="페이지 가입하기">
 		</c:when>
+		<c:otherwise>
+			<input type="button" id="" value="그룹장이라 탈퇴안되지롱">
+		</c:otherwise>
 	</c:choose>
 
 </div>

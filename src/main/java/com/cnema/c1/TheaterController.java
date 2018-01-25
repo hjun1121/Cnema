@@ -208,6 +208,11 @@ public class TheaterController {
 		List<DayDTO> dayList = null;
 		try {
 			areaList = theaterService.qrAreaList();
+			for(TheaterDTO theaterDTO  : areaList){
+				int count = theaterService.locationList(theaterDTO.getArea()).size();
+				theaterDTO.setCount(count);
+			}
+			
 			movieList = movieService.qrMovieList();
 			theaterList = theaterService.locationList(areaName);
 			dayList = theaterService.dayList();

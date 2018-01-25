@@ -47,7 +47,7 @@ $(function() {
 		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px;">
 			<h2 style="font-size: 20px; color: #333333;">가입한 페이지</h2>
 			<br>
-			<c:forEach items="${myPageList}" var="page">
+			<c:forEach items="${pageList}" var="page">
 				<a href="${pageScope.pageContext.request.contextPath }/pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
 			</c:forEach>
 		</div>
