@@ -32,6 +32,10 @@
 		
 		$("#area").change(function(){
 			var area = $(this).val();
+			
+			$("#areaName").val(area);
+			$("#theater_num").val("");
+			
 			$.ajax({
 				url:"../ajax/adminLocationList",
 				type:"POST",
@@ -83,11 +87,17 @@
 		});
 		
 		$("#load").click(function(){
+			var theater_num = $("#theater_num").val();
+			
 			var location = $("#theaterName").val();
 			var x = $("#x_position").val();
 			var y = $("#y_position").val();
-			
-			window.open("http://map.daum.net/link/to/CGV"+location+","+x+","+y);
+			if(theater_num==""){
+				alert("극장을 선택해주세요");
+				$("#location").focus();
+			}else{
+				window.open("http://map.daum.net/link/to/CGV"+location+","+x+","+y);
+			}
 		});
 		
 	});
@@ -140,7 +150,7 @@
         	</div>
 			
 			<div>
-				<form action="../common/map" name="frm">
+				<form action="../common/map" name="frm" >
 					<input type="text" id="areaName" name="area" value="${area }">
 					<input type="text" id="theater_num" name="theater_num" value="${theater_num }">
 					<input type="text" id="theaterName" value="${theaterName }">
