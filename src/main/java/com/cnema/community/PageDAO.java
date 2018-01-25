@@ -9,20 +9,25 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.cnema.member.MemberDTO;
 
 @Repository
 public class PageDAO {
 	
 	@Inject
 	private SqlSession sqlSession;
-	private static final String NAMESPACE = "communityMapper.";
+	private static final String NAMESPACE = "pageMapper.";
+	
+	
+	//selectPageMemberOne
+	public PageMemberDTO selectPageMemberOne(String id) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectPageMemberOne", id);
+	}
+	
 	
 	//pageContentsWrite
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO){
 		return sqlSession.update(NAMESPACE+"pageContentsWrite", pageContentsDTO);
 	}
-	
 	
 	//memberDropCount
 	public int memberDropCount(int page_num) throws Exception {
@@ -76,8 +81,8 @@ public class PageDAO {
 	}
 
 	//selectRecommendPage
-	public List<PageDTO> selectRecommendPage() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"selectRecommendPage");
+	public List<PageDTO> recommendPageList(String search) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"recommendPageList",search);
 	}
 	
 	//selectPageList 가입 페이지 목록

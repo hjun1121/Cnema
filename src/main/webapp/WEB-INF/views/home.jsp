@@ -230,7 +230,7 @@ function showSlides(n) {
 	
 	<!-- //////////////////////////// -->
 	
-	<br>
+	<%-- <br>
 	<a href="home/kim">김</a>
 	<a href="home/ssin">신</a>
 	<a href="home/park">박</a>
@@ -250,7 +250,7 @@ function showSlides(n) {
 		<img height="100px" width="100px" src="resources/profil/${member.fileName }">
 		<a href="member/myPageView">My Page</a>
 		<a href="member/memberLogout">Logout</a>
-	</c:if>
+	</c:if> --%>
 	
 </div>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>	

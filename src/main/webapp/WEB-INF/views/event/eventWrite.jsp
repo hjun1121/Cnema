@@ -86,21 +86,14 @@ td{
     line-height: 1.5em;
     vertical-align: middle
 }
-#titleInput{
- width:620px;
- height: 30px;
-border: 1px solid #ccc;
-}
+
 textarea{
 width:620px;
 border: 1px solid #ccc;
-}
-
-#titleInput, textarea,#areasel,#locationsel{
-
 background-color: #f1f0e5;
-
 }
+
+
 #btnSection{
 	width:100%;
 }
@@ -123,23 +116,7 @@ background-color: #f1f0e5;
 
 }
 
-#btn2{
-	
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 auto;
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #e71a0f; 
-    color: #ffffff; 
-    border: 2px solid #e71a0f;
-    float:right;
-}
+
 
 .sub_tit{
 	color: #222;

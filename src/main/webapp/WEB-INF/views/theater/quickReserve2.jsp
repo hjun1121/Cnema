@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/theater/quickReserve2.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -230,138 +236,163 @@
 		/*  */
 	});
 </script>
-<style type="text/css">
-	*{
-		margin: 0px;
-		padding: 0px;
-	}
-	div{
-		height: 600px;
-	}
 
-	#all{
-		background-color: red;
-		width: 1000px;
-	}
-	
-	#movie{
-		background-color: yellow;
-		width: 290px;
-		float: left;
-		margin-left: 2px;
-	}
-	#theater{
-		background-color: yellow;
-		width: 290px;
-		float: left;
-		margin-left: 2px;
-	}
-	#day{
-		background-color: yellow;
-		width: 100px;
-		float: left;
-		margin-left: 2px;
-	}
-	#schedule{
-		background-color: yellow;
-		width: 310px;
-		float: left;
-		margin-left: 2px;
-	}
-	
-	.head{
-		height: 35px;
-		background-color: black;
-		
-	}
-	
-	.head h2{
-		color: white;
-		text-align: center;
-	}
-	ul{
-		list-style: none;
-	}
-	.locationList{
-		float: right;
-		overflow: auto;
-		height: 200px;
-	}
-</style>
 </head>
 <body>
-	<h2>Quick Reserve2</h2>
-	<div id="all">
-		<table border="1" style="background-color: yellow;">
-			<tr>
-				<th>일반</th>
-				<td class="adult seat" title="0" style="background-color: white;">0</td>
-				<td class="adult seat" title="1">1</td>
-				<td class="adult seat" title="2">2</td>
-				<td class="adult seat" title="3">3</td>
-				<td class="adult seat" title="4">4</td>
-				<td class="adult seat" title="5">5</td>
-				<td class="adult seat" title="6">6</td>
-			</tr>
-			<tr>
-				<th>청소년</th>
-				<td class="teen seat" title="0" style="background-color: white;">0</td>
-				<td class="teen seat" title="1">1</td>
-				<td class="teen seat" title="2">2</td>
-				<td class="teen seat" title="3">3</td>
-				<td class="teen seat" title="4">4</td>
-				<td class="teen seat" title="5">5</td>
-				<td class="teen seat" title="6">6</td>
-			</tr>
-		</table>
-		
-		<table border="1" style="background-color: yellow;">
-			<c:forEach begin="1" end="${screenDTO.x_num }" varStatus="c">
-				<tr>
-					<c:if test="${c.count eq 1 }"><td>A</td></c:if>
-					<c:if test="${c.count eq 2 }"><td>B</td></c:if>
-					<c:if test="${c.count eq 3 }"><td>C</td></c:if>
-					<c:if test="${c.count eq 4 }"><td>D</td></c:if>
-					<c:if test="${c.count eq 5 }"><td>E</td></c:if>
-					<c:if test="${c.count eq 6 }"><td>F</td></c:if>
-					<c:if test="${c.count eq 7 }"><td>G</td></c:if>
-					<c:if test="${c.count eq 8 }"><td>H</td></c:if>
-					<c:if test="${c.count eq 9 }"><td>I</td></c:if>
-					<c:if test="${c.count eq 10 }"><td>J</td></c:if>
-					<c:if test="${c.count eq 11 }"><td>K</td></c:if>
-					<c:if test="${c.count eq 12 }"><td>L</td></c:if>
-					
-
-					
-					<c:forEach begin="1" end="${screenDTO.y_num }" varStatus="co">
-					
-						<c:forEach items="${seatCheck }" var="seat">
-							<c:if test="${seat eq (c.count-1)*screenDTO.y_num+ co.count}">
-								<c:set var="check" value="${(c.count-1)*screenDTO.y_num+ co.count }"></c:set>
-							</c:if>
-						</c:forEach>
-						
-						<c:if test="${check eq (c.count-1)*screenDTO.y_num+ co.count }">
-							<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" style="background-color: blue;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
-								${co.count }
-							</td>					
-						</c:if>
-						<c:if test="${check ne (c.count-1)*screenDTO.y_num+ co.count }">
-							<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" title="${(c.count-1)*screenDTO.y_num+ co.count }">
-								<a href="#"  onclick="return false;">${co.count }</a>
-							</td>				
-						</c:if>
-					</c:forEach>
-				</tr>
-			</c:forEach>
-		</table>
-
-	</div>
-	<div id="bottom_area">
-		
+	<div id="cgvwrap">
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+			<!-- //////////////////////////////// -->
+			<div id="contaniner" class="">
+        	<!-- 상단바 시작 -->
+        	<div class="linemap-wrap">
+           		<div class="sect-linemap">
+                	<div class="sect-bcrumb">
+                    	<ul>
+                        	<li>
+                        		<a href="#"><img alt="home" src="${pageContext.request.contextPath }/resources/images/common/btn/btn_home.png"></a>
+                        	</li>
+                            <li>
+                                <a href="#">예매</a>
+                            </li>
+                            <li class="last">
+                            	빠른예매
+                            </li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 상단바 끝 -->
+        	
+        	<!-- 내용시작 -->
+	<div id="contents">
+		<div id="ticket" class="ticket ko">
+			<div class="navi">
+				<div class="newsletter">
+				</div>
+			</div>
+			<div id="all" class="steps">
+				<!-- step2 -->
+				<div class="step step2" style="display: block;">
+					<div class="section section-seat four_line dimmed">
+						<div class="col-head" id="skip_seat_list">
+							<h3 class="sreader">
+								인원 / 좌석
+							</h3>
+						</div>
+						<div class="col-body">
+							<div class="person_screen">
+								<div class="section section-numberofpeople">
+									<div class="col-body">
+										<div class="numberofpeople-select">
+											<div class="group youth">
+												<span class="title">일반</span>
+												<ul>
+													<c:forEach begin="0" end="8" varStatus="count">
+														<li class="adult seat" title="${count.index }"><a href="#" onclick="return false;">${count.index }</a></li>
+													</c:forEach>
+												</ul>
+											</div>
+											<div class="group child">
+												<span class="title">청소년</span>
+												<ul>
+													<c:forEach begin="0" end="8" varStatus="count">
+														<li class="teen seat" title="${count.index }"><a href="#" onclick="return false;">${count.index }</a></li>
+													</c:forEach>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="section section-screen-select">
+									<div id="user-select-info">
+										<p class="theater-info">
+											<span class="site">${theater.location }</span>
+											<span class="screen">${screenDTO.room_num }관 ${screenDTO.floor }층</span>
+											<span class="seatNum">남은좌석  <b class="restNum">118</b>/<b class="totalNum">172</b></span>
+										</p>
+										<p class="playYMD-info"><b><c:if test="${day ne '2000-01-01' }">${day }</c:if></b>
+										<b class="exe">(수)</b><b>12:30 ~ 15:03</b></p>
+									</div>	
+								</div>
+							</div>
+							<!-- THEATER -->
+							<div class="theater_minimap">
+								<div class="theater nano">
+									<div class="content" style="right: -17px; bottom: -17px;">
+										<div class="screen" title="SCREEN" style="width: 652px;"><span class="text"></span></div>
+										<div class="cnema_seats" style="width: 288px; height: 224px;">
+											<div>
+												<table border="1" style="background-color:white; border:1px solid #dcdcdc;">
+													<c:forEach begin="1" end="${screenDTO.x_num }" varStatus="c">
+														<tr style="height: 32px;">
+															<c:if test="${c.count eq 1 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">A</td></c:if>
+															<c:if test="${c.count eq 2 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">B</td></c:if>
+															<c:if test="${c.count eq 3 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">C</td></c:if>
+															<c:if test="${c.count eq 4 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">D</td></c:if>
+															<c:if test="${c.count eq 5 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">E</td></c:if>
+															<c:if test="${c.count eq 6 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">F</td></c:if>
+															<c:if test="${c.count eq 7 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">G</td></c:if>
+															<c:if test="${c.count eq 8 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">H</td></c:if>
+															<c:if test="${c.count eq 9 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">I</td></c:if>
+															<c:if test="${c.count eq 10 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">J</td></c:if>
+															<c:if test="${c.count eq 11 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">K</td></c:if>
+															<c:if test="${c.count eq 12 }"><td style=" text-align: center; border:1px solid #dcdcdc; background-color:#dcdcdc;">L</td></c:if>
+															<c:forEach begin="1" end="${screenDTO.y_num }" varStatus="co">
+															
+																<c:forEach items="${seatCheck }" var="seat">
+																	<c:if test="${seat eq (c.count-1)*screenDTO.y_num+ co.count}">
+																		<c:set var="check" value="${(c.count-1)*screenDTO.y_num+ co.count }"></c:set>
+																	</c:if>
+																</c:forEach>
+																
+																<c:if test="${check eq (c.count-1)*screenDTO.y_num+ co.count }">
+																	<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" style="background-color: blue; text-align: center; border:1px solid #dcdcdc;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
+																		${co.count }
+																	</td>					
+																</c:if>
+																<c:if test="${check ne (c.count-1)*screenDTO.y_num+ co.count }">
+																	<td id="seat${(c.count-1)*screenDTO.y_num+ co.count }" class="seats" style=" text-align: center; border:1px solid #dcdcdc;" title="${(c.count-1)*screenDTO.y_num+ co.count }">
+																		<a href="#"  onclick="return false;">${co.count }</a>
+																	</td>				
+																</c:if>
+															</c:forEach>
+														</tr>
+													</c:forEach>
+												</table>
+											</div>
+											<div class="exit top" style="top: -30px; left: 258px;"></div>
+										</div>
+									</div>
+								</div>
+								<div class="legend" style="width: 110px; margin-right: 30px;">
+									<div class="buttons">
+									</div>
+									<div class="seat-icon-desc">
+										<span>
+											<span class="icon"></span>
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/OkReserve.PNG">&nbsp;선택가능
+										</span>
+										<span>
+											<span class="icon"></span>
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/MyReserve.PNG">&nbsp;선택좌석
+										</span>
+										<span>
+											<span class="icon"></span>
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/notReserve.PNG">&nbsp;선택불가
+										</span>
+									</div>
+								</div>
+							</div>
+						   <!-- <div class="mouse_block"></div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- /////////////////////////// -->
+		<div id="bottom_area">
 		<form action="">
-		<input type="button" id="leftBtn1" value="이전" style="float: left;">
-			<table border="1"  style="float: left; width: 217px; height: 118px;" id="qrMovie">
+		<input type="button" id="leftBtn1" value="이전">
+			<table border="1" id="qrMovie">
 				<tr>
 					<td rowspan="2"><img width="75px;" height="106px;" alt="" src="../resources/movie_poster/${movie.fileName }"></td>
 					<td>${movie.movie_name }</td>
@@ -372,7 +403,7 @@
 				
 			</table>
 			
-			<table border="1" style="float: left; margin-left: 10px; width: 214px; height: 120px;" id="qrTheater">
+			<table border="1" id="qrTheater">
 				<tr>
 					<td>극장</td><td>${theater.location }</td>
 				</tr>
@@ -384,28 +415,31 @@
 					</td>
 				</tr>
 				<tr>
-					<td>상영관</td><td>${screenDTO.room_num }
-					<c:if test="${!empty screenDTO }">관</c:if>
-					${screenDTO.floor }층
+					<td>상영관</td>
+					<td>
+						${screenDTO.room_num }
+						<c:if test="${!empty screenDTO }">관</c:if>
+						${screenDTO.floor }층
 					</td>
 				</tr>
 				<tr>
 					<td>인원</td><td></td>
 				</tr>										
 			</table>
-			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" id="qrSeat">
+			<table border="1" id="qrSeat">
 				<tr>
 					<td id="seatN">좌석선택</td>
 				</tr>											
 			</table>
-			<table border="1" style="float: left; margin-left: 10px; width: 217px; height: 120px;" >
+			<table border="1" class="qrPrice__" >
 				<tr>
 					<td id="qrPrice"></td>
 				</tr>							
-			</table>			
-		<input type="button" id="rightBtn2" value="결제">	
+			</table>
+			<input type="button" id="rightBtn2" value="결제">	
 		</form>
 		
+		<div style="display: none;">
 		<form action="./quickReserve3" method="post" name="reserve" style="clear: both;">
 			<input type="hidden" id="movie_num" name="movie_num" value="${reserve.movie_num }">
 			<input type="hidden" id="theater_num" name="theater_num" value="${reserve.theater_num }">
@@ -422,13 +456,17 @@
 			
 			</div>
 		</form>
+		</div>
 	</div>
+	<!-- /////////////////////////// -->
+		</div>
+	</div>
+	
+				<!-- 내용 끝 -->
+			</div>
+			<!-- ///////////////////////////////// -->
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
+	</div>
+	
 </body>
-
 </html>
-
-
-
-
-
-

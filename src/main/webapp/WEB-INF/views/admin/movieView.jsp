@@ -185,9 +185,9 @@
 	                	</ul>
 	            	</li>
 		            <li>
-	                    <a href="#">나의 문의내역 <i></i></a>
+	                    <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
 		                <ul>
-		                    <li><a href="#">1:1 문의</a></li>
+		                    <li><a href="../admin/myQnaList">1:1문의</a></li>
 		                </ul>
 		            </li>
 		            <c:if test="${!empty member and member.type eq 20 }">
@@ -196,10 +196,10 @@
 		                <ul>
 		                    <li class="on"><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
-		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
+		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
-		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
+		                    <li><a href="../admin/memberList?group_num=-1&sort=-1">회원 리스트</a></li>
 		                </ul>
 		            </li>
 		            

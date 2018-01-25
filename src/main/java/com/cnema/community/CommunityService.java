@@ -3,105 +3,34 @@ package com.cnema.community;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.cnema.member.MemberDTO;
-import com.cnema.util.FileSaver;
-
+/*heesoeng code*/
 @Service
-@Transactional
 public class CommunityService {
-
 	@Inject
-	private PageDAO pageDAO;
-	@Inject
-	private FileSaver fileSaver;
+	private CommunityDAO communityDAO;
 	
-	//pageContentsWrite
-	public int pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception{
-		int result = pageDAO.pageContentsWrite(pageContentsDTO);
-		
-		return result;
+	
+	public List<PageDTO> myPageList(String id,String search) throws Exception {
+		return communityDAO.myPageList(id,search);
 	}
 	
 	
-	//memberDrop
-	public int memberDrop(int page_num, String id) throws Exception {
-		int result = pageDAO.memberDrop(page_num, id);
-		result = pageDAO.memberDropCount(page_num);
-		
-		return result;
+	public List<Integer> pageNumList(String id) throws Exception{
+		return communityDAO.pageNumList(id);
 	}
-	
-	
-	//memberCheck
-	public int memberCheck(int page_num, String id) throws Exception {
-		PageMemberDTO pageMemberDTO = null;
-		int result = 0;
-		pageMemberDTO = pageDAO.memberCheck(page_num, id);
-		if(pageMemberDTO != null) { //가입한 페이지일 경우
-			if(pageMemberDTO.getType() == 20) { //그룹장일 경우
-				result = 20;
-			} else {
-				result = 11; //일반회원일 경우
-			}
-		}
 
-		return result;
+	public List<String> pageIdList(int num) throws Exception {
+		return communityDAO.pageIdList(num);
 	}
 	
-	
-	//selectPageMemberList
-	public List<PageMemberDTO> selectPageMemberList(int page_num) throws Exception {
-		return pageDAO.selectPageMemberList(page_num);
+	public List<Integer> recommendPageList(String id) throws Exception {
+		return communityDAO.recommendPageList(id);
 	}
 	
-	
-	//memberInsert
-	public int memberInsert(PageDTO pageDTO, String id) throws Exception {
-		int result = pageDAO.memberInsert(pageDTO, id);
-		result = pageDAO.memberCount(pageDTO.getPage_num());
-
-		return result;
+	public PageDTO pageSelect(String search, int page_num) throws Exception{
+		return communityDAO.pageSelect(search,page_num);
 	}
-	
-	
-	//pageInsert
-	public int pageInsert(PageDTO pageDTO, HttpSession session) throws Exception {
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		String id = "";
-		id = memberDTO.getId();
-		MultipartFile file = pageDTO.getFile();
-		String name = fileSaver.fileSave(file, session, "page_logo");
-		pageDTO.setFileName(name);
-		pageDTO.setOriName(file.getOriginalFilename());
-		int result = pageDAO.pageInsert(pageDTO);
-		result = pageDAO.memberInsert(pageDTO, id);
-
-		return result;
-	}
-	
-	
-	//selectPageOne
-	public PageDTO selectPageOne(int page_num) throws Exception {
-		return pageDAO.selectPageOne(page_num);
-	}
-	
-	
-	//selectRecommendPage
-	public List<PageDTO> selectRecommendPage() throws Exception {
-		return pageDAO.selectRecommendPage();
-	}
-	
-	
-	//selectPageList
-	public List<PageDTO> selectPageList(String id) throws Exception {
-		return pageDAO.selectPageList(id);
-	}
-	
-
 }

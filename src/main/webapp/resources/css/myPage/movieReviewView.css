@@ -1,0 +1,194 @@
+@CHARSET "UTF-8";
+
+.layer-wrap .layer-contents.on-shadow {
+    -webkit-box-shadow: #333 5px 5px 15px;
+    -moz-box-shadow: #333 5px 5px 15px;
+    box-shadow: #333 5px 5px 15px;
+    behavior: url(http://img.cgv.co.kr/R2014/css/PIE.htc);
+}
+.layer-contents {
+    height: auto;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+.layer-wrap .popwrap, .popup-general .popwrap {
+    position: relative;
+    padding: 5px;
+    background-color: #333;
+    text-align: left;
+}
+body, input, textarea, button, table {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+.layer-wrap .popwrap>h1, .popup-general .popwrap>h1 {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 19px;
+    border: 1px solid #707070;
+    color: #f2f0e5;
+    font-family: NanumBarunGothic,'맑은 고딕','돋움',Dotum,sans-serif;
+    font-size: 22px;
+}
+.layer-wrap .pop-contents, .popup-general .pop-contents {
+    margin-top: 5px;
+    padding: 40px;
+    background-color: #f6f6f4;
+    color: #333;
+}
+.pop-contents .sect-viw-rated {
+    overflow: hidden;
+    width: 710px;
+}
+div[class^="sect-"] {
+    clear: both;
+    zoom: 1;
+}
+.pop-contents .sect-viw-rated>.box-image {
+    float: left;
+    width: 110px;
+    height: 158px;
+    margin-right: 20px;
+}
+.thumb-image {
+    display: block;
+    position: relative;
+}
+.box-image img {
+    width: 100%;
+}
+input, select, img {
+    vertical-align: middle;
+}
+.layer-wrap .popwrap, .popup-general .popwrap {
+    position: relative;
+    padding: 5px;
+    background-color: #333;
+    text-align: left;
+}
+.pop-contents .sect-viw-rated>.box-contents {
+    float: left;
+    width: 580px;
+}
+.pop-contents .sect-viw-rated>.box-contents>.title {
+    margin: 5px 0 18px;
+    color: #222;
+    font-family: NanumBarunGothicBold,'맑은 고딕','돋움',Dotum,sans-serif;
+    font-size: 17px;
+    line-height: 17px;
+}
+.pop-contents .sect-viw-rated>.box-contents>.title {
+    margin: 5px 0 11px;
+}
+.title {
+    display: block;
+    color: #333333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+strong {
+    font-family: 'NanumBarunGothicBold', sans-serif;
+    font-weight: normal;
+}
+body, input, textarea, button, table {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+input, select, img {
+    vertical-align: middle;
+}
+button, input {
+    overflow: visible;
+}
+.pop-contents .sect-viw-rated .box-contents .writer-comment {
+    padding: 0;
+    margin-top: 6px;
+}
+.box-contents .writer-comment {
+    margin-top: 6px;
+}
+.layer-wrap .pop-contents, .popup-general .pop-contents {
+    margin-top: 5px;
+    padding: 40px;
+    background-color: #f6f6f4;
+    color: #333;
+}
+.layer-wrap .popwrap, .popup-general .popwrap {
+    position: relative;
+    padding: 5px;
+    background-color: #333;
+    text-align: left;
+}
+body, input, textarea, button, table {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+ol, ul {
+    list-style: none;
+}
+.popwrap .writerinfo .writer-name {
+    cursor: auto;
+}
+.popwrap .writerinfo .writer-name {
+    cursor: auto;
+}
+.writerinfo .writer-name {
+    font-size: 12px;
+    cursor: pointer;
+}
+.writerinfo li {
+    float: left;
+    padding: 0 8px;
+    background: url(../../../resources/images/myPageView/bg_writeinfo.gif) 0 1px no-repeat;
+    color: #666666;
+    font-size: 11px;
+    font-family: 'NanumBarunGothicBold';
+    line-height: 14px;
+}
+.writerinfo button {
+    height: 14px;
+    padding: 0 5px 0 14px;
+}
+.btn-delete {
+    height: 9px;
+    background: url(../../../resources/images/common/sprite/sprite_icon.png) -200px -40px no-repeat;
+}
+.btn-delete {
+    background-position: -200px -41px;
+}
+button, input[type='submit'], input[type='button'] {
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+button, input[type='submit'], input[type='reset'] {
+    padding: 0;
+    border: 0 none;
+    background-color: transparent;
+    vertical-align: middle;
+}
+
+body, input, textarea, button, table {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #666;
+    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+
+button, input {
+    overflow: visible;
+}

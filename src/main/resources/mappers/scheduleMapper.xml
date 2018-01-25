@@ -48,6 +48,8 @@
   		insert into screen values(movie_seq.nextval,#{theater_num},#{room_num},#{floor},#{x_num},#{y_num})
   	</insert>
   
+  
+  
   	<!-- heeseong -->
   	<select id="scheduleInfo" resultMap="scheduleTime" parameterType="int">
   		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where schedule_num=#{sNum}
@@ -72,6 +74,9 @@
   	<delete id="scheduleRemove" parameterType="int">
   		delete schedule where schedule_num=#{schedule_num}
   	</delete>
+  	
+  	
+  	<!-- screen -->
   	<!-- heeseong -->
   	<select id="screenAList" resultType="screenDTO">
   		select * from screen

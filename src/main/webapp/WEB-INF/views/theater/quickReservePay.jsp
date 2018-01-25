@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> 결제</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -54,6 +58,34 @@
 </script>
 </head>
 <body>
+	<div id="cgvwrap">
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+			<!-- //////////////////////////////// -->
+			<div id="contaniner" class="">
+        	<!-- 상단바 시작 -->
+        	<div class="linemap-wrap">
+           		<div class="sect-linemap">
+                	<div class="sect-bcrumb">
+                    	<ul>
+                        	<li>
+                        		<a href="#"><img alt="home" src="${pageContext.request.contextPath }/resources/images/common/btn/btn_home.png"></a>
+                        	</li>
+                            <li>
+                                <a href="#">예매</a>
+                            </li>
+                            <li>
+                                <a href="#">빠른예매</a>
+                            </li>
+                            <li class="last">
+                            	결제
+                            </li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 상단바 끝 -->
+        	
+        	<!-- 내용시작 -->
 
 	<form action="./quickReserveGo" method="POST" name="frm">
 			<input type="hidden" id="movie_num" name="movie_num" value="${reserve.movie_num }">
@@ -73,6 +105,17 @@
 			<input type="hidden" id="usePoint" name="point" value="${ticketPrice.point}">
 			<input type="hidden" id="price" name="price" value="${ticketPrice.price }">
 	</form>
+	<br><br><br><br><br><br><br><br><br>
+		<div style="text-align: center;">
+		<strong>고객님의 상품이 결제되고 있습니다.</strong>
+		<p><img alt="" src="${pageContext.request.contextPath }/resources/images/theater/txt_progress.gif"></p>
+		<p><img alt="" src="${pageContext.request.contextPath }/resources/images/theater/img_loading.gif"></p>
+		</div>
+	<br><br><br><br><br><br><br><br><br>
+				<!-- 내용 끝 -->
+			</div>
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
+	</div>
 	
 </body>
 </html>

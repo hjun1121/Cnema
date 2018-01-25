@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	alert('${message}');
-	location.href="../member/memberLogin?path=${path}";
+	location.href="../member/memberLogin?path=${path}&num=${num}";
 </script>
 </head>
 <body>

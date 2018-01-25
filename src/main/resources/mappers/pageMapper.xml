@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pageMapper">
+
+	<!-- 메일 받기 -->
+	<select id="mailreceive" parameterType="java.util.Map">
+	</select>
+
+	<!-- 메일 보내기 -->
+	<insert id="mailsend" parameterType="java.util.Map">
+		insert into message values(message_seq.nextval, #{send_id}, #{receive_id}, #{messageDTO.title}, #{messageDTO.contents}, sysdate, null, 12)
+	</insert>
+
+	<!-- 세나 -->
+	<insert id="pageContentsWrite" parameterType="pageContentsDTO">
+		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,movie_seq.nextval,0,0)
+	</insert>
+	
+	<delete id="memberDrop" parameterType="java.util.Map">
+		delete pagemember where page_num=#{page_num} and id=#{id}
+	</delete>
+
+	<!--  page 회원수 빼기 1 -->
+	<update id="memberDropCount" parameterType="int">
+		update page set member_count=member_count-1 where page_num=#{page_num}		
+	</update>
+
+	<select id="memberCheck" parameterType="java.util.Map" resultType="pageMemberDTO">
+		select * from pagemember where id=#{id} and page_num=#{page_num}
+	</select>
+
+	<select id="selectPageMemberList" resultType="pageMemberDTO">
+		select * from pagemember where page_num=#{page_num}
+	</select>
+
+
+	<insert id="memberInsert" parameterType="java.util.Map">
+		insert into pagemember values(movie_seq.nextval, #{pageDTO.page_num}, #{id}, sysdate,
+		<choose>
+			<when test="pageDTO.owner_id==id"> 20 </when>
+			<otherwise> 11 </otherwise>
+		</choose>
+		)
+	</insert>
+
+	<update id="memberCount" parameterType="int">
+		update page set member_count=member_count+1 where page_num=#{page_num}
+	</update>
+	
+	<select id="selectPageMemberOne" parameterType="String" resultType="pageMemberDTO">
+		select * from pagemember where id=#{id}
+	</select>
+
+	<select id="selectPageOne" resultType="pageDTO">
+		select * from page where page_num=#{page_num}
+	</select>
+
+</mapper>

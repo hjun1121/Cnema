@@ -116,9 +116,11 @@ public class EventController {
 		//update --> DB 
 		@RequestMapping(value="eventUpdate",method=RequestMethod.POST)
 		public String update(EventDTO eventDTO,HttpSession session ,RedirectAttributes rd) throws Exception{
-			int result = 0;
+			System.out.println("eventNofileTest");
+			System.out.println(eventDTO.getFile().getOriginalFilename() +"입니다");
 			
-				result = eventService.update(eventDTO,session);
+			int result = 0;
+			result = eventService.update(eventDTO,session);
 			
 			String message = "fail";
 			if(result>0){

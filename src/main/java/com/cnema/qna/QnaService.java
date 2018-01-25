@@ -35,7 +35,7 @@ public class QnaService {
 		List<BoardDTO> ar = qnaDAO.selectList(rowNum);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		mv.setViewName("qna/qnaList");
+		mv.setViewName("admin/myQnaList");
 		return mv;
 	}
 
@@ -44,7 +44,7 @@ public class QnaService {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = qnaDAO.selectMyList(id);
 		mv.addObject("list", ar);
-		mv.setViewName("qna/qnaList");
+		mv.setViewName("admin/myQnaList");
 		return mv;
 	}
 	

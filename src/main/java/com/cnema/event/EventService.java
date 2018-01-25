@@ -91,14 +91,12 @@ public class EventService {
 
 	public int update(EventDTO eventDTO, HttpSession session) throws Exception {
 		int result=0;
-		if(eventDTO.getFile().getOriginalFilename()==null){
-		eventDTO.setFileName("noFile");
-		eventDTO.setOriName("noFile");
+		if(eventDTO.getFile().getOriginalFilename()==""){
 			
 		result = eventDAO.update(eventDTO);
-			
-			
+	
 		}else{
+			
 		MultipartFile file = eventDTO.getFile();
 		String name = fileSaver.fileSave(file, session, "board");
 		eventDTO.setFileName(name);

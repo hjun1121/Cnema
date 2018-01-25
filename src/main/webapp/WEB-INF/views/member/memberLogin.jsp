@@ -81,6 +81,7 @@
         	<form action="memberLogin" id="frm" name="frm" method="post">
 				<div id="login_form">
 					<div id="login_all">
+					<input type="hidden" name="num" value="${num }">
 					<input type="hidden" name="path" value="${path }">
 					<input type="hidden" name="movie_num" value="${reserve.movie_num }">	
 					<input type="hidden" name="theater_num" value="${reserve.theater_num }">	

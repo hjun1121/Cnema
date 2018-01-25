@@ -9,15 +9,15 @@
   	</select>
   
   <!-- heeseong -->
-  	<select id="couponList" resultType="couponDTO">
+  	<!-- <select id="couponList" resultType="couponDTO">
   		select * from coupon
-  	</select>
+  	</select> -->
   	<!-- heeseong -->
   	<select id="couponInfo" resultType="couponDTO" parameterType="int">
   		select * from coupon where c_num=#{c_num}
   	</select>
    <!-- heeseong -->
-  	<select id="couponSList" resultType="couponDTO" parameterType="Map">
+  	<select id="couponList" resultType="couponDTO" parameterType="Map">
   		select * from coupon 
   		<choose>
   		<when test="kind=='name'">
@@ -29,6 +29,8 @@
   		<when test="kind=='price'">
   			where type = 11 and name like '%'||#{search}||'%'
   		</when>
+  		<otherwise>
+  		</otherwise>
   		</choose>
   	</select>
   	<!-- heeseong -->

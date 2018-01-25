@@ -13,13 +13,14 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
 <title>Insert title here</title>
 <style type="text/css">
+
 table {
-    border-top: solid 1px #d6d4ca;
+	border-top: solid 1px #d6d4ca;
     border-bottom: solid 1px #b8b6aa;
     font-size: 12px;
     line-height: 1.2;
-    color: #666;
-    font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+	color: #666;
+	font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
@@ -206,14 +207,14 @@ $(function(){
 		<!-- 지점 정보 불러오기!!  -->
 			<th>영화관 선택</th>
 			<td>
-				<select id="areasel" name="area">
+				<select id="areasel" name="area" required="required">
 					<option>지역선택</option>
 					<c:forEach items="${area_list}" var="dto">
 					<option>${dto.area}</option>
 					</c:forEach>
 				</select>
 			
-			<select id="locationsel" name="location">
+			<select id="locationsel" name="location" required="required">
 					<option>영화관선택</option>
 					
 				</select>
@@ -226,14 +227,14 @@ $(function(){
 		<tr>
 			<th>제목</th>
 			<td>
-			<input type="text" name="title" id="titleInput">
+			<input type="text" name="title" id="titleInput" required="required">
 			</td>
 		</tr>
 		
 		<tr>
 			<th>내용</th>
 			<td>
-			<textarea name="contents" rows="15" cols="100" draggable="false"></textarea>
+			<textarea name="contents" rows="15" cols="100" draggable="false" required="required"></textarea>
 			</td>
 		
 		</tr>

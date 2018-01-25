@@ -16,24 +16,27 @@
   		select DISTINCT area from theater
   	</select>
   	
-  	<select id="qrAreaList" resultType="String">
+  	<select id="qrAreaList" resultType="theaterDTO">
 		select DISTINCT area from theater where area != '서울'
   	</select>  
+  	
+  	
+  	
   		
+  	
+  	
   	<!-- heeseong -->
-  	<select id="theaterInfo" parameterType="int" resultType="theaterDTO">
-  		select * from theater where theater_num=#{theater_num}
-  	</select>
-  	<!-- heeseong -->
-  	<select id="theatherAList" resultType="theaterDTO">
+  	<!-- <select id="theatherAList" resultType="theaterDTO">
   		select * from theater
-  	</select>
+  	</select> -->
+  	
   	<!-- heeseong -->
-  	<select id="thLocationList" resultType="theaterDTO" parameterType="String">
+  	<!-- <select id="thLocationList" resultType="theaterDTO" parameterType="String">
   		select * from theater where location=#{search}
-  	</select>
+  	</select> -->
+  	
   	<!-- heeseong -->
-  	<select id="thSearchList" resultType="theaterDTO" parameterType="String">
+  	<select id="theaterList" resultType="theaterDTO" parameterType="String">
   		select * from theater
   		<choose>
   			<when test="kind=='area'">
@@ -42,16 +45,26 @@
   			<when test="kind=='location'">
   				where location like '%'||#{search}||'%'
   			</when>
+  			<otherwise>
+  			</otherwise>
   		</choose>
   	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="theaterInfo" parameterType="int" resultType="theaterDTO">
+  		select * from theater where theater_num=#{theater_num}
+  	</select>
+  	
   	<!-- heeseong -->
   	<update id="theaterRevision" parameterType="theaterDTO">
   		update theater set area=#{area}, location=#{location}, x_position=#{x_position}, y_position=#{y_position} where theater_num=#{theater_num}
   	</update>
+  	
   	<!-- heeseong -->
   	<delete id="theaterRemove" parameterType="int">
   		delete from theater where theater_num=#{theater_num}
   	</delete>
+  	
   	<!-- heeseong -->
   	<insert id="theaterInsert" parameterType="theaterDTO">
   		insert into theater values(movie_seq.nextval,#{area},#{location},#{x_position},#{y_position})

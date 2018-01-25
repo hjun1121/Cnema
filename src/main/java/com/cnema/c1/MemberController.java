@@ -89,7 +89,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public void login(String path, Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
+	public void login(@RequestParam(defaultValue="0", required=false)int num, String path, Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		InetAddress addr = null;
 		try {
 			addr = InetAddress.getLocalHost();
@@ -99,6 +99,7 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("num", num);
 		model.addAttribute("reserve2", reserve2DTO);
 		model.addAttribute("reserve", reserveDTO);
 		model.addAttribute("seat_num", reserveDTO.getSeat_num());
@@ -125,8 +126,11 @@ public class MemberController {
 					mv.addObject("path", path);
 					mv.setViewName("common/reserve");
 				}else{
-					rd.addFlashAttribute("num", num);
-					mv.setViewName("redirect:../"+path);
+					if(num>0){
+						mv.setViewName("redirect:../"+path+"?num="+num);
+					}else{
+						mv.setViewName("redirect:../"+path);
+					}
 				}
 				
 			}else{
@@ -191,7 +195,7 @@ public class MemberController {
 		MovieDTO movieDTO = null;
 		
 		try {
-			mList = movieService.movieAList();
+			mList = movieService.movieList("","");
 			rList = reserveService.selectList(memberDTO.getId());
 			for(ReserveDTO reserveDTO : rList){
 				ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO.getTp_num());

@@ -106,19 +106,15 @@ public class MovieService {
 		return movieDAO.movieInfo(movie_num);
 	}
 	/*heeseong*/
-	public List<MovieDTO> movieAList() throws Exception {
-		return movieDAO.movieSList();
-	}
-	/*heeseong*/
-	public List<MovieDTO> movieSList() throws Exception {
-		return movieDAO.movieSList();
-	}
+	/*public List<MovieDTO> movieList() throws Exception {
+		return movieDAO.movieList();
+	}*/
 	/*heeseong*/
 	public int movieRevision(MovieDTO movieDTO) throws Exception{
 		return movieDAO.movieRevision(movieDTO);
 	}
 	/*heeseong*/
-	public List<MovieDTO> movieSearchList(String kind,String search) throws Exception {
-		return movieDAO.movieSearchList(kind,search);
+	public List<MovieDTO> movieList(String kind,String search) throws Exception {
+		return movieDAO.movieList(kind,search);
 	}
 }

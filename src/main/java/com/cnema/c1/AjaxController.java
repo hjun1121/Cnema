@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.community.CommunityService;
 import com.cnema.community.PageDTO;
+import com.cnema.community.PageService;
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
 import com.cnema.coupon.MyCouponDTO;
@@ -56,7 +57,7 @@ public class AjaxController {
 	@Inject
 	private CouponService couponService;
 	@Inject
-	private CommunityService communityService;
+	private PageService pageService;
 	@Inject
 	private MyCouponService myCouponService;
 	@Inject
@@ -115,10 +116,10 @@ public class AjaxController {
 	@RequestMapping(value="memberJoin", method=RequestMethod.POST)
 	public ModelAndView memberJoin(int page_num, String id) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		PageDTO pageDTO = communityService.selectPageOne(page_num);
+		PageDTO pageDTO = pageService.selectPageOne(page_num);
 		int result = 0;
 		String message = "가입 실패";
-		result = communityService.memberInsert(pageDTO, id);
+		result = pageService.memberInsert(pageDTO, id);
 		System.out.println(result);
 		if(result > 0) {
 			message = "가입 성공";
@@ -134,7 +135,7 @@ public class AjaxController {
 	public ModelAndView memberDrop(int page_num, String id) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		result = communityService.memberDrop(page_num, id);
+		result = pageService.memberDrop(page_num, id);
 		String message = "탈퇴 실패";
 		if(result > 0) {
 			message = "탈퇴 성공";

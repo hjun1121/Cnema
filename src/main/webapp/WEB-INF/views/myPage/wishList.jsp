@@ -103,7 +103,7 @@ $(function(){
 				    <div class="box-round-on">
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
-				                <a href="#">
+				                <a href="${pageContext.request.contextPath }/myPage/wishList">
 				                    <em>${fn:length(wList)}</em>
 				                    <strong>위시리스트</strong>
 				                </a>
@@ -113,7 +113,7 @@ $(function(){
 				    <div class="box-round-wgray">
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
-				                <a href="#">
+				                <a href="${pageContext.request.contextPath }/myPage/movieHistory">
 				                    <em>${fn:length(rList)}</em>
 				                    <strong>내가 본 영화</strong>
 				                </a>
@@ -141,7 +141,7 @@ $(function(){
 						        <input type="hidden" name="wish_num" value="${wishList.wish_num }">
 				                    <li>
 				                        <div class="box-image">
-				                            <a href="../movie/movie_view?movie_num=${wishList.movieDTO.movie_num}">
+				                            <a href="${pageContext.request.contextPath }/movie/movie_view?movie_num=${wishList.movieDTO.movie_num}">
 				                                <span class="thumb-image"> 
 						                            <img src="${pageContext.request.contextPath }/resources/movie_poster/${wishList.movieDTO.fileName}">
 				                                </span>

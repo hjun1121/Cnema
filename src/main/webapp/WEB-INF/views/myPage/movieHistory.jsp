@@ -13,7 +13,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/movieHistory.css">
 <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/content_prepaid_card_170421.css">
 <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
+<link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>나의 예매 내역</title>
@@ -31,11 +31,11 @@ $(function(){
 	});
 	$(".reviewBtn").click(function(){
 		var movie_num = $(this).attr("title");
-		window.open("movieReview?movie_num="+movie_num,"평점작성","width=800,height=700,toolbar=no");
+		window.open("movieReview?movie_num="+movie_num,"평점작성","width=720,height=394,toolbar=no");
 	});
 	$(".reSeeBtn").click(function(){
 		var movie_num = $(this).attr("title");
-		window.open("movieReviewView?movie_num="+movie_num,"평점보기","width=800,height=700,toolbar=no");
+		window.open("movieReviewView?movie_num="+movie_num,"평점보기","width=811,height=320,toolbar=no");
 	});
 	$(".btn-del").click(function(){
 		var tp_num = $(this).attr("title");
@@ -99,7 +99,7 @@ $(function(){
 				    <div class="box-round-wgray">
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
-				                <a href="#">
+				                <a href="../myPage/wishList">
 				                    <em>${fn:length(wList)}</em>
 				                    <strong>위시리스트</strong>
 				                </a>
@@ -109,7 +109,7 @@ $(function(){
 				    <div class="box-round-on">
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
-				                <a href="#">
+				                <a href="../myPage/movieHistory">
 				                    <em>${fn:length(rList)}</em>
 				                    <strong>내가 본 영화</strong>
 				                </a>
@@ -173,12 +173,12 @@ $(function(){
 			                                        <li class="writer-opinion">
 			                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 완료">
 		                                            </li>
-                                          	  </c:if>
-                                          	  <c:if test="${reserveList.reviewDTO.r_type eq 11}">                      
-			                                        <li class="writer-opinion">
-			                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 삭제하셨습니다">
-		                                            </li>
-                                          	  </c:if>
+                                          	 	</c:if>
+	                                          	<c:if test="${reserveList.reviewDTO.r_type eq 11}">                      
+				                                        <li class="writer-opinion">
+				                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 삭제하셨습니다">
+			                                            </li>
+	                                          	</c:if>
                                             </c:if>  
                                         </ul>
 				                    </div>

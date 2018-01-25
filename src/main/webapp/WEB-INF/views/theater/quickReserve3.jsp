@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -199,64 +203,33 @@
 		/*  */
 	});
 </script>
-<style type="text/css">
-	*{
-		margin: 0px;
-		padding: 0px;
-	}
-
-	#all{
-		height: 600px;
-		background-color: red;
-		width: 1000px;
-	}
-	
-	#movie{
-		background-color: yellow;
-		width: 290px;
-		float: left;
-		margin-left: 2px;
-	}
-	#theater{
-		background-color: yellow;
-		width: 290px;
-		float: left;
-		margin-left: 2px;
-	}
-	#day{
-		background-color: yellow;
-		width: 100px;
-		float: left;
-		margin-left: 2px;
-	}
-	#schedule{
-		background-color: yellow;
-		width: 310px;
-		float: left;
-		margin-left: 2px;
-	}
-	
-	.head{
-		height: 35px;
-		background-color: black;
-		
-	}
-	
-	.head h2{
-		color: white;
-		text-align: center;
-	}
-	ul{
-		list-style: none;
-	}
-	.locationList{
-		float: right;
-		overflow: auto;
-		height: 200px;
-	}
-</style>
 </head>
 <body>
+	<div id="cgvwrap">
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+			<!-- //////////////////////////////// -->
+			<div id="contaniner" class="">
+        	<!-- 상단바 시작 -->
+        	<div class="linemap-wrap">
+           		<div class="sect-linemap">
+                	<div class="sect-bcrumb">
+                    	<ul>
+                        	<li>
+                        		<a href="#"><img alt="home" src="${pageContext.request.contextPath }/resources/images/common/btn/btn_home.png"></a>
+                        	</li>
+                            <li>
+                                <a href="#">예매</a>
+                            </li>
+                            <li class="last">
+                            	빠른예매
+                            </li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+        	<!-- 상단바 끝 -->
+        	
+        	<!-- 내용시작 -->
 	<h2>Quick Reserve3</h2>
 	<div id="all">
 		<div id="couponAll">
@@ -352,12 +325,13 @@
 			nowPrice<input type="text" id="price" name="price" value="${reserve2.price }">
 		</form>
 	</div>
+	
+		
+				<!-- 내용 끝 -->
+			</div>
+			<!-- ///////////////////////////////// -->
+		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
+	</div>
+	
 </body>
-
 </html>
-
-
-
-
-
-
