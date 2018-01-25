@@ -135,7 +135,7 @@
 				<select id="area">
 					<option class="areas">서울</option>	
 					<c:forEach items="${theaterList }" var="theaterDTO">
-						<option class="areas">${theaterDTO }</option>
+						<option class="areas">${theaterDTO.area }</option>
 					</c:forEach>			
 				</select>
 							
@@ -150,7 +150,7 @@
         	</div>
 			
 			<div>
-				<form action="../common/map" name="frm" >
+				<form action="../common/map" name="frm" style="display: none;" >
 					<input type="text" id="areaName" name="area" value="${area }">
 					<input type="text" id="theater_num" name="theater_num" value="${theater_num }">
 					<input type="text" id="theaterName" value="${theaterName }">

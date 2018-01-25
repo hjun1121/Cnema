@@ -7,6 +7,15 @@ public class TheaterDTO {
 	private double x_position;
 	private double y_position;
 	
+	private int count;
+	
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getTheater_num() {
 		return theater_num;
 	}
