@@ -24,7 +24,13 @@ public class PageController {
 	@Inject
 	private PageService pageService;
 	
-	
+	//쪽지 보내기
+	@RequestMapping(value = "mailSend")
+	public ModelAndView mailSend() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 	
 	//페이지 가입하기
 	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
@@ -72,7 +78,7 @@ public class PageController {
 		}
 
 		mv.addObject("message", message);
-		mv.addObject("path", "community/communityMain");
+		mv.addObject("path", "community2/communityMain");
 		mv.setViewName("/common/messagePath");
 		return mv;
 	}
@@ -98,21 +104,21 @@ public class PageController {
 		int member_num = 0;
 		String id = "";
 		int memberCheck = 0;
+		
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			id = memberDTO.getId();
 			memberCheck = pageService.memberCheck(page_num, id);
 			member_num = pageService.selectPageMemberOne(id).getMember_num();
-			
-			mv.addObject("memberCheck", memberCheck);
-			mv.addObject("member_num", member_num);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
 		PageDTO pageDTO = pageService.selectPageOne(page_num); //페이지 정보 가져오기
 		List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
 
-
+		mv.addObject("memberCheck", memberCheck);
+		mv.addObject("member_num", member_num);
 		mv.addObject("page", pageDTO);
 		mv.addObject("pageMember", pageMember);
 		mv.setViewName("community/pageMain");
