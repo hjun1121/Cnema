@@ -250,22 +250,18 @@
 					</div>
 					<div class="col-myqna">
 						<ul>
+							<c:forEach items="${list}" var="dto">
 			                <li>
-								<em>제안(문의유형)</em>
-								<a href="#"><strong>제목</strong></a>
+								<em>${dto.area} : ${dto.location}</em>
+								<a href="#"><strong>[${dto.type}] ${dto.title}</strong></a>
+								<em>${dto.reg_date}</em>
 								<span>
-									접수완료
+									<c:if test="${dto.reply != null }">
+									답변완료
+									</c:if>
 			                    </span>
 							</li>
-			                <li>
-								<em>제안</em>
-								<a href="#">
-				                <strong>1</strong>
-				                </a>
-								<span> 
-									접수완료
-				                </span>
-							</li>
+			                </c:forEach>
 						</ul>
 					</div>
 		        </div>

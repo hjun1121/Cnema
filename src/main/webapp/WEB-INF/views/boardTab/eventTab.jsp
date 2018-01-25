@@ -8,7 +8,7 @@
 
 </head>
 <body>
-
+<div class="cols-content">
 	<div class="col-aside">
   
     <div class="snb">
@@ -21,7 +21,7 @@
           
         </ul>
     </div>
-    
+    </div>
 </div>
 	
 	

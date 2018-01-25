@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnema.board.BoardDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
+import com.cnema.qna.QnaService;
 import com.cnema.reserve.Reserve2DTO;
 import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
@@ -47,6 +49,8 @@ public class MemberController {
 	@Inject
 	private EmailDAO emailDAO;
 	/*kim*/
+	@Inject
+	private QnaService qnaService;
 	
 	@RequestMapping(value="idFind", method=RequestMethod.GET)
 	public void idFind(){
@@ -183,6 +187,7 @@ public class MemberController {
 		
 		List<MovieDTO> mList = new ArrayList<MovieDTO>();
 		List<ReserveDTO> rList = new ArrayList<>();
+		List<BoardDTO> ar= new ArrayList<>();
 		int count = 0;
 		int aCount = 0;
 		
@@ -194,7 +199,25 @@ public class MemberController {
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
 		
+		int type=memberDTO.getType();
 		try {
+			if(type==20){
+				
+				try {
+					ar = qnaService.selectListMypage();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			}
+			else{
+				try {
+					mv=qnaService.selectMyList(memberDTO.getId());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			mList = movieService.movieList("","");
 			rList = reserveService.selectList(memberDTO.getId());
 			for(ReserveDTO reserveDTO : rList){
@@ -216,7 +239,7 @@ public class MemberController {
 			mv.addObject("count", count);
 			mv.addObject("aCount", aCount);
 			mv.addObject("today", today);
-			
+			mv.addObject("list",ar);
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");

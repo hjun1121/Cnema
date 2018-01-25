@@ -38,6 +38,14 @@ public class QnaService {
 		mv.setViewName("admin/myQnaList");
 		return mv;
 	}
+	
+	public List<BoardDTO> selectListMypage() throws Exception {
+		RowNum rowNum= new RowNum();
+		rowNum.setStartRow(1);
+		rowNum.setLastRow(5);
+		List<BoardDTO> ar = qnaDAO.selectList(rowNum);
+		return ar;
+	}
 
 	//member 자신의 Qna List만 보여주는 것
 	public ModelAndView selectMyList(String id) throws Exception {

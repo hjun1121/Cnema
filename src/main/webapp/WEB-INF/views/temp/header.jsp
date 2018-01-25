@@ -85,9 +85,10 @@
 							<div class="sub-wrap">
 								<div class="smenu">
 									<ul>
-										<li><a href="#">이벤트</a></li>
-										<li><a href="#">티켓·팝콘스토어</a></li>
-										<li><a href="#">매거진</a></li>
+										<li><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></li>
+										<li><a href="${pageContext.request.contextPath}/event/eventList">이벤트</a></li>
+										<li><a href="${pageContext.request.contextPath}/qna/qnaWrite">이메일문의</a></li>
+										
 									</ul>
 								</div>
 							</div>

@@ -225,7 +225,7 @@ background-color: #f1f0e5;
 <th>내용</th>
 <td>
 
-<textarea id="contents" name="contents" rows="10" cols="30"> ${view.contents}</textarea>
+<textarea id="contents" name="contents" rows="40" cols="20"> ${view.contents}</textarea>
 
 </td>
 </tr>

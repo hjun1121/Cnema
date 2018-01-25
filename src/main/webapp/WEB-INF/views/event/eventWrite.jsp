@@ -17,11 +17,6 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-#contents{
-	width:650px;
-	height: 400px;
-	
-}
 
 #writeBtn{
 	
@@ -43,7 +38,7 @@
 #title, .dateInput{
 
 background-color: #f1f0e5;
- width:500px;
+  width:720px;
  height: 30px;
  border: 1px solid #ccc;
 }
@@ -86,11 +81,9 @@ td{
     line-height: 1.5em;
     vertical-align: middle
 }
-
-textarea{
-width:620px;
-border: 1px solid #ccc;
-background-color: #f1f0e5;
+#frm #contents{
+ 	width: 710px;
+ 	
 }
 
 
@@ -271,7 +264,7 @@ background-color: #f1f0e5;
     </tr>
     <tr>
     <th class="date">
-        <span>기간: </span>
+        <span>기간</span>
     </th>
     <td>
         <input type="date" name="s_date" value="" id="s_date" class="dateInput" required="required">&nbsp; <strong>~</strong>&nbsp; 
@@ -280,7 +273,7 @@ background-color: #f1f0e5;
    	<tr>
 <th>내용</th>
 <td>
-<textarea id="contents" name="contents" rows="10" cols="20"  style="width: 600px;" required="required"> </textarea>
+<textarea id="contents" name="contents" rows="40" cols="20"  required="required"> </textarea>
 </td>
 </tr>
 

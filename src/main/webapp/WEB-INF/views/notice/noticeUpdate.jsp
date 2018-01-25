@@ -53,14 +53,12 @@
     color: #ffffff; 
     border: 2px solid #e71a0f;
     float:right;
+    margin-right:10px;
 }
 
 #titleInput, #writerInput{
 
 background-color: #f1f0e5;
-
-}
-#titleInput, #writerInput{
  width:580px;
  height: 30px;
  border: 1px solid #ccc;
@@ -68,6 +66,7 @@ background-color: #f1f0e5;
 #writerInput{
 border: none;
  width:120px;
+margin-right: 10px;
 }
 #empty_td{
 height: 10px;
@@ -186,7 +185,7 @@ color: #222;
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 	<div class="board_contents">
 	<form action="noticeUpdate" id="noticeForm" method="post" id="frm">
-	<span class="tit">공지사항 수정</span><br><br>
+	<span class="tit">공지사항 수정하기</span><br><br>
 		<input type="hidden" name="num" value="${view.num}">
 		<table>
 		<tr>

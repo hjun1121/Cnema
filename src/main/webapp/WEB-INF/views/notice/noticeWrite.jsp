@@ -32,6 +32,7 @@
     color: #ffffff; 
     border: 2px solid #e71a0f;
     float:right;
+    margin-right:10px;
 }
 #btn1{
     padding: 10px 15px;
@@ -54,24 +55,34 @@
 #titleInput, #writerInput{
 
 background-color: #f1f0e5;
-
-}
-#titleInput, #writerInput{
- width:500px;
+ width:580px;
  height: 30px;
  border: 1px solid #ccc;
 }
 #writerInput{
 border: none;
- width:100px;
+ width:120px;
 }
 #right_input{
  float:right;
+ margin-right:10px;
 }
-textarea{
-width:600px;
+#noticeForm #contents{
+width:780px;
 }
-
+#noticeForm .tit{
+color: #222;
+    font-weight: bold;
+    display:inline-block;
+    font-size: 26px;
+    text-align: left;
+    vertical-align: middle;
+   }
+ .inputText{
+  	font-weight: bold;
+  	color: #222;
+  	font-size: 12px;
+  }
 </style>
 
 <script type="text/javascript">
@@ -170,18 +181,18 @@ width:600px;
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 	<div class="board_contents">
 	<form action="noticeWrite" id="noticeForm" method="post" id="frm">
-	<h1>Notice Write Form</h1>
+	<span class="tit">공지사항 작성하기</span><br><br>
 		
 		<div>
-			<input type="text" id="titleInput" name="title" placeholder="제목을 입력해주세요.">
-			<div id="right_input"><strong>작성자 &nbsp;</strong><input type="text" name="writer" id="writerInput" value="${member.id}" readonly="readonly"></div>
+			<strong class="inputText" >제목 &nbsp;</strong><input type="text" id="titleInput" name="title" placeholder="제목을 입력해주세요.">
+			<div id="right_input" ><strong class="inputText">작성자 &nbsp;</strong><input type="text" name="writer" id="writerInput" value="${member.id}" readonly="readonly"></div>
 		</div>
 		<br>
-			<textarea id="contents" name="contents" rows="20" cols="30" style="width: 600px;"></textarea>
+			<textarea id="contents" name="contents"rows="20" cols="20"></textarea>
 	
 	
 	
-	<br>
+	<br><br>
 	<input type="button" id="btn1" value="취소">
 	<input type="button" id="savebutton" value="글쓰기">
 	</form>

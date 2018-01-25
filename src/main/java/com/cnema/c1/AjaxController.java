@@ -167,7 +167,7 @@ public class AjaxController {
 				myCouponService.couponInsert(eventJoinDTO.getId(), couponDTO);
 				}
 				else{
-					pointService.pointInsert(1000, eventJoinDTO.getId())
+					pointService.pointInsert(1000, eventJoinDTO.getId());
 				}
 			}
 			String message = "fail";

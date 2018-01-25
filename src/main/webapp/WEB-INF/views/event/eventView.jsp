@@ -219,7 +219,7 @@ ${view.contents}
 <hr>
 
 <div class="eventJoin">
-<p>본 이벤트는  당첨 시 ${view.type} 제공됩니다. }</p>
+<p>본 이벤트는  당첨 시 ${view.type} 제공됩니다. </p>
 <input type="hidden" id="couponType"  value="${view.type }">
 <input type="hidden" id="num" name="num" value="${view.num }">
 <input type="hidden" id="check" value="${check}">

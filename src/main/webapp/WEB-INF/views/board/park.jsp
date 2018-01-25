@@ -35,7 +35,7 @@
 	margin-top:15px;
 }
 hr{
- width: 820px;
+ width: 800px;
  float: left;
  margin-bottom: 10px;
 
@@ -247,7 +247,7 @@ section{
 display:inline-block;
 width:32%;
 height: 250px;
-margin-right:5px;
+margin:5px;
 }
 .eventList_image{
     width: 95%;

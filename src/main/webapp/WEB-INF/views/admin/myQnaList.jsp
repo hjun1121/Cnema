@@ -14,7 +14,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>무비 리스트</title>
+<title>Q&A 리스트</title>
 <script type="text/javascript">
 $(function(){
 	var kind='${kind}';
