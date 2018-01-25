@@ -8,8 +8,8 @@
 		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%'
 	</select>
 	
-	<select id="recommendPageList" resultType="pageDTO" parameterType="String">
-		select * from pagemember where page_num=#{num} and page_name like '%'||#{search}||'%'
+	<select id="recommendPageList" resultType="pageDTO" parameterType="java.util.Map">
+	select m.* from pagemember m, page p where m.page_num=p.page_num and m.page_num=#{num} and p.page_name like '%'||#{search}||'%'
 	</select>
 	
 	<select id="pageNumList" resultType="int" parameterType="string">
