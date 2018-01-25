@@ -16,7 +16,6 @@
 <style type="text/css">
 
 
-
 #event_contents{
 	
 	height: 380px;

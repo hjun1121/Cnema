@@ -12,8 +12,7 @@
 <body>
 <div class="cols-content">
 	<div class="col-aside">
-    <h2>
-        고객센터 메뉴</h2>
+    
     <div class="snb">
         <ul>
             <li class=""><a href="../board/park">게시판 메인<i></i></a></li>
