@@ -72,7 +72,7 @@ $(function() {
 		<input type="search" name="search" id="search">
 		<input type="button" id="sBtn" class="round gray" value="GO">
 	</div>
-	<c:forEach items="${recommendPage }" var="pageDTO">
+	<c:forEach items="${recomPageList }" var="pageDTO">
 		<div style="display: inline-block; float: left; border: 1px solid #dddfe2; margin-left: 35px; height: 282px; margin: 0 12px 12px 0; background-color: white;">
 			<div>
 				<img alt="${pageDTO.page_name}" src="../resources/page_logo/${pageDTO.fileName}" style="width: 222px; height: 222px;">
