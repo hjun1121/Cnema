@@ -86,10 +86,21 @@ public class PageController {
 
 	//pageContentsWrite
 	@RequestMapping(value = "pageContentsWrite", method=RequestMethod.POST)
-	public void pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception {
-		pageService.pageContentsWrite(pageContentsDTO);
+	public ModelAndView pageContentsWrite(PageContentsDTO pageContentsDTO)throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result=pageService.pageContentsWrite(pageContentsDTO);
+		
+		String message = "글쓰기 실패";
+		if(result > 0) {
+			message = "글쓰기 성공";
+		}
+		mv.addObject("message", message);
+		return mv;
 	}
-
+	@RequestMapping(value = "pageContentsWrite")
+	public void pageContentsWrite()throws Exception {
+		
+	}
 
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)

@@ -9,7 +9,7 @@ import com.cnema.board.BoardDTO;
 public class EventDTO extends BoardDTO{
 	private Date s_date;
 	private Date e_date;
-	private int type;
+	private String type;
 	private MultipartFile file;
 	
 	public MultipartFile getFile() {
@@ -30,11 +30,12 @@ public class EventDTO extends BoardDTO{
 	public void setE_date(Date e_date) {
 		this.e_date = e_date;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
+	
 	
 }

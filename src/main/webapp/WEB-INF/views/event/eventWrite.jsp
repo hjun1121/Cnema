@@ -294,9 +294,9 @@ background-color: #f1f0e5;
 <tr class="eventJoinType">
 <th>쿠폰 타입 </th>
 <td>
-1.쿠폰 <input type="radio" name="typeSel" value="10" checked="checked">
+1.쿠폰 <input type="radio" name="type" value="쿠폰" checked="checked">
 
-2.포인트<input type="radio" name="typeSel" value="11">
+2.포인트<input type="radio" name="type" value="포인트">
 </td>
 
 </tr>

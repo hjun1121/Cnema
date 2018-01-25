@@ -25,6 +25,7 @@ import com.cnema.event.EventJoinDTO;
 import com.cnema.event.EventService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
+import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.movie.WarningDTO;
@@ -62,6 +63,8 @@ public class AjaxController {
 	private MyCouponService myCouponService;
 	@Inject
 	private TimeChange timeChange;
+	@Inject
+	private PointService pointService;
 
 	@Inject
 	private EmailDAO emailDAO;
@@ -147,7 +150,7 @@ public class AjaxController {
 	
 	//이벤트관련
 	@RequestMapping(value="eventJoin", method=RequestMethod.POST)
-	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,int check,ModelAndView mv) throws Exception{
+	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,int check,String couponType,ModelAndView mv) throws Exception{
 		
 			System.out.println(eventJoinDTO.getType());
 			System.out.println("ajax event check");
@@ -159,12 +162,20 @@ public class AjaxController {
 			else{
 			System.out.println("ajax 지나는중");
 			int result = eventService.eventJoin(eventJoinDTO);
+			if(eventJoinDTO.getType()==1){
+				if(couponType=="쿠폰"){
+				myCouponService.couponInsert(eventJoinDTO.getId(), couponDTO);
+				}
+				else{
+					pointService.pointInsert(1000, eventJoinDTO.getId())
+				}
+			}
 			String message = "fail";
 			if(result>0){
 				message = "success";
 			}
 			mv.addObject("message", message);
-			mv.addObject("type","3");
+			mv.addObject("type",eventJoinDTO.getType());
 			}
 			mv.setViewName("ajax/eventCheck");
 			

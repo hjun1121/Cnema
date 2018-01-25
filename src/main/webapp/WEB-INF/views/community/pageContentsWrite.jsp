@@ -128,14 +128,10 @@ width:500px;
 height: 259px;
 margin :0 auto;
 }
-#contents{
+.board_contents,#contents{
 width:400px;
 height: 250px;
 	
-}
-
-.board_contents{
-	height: 500px;
 }
 
 
@@ -176,7 +172,7 @@ height: 250px;
 	
 	<div class="board_contents">
 	<div id="writeTab"> </div>
-	<form action="pageContentsWrite"  method="post" id="frm">
+	<form action="../community/pageContentsWrite"  method="post" id="frm">
 		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
 		<textarea  name ="contents" id="contents" rows="10" cols="30" style="width: 400px;" ></textarea>
 	

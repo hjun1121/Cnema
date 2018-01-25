@@ -122,6 +122,7 @@ $(function(){
 		var check1=$("#check").val();
 		var num = $("#num").val();
 		var id = $("#id").val();
+		var couponType =$("#couponType").val();
 		/* alert(id); */
 		if($("#memType").val()==20){
 			alert("관리자는 참여하실수 없습니다.");
@@ -133,12 +134,6 @@ $(function(){
 		}
 		else{
 			
-			if(check1 != 0){
-				
-				alert("이미 참여하셨습니다.");
-			
-			}
-			else{
 		var type= Math.floor(Math.random() * 2);//0 또는 1 만 나오게 한다.
 		
 		$.ajax({
@@ -148,7 +143,8 @@ $(function(){
 			 num:num,
 			 id:id,
 			 type:type,
-			 check:check1
+			 check:check1,
+			 couponType:couponType
 			},
 			success:function(data){
 				alert(data);
@@ -158,7 +154,7 @@ $(function(){
 			}
 		});
 		
-			}
+			
 		}
 	});
 });
@@ -218,14 +214,13 @@ ${view.contents}
 
 </div>
 
-<!-- <div class="eventViewFile">
-첨부 파일 다운로드
-</div> -->
+
 <br>
 <hr>
 
 <div class="eventJoin">
-
+<p>본 이벤트는  당첨 시 ${view.type} 제공됩니다. }</p>
+<input type="hidden" id="couponType"  value="${view.type }">
 <input type="hidden" id="num" name="num" value="${view.num }">
 <input type="hidden" id="check" value="${check}">
 <input type="hidden" id="id" value="${member.id}">

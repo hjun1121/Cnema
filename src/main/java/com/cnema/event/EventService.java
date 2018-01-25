@@ -29,7 +29,10 @@ public class EventService {
 	public int eventJoin(EventJoinDTO eventJoinDTO) throws Exception {
 		
 		int result=eventJoinDAO.insert(eventJoinDTO);
-		
+		if(eventJoinDTO.getType()==1){
+			
+			
+		}
 		return result;
 	}
 	//이벤트 데이터 조회
