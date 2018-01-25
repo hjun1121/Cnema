@@ -46,12 +46,12 @@ public class PageController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		String message = "가입 실패";
 		if(result > 0) { //가입 성공
 			message = "가입 성공";
 		}
-		
+
 		mv.addObject("message", message);
 		mv.addObject("path", "community/pageMain?page_num="+page_num);
 		mv.setViewName("/common/messagePath");
