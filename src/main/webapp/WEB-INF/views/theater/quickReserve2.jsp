@@ -368,8 +368,18 @@
 									<div class="buttons">
 									</div>
 									<div class="seat-icon-desc">
-										<span><span class="icon"></span>선택</span>
-										<span><span class="icon"></span>예매완료</span>
+										<span>
+											<span class="icon"></span>
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/OkReserve.PNG">&nbsp;선택가능
+										</span>
+										<span>
+											<span class="icon"></span>
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/MyReserve.PNG">&nbsp;나의선택
+										</span>
+										<span>
+											<span class="icon"></span>
+											<img class="reserve_img" src="${pageContext.request.contextPath }/resources/images/theater/notReserve.PNG">&nbsp;예매완료
+										</span>
 									</div>
 								</div>
 							</div>

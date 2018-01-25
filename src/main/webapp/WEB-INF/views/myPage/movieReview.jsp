@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,7 @@ $(function(){
 </head>
 <body>
 
+
 <div class="layer-contents on-shadow" style="width:710px;">
    <div class="popup-general">
        <div class="popwrap">
@@ -40,7 +42,8 @@ $(function(){
                     	<div class="writerinfo">
                     		<div class="box-image">
                           		<span class="thumb-image">
-                          	    	<img src="#" alt="사용자 프로필">
+                          			
+                          	    	<img src="../resources/profil/${member.fileName }" alt="사용자 프로필">
                           	        	<span class="profile-mask"></span>
                           	     </span>         
                           	</div>         
@@ -50,7 +53,6 @@ $(function(){
         					<div class="likebox-inner">          
         						<label for="likeornot1-1">           
         							<input type="button" id="good" value="좋았어요~^^">         
-                   					<span class="txt" style="font-size: 12px;">좋았어요~^^</span>
                              	</label>
                             </div>       
                         </div>        
@@ -58,7 +60,6 @@ $(function(){
                               <div class="likebox-inner">
                               	<label for="likeornot1-2">
                                 	<input type="button" id="bad" value="흠~좀 별로였어요;;;">           
-                                    <span class="txt" style="font-size: 12px;">흠~좀 별로였어요;;;</span>
                                 </label>         
                               </div>        
                         </div>       
