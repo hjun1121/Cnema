@@ -55,8 +55,26 @@ public class PageController {
 
 	//페이지 탈퇴하기
 	@RequestMapping(value = "pageMemberDrop", method=RequestMethod.POST)
-	public void pageMemberDrop() throws Exception {
-		
+	public ModelAndView pageMemberDrop(HttpSession session, int page_num) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = "";
+		int result = 0;
+		try {
+			id = memberDTO.getId();
+			result = pageService.memberDrop(page_num, id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		String message = "탈퇴 실패";
+		if(result > 0) {
+			message = "탈퇴 성공";
+		}
+
+		mv.addObject("message", message);
+		mv.addObject("path", "community/communityMain");
+		mv.setViewName("/common/messagePath");
+		return mv;
 	}
 
 
