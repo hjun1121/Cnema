@@ -5,14 +5,22 @@
 <mapper namespace="communityMapper">
 
 	<select id="myPageList" parameterType="String" resultType="pageDTO">
-		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%'
-	</select>
-	
-	<select id="recommendPageList" resultType="pageDTO" parameterType="java.util.Map">
-	select m.* from pagemember m, page p where m.page_num=p.page_num and m.page_num=#{num} and p.page_name like '%'||#{search}||'%'
+		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id}
 	</select>
 	
 	<select id="pageNumList" resultType="int" parameterType="string">
+		select page_num from pagemember where id=#{id} 
+	</select>
+	
+	<select id="pageIdList" resultType="string" parameterType="int">
+		select m.id from pagemember m, page p where m.page_num=p.page_num and m.page_num=#{num}
+	</select>
+	
+	<select id="recommendPageList" resultType="int" parameterType="string">
 		select page_num from pagemember where id=#{id}
+	</select>
+	
+	<select id="pageSelect" resultType="pageDTO" parameterType="java.util.Map">
+		select * from page where page_num=#{page_num} and page_name like '%'||#{search}||'%'
 	</select>
 </mapper>

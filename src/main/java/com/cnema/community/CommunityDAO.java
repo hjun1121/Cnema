@@ -16,13 +16,6 @@ public class CommunityDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "communityMapper.";
-
-	public PageDTO recommendPageList(String search,int num) throws Exception {
-		Map<String, Object> rMap = new HashMap<>();
-		rMap.put("search", search);
-		rMap.put("num", num);
-		return sqlSession.selectOne(NAMESPACE+"recommendPageList",rMap);
-	}
 	
 	public List<PageDTO> myPageList(String id,String search) throws Exception {
 		Map<String, Object> mpMap = new HashMap<>();
@@ -31,8 +24,25 @@ public class CommunityDAO {
 		return sqlSession.selectList(NAMESPACE+"myPageList", mpMap);
 	}
 	
+	
 	public List<Integer> pageNumList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"pageNumList",id);
 	}
+	
+	public List<String> pageIdList(int num) throws Exception {
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("num", num);
+		return sqlSession.selectList(NAMESPACE+"pageIdList",num);
+	}
+	
+	public List<Integer> recommendPageList(String id) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"recommendPageList",id);
+	}
 
+	public PageDTO pageSelect(String search, int page_num) throws Exception{
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("search", search);
+		rMap.put("page_num", page_num);
+		return sqlSession.selectOne(NAMESPACE+"pageSelect",rMap);
+	}
 }
