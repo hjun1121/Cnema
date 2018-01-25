@@ -39,18 +39,20 @@ public class EventController {
 		}
 	//insert
 		@RequestMapping(value="eventWrite",method=RequestMethod.POST )
-		public String insert(EventDTO eventDTO,HttpSession session,RedirectAttributes rd) throws Exception{
+		public ModelAndView insert(EventDTO eventDTO,HttpSession session,RedirectAttributes rd) throws Exception{
 			System.out.println("1234");
+			ModelAndView mv =new ModelAndView();
 			int result=0;
 			result =eventService.insert(eventDTO, session);
 				
-			String message = "fail";
+			String message = "이벤트 작성 실패하였습니다.";
 			if(result>0){
-				message = "success";
+				message = "이벤트 작성 성공하였습니다.";
 			}
 			rd.addFlashAttribute("message", message);
-			
-			return "redirect:./eventList";
+			mv.addObject("path", "../event/eventList");
+			mv.setViewName("common/messagePath");
+			return mv;
 		}
 		
 		//View페이지
