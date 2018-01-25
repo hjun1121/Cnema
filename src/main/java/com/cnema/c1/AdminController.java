@@ -181,11 +181,13 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		if (result > 0) {
-			rd.addFlashAttribute("message", "영화 정보 수정 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화 정보 수정 완료하였습니다.");
+			mv.addObject("path", "./admin/movieList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "영화 정보 수정 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화 정보 수정 실패하였습니다.");
+			mv.addObject("path", "./admin/movieList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -255,15 +257,16 @@ public class AdminController {
 		try {
 			result = theaterService.theaterRevision(theaterDTO);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (result > 0) {
-			rd.addFlashAttribute("message", "극장 수정 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "극장 정보 수정 완료하였습니다.");
+			mv.addObject("path", "./admin/theaterList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "극장 수정 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "극장 정보 수정 실패하였습니다.");
+			mv.addObject("path", "./admin/theaterList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -276,20 +279,19 @@ public class AdminController {
 		try {
 			screenDTO = scheduleService.screenInfo(theater_num);
 			result = theaterService.theaterRemove(theater_num);
-			System.out.println("1:"+result);
 			result = scheduleService.screenRemove(theater_num);
-			System.out.println("2:"+result);
 			result = scheduleService.scheduleRemove(screenDTO.getScreen_num());
-			System.out.println("3:"+result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if (result > 0) {
-			rd.addFlashAttribute("message", "극장 삭제 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "극장 삭제 성공하였습니다.");
+			mv.addObject("path", "./admin/theaterList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "극장 삭제 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "극장 삭제 실패하였습니다.");
+			mv.addObject("path", "./admin/theaterList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -322,11 +324,13 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		if (result > 0) {
-			rd.addFlashAttribute("message", "극장 글쓰기 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "극장 입력 성공하였습니다.");
+			mv.addObject("path", "./admin/theaterList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "극장 글쓰기 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "극장 입력 실패하였습니다.");
+			mv.addObject("path", "./admin/theaterList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -350,11 +354,13 @@ public class AdminController {
 		}
 		ModelAndView mv = new ModelAndView();
 		if (result > 0) {
-			rd.addFlashAttribute("message", "영화 글쓰기 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화 입력 성공하였습니다.");
+			mv.addObject("path", "./admin/movieList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "영화 글쓰기 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화 입력 실패하였습니다.");
+			mv.addObject("path", "./admin/movieList");
+			mv.setViewName("common/messagePath");
 		}
 
 		return mv;
@@ -428,11 +434,13 @@ public class AdminController {
 		}
 		
 		if (result > 0) {
-			rd.addFlashAttribute("message", "스크린 수정 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화관 수정 성공하였습니다.");
+			mv.addObject("path", "./admin/screenList?theater_num=-1");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "스크린  수정 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화관  수정 실패하였습니다.");
+			mv.addObject("path", "./admin/screenList?theater_num=-1");
+			mv.setViewName("common/messagePath");
 		}
 		mv.addObject("myInfo", memberDTO);
 		return mv;
@@ -450,11 +458,13 @@ public class AdminController {
 		}
 		
 		if (result > 0) {
-			rd.addFlashAttribute("message", "스크린 삭제 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화관 삭제 성공하였습니다.");
+			mv.addObject("path", "./admin/screenList?theater_num=-1");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "스크린  삭제 실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화관  삭제 실패하였습니다.");
+			mv.addObject("path", "./admin/screenList?theater_num=-1");
+			mv.setViewName("common/messagePath");;
 		}
 		return mv;
 	}
@@ -494,11 +504,13 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		if (result > 0) {
-			rd.addFlashAttribute("message", "스크린 성공");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화관 입력 성공하였습니다.");
+			mv.addObject("path", "./admin/screenList?theater_num=-1");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "스크린  실패");
-			mv.setViewName("redirect:../");
+			mv.addObject("message", "영화관 입력 실패하였습니다.");
+			mv.addObject("path", "./admin/screenList?theater_num=-1");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 
@@ -575,11 +587,13 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addFlashAttribute("message", "스케줄 성공");
-			mv.setViewName("redirect:../admin/scheduleList");
+			mv.addObject("message", "영화 스케줄 입력 성공하였습니다.");
+			mv.addObject("path", "./admin/scheduleList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addFlashAttribute("message", "스케줄 실패");
-			mv.setViewName("redirect:../admin/scheduleList");
+			mv.addObject("message", "영화 스케줄 입력 실패하였습니다.");
+			mv.addObject("path", "./admin/scheduleList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -620,11 +634,13 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "상영시간표 수정 성공");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "영화 상영시간표 수정 성공하였습니다.");
+			mv.addObject("path", "./admin/scheduleList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "상영시간표 수정 실패");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "영화 상영시간표 수정 실패하였습니다");
+			mv.addObject("path", "./admin/scheduleList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -640,11 +656,13 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "상영시간표 삭제 성공");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "영화 상영시간표 삭제 성공하였습니다.");
+			mv.addObject("path", "./admin/scheduleList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "상영시간표 삭제 실패");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "영화상영시간표 삭제 실패하였습니다.");
+			mv.addObject("path", "./admin/scheduleList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -693,11 +711,13 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "쿠폰 글쓰기 성공");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "쿠폰 입력 성공하였습니다.");
+			mv.addObject("path", "./admin/couponList");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "쿠폰 글쓰기 실패");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "쿠폰 입력 실패하였습니다.");
+			mv.addObject("path", "./admin/couponList");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -798,11 +818,13 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "쿠폰 주기 성공");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "쿠폰 주기 성공하였습니다.");
+			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "쿠폰 주기 실패");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "쿠폰 주기 실패하였습니다.");
+			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -823,15 +845,17 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "포인트 주기 성공");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "포인트 주기 성공하였습니다.");
+			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
+			mv.setViewName("common/messagePath");
 			MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
 			memberDTO.setA_point(memberDTO2.getA_point());
 			memberDTO.setA_point(memberDTO2.getV_point());
 			session.setAttribute("member", memberDTO);
 		} else {
-			rd.addAttribute("message", "포인트 주기 실패");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "포인트 주기 실패하였습니다.");
+			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
@@ -890,11 +914,13 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "그룹 삭제 성공");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "그룹 삭제 성공하였습니다.");
+			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
+			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "그룹 삭제 실패");
-			mv.setViewName("redirect:../");
+			rd.addAttribute("message", "그룹 삭제 실패하였습니다.");
+			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
+			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}

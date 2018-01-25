@@ -259,7 +259,7 @@ $(function(){
 				        <c:forEach items="${cList }" var="couList">
 							<tr>
 								<td>${couList.name }</td>
-								<td>${couList.v_day }</td>
+								<td>${couList.v_day }일</td>
 								<c:if test="${couList.type eq 10}">
 									<td>${couList.price}% / 할인률</td>
 								</c:if>
