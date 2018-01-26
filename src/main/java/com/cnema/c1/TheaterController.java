@@ -129,6 +129,7 @@ public class TheaterController {
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			result=0;
 			e.printStackTrace();
 		}
 		String message="예매 실패";
