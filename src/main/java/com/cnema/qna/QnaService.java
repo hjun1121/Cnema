@@ -56,6 +56,12 @@ public class QnaService {
 		return mv;
 	}
 	
+	public List<BoardDTO> selectIdList(String id)throws Exception{
+		List<BoardDTO> ar = qnaDAO.selectMyList(id);
+		
+		return ar;
+	}
+	
 	public QnaDTO selectOne(int num) throws Exception {
 		QnaDTO boardDTO = qnaDAO.selectOne(num);
 		return boardDTO;

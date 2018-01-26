@@ -208,7 +208,13 @@ public class MemberController {
 		
 		int type=memberDTO.getType();
 		try {
-			
+			if(type==20){
+				ar = qnaService.selectListMypage();
+			}
+			else
+			{
+				ar=qnaService.selectIdList(memberDTO.getId());
+			}
 			mList = movieService.movieList("","");
 			rList = reserveService.selectList(memberDTO.getId());
 			for(ReserveDTO reserveDTO : rList){
@@ -231,7 +237,7 @@ public class MemberController {
 			mv.addObject("count", count);
 			mv.addObject("aCount", aCount);
 			mv.addObject("today", today);
-			/*mv.addObject("list",ar);*/
+			mv.addObject("list",ar);
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
