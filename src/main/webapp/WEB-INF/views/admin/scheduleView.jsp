@@ -228,7 +228,7 @@ $(function(){
 		            <c:if test="${!empty member and member.type eq 20 }">
 			            <li class="on">
 		                    <a href="#">관리자 <i></i></a>
-			                <<ul>
+			            <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
 		                    <li><a href="../admin/screenList?theater_num=-1">상영관 리스트</a></li>

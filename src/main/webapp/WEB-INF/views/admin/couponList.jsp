@@ -56,7 +56,7 @@ $(function(){
                                 <a href="#">관리자</a>
                             </li>
                             <li class="last">
-                            	영화 목록
+                            	쿠폰 목록
                             </li>
                     	</ul>
                 	</div>
