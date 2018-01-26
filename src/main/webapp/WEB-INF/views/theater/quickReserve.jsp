@@ -16,6 +16,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var message = '${message}';
+		if(message != ""){
+			alert(message);
+		}
+		
 		var movieNum = $("#movie_num").val();
 		var areaName = $("#areaName").val();
 		var theaterNum = $("#theater_num").val();
