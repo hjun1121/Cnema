@@ -168,7 +168,7 @@
 							<c:forEach items="${list}" var="dto">
 			                <li>
 								<em>${dto.area} : ${dto.location}</em>
-								<a href="#"><strong>[${dto.type}] ${dto.title}</strong></a>
+								<a href="../qna/qnaView?num=${dto.num}"><strong>[${dto.type}] ${dto.title}</strong></a>
 								<em>${dto.reg_date}</em>
 								<span>
 									<c:if test="${dto.reply != null }">
