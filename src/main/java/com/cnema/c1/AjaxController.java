@@ -167,6 +167,7 @@ public class AjaxController {
 			if(eventJoinDTO.getType()==1){
 				if(couponType=="쿠폰"){
 					CouponDTO couponDTO = null; //couponDTO 가 없음
+					couponDTO = couponService.couponInfo(300);
 					myCouponService.couponInsert(eventJoinDTO.getId(), couponDTO);
 				}
 				else{

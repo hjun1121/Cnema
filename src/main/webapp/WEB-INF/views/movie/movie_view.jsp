@@ -180,7 +180,7 @@
 		                <i class="corner-RB"></i>
 		                <i class="corner-arrow"></i>
 		            </span>
-		            <a class="link-reservation" href="#">예매</a> 
+		            <a class="link-reservation" href="../theater/quickReserve?movie_num=${movie.movie_num}">예매</a> 
 		        </span>
 		    </div>
 		</div>
@@ -281,7 +281,7 @@
 						</c:if>
 					</ul>
 				</div>
-	            	
+
 
 <!-- 				페이징 -->
 <!-- 				<div> -->

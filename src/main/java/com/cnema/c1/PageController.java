@@ -104,30 +104,43 @@ public class PageController {
 
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
-	public void pageMain() {
+	public ModelAndView pageMain(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
+		try {
+			String id = memberDTO.getId();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return mv;
 	}
 
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
-	public ModelAndView pageMain(HttpSession session, @RequestParam(defaultValue="0", required=true)int page_num) throws Exception {
+	public ModelAndView pageMain(HttpSession session, @RequestParam(defaultValue="0", required=false)int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int member_num = 0;
-		String id = "";
 		int memberCheck = 0;
+		int pageMemberCount = 0;
 		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		try {
-			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-			id = memberDTO.getId();
+			String id = memberDTO.getId();
 			memberCheck = pageService.memberCheck(page_num, id);
-			member_num = pageService.selectPageMemberOne(id).getMember_num();
+			member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
+			List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
+			pageMemberCount = mc.size();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		PageDTO pageDTO = pageService.selectPageOne(page_num); //페이지 정보 가져오기
 		List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
 
+		mv.addObject("pageMemberCount", pageMemberCount);
 		mv.addObject("memberCheck", memberCheck);
 		mv.addObject("member_num", member_num);
 		mv.addObject("page", pageDTO);
@@ -155,14 +168,19 @@ public class PageController {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
+
+		System.out.println(pageDTO.getPage_name());
+		System.out.println(pageDTO.getPage_num());
+		
+		String message = "페이지 생성 실패";
 		if(result > 0) {
-			rd.addFlashAttribute("message", "페이지 만들기 성공");
-			mv.setViewName("redirect:../");
-		} else {
-			rd.addFlashAttribute("message", "페이지 만들기 실패");
-			mv.setViewName("redirect:../");
+			message = "페이지 생성 완료";
 		}
 		
+		mv.addObject("message", message);
+		mv.addObject("path", "community2/communityMain");
+		mv.setViewName("/common/messagePath");
+
 		return mv;
 	}
 	

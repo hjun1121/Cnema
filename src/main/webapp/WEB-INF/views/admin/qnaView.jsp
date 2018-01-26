@@ -14,44 +14,141 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>Q&A 리스트</title>
+<title>Q&A 글보기</title>
 
-<style>
-.list{
-		cursor: pointer; 
-	}
-table{
-    padding-top: 10px;
-        border-top: solid 1px #d6d4ca;
-    border-bottom: solid 1px #b8b6aa;
-}
-th {
-    padding: 10px 0 8px 0px;
-    border-bottom: solid 1px #e1dfd5;
-    text-align: center;
-    background-color: #edebe1;
-    vertical-align: middle;
-    line-height: 1.5em;
-}
-tr{
-
-    display: table-row;
- }
-td{
-
-    padding: 15px 0px 13px 0px;
-    border-top: solid 1px #d6d4ca;
-    text-align: center;
-}
+<style type="text/css">
 .list_container{
 	position: relative;
     width: 800px;
 	float: right;
 	display: inline-block;
 }
-#otoTitle{
+#btn3{
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ede9dd; 
+    color: #7b7b7b; 
+ 	border:  2px solid #7b7b7b;
+ 	
+ 
+
+}
+
+#btn2{
+	
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 auto;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #e71a0f; 
+    color: #ffffff; 
+    border: 2px solid #e71a0f;
+}
+/* #btn1{
+	
+    background: #222222;
+    border: 2px solid #222222;
+    color: #ffffff;
+    line-height: 21px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    overflow: visible;
+   	border: 1px solid #5b5b58;
+} */
+.round.inblack{ background:#222222; border:2px solid #222222; color:#ffffff; line-height:21px;  border-radius: 3px; float:right;}
+.round.inblack:before{ left:-2px; top:-2px; background-position:-10px -10px; z-index:1;}
+.round.inblack:after{ left:-2px; bottom:-2px; background-position:-10px -15px;}
+.round.inblack > *{ border:1px solid #5b5b58;}
+.round.inblack > *:before{ right:-3px; top:-3px; background-position:-15px -10px;}
+.round.inblack > *:after{ right:-3px; bottom:-3px; background-position:-15px -15px;}
+.round , .round > *{ display:inline-block; position:relative;  }
+.round {line-height:23px; font-family:'NanumBarunGothicBold'; text-align:center; vertical-align:middle;}
+.round > *{ box-sizing:border-box; -moz-box-sizing:border-box; width:100%; /* height:100%; */ padding:0 5px;} /* 20140620 Del padding-top:2px !important; */
+*+html .round{ white-space:nowrap; }
+*+html .round > *{  border:none !important; padding:0; cursor:pointer; }
+
+.board_view_area{
+
+    margin-top: 19px;
+
+
+}
+
+.top_title_faq {
+    overflow: hidden;
+    padding: 11px;
+    border-top: solid 1px #b8b6aa;
+    background-color: #edebe1;
+ }
+ul {
+    list-style: none;
+}
+.top_title_faq .title {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    overflow: hidden;
+    width: 520px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.title {
+    
+    color: #333333;
+    
+}
+.top_title_faq .stit_area {
+    float: right;
+    font-size: 11px;
+    line-height: 16px;
+}
+.top_title_faq .stit_area .regist_day, .check_num{
+    margin-left: 9px;
+    font-size: 12px;
+    font-family: 'Verdana';
+    color: #222;
+}
+.top_title_faq .stit_area em {
+    line-height: 16px;
+    vertical-align: middle;
+}
+em {
+    font-style: normal;
+}
+.top_title_faq .stit_area .check_tit_area {
+    margin-left: 30px;
+}
+.view_area {
+    padding: 35px 13px;
+    border-bottom: solid 1px #b8b6aa;
+    line-height: 24px;
+}
+
+  #otoTitle{
 float: left;
-	width:100%;
+width:100%;
     height: 34px;
     background-image: none;
     color: rgb(34, 34, 34);
@@ -60,10 +157,21 @@ float: left;
     line-height: 34px;
     text-align: left;
     margin: 0px;
-    display:block;
-    margin-bottom:10px;
+}
+#replyTit{
+	 font-size: 15px;
+	 font-weight: bold;
 }
 
+#replyWriteForm{
+width: 80%;
+height: 50px;
+
+}
+#replyWrite{
+	width:18%;
+	height:55px;
+}
 </style>
 </head>
 <body>
@@ -172,54 +280,57 @@ float: left;
     			</div>
 		
 	<div class="list_container">
-		<span id="otoTitle">1:1 문의</span><br>
-		<br><p> 총  ${fn:length(list)}개 </p>
-	<table>
-		<tr>
-			<th>no.</th>
-			<th>영화관</th>
-			<th>글제목</th>
-			<th>글쓴이</th>
-			<th>등록일</th>
-			<th>답변</th>
-		</tr>
-		<c:forEach items="${list}" var="dto">
-		<tr>
-			<%-- <td><img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></td> --%>
-			<td>${dto.num }</td>
-			<td>${dto.area} : ${dto.location}</td>
-			<td>
-			
-			<a href="../qna/qnaView?num=${dto.num}">[ ${dto.type} ] ${dto.title}</a>
-			</td>
-			<td>${dto.writer}</td>
-			<td>${dto.reg_date}</td>
-			<td>
-			<c:if test="${dto.reply != null }">
-			답변완료
-			</c:if>
-			<c:if test="${dto.reply == null }">
-			대기중
-			</c:if>
-			</td>
-		</tr>
-		</c:forEach>
-	</table>
-	<br>
-	<c:if test="${fn:length(list) != 0}">
-	<div>
-		<c:if test="${pager.curBlock gt 1}">
-			<span class="list" title="${pager.startNum-1}">[이전]</span>
+		<span id="otoTitle">1:1 문의 글보기</span><br>
+	
+				<ul class="top_title_faq">
+					<li class="title">[${view.type}]${view.title}</li>
+					<li class="stit_area">
+						<span>등록일<em class="regist_day">${view.reg_date}</em></span>
+						<span class="check_tit_area">지점<em class="check_num">${view.area}:${view.location }</em></span>
+					</li>
+				</ul>
+				<div class="view_area">
+					 ${view.contents}
+				<!-- <a id="btn1" href="./noticeList">목록으로</a> -->
+				
+			</div>
+			<br><br><br>
+		
+		<c:if test="${view.reply !=null }">
+		<div class="reply-contents">
+		<h3 id="replyTit">답변 내용</h3><hr>
+        <ul class="writerinfo">
+            <li>${view.reply_id }</li>
+            <li class="day-writerinfo">${view.reply_date }</li>
+        </ul>
+         <p>${view.reply }</p>
+    </div>
 		</c:if>
-		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			<span class="list" title="${i}">${i}</span>
-		</c:forEach>
-		<c:if test="${pager.curBlock lt pager.totalBlock}">
-			<span class="list" title="${pager.lastNum+1}">[다음]</span>
+		<br><br><br>
+	<!--  답글 표시 하기 (관리자일때만 보이게 하기) -->
+	<c:if test="${member.type == 20 }">
+	<div id="reply">
+	<form action="qnaUpdate" id="frm" method="post">
+		<h3 id="replyTit">답변 달기</h3>
+		<hr>
+		<input type="hidden" name="num" value="${view.num}">
+		<input type="hidden" name="reply_id" value="${member.id}">
+		<input type="hidden" name="email" value="${view.email }">
+		<textarea name="reply" id="replyWriteForm" rows="5" cols="20"></textarea>
+		<c:if test="${view.reply==null}">
+		<button type="submit" id="replyWrite">답변 등록</button>
 		</c:if>
+		<c:if test="${view.reply != null}">
+		<button type="submit" id="replyWrite">답변 수정</button>
+		</c:if>
+		</form>
 	</div>
 	</c:if>
+		<br>	
+				<a href="../admin/myQnaList" class="round inblack" id="btn_list"><span>목록으로</span></a>
+				<a id="btn3" href="../qna.qnaDelete?num=${view.num}">삭제하기</a>
 	
+		
 		</div>
 		
 		
