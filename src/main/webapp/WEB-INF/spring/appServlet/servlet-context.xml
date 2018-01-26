@@ -15,7 +15,18 @@
 	<beans:bean class="com.cnema.interceptor.LoginInterceptor" id="login"></beans:bean>
 	<beans:bean class="com.cnema.interceptor.AdminInterceptor" id="admin"></beans:bean>
 	<beans:bean class="com.cnema.interceptor.ReserveInterceptor" id="reserve"></beans:bean>
+	<beans:bean class="com.cnema.interceptor.NoLoginInterceptor" id="noLogin"></beans:bean>
 	<interceptors>
+		<interceptor>
+			<mapping path="/member/memberJoin"/>
+			<mapping path="/member/memberAgree"/>
+			<mapping path="/member/memberLogin"/>
+			<mapping path="/member/idFind"/>
+			<mapping path="/member/pwFind"/>
+			<beans:ref bean="noLogin"/>	
+		</interceptor>
+		
+		
 		<interceptor>
 			<mapping path="/myPage/*"/>
 			<mapping path="/member/*"/>
@@ -25,6 +36,8 @@
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberLogout"/>
 			<exclude-mapping path="/member/joinAgree"/>
+			<exclude-mapping path="/member/idFind"/>
+			<exclude-mapping path="/member/pwFind"/>
 			<beans:ref bean="login"/>
 		</interceptor>
 		
