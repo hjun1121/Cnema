@@ -1,5 +1,11 @@
 @CHARSET "UTF-8";
 
+.myCouponAndMyPoint{
+	font-size: 30px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
 .cols-content .tit-mycgv {
 	overflow: hidden;
 	position: relative;

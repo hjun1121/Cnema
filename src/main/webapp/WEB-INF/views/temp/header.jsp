@@ -47,7 +47,7 @@
 				<div class="lnb">
 					<h2>CGV 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie headbtn" title="movie headbtn"><a href="${pageContext.request.contextPath}/movie/movie_chart">영화</a>
+						<li class="movie headbtn" title="movie headbtn" style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">영화
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -57,7 +57,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="booking headbtn" title="booking headbtn"><a href="${pageContext.request.contextPath}/theater/quickReserve">예매</a>
+						<li class="booking headbtn" title="booking headbtn"style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">예매
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -68,7 +68,20 @@
 								</div>
 							</div>
 						</li>
-						<li class="theaters headbtn" title="theaters headbtn"><a href="#">극장</a>
+						<li class="culture headbtn" title="culture headbtn"style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">소식지
+							<div class="sub-wrap">
+								<i></i>
+								<div class="smenu">
+									<ul>
+										<li><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></li>
+										<li><a href="${pageContext.request.contextPath}/event/eventList">이벤트</a></li>
+										<li><a href="${pageContext.request.contextPath}/qna/qnaWrite">이메일문의</a></li>
+										
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="theaters headbtn" title="theaters headbtn"style="font-size: 17px;font-family: -webkit-pictograph;font-weight: 900;">씨네마그램
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -80,21 +93,6 @@
 								</div>
 							</div>
 						</li>
-
-                        <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/board/park">이벤트&amp;컬쳐</a>
-							<div class="sub-wrap">
-								<div class="smenu">
-									<ul>
-										<li><a href="${pageContext.request.contextPath}/notice/noticeList">공지사항</a></li>
-										<li><a href="${pageContext.request.contextPath}/event/eventList">이벤트</a></li>
-										<li><a href="${pageContext.request.contextPath}/qna/qnaWrite">이메일문의</a></li>
-										
-									</ul>
-								</div>
-							</div>
-						</li>
-<!-- 						씨네마그램 -->
-<%--                         <li class="culture headbtn" title="culture headbtn"><a href="${pageContext.request.contextPath}/community/communityMain">CnemaGram</a> --%>
 					</ul>
 				</div>
 			</div>

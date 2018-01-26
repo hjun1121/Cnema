@@ -184,7 +184,7 @@
                             </span>
                         </c:if>
                         	<a class=""></a>
-                            <a class="link-reservation" href="#">예매</a>
+                            <a class="link-reservation" href="../theater/quickReserve?movie_num=${movie.movie_num}">예매</a>
                         </span>
                         
                     </div>    

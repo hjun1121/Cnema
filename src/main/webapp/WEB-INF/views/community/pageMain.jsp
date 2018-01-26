@@ -44,6 +44,7 @@
 		
 		$("#mailBox_btn").click(function(){
 			alert("메일함");
+			
 		});
 
 	});
@@ -110,6 +111,11 @@
 			<div style="float: right;">
 				<h1>${page.page_name}</h1>
 			</div>
+		</div>
+		<!-- 메일 예시 -->
+		<div>
+			<c:forEach items="">
+			</c:forEach>
 		</div>
 	</div>
 	

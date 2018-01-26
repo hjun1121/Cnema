@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+
+
 #cgvwrap .cgv-ad-wrap .sect-head-ad, .head, .im-wrap, #contents, .foot,
 	.sect-smuse, .sect-cinfo {
 	position: relative;
@@ -309,7 +311,7 @@ iframe#TopBanner {
 }
 
 .im-wrap .lnb>ul>li.theaters {
-	margin-left: 25px;
+	margin-left: 35px;
 }
 
 .im-wrap .lnb>ul>li.event {
@@ -378,11 +380,11 @@ iframe#TopBanner {
 }
 
 .im-wrap .lnb>ul>li.booking>.sub-wrap {
-	left: -61px;
+	left: -55px;
 }
 
 .im-wrap .lnb>ul>li.theaters>.sub-wrap {
-	left: -58px;
+	left: -40px;
 }
 
 .im-wrap .lnb>ul>li.event>.sub-wrap {
@@ -390,7 +392,7 @@ iframe#TopBanner {
 }
 
 .im-wrap .lnb>ul>li.culture>.sub-wrap {
-	left: -37px;
+	left: -57px;
 }
 
 .im-wrap .lnb .sub-wrap>.smenu {

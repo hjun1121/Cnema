@@ -104,8 +104,17 @@ public class PageController {
 
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
-	public void pageMain() {
+	public ModelAndView pageMain(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
+		try {
+			String id = memberDTO.getId();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return mv;
 	}
 
 	//pageMain
@@ -159,14 +168,19 @@ public class PageController {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
+
+		System.out.println(pageDTO.getPage_name());
+		System.out.println(pageDTO.getPage_num());
+		
+		String message = "페이지 생성 실패";
 		if(result > 0) {
-			rd.addFlashAttribute("message", "페이지 만들기 성공");
-			mv.setViewName("redirect:../");
-		} else {
-			rd.addFlashAttribute("message", "페이지 만들기 실패");
-			mv.setViewName("redirect:../");
+			message = "페이지 생성 완료";
 		}
 		
+		mv.addObject("message", message);
+		mv.addObject("path", "community2/communityMain");
+		mv.setViewName("/common/messagePath");
+
 		return mv;
 	}
 	

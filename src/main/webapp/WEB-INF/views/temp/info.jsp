@@ -44,7 +44,7 @@
 			        </div>
         			<div class="cols-benefit-info">
 			        	<div class="col-my-coupon">
-			        		<h3>MY COUPON</h3>
+			        		<h3 class="myCouponAndMyPoint">MY COUPON</h3>
 			        		<ul>
 			        			<li>
 			        				<strong>전체 쿠폰</strong>
@@ -57,8 +57,8 @@
 			        		</ul>
 			        	</div>
 			                <div class="col-one-point">
-			               	<h3>CJ ONE POINT</h3>
-			        		<a href="#">CJ ONE POINT 더보기</a>
+			               	<h3 class="myCouponAndMyPoint">MY POINT</h3>
+			        		<a href="#">MY POINT 더보기</a>
 			        		<ul>
 			        			<li>
 			        				<strong>사용가능 포인트</strong>
