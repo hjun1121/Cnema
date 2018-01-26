@@ -15,28 +15,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Q&A 리스트</title>
-<script type="text/javascript">
-$(function(){
-	var kind='${kind}';
-	$(".kind").each(function(){
-		if($(this).val()==kind){
-			$(this).attr("selected",true);
-		}
-	});
-	var search='${search}';
-	$("#search").val(search);
-	
-	$("#sBtn").click(function(){
-		var sKind = $("#kind").val();
-		var search = $("#search").val();
-		location.href="./movieList?kind="+sKind+"&search="+search;
-	});
-	
-	$(".round").click(function(){
-		location.href="movieInsert"
-	});
-});
-</script>
+
 <style>
 .list{
 		cursor: pointer; 
@@ -70,6 +49,18 @@ td{
 	float: right;
 	display: inline-block;
 }
+#otoTitle{
+float: left;
+    height: 34px;
+    background-image: none;
+    color: rgb(34, 34, 34);
+    font-family: NanumBarunGothicBold, "맑은 고딕", 돋움, Dotum, sans-serif;
+    font-size: 17px;
+    line-height: 34px;
+    text-align: left;
+    margin: 0px;
+}
+
 </style>
 </head>
 <body>
@@ -263,7 +254,8 @@ td{
     			</div>
 		
 	<div class="list_container">
-
+		<h3 id="otoTitle">1:1 문의</h3><br>
+		<br><p> 총  ${fn:length(list)}개 </p>
 	<table>
 		<tr>
 			<th>no.</th>
@@ -288,11 +280,15 @@ td{
 			<c:if test="${dto.reply != null }">
 			답변완료
 			</c:if>
+			<c:if test="${dto.reply == null }">
+			대기중
+			</c:if>
 			</td>
 		</tr>
 		</c:forEach>
 	</table>
 	<br>
+	<c:if test="${fn:length(list) != 0}">
 	<div>
 		<c:if test="${pager.curBlock gt 1}">
 			<span class="list" title="${pager.startNum-1}">[이전]</span>
@@ -304,7 +300,7 @@ td{
 			<span class="list" title="${pager.lastNum+1}">[다음]</span>
 		</c:if>
 	</div>
-	
+	</c:if>
 	
 		</div>
 		
