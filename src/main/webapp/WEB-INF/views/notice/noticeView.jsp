@@ -137,6 +137,7 @@ em {
     padding: 35px 13px;
     border-bottom: solid 1px #b8b6aa;
     line-height: 24px;
+    }
 </style>
 </head>
 <body>

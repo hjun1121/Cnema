@@ -39,7 +39,6 @@
  	border:  2px solid #7b7b7b;
  	
  
-	
 
 }
 
@@ -141,11 +140,15 @@ em {
 .top_title_faq .stit_area .check_tit_area {
     margin-left: 30px;
 }
-
+.view_area {
+    padding: 35px 13px;
+    border-bottom: solid 1px #b8b6aa;
+    line-height: 24px;
+}
 
   #otoTitle{
 float: left;
-width:100%
+width:100%;
     height: 34px;
     background-image: none;
     color: rgb(34, 34, 34);
@@ -158,6 +161,16 @@ width:100%
 #replyTit{
 	 font-size: 15px;
 	 font-weight: bold;
+}
+
+#replyWriteForm{
+width: 80%;
+height: 50px;
+
+}
+#replyWrite{
+	width:18%;
+	height:55px;
 }
 </style>
 </head>
@@ -366,34 +379,39 @@ width:100%
 				<!-- <a id="btn1" href="./noticeList">목록으로</a> -->
 				
 			</div>
-			<br>
-			<div class="reply-contents">
-        <ul class="writerinfo">
-            <li>${list.reply_id }</li>
-            <li class="day-writerinfo">${list.reply_date }</li>
-        </ul>
-         <p>${list.reply }</p>
-    </div>
+			<br><br><br>
 		
+		<c:if test="${view.reply !=null }">
+		<div class="reply-contents">
+		<h3 id="replyTit">답변 내용</h3><hr>
+        <ul class="writerinfo">
+            <li>${view.reply_id }</li>
+            <li class="day-writerinfo">${view.reply_date }</li>
+        </ul>
+         <p>${view.reply }</p>
+    </div>
+		</c:if>
+		<br><br><br>
 	<!--  답글 표시 하기 (관리자일때만 보이게 하기) -->
-	<c:if test="${member.type == 20 }"></c:if>
+	<c:if test="${member.type == 20 }">
 	<div id="reply">
 	<form action="qnaUpdate" id="frm" method="post">
-		<h3 id="replyTit">답변 달기</h3><br>
+		<h3 id="replyTit">답변 달기</h3>
 		<hr>
-		<input type="hidden" name="num" value="${list.num}">
+		<input type="hidden" name="num" value="${view.num}">
 		<input type="hidden" name="reply_id" value="${member.id}">
-		<input type="hidden" name="email" value="${list.email }">
-		<textarea name="reply" rows="5" cols="30"></textarea>
-		<c:if test="${list.reply==null}">
-		<button type="submit">답변 달기</button>
+		<input type="hidden" name="email" value="${view.email }">
+		<textarea name="reply" id="replyWriteForm" rows="5" cols="20"></textarea>
+		<c:if test="${view.reply==null}">
+		<button type="submit" id="replyWrite">답변 등록</button>
 		</c:if>
-		<c:if test="${list.reply != null}">
-		<button type="submit">답변 수정</button>
+		<c:if test="${view.reply != null}">
+		<button type="submit" id="replyWrite">답변 수정</button>
 		</c:if>
 		</form>
 	</div>
-			
+	</c:if>
+		<br>	
 				<a href="../admin/myQnaList" class="round inblack" id="btn_list"><span>목록으로</span></a>
 				<a id="btn3" href="../qna.qnaDelete?num=${view.num}">삭제하기</a>
 	
