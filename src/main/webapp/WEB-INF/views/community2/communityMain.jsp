@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +35,9 @@ $(function() {
 
 </head>
 <body>
-<div id="cgvwrap">
+<div id="cgvwrap"  style="text-align: center; height: auto;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
+<div id="container">
 <!-- 왼측 프로필 고정 바  -->
 <div id="left_bar">
 	<div id="left_bar2">
@@ -53,26 +55,40 @@ $(function() {
 		<!-- 내가 가입한 페이지 LIST -->
 		<c:if test="${not empty member}">
 		<div id="myJoinList">
-			<h2 >가입한 페이지</h2>
-			<c:forEach items="${pageList}" var="page">
-			<div>
-				<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
-				<img id="pageImg" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
-				</a>
-			</div>
-			<div id="pageName"> ${page.page_name}</div>
+			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
+			<span id="img_alt">가입한 페이지</span>
+			<span id="img_count">· ${fn:length(pageList)}개</span></h2>
+			<c:forEach items="${pageList}" var="page" varStatus="i">
+			<c:if test="${i.index < 4}">
+				<div id="pageList">
+					<div>
+						<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
+						<img id="pageImg"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
+						</a>
+					</div>
+					<div id="pageName"> ${page.page_name}</div>
+				</div>
+			</c:if>
 			</c:forEach>
 		</div>
 		</c:if>
 		
 		<!-- 추천 페이지 LIST -->
-		<div id="recommendList">
-			<h2>추천 페이지</h2>
-			<br>
+		<div id="myJoinList">
+			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
+			<span id="img_alt">추천 페이지</span>
+			</h2>
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
-				<c:if test="${i.index < 3}">
-					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}"><p><img style="width: 30%; margin-right: 30px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}"> ${recommend.page_name}</p></a>
-				</c:if>
+			<c:if test="${i.index < 4}">
+				<div id="pageList">
+					<div>
+					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
+					<img id="pageImg"alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
+					</a>
+					</div>
+					<div id="pageName"> ${recommend.page_name}</div>
+				</div>
+			</c:if>
 			</c:forEach>
 		</div>
 	</div>
@@ -82,20 +98,37 @@ $(function() {
 <div id="infoBody">
 	<!-- 가입한 페이지  -->
 	<div id="joinBody">
-		<input type="button" value="+더보기" id="moreInsertBtn"><br>
-		<c:forEach items="${myPageList}" var="page" varStatus="count">
-			<img alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
-			${page.page_name}
+		<div><input type="button" value="+더보기" id="moreInsertBtn"></div>
+		<c:forEach items="${myPageList}" var="page" varStatus="i">
+			<c:if test="${i.index < 4}">
+				<div id="roundList">
+					<div>
+					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
+					<img id="rePageImg" alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
+					</a>
+					</div>
+					<div id="roundName"> ${page.page_name}</div>
+				</div>
+			</c:if>
 		</c:forEach>
 	</div>
 	<!-- 추천 페이지 -->
 	<div id="recommendBody">
-		<input type="button" value="+더보기" id="moreBtn"><br>
-		<c:forEach items="${recommendPage}" var="recommend">
-			<img alt="${recommend.page_name}" src="../resources/page_logo/${recommend.fileName}">
-			${recommend.page_name}
+		<div><input type="button" value="+더보기" id="moreBtn"></div>
+		<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
+			<c:if test="${i.index < 4}">
+				<div id="roundList">
+					<div>
+					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
+					<img id="rePageImg" alt="${recommend.page_name}" src="../resources/page_logo/${recommend.fileName}">
+					</a>
+					</div>
+					<div id="roundName"> ${recommend.page_name}</div>
+				</div>
+			</c:if>
 		</c:forEach>
 	</div>
+</div>
 </div>
 </div>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>

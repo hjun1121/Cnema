@@ -24,7 +24,6 @@ public class CommunityController {
 	@Inject
 	private CommunityService communityService;
 	
-	//communityMain
 	@RequestMapping(value="communityMain", method=RequestMethod.GET)
 	public ModelAndView communityMain(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -36,7 +35,6 @@ public class CommunityController {
 		List<Integer> newPageNumList = new ArrayList<>();
 		List<Integer> newRecomPageList = new ArrayList<>();
 		List<PageDTO> recomPageList = new ArrayList<>();
-		List<PageDTO> recommendPageList = new ArrayList<>();
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
@@ -78,7 +76,65 @@ public class CommunityController {
 	
 	@RequestMapping(value="pageRecomList",method=RequestMethod.GET)
 	public ModelAndView pageRecomList(HttpSession session,String search) throws Exception{
+		if(search==null){
+			search="";
+		}
 		ModelAndView mv = new ModelAndView();
+		List<PageDTO> pageList = new ArrayList<>();
+		
+		List<Integer> pageNumList = new ArrayList<>();
+		List<String> pageIdList = new ArrayList<>();
+		List<Integer> newPageNumList = new ArrayList<>();
+		List<Integer> newRecomPageList = new ArrayList<>();
+		List<PageDTO> recomPageList = new ArrayList<>();
+		List<PageDTO> recomPageSearchList = new ArrayList<>();
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			if(memberDTO.getId() != null) {
+				pageList = communityService.myPageList(memberDTO.getId(),"");
+				
+				pageNumList = communityService.pageNumList(memberDTO.getId());
+				for (int num : pageNumList) {
+					pageIdList = communityService.pageIdList(num);
+					for (String id : pageIdList) {
+						newPageNumList = communityService.recommendPageList(id);
+					}
+				}
+				
+				newRecomPageList = communityService.pageList();
+				newPageNumList.addAll(newRecomPageList);
+				
+				HashSet<Integer> hs = new HashSet<>(newPageNumList);
+				Iterator<Integer> it = hs.iterator();
+				PageDTO pageDTO = null;
+				
+				for (int p_num : hs) {
+					pageDTO = communityService.pageSelect("", p_num);
+					recomPageList.add(pageDTO);
+				}
+				
+				for (int p_num : hs) {
+					pageDTO = communityService.pageSelect(search, p_num);
+					if(pageDTO!=null){
+						recomPageSearchList.add(pageDTO);
+					}
+				}
+				
+				Collections.reverse(recomPageList);
+				Collections.reverse(recomPageSearchList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("search", search);
+		mv.addObject("pageList", pageList);
+		mv.addObject("recommendPage", recomPageList);
+		mv.addObject("recomPageSearchList", recomPageSearchList);
+		mv.setViewName("community2/pageRecomList");
+		return mv;
+		
+		/*ModelAndView mv = new ModelAndView();
 		if(search==null){
 			search="";
 		}
@@ -96,7 +152,7 @@ public class CommunityController {
 				
 				pageNumList = communityService.pageNumList(memberDTO.getId());
 				for (int num : pageNumList) {
-					/*recomPageList = communityService.recommendPageList(search,num);*/
+					recomPageList = communityService.recommendPageList(search,num);
 				}
 			}
 		} catch (Exception e) {
@@ -108,12 +164,61 @@ public class CommunityController {
 		mv.addObject("recommendPage", recomPageList);
 		mv.addObject("myPageList", myPageList);
 		mv.setViewName("community2/pageRecomList");
-		return mv;
+		return mv;*/
 	}
 	
 	@RequestMapping(value="pageInsertList",method=RequestMethod.GET)
 	public ModelAndView pageInsertList(HttpSession session,String search) throws Exception{
+		if(search==null){
+			search="";
+		}
 		ModelAndView mv = new ModelAndView();
+		List<PageDTO> myPageList = new ArrayList<>();
+		List<PageDTO> pageList = new ArrayList<>();
+		
+		List<Integer> pageNumList = new ArrayList<>();
+		List<String> pageIdList = new ArrayList<>();
+		List<Integer> newPageNumList = new ArrayList<>();
+		List<Integer> newRecomPageList = new ArrayList<>();
+		List<PageDTO> recomPageList = new ArrayList<>();
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			if(memberDTO.getId() != null) {
+				myPageList = communityService.myPageList(memberDTO.getId(),search);
+				pageList = communityService.myPageList(memberDTO.getId(),"");
+				
+				pageNumList = communityService.pageNumList(memberDTO.getId());
+				for (int num : pageNumList) {
+					pageIdList = communityService.pageIdList(num);
+					for (String id : pageIdList) {
+						newPageNumList = communityService.recommendPageList(id);
+					}
+				}
+				
+				newRecomPageList = communityService.pageList();
+				newPageNumList.addAll(newRecomPageList);
+				
+				HashSet<Integer> hs = new HashSet<>(newPageNumList);
+				Iterator<Integer> it = hs.iterator();
+				PageDTO pageDTO = null;
+				
+				for (int p_num : hs) {
+					pageDTO = communityService.pageSelect("", p_num);
+					recomPageList.add(pageDTO);
+				}
+				
+				Collections.reverse(recomPageList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("search", search);
+		mv.addObject("pageList", pageList);
+		mv.addObject("recommendPage", recomPageList);
+		mv.addObject("myPageList", myPageList);
+		mv.setViewName("community2/pageInsertList");
+		return mv;
+		/*ModelAndView mv = new ModelAndView();
 		if(search==null){
 			search="";
 		}
@@ -131,7 +236,7 @@ public class CommunityController {
 				pageList = communityService.myPageList(memberDTO.getId(),"");
 				pageNumList = communityService.pageNumList(memberDTO.getId());
 				for (int num : pageNumList) {
-					/*recomPageList = communityService.recommendPageList(search,num);*/
+					recomPageList = communityService.recommendPageList(search,num);
 				}
 			}
 		} catch (Exception e) {
@@ -143,6 +248,6 @@ public class CommunityController {
 		mv.addObject("myPageList", myPageList);
 		mv.addObject("pageList", pageList);
 		mv.setViewName("community2/pageInsertList");
-		return mv;
+		return mv;*/
 	}
 }

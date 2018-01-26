@@ -61,6 +61,7 @@ float: left;
     text-align: left;
     margin: 0px;
     display:block;
+    margin-bottom:10px;
 }
 
 </style>

@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="communityMapper">
 
-	<select id="myPageList" parameterType="String" resultType="pageDTO">
-		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id}
+	<select id="myPageList" parameterType="java.util.Map" resultType="pageDTO">
+		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%'
 	</select>
 	
 	<select id="pageNumList" resultType="int" parameterType="string">

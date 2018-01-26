@@ -55,5 +55,12 @@
 	<select id="selectPageOne" resultType="pageDTO">
 		select * from page where page_num=#{page_num}
 	</select>
+	
+	<insert id="pageInsert" parameterType="pageDTO">
+        <selectKey order="BEFORE" resultType="int" keyProperty="page_num">
+        	select movie_seq.nextval from dual
+        </selectKey>
+         insert into page values(#{page_num}, #{page_name}, #{fileName}, #{oriName}, sysdate, 1, #{owner_id})
+    </insert>
 
 </mapper>
