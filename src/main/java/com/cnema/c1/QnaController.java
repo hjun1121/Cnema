@@ -107,8 +107,8 @@ public class QnaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("list", boardDTO);
-		return "qna/qnaView";
+		model.addAttribute("view", boardDTO);
+		return "admin/qnaView";
 	}
 	
 	@RequestMapping(value="qnaDelete")
