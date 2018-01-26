@@ -41,6 +41,10 @@
 			}
 		    alert(message); // 1:좌클릭, 2:휠클릭, 3:우클릭
 		});
+		
+		$("#mailBox_btn").click(function(){
+			alert("메일함");
+		});
 
 	});
 
@@ -63,7 +67,11 @@
 		<!-- 사용자 정보  -->
 		<div id="profile_info">
 			<h1>${member.id}<span> 님</span></h1>
-			<button id="mailBox_btn" value=""><span>쪽지함</span></button>
+			<button id="mailBox_btn" name="mailBox_btn"><span>쪽지함</span></button>
+		</div>
+		<!-- 쪽지함 div -->
+		<div id="mailBox_div">
+
 		</div>
 		<!-- 가입 페이지  -->
 		<div id="join_page_list" style="height: 100px; border: 1px solid red; margin-bottom: 20px;">
@@ -87,15 +95,16 @@
 			<div id="page_btns">
 				<c:choose>
 					<c:when test="${memberCheck eq 11}">
-						<input class="page_btns" type="button" id="drop_btn" value="탈퇴하기">
+						<button class="page_btns" id="drop_btn"><img alt="" src="../resources/page/탈퇴img.png">탈퇴하기</button>
 					</c:when>
 					<c:when test="${memberCheck eq 0}">
-						<input class="page_btns" type="button" id="join_btn" value="가입하기">
+						<button class="page_btns" id="join_btn">가입하기</button>
 					</c:when>
 					<c:otherwise>
-						<input class="page_btns" type="button" id="" value="그룹장이라 탈퇴안되지롱">
+						<button class="page_btns" id="">그룹장이라 탈퇴안되지롱</button>
 					</c:otherwise>
 				</c:choose>
+				<input type = "text" class="page_btns" value="${pageMemberCount}명이 팔로우">
 			</div>
 			<!-- 커뮤니티 이름  -->
 			<div style="float: right;">

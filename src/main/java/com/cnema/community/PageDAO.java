@@ -19,8 +19,11 @@ public class PageDAO {
 	
 	
 	//selectPageMemberOne
-	public PageMemberDTO selectPageMemberOne(String id) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"selectPageMemberOne", id);
+	public PageMemberDTO selectPageMemberOne(String id, int page_num) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("page_num", page_num);
+		return sqlSession.selectOne(NAMESPACE+"selectPageMemberOne", map);
 	}
 	
 	
@@ -69,6 +72,7 @@ public class PageDAO {
 		map.put("id", id);
 		return sqlSession.insert(NAMESPACE+"memberInsert", map);
 	}
+
 	
 	//memberCount
 	public int memberCount(int page_num) throws Exception {
