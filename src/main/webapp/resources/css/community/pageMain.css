@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 
+
 #container {
     width: 1012px !important;
     height: -webkit-fill-available;
@@ -12,7 +13,7 @@
     width: 180px !important;
     height: auto;
 	padding: 12px 0;
-	position: fixed;
+	position: absolute;
 	background-color: yellow;
 }
 
@@ -25,22 +26,40 @@
 }
 
 #profile_img img {
-	width: 180px;
+	width: 179px;
 	height: 180px;
 }
 
 #profile_info {
+	width: 100%;
+	float: left;
     margin-bottom: 16px;
     padding-top: 12px;
 }
 
+#profile_info span {
+	font-size: medium;
+}
+
+
 #profile_info h1 {
 	font-size: 20px;
 	text-align: center;
+	display: inline-block;
+}
+
+#mailBox_btn {
+	width: 85px;
+	height:25px;
+	margin: 0 0 5px 15px;
+    background-color: #365899;
+    border-color: #365899;
+    border-radius: 10px;
+    color: #fff;
 }
 
 #join_page_list {
-	
+	clear: both;
 }
 
 #recommend_page_list {
@@ -72,6 +91,7 @@
 }
 
 #page_name {
+	height: 25px;
 	border: 1px solid #dddfe2;
     padding: 12px;
     background-color: #fff;
