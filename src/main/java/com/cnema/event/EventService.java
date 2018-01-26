@@ -52,6 +52,16 @@ public class EventService {
 		mv.setViewName("event/eventList");
 		return mv;
 	}
+	//이벤트 home에 뿌리는것 
+	public List<BoardDTO> selectList() throws Exception {
+
+		RowNum rowNum= new RowNum();
+		rowNum.setStartRow(1);
+		rowNum.setLastRow(4);
+		List<BoardDTO> ar = eventDAO.selectList(rowNum);
+		
+		return ar;
+	}
 	
 	//종류된 이벤트 리스트
 	public ModelAndView endSelectList(ListData listData) throws Exception {

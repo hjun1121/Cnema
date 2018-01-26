@@ -149,19 +149,22 @@ function showSlides(n) {
 				</div>
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
+			
+			
+			<!--이벤트 띄울화면  -->
 			<div class="sect-event">
 			<ul>
-				<c:forEach begin="0" end="3" varStatus="i">
+				<c:forEach items="${ event_list}" var="dto">
 		    	<li>
-                	<a href="#">
-                    	<img src="${pageContext.request.contextPath }/resources/images/main/aaa.png" alt="♡">
+                	<a href="./event/eventView?num=${dto.num}">
+                    	<img src="${pageContext.request.contextPath }/resources/images/main/${dto.fileName}" alt="♡">
                 	</a>
             	</li>
             	</c:forEach>
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
-			<div class="cols-banner">
+		<%-- 	<div class="cols-banner">
 				<div class="col-ad">
 					<div class="box-com">
 		    			<div class="box-inner">
@@ -180,7 +183,7 @@ function showSlides(n) {
             			</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
