@@ -50,7 +50,19 @@
 	
 		$("#btn_OK").click(function(){
 			if($("#chAll").prop("checked")==true ){
-				//$("#agreeCheck").html('<c:set scope="session" var="agree" value="ok"></c:set>');
+				
+				$.ajax({
+					url:"../ajax/agreeCheck",
+					type:"post",
+					data:{
+						
+					},
+					success:function(data){
+						alert("d");
+					}
+				});
+				
+				
 				frm.submit();
 			}else{
 				alert("동의하지 않으면 가입하실 수 없습니다.");

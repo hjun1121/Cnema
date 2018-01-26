@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -149,14 +150,20 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="memberJoin", method=RequestMethod.GET)
-	public ModelAndView join(HttpSession session){
+	public ModelAndView join(HttpSession session, String ch){
 		ModelAndView mv = new ModelAndView();
 		String agree = (String)session.getAttribute("agree");
-		if(agree.equals("ok")){
-			mv.setViewName("member/memberJoin");
-		}else{
-			mv.setViewName("member/joinAgree");
+		try {
+			if(agree.equals("ok")){
+				mv.setViewName("member/memberJoin");
+			}else{
+				mv.setViewName("member/joinAgree");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
 		return mv;
 	}
 

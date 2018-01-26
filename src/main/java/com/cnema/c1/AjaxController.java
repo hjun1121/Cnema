@@ -551,4 +551,9 @@ public class AjaxController {
 		return mv;
 	}
 	
+	@RequestMapping(value="agreeCheck", method=RequestMethod.POST)
+	public void agreeCheck(HttpSession session){
+		session.setAttribute("agree", "ok");
+	}
+	
 }
