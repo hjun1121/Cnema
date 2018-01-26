@@ -118,19 +118,16 @@ function showSlides(n) {
 						<div class="mySlides mainSlides" style="display: block;">
 						  <div class="numbertext">1 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/15160782127650.jpg" style="width:100%">
-						  <div class="text">Caption Text</div>
 						</div>
 						
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">2 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/15155700044270.jpg" style="width:100%">
-						  <div class="text">Caption Two</div>
 						</div>
 						
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">3 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/15169432327320.jpg" style="width:100%">
-						  <div class="text">Caption Three</div>
 						</div>
 						
 						<a class="prev" onclick="plusSlides(-1)" style="right: 938px;">&#10094;</a>
@@ -162,26 +159,7 @@ function showSlides(n) {
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
-			<div class="cols-banner">
-				<div class="col-ad">
-					<div class="box-com">
-		    			<div class="box-inner">
-                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="1"></a>
-            			</div>
-					</div>
-				</div>
-				<div class="col-hd">
-					<a href="#">
-						<img src="${pageContext.request.contextPath }/resources/images/main/ccc.png" alt="2"></a>
-				</div>
-				<div class="col-collage">
-					<div class="box-com">
-						<div class="box-inner">
-                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="3"></a>
-            			</div>
-					</div>
-				</div>
-			</div>
+			
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
