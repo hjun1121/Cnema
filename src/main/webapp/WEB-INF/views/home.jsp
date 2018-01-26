@@ -117,20 +117,17 @@ function showSlides(n) {
 					<div class="item-wrap">
 						<div class="mySlides mainSlides" style="display: block;">
 						  <div class="numbertext">1 / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/images/main/1.png" style="width:100%">
-						  <div class="text">Caption Text</div>
+						  <img src="${pageContext.request.contextPath }/resources/images/main/15160782127650.jpg" style="width:100%">
 						</div>
 						
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">2 / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/images/main/2.png" style="width:100%">
-						  <div class="text">Caption Two</div>
+						  <img src="${pageContext.request.contextPath }/resources/images/main/15155700044270.jpg" style="width:100%">
 						</div>
 						
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">3 / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/images/main/3.png" style="width:100%">
-						  <div class="text">Caption Three</div>
+						  <img src="${pageContext.request.contextPath }/resources/images/main/15169432327320.jpg" style="width:100%">
 						</div>
 						
 						<a class="prev" onclick="plusSlides(-1)" style="right: 938px;">&#10094;</a>
@@ -150,19 +147,23 @@ function showSlides(n) {
 				</div>
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
+			
+			
+			<!--이벤트 띄울화면  -->
 			<div class="sect-event">
 			<ul>
-				<c:forEach begin="0" end="3" varStatus="i">
+				<c:forEach items="${ event_list}" var="dto">
 		    	<li>
-                	<a href="#">
-                    	<img src="${pageContext.request.contextPath }/resources/images/main/aaa.png" alt="♡">
+                	<a href="./event/eventView?num=${dto.num}">
+                    	<img src="${pageContext.request.contextPath }/resources/images/main/${dto.fileName}" alt="♡">
                 	</a>
             	</li>
             	</c:forEach>
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
-			<div class="cols-banner">
+<<<<<<< HEAD
+		<%-- 	<div class="cols-banner">
 				<div class="col-ad">
 					<div class="box-com">
 		    			<div class="box-inner">
@@ -181,7 +182,10 @@ function showSlides(n) {
             			</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
+=======
+			
+>>>>>>> d9793be7a5875a637637df91de1257451dd8eb38
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
