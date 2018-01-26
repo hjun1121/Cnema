@@ -308,10 +308,12 @@
 										<p class="theater-info">
 											<span class="site">${theater.location }</span>
 											<span class="screen">${screenDTO.room_num }관 ${screenDTO.floor }층</span>
-											<span class="seatNum">남은좌석  <b class="restNum">118</b>/<b class="totalNum">172</b></span>
+											<span class="seatNum">남은좌석  <b class="restNum">${screenDTO.x_num*screenDTO.y_num - fn:length(seatCheck)}</b>/<b class="totalNum">${screenDTO.x_num*screenDTO.y_num }</b></span>
 										</p>
 										<p class="playYMD-info"><b><c:if test="${day ne '2000-01-01' }">${day }</c:if></b>
-										<b class="exe">(수)</b><b>12:30 ~ 15:03</b></p>
+										<b class="exe">${week }</b><b>
+											${scheduleDTO.in_time } ~ ${scheduleDTO.out_time }
+										</b></p>
 									</div>	
 								</div>
 							</div>

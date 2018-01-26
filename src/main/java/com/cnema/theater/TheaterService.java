@@ -16,6 +16,10 @@ public class TheaterService {
 	@Inject
 	private DayDAO dayDAO;
 	
+	public String week(String day)throws Exception{
+		return dayDAO.week(day);
+	}
+	
 	public List<DayDTO> dayList() throws Exception{
 		return dayDAO.dayList(); 
 	}
