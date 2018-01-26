@@ -518,10 +518,10 @@
 	display: inline-block;
 	height: 40px;
 	margin: 0 0 14px;
-	background: url(../../../resources/images/common/sprite/sprite_text.png)
-		no-repeat 0 0;
+	/* background: url(../../../resources/images/common/sprite/sprite_text.png)
+		no-repeat 0 0; */
 	line-height: 40px;
-	font: 0/0 a;
+	/* font: 0/0 a; */
 	vertical-align: middle;
 	zoom: 1;
 }
@@ -914,10 +914,10 @@
 	display: inline-block;
 	height: 40px;
 	margin: 0 0 14px;
-	background: url(../../../resources/images/common/sprite/sprite_text.png)
-		no-repeat 0 0;
+	/* background: url(../../../resources/images/common/sprite/sprite_text.png)
+		no-repeat 0 0; */
 	line-height: 40px;
-	font: 0/0 a;
+	/* font: 0/0 a; */
 	vertical-align: middle;
 	zoom: 1;
 }

@@ -49,7 +49,7 @@
 				},
 				success:function(data){
 					$("#couponDiscount").css("display","");
-					$("#cDiscount").html(data.trim());
+					$(".cDis").html(data.trim()); //이거바굼
 					var cDiscount = $("#cDiscount").html();
 					$("#pDiscount").html("0");
 					$("#point").val("");
@@ -67,7 +67,7 @@
 		
 		/* 쿠폰 취소하기 */
 		$("#deleteBtn").click(function(){
-			$("#cDiscount").html("0");
+			$(".cDis").html("0");  //이거바굼
 			var cDiscount = $("#cDiscount").html();
 			var pDiscount = $("#pDiscount").html();
 			$(".coupons").prop("checked","");
@@ -89,7 +89,7 @@
 				alert("잔여 포인트가 부족합니다.");
 				$("#point").val("");
 				var pDiscount = $("#point").val();
-				$("#pDiscount").html(pDiscount);
+				$("#pDiscount").html("0");
 				var nowPrice = price-cDiscount-pDiscount;
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","none");
@@ -107,7 +107,7 @@
 				}
 
 				var pDiscount = $("#point").val();
-				$("#pDiscount").html(pDiscount);
+				$("#pDiscount").html("0");
 				var nowPrice = price-cDiscount-pDiscount;
 				$("#nowPrice").html(nowPrice);	
 				$("#pointDiscount").css("display","none");
@@ -352,10 +352,10 @@
 												<div class="form_con">
 													<div class="button_con">
 														<a class="button gray" href="#">
-															<span><input type="button" id="couponBtn" value="쿠폰불러오기"></span>
+															<span><input class="btn___3" type="button" id="couponBtn" value="쿠폰불러오기"></span>
 														</a>
 														<a class="button white" href="#">
-															<span><input type="button" id="deleteBtn" value="쿠폰제거"></span>
+															<span><input class="btn___4" type="button" id="deleteBtn" value="쿠폰제거"></span>
 														</a>
 													</div>
 													<div class="inner_con">
@@ -375,7 +375,7 @@
 													<div class="under_con">
 														<div class="float_r">
 															<dt>할인금액:</dt>
-															<dd class="strong"><span id="cDiscount">0</span>원</dd>
+															<dd class="strong"><span id="cDiscount" class="cDis">0</span>원</dd>
 														</div>
 													</div>
 												</div>
@@ -402,7 +402,7 @@
 													<div class="tpm_coupon_button">
 														<a class="gray  btn_listUp" href="#">
 															<span>
-																<input type="button" id="allPoint" value="모두쓰기">
+																<input class="btn___3" type="button" id="allPoint" value="모두쓰기">
 															</span>
 														</a>
 													</div>
@@ -438,7 +438,7 @@
 									        	<span>쿠폰할인 금액</span>
 									    	</div>
 									    	<div class="result">
-									        	<span class="num verdana"><span id="cDiscount">0</span></span><span class="won">원</span>
+									        	<span class="num verdana"><span id="cDiscount" class="cDis">0</span></span><span class="won">원</span>
 									    	</div>
 								    	</div>
 								    	<div class="payment_footer">
@@ -509,11 +509,10 @@
 							<input type="button" id="rightBtn3" value="결제">	
 							</form>
 						</div>
-						<BR><BR><BR><BR><BR><BR><BR><BR>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<div style="display: none;">
 		<form action="./quickReservePay" method="post" name="reserve" style="clear: both;">
 			m<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">

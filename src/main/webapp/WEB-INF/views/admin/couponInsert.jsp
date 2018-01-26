@@ -123,7 +123,7 @@ $(function(){
 			        		</ul>
 			        	</div>
 			                <div class="col-one-point">
-			               	<h3>CJ ONE POINT</h3>
+			               	<h3>MY POINT</h3>
 			        		<a href="#">CJ ONE POINT 더보기</a>
 			        		<ul>
 			        			<li>
