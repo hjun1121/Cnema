@@ -6,18 +6,52 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${page.page_name}테스트</title>
+<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../resources/SE2/js/HuskyEZCreator.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/pageMain.css">
-
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/pageContents/write.css">
 <script type="text/javascript">
 
 	$(function(){
-
+		//SmartEditor start
+		//전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        //textarea ID
+        elPlaceHolder: "contents",
+        sSkinURI: "../resources/SE2/SmartEditor2Skin.html", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : false,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : false, 
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#savebutton").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
+        //폼 submit
+        $("#frm").submit();
+    });
+    
+    
+		
+		
 		$("#chatting_btn").click(function() {
 			alert("채팅하기");
 		});
@@ -47,23 +81,16 @@
 			
 		});
 
+	
+	
+		
+	
+		
 	});
-
 
 </script>
 <style type="text/css">
-#writeForm{
-border: 1px solid #dddfe2;
-background-color: #fff;
-width:500px;
-height:147px;
 
-
-}
-#contents{
-width:490px;
-
-}
 
 </style>
 </head>
@@ -133,7 +160,7 @@ width:490px;
 	<div id="writeTab"> </div>
 	<form action="../community/pageContentsWrite"  method="post" id="frm">
 		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
-		<textarea  name ="contents" id="contents" rows="10" cols="30" ></textarea>
+		<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
 	
 	<div class="_51xa">
 	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton" data-testid="react-composer-post-button" type="submit" value="1">
@@ -142,11 +169,10 @@ width:490px;
 	</div>
 
 	</form>
-	
-	
-			
 			</div>
-			
+	<div id="contentsListView">
+	
+	</div>	
 			
 		</div>
 	</div>
@@ -156,76 +182,6 @@ width:490px;
 </div>
 
 
-
-<!-- <div style="width: 1012px; height: 1000px; background-color: #f0f0f0; text-align: center; margin: 50px auto;"> -->
-<!-- 	<!-- 왼쪽 프로필 바 -->
-<!-- 	<div style = "width: 180px; float: left; top: 86px;"> -->
-<%-- 		<c:choose> --%>
-<%-- 			<c:when test="${not empty member}"> --%>
-<%-- 				<img alt="${member.id} 프로필" src="../resources/profil/${member.fileName}"> --%>
-<%-- 			</c:when>		 --%>
-<%-- 			<c:otherwise> --%>
-<!-- 				<img alt="기본 프로필" src="../resources/profil/defaultProfile.jpg"> -->
-<%-- 			</c:otherwise> --%>
-<%-- 		</c:choose> --%>
-<!-- 	</div> -->
-<!-- 	<div style = "width: 500px !important; right:320px; margin-left:12px; float:left; background-color: #dcdcdc;"> -->
-<!-- 	<!-- 페이지 로고 img --> 
-<!-- 	<div style = "width: 99%; margin-bottom: 30px;"> -->
-<%-- 		<img style="width: 100%; height: 300px; border: 3px solid gold; -webkit-border-radius: 50px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> --%>
-<!-- 	</div> -->
-<!-- 	<!-- 게시물 작성  --> 
-<!-- 	<div style="width: 100%; height: auto; background-color: white;"> -->
-<!-- 		<ul style="list-style: none; float: left;"> -->
-<!-- 			<li style="float: left; font-size: 20px;">상태</li> -->
-<!-- 			<li style="float: left; font-size: 20px;">사진</li> -->
-<!-- 		</ul> -->
-<%-- 		<img style="width: " alt="${member.id} 프로필" src="../resources/profil/${member.fileName}"> --%>
-<!-- 		<input type="text" value="글쓰기...."> -->
-		
-<!-- 	</div> -->
-
-<!-- 	<!-- 우측 고정 바 -->
-<!-- 	<div style="width: 308px; height: auto; background-color: yellow; right: 30px; bottom: 0; position: fixed; z-index: 999;"> -->
-<!-- 		<!-- 채팅 바 -->
-<%-- 		<c:if test="${not empty member}"> --%>
-<!-- 		<div id="chatting_div" style="width:276px; height: 28px; bottom: 0; right: 0; position: fixed; margin: 0 15px; border: 1px solid #dddfe2; background-color: #f6f7f9;"> -->
-<!-- 			<input style="background-color: #f6f7f9; line-height:28px; border: none;" type="button" id="chatting_btn" value="채팅하기"> -->
-<%-- 			<c:forEach items="${pageMember}" var="pm"> --%>
-<%-- <%-- 				<img alt="${pm.id} 프로필" src="../resources/profil/${pm.fileName}"> ${pm.id} --%> 
-<%-- <%-- 				${pm.id} --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
-<%-- 		</c:if> --%>
-<!-- 	</div> -->
-<!-- 	<div> -->
-<!-- 		<input type="button" id="mouse_btn" value="일단 눌러봐"> -->
-<!-- 	</div> -->
-
-<!-- 	<form action="" id="frm" name="frm" method="POST"> -->
-<%-- 		<input type="hidden" name="page_num" value="${page.page_num}"> --%>
-<%-- 		<c:if test="${memberCheck eq 11 }"> --%>
-<%-- 			<input type="hidden" name="pageMember_num" value="${member_num}"> --%>
-<%-- 		</c:if> --%>
-<!-- 	</form> -->
-	
-<%-- <%-- 		<c:when test="${not empty member and memberCheck eq 20}"> --%>
-<!-- <!-- 			<input type="button" id="deletePage_btn" value="페이지 삭제하기"> -->
-<%-- <%-- 		</c:when> --%>
-<%-- 	<c:choose> --%>
-<%-- 		<c:when test="${memberCheck eq 11}"> --%>
-<!-- 			<input type="button" id="drop_btn" value="페이지 탈퇴하기"> -->
-<%-- 		</c:when> --%>
-<%-- 		<c:when test="${memberCheck eq 0}"> --%>
-<!-- 			<input type="button" id="join_btn" value="페이지 가입하기"> -->
-<%-- 		</c:when> --%>
-<%-- 		<c:otherwise> --%>
-<!-- 			<input type="button" id="" value="그룹장이라 탈퇴안되지롱"> -->
-<%-- 		</c:otherwise> --%>
-<%-- 	</c:choose> --%>
-
-<!-- </div> -->
-<!-- </div> -->
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 </body>
 </html>
