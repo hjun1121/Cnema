@@ -117,19 +117,19 @@ function showSlides(n) {
 					<div class="item-wrap">
 						<div class="mySlides mainSlides" style="display: block;">
 						  <div class="numbertext">1 / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/images/main/1.png" style="width:100%">
+						  <img src="${pageContext.request.contextPath }/resources/images/main/15160782127650.jpg" style="width:100%">
 						  <div class="text">Caption Text</div>
 						</div>
 						
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">2 / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/images/main/2.png" style="width:100%">
+						  <img src="${pageContext.request.contextPath }/resources/images/main/15155700044270.jpg" style="width:100%">
 						  <div class="text">Caption Two</div>
 						</div>
 						
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">3 / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/images/main/3.png" style="width:100%">
+						  <img src="${pageContext.request.contextPath }/resources/images/main/15169432327320.jpg" style="width:100%">
 						  <div class="text">Caption Three</div>
 						</div>
 						
