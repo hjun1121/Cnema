@@ -55,13 +55,11 @@
 					url:"../ajax/agreeCheck",
 					type:"post",
 					data:{
-						
 					},
 					success:function(data){
 						alert("d");
 					}
 				});
-				
 				
 				frm.submit();
 			}else{

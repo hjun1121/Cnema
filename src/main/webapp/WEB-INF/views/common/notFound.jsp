@@ -9,6 +9,10 @@
 <script type="text/javascript">
 	alert("존재하지 않는 페이지 입니다");
 	location.href="${pageContext.request.contextPath }";
+	
+	$(function(){
+		
+	});
 </script>
 </head>
 <body>

@@ -124,6 +124,8 @@ public class TheaterController {
 				pointService.getPoint(memberDTO.getId(),"영화 구매 적립", (int)getPoint);
 			}
 			
+			MemberDTO newMemberDTO  = memberService.memberInfo(memberDTO.getId());
+			session.setAttribute("member", newMemberDTO);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

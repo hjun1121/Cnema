@@ -100,6 +100,7 @@ function showSlides(n) {
 <body>
 
 <div id="cgvwrap"  style="text-align: center;">
+<c:set scope="session" var="agree" value=""></c:set>
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 	<!-- 띄움 -->
     <div id="ctl00_sect_txt_banner" class="sect_txt_banner"><div class="inner"></div></div>
