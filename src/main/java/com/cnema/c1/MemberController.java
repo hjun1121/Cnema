@@ -186,7 +186,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	/*heeseong
+	
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(HttpSession session,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
@@ -208,23 +208,7 @@ public class MemberController {
 		
 		int type=memberDTO.getType();
 		try {
-			if(type==20){
-				
-				try {
-					ar = qnaService.selectListMypage();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			
-			}
-			else{
-				try {
-					mv=qnaService.selectMyList(memberDTO.getId());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			mList = movieService.movieList("","");
 			rList = reserveService.selectList(memberDTO.getId());
 			for(ReserveDTO reserveDTO : rList){
@@ -236,7 +220,8 @@ public class MemberController {
 			}
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		if(memberDTO != null){
@@ -246,12 +231,12 @@ public class MemberController {
 			mv.addObject("count", count);
 			mv.addObject("aCount", aCount);
 			mv.addObject("today", today);
-			mv.addObject("list",ar);
+			/*mv.addObject("list",ar);*/
 			mv.setViewName("member/myPageView");
 		}else{
 			rd.addFlashAttribute("message","로그인이 필요합니다.");
 			mv.setViewName("redirect:../");
 		}
-		return mv;
-	}*/
+	return mv;
+	}
 }
