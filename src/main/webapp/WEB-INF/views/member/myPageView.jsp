@@ -246,7 +246,7 @@
 				<div class="box-inner">
 		            <div class="tit-mycgv">
 						<h3>MY Q&amp;A</h3>
-						<p><em>2건</em> <a href="#">MY Q&amp;A 더보기</a></p>
+						<p><em>${fn:length(list)}건</em> <a href="#">MY Q&amp;A 더보기</a></p>
 					</div>
 					<div class="col-myqna">
 						<ul>
