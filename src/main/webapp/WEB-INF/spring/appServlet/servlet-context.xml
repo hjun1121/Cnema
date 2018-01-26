@@ -32,6 +32,7 @@
 			<mapping path="/member/*"/>
 			<mapping path="/community/*"/>
 			<mapping path="/admin/myQnaList"/>
+			<mapping path="/qna/qnaWrite"/>
 			<exclude-mapping path="/member/memberLogin"/>
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberLogout"/>
