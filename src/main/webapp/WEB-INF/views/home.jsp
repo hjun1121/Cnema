@@ -156,19 +156,45 @@ function showSlides(n) {
 				</div>
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
+			
+			
+			<!--이벤트 띄울화면  -->
 			<div class="sect-event">
 			<ul>
-				<c:forEach begin="0" end="3" varStatus="i">
+				<c:forEach items="${ event_list}" var="dto">
 		    	<li>
-                	<a href="#">
-                    	<img src="${pageContext.request.contextPath }/resources/images/main/aaa.png" alt="♡">
+                	<a href="./event/eventView?num=${dto.num}">
+                    	<img src="${pageContext.request.contextPath }/resources/images/main/${dto.fileName}" alt="♡">
                 	</a>
             	</li>
             	</c:forEach>
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
+<<<<<<< HEAD
+		<%-- 	<div class="cols-banner">
+				<div class="col-ad">
+					<div class="box-com">
+		    			<div class="box-inner">
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="1"></a>
+            			</div>
+					</div>
+				</div>
+				<div class="col-hd">
+					<a href="#">
+						<img src="${pageContext.request.contextPath }/resources/images/main/ccc.png" alt="2"></a>
+				</div>
+				<div class="col-collage">
+					<div class="box-com">
+						<div class="box-inner">
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="3"></a>
+            			</div>
+					</div>
+				</div>
+			</div> --%>
+=======
 			
+>>>>>>> d9793be7a5875a637637df91de1257451dd8eb38
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">

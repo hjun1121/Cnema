@@ -193,7 +193,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "theaterList", method = RequestMethod.GET)
-	public ModelAndView theaterList(HttpSession session, String kind, String search) {
+	public ModelAndView theaterList(HttpSession session, String kind, String search, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<TheaterDTO> theaterList = new ArrayList<>();
@@ -202,27 +202,24 @@ public class AdminController {
 		}
 		try {
 			if (kind == null) {
-				theaterList = theaterService.theaterList("","");
+				mv=theaterService.theaterList("", "", listData);
 			} else {
-				if (kind.equals("location")) {
-					theaterList = theaterService.theaterList(kind, search);
-				}
-				if (kind.equals("area")) {
-					theaterList = theaterService.theaterList(kind, search);
-				}
+				mv=theaterService.theaterList(kind, search, listData);
 			}
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
-		mv.addObject("theaterList", theaterList);
+		//mv.addObject("theaterList", theaterList);
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}

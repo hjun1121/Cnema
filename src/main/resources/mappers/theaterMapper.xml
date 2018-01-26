@@ -35,9 +35,8 @@
   		select * from theater where location=#{search}
   	</select> -->
   	
-  	<!-- heeseong -->
-  	<select id="theaterList" resultType="theaterDTO" parameterType="String">
-  		select * from theater
+  	<select id="totalCount" parameterType="java.util.Map" resultType="int">
+  		select count(nvl(null,0)) from theater
   		<choose>
   			<when test="kind=='area'">
   				where area like '%'||#{search}||'%'
@@ -49,6 +48,39 @@
   			</otherwise>
   		</choose>
   	</select>
+  	<!-- heeseong -->
+  	<select id="theaterList" resultType="theaterDTO" parameterType="java.util.Map">
+	  	select * from (
+		select rownum R, N.* from  		
+		(select * from theater
+		
+		  		<choose>
+		  			<when test="kind=='area'">
+		  				where area like '%'||#{search}||'%'
+		  			</when>
+		  			<when test="kind=='location'">
+		  				where location like '%'||#{search}||'%'
+		  			</when>
+		  			<otherwise>
+		  			</otherwise>
+		  		</choose>) N)
+		
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+
+<!--   		select * from theater -->
+<!--   		<choose> -->
+<!--   			<when test="kind=='area'"> -->
+<!--   				where area like '%'||#{search}||'%' -->
+<!--   			</when> -->
+<!--   			<when test="kind=='location'"> -->
+<!--   				where location like '%'||#{search}||'%' -->
+<!--   			</when> -->
+<!--   			<otherwise> -->
+<!--   			</otherwise> -->
+<!--   		</choose> -->
+  	</select>
+
+
   	
   	<!-- heeseong -->
   	<select id="theaterInfo" parameterType="int" resultType="theaterDTO">
