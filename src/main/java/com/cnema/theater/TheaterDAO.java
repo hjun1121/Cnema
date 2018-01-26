@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.cnema.movie.MovieDTO;
+import com.cnema.util.RowNum;
 
 @Repository
 public class TheaterDAO {
@@ -42,11 +43,13 @@ public class TheaterDAO {
 	/*public List<TheaterDTO> theatherAList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"theatherAList");
 	}*/
+	
 	/*heeseong*/
-	public List<TheaterDTO> theaterList(String kind, String search)  throws Exception{
+	public List<TheaterDTO> theaterList(String kind, String search,RowNum rowNum)  throws Exception{
 		Map<String, Object> thMap = new HashMap<>();
 		thMap.put("kind", kind);
 		thMap.put("search", search);
+		thMap.put("rowNum", rowNum);
 		return sqlSession.selectList(NAMESPACE+"theaterList",thMap);
 	}
 	/*heeseong*/
@@ -64,5 +67,12 @@ public class TheaterDAO {
 	/*heeseong*/
 	public int theaterInsert(TheaterDTO theaterDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"theaterInsert",theaterDTO);
+	}
+	/*heeseong*/
+	public int totalCount(String kind,String search) throws Exception{
+		Map<String, Object> thMap = new HashMap<>();
+		thMap.put("kind", kind);
+		thMap.put("search", search);
+		return sqlSession.selectOne(NAMESPACE+"totalCount",thMap);
 	}
 }

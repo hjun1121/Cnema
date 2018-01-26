@@ -38,6 +38,7 @@ import com.cnema.theater.ScheduleService;
 import com.cnema.theater.ScreenDTO;
 import com.cnema.theater.TheaterDTO;
 import com.cnema.theater.TheaterService;
+import com.cnema.util.ListData;
 
 @Controller
 @RequestMapping(value="/myPage/**")
@@ -152,7 +153,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
-	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind){
+	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		ScheduleDTO scheduleDTO = null;

@@ -167,8 +167,8 @@ $(function(){
 			            </tr>
 			        </thead>
 			        <tbody>
-			        <c:if test="${fn:length(theaterList) ne 0}">
-				        <c:forEach items="${theaterList }" var="tList">
+			        <c:if test="${fn:length(tList) ne 0}">
+				        <c:forEach items="${tList }" var="tList">
 							<tr>
 								<td>${tList.area }</td>
 								<td>
@@ -184,18 +184,34 @@ $(function(){
 							</tr>
 						</c:forEach>
 					</c:if>
-					<c:if test="${fn:length(theaterList) eq 0}">           
+					<c:if test="${fn:length(tList) eq 0}">           
 			            <tr>
 			                <td colspan="2" class="nodata">지점이 존재하지 않습니다.</td>
 			            </tr>
 		            </c:if>  
 			        </tbody>
 			    </table>
+			    
 			    <div class="set-btn">
 			        <a href="./theaterInsert">
 			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
 			        </a>
 		    	</div>
+		    	
+		    	<div class="paging">
+					<ul id="paging_point">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none;" class=" on">
+								<a href="theaterList?curPage=${i}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="theaterList?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 			</div>
 			<!-- /// -->
 			</div>
