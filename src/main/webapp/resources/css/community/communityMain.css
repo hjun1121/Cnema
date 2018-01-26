@@ -11,10 +11,8 @@
 #left_bar{
 	width: 25%; 
 	height: auto; 
-	margin-left: 50px; 
 	display: inline-block; 
 	float: left; 
-	margin-top: 30px; 
 	text-align: center; 
 	background-color: #dcdcdc;
 }
@@ -26,9 +24,16 @@
 	float: left; 
 	margin: 0 30px 30px 0;
 }
+#profile span {
+	font-size: 20px;
+	font-weight: bold;
+	color: #4b4f56;
+}
 #profile_img{
-	width: 60%; 
-	margin-right: 5px;
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	margin: 0 35px 0 25px;
 }
 #myJoinList{
 	clear: both; 
