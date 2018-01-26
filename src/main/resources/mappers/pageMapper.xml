@@ -31,10 +31,9 @@
 		select * from pagemember where id=#{id} and page_num=#{page_num}
 	</select>
 
-	<select id="selectPageMemberList" resultType="pageMemberDTO">
+	<select id="selectPageMemberList" resultType="pageMemberDTO" parameterType="int">
 		select * from pagemember where page_num=#{page_num}
 	</select>
-
 
 	<insert id="memberInsert" parameterType="java.util.Map">
 		insert into pagemember values(movie_seq.nextval, #{pageDTO.page_num}, #{id}, sysdate,
@@ -49,8 +48,8 @@
 		update page set member_count=member_count+1 where page_num=#{page_num}
 	</update>
 	
-	<select id="selectPageMemberOne" parameterType="String" resultType="pageMemberDTO">
-		select * from pagemember where id=#{id}
+	<select id="selectPageMemberOne" parameterType="java.util.Map" resultType="pageMemberDTO">
+		select * from pagemember where id=#{id} and page_num=#{page_num}
 	</select>
 
 	<select id="selectPageOne" resultType="pageDTO">
