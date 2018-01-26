@@ -115,6 +115,15 @@ function showSlides(n) {
 			<div class="sect-common">
 				<div class="slider" id="slider">
 					<div class="item-wrap">
+					<%-- <c:forEach items="${event_list }" begin="0" end="3" var="dto" varStatus="c">
+					 
+						<div class="mySlides mainSlides" style="display: block;">
+						  <div class="numbertext">c.count / 3</div>
+						  <img src="${pageContext.request.contextPath }/resources/upload/${dto.fileName}" style="width:100%">
+						</div>
+					
+					</c:forEach> --%>
+					
 						<div class="mySlides mainSlides" style="display: block;">
 						  <div class="numbertext">1 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/15160782127650.jpg" style="width:100%">
