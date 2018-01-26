@@ -21,8 +21,8 @@ public class PageService {
 	
 	
 	//selectPageMemberOne
-	public PageMemberDTO selectPageMemberOne(String id) throws Exception {
-		return pageDAO.selectPageMemberOne(id);
+	public PageMemberDTO selectPageMemberOne(String id, int page_num) throws Exception {
+		return pageDAO.selectPageMemberOne(id, page_num);
 	}
 	
 	//pageContentsWrite
@@ -55,7 +55,7 @@ public class PageService {
 
 		return result;
 	}
-	
+
 	
 	//selectPageMemberList
 	public List<PageMemberDTO> selectPageMemberList(int page_num) throws Exception {

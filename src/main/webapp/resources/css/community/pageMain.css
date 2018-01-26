@@ -38,17 +38,15 @@
     padding-top: 12px;
 }
 
-#profile_info span {
-	font-size: inherit;
-}
-
-
 #profile_info h1 {
 	font-size: 20px;
 	text-align: center;
 	display: inline-block;
 }
 
+#profile_info h1 span {
+	font-size: small;
+}
 
 #mailBox_btn {
 	width: 85px;
@@ -58,6 +56,10 @@
     border-color: #365899;
     border-radius: 10px;
     color: #fff;
+}
+
+#mailBox_btn span {
+	font-size: inherit;
 }
 
 #join_page_list {
@@ -99,6 +101,12 @@
     background-color: #fff;
 }
 
+#page_name h1 {
+	font-size: 23px;
+	font-weight: bold;
+	line-height: 25px;
+}
+
 #page_btns {
 	float: left;
     max-width: 476px;
@@ -106,9 +114,15 @@
 
 .page_btns {
 	height: 25px;
+	padding: 0 5px;
 	background-color: #f6f7f9;
-    border-color: #ced0d4;
+    border: 1px solid #ced0d4;
     color: #4b4f56;
+}
+
+.page_btns img {
+	width: 20px;
+	height: 20px;
 }
 
 
