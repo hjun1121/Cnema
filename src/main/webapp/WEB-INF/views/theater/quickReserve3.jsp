@@ -8,6 +8,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/theater/quickReserve3.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -50,7 +51,7 @@
 					$("#couponDiscount").css("display","");
 					$("#cDiscount").html(data.trim());
 					var cDiscount = $("#cDiscount").html();
-					$("#pDiscount").html("");
+					$("#pDiscount").html("0");
 					$("#point").val("");
 					$("#pointDiscount").css("display","none");
 					
@@ -66,7 +67,7 @@
 		
 		/* 쿠폰 취소하기 */
 		$("#deleteBtn").click(function(){
-			$("#cDiscount").html("");
+			$("#cDiscount").html("0");
 			var cDiscount = $("#cDiscount").html();
 			var pDiscount = $("#pDiscount").html();
 			$(".coupons").prop("checked","");
@@ -230,7 +231,7 @@
         	<!-- 상단바 끝 -->
         	
         	<!-- 내용시작 -->
-	<h2>Quick Reserve3</h2>
+	<%-- <h2>Quick Reserve3</h2>
 	<div id="all">
 		<div id="couponAll">
 			<ul>
@@ -243,7 +244,8 @@
 		<div id="pointList">
 			<table>
 				<tr>
-					<td>보유 포인트</td><td>${member.v_point } <input type="text" id="point" placeholder="사용할포인트 입력"><input type="button" id="allPoint" value="모두쓰기"> </td>
+					<td>보유 포인트</td><td>${member.v_point } <input type="text" id="point" placeholder="사용할포인트 입력">
+					<input type="button" id="allPoint" value="모두쓰기"> </td>
 				</tr>
 			</table>
 		</div>
@@ -324,10 +326,217 @@
 			point<input type="text" id="usePoint" name="point" value="0">
 			nowPrice<input type="text" id="price" name="price" value="${reserve2.price }">
 		</form>
+	</div> --%>
+				<!-- ////////////////////////////// -->
+	<div id="contents">
+		<!-- 빠른예매 -->
+		<div id="ticket" class="ticket ko">
+			<div class="navi"></div>
+				<div class="steps">
+					<div class="step step3" style="display: block;">
+						<div id="all" class="ticket_payment_method">
+							<h4 class="ts3_titlebar ts3_t1 non-special" style="margin-top: 40px;">
+								<span class="header">STEP 1. </span>
+								<span class="title">쿠폰 사용</span>
+							</h4>
+							<div class="tpm_wrap tpm_point opened">
+								<div class="tpm_header"></div>
+								<div class="tpm_body">
+									<div class="tpm_row">
+										<div class="tpm_box clear"></div>
+									</div>
+									<div class="tpm_row">
+										<div class="tpm_box">
+											<div id="couponAll">
+												<h5>CNEMA 쿠폰사용</h5>
+												<div class="form_con">
+													<div class="button_con">
+														<a class="button gray" href="#">
+															<span><input type="button" id="couponBtn" value="쿠폰불러오기"></span>
+														</a>
+														<a class="button white" href="#">
+															<span><input type="button" id="deleteBtn" value="쿠폰제거"></span>
+														</a>
+													</div>
+													<div class="inner_con">
+													<dl>
+														<dt>
+															<label>사용가능 쿠폰 : </label>
+														</dt>
+														
+														<dd class="strong">
+															<span id="movie_hasNum">
+																<div id="couponList" ></div>
+															</span>
+														</dd>
+														
+													</dl>
+													</div>
+													<div class="under_con">
+														<div class="float_r">
+															<dt>할인금액:</dt>
+															<dd class="strong"><span id="cDiscount">0</span>원</dd>
+														</div>
+													</div>
+												</div>
+												<div class="dimmCon">&nbsp;</div>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+							<h4 class="ts3_titlebar ts3_t1" style="margin-top: 40px;">
+								<span class="header">STEP 2. </span>
+								<span class="title">포인트 사용</span>
+							</h4>
+							<div class="tpm_wrap opened">
+								<div class="tpm_header">
+									<h4></h4>
+								</div>
+								<div class="tpm_body">
+									<div class="tpm_row">
+										<div class="tpm_box">
+											<div id="pointList">
+												<h5>CNEMA보유 포인트</h5>
+												<div class="form_con">
+													<div class="tpm_coupon_button">
+														<a class="gray  btn_listUp" href="#">
+															<span>
+																<input type="button" id="allPoint" value="모두쓰기">
+															</span>
+														</a>
+													</div>
+													<div class="inner_con2">
+														<dt><label class="noneInput">보유포인트</label>:</dt>
+														<dd class="amtValue"><span class="hasPoint">${member.v_point } </span>원</dd>
+														<dt class="secondTit"><label>적용금액</label>:</dt>
+														<dd><input type="text" class="textBox2" id="point">원</dd>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ticket_payment_summary">
+						    <div id="priceShow" class="tps_wrap" style="top: 0px;">
+								<div class="tps_body">
+									<div class="summary_box total_box">
+										<div class="payment_header">결제하실 금액</div>
+										<div class="payment_footer">
+									    	<div class="result">
+									    		<span class="num verdana" id="allPrice">${reserve2DTO.price}</span><span class="won">원</span>
+								        	</div>
+								    	</div>
+									</div>
+									<div class="summary_box discount_box">
+										<div class="payment_header">할인내역</div>
+										<div class="payment_body"></div>
+										<div class="payment_footer">
+									    	<div class="label">
+									        	<span>쿠폰할인 금액</span>
+									    	</div>
+									    	<div class="result">
+									        	<span class="num verdana"><span id="cDiscount">0</span></span><span class="won">원</span>
+									    	</div>
+								    	</div>
+								    	<div class="payment_footer">
+									    	<div class="label">
+									        	<span>포인트할인 금액</span>
+									    	</div>
+									    	<div class="result">
+									        	<span class="num verdana"><span id="pDiscount">0</span></span><span class="won">원</span>
+									    	</div>
+								    	</div>
+									</div>
+									<div class="summary_box payment_box">
+										<div class="payment_header">결제내역</div>
+										<div class="payment_footer">
+									   		<div class="label">
+						                    	<span>남은 결제금액</span>
+						                	</div>
+						                	<div class="result">
+						                		<span class="num verdana" id="nowPrice">${reserve2DTO.price}</span><span class="won">원</span>
+						                	</div>
+						            	</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					<div class="ticket_payment_clear"></div>
+					<div id="bottom_area">
+							<form action="">
+							<input type="button" id="leftBtn2" value="이전" >
+								<table border="1"  id="qrMovie">
+									<tr>
+										<td rowspan="2"><img width="75px;" height="106px;" alt="" src="../resources/movie_poster/${movie.fileName }"></td>
+										<td>${movie.movie_name }</td>
+									</tr>
+									<tr>
+										<td>${movie.age_limit }</td>
+									</tr>
+									
+								</table>
+								
+								<table border="1" id="qrTheater">
+									<tr>
+										<td>극장</td><td>${theater.location }</td>
+									</tr>
+									<tr>
+										<td>일시</td><td>
+										<c:if test="${day ne '2000-01-01' }">
+											${day }
+										</c:if>
+										</td>
+									</tr>
+									<tr>
+										<td>상영관</td><td>${screenDTO.room_num }
+										<c:if test="${!empty screenDTO }">관</c:if>
+										${screenDTO.floor }층
+										</td>
+									</tr>
+									<tr>
+										<td>인원</td><td>${reserve2.people }</td>
+									</tr>										
+								</table>
+								<table border="1" id="qrSeat">
+									<tr>
+										<td id="seatN">좌석선택</td>
+									</tr>											
+								</table>
+							<input type="button" id="rightBtn3" value="결제">	
+							</form>
+						</div>
+						<BR><BR><BR><BR><BR><BR><BR><BR>
+				</div>
+			</div>
+		</div>
 	</div>
-	
-		
-				<!-- 내용 끝 -->
+	<div style="display: none;">
+		<form action="./quickReservePay" method="post" name="reserve" style="clear: both;">
+			m<input type="text" id="movie_num" name="movie_num" value="${reserve.movie_num }">
+			t<input type="text" id="theater_num" name="theater_num" value="${reserve.theater_num }">
+			d<input type="text" id="day_num" name="day_num" value="${reserve.day_num }">
+			sc<input type="text" id="schedule_num" name="schedule_num" value="${reserve.schedule_num }">
+			<br>
+			ad<input type="text" id="adult_num" name="adult_num" value="${reserve2.adult_num }">
+			te<input type="text" id="teen_num" name="teen_num" value="${reserve2.teen_num }">
+			pC<input type="text" id="pCount" name="people" value="${reserve2.pCount }">
+			pe<input type="text" id="people" name="pCount" value="${reserve2.people }">
+			<input type="text" id="total_price" name="total_price" value="${reserve2.price }">
+			<div id="seatList">
+			<c:forEach items="${seat_num }" var="seat">
+				<input type="text" class="ss" name="seat_num" value="${seat }">
+			</c:forEach>
+			</div>
+			c_num<input type="text" id="useCoupon" name="c_num" value="0">
+			point<input type="text" id="usePoint" name="point" value="0">
+			nowPrice<input type="text" id="price" name="price" value="${reserve2.price }">
+		</form>
+	</div>			
+	<!-- 내용 끝 -->
 			</div>
 			<!-- ///////////////////////////////// -->
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
