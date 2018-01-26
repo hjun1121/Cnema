@@ -115,7 +115,7 @@
 				<option class="kind" value="open_date">최신순</option>
 				<option class="kind" value="wish">볼래요순</option>
             </select>
-            <input type="button" class="round gray" id="kind_btn" value="GO">
+            <input style="width: 35px" type="button" class="round gray" id="kind_btn" value="검색">
         </div>
         <div class="sect-movie-chart">
             <ol>

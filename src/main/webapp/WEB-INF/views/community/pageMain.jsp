@@ -48,11 +48,9 @@
 </script>
 
 </head>
-
 <body>
 <div id="cgvwrap"  style="text-align: center; height: auto;">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
-
 <!-- 전체 페이지  -->
 <div id="container">
 
@@ -64,7 +62,8 @@
 		</div>
 		<!-- 사용자 정보  -->
 		<div id="profile_info">
-			<h1>${member.id}</h1>
+			<h1>${member.id}<span> 님</span></h1>
+			<button id="mailBox_btn" value=""><span>쪽지함</span></button>
 		</div>
 		<!-- 가입 페이지  -->
 		<div id="join_page_list" style="height: 100px; border: 1px solid red; margin-bottom: 20px;">
@@ -97,6 +96,10 @@
 						<input class="page_btns" type="button" id="" value="그룹장이라 탈퇴안되지롱">
 					</c:otherwise>
 				</c:choose>
+			</div>
+			<!-- 커뮤니티 이름  -->
+			<div style="float: right;">
+				<h1>${page.page_name}</h1>
 			</div>
 		</div>
 	</div>

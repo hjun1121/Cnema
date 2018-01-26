@@ -1,7 +1,77 @@
 @CHARSET "UTF-8";
 
+#cgvwrap {
+	text-align: center;
+}
+#left_bar{
+	width: 15%; 
+	height: auto; 
+	margin-left: 50px; 
+	display: inline-block; 
+	float: left; 
+	margin-top: 30px; 
+	text-align: center; 
+	background-color: #dcdcdc;
+}
+#left_bar2{
+	width: 90%; 
+	margin: 25px auto;
+}
+#profile{
+	float: left; 
+	margin: 0 30px 30px 0;
+}
+#profile_img{
+	width: 60%; 
+	margin-right: 5px;
+}
+#myJoinList{
+	clear: both; 
+	border: 1px solid #f0f0f0; 
+	height: 300px;
+}
+#myJoinList h2{
+	font-size: 20px; color: #333333;
+}
+#recommedList{
+	clear: both; 
+	border: 1px solid #f0f0f0; 
+	height: 300px; 
+	margin-top: 10px;
+}
+#recommedList h2{
+	font-size: 20px; color: #333333;
+}
 
-#container {
+#infoBody{
+	width: 60%; 
+	height: 1080px; 
+	background-color: #f0f0f0; 
+	margin: 0 auto; 
+	margin-top: 30px;
+}
+#joinBody{
+	height: 50%; 
+	background-color: gray;
+}
+#recommendBody{
+	height: 50%; 
+	background-color: #f0f0f0;
+}
+#pageImg{
+	height: 101px;
+    width: 101px;
+}
+#pageName{
+	background: linear-gradient(transparent, rgba(0, 0, 0, .7));
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;	
+}
+/* #container {
     width: 1012px !important;
     height: -webkit-fill-available;
     margin: 0 auto;
@@ -18,7 +88,7 @@
 }
 
 #profile_img {
-	margin: 10px auto;
+	border: 1px solid #dddfe2;
     box-sizing: border-box;
     -webkit-border-radius: 100px;
     display: block;
@@ -26,9 +96,8 @@
 }
 
 #profile_img img {
-	width: 100px;
-	height: 100px;
-	border-radius: 100px;
+	width: 179px;
+	height: 180px;
 }
 
 #profile_info {
@@ -39,7 +108,7 @@
 }
 
 #profile_info span {
-	font-size: inherit;
+	font-size: medium;
 }
 
 
@@ -48,7 +117,6 @@
 	text-align: center;
 	display: inline-block;
 }
-
 
 #mailBox_btn {
 	width: 85px;
@@ -109,20 +177,4 @@
 	background-color: #f6f7f9;
     border-color: #ced0d4;
     color: #4b4f56;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} */

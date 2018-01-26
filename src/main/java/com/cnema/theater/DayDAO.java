@@ -1,6 +1,7 @@
 package com.cnema.theater;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,6 +11,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DayDAO {
+	
+	public String week(String day){
+		day = "2018-01-27";
+		Calendar sDay = Calendar.getInstance();
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sd2 = new SimpleDateFormat("E");
+		String week = null;
+		try {
+			java.util.Date d = sd.parse(day);
+			sDay.setTime(d);
+			week = sd2.format(d);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return week;
+	}
 	
 	public List<DayDTO> dayList(){
 		Calendar sDay = Calendar.getInstance();

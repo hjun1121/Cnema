@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,10 +57,24 @@ public class TheaterController {
 	
 	
 	@RequestMapping(value="quickReservePay", method=RequestMethod.POST)
-	public void quickReservePay(Model model,ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO,HttpSession session){
+	 public synchronized ModelAndView quickReservePay(ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO,HttpSession session, RedirectAttributes rd ){
+		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO= null;
 		String movie =null;
+		ScheduleDTO scheduleDTO = null;
+		List<Integer> seats = reserveDTO.getSeat_num(); //선택한 seat 애들
+		boolean seatCheck = true;
+		
 		try {
+			scheduleDTO = scheduleService.scheduleOne(reserveDTO.getSchedule_num());
+			List<Integer> checks = reserveService.seatCheck(scheduleDTO.getScreen_num(), reserveDTO.getSchedule_num());
+			for(int check : checks){
+				for(int seat : seats){
+					if(check == seat){
+						seatCheck=false;
+					}
+				}
+			}
 			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
 			movie = movieDTO.getMovie_name();
 		} catch (Exception e) {
@@ -67,15 +82,22 @@ public class TheaterController {
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("reserve", reserveDTO);
-		model.addAttribute("ticketPrice", ticketPriceDTO);
-		model.addAttribute("movie", movie);
+		if(seatCheck){
+			mv.addObject("reserve", reserveDTO);
+			mv.addObject("ticketPrice", ticketPriceDTO);
+			mv.addObject("movie", movie);
+			mv.setViewName("theater/quickReservePay");
+		}else{
+			rd.addFlashAttribute("message", "이미 예약된 자리입니다");
+			mv.setViewName("redirect:../theater/quickReserve");
+		}
+		return mv;
 	}
 	
 	@RequestMapping(value="quickReserveGo", method=RequestMethod.POST)
+	@Transactional
 	public ModelAndView quickReserveGo(RedirectAttributes rd, ReserveDTO reserveDTO, TicketPriceDTO ticketPriceDTO, HttpSession session){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
 		int tp_num=0;
 		ScheduleDTO scheduleDTO =null; 
 		try {
@@ -85,26 +107,22 @@ public class TheaterController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	
 		reserveDTO.setScreen_num(scheduleDTO.getScreen_num());
 		reserveDTO.setTp_num(tp_num);
 		reserveDTO.setId(memberDTO.getId());
-
 		
 		//TicketPriceDTO ticketPriceDTO = new TicketPriceDTO();
 		ticketPriceDTO.setTp_num(tp_num);
-		ticketPriceDTO.setCode("asd");
+		ticketPriceDTO.setCode("a2s4d1");
 		ticketPriceDTO.setId(memberDTO.getId());
 		int result = 0;
 		
 		ModelAndView mv = new ModelAndView();
 		try {
 			result = ticketPriceService.tpInsert(ticketPriceDTO);
-			
 			for(int seat : reserveDTO.getSeat_num()){
 				reserveDTO.setSeat(seat);
 				reserveService.reserveInsert(reserveDTO);
-				
 			}
 			double getPoint = 0;
 			int price = ticketPriceDTO.getPrice();
@@ -116,19 +134,17 @@ public class TheaterController {
 			int p = ticketPriceDTO.getPoint()-(int)getPoint;
 			memberService.qrPointUpdate(p, (int)getPoint, memberDTO.getId());
 			myCouponService.qrCouponUpdate(ticketPriceDTO.getC_num(), memberDTO.getId());
-			
 			if(ticketPriceDTO.getPoint()>0){
 				pointService.usePoint(memberDTO.getId(),"영화 구매 사용",ticketPriceDTO.getPoint());
 			}
 			if(getPoint>0){
 				pointService.getPoint(memberDTO.getId(),"영화 구매 적립", (int)getPoint);
 			}
-			
 			MemberDTO newMemberDTO  = memberService.memberInfo(memberDTO.getId());
 			session.setAttribute("member", newMemberDTO);
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			result=0;
 			e.printStackTrace();
 		}
 		String message="예매 실패";
@@ -180,23 +196,27 @@ public class TheaterController {
 		ScheduleDTO scheduleDTO = null;
 		ScreenDTO screenDTO = null;
 		List<Integer> seatCheck =null;
-		
+		String week=null;
 		try {
 			movieDTO = movieService.selectOne(reserveDTO.getMovie_num());
 			theaterDTO = theaterService.selectOne(reserveDTO.getTheater_num());
 			scheduleDTO = scheduleService.scheduleOne(reserveDTO.getSchedule_num());
 			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());		
 			seatCheck = reserveService.seatCheck(scheduleDTO.getScreen_num(), reserveDTO.getSchedule_num());
+			week = theaterService.week(reserveDTO.getDay_num());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("screenDTO", screenDTO);
 		model.addAttribute("day", reserveDTO.getDay_num());
+		
+		model.addAttribute("scheduleDTO", scheduleDTO);
 		model.addAttribute("theater", theaterDTO);
 		model.addAttribute("movie", movieDTO);
 		model.addAttribute("reserve", reserveDTO);
 		model.addAttribute("seatCheck", seatCheck);
+		model.addAttribute("week", week);
 	}
 	
 	@RequestMapping(value="quickReserve", method=RequestMethod.GET)

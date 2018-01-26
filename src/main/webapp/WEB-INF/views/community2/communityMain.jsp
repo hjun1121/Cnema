@@ -13,6 +13,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/communityMain.css">
 
 <script type="text/javascript">
 $(function() {
@@ -33,18 +34,16 @@ $(function() {
 
 </head>
 <body>
-<div id="cgvwrap"  style="text-align: center;">
+<div id="cgvwrap">
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 <!-- 왼측 프로필 고정 바  -->
-<div style="width: 15%; height: auto; margin-left: 50px; display: inline-block; float: left; margin-top: 30px; text-align: center; background-color: #dcdcdc;">
-	<div style = "width: 90%; margin: 25px auto;">
-	
+<div id="left_bar">
+	<div id="left_bar2">
 		<!-- 프로필 사진  -->
-		<div style="float: left; margin: 0 30px 30px 0;">
+		<div id="profile">
 			<c:choose>
-				<c:when test="${not empty member}"><img style="width: 60%; margin-right: 5px;" alt="사용자 프로필" src='../resources/profil/${member.fileName}'> ${member.id}</c:when>
-				
-				<c:otherwise><!-- <img style="width: 60%; margin-right: 5px;" alt="기본프로필" src="../resources/profil/defaultProfile.jpg"> -->
+				<c:when test="${not empty member}"><img id="profile_img"alt="사용자 프로필" src='../resources/profil/${member.fileName}'> ${member.id}</c:when>
+				<c:otherwise>
 					<a href="../member/memberLogin"><input type="button" value="로그인 후 이용해주세요."></a>
 				</c:otherwise>
 			</c:choose>
@@ -53,18 +52,22 @@ $(function() {
 		
 		<!-- 내가 가입한 페이지 LIST -->
 		<c:if test="${not empty member}">
-		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px;">
-			<h2 style="font-size: 20px; color: #333333;">가입한 페이지</h2>
-			<br>
+		<div id="myJoinList">
+			<h2 >가입한 페이지</h2>
 			<c:forEach items="${pageList}" var="page">
-				<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}"><img style="width: 30%; margin-right: 30px;" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}"> ${page.page_name}</a>
+			<div>
+				<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
+				<img id="pageImg" alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
+				</a>
+			</div>
+			<div id="pageName"> ${page.page_name}</div>
 			</c:forEach>
 		</div>
 		</c:if>
 		
 		<!-- 추천 페이지 LIST -->
-		<div style="clear: both; border: 1px solid #f0f0f0; height: 300px; margin-top: 10px;">
-			<h2 style="font-size: 20px; color: #333333;">추천 페이지</h2>
+		<div id="recommendList">
+			<h2>추천 페이지</h2>
 			<br>
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 				<c:if test="${i.index < 3}">
@@ -76,10 +79,9 @@ $(function() {
 	<!-- 프로필 바 끝 -->
 </div> 
 
-<div style="width: 60%; height: 1080px; background-color: #f0f0f0; margin: 0 auto; margin-top: 30px;">
-
+<div id="infoBody">
 	<!-- 가입한 페이지  -->
-	<div style="height: 50%; background-color: gray;">
+	<div id="joinBody">
 		<input type="button" value="+더보기" id="moreInsertBtn"><br>
 		<c:forEach items="${myPageList}" var="page" varStatus="count">
 			<img alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
@@ -87,7 +89,7 @@ $(function() {
 		</c:forEach>
 	</div>
 	<!-- 추천 페이지 -->
-	<div style="height: 50%; background-color: #f0f0f0;">
+	<div id="recommendBody">
 		<input type="button" value="+더보기" id="moreBtn"><br>
 		<c:forEach items="${recommendPage}" var="recommend">
 			<img alt="${recommend.page_name}" src="../resources/page_logo/${recommend.fileName}">
