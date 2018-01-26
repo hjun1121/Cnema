@@ -179,7 +179,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	/*heeseong*/
+	/*heeseong
 	@RequestMapping(value="myPageView", method=RequestMethod.GET)
 	public ModelAndView selectOne(HttpSession session,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
@@ -246,5 +246,5 @@ public class MemberController {
 			mv.setViewName("redirect:../");
 		}
 		return mv;
-	}
+	}*/
 }

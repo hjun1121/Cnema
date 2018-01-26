@@ -164,7 +164,8 @@ public class AjaxController {
 			int result = eventService.eventJoin(eventJoinDTO);
 			if(eventJoinDTO.getType()==1){
 				if(couponType=="쿠폰"){
-				myCouponService.couponInsert(eventJoinDTO.getId(), couponDTO);
+					CouponDTO couponDTO = null; //couponDTO 가 없음
+					myCouponService.couponInsert(eventJoinDTO.getId(), couponDTO);
 				}
 				else{
 					pointService.pointInsert(1000, eventJoinDTO.getId());
