@@ -49,7 +49,7 @@ display: inline-block;
 			<li>
 			<!-- 리스트의 이미지 -->
            	<div class="box-image">
-        	<a href="eventView?num=${dto.num}">
+        	<a href="../event/eventView?num=${dto.num}">
             <span>
              <img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"width="100px" height="83px">
             </span>
@@ -57,7 +57,7 @@ display: inline-block;
             </div>
             <!--리스트의 제목  -->
              <div class="box-title">
-                 <a href="eventView?num=${dto.num}">
+                 <a href="../event/eventView?num=${dto.num}">
                 <strong>${dto.title }</strong>
                 </a>
                    <em class="date">

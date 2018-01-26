@@ -1,5 +1,8 @@
 package com.cnema.c1;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -57,8 +60,8 @@ public class EventController {
 		
 		//View페이지
 		@RequestMapping(value="eventView")
-		public ModelAndView selectOne(ModelAndView mv, int num,HttpSession session, RedirectAttributes rd) throws Exception{
-			BoardDTO eventDTO = null;
+		public ModelAndView selectOne(ModelAndView mv,int num,HttpSession session, RedirectAttributes rd) throws Exception{
+			EventDTO eventDTO = null;
 			String id=" ";
 			MemberDTO memberDTO= (MemberDTO) session.getAttribute("member");
 			
@@ -69,7 +72,19 @@ public class EventController {
 			eventJoinDTO.setId(id);
 			eventJoinDTO.setNum(num);
 			
-			eventDTO = eventService.selectOne(num);
+			eventDTO = (EventDTO)eventService.selectOne(num);
+			 Calendar ca = Calendar.getInstance();
+			 long now = ca.getTimeInMillis();
+			 ca.setTime(eventDTO.getE_date());
+			 long end = ca.getTimeInMillis();
+			 
+			 int endCheck= 0;
+			 if(now>end){
+				 System.out.println("종료");
+				 endCheck=1;
+			 }else{
+				 System.out.println("진행");
+			 }
 			int check=eventService.eventJoinCheck(eventJoinDTO);
 			
 			
@@ -77,6 +92,24 @@ public class EventController {
 				mv.addObject("view", eventDTO);
 				mv.addObject("check", check);
 				mv.setViewName("event/eventView");
+				mv.addObject("endCheck", endCheck);
+			}else{
+				rd.addFlashAttribute("message","업습니다.");
+				mv.setViewName("redirect:./eventList");
+			}
+			
+			return mv;
+		}
+		
+		@RequestMapping(value="eventView2")
+		public ModelAndView selectOne(ModelAndView mv,int num, RedirectAttributes rd) throws Exception{
+			BoardDTO eventDTO = null;
+			
+			eventDTO = eventService.selectOne(num);
+			
+			if(eventDTO != null){
+				mv.addObject("view", eventDTO);
+				mv.setViewName("event/eventView2");
 			}else{
 				rd.addFlashAttribute("message","업습니다.");
 				mv.setViewName("redirect:./eventList");

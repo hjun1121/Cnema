@@ -117,11 +117,6 @@ $(function(){
 	if(message != ""){
 		alert(message);
 	}
-	var endCheck= '${endCheck}';
-	alert(endCheck);
-	if(endCheck==1){
-		$(".eventJoin").hide();
-	}
 	
 	$("#join").click(function(){
 		var check1=$("#check").val();
@@ -205,7 +200,7 @@ $(function(){
 <div class="board_contents">
 <div class="submenu">
 	<span class="tit">이벤트 내용</span>
-	<p>진행중인 이벤트가 응모하세요.<br></p>
+	<p>종료된 이벤트 입니다.<br></p>
 </div>
 <div class="eventViewhead">
     <h3>${view.title } </h3> 
@@ -222,21 +217,6 @@ ${view.contents}
 
 <br>
 <hr>
-
-
-<div class="eventJoin">
-<p>본 이벤트는  당첨 시 ${view.type} 제공됩니다. </p>
-<input type="hidden" id="couponType"  value="${view.type }">
-<input type="hidden" id="num" name="num" value="${view.num }">
-<input type="hidden" id="check" value="${check}">
-<input type="hidden" id="id" value="${member.id}">
-<input type="hidden" id="memType" value="${member.type }">
-
-<div class="joinImgBtn">
-<a id="join" href="#" onclick="return false;"><img alt="" src="../resources/images/common/btn/eventJoin.png"> </a>
-</div>
-
-</div>
 
 	<div class="btnSet">
 	<c:if test="${not empty member and member.type eq 20  }">
