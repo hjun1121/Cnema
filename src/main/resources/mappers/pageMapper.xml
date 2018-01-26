@@ -55,5 +55,9 @@
 	<select id="selectPageOne" resultType="pageDTO">
 		select * from page where page_num=#{page_num}
 	</select>
+	
+	<insert id="pageInsert" parameterType="java.util.Map">
+        insert into page values(movie_seq.nextval, #{pageDTO.page_name}, #{pageDTO.fileName}, #{pageDTO.oriName}, sysdate, 1, #{pageDTO.owner_id})
+    </insert>
 
 </mapper>

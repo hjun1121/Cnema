@@ -62,7 +62,9 @@ public class PageDAO {
 	
 	//pageInsert
 	public int pageInsert(PageDTO pageDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"pageInsert", pageDTO);
+		Map<String, Object> map = new HashMap<>();
+		map.put("pageDTO", pageDTO);
+		return sqlSession.insert(NAMESPACE+"pageInsert", map);
 	}
 	
 	//memberInsert
