@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+ul {
+	list-style: none;
+}
+
+li {
+	list-style: none;
+	float: left;
+}
+
+#title {
+	max-width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

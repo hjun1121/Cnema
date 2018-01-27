@@ -6,12 +6,19 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.member.MemberDTO;
+import com.cnema.message.MessageDTO;
 import com.cnema.util.FileSaver;
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 @Service
+@Transactional
 public class PageService {
 
 	@Inject
@@ -20,6 +27,37 @@ public class PageService {
 	private FileSaver fileSaver;
 	
 	
+	//selectSendMail
+	public List<MessageDTO> selectSendMail(String id) throws Exception {
+		return pageDAO.selectSendMail(id);
+	}
+	
+	//selectMailOne
+	public MessageDTO selectMailOne(int message_num) throws Exception {
+		int result = 0;
+		result = pageDAO.mailRead(message_num);
+		MessageDTO messageDTO = new MessageDTO();
+		if(result > 0) {
+			messageDTO = pageDAO.selectMailOne(message_num);
+		}
+		
+		return messageDTO;
+	}
+	
+	//mailReceive
+	public ModelAndView mailReceive(HttpSession session, ListData listData) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String id = memberDTO.getId();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(pageDAO.mailTotalCount(id));
+
+		List<MessageDTO> mailList = pageDAO.mailReceive(id, rowNum);
+		mv.addObject("pager", pager);
+		mv.addObject("mailList", mailList);
+		return mv;
+	}
+
 	//selectPageMemberOne
 	public PageMemberDTO selectPageMemberOne(String id, int page_num) throws Exception {
 		return pageDAO.selectPageMemberOne(id, page_num);

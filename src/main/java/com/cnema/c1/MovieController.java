@@ -44,11 +44,6 @@ public class MovieController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
-
-		//review
-//		Map<String, Object> map = mv.getModel();
-//		List<ReviewDTO> review_ar = (List<ReviewDTO>) map.get("list");
 		mv = movieService.reviewList(movie_num, listData);
 
 		if(id != null) {
@@ -56,7 +51,6 @@ public class MovieController {
 			mv.addObject("wish_list", wish);
 		}
 
-//		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
 		mv.addObject("movie_num", movie_num);
 		mv.addObject("curPage", curPage);
