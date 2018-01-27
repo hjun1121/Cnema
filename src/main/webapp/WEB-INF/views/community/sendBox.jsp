@@ -15,7 +15,7 @@
 			<tr>
 				<td>${count.count}</td>
 				<td>${mail.receive_id}</td>
-				<td id="title"><a href="mailView?message_num=${mail.message_num }">${mail.title }</a></td>
+				<td id="title"><a href="sendMailView?message_num=${mail.message_num }">${mail.title }</a></td>
 				<td>
 					<c:if test="${mail.type eq 11 }">읽음</c:if>
 					<c:if test="${mail.type eq 12 }">안읽음</c:if>

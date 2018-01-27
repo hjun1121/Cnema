@@ -25,7 +25,15 @@ public class PageController {
 	
 	@Inject
 	private PageService pageService;
-
+	
+	
+	//발신쪽지보기
+	@RequestMapping(value = "sendMailView", method = RequestMethod.GET)
+	public ModelAndView sendMailView(int message_num) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 	
 	//발신함
 	@RequestMapping(value = "sendBox", method=RequestMethod.POST)

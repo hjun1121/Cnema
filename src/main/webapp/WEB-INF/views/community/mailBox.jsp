@@ -23,7 +23,7 @@
 					
 				},
 				success:function(data){
-					$("#box_div").remove();
+// 					$("#box_div").remove();
 					$("#box_div").html(data);
 				}
 			});
@@ -37,7 +37,7 @@
 					
 				},
 				success:function(data){
-					$("#box_div").remove();
+// 					$("#box_div").remove();
 					$("#box_div").html(data);
 				}
 			});
