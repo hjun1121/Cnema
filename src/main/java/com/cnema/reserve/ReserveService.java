@@ -25,10 +25,15 @@ import com.cnema.util.RowNum;
 public class ReserveService {
 	@Inject
 	private ReserveDAO reserveDAO;
+	@Inject
 	private ScheduleDAO scheduleDAO;
+	@Inject
 	private TicketPriceDAO ticketPriceDAO;
+	@Inject
 	private MovieDAO movieDAO;
+	@Inject
 	private TheaterDAO theaterDAO;
+	@Inject
 	private ReviewDAO reviewDAO;
 	
 	public List<Integer> seatCheck(int screen_num, int schedule_num) throws Exception{
@@ -50,7 +55,6 @@ public class ReserveService {
 		Pager pager = listData.makePage(reserveDAO.rTotalCount(id,kind));
 		
 		List<ReserveDTO> rList = reserveDAO.reserveList(id,kind, rowNum);
-		System.out.println("ls"+rList.size());
 		ScheduleDTO scheduleDTO = null;
 		TicketPriceDTO ticketPriceDTO = null;
 		MovieDTO movieDTO = null;
@@ -62,7 +66,7 @@ public class ReserveService {
 		for(ReserveDTO reserveDTO : rList){
 			reserveDTO2 = reserveDAO.reserveBList(id, reserveDTO.getTp_num());
 			/*reserveDTO2 = reserveService.reserveBList(memberDTO.getId(), reserveDTO.getTp_num());*/
-			System.out.println("rs"+reserveDTO2.getSchedule_num());
+			
 			scheduleDTO = scheduleDAO.scheduleInfo(reserveDTO2.getSchedule_num());
 			/*scheduleDTO = scheduleService.scheduleInfo(reserveDTO2.getSchedule_num());*/
 			reserveDTO.setScheduleDTO(scheduleDTO);
