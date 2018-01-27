@@ -5,8 +5,14 @@
 <mapper namespace="pageMapper">
 
 	<!-- 발신함 -->
-	<select id="selectSendMail" parameterType="String" resultType="messageDTO">
-		select * from message where send_id=#{id}
+	<select id="selectSendMail" parameterType="java.util.Map" resultType="messageDTO">
+		select * from (
+		select rownum R, N.* from
+		(select * from message where send_id=#{id}) N)
+		where R between #{rowNum.startRow} and #{rowNum.lastRow}
+	</select>
+	<select id="sendMailTotalCount" parameterType="String" resultType="int">
+		select count(nvl(null, 0)) from message where send_id=#{id}
 	</select>
 
 	<!-- 쪽지 수신 -->

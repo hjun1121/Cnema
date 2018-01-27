@@ -21,8 +21,14 @@ public class PageDAO {
 	private static final String NAMESPACE = "pageMapper.";
 	
 	//발신함
-	public List<MessageDTO> selectSendMail(String id) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"selectSendMail", id);
+	public List<MessageDTO> selectSendMail(String id, RowNum rowNum) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"selectSendMail", map);
+	}
+	public int sendMailTotalCount(String id) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"sendMailTotalCount", id);
 	}
 	
 	
