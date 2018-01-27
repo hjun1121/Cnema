@@ -4,10 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pageMapper">
 
-	<!-- 발신 쪽지 보기 -->
-	<select id="sendMailView" parameterType="int" resultType="messageDTO">
-		select * from message where message_num=#{message_num}
-	</select>
 
 	<!-- 발신함 -->
 	<select id="selectSendMail" parameterType="java.util.Map" resultType="messageDTO">
