@@ -123,32 +123,30 @@
 	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
-	            		<a href="#">나의 예매내역 <i></i></a>
+	            		<a href="../myPage/movieHistor">나의 예매내역 <i></i></a>
 	            			<ul>                      
 		                        <li><a href="../myPage/movieHistory">내가 본 영화</a></li>
 			                    <li><a href="../myPage/wishList">위시 리스트</a></li>
 	                        </ul>
                 	</li>
 	            	<li class="on">
-	                	<a href="#">나의 쿠폰 관리 <i></i></a>
+	                	<a href="../myPage/couponHistory">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li class="on"><a href="../myPage/couponHistory">나의 쿠폰</a></li>
-		                    <!-- <li><a href="#">영화관람권</a></li> -->
+	                        <li><a href="../myPage/couponHistory2">사용 내역</a></li>
 	                	</ul>
 	           		</li>
 	            	<li>
-                    	<a href="#">나의 포인트 관리 <i></i></a>
+                    	<a href="../myPage/pointHistory">나의 포인트 관리 <i></i></a>
 	                	<ul>
-	                    	<!-- <li><a href="#">매점이용 포인트 적립</a></li> -->
                         	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
 
 	            	<li>
-                    	<a href="#">회원정보<i></i></a>
+                    	<a href="../myPage/myInfoCheck">회원정보<i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/myInfoCheck">회원정보수정</a></li>
-	                    	<!-- <li><a href="#">프로필관리</a></li> -->
 	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
@@ -182,7 +180,7 @@
 					<h3>나의 쿠폰 관리</h3>
 				</div>
 				 <div class="tit-mycgv" style="padding-bottom: 10px;">
-					<h4>나의 쿠폰 ${fn:length(mcList)}개 &nbsp;&nbsp;</h4>
+					<%-- <h4>나의 쿠폰 ${fn:length(mcList)}개 &nbsp;&nbsp;</h4> --%>
 					<form action="couponHistory">
 						<select id="type" name="type" class="f">
 							<option class = "type" value="11">사용가능</option>
@@ -231,19 +229,6 @@
 							</tr>
 						</c:forEach>
 					</c:if>
-                       <!--  <tr>
-                            <td>
-                                <label for="chkItem1025668"><em>2</em></label>
-                            </td>
-                            <td>CGV본사</td>
-                            <td>제안</td>
-                            <td>
-                                <a href="#">
-                                    22
-                                </a>
-                            </td>
-                            
-                        </tr> -->
 							<c:if test="${fn:length(mcList) eq 0}">           
 					            <tr>
 					                <td colspan="4" class="nodata">쿠폰이 존재하지 않습니다.</td>
@@ -267,143 +252,6 @@
 				</div>	
 				</div>
 				<div style="margin-top: 30px;"></div>
-				
-				<%-- <div class="tit-mycgv" style="padding-bottom: 10px;">
-					<h4>나의 쿠폰 사용내역&nbsp;&nbsp;</h4>
-					<form action="couponHistory" method="get">
-						<input type="text" name="testDatepicker1" id="testDatepicker1">~
-						<input type="text" name="testDatepicker2" id="testDatepicker2"> 
-						<input type="submit" id="cBtn" class="btnType3" value="조회하기">
-					</form>
-				</div>
-				<div class="tbl-data">
-				    <table summary="">
-				        <caption></caption>
-				        <colgroup>
-						    <col width="30%">
-						    <col width="30%">
-						    <col width="30%">
-						    
-						</colgroup>
-				        <thead>
-				            <tr>
-				                <th scope="col">쿠폰이름</th>
-				                <th scope="col">쿠폰번호</th>
-				                <th scope="col">사용일</th>
-				            </tr>
-				        </thead>
-				        <tbody>
-				        <c:forEach items="${cdList }" var="mCouponList">
-							<tr>
-								<td>${mCouponList.name }</td>
-								<td>${mCouponList.num }</td>
-								<td>${mCouponList.use_date }</td>
-							</tr>
-						</c:forEach>
-							<c:if test="${fn:length(cdList) eq 0}">           
-					            <tr>
-					                <td colspan="3" class="nodata">사용한 쿠폰이 존재하지 않습니다.</td>
-					            </tr>
-				            </c:if>  
-				        </tbody>
-				    </table>
-				    <div class="paging">
-					<ul id="paging_point" style="text-align: center;">
-						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
-								<a href="couponHistory?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}&type=${type}" title="${i}페이지 선택">${i}</a>
-							</li>
-						</c:forEach>
-						<c:if test="${pager.curBlock lt pager.totalBlock}">
-							<li class="paging-side">
-								<a href="couponHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}&type=${type}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
-							</li>
-						</c:if>
-					</ul>
-				</div>
-				</div>
-					<div class="sect-box-descri">
-					    <h4>CGV 예매 관련 정책 안내</h4>
-					    <div class="box-polaroid">
-					        <div class="box-inner" style="padding-bottom: 20px;">
-					            <ul>
-					            	<li>
-					            		<dl>
-					            			<dt>이용안내</dt>
-					            			<dd>
-					            				<ul>
-					            					<li>쿠폰은 멤버십 카드에 적립되어 출력하실 필요가 없습니다.</li>
-					            					<li>쿠폰 사용시에는 반드시 멤버십 카드를 지참하셔야 하며, 주문 전에 제시하여 주세요.</li>
-					            					<li>자세한 사용 방법은 쿠폰마다 상이하며, &lt;상세 안내&gt;를 반드시 참조해 주시기 바랍니다.</li>
-					            					<li>유효기간이 경과된 쿠폰은 자동으로 소멸됩니다.</li>
-					            				</ul>
-					            			</dd>
-					            		</dl>
-					            	</li>
-					            </ul>
-					        </div>
-					    </div>
-					</div> --%>
-				</form>
-			<!-- ////// -->
-			
-			<%-- 
-			<h3>MY COUPON ${fn:length(mcList)}개</h3>
-			<form action="couponHistory">
-				<select id="type" name="type">
-					<option class = "type" value="11">사용가능</option>
-					<option class = "type" value="10">사용완료</option>
-					<option class = "type" value="12">기간만료</option>
-				</select>
-				<input type="button" id="cBtn" value="GO">
-			</form>
-			<table>
-				<tr>
-					<td>쿠폰이름</td>
-					<td>쿠폰번호</td>
-					<td>사용기간</td>
-					<td>상태</td>
-				</tr>
-				<c:forEach items="${mcList }" var="mCouponList">
-					<tr>
-						<td>${mCouponList.name }</td>
-						<td>${mCouponList.num }</td>
-						<td>${mCouponList.publish_date }~${mCouponList.v_date }</td>
-						<c:if test="${mCouponList.type eq 11 }">
-							<td>사용가능</td>
-						</c:if>
-						<c:if test="${mCouponList.type eq 10 }">
-							<td>사용완료</td>
-						</c:if>
-						<c:if test="${mCouponList.type eq 12 }">
-							<td>기간만료</td>
-						</c:if>
-					</tr>
-				</c:forEach>
-			</table>
-			
-			
-			<form name="frm" action="couponHistory" method="get">
-				<input type="text" name="testDatepicker1" id="testDatepicker1">~
-				<input type="text" name="testDatepicker2" id="testDatepicker2"> 
-				<input type="submit" id="cBtn" value="조회하기">
-			</form>
-			<table>
-				<tr>
-					<td>쿠폰이름</td>
-					<td>쿠폰번호</td>
-					<td>사용일</td>
-				</tr>
-				<c:forEach items="${cdList }" var="mCouponList">
-					<tr>
-						<td>${mCouponList.name }</td>
-						<td>${mCouponList.num }</td>
-						<td>${mCouponList.use_date }</td>
-					</tr>
-				</c:forEach>
-			</table> --%>
-			
-						<!-- //내용에 따라 바뀜// -->
 				</div>
 				</div>
 				</div>

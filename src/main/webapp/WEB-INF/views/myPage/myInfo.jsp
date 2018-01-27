@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(function(){
 		var pwCheck = true;
-		var emailCheck = true;
+		var emailCheck = false;
 		
 		var p0='${p[0]}';
 		$(".f").each(function(){
@@ -187,7 +187,11 @@
 			var l = $("#l").val();
 			var phone = f+'-'+m+'-'+l;
 			$("#phone").val(phone);
+			var email1 = $("#email1").val();
+			var email2 = $("#email2").val();
+			var email = email1+'@'+email2;
 			
+			$("#email").val(email);
 			if(pwCheck == false){
 				alert("비밀번호를 확인해 주세요.");
 				$("#pw1").focus();
@@ -206,9 +210,6 @@
 			}else if($("#l").val()==""){
 				alert("끝번호를 확인해 주세요");
 				$("#l").focus();
-			}else if(emailCheck == false){
-				alert("이메일을 확인해 주세요");
-				$("#email1").focus();
 			}else{
 				document.frm.submit();
 			}
@@ -268,32 +269,30 @@
 	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
-	            		<a href="#">나의 예매내역 <i></i></a>
+	            		<a href="../myPage/movieHistory">나의 예매내역 <i></i></a>
 	            			<ul>                      
 		                        <li><a href="../myPage/movieHistory">내가 본 영화</a></li>
 			                    <li><a href="../myPage/wishList">위시 리스트</a></li>
 	                        </ul>
                 	</li>
 	            	<li>
-	                	<a href="#">나의 쿠폰 관리 <i></i></a>
+	                	<a href="../myPage/couponHistory">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
-		                    <!-- <li><a href="#">영화관람권</a></li> -->
+	                        <li><a href="../myPage/couponHistory2">사용 내역</a></li>
 	                	</ul>
 	           		</li>
 	            	<li>
-                    	<a href="#">나의 포인트 관리 <i></i></a>
+                    	<a href="../myPage/pointHistory">나의 포인트 관리 <i></i></a>
 	                	<ul>
-	                    	<!-- <li><a href="#">매점이용 포인트 적립</a></li> -->
                         	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
 
 	            	<li class="on">
-                    	<a href="#">회원정보<i></i></a>
+                    	<a href="../myPage/myInfoCheck">회원정보<i></i></a>
 	                	<ul>
                         	<li class="on"><a href="../myPage/myInfoCheck">회원정보수정</a></li>
-	                    	<!-- <li><a href="#">프로필관리</a></li> -->
 	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
@@ -387,7 +386,7 @@
 							<option class="mail" value="hotmail.com">hotmail.com</option>
 						</select>
 						<input type="button" id="mailCheck" value="이메일 인증" class="btnType4" style="margin-top: 5px; cursor: pointer;">
-						<input type="hidden" id="email" name="email" class="noneBorder">
+						<input type="hidden" id="email" name="email" value="" class="noneBorder">
 						
 						<div id="email_ch" style="margin-top: 5px;"></div></td>
 					</tr>
