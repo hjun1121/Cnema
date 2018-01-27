@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(function(){
 		var pwCheck = true;
-		var emailCheck = false;
+		var emailCheck = true;
 		
 		var p0='${p[0]}';
 		$(".f").each(function(){
