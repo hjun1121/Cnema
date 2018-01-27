@@ -1,4 +1,14 @@
 @CHARSET "UTF-8";
+.ico-grade.grade-all {
+    background-position: -30px 0;
+}
+.ico-grade.grade-15 {
+    background-position: -72px 0;
+}
+.ico-grade.grade-19 {
+    background-position: -93px 0;
+}
+
 #contents {
     clear: both;
     padding-bottom: 50px;

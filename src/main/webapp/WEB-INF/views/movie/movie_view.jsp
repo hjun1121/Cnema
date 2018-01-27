@@ -115,7 +115,18 @@
 		            <span class="thumb-image"> 
 		                <img src='../resources/movie_poster/${movie.fileName}' alt="${movie.movie_name} 포스터" >
 		                <span class="ico-posterdetail">포스터 크게 보기</span>
-		                <span class="ico-grade grade-12"> 12세 이상</span>
+		                <c:if test="${ movie.age_limit eq 12 }">
+		                	<span class="ico-grade grade-12"> 12세 이상</span>
+		                </c:if>
+		                 <c:if test="${ movie.age_limit eq 15 }">
+		                	<span class="ico-grade grade-15"> 15세 이상</span>
+		                </c:if>
+		                 <c:if test="${ movie.age_limit eq 20 }">
+		                	<span class="ico-grade grade-19"> 19세 이상</span>
+		                </c:if>
+		                 <c:if test="${ movie.age_limit eq 0 }">
+		                	<span class="ico-grade grade-all"> 0세 이상</span>
+		                </c:if>
 		            </span> 
 		        </a> 
 		    </div>

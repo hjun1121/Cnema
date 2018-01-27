@@ -139,7 +139,18 @@
                             	<a href="movie_view?movie_num=${movie.movie_num}">
                                 	<img class="thumb-image" alt="${movie.movie_name} 포스터" src='../resources/movie_poster/${movie.fileName}' >
                                 </a>
-                               <!--  <span class="ico-grade grade-12">12세 이상</span> -->
+                                <c:if test="${ movie.age_limit eq 12 }">
+				                	<span class="ico-grade grade-12"style="margin-top: 62px;margin-left: 7px;"> 12세 이상</span>
+				                </c:if>
+				                 <c:if test="${ movie.age_limit eq 15 }">
+				                	<span class="ico-grade grade-15"style="margin-top: 62px;margin-left: 7px;"> 15세 이상</span>
+				                </c:if>
+				                 <c:if test="${ movie.age_limit eq 20 }">
+				                	<span class="ico-grade grade-19"style="margin-top: 62px;margin-left: 7px;"> 19세 이상</span>
+				                </c:if>
+				                 <c:if test="${ movie.age_limit eq 0 }">
+				                	<span class="ico-grade grade-all"style="margin-top: 62px;margin-left: 7px;"> 0세 이상</span>
+				                </c:if>
                             </span>
                         </a>
                     </div>

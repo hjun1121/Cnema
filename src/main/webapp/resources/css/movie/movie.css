@@ -2117,7 +2117,7 @@ div[class^="sect-"] .btn-itemmore {
 	bottom: 3px;
 	width: 24px;
 	height: 24px;
-	background: url('../images/sprite/sprite_icon.png') 0 0 no-repeat;
+	background: url(../../../resources/images/common/sprite/sprite_icon.png') 0 0 no-repeat;
 	font: 0/0 a;
 	zoom: 1;
 }
@@ -2130,7 +2130,7 @@ div[class^="sect-"] .btn-itemmore {
 	top: 5px;
 	width: 21px;
 	height: 21px;
-	background: url('../images/sprite/sprite_icon.png') no-repeat;
+	background: url('../../../resources/images/common/sprite/sprite_icon.png') no-repeat;
 	font: 0/0 a;
 	zoom: 1;
 }
