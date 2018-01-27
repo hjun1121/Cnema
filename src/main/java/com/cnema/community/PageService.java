@@ -27,6 +27,11 @@ public class PageService {
 	private FileSaver fileSaver;
 	
 	
+	//sendMailView
+	public MessageDTO sendMailView(int message_num) throws Exception {
+		return pageDAO.selectMailOne(message_num);
+	}
+	
 	//selectSendMail
 	public ModelAndView selectSendMail(String id, ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
