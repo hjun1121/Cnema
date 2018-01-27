@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="myCouponMapper">
   
+  <select id="myCouponList" parameterType="String" resultType="myCouponDTO">
+  	select * from mycoupon where id=#{id} and type=11
+  </select>
+  
   <update id="qrCouponUpdate" parameterType="java.util.Map">
   	update mycoupon set type=10, use_date=sysdate where c_num=#{c_num} and id=#{id}
   </update>
