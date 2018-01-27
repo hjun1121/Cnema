@@ -6,6 +6,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 @Service
 @Transactional
@@ -42,8 +47,19 @@ public class TheaterService {
 		return theaterDAO.theatherAList();
 	}*/
 	/*heeseong*/
-	public List<TheaterDTO> theaterList(String kind,String search) throws Exception{
-		return theaterDAO.theaterList(kind,search);
+	public int totalCount(String kind, String search) throws Exception{
+		return theaterDAO.totalCount(kind, search);
+	}
+	/*heeseong*/
+	public ModelAndView theaterList(String kind,String search,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(theaterDAO.totalCount(kind,search));
+		
+		List<TheaterDTO> theaterList = theaterDAO.theaterList(kind, search, rowNum);
+		mv.addObject("theaterList", theaterList);
+		mv.addObject("pager",pager);
+		return mv;
 	}
 	/*heeseong*/
 	public TheaterDTO theaterInfo(int theater_num) throws Exception{

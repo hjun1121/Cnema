@@ -144,7 +144,7 @@ $(function(){
 				<h3>극장 목록</h3>
 			</div>
 			 <div class="tit-mycgv" style="padding-bottom: 10px;">
-				<h4>극장 목록 ${fn:length(theaterList)}개 &nbsp;&nbsp;</h4>
+				<%-- <h4>극장 목록 ${fn:length(theaterList)}개 &nbsp;&nbsp;</h4> --%>
 					<select id="kind" class="f">
 						<option class = "kind" value="location">지점</option>
 						<option class = "kind" value="area">지역</option>
@@ -191,11 +191,27 @@ $(function(){
 		            </c:if>  
 			        </tbody>
 			    </table>
+			    
 			    <div class="set-btn">
 			        <a href="./theaterInsert">
 			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
 			        </a>
 		    	</div>
+		    	
+		    	<div class="paging">
+					<ul id="paging_point" style="text-align: center;">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+								<a href="theaterList?curPage=${i}&kind=${kind}&search=${search}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="theaterList?curPage=${pager.lastNum+1}&kind=${kind}&search=${search}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 			</div>
 			<!-- /// -->
 			</div>

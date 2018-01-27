@@ -114,7 +114,7 @@ color: #222;
         // 이부분에 에디터 validation 검증
          
         //폼 submit
-        $("#frm").submit();
+        $("#noticeForm").submit();
     })
 		
 		//CKEDITOR.replace( 'contents' );
@@ -180,7 +180,7 @@ color: #222;
 	<div class="board_container">
 	<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/boardTab/noticeTab.jsp"></c:import>
 	<div class="board_contents">
-	<form action="noticeWrite" id="noticeForm" method="post" id="frm">
+	<form action="noticeWrite" id="noticeForm" method="post" >
 	<span class="tit">공지사항 작성하기</span><br><br>
 		
 		<div>
