@@ -191,7 +191,6 @@ function showSlides(n) {
 					</div>
 				</div>
 			</div> --%>
-			
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
