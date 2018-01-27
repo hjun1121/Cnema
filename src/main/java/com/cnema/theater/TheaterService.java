@@ -46,6 +46,7 @@ public class TheaterService {
 	/*public List<TheaterDTO> theatherAList() throws Exception{
 		return theaterDAO.theatherAList();
 	}*/
+	/*heeseong*/
 	public int totalCount(String kind, String search) throws Exception{
 		return theaterDAO.totalCount(kind, search);
 	}
@@ -55,8 +56,8 @@ public class TheaterService {
 		RowNum rowNum = listData.makeRow();
 		Pager pager = listData.makePage(theaterDAO.totalCount(kind,search));
 		
-		List<TheaterDTO> tList = theaterDAO.theaterList(kind, search, rowNum);
-		mv.addObject("tList", tList);
+		List<TheaterDTO> theaterList = theaterDAO.theaterList(kind, search, rowNum);
+		mv.addObject("theaterList", theaterList);
 		mv.addObject("pager",pager);
 		return mv;
 	}

@@ -61,8 +61,17 @@
   	</insert>
   	
   	<!-- heeseong -->
-  	<select id="scheduleAList" resultMap="scheduleTime">
-  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S
+  	<select id="sTotalCount" resultType="int" >
+  		select count(schedule_num) from schedule
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="scheduleAList" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S -->
   	</select>
   	
   	<!-- heeseong -->
@@ -78,8 +87,28 @@
   	
   	<!-- screen -->
   	<!-- heeseong -->
-  	<select id="screenAList" resultType="screenDTO">
-  		select * from screen
+  	<select id="totalCount" resultType="int" >
+  		select count(screen_num) from screen
+  	</select>
+  	
+  	<select id="screenAList" resultType="screenDTO" parameterType="java.util.Map">
+  		<choose>
+  			<when test="theater_num!=-1">
+  				select * from (
+				select rownum R, N.* from  		
+				(select * from screen where theater_num =#{theater_num}) N)
+				where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  				
+  			</when>
+  			<otherwise>
+  				select * from (
+				select rownum R, N.* from  		
+				(select * from screen) N)
+				where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  			</otherwise>
+  		</choose>
+  		
+  		<!-- select * from screen -->
   	</select>
   	<!-- heeseong -->
   	<update id="screenRevision" parameterType="screenDTO">

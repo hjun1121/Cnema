@@ -7,12 +7,19 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 @Service
 @Transactional
 public class ScheduleService {
 	@Inject
 	private ScheduleDAO scheduleDAO;
+	@Inject
+	private TheaterDAO theaterDAO;
 	
 	public List<Integer> screenNumList(int theater_num, String day, int movie_num) throws Exception{
 		return scheduleDAO.screenNumList(theater_num, day, movie_num);
@@ -50,8 +57,19 @@ public class ScheduleService {
 		return scheduleDAO.scheduleInfo(sNum);
 	}
 	/*heeseong*/
-	public List<ScheduleDTO> scheduleAList() throws Exception{
-		return scheduleDAO.scheduleAList();
+	public int sTotalCount() throws Exception{
+		return scheduleDAO.sTotalCount();
+	}
+	/*heeseong*/
+	public ModelAndView scheduleAList(ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(scheduleDAO.sTotalCount());
+		
+		List<ScheduleDTO> sList = scheduleDAO.scheduleAList(rowNum);
+		mv.addObject("sList", sList);
+		mv.addObject("pager",pager);
+		return mv;
 	}
 	/*heeseong*/
 	public int scheduleRevision(ScheduleDTO scheduleDTO) throws Exception{
@@ -66,8 +84,19 @@ public class ScheduleService {
 		return scheduleDAO.scheduleInsert(scheduleDTO);
 	}
 	/*heeseong*/
-	public List<ScreenDTO> screenAList() throws Exception{
-		return scheduleDAO.screenAList();
+	public ModelAndView screenAList(ListData listData,int theater_num) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(scheduleDAO.totalCount());
+		
+		List<ScreenDTO> screenList = scheduleDAO.screenAList(rowNum,theater_num);
+		for(ScreenDTO screenDTO : screenList){
+			TheaterDTO theaterDTO = theaterDAO.selectOne(screenDTO.getTheater_num());
+			screenDTO.setTheaterDTO(theaterDTO);
+		}
+		mv.addObject("sList", screenList);
+		mv.addObject("pager",pager);
+		return mv;
 	}
 	/*heeseong*/
 	public int screenRevision(ScreenDTO screenDTO) throws Exception{
@@ -80,5 +109,9 @@ public class ScheduleService {
 	/*heeseong*/
 	public ScreenDTO screenInfo(int theater_num) throws Exception{
 		return scheduleDAO.screenInfo(theater_num);
+	}
+	/*heeseong*/
+	public int totalCount() throws Exception{
+		return scheduleDAO.totalCount();
 	}
 }

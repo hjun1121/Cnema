@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.sun.glass.ui.Screen;
+import com.cnema.util.RowNum;
 
 @Repository
 public class ScheduleDAO {
@@ -65,19 +65,23 @@ public class ScheduleDAO {
 		return sqlSession.insert(NAMESPACE+"screenInsert",screenDTO);
 	}
 	
+	
 	/*heeseong*/
 	public ScheduleDTO scheduleInfo(int sNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"scheduleInfo", sNum);
 	}
 	/*heeseong*/
-	public List<ScheduleDTO> scheduleAList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"scheduleAList");
+	public int sTotalCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"sTotalCount");
+	}
+	/*heeseong*/
+	public List<ScheduleDTO> scheduleAList(RowNum rowNum) throws Exception{
+		Map<String, Object> sMap = new HashMap<>();
+		sMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"scheduleAList",sMap);
 	}
 	/*heeseong*/
 	public int scheduleRevision(ScheduleDTO scheduleDTO) throws Exception{
-		System.out.println(scheduleDTO.getIn_time());
-		System.out.println(scheduleDTO.getOut_time());
-		System.out.println(scheduleDTO.getDay());
 		return sqlSession.update(NAMESPACE+"scheduleRevision",scheduleDTO);
 	}
 	/*heeseong*/
@@ -89,8 +93,15 @@ public class ScheduleDAO {
 		return sqlSession.insert(NAMESPACE+"scheduleInsert",scheduleDTO);
 	}
 	/*heeseong*/
-	public List<ScreenDTO> screenAList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"screenAList");
+	public int totalCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"totalCount");
+	}
+	/*heeseong*/
+	public List<ScreenDTO> screenAList(RowNum rowNum,int theater_num) throws Exception{
+		Map<String, Object> sMap = new HashMap<>();
+		sMap.put("rowNum", rowNum);
+		sMap.put("theater_num", theater_num);
+		return sqlSession.selectList(NAMESPACE+"screenAList",sMap);
 	}
 	/*heeseong*/
 	public int screenRevision(ScreenDTO screenDTO) throws Exception{

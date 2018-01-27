@@ -196,7 +196,6 @@ public class AdminController {
 	public ModelAndView theaterList(HttpSession session, String kind, String search, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<TheaterDTO> theaterList = new ArrayList<>();
 		if (search == null) {
 			search = "";
 		}
@@ -219,7 +218,6 @@ public class AdminController {
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
-		//mv.addObject("theaterList", theaterList);
 		mv.setViewName("admin/theaterList");
 		return mv;
 	}
@@ -364,23 +362,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "screenList", method = RequestMethod.GET)
-	public ModelAndView screenList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int theater_num) {
+	public ModelAndView screenList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int theater_num,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<ScreenDTO> sList = new ArrayList<>();
 		TheaterDTO theaterDTO = null;
 		try {
-			if(theater_num!=-1){
+			/*if(theater_num!=-1){
 				sList = scheduleService.screenList(theater_num);
 				mv.addObject("theater_num", theater_num);
 			}else{
 				sList = scheduleService.screenAList();
 				mv.addObject("theater_num", -1);
-			}
-			for(ScreenDTO screenDTO : sList){
+			}*/
+			/*for(ScreenDTO screenDTO : sList){
 				theaterDTO = theaterService.selectOne(screenDTO.getTheater_num());
 				screenDTO.setTheaterDTO(theaterDTO);
-			}
+			}*/
+			mv = scheduleService.screenAList(listData, theater_num);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
@@ -390,8 +389,7 @@ public class AdminController {
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
-		mv.addObject("sList", sList);
-		
+		/*mv.addObject("sList", sList);*/
 		return mv;
 	}
 	
@@ -512,23 +510,25 @@ public class AdminController {
 		return mv;
 
 	}
-
+	
 	@RequestMapping(value = "scheduleList", method = RequestMethod.GET)
-	public ModelAndView scheduleList(HttpSession session) {
+	public ModelAndView scheduleList(HttpSession session,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<ScheduleDTO> sList = new ArrayList<>();
 		try {
-			sList = scheduleService.scheduleAList();
+			mv=scheduleService.scheduleAList(listData);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		
+		mv.addObject("count", count);
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
-		mv.addObject("sList", sList);
 		mv.addObject("myInfo", memberDTO);
 		mv.setViewName("admin/scheduleList");
 		return mv;

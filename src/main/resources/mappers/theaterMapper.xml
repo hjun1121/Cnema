@@ -53,31 +53,17 @@
 	  	select * from (
 		select rownum R, N.* from  		
 		(select * from theater
-		
-		  		<choose>
-		  			<when test="kind=='area'">
-		  				where area like '%'||#{search}||'%'
-		  			</when>
-		  			<when test="kind=='location'">
-		  				where location like '%'||#{search}||'%'
-		  			</when>
-		  			<otherwise>
-		  			</otherwise>
-		  		</choose>) N)
-		
+		  	<choose>
+		  		<when test="kind=='area'">
+		  			where area like '%'||#{search}||'%'
+		  		</when>
+		  		<when test="kind=='location'">
+		  			where location like '%'||#{search}||'%'
+		  		</when>
+		  		<otherwise>
+		  		</otherwise>
+		 	</choose>) N)
 		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
-
-<!--   		select * from theater -->
-<!--   		<choose> -->
-<!--   			<when test="kind=='area'"> -->
-<!--   				where area like '%'||#{search}||'%' -->
-<!--   			</when> -->
-<!--   			<when test="kind=='location'"> -->
-<!--   				where location like '%'||#{search}||'%' -->
-<!--   			</when> -->
-<!--   			<otherwise> -->
-<!--   			</otherwise> -->
-<!--   		</choose> -->
   	</select>
 
 
