@@ -55,7 +55,7 @@ public class MovieController {
 			List<WishDTO> wish = movieService.wishList(id);
 			mv.addObject("wish_list", wish);
 		}
-		
+
 //		mv.addObject("review", review_ar);
 		mv.addObject("movie", movieDTO);
 		mv.addObject("movie_num", movie_num);
