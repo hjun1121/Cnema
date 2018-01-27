@@ -184,7 +184,7 @@ $(function(){
 					<tr>
 						<td>상영날짜</td>
 						<td>
-							<select id="day" name="day" class="selectList">
+							<select id="day" name="day" class="selectList" style="width: 100px; height: 30px; color: #666; border: 1px solid #e6e6e6; background-color: #fff; line-height: 29px;">
 								<c:forEach items="${dayList }" var="dayDTO">
 									<option value="${dayDTO.day_num }" class="selectList">${dayDTO.day_num }</option>
 								</c:forEach>

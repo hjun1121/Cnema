@@ -72,30 +72,30 @@
 	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
-	            		<a href="#">나의 예매내역 <i></i></a>
+	            		<a href="../myPage/movieHistory">나의 예매내역 <i></i></a>
 	            			<ul>                      
 		                        <li><a href="../myPage/movieHistory">내가 본 영화</a></li>
 			                    <li><a href="../myPage/wishList">위시 리스트</a></li>
 	                        </ul>
                 	</li>
 	            	<li>
-	                	<a href="#">나의 쿠폰 관리 <i></i></a>
+	                	<a href="../myPage/couponHistory">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
+	                        <li><a href="../myPage/couponHistory2">사용 내역</a></li>
 	                	</ul>
 	           		</li>
 	            	<li>
-                    	<a href="#">나의 포인트 관리 <i></i></a>
+                    	<a href="../myPage/pointHistory">나의 포인트 관리 <i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
 
 	            	<li>
-                    	<a href="#">회원정보<i></i></a>
+                    	<a href="../myPage/myInfoCheck">회원정보<i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/myInfoCheck">회원정보수정</a></li>
-	                    	<!-- <li><a href="#">프로필관리</a></li> -->
 	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
@@ -141,7 +141,7 @@
 						<td>포스터</td>
 						<td>
 						<img alt="${movieDTO.movie_name} 포스터" src="../resources/movie_poster/${movieDTO.fileName}" style="width: 60px; height: 70px;">
-						<input type="file" name="file" class="noneBorder"></td>
+						</td>
 					</tr>
 					<tr>
 						<td>티저영상</td>
@@ -173,7 +173,7 @@
 					</tr>
 					<tr>
 						<td>상영중</td>
-						<td><input type="number" name="show" class="noneBorder" value="${movieDTO.show }" size="10"></td>
+						<td><input type="number" name="show" class="noneBorder" value="${movieDTO.show }" size="10"> (10:상영중 / 20:상영종료)</td>
 					</tr>
 				</table>
 				<div class="set-btn">

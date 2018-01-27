@@ -88,30 +88,30 @@ $(function(){
 	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
-	            		<a href="#">나의 예매내역 <i></i></a>
+	            		<a href="../myPage/movieHistory">나의 예매내역 <i></i></a>
 	            			<ul>                      
 		                        <li><a href="../myPage/movieHistory">내가 본 영화</a></li>
 			                    <li><a href="../myPage/wishList">위시 리스트</a></li>
 	                        </ul>
                 	</li>
 	            	<li>
-	                	<a href="#">나의 쿠폰 관리 <i></i></a>
+	                	<a href="../myPage/couponHistory">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
+	                        <li><a href="../myPage/couponHistory2">사용 내역</a></li>
 	                	</ul>
 	           		</li>
 	            	<li>
-                    	<a href="#">나의 포인트 관리 <i></i></a>
+                    	<a href="../myPage/pointHistory">나의 포인트 관리 <i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
 
 	            	<li>
-                    	<a href="#">회원정보<i></i></a>
+                    	<a href="../myPage/myInfoCheck">회원정보<i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/myInfoCheck">회원정보수정</a></li>
-	                    	<!-- <li><a href="#">프로필관리</a></li> -->
 	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
@@ -148,8 +148,8 @@ $(function(){
 				<%-- <h4>쿠폰 목록 ${fn:length(cList)}개 &nbsp;&nbsp;</h4> --%>
 					<select id="kind" class="f">
 						<option class="kind" value="name">쿠폰 이름</option>
-						<option class="kind" value="price">금액 할인(전체)</option>
-						<option class="kind" value="rate">할인률(전체)</option>
+						<option class="kind" value="price">금액 할인</option>
+						<option class="kind" value="rate">할인률</option>
 					</select>
 					<input type="text" name="search" id="search">
 					<input type="button" class="btnType3" id="sBtn" value="GO">
