@@ -30,7 +30,7 @@
 		});
 		$("#cBtn").click(function(){
 			var cType = $("#type").val();
-			location.href="./couponHistory?type="+cType;
+			location.href="./couponHistory2?type="+cType;
 		});
 		
 		$("#testDatepicker1").val('${testDatepicker1}');
@@ -177,7 +177,7 @@
     			</div>
 			<div class="col-detail" id="mycgv_contents">
 			<!-- /////// -->
-			
+			<%--
 				<div class="tit-mycgv">
 					<h3>나의 쿠폰 관리</h3>
 				</div>
@@ -193,7 +193,7 @@
 					</form>
 				</div>
 				
-				<form id="form1" novalidate="novalidate">
+				 <form id="form1" novalidate="novalidate">
 				
 				<div class="tbl-data">
 				    <table summary="">
@@ -230,7 +230,7 @@
 								</c:if>
 							</tr>
 						</c:forEach>
-					</c:if>
+						</c:if>
                        <!--  <tr>
                             <td>
                                 <label for="chkItem1025668"><em>2</em></label>
@@ -251,7 +251,7 @@
 				            </c:if>  
 				        </tbody>
 				    </table>
-				    <div class="paging">
+				     <div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
@@ -264,13 +264,13 @@
 							</li>
 						</c:if>
 					</ul>
-				</div>	
 				</div>
-				<div style="margin-top: 30px;"></div>
+				</div>
+				<div style="margin-top: 30px;"></div> --%>
 				
-				<%-- <div class="tit-mycgv" style="padding-bottom: 10px;">
+				<div class="tit-mycgv" style="padding-bottom: 10px;">
 					<h4>나의 쿠폰 사용내역&nbsp;&nbsp;</h4>
-					<form action="couponHistory" method="get">
+					<form action="couponHistory2" method="get">
 						<input type="text" name="testDatepicker1" id="testDatepicker1">~
 						<input type="text" name="testDatepicker2" id="testDatepicker2"> 
 						<input type="submit" id="cBtn" class="btnType3" value="조회하기">
@@ -311,12 +311,12 @@
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
-								<a href="couponHistory?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}&type=${type}" title="${i}페이지 선택">${i}</a>
+								<a href="couponHistory2?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}" title="${i}페이지 선택">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="couponHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}&type=${type}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+								<a href="couponHistory2?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
 					</ul>
@@ -343,7 +343,7 @@
 					            </ul>
 					        </div>
 					    </div>
-					</div> --%>
+					</div>
 				</form>
 			<!-- ////// -->
 			

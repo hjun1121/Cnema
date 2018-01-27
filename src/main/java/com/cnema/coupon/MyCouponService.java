@@ -8,6 +8,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cnema.theater.TheaterDTO;
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 @Service
 @Transactional
@@ -19,9 +25,21 @@ public class MyCouponService {
 		return myCouponDAO.qrCouponUpdate(c_num, id);
 	}
 	
+	/*heeseong*/
+	public int hTotalCount(String id,String type) throws Exception{
+		return myCouponDAO.hTotalCount(id, type);
+	}
 	/*희성*/
-	public List<MyCouponDTO> myCouponList(String id,String kind) throws Exception{
-		return myCouponDAO.myCouponList(id,kind);
+	public ModelAndView myCouponHistoryList(String id,String type,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(myCouponDAO.hTotalCount(id, type));
+		
+		List<MyCouponDTO> mcList = myCouponDAO.myCouponHistoryList(id, type, rowNum);
+		mv.addObject("mcList", mcList);
+		mv.addObject("pager",pager);
+		return mv;
+		/*return myCouponDAO.myCouponHistoryList(id,kind);*/
 	}
 	/*희성*/
 	public List<MyCouponDTO> myCouponAList(String id) throws Exception{
@@ -31,9 +49,21 @@ public class MyCouponService {
 	public int dateUpdate(String id) throws Exception{
 		return myCouponDAO.dateUpdate(id);
 	}
+	/*heeseong*/
+	public int dTotalCount(String id,String dp1,String dp2) throws Exception{
+		return myCouponDAO.dTotalCount(id, dp1,dp2);
+	}
 	/*희성*/
-	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2) throws Exception{
-		return myCouponDAO.myCouponDList(id,dp1,dp2);
+	public ModelAndView myCouponDList(String id,String dp1,String dp2,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(myCouponDAO.dTotalCount(id, dp1,dp2));
+		
+		List<MyCouponDTO> cdList = myCouponDAO.myCouponDList(id, dp1,dp2, rowNum);
+		mv.addObject("cdList", cdList);
+		mv.addObject("pager",pager);
+		return mv;
+		/*return myCouponDAO.myCouponDList(id,dp1,dp2);*/
 	}
 	/*희성*/
 	public int couponInsert(String id, CouponDTO couponDTO) throws Exception{

@@ -202,7 +202,7 @@ public class MyPageController {
 				reviewDTO = reviewService.reviewInfo(reserveDTO2.getMovie_num(), memberDTO.getId());
 				reserveDTO.setReviewDTO(reviewDTO);
 			}
-			wList = wishService.wishList(memberDTO.getId(),"reg_date");
+			/*wList = wishService.wishList(memberDTO.getId(),"reg_date");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -317,9 +317,9 @@ public class MyPageController {
 		
 		return mv;
 	}
-	
+	//중
 	@RequestMapping(value="wishList",method=RequestMethod.GET)
-	public ModelAndView wishList(String kind, HttpSession session,RedirectAttributes rd){
+	public ModelAndView wishList(String kind, HttpSession session,RedirectAttributes rd,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		MovieDTO movieDTO = null;
@@ -330,7 +330,7 @@ public class MyPageController {
 		}
 		try {
 			rList = reserveService.reserveAList(memberDTO.getId());
-			if(kind.equals("reg_date")){
+			/*if(kind.equals("reg_date")){
 				wList = wishService.wishList(memberDTO.getId(),"reg_date");
 				for(WishDTO wishDTO : wList ){
 					movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
@@ -342,13 +342,15 @@ public class MyPageController {
 					movieDTO = movieService.movieInfo(wishDTO.getMovie_num());
 					wishDTO.setMovieDTO(movieDTO);
 				}
-			}
+			}*/
+			mv = wishService.wishList(memberDTO.getId(), kind, listData);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
 		mv.addObject("kind", kind);
-		mv.addObject("wList", wList);
+		/*mv.addObject("wList", wList);*/
 		mv.addObject("rList", rList);
 		mv.setViewName("myPage/wishList");
 		return mv;
@@ -376,73 +378,131 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="pointHistory", method=RequestMethod.GET)
-	public ModelAndView pointHistory(HttpSession session, String testDatepicker1, String testDatepicker2){
+	public ModelAndView pointHistory(HttpSession session, String testDatepicker1, String testDatepicker2,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<PointDTO> pList = new ArrayList<PointDTO>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c1 = Calendar.getInstance();
+        String strToday = sdf.format(c1.getTime());
+		if(testDatepicker1==null){
+			testDatepicker1="1900-01-01";
+		}
+		if(testDatepicker2==null){
+			testDatepicker2=strToday;
+		}
 		try {
-			if(testDatepicker1==null && testDatepicker2==null){
+			mv = pointService.pointList(memberDTO.getId(), testDatepicker1, testDatepicker2, listData);
+			/*if(testDatepicker1==null && testDatepicker2==null){
 				pList = pointService.pointAList(memberDTO.getId());
 			}else{
 				pList = pointService.pointList(memberDTO.getId(), testDatepicker1,testDatepicker2);
-			}
+			}*/
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
-		mv.addObject("pList",pList);
+		/*mv.addObject("pList",pList);*/
 		mv.addObject("testDatepicker1", testDatepicker1);
 		mv.addObject("testDatepicker2", testDatepicker2);
 		mv.setViewName("myPage/pointHistory");
 		return mv;
 	}
 	
+	//중
 	@RequestMapping(value="couponHistory", method=RequestMethod.GET)
-	public ModelAndView couponHistory(HttpSession session,String type,String testDatepicker1, String testDatepicker2){
+	public ModelAndView couponHistory(HttpSession session,String type,String testDatepicker1, String testDatepicker2,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c1 = Calendar.getInstance();
+        String strToday = sdf.format(c1.getTime());
+
 		if(type==null){
 			type="11";
 		}
-		try {
-			myCouponService.dateUpdate(memberDTO.getId());
-			mcList = myCouponService.myCouponList(memberDTO.getId(),type);
-			count = myCouponService.couponCount(memberDTO.getId());
-			aCount = myCouponService.couponACount(memberDTO.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.addObject("type", type);
-		mv.addObject("mcList",mcList);
-		mv.addObject("count", count);
-		mv.addObject("aCount", aCount);
-		mv.addObject("today", today);
 		
 		List<MyCouponDTO> cdList = new ArrayList<MyCouponDTO>();
 		try {
-			if(testDatepicker1==null&&testDatepicker2==null){
-				cdList = myCouponService.myCouponAList(memberDTO.getId());
-			}else{
-				cdList = myCouponService.myCouponDList(memberDTO.getId(),testDatepicker1,testDatepicker2);
-			}
+			myCouponService.dateUpdate(memberDTO.getId());
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
+			mv = myCouponService.myCouponHistoryList(memberDTO.getId(), type, listData);
+			/*mv = myCouponService.myCouponDList(memberDTO.getId(), testDatepicker1, testDatepicker2,listData);*/
+			/*mcList = myCouponService.myCouponHistoryList(memberDTO.getId(),type);*/
+			/*cdList = myCouponService.myCouponDList(memberDTO.getId(),testDatepicker1,testDatepicker2);*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		mv.addObject("type", type);
+		/*mv.addObject("mcList",mcList);*/
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
+		mv.addObject("myInfo", memberDTO);
+		/*mv.addObject("testDatepicker1", testDatepicker1);
+		mv.addObject("testDatepicker2", testDatepicker2);*/
+		/*mv.addObject("cdList",cdList);*/
+		
+		mv.setViewName("myPage/couponHistory");
+		return mv;
+	}
+	@RequestMapping(value="couponHistory2", method=RequestMethod.GET)
+	public ModelAndView couponHistory2(HttpSession session,String type,String testDatepicker1, String testDatepicker2,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		List<MyCouponDTO> mcList = new ArrayList<MyCouponDTO>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c1 = Calendar.getInstance();
+        String strToday = sdf.format(c1.getTime());
+
+		if(type==null){
+			type="12";
+		}
+		if(testDatepicker1==null){
+			testDatepicker1="1900-01-01";
+		}
+		if(testDatepicker2==null){
+			testDatepicker2=strToday;
+		}
+		
+		List<MyCouponDTO> cdList = new ArrayList<MyCouponDTO>();
+		try {
+			myCouponService.dateUpdate(memberDTO.getId());
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+			/*mv = myCouponService.myCouponHistoryList(memberDTO.getId(), type, listData);*/
+			mv = myCouponService.myCouponDList(memberDTO.getId(), testDatepicker1, testDatepicker2,listData);
+			/*mcList = myCouponService.myCouponHistoryList(memberDTO.getId(),type);*/
+			/*cdList = myCouponService.myCouponDList(memberDTO.getId(),testDatepicker1,testDatepicker2);*/
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		/*mv.addObject("type", type);*/
+		/*mv.addObject("mcList",mcList);*/
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("testDatepicker1", testDatepicker1);
 		mv.addObject("testDatepicker2", testDatepicker2);
-		mv.addObject("cdList",cdList);
+		/*mv.addObject("cdList",cdList);*/
 		
-		mv.setViewName("myPage/couponHistory");
+		mv.setViewName("myPage/couponHistory2");
 		return mv;
 	}
 	

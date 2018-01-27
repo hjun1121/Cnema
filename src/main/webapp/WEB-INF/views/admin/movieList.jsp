@@ -150,7 +150,7 @@ $(function(){
 				<h3>영화 목록</h3>
 			</div>
 			 <div class="tit-mycgv" style="padding-bottom: 10px;">
-				<h4>영화 목록 ${fn:length(movieList)}개 &nbsp;&nbsp;</h4>
+				<%-- <h4>영화 목록 ${fn:length(movieList)}개 &nbsp;&nbsp;</h4> --%>
 					<select id="kind" class="f">
 						<option class="kind" value="title">제목</option>
 						<option class="kind" value="actor">감독 및 출연진</option>

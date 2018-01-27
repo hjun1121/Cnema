@@ -15,12 +15,19 @@
 
 
 	<!-- 희성 -->
-	<select id="pointList" resultType="pointDTO">
-		select * from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2}
+	<select id="pointList" resultType="pointDTO" parameterType="java.util.Map">
+		select * from (
+		select rownum R, N.* from  		
+		(select * from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2}) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+		<!-- select * from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2} -->
 	</select>
-	
 	<!-- 희성 -->
-	<select id="pointAList" resultType="pointDTO">
+	<select id="pTotalCount" resultType="int" parameterType="java.util.Map">
+		select count(point_num) from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2}
+	</select>
+	<!-- 희성 -->
+	<select id="pointAList" resultType="pointDTO" parameterType="java.util.Map">
 		select * from point where id=#{id}
 	</select>
 	
