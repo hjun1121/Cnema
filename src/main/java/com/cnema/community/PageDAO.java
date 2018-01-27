@@ -31,6 +31,10 @@ public class PageDAO {
 		return sqlSession.selectOne(NAMESPACE+"sendMailTotalCount", id);
 	}
 	
+	//안읽은 쪽지
+	public int mailCount(String id) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"mailCount", id);
+	}
 	
 	//쪽지 수신
 	public MessageDTO selectMailOne(int message_num) throws Exception {

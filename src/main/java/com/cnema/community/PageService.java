@@ -26,6 +26,10 @@ public class PageService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	//mailCount
+	public int mailCount(String id) throws Exception {
+		return pageDAO.mailCount(id);
+	}
 	
 	//sendMailView
 	public MessageDTO sendMailView(int message_num) throws Exception {

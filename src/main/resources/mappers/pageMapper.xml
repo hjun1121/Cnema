@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pageMapper">
 
+	<!-- 안읽은 쪽지 count -->
+	<select id="mailCount" parameterType="String" resultType="int">
+		select count(nvl(null, 0)) from message where receive_id=#{id} and type=12
+	</select>
 
 	<!-- 발신함 -->
 	<select id="selectSendMail" parameterType="java.util.Map" resultType="messageDTO">

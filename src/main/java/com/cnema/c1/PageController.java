@@ -193,11 +193,13 @@ public class PageController {
 		int member_num = 0;
 		int memberCheck = 0;
 		int pageMemberCount = 0;
+		int mailCount = 0;
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		try {
 			String id = memberDTO.getId();
 			memberCheck = pageService.memberCheck(page_num, id);
 			member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
+			mailCount = pageService.mailCount(id);
 			List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
 			pageMemberCount = mc.size();
 		} catch (Exception e) {
@@ -210,6 +212,7 @@ public class PageController {
 
 		mv.addObject("pageMemberCount", pageMemberCount);
 		mv.addObject("memberCheck", memberCheck);
+		mv.addObject("mailCount", mailCount);
 		mv.addObject("member_num", member_num);
 		mv.addObject("page", pageDTO);
 		mv.addObject("pageMember", pageMember);
