@@ -46,7 +46,6 @@ public class HomeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(ar.size());
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("message", message);
 		model.addAttribute("event_list", ar);
