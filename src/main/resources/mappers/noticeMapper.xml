@@ -8,6 +8,10 @@
   		where title like '%'||#{search}||'%'
   	</sql>
  
+ <select id="noticeList" resultType="NoticeDTO">
+ 	select * from notice order by num desc
+ </select>
+ 
   <select id="selectList" parameterType="com.cnema.util.RowNum" resultType="NoticeDTO">
   		select * from
   		(select rownum r, N.* from

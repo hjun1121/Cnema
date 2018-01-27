@@ -118,7 +118,6 @@ $(function(){
 		alert(message);
 	}
 	var endCheck= '${endCheck}';
-	alert(endCheck);
 	if(endCheck==1){
 		$(".eventJoin").hide();
 	}

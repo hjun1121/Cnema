@@ -43,7 +43,6 @@ public class EventController {
 	//insert
 		@RequestMapping(value="eventWrite",method=RequestMethod.POST )
 		public ModelAndView insert(EventDTO eventDTO,HttpSession session,RedirectAttributes rd) throws Exception{
-			System.out.println("1234");
 			ModelAndView mv =new ModelAndView();
 			int result=0;
 			result =eventService.insert(eventDTO, session);
@@ -52,8 +51,8 @@ public class EventController {
 			if(result>0){
 				message = "이벤트 작성 성공하였습니다.";
 			}
-			rd.addFlashAttribute("message", message);
-			mv.addObject("path", "../event/eventList");
+			mv.addObject("message", message);
+			mv.addObject("path", "./event/eventList");
 			mv.setViewName("common/messagePath");
 			return mv;
 		}

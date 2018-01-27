@@ -18,6 +18,10 @@ public class NoticeDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	private static final String namespace = "noticeMapper.";
 	
+	public List<NoticeDTO> noticeList()throws Exception{
+		return sqlSession.selectList(namespace+"noticeList");
+	}
+	
 	@Override
 	public List<BoardDTO> selectList(RowNum rowNum) throws Exception {
 		return sqlSession.selectList(namespace+"selectList", rowNum); 

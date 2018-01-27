@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cnema.board.BoardDTO;
 import com.cnema.event.EventService;
+import com.cnema.movie.MovieService;
+import com.cnema.notice.NoticeDTO;
+import com.cnema.notice.NoticeService;
 
 /**
  * Handles requests for the application home page.
@@ -26,6 +29,10 @@ import com.cnema.event.EventService;
 public class HomeController {
 	@Inject
 	private EventService eventService;
+	@Inject
+	private NoticeService noticeService;
+	@Inject
+	private MovieService movieService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -39,9 +46,12 @@ public class HomeController {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		List<BoardDTO> ar = null;
+		List<NoticeDTO> noticeList = null;
+		
 		String formattedDate = dateFormat.format(date);
 		try {
 			ar= eventService.selectList();
+			noticeList = noticeService.noticeList();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,6 +59,8 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("message", message);
 		model.addAttribute("event_list", ar);
+		model.addAttribute("noticeList", noticeList);
+		
 		return "home";
 	}
 	
