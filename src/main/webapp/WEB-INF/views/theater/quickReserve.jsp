@@ -183,7 +183,7 @@
 			
 		})
 		/*  */
-		$("#all").on("click", ".time" , function(){
+		$("#all").on("click", ".times" , function(){
 			var movie_num = $("#movie_num").val();
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();
@@ -206,9 +206,11 @@
 		});
 		/*  */
 		$("#scheduleList").on("click", ".schedules" , function(){
-			$(".schedules").css("background-color","");
-			$(this).css("background-color","red");
+			//$(".schedules").css("background-color","");
+			//$(this).css("background-color","red");
 			var schedule_num = $(this).attr("title");
+			$(".time").css("background-color","");
+			$("#sc"+schedule_num).css("background-color","red");
 			$("#schedule_num").val(schedule_num);
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();
@@ -296,7 +298,7 @@
 												<c:choose>
 													<c:when test="${DTO.age_limit eq 12 }">
 														<li class="rating-12" >
-															<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+															<a href="#" onclick="return false;" class="movies times" title="${DTO.movie_num }">
 																<span class="icon">&nbsp;</span>
 																<span class="text">${DTO.movie_name }</span>
 															</a>
@@ -304,7 +306,7 @@
 													</c:when>
 													<c:when test="${DTO.age_limit eq 15 }">
 														<li class="rating-15" >
-															<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+															<a href="#" onclick="return false;" class="movies times" title="${DTO.movie_num }">
 																<span class="icon">&nbsp;</span>
 																<span class="text">${DTO.movie_name }</span>
 															</a>
@@ -312,7 +314,7 @@
 													</c:when>											
 													<c:when test="${DTO.age_limit eq 19 }">
 														<li class="rating-18" >
-															<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+															<a href="#" onclick="return false;" class="movies times" title="${DTO.movie_num }">
 																<span class="icon">&nbsp;</span>
 																<span class="text">${DTO.movie_name }</span>
 															</a>
@@ -321,7 +323,7 @@
 													
 													<c:otherwise>
 														<li class="rating-all">
-															<a href="#" onclick="return false;" class="movies time" title="${DTO.movie_num }">
+															<a href="#" onclick="return false;" class="movies times" title="${DTO.movie_num }">
 																<span class="icon">&nbsp;</span>
 																<span class="text">${DTO.movie_name }</span>
 															</a>
@@ -355,7 +357,7 @@
 															<ul class="content scroll-y" style="right: -17px;">
 																<c:forEach items="${location }" var="DTO">
 																	<li class="selected" style="display: list-item;">
-																		<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }" >
+																		<a href="#" onclick="return false;" class="location times" title="${DTO.theater_num }" >
 																			${DTO.location }
 																		</a>
 																	</li>
@@ -394,7 +396,7 @@
 											<div>
 											<c:forEach items="${dayList }" var="DTO">
 												<li class="day">
-													<a href="#" class="days time" title="${DTO.day_num }" onclick="return false;">
+													<a href="#" class="days times" title="${DTO.day_num }" onclick="return false;">
 														<span class="dayweek">${DTO.week}</span>
 														<span class="day">${DTO.day }</span>
 														<span class="sreader"></span>
