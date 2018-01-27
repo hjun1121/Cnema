@@ -18,6 +18,9 @@ public class NoticeService {
 	@Inject
 	private NoticeDAO noticeDAO;
 	
+	public List<NoticeDTO> noticeList()throws Exception{
+		return noticeDAO.noticeList();
+	}
 	
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
