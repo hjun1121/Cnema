@@ -16,21 +16,21 @@
         					</div>
         					<div class="box-contents newtype">
 				        		<div class="person-info">
-				        			<strong>${myInfo.name}님</strong>
-				        			<em>${myInfo.id}</em>
+				        			<strong>${member.name}님</strong>
+				        			<em>${member.id}</em>
 				        			
 				        		</div>
         					<div class="grade-info">
                     			<p style="margin-bottom:4px;color: #342929;font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;font-size: 20px;line-height: 20px;">
                          			 고객님은 ${today}
                          			<strong class="txt-purple">
-                         			<c:if test="${myInfo.type eq 10}">
+                         			<c:if test="${member.type eq 10}">
                          				일반 회원
                          			</c:if>
-                         			<c:if test="${myInfo.type eq 20}">
+                         			<c:if test="${member.type eq 20}">
                          				관리자
                          			</c:if>
-                         			<c:if test="${myInfo.type eq 11}">
+                         			<c:if test="${member.type eq 11}">
                          				VIP 회원
                          			</c:if>
                          			</strong>입니다.             
@@ -62,13 +62,13 @@
 			        		<ul>
 			        			<li>
 			        				<strong>사용가능 포인트</strong>
-			        				<span><em class="txt-maroon">${myInfo.v_point}</em> 점</span>
+			        				<span><em class="txt-maroon">${member.v_point}</em> 점</span>
 			        			</li>
 			        		    <li class="tooltip_list cf">
 			        				<strong>누적 포인트</strong>
 			
 			                        <div class="tooltip_con tc2"><span></span></div>
-			        				<span><em><fmt:formatNumber value="${myInfo.a_point}" type="number"/></em> 점</span>
+			        				<span><em><fmt:formatNumber value="${member.a_point}" type="number"/></em> 점</span>
 			        			</li>
 			        		</ul>
 			        	</div>

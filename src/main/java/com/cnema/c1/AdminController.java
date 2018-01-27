@@ -708,7 +708,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
-	public ModelAndView memberList(@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort) {
+	public ModelAndView memberList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
@@ -717,8 +717,11 @@ public class AdminController {
 		List<CouponDTO> cList = new ArrayList<>();
 		int number = 1;
 		int result = 0;
-
+		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		try {
+			count = myCouponService.couponCount(m.getId());
+			aCount = myCouponService.couponACount(m.getId());
+			
 			groupList = coupongroupService.groupList();
 			/*cList = couponService.couponList("","");*/
 			if (group_num == -1) {
@@ -744,7 +747,8 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
 		mv.addObject("cList", cList);
 		mv.addObject("groupList", groupList);
 		mv.addObject("memList", memList);
