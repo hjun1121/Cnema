@@ -114,29 +114,14 @@ public class AdminController {
 		
 	}
 	
-	//중
 	@RequestMapping(value = "movieList", method = RequestMethod.GET)
 	public ModelAndView movieList(HttpSession session, String kind, String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<MovieDTO> movieList = new ArrayList<>();
-		if (search == null) {
-			search = "";
-		}
-		if(kind==null){
-			kind="title";
-		}
+		if (search == null) { search = ""; }
+		if(kind==null){ kind="title"; }
+		
 		try {
-			/*if (kind == null) {
-				movieList = movieService.movieList("","");
-			} else {
-				if (kind.equals("title")) {
-					movieList = movieService.movieList(kind, search);
-				}
-				if (kind.equals("actor")) {
-					movieList = movieService.movieList(kind, search);
-				}
-			}*/
 			mv = movieService.movieAList(kind,search, listData);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
@@ -153,7 +138,6 @@ public class AdminController {
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
-		/*mv.addObject("movieList", movieList);*/
 		mv.setViewName("admin/movieList");
 		return mv;
 	}
@@ -204,15 +188,10 @@ public class AdminController {
 	public ModelAndView theaterList(HttpSession session, String kind, String search, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		if (search == null) {
-			search = "";
-		}
+		if (search == null) { search = ""; }
+		if(kind==null){ kind=""; }
 		try {
-			if (kind == null) {
-				mv=theaterService.theaterList("", "", listData);
-			} else {
-				mv=theaterService.theaterList(kind, search, listData);
-			}
+			mv=theaterService.theaterList(kind, search, listData);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
@@ -373,20 +352,7 @@ public class AdminController {
 	public ModelAndView screenList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int theater_num,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<ScreenDTO> sList = new ArrayList<>();
-		TheaterDTO theaterDTO = null;
 		try {
-			/*if(theater_num!=-1){
-				sList = scheduleService.screenList(theater_num);
-				mv.addObject("theater_num", theater_num);
-			}else{
-				sList = scheduleService.screenAList();
-				mv.addObject("theater_num", -1);
-			}*/
-			/*for(ScreenDTO screenDTO : sList){
-				theaterDTO = theaterService.selectOne(screenDTO.getTheater_num());
-				screenDTO.setTheaterDTO(theaterDTO);
-			}*/
 			mv = scheduleService.screenAList(listData, theater_num);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
@@ -398,7 +364,6 @@ public class AdminController {
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
-		/*mv.addObject("sList", sList);*/
 		return mv;
 	}
 	
@@ -640,11 +605,11 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "영화 상영시간표 수정 성공하였습니다.");
+			mv.addObject("message", "영화 상영시간표 수정 성공하였습니다.");
 			mv.addObject("path", "./admin/scheduleList");
 			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "영화 상영시간표 수정 실패하였습니다");
+			mv.addObject("message", "영화 상영시간표 수정 실패하였습니다");
 			mv.addObject("path", "./admin/scheduleList");
 			mv.setViewName("common/messagePath");
 		}
@@ -662,11 +627,11 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "영화 상영시간표 삭제 성공하였습니다.");
+			mv.addObject("message", "영화 상영시간표 삭제 성공하였습니다.");
 			mv.addObject("path", "./admin/scheduleList");
 			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "영화상영시간표 삭제 실패하였습니다.");
+			mv.addObject("message", "영화상영시간표 삭제 실패하였습니다.");
 			mv.addObject("path", "./admin/scheduleList");
 			mv.setViewName("common/messagePath");
 		}
@@ -678,45 +643,46 @@ public class AdminController {
 	public ModelAndView couponList(HttpSession session,String kind, String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		/*List<CouponDTO> cList = new ArrayList<>();*/
-		if (search == null) {
-			search = "";
-		}
-		if (kind == null) {
-			kind = "name";
-		}
+		if (search == null) { search = ""; }
+		if (kind == null) { kind = "name"; }
 		
-		/*if (kind == null) {
-			try {
-				cList = couponService.couponList("","");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
-				cList = couponService.couponList(kind, search);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}*/
 		try {
 			mv = couponService.couponList(kind, search, listData);
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
 		
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
-		/*mv.addObject("cList", cList);*/
 		mv.setViewName("admin/couponList");
 		return mv;
 	}
 
 	@RequestMapping(value = "couponInsert", method = RequestMethod.GET)
-	public void couponInsert() {
+	public ModelAndView couponInsert(HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
+		mv.addObject("myInfo", memberDTO);
+		mv.setViewName("admin/couponInsert");
+		return mv;
 	}
 
 	@RequestMapping(value = "couponInsert", method = RequestMethod.POST)
@@ -730,51 +696,16 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "쿠폰 입력 성공하였습니다.");
+			mv.addObject("message", "쿠폰 입력 성공하였습니다.");
 			mv.addObject("path", "./admin/couponList");
 			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "쿠폰 입력 실패하였습니다.");
+			mv.addObject("message", "쿠폰 입력 실패하였습니다.");
 			mv.addObject("path", "./admin/couponList");
 			mv.setViewName("common/messagePath");
 		}
 		return mv;
 	}
-
-	/*@RequestMapping(value = "couponRevision", method = RequestMethod.GET)
-	public ModelAndView couponRevision(String name) {
-		ModelAndView mv = new ModelAndView();
-		CouponDTO couponDTO = null;
-		try {
-			couponDTO = couponService.couponRevisionInfo(name);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.addObject("couponDTO", couponDTO);
-		mv.addObject("type", couponDTO.getType());
-		mv.setViewName("admin/couponView");
-		return mv;
-	}
-
-	@RequestMapping(value = "couponRevision", method = RequestMethod.POST)
-	public ModelAndView couponRevision(CouponDTO couponDTO, RedirectAttributes rd) {
-		ModelAndView mv = new ModelAndView();
-		int result = 0;
-		try {
-			result = couponService.couponRevision(couponDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		if (result > 0) {
-			rd.addAttribute("message", "쿠폰 수정 성공");
-			mv.setViewName("redirect:../");
-		} else {
-			rd.addAttribute("message", "쿠폰 수정 실패");
-			mv.setViewName("redirect:../");
-		}
-		return mv;
-	}*/
 
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
 	public ModelAndView memberList(@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort) {
