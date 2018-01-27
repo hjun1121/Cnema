@@ -21,6 +21,9 @@ public class MovieDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "movieMapper.";
 
+	public List<MovieDTO> homeMovieList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"homeMovieList");
+	}
 	
 	//totalCount
 	public int totalCount(int movie_num) throws Exception {
