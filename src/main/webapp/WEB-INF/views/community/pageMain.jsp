@@ -42,7 +42,7 @@
 		    alert(message); // 1:좌클릭, 2:휠클릭, 3:우클릭
 		});
 		
-		$("#mailBox_btn").click(function(){
+		$(".mailBox_btn").click(function(){
 			window.open("mailBox","쪽지함","width=750,height=450");
 		});
 
@@ -69,10 +69,10 @@
 			<h1>${member.id}<span> 님</span></h1>
 			<c:choose>
 				<c:when test="${mailCount eq 0 }">
-					<button id="mailBox_btn" name="mailBox_btn"><span>쪽지함</span></button>
+					<button class="mailBox_btn" name="mailBox_btn"><span>쪽지함</span></button>
 				</c:when>
 				<c:otherwise>
-					<button id="mailBox_btn" name="mailBox_btn"><span class="count">${mailCount}</span></button>
+					<button class="mailBox_btn" name="mailBox_btn"><span>쪽지함</span><span class="count">${mailCount}</span></button>
 				</c:otherwise>
 			</c:choose>
 		</div>

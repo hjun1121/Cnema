@@ -49,10 +49,16 @@
 }
 
 .count {
-	
+	border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    background-color: #ff0000eb;
+    display: inline-block;
+    line-height: 20px;
 }
 
-#mailBox_btn {
+.mailBox_btn {
 	width: 85px;
 	height:25px;
 	margin: 0 0 5px 15px;
