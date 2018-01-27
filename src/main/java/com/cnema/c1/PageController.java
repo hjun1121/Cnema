@@ -31,7 +31,9 @@ public class PageController {
 	@RequestMapping(value = "sendMailView", method = RequestMethod.GET)
 	public ModelAndView sendMailView(int message_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MessageDTO messageDTO = pageService.sendMailView(message_num);
 		
+		mv.addObject("mail", messageDTO);
 		return mv;
 	}
 	
