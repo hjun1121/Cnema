@@ -11,6 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfo.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/theaterList.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/admin/scheduleInsert.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상영관 글쓰기</title>
@@ -125,11 +126,8 @@
 </script>
 </head>
 <body>
-<div id="cgvwrap">
+	<div id="cgvwrap">
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
-
-			<!-- //////////////////////////////// -->
-			
 			<div id="contaniner" class="bg-bricks main bg-bricks">
         	<!-- 상단바 시작 -->
         	<div class="linemap-wrap">
@@ -153,19 +151,11 @@
             	</div>
         	</div>
         	<!-- 상단바 끝 -->
-        	
-        	
         	<!-- 내용 시작 -->
-        	
-        	
         	<div id="contents">
-            
-            <!-- Contents Start -->
-
-			<div class="sect-common">
-				<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/info.jsp"></c:import>
-			</div>
-
+				<div class="sect-common">
+					<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/info.jsp"></c:import>
+				</div>
 			<div class="cols-content" id="menu">
     			<div class="col-aside">
 					<div class="skipnaiv">
@@ -229,55 +219,68 @@
 	    			</div>
     			</div>
 			<div class="col-detail" id="mycgv_contents">
+				<!-- ////////////////////////////// -->
+			<div class="tit-mycgv">
+			    <h3>상영관 등록</h3>
+			</div>
+			<p class="info-com">&nbsp;</p>
+			<form action="./screenInsert" name="frm" method="POST">			
+				<table class="revisionTable">
+					<tr>
+						<td>지역선택</td>
+						<td>
+							<c:if test="${theaterDTO ne null}">
+								<input type="hidden" id="farea" value="${theaterDTO.area }">
+								<input type="hidden" id="ftheater_num" value="${theaterDTO.theater_num }">
+							</c:if>
+							<c:if test="${theaterDTO eq null}">
+								<input type="hidden" id="farea" value="x">
+								<input type="hidden" id="ftheater_num" value="${areaDTO.theater_num }">
+							</c:if>
+							<select id="area" name="area" class="kind selectList">
+								<option value="x">지역선택</option>
+								<c:forEach items="${areaList }" var="areaDTO">
+									<option value="${areaDTO.area }" class="kind">${areaDTO.area }</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>극장선택</td>
+						<td>
+							<select id="location" name="theater_num" class="lkind selectList">
+								<option value="x">극장선택</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>관번호</td>
+						<td><input type="number" id="room_num" name="room_num" class="noneBorder"></td>
+					</tr>
+					<tr>
+						<td>층</td>
+						<td><input type="number" id="floor" name="floor" class="noneBorder"></td>
+					</tr>
+					<tr>
+						<td>열(x)</td>
+						<td><input type="number" id="x_num" name="x_num" class="noneBorder" ></td>
+					</tr>
+					<tr>
+						<td>행(y)</td>
+						<td><input type="number" id="y_num" name="y_num" class="noneBorder" ></td>
+					</tr>
+				</table>
+				<div class="tbl-data">
+				<table id="screenList">
 				
-				<h3>스크린 추가 </h3>
-				<form action="./screenInsert" name="frm" method="POST">
-					<table>
-						<tr>
-							<td>지역</td>
-							<td>극장</td>
-							<td>관번호</td>
-							<td>층</td>
-							<td>열(x)</td>
-							<td>행(y)</td>
-						</tr>
-						<tr>
-							<td>
-								<c:if test="${theaterDTO ne null}">
-									<input type="hidden" id="farea" value="${theaterDTO.area }">
-									<input type="hidden" id="ftheater_num" value="${theaterDTO.theater_num }">
-								</c:if>
-								<c:if test="${theaterDTO eq null}">
-									<input type="hidden" id="farea" value="x">
-									<input type="hidden" id="ftheater_num" value="${areaDTO.theater_num }">
-								</c:if>
-								<select id="area" name="area" class="kind">
-									<option value="x">지역선택</option>
-									<c:forEach items="${areaList }" var="areaDTO">
-										<option value="${areaDTO.area }" class="kind">${areaDTO.area }</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td>
-								<select id="location" name="theater_num" class="lkind">
-									<option value="x">극장선택</option>
-								</select>
-							</td>
-							<td><input type="number" id="room_num" name="room_num" ></td>
-							<td><input type="number" id="floor" name="floor" ></td>
-							<td><input type="number" id="x_num" name="x_num" ></td>
-							<td><input type="number" id="y_num" name="y_num" ></td>
-						</tr>
-						
-					</table>
-					
-					<table id="screenList">
-				
-					</table>
-					
-					<input type="button" id="btn" value="확인">
-				</form>
-			
+				</table>
+				</div>
+				<div class="set-btn">
+					<input type="button" id="btn" class="round inred on" style="width: 58px;" value="등록">
+			        <a href="../admin/screenList" class="round gray"><span>취소</span></a>
+			    </div>
+			</form>
+	
 			<!-- //내용에 따라 바뀜// -->
 			</div>
 		</div>
