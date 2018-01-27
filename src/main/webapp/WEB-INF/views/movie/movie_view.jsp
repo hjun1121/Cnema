@@ -272,6 +272,13 @@
 	            
    	            <div class="paging">
 					<ul id="paging_point">
+						<c:choose>
+						<c:when test="${fn:length(review) eq 0}">
+							<li style="text-decoration: none;" class=" on">
+								<a href="movie_view?movie_num=${movie.movie_num}&curPage=1" title="1페이지 선택">1</a>
+							</li>
+						</c:when>
+						<c:otherwise>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none;" class=" on">
 								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${i}" title="${i}페이지 선택">${i}</a>
@@ -282,43 +289,12 @@
 								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
+						</c:otherwise>
+						</c:choose>
 					</ul>
 				</div>
 
 
-<!-- 				페이징 -->
-<!-- 				<div> -->
-<%-- 					<c:if test="${pager.curBlock gt 1}"> --%>
-<%-- 						<span class="list" title="${pager.startNum-1}">[이전]</span> --%>
-<%-- 					</c:if> --%>
-<%-- 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i"> --%>
-<%-- 						<span class="list" title="${i}">${i}</span> --%>
-<%-- 					</c:forEach> --%>
-<%-- 					<c:if test="${pager.curBlock lt pager.totalBlock}"> --%>
-<%-- 						<span class="list" title="${pager.lastNum+1}">[다음]</span> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-
-
-				<!-- 페이징 -->
-<!-- 	            <div class="paging"> -->
-<!-- 					<ul id="paging_point"> -->
-<!-- 						<li class=" on"> -->
-<!-- 							<a href="#1" title="1페이지 선택">1</a> -->
-<!-- 						</li> -->
-<!-- 						<li class=""> -->
-<!-- 							<a href="#2" title="">2</a> -->
-<!-- 						</li> -->
-<!-- 						<li class=""><a href="#3" title="">3</a> -->
-<!-- 						</li> -->
-<!-- 						<li class="paging-side"> -->
-<!-- 							<button class="btn-paging next" type="button">다음 10개</button> -->
-<!-- 						</li> -->
-<!-- 						<li class="paging-side"> -->
-<!-- 							<button class="btn-paging end" type="button">끝</button> -->
-<!-- 						</li> -->
-<!-- 					</ul> -->
-<!-- 				</div> -->
 	        </div>
 		</div>
 	    </div>

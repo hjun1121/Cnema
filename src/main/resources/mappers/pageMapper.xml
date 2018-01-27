@@ -4,8 +4,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pageMapper">
 
+	<!-- 발신함 -->
+	<select id="selectSendMail" parameterType="String" resultType="messageDTO">
+		select * from message where send_id=#{id}
+	</select>
+
+	<!-- 쪽지 수신 -->
+	<select id="selectMailOne" parameterType="int" resultType="messageDTO">
+		select * from message where message_num=#{message_num}
+	</select>
+	<update id="mailRead" parameterType="int">
+		update message set read_date=sysdate, type=11 where message_num=#{message_num}
+	</update>
+
 	<!-- 메일 받기 -->
-	<select id="mailreceive" parameterType="java.util.Map">
+	<select id="mailReceive" parameterType="java.util.Map" resultType="messageDTO">
+		select * from (
+		select rownum R, N.* from
+		(select * from message where receive_id=#{id}) N)
+		where R between #{rowNum.startRow} and #{rowNum.lastRow}
+	</select>
+	<select id="mailTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(nvl(null, 0)) from message where receive_id=#{id}	
 	</select>
 
 	<!-- 메일 보내기 -->

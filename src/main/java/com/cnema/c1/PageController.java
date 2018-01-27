@@ -16,6 +16,8 @@ import com.cnema.community.PageDTO;
 import com.cnema.community.PageMemberDTO;
 import com.cnema.community.PageService;
 import com.cnema.member.MemberDTO;
+import com.cnema.message.MessageDTO;
+import com.cnema.util.ListData;
 
 @Controller
 @RequestMapping(value = "/community/*")
@@ -23,6 +25,43 @@ public class PageController {
 	
 	@Inject
 	private PageService pageService;
+
+	
+	//발신함
+	@RequestMapping(value = "sendBox", method=RequestMethod.GET)
+	public ModelAndView sendBox(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	//쪽지 수신
+	@RequestMapping(value="mailView", method=RequestMethod.GET)
+	public ModelAndView mailView(int message_num) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MessageDTO messageDTO = pageService.selectMailOne(message_num);
+		
+		mv.addObject("mail", messageDTO);
+		return mv;
+	}
+	
+	//쪽지함
+	@RequestMapping(value="mailBox", method=RequestMethod.GET)
+	public ModelAndView mailBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		mv = pageService.mailReceive(session, listData);
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+
+		return mv;
+	}
+	
+	@RequestMapping(value="mailBox", method=RequestMethod.POST)
+	public void mailBox() throws Exception {
+		
+	}
+	
 	
 	//쪽지 보내기
 	@RequestMapping(value = "mailSend")
@@ -37,10 +76,9 @@ public class PageController {
 	public ModelAndView pageMemberJoin(int page_num, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		String id = "";
 		int result = 0;
 		try {
-			id = memberDTO.getId();
+			String id = memberDTO.getId();
 			PageDTO pageDTO = pageService.selectPageOne(page_num);
 			result = pageService.memberInsert(pageDTO, id);
 		} catch (Exception e) {
@@ -104,17 +142,8 @@ public class PageController {
 
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
-	public ModelAndView pageMain(HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
-		try {
-			String id = memberDTO.getId();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+	public void pageMain() throws Exception {
 
-		return mv;
 	}
 
 	//pageMain
@@ -124,7 +153,6 @@ public class PageController {
 		int member_num = 0;
 		int memberCheck = 0;
 		int pageMemberCount = 0;
-		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		try {
 			String id = memberDTO.getId();
@@ -202,9 +230,6 @@ public class PageController {
 			// TODO: handle exception
 		}
 
-		System.out.println(pageDTO.getPage_name());
-		System.out.println(pageDTO.getPage_num());
-		
 		String message = "페이지 생성 실패";
 		if(result > 0) {
 			message = "페이지 생성 완료";
