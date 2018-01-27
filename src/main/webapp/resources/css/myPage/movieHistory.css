@@ -1,4 +1,27 @@
 @CHARSET "UTF-8";
+.ico-grade.grade-15 {
+    background-position: -72px 0;
+}
+.ico-grade.grade-all {
+    background-position: -30px 0;
+}
+.ico-grade.grade-12 {
+    background-position: -51px 0;
+}
+.ico-grade.grade-19 {
+    background-position: -93px 0;
+}
+.ico-grade {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 21px;
+    height: 21px;
+    background: url(../../../resources/images/common/sprite/sprite_icon.png) no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+}
 .box-contents > a {
     display: block;
 }
