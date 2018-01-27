@@ -20,6 +20,9 @@
 		$("#delete_btn").click(function() {
 			alert("삭제");
 		});
+		$("#list_btn").click(function() {
+			location.href="mailBox";
+		});
 	});
 
 </script>
@@ -46,6 +49,6 @@
 	
 	<button id="reply_btn">답장</button>
 	<button id="delete_btn">삭제</button>
-	
+	<button id="list_btn">목록</button>
 </body>
 </html>

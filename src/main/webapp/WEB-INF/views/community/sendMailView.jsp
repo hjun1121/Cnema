@@ -20,7 +20,13 @@
 		$("#delete_btn").click(function() {
 			alert("삭제");
 		});
+		
+		function goBack() {
+		    window.history.back();
+		}
+		
 	});
+
 
 </script>
 </head>
@@ -46,6 +52,6 @@
 	
 	<button id="write_btn">쪽지쓰기</button>
 	<button id="delete_btn">삭제</button>
-
+	<button id="list_btn" onclick="goBack()">목록</button>
 </body>
 </html>

@@ -43,7 +43,7 @@
 		});
 		
 		$("#mailBox_btn").click(function(){
-			window.open("mailBox","쪽지함","width=720,height=394,toolbar=no");
+			window.open("mailBox","쪽지함","width=750,height=450");
 		});
 
 	});
@@ -67,7 +67,14 @@
 		<!-- 사용자 정보  -->
 		<div id="profile_info">
 			<h1>${member.id}<span> 님</span></h1>
-			<button id="mailBox_btn" name="mailBox_btn"><span>쪽지함</span></button>
+			<c:choose>
+				<c:when test="${mailCount eq 0 }">
+					<button id="mailBox_btn" name="mailBox_btn"><span>쪽지함</span></button>
+				</c:when>
+				<c:otherwise>
+					<button id="mailBox_btn" name="mailBox_btn"><span class="count">${mailCount}</span></button>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<!-- 쪽지함 div -->
 		<div id="mailBox_div">
