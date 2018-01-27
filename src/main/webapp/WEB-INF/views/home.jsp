@@ -166,7 +166,7 @@ function showSlides(n) {
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
-<<<<<<< HEAD
+
 		<%-- 	<div class="cols-banner">
 				<div class="col-ad">
 					<div class="box-com">
@@ -187,9 +187,7 @@ function showSlides(n) {
 					</div>
 				</div>
 			</div> --%>
-=======
-			
->>>>>>> d9793be7a5875a637637df91de1257451dd8eb38
+
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">

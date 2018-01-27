@@ -10,6 +10,10 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/theater/quickReserve.css">
+
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/layout.css">
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -100,7 +104,7 @@
 		
 	});
 </script>
-<style type="text/css">
+<!-- <style type="text/css">
 ul{
 	list-style: none;
 }
@@ -111,13 +115,13 @@ li{
 	float: left; 
 	margin-left: 5px;
 }
-</style>
+</style> -->
 </head>
 <body>
 	<div id="cgvwrap">
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
 			<!-- //////////////////////////////// -->
-			<div id="contaniner" class="">
+			<div id="contaniner" class="bg-bricks">
         	<!-- 상단바 시작 -->
         	<div class="linemap-wrap">
            		<div class="sect-linemap">
@@ -139,6 +143,175 @@ li{
         	<!-- 상단바 끝 -->
         	
         	<!-- 내용시작 -->
+  
+<!-- //////////////////////////// -->
+<div id="contents" >
+	<div class="sect-common"> 
+    	<div class="favorite-wrap">
+        	<h3 class="hidden">극장별 상영시간표</h3>
+        	<div class="sect-city">
+        		<ul>
+        			<li class="on">
+        				<a href="#">서울</a>
+        				<div class="area" style="margin-left: 0px;">
+        					<ul>
+        						<li class="on">
+        							<a title="CGV강남" href="#">CGV강남</a>
+        						</li>
+        						<li>
+        							<a title="CGV강동" href="#">CGV강동</a>
+        						</li>
+        					</ul>
+        				</div>
+        			</li>
+        			<li>
+        				<a href="#">경기</a>
+        				<div class="area" style="margin-left: -78.9844px;">
+        					<ul>
+        						<li>
+        							<a title="CGV경기광주" href="#">CGV경기광주</a>
+        						</li>
+        						<li>
+        							<a title="CGV광명철산" href="#">CGV광명철산</a>
+        						</li>
+        					</ul>
+        				</div>
+        			</li>
+        			<li>
+        				<a href="#">인천</a>
+        				<div class="area" style="margin-left: -157.969px;">
+        					<ul>
+        						<li>
+        							<a title="CGV계양" href="#">CGV계양</a>
+        						</li>
+        					</ul>
+        				</div>
+        			</li>
+        		</ul>
+        	</div>
+    	</div>
+	</div>
+	<div class="cols-content">
+    	<h4 class="tit-showtime">CGV강남</h4>
+    	<div class="col-detail"> 
+			<div class="showtimes-wrap">
+        		<div class="sect-schedule">
+            		<div id="slider" class="slider">
+                        <div class="item-wrap">
+                        	<ul class="item" style="width: 800px; height: 108px;">
+                        		<li>
+                            		<div class="day">
+                                		<a href="#">
+                                    		<span>01월</span> <em>토</em> <strong>27</strong>
+                                		</a>
+                            		</div>
+                        		</li>
+                        		<li class="on">
+                            		<div class="day">
+                                		<a href="#" title="현재 선택">
+                                    		<span>01월</span> <em> 일</em> <strong>28</strong>
+                                		</a>
+                            		</div>
+                        		</li>
+                        		<li>
+                            		<div class="day">
+                                		<a href="#">
+                                    		<span>01월</span> <em>월</em> <strong>29</strong>
+                                		</a>
+                            		</div>
+                        		</li>
+                        	</ul>
+                        </div>
+                		<button type="button" class="btn-prev">이전 날자보기</button>
+                		<button type="button" class="btn-next">다음 날자보기</button>
+            			</div>
+        			</div>
+        			<div class="sect-guide">
+            			<div class="descri-timezone">
+                			<p>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
+            			</div>
+        			</div>
+        			<div class="sect-showtimes">
+            			<ul>
+                        	<li>
+                            	<div class="col-times">
+                                	<div class="info-movie">
+                                    	<span class="ico-grade grade-12">12세 이상</span> 
+                                    	<a href="#"><strong>신과함께-죄와 벌</strong></a>
+                                    	<i>드라마,&nbsp;환타지</i>/ <i>139분</i>/ <i>2017.12.20개봉</i>
+                                	</div>
+                                    <div class="type-hall">
+                                    	<div class="info-hall">
+                                         	<ul>
+                                            	<li>2D</li>
+                                                <li>2관 6층</li>
+                                                <li>총124석</li>
+                                            </ul>
+                                         </div>
+                                         <div class="info-timetable">
+                                         	<ul>
+                                            	<li>
+                                            		<a href="#">
+                                            		<em>27:30</em>
+                                            		<span class="midnight txt-lightblue">
+                                            			<span class="hidden">잔여좌석</span>113석
+                                            		</span>
+                                            		</a>
+                                            	</li>
+                                            </ul>
+                                         </div>
+                                     </div>
+                                     <div class="type-hall">
+                                     	<div class="info-hall">
+                                        	<ul>
+                                            	<li>2D</li>
+                                                <li>6관 10층</li>
+                                                <li>총124석</li>
+                                            </ul>
+                                         </div>
+                                         <div class="info-timetable">
+                                         	<ul>
+                                            	<li>
+                                            		<a href="#">
+                                            			<em>08:00</em>
+                                            			<span class="early txt-lightblue">
+                                            				<span class="hidden">잔여좌석</span>89석
+                                            			</span>
+                                            		</a>
+                                            	</li>
+                                                <li>
+                                                	<a href="#">
+                                               			<em>13:20</em>
+                                               			<span class="txt-lightblue">
+                                               				<span class="hidden">잔여좌석</span>18석
+                                               			</span>
+                                               		</a>
+                                               	</li>
+                                                <li>
+                                                	<a href="#">
+                                                		<em>21:50</em>
+                                                		<span class="txt-lightblue">
+                                                			<span class="hidden">잔여좌석</span>98석
+                                                		</span>
+                                                	</a>
+                                                </li>
+                                             </ul>
+                                         </div>
+                                      </div>
+                            		</div>
+                       		 	</li>
+           					 </ul>
+        				</div>
+        			<p class="info-noti"></p>
+    			</div>   
+    		</div>
+		</div>
+ 
+
+            <!--/ Contents End -->
+
+		</div>
+<!-- //////////////////////////// -->
   
 	<h2>상영 시간표</h2>
 	
@@ -196,6 +369,9 @@ li{
 	<input type="text" id="dayN" name="day_num" value="${dayList[0].day_num }">
 	<input type="text" id="schedule_num" name="schedule_num">
 </form>
+
+
+
 
 			<!-- 내용 끝 -->
 			</div>
