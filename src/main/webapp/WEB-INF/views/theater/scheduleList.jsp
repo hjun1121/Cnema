@@ -104,18 +104,18 @@
 		
 	});
 </script>
-<!-- <style type="text/css">
+<style type="text/css">
 ul{
 	list-style: none;
 }
 #locationList ul{
 	clear: both;
 }
-li{
+/* li{
 	float: left; 
 	margin-left: 5px;
-}
-</style> -->
+} */
+</style>
 </head>
 <body>
 	<div id="cgvwrap">
@@ -151,20 +151,23 @@ li{
         	<h3 class="hidden">극장별 상영시간표</h3>
         	<div class="sect-city">
         		<ul>
-        			<li class="on">
-        				<a href="#">서울</a>
+        		<c:forEach items="${areaList }" var="DTO" varStatus="count">
+        			<li>
+        				<a href="#" class="areas" onclick="return false;" title="${DTO.area }">${DTO.area }</a>
         				<div class="area" style="margin-left: 0px;">
         					<ul>
-        						<li class="on">
-        							<a title="CGV강남" href="#">CGV강남</a>
-        						</li>
-        						<li>
-        							<a title="CGV강동" href="#">CGV강동</a>
-        						</li>
+								<div id="locationList">
+									<c:forEach items="${locationList }" var="DTO">
+		        						<li>
+		        							<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }">${DTO.location }</a>
+		        						</li>
+		        						
+		        					</c:forEach>
+	        					</div>
         					</ul>
         				</div>
         			</li>
-        			<li>
+        			<!-- <li>
         				<a href="#">경기</a>
         				<div class="area" style="margin-left: -78.9844px;">
         					<ul>
@@ -186,7 +189,8 @@ li{
         						</li>
         					</ul>
         				</div>
-        			</li>
+        			</li> -->
+        			</c:forEach>
         		</ul>
         	</div>
     	</div>
@@ -312,8 +316,8 @@ li{
 
 		</div>
 <!-- //////////////////////////// -->
-  
-	<h2>상영 시간표</h2>
+<%--   
+<h2>상영 시간표</h2>
 	
 <ul>
 	<c:forEach items="${areaList }" var="DTO" varStatus="count">
@@ -360,7 +364,7 @@ li{
 			</c:forEach>
 		</c:forEach>
 	</ul>
-</div>
+</div> --%>
 
 <form action="../theater/scheduleList" id="frm" name="frm" method="get">
 	<input type="text" id="movie_num" name="movie_num">
