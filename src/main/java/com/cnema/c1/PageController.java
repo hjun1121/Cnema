@@ -31,7 +31,7 @@ public class PageController {
 		
 		return mv;
 	}
-	
+
 	//페이지 가입하기
 	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.POST)
 	public ModelAndView pageMemberJoin(int page_num, HttpSession session) throws Exception {

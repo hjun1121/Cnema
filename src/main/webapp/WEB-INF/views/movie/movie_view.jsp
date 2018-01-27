@@ -235,14 +235,17 @@
 	                    				</li>
 	                    				<li style="float: right;">
                      						<c:choose>
-												<c:when test="${not empty member}">
+												<c:when test="${not empty member and review.id ne member.id}">
 													<input style="background-color: #eee8e2ad; border: none;" type="button" class = "warning_btn" name = "warning" value = "신고" title="${review.review_num}"> ${review.warning}
+												</c:when>
+												<c:when test="${not empty member and review.id eq member.id }">
+													신고  ${review.warning}
 												</c:when>
 												<c:otherwise>
 													<a href="#"><input style="background-color: #eee8e2ad; border: none;" type="button" class = "warning_btn" name = "warning" value = "신고" title="${review.review_num}"> ${review.warning}</a>
 												</c:otherwise>
 											</c:choose>
-	                    				</li>         
+	                    				</li>
 	                    				<li class="writer-etc"> 
 	                      					<span class="day">${review.reg_date}</span>
 	                       					<span class="day" style="background: none;">
