@@ -12,8 +12,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/movieHistory.css">
 <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/content_prepaid_card_170421.css">
-<link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css">
-<link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>나의 예매 내역</title>
@@ -45,11 +44,9 @@ $(function(){
 </script>
 </head>
 <body>
-<div id="cgvwrap">
+	<div id="cgvwrap">
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/header.jsp"></c:import>
-
 			<!-- //////////////////////////////// -->
-			
 			<div id="contaniner" class="bg-bricks main bg-bricks">
         	<!-- 상단바 시작 -->
         	<div class="linemap-wrap">
@@ -73,7 +70,7 @@ $(function(){
         	
         	
         	<!-- 내용 시작 -->
-        	<div id="contents" class="">
+        	<div id="contents">
             
             <!-- Contents Start -->
 			
@@ -193,7 +190,7 @@ $(function(){
 		    		</div>
 		    		</form>
 		    		 <div class="paging">
-					<ul id="paging_point" style="text-align: center;">
+						<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
 								<a href="movieHistory?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}" title="${i}페이지 선택">${i}</a>
@@ -204,44 +201,12 @@ $(function(){
 								<a href="movieHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
-					</ul>
-				</div>
+						</ul>
+					</div>
 	    			</div>
 					</div>
 				</div>
-			</div>
-        	
-        	<!-- ///////////////// -->
-	<%-- <h3>나의 예매 내역${fn:length(rList)}건</h3> 
-	<form action="movieHistory" method="POST">
-		<div>
-			<select id="kind">
-				<option class = "kind" value="2013">2013</option>
-				<option class = "kind" value="2014">2014</option>
-				<option class = "kind" value="2015">2015</option>
-				<option class = "kind" value="2016">2016</option>
-				<option class = "kind" value="2017">2017</option>
-				<option class = "kind" value="2018" selected="selected">2018</option>
-			</select>
-			<input type="button" id="date_search" value="GO">
-		</div>
-		<c:forEach items="${rList}" var="reserveList">
-			<input type="hidden" id="movie_num" name="movie_num" value="${reserveList.movieDTO.movie_num }">
-			<input type="text" id="reserve_num" name="reserve_num" value='${reserveList.reserve_num}'>
-			사진 : <img alt='${reserveList.movieDTO.movie_name}' src='${pageContext.request.contextPath }/resources/movie_poster/${reserveList.movieDTO.fileName}'><br>
-			<a href="../movie/movie_view?movie_num=${reserveList.movieDTO.movie_num }">영화명: ${reserveList.movieDTO.movie_name}<br></a>
-			날짜 : ${reserveList.scheduleDTO.day}<br>
-			시간 :<input type="text" id="in_time" name="in_time" value="${reserveList.scheduleDTO.in_time }">
-			~<input type="text" id="out_time" name="out_time" value="${reserveList.scheduleDTO.out_time }"><br>
-			지점 : ${reserveList.theater_num }<br>
-			상영관 번호 : ${reserveList.screen_num }<br>
-			몇명 : ${reserveList.ticketPriceDTO.people}<br>
-			<button>x</button><br>
-			<input type="button" class="reviewBtn" title="${reserveList.movieDTO.movie_num }" value="이 영화를 평가해 주세요"><br>
-			------ <br>
-		</c:forEach>
-	</form> --%>
-	<!-- 내용 끝 -->
+				</div>
 			</div>
 			<!-- ///////////////////////////////// -->
 		<c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
