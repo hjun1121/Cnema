@@ -53,7 +53,49 @@
   		select * from movie where show=10
   	</select>
   	
-  	<!-- heeseong 사용 -->
+  	<select id="mTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(movie_num) from movie
+  		<choose>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose>
+  	</select>
+  	
+  	<!-- heeseong-->
+  	<select id="movieAList" parameterType="java.util.Map" resultType="movieDTO">
+ 	 	select * from (
+		select rownum R, N.* from  		
+		(select * from movie 
+  		<choose>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select * from movie 
+  		<choose>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose> -->
+  	</select>
+  	
   	<select id="movieList" parameterType="java.util.Map" resultType="movieDTO">
   		select * from movie 
   		<choose>

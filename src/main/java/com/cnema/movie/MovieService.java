@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cnema.theater.TheaterDTO;
 import com.cnema.util.FileSaver;
 import com.cnema.util.ListData;
 import com.cnema.util.Pager;
@@ -105,10 +106,23 @@ public class MovieService {
 	public MovieDTO movieInfo(int movie_num) throws Exception{
 		return movieDAO.movieInfo(movie_num);
 	}
+	
 	/*heeseong*/
-	/*public List<MovieDTO> movieList() throws Exception {
-		return movieDAO.movieList();
-	}*/
+	public int mTotalCount(String kind, String search) throws Exception{
+		return movieDAO.mTotalCount(kind, search);
+	}
+	/*heeseong*/
+	public ModelAndView movieAList(String kind, String search, ListData listData) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(movieDAO.mTotalCount(kind,search));
+		
+		List<MovieDTO> movieList = movieDAO.movieAList(kind, search, rowNum);
+		mv.addObject("movieList", movieList);
+		mv.addObject("pager",pager);
+		return mv;
+		/*return movieDAO.movieAList();*/
+	}
 	/*heeseong*/
 	public int movieRevision(MovieDTO movieDTO) throws Exception{
 		return movieDAO.movieRevision(movieDTO);

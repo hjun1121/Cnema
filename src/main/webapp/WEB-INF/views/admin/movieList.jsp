@@ -215,6 +215,20 @@ $(function(){
 			    <div class="set-btn">
 			        <input type="button" class="round inred on" style="width:58px;" value="등록">
 		    	</div>
+		    	<div class="paging">
+					<ul id="paging_point" style="text-align: center;">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+								<a href="movieList?curPage=${i}&kind=${kind}&search=${search}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="movieList?curPage=${pager.lastNum+1}&kind=${kind}&search=${search}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 			</div>
 			<!-- /// -->
 			</div>

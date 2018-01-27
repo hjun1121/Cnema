@@ -114,17 +114,20 @@ public class AdminController {
 		
 	}
 	
-	
+	//중
 	@RequestMapping(value = "movieList", method = RequestMethod.GET)
-	public ModelAndView movieList(HttpSession session, String kind, String search) {
+	public ModelAndView movieList(HttpSession session, String kind, String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<MovieDTO> movieList = new ArrayList<>();
 		if (search == null) {
 			search = "";
 		}
+		if(kind==null){
+			kind="title";
+		}
 		try {
-			if (kind == null) {
+			/*if (kind == null) {
 				movieList = movieService.movieList("","");
 			} else {
 				if (kind.equals("title")) {
@@ -133,19 +136,24 @@ public class AdminController {
 				if (kind.equals("actor")) {
 					movieList = movieService.movieList(kind, search);
 				}
-			}
+			}*/
+			mv = movieService.movieAList(kind,search, listData);
 			count = myCouponService.couponCount(memberDTO.getId());
 			aCount = myCouponService.couponACount(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
-		mv.addObject("movieList", movieList);
+		/*mv.addObject("movieList", movieList);*/
 		mv.setViewName("admin/movieList");
 		return mv;
 	}
@@ -385,6 +393,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("theater_num", theater_num);
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
@@ -663,16 +672,21 @@ public class AdminController {
 		}
 		return mv;
 	}
-
+	
+	
 	@RequestMapping(value = "couponList", method = RequestMethod.GET)
-	public ModelAndView couponList(HttpSession session,String kind, String search) {
+	public ModelAndView couponList(HttpSession session,String kind, String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<CouponDTO> cList = new ArrayList<>();
+		/*List<CouponDTO> cList = new ArrayList<>();*/
 		if (search == null) {
 			search = "";
 		}
 		if (kind == null) {
+			kind = "name";
+		}
+		
+		/*if (kind == null) {
 			try {
 				cList = couponService.couponList("","");
 			} catch (Exception e) {
@@ -684,11 +698,19 @@ public class AdminController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}*/
+		try {
+			mv = couponService.couponList(kind, search, listData);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		
 		mv.addObject("myInfo", memberDTO);
 		mv.addObject("kind", kind);
 		mv.addObject("search", search);
-		mv.addObject("cList", cList);
+		/*mv.addObject("cList", cList);*/
 		mv.setViewName("admin/couponList");
 		return mv;
 	}
@@ -767,7 +789,7 @@ public class AdminController {
 
 		try {
 			groupList = coupongroupService.groupList();
-			cList = couponService.couponList("","");
+			/*cList = couponService.couponList("","");*/
 			if (group_num == -1) {
 				if(sort == 10){
 					memList = memberService.memberList("birth");
