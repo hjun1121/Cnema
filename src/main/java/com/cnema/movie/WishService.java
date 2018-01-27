@@ -33,7 +33,6 @@ public class WishService {
 		Pager pager = listData.makePage(wishDAO.wTotalCount(id,kind));
 		
 		List<WishDTO> wishList = wishDAO.wishList(id, kind,rowNum);
-		System.out.println("size:"+wishList.size());
 		for(WishDTO wishDTO : wishList){
 			MovieDTO movieDTO = movieDAO.movieInfo(wishDTO.getMovie_num());
 			wishDTO.setMovieDTO(movieDTO);
