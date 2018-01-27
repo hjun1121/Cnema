@@ -115,7 +115,7 @@ function showSlides(n) {
 			<div class="sect-common">
 				<div class="slider" id="slider">
 					<div class="item-wrap">
-					<c:forEach items="${event_list }" begin="0" end="3" var="dto" varStatus="c">
+					<c:forEach items="${event_list }" begin="0" end="2" var="dto" varStatus="c">
 					 
 						<c:if test="${c.count eq 1 }">
 							<div class="mySlides mainSlides" style="display: block;">
@@ -156,7 +156,7 @@ function showSlides(n) {
 			<!--이벤트 띄울화면  -->
 			<div class="sect-event">
 			<ul>
-				<c:forEach items="${ event_list}" var="dto">
+				<c:forEach items="${event_list }" begin="0" end="2" var="dto">
 		    	<li>
                 	<a href="./event/eventView?num=${dto.num}">
                     	<img src="${pageContext.request.contextPath }/resources/board/${dto.fileName}" width="320px;" height="225px;" alt="♡">
