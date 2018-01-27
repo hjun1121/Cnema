@@ -158,10 +158,12 @@ public class MyPageController {
 		if(kind==null){ kind="no"; }
 		
 		List<WishDTO> wList = new ArrayList<>();
-		
+		int reserveLeftbar = 0;
+		int wishLeftbar = 0;
 		try {
 			mv = reserveService.reserveList(memberDTO.getId(), kind, listData);
-			/*wList = wishService.wishList(memberDTO.getId(),"reg_date");*/
+			reserveLeftbar = reserveService.reserveLeftbar(memberDTO.getId());
+			wishLeftbar = wishService.wishLeftbar(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -169,7 +171,8 @@ public class MyPageController {
 		mv.addObject("page", listData);
 		mv.addObject("kind",kind);
 		mv.addObject("wList",wList);
-			
+		mv.addObject("reserveLeftbar", reserveLeftbar);
+		mv.addObject("wishLeftbar", wishLeftbar);
 		mv.setViewName("myPage/movieHistory");
 		return mv;
 	}
@@ -282,15 +285,20 @@ public class MyPageController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		List<ReserveDTO> rList = new ArrayList<>();
-		if(kind==null){
-			kind="reg_date";
-		}
+		if(kind==null){ kind="reg_date"; }
+		
+		int reserveLeftbar = 0;
+		int wishLeftbar = 0;
 		try {
-			rList = reserveService.reserveAList(memberDTO.getId());
 			mv = wishService.wishList(memberDTO.getId(), kind, listData);
+			reserveLeftbar = reserveService.reserveLeftbar(memberDTO.getId());
+			wishLeftbar = wishService.wishLeftbar(memberDTO.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		mv.addObject("reserveLeftbar", reserveLeftbar);
+		mv.addObject("wishLeftbar", wishLeftbar);
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
 		mv.addObject("kind", kind);

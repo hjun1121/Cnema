@@ -65,35 +65,27 @@ public class ReserveService {
 		int reviewCount = 0;
 		for(ReserveDTO reserveDTO : rList){
 			reserveDTO2 = reserveDAO.reserveBList(id, reserveDTO.getTp_num());
-			/*reserveDTO2 = reserveService.reserveBList(memberDTO.getId(), reserveDTO.getTp_num());*/
 			
 			scheduleDTO = scheduleDAO.scheduleInfo(reserveDTO2.getSchedule_num());
-			/*scheduleDTO = scheduleService.scheduleInfo(reserveDTO2.getSchedule_num());*/
 			reserveDTO.setScheduleDTO(scheduleDTO);
 			
 			
 			ticketPriceDTO = ticketPriceDAO.ticketPInfo(reserveDTO2.getTp_num());
-			/*ticketPriceDTO = ticketPriceService.ticketPInfo(reserveDTO2.getTp_num());*/
 			reserveDTO.setTicketPriceDTO(ticketPriceDTO);
 			
 			movieDTO = movieDAO.movieInfo(reserveDTO2.getMovie_num());
-			/*movieDTO = movieService.movieInfo(reserveDTO2.getMovie_num());*/
 			reserveDTO.setMovieDTO(movieDTO);
 			
 			theaterDTO= theaterDAO.theaterInfo(reserveDTO2.getTheater_num());
-			/*theaterDTO = theaterService.theaterInfo(reserveDTO2.getTheater_num());*/
 			reserveDTO.setTheaterDTO(theaterDTO);
 			
 			screenDTO = scheduleDAO.screenOne(reserveDTO2.getScreen_num());
-			/*screenDTO = scheduleService.screenOne(reserveDTO2.getScreen_num());*/
 			reserveDTO.setScreenDTO(screenDTO);
 			
 			reviewCount = reviewDAO.reviewCount(reserveDTO2.getMovie_num(), id); 
-			/*reviewCount = reviewService.reviewCount(reserveDTO2.getMovie_num(),memberDTO.getId());*/
 			reserveDTO.setCount(reviewCount);
 			
 			reviewDTO = reviewDAO.reviewInfo(reserveDTO2.getMovie_num(), id);
-			/*reviewDTO = reviewService.reviewInfo(reserveDTO2.getMovie_num(), memberDTO.getId());*/
 			reserveDTO.setReviewDTO(reviewDTO);
 		}
 		mv.addObject("rList", rList);
@@ -116,5 +108,9 @@ public class ReserveService {
 	/*heeseong*/
 	public List<ReserveDTO> selectList(String id) throws Exception{
 		return reserveDAO.selectList(id);
+	}
+
+	public int reserveLeftbar(String id) throws Exception{
+		return reserveDAO.reserveLeftbar(id);
 	}
 }

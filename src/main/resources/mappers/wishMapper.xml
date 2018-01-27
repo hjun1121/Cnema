@@ -8,11 +8,13 @@
   	<select id="wTotalCount" parameterType="java.util.Map" resultType="int">
   		<choose>
   			<when test="kind == 'reg_date'">select count(wish_num) from wish  where id=#{id}</when>
-  			<when test="kind == 'open_date'">select count(w.wish_num) from wish W, movie M where W.id=#{id} and W.movie_num=M.movie_num </when>
+  			<when test="kind == 'open_date'">select count(w.wish_num) from wish W, movie M where W.id=#{id} and W.movie_num=M.movie_num order by M.open_date desc</when>
   			<otherwise>select count(wish_num) from wish  where id=#{id}</otherwise>
   		</choose>
   	</select>
-  	
+  	<select id="wishLeftbar" parameterType="String" resultType="int">
+  		select count(wish_num) from wish where id=#{id}
+  	</select>
   	<!-- heeseong -->
   	<select id="wishList" resultType="wishDTO" parameterType="map">
   		select * from (

@@ -23,6 +23,9 @@
   	</select>
   	
   	<!-- heeseong -->
+  	<select id="reserveLeftbar" resultType="int" parameterType="String">
+  	 	select count(reserve_num) from reserve where id=#{id}
+  	</select>
   	<select id="reserveList" resultType="reserveDTO" parameterType="java.util.Map">
   		select * from (
 		select rownum R, N.* from  		

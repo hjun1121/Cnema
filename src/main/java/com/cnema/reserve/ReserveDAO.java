@@ -27,6 +27,7 @@ public class ReserveDAO {
 	public int reserveInsert(ReserveDTO reserveDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"reserveInsert", reserveDTO);
 	}
+
 	/*heeseong*/
 	public int rTotalCount(String id,String kind) throws Exception{
 		Map<String, Object> rMap = new HashMap<>();
@@ -65,5 +66,9 @@ public class ReserveDAO {
 	/*heeseong*/
 	public List<ReserveDTO> selectList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"selectList", id);
+	}
+
+	public int reserveLeftbar(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"reserveLeftbar", id);
 	}
 }

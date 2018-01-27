@@ -100,7 +100,7 @@ $(function(){
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
 				                <a href="../myPage/wishList">
-				                    <em>${fn:length(wList)}</em>
+				                    <em>${wishLeftbar}</em>
 				                    <strong>위시리스트</strong>
 				                </a>
 				            </div>
@@ -110,7 +110,7 @@ $(function(){
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
 				                <a href="../myPage/movieHistory">
-				                    <em>${fn:length(rList)}</em>
+				                    <em>${reserveLeftbar }</em>
 				                    <strong>내가 본 영화</strong>
 				                </a>
 				            </div>
@@ -123,7 +123,7 @@ $(function(){
             		<form id="movieHistory" method="POST">
 	            		<div class="tit-mycgv">
 				            <h3>내가 본 영화</h3>
-				            <p><em>${fn:length(rList)}건</em></p>
+				            <%-- <p><em>${fn:length(rList)}건</em></p> --%>
 				            <div class="set-combo">
 				                <label for="year">내가 본 영화 년도별 정렬</label>
 				                <select id="kind" name="year">
@@ -144,7 +144,7 @@ $(function(){
 			    		<input type="hidden" id="movie_num" name="movie_num" value="${reserveList.movieDTO.movie_num }">
 			    		<input type="hidden" id="tp_num" name="tp_num" value="${reserveList.tp_num }">
                             <li class="movie_info_78316">
-                                <div class="article-movie-info">
+                                <div class="article-movie-info" style="margin-bottom: 15px;">
 				            		<div class="box-image"> 
 				                    	    <a href="#">
 				                        	<span class="thumb-image"> 
@@ -165,18 +165,18 @@ $(function(){
                                         <ul class="writerinfo">              
                                         	<c:if test="${reserveList.count eq 0 }">                        
 	                                        <li class="writer-opinion">
-	                                        	<input type="button" class="reviewBtn" title="${reserveList.movieDTO.movie_num }" value="이 영화를 평가해 주세요">
+	                                        	<input type="button" style="line-height: 23px; font-family: 'NanumBarunGothicBold'; text-align: center;  vertical-align: middle; border: 2px solid #7b7b7b; color: #7b7b7b; padding: 3px;" class="reviewBtn" title="${reserveList.movieDTO.movie_num }" value="이 영화를 평가해 주세요">
                                             </li>
                                             </c:if>
                                             <c:if test="${reserveList.count ne 0 }">  
                                             	<c:if test="${reserveList.reviewDTO.r_type eq 10}">                      
 			                                        <li class="writer-opinion">
-			                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 완료">
+			                                        	<input type="button" style="line-height: 23px; font-family: 'NanumBarunGothicBold'; text-align: center;  vertical-align: middle; border: 2px solid #7b7b7b; color: #7b7b7b; padding: 3px;" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 완료">
 		                                            </li>
                                           	 	</c:if>
 	                                          	<c:if test="${reserveList.reviewDTO.r_type eq 11}">                      
 				                                        <li class="writer-opinion">
-				                                        	<input type="button" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 삭제하셨습니다">
+				                                        	<input type="button"  style="line-height: 23px; font-family: 'NanumBarunGothicBold'; text-align: center;  vertical-align: middle; border: 2px solid #7b7b7b; color: #7b7b7b; padding: 3px;" class="reSeeBtn" title="${reserveList.movieDTO.movie_num }" value="평가 삭제하셨습니다">
 			                                            </li>
 	                                          	</c:if>
                                             </c:if>  

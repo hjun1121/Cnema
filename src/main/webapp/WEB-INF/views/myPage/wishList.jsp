@@ -104,7 +104,7 @@ $(function(){
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
 				                <a href="${pageContext.request.contextPath }/myPage/wishList">
-				                    <em>${fn:length(wList)}</em>
+				                    <em>${wishLeftbar}</em>
 				                    <strong>위시리스트</strong>
 				                </a>
 				            </div>
@@ -114,7 +114,7 @@ $(function(){
 				        <div class="box-round-inner">
 				            <div class="inner-contents-log">
 				                <a href="${pageContext.request.contextPath }/myPage/movieHistory">
-				                    <em>${fn:length(rList)}</em>
+				                    <em>${reserveLeftbar }</em>
 				                    <strong>내가 본 영화</strong>
 				                </a>
 				            </div>

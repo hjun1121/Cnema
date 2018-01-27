@@ -36,4 +36,7 @@ public class WishDAO {
 	public int wishListDelete(int wish_num) throws Exception{
 		return sqlSession.delete(NAMESPACE+"wishListDelete",wish_num);
 	}
+	public int wishLeftbar(String id) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"wishLeftbar",id);
+	}
 }
