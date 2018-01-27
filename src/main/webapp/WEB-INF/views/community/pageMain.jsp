@@ -46,6 +46,14 @@
 			window.open("mailBox","쪽지함","width=750,height=450");
 		});
 
+		$("#join_more_btn").click(function() {
+			$("#joinHidden_div").css("display","");
+		});
+		
+		$("#recommend_more_btn").click(function() {
+			$("#recommendHidden_div").css("display","");
+		});
+		
 	});
 
 
@@ -81,12 +89,35 @@
 
 		</div>
 		<!-- 가입 페이지  -->
-		<div id="join_page_list" style="height: 100px; border: 1px solid red; margin-bottom: 20px;">
-			가입한 페이지
+		<div id="join_page_list" style="margin-bottom: 20px;">
+			<p style="margin-bottom: 10px; font-size: 15px; color: #717171b8; font-weight: bold;">가입한 페이지</p>
+			<c:forEach items="${joinPage}" var="join" varStatus="count">
+				<c:if test="${count.count == 4 }">
+					<div style="display: none;" id="joinHidden_div">
+						<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }"> <span>${join.page_name }</span></p>
+					</div>
+				</c:if>
+				<c:if test="${count.count <= 3 }">
+					<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }"> <span>${join.page_name }</span></p>
+				</c:if>
+			</c:forEach>
+			<button id="join_more_btn">+더보기</button>
 		</div>
+
 		<!-- 추천 페이지  -->
-		<div id="recommend_page_list" style="height: 100px; border: 1px solid green;">
-			추천 페이지
+		<div id="recommend_page_list">
+			<p style="margin-bottom: 10px; font-size: 15px; color: #717171b8; font-weight: bold;">추천 페이지</p>
+			<c:forEach items="${recommendPage }" var="recommend" varStatus="count">
+				<c:if test="${count.count == 4 }">
+					<div style="display: none;" id="recommendHidden_div">
+						<p><img alt="${join.page_name }" src="../resources/page_logo/${recommend.fileName }"> <span>${recommend.page_name }</span></p>
+					</div>
+				</c:if>
+				<c:if test="${count.count <= 3 }">
+					<p><img alt="${recommend.page_name }" src="../resources/page_logo/${recommend.fileName }"> <span>${recommend.page_name }</span></p>
+				</c:if>
+			</c:forEach>
+			<button id="recommend_more_btn">+더보기</button>
 		</div>
 	</div>
 	
@@ -100,18 +131,24 @@
 		<div id="page_name">
 			<!-- 페이지 가입/탈퇴 버튼  -->
 			<div id="page_btns">
+				<form action="" id="frm" name="frm" method="POST">
+					<input type="hidden" name="page_num" value="${page.page_num}">
+					<c:if test="${memberCheck eq 11 }">
+					<input type="hidden" name="pageMember_num" value="${member_num}">
+					</c:if>
+				</form>
 				<c:choose>
 					<c:when test="${memberCheck eq 11}">
-						<button class="page_btns" id="drop_btn"><img alt="" src="../resources/page/탈퇴img.png">탈퇴하기</button>
+						<button class="page_btns" id="drop_btn"><img style="padding-bottom: 7px;" alt="" src="../resources/page/탈퇴2.png">탈퇴하기</button>
 					</c:when>
 					<c:when test="${memberCheck eq 0}">
-						<button class="page_btns" id="join_btn">가입하기</button>
+						<button class="page_btns" id="join_btn"><img style="padding-bottom: 7px;" alt="" src="../resources/page/가입.png">가입하기</button>
 					</c:when>
 					<c:otherwise>
 						<button class="page_btns" id="">그룹장이라 탈퇴안되지롱</button>
 					</c:otherwise>
 				</c:choose>
-				<input type = "button" class="page_btns" value="${pageMemberCount}명이 팔로우">
+				<button class="page_btns"><img src="../resources/page/팔로우.png">${pageMemberCount } 명이 팔로우</button>
 			</div>
 			<!-- 커뮤니티 이름  -->
 			<div style="float: right;">
