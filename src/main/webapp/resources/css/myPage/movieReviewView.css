@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+.writebutton__{
+	background-color: red;
+    border: 1px;
+    padding: 5px;
+    color: white;
+    border-radius: 7px;
+}
+
 .layer-wrap .layer-contents.on-shadow {
     -webkit-box-shadow: #333 5px 5px 15px;
     -moz-box-shadow: #333 5px 5px 15px;

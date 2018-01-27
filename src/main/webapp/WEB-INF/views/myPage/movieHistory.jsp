@@ -28,7 +28,7 @@ $(function(){
 	});
 	$(".reviewBtn").click(function(){
 		var movie_num = $(this).attr("title");
-		window.open("movieReview?movie_num="+movie_num,"평점작성","width=720,height=394,toolbar=no");
+		window.open("movieReview?movie_num="+movie_num,"평점작성","width=821,height=320,toolbar=no");
 	});
 	$(".reSeeBtn").click(function(){
 		var movie_num = $(this).attr("title");

@@ -7,7 +7,7 @@
 <head>
 
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/movieReview.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/movieReviewView.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -27,60 +27,44 @@ $(function(){
 </head>
 <body>
 
-
-<div class="layer-contents on-shadow" style="width:710px;">
-   <div class="popup-general">
-       <div class="popwrap">
-       		<h1>평점작성</h1>     
-            <div class="pop-contents write-mygrade">
-            	<div class="mygrade-cont">
-            		<div class="movietit">
-            			<strong id="pointTitle">${movieDTO.movie_name }</strong>
-                    </div>
-                    
-                    <div class="likeornot">
-                    	<div class="writerinfo">
-                    		<div class="box-image">
-                          		<span class="thumb-image">
-                          			
-                          	    	<img src="../resources/profil/${member.fileName }" alt="사용자 프로필">
-                          	        	<span class="profile-mask"></span>
-                          	     </span>         
-                          	</div>         
-                          	<span class="writer-name"></span>
-                         </div>         
-                        <div class="likebox t1" id="EggSelect">
-        					<div class="likebox-inner">          
-        						<label for="likeornot1-1">           
-        							<input type="button" id="good" value="좋았어요~^^">         
-                             	</label>
-                            </div>       
-                        </div>        
-                        <div class="likebox t2">         
-                              <div class="likebox-inner">
-                              	<label for="likeornot1-2">
-                                	<input type="button" id="bad" value="흠~좀 별로였어요;;;">           
-                                </label>         
-                              </div>        
-                        </div>       
-                        </div>
-                        <form action="movieReview" name="rFrm" method="POST">
-							<input type="hidden" name="movie_num" value="${movieDTO.movie_num }">
-                       			<div class="textbox">       
-                        			<textarea id="review" name="review" title="영화평점 입력" cols="70" rows="2" maxlength="140" placeholder="운영원칙에 어긋나는 게시물로 판단되는 글은 제재 조치를 받을 수 있습니다."></textarea>       
-                        		</div> 
-	                        <div class="footbox">       
-	                            <div class="rbox"> 
-	                                <input type="submit" class="round red on"  value="작성완료">    
-	                            </div>       
-	                       	</div>  
-                       	</form>      
-                    </div>
-				</div>     
+	<div class="layer-wrap"style=" position: fixed;"tabindex="0">
+		<div class="layer-contents on-shadow" style="width: 800px;"id="watched-detailLayer">
+			<div class="popwrap">
+				<h1>평점쓰기</h1>
+				<div class="pop-contents">
+					<div id="movie_info_container" class="sect-viw-rated">
+						<div class="box-image">
+							<span class="thumb-image"> 
+								<img src="../resources/movie_poster/${movieDTO.fileName}" alt="${movie.movie_name} 포스터"> 
+							</span>
+						</div>
+						<div class="box-contents">
+							<div class="title">
+								<strong>${movieDTO.movie_name }</strong>
+							</div>
+							
+							<div>
+								<img alt="" src="${pageContext.request.contextPath }/resources/images/myPageView/good.png" style="width:14px; height: 14px; ">
+								<input type="button" id="good" style="border: none; background-color: #f6f6f4" value="좋았어요~^^">
+								<img alt="" src="${pageContext.request.contextPath }/resources/images/myPageView/sad.png" style="width:14px; height: 14px; ">
+								<input type="button" id="bad" style="border: none; background-color: #f6f6f4" value="흠~좀 별로였어요;;;">
+							</div>
+							<br>
+							<form action="movieReview" name="rFrm" method="POST">
+								<input type="hidden" name="movie_num" value="${movieDTO.movie_num }">
+								<textarea name="review" id="review" style="width: 250px; height: 45px;"></textarea>
+								<br><br>
+								<input type="submit" style="background-color: red;border: 1px;padding: 5px;color: white;border-radius: 7px;" value="작성완료">
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
+	
+	
+	
 <%-- <h3>평점주기</h3>
 <h2>${movieDTO.movie_name }</h2>
 <input type="button" id="good" value="좋았어요~^^">
@@ -91,5 +75,6 @@ $(function(){
 	<textarea name="review" id="review"></textarea>
 	<input type="submit" value="작성완료">
 </form> --%>
+
 </body>
 </html>
