@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cnema.util.ListData;
 import com.cnema.util.RowNum;
 
 
@@ -144,9 +145,23 @@ public class MovieDAO {
 	}
 	
 	/*heeseong*/
-	/*public List<MovieDTO> movieList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"movieList");
-	}*/
+	public int mTotalCount(String kind,String search) throws Exception{
+		Map<String, Object> mMap = new HashMap<>();
+		mMap.put("kind", kind);
+		mMap.put("search", search);
+		return sqlSession.selectOne(NAMESPACE+"mTotalCount",mMap);
+	}
+	
+	/*heeseong*/
+	public List<MovieDTO> movieAList(String kind,String search,RowNum rowNum) throws Exception{
+		Map<String, Object> mMap = new HashMap<>();
+		mMap.put("kind", kind);
+		mMap.put("search", search);
+		mMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"movieAList",mMap);
+		
+		/*return sqlSession.selectList(NAMESPACE+"movieList");*/
+	}
 	/*heeseong*/
 	public int movieRevision(MovieDTO movieDTO) {
 		return sqlSession.update(NAMESPACE+"movieRevision",movieDTO);

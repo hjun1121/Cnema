@@ -16,10 +16,47 @@
   	<select id="couponInfo" resultType="couponDTO" parameterType="int">
   		select * from coupon where c_num=#{c_num}
   	</select>
-   <!-- heeseong -->
-  	<select id="couponList" resultType="couponDTO" parameterType="Map">
-  		select * from coupon 
+  	<!-- heeseong -->
+  	<select id="totalCount" resultType="int" parameterType="java.util.Map">
+  		select count(c_num) from coupon
   		<choose>
+	  		<when test="kind=='name'">
+	  			where name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='rate'">
+	  			where type = 10 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='price'">
+	  			where type = 11 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<otherwise>
+	  		</otherwise>
+  		</choose>
+  	</select>
+   <!-- heeseong -->
+  	<select id="couponList" resultType="couponDTO" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select * from coupon 
+		<choose>
+	  		<when test="kind=='name'">
+	  			where name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='rate'">
+	  			where type = 10 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='price'">
+	  			where type = 11 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<otherwise>
+	  		</otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		
+  		
+  		<!--
+  		select * from coupon 
+  		 <choose>
   		<when test="kind=='name'">
   			where name like '%'||#{search}||'%'
   		</when>
@@ -31,7 +68,7 @@
   		</when>
   		<otherwise>
   		</otherwise>
-  		</choose>
+  		</choose> -->
   	</select>
   	<!-- heeseong -->
   	<insert id="couponInsert" parameterType="couponDTO">

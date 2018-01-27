@@ -5,6 +5,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 @Service
 public class CouponService {
@@ -24,8 +29,16 @@ public class CouponService {
 		return couponDAO.couponInfo(c_num);
 	}
 	/*heeseong*/
-	public List<CouponDTO> couponList(String kind, String search) throws Exception{
-		return couponDAO.couponList(kind,search);
+	public ModelAndView couponList(String kind, String search,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(couponDAO.totalCount(kind,search));
+		
+		List<CouponDTO> cList = couponDAO.couponList(kind, search, rowNum);
+		mv.addObject("cList", cList);
+		mv.addObject("pager",pager);
+		return mv;
+		/*return couponDAO.couponList(kind,search);*/
 	}
 	/*heeseong*/
 	public int couponInsert(CouponDTO couponDTO) throws Exception{

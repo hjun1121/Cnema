@@ -81,6 +81,7 @@
 	                	<a href="#">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
+	                        <li><a href="../myPage/couponHistory2">나의 쿠폰 사용 내역</a></li>
 		                    <!-- <li><a href="#">영화관람권</a></li> -->
 	                	</ul>
 	           		</li>

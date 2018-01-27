@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.util.RowNum;
+
 @Repository
 public class CouponDAO {
 	@Inject
@@ -28,10 +30,18 @@ public class CouponDAO {
 		return sqlSession.selectOne(NAMESPACE+"couponInfo",c_num);
 	}
 	/*heeseong*/
-	public List<CouponDTO> couponList(String kind, String search) throws Exception{
+	public int totalCount(String kind, String search) throws Exception{
 		Map<String, Object> cMap = new HashMap<>();
 		cMap.put("kind", kind);
 		cMap.put("search", search);
+		return sqlSession.selectOne(NAMESPACE+"totalCount",cMap);
+	}
+	/*heeseong*/
+	public List<CouponDTO> couponList(String kind, String search,RowNum rowNum) throws Exception{
+		Map<String, Object> cMap = new HashMap<>();
+		cMap.put("kind", kind);
+		cMap.put("search", search);
+		cMap.put("rowNum", rowNum);
 		return sqlSession.selectList(NAMESPACE+"couponList",cMap);
 	}
 	/*heeseong*/

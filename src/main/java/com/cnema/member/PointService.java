@@ -6,6 +6,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.cnema.theater.TheaterDTO;
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
 
 
 @Service
@@ -32,9 +38,22 @@ public class PointService {
 		return pointDAO.usePoint(pointDTO);
 	}
 	
+	/*heeseong*/
+	public int pTotalCount(String id,String testDatepicker1,String testDatepicker2) throws Exception{
+		return pointDAO.pTotalCount(id,testDatepicker1,testDatepicker2);
+	}
 	/*HeeSeong*/
-	public List<PointDTO> pointList(String id,String testDatepicker1,String testDatepicker2) throws Exception{
-		return pointDAO.pointList(id,testDatepicker1,testDatepicker2);
+	public ModelAndView pointList(String id,String testDatepicker1,String testDatepicker2,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		
+		Pager pager = listData.makePage(pointDAO.pTotalCount(id,testDatepicker1,testDatepicker2));
+		System.out.println("service in"+testDatepicker1);
+		List<PointDTO> pList = pointDAO.pointList(id,testDatepicker1,testDatepicker2,rowNum);
+		mv.addObject("pList", pList);
+		mv.addObject("pager",pager);
+		return mv;
+		/*return pointDAO.pointList(id,testDatepicker1,testDatepicker2);*/
 	}
 	/*HeeSeong*/
 	public List<PointDTO> pointAList(String id) throws Exception{

@@ -34,7 +34,7 @@
   	<!-- <select id="thLocationList" resultType="theaterDTO" parameterType="String">
   		select * from theater where location=#{search}
   	</select> -->
-  	
+  	<!-- heeseong -->
   	<select id="totalCount" parameterType="java.util.Map" resultType="int">
   		select count(nvl(null,0)) from theater
   		<choose>

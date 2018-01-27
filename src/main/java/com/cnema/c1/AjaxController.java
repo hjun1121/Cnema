@@ -438,7 +438,7 @@ public class AjaxController {
 		List<MyCouponDTO> couponList = null;
 		try {
 			memberDTO = (MemberDTO)session.getAttribute("member");
-			couponList = myCouponService.myCouponList(memberDTO.getId(), "11");
+			couponList = myCouponService.myCouponList(memberDTO.getId());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

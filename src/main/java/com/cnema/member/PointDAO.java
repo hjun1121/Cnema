@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.util.RowNum;
+
 @Repository
 public class PointDAO {
 	@Inject
@@ -23,13 +25,29 @@ public class PointDAO {
 		return sqlSession.insert(NAMESPACE+"usePoint", pointDTO);
 	}
 	
-	/*HeeSeong*/
-	public List<PointDTO> pointList(String id,String testDatepicker1,String testDatepicker2) throws Exception{
+	/*heeseong*/
+	public int pTotalCount(String id,String testDatepicker1,String testDatepicker2) throws Exception{
 		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("id", id);
+		
+		pMap.put("datepicker1", testDatepicker1);
+		pMap.put("datepicker2", testDatepicker2);
+		return sqlSession.selectOne(NAMESPACE+"pTotalCount",pMap);
+	}
+	/*HeeSeong*/
+	public List<PointDTO> pointList(String id,String testDatepicker1,String testDatepicker2,RowNum rowNum) throws Exception{
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("id", id);
+		System.out.println("dao in"+testDatepicker1);
+		pMap.put("datepicker1", testDatepicker1);
+		pMap.put("datepicker2", testDatepicker2);
+		pMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"pointList",pMap);
+		/*Map<String, Object> pMap = new HashMap<String, Object>();
 		pMap.put("id", id);
 		pMap.put("datepicker1", testDatepicker1);
 		pMap.put("datepicker2", testDatepicker2);
-		return sqlSession.selectList(NAMESPACE+"pointList",pMap);
+		return sqlSession.selectList(NAMESPACE+"pointList",pMap);*/
 	}
 	
 	/*HeeSeong*/

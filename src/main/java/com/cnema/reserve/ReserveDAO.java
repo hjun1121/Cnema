@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.util.RowNum;
+
 @Repository
 public class ReserveDAO {
 	@Inject
@@ -25,13 +27,25 @@ public class ReserveDAO {
 	public int reserveInsert(ReserveDTO reserveDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"reserveInsert", reserveDTO);
 	}
-	
 	/*heeseong*/
-	public List<ReserveDTO> reserveList(String id,String kind) throws Exception{
+	public int rTotalCount(String id,String kind) throws Exception{
 		Map<String, Object> rMap = new HashMap<>();
 		rMap.put("id", id);
 		rMap.put("kind", kind);
-		return sqlSession.selectList(NAMESPACE+"reserveList", rMap);
+		return sqlSession.selectOne(NAMESPACE+"rTotalCount",rMap);
+	}
+	/*heeseong*/
+	public List<ReserveDTO> reserveList(String id,String kind,RowNum rowNum) throws Exception{
+		System.out.println("kind"+kind);
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("id", id);
+		rMap.put("kind", kind);
+		rMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"reserveList",rMap);
+		/*Map<String, Object> rMap = new HashMap<>();
+		rMap.put("id", id);
+		rMap.put("kind", kind);
+		return sqlSession.selectList(NAMESPACE+"reserveList", rMap);*/
 	}
 	/*heeseong*/
 	public List<ReserveDTO> reserveAList(String id) throws Exception{

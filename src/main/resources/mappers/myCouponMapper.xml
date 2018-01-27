@@ -4,18 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="myCouponMapper">
   
+  <select id="myCouponList" parameterType="String" resultType="myCouponDTO">
+  	select * from mycoupon where id=#{id} and type=11
+  </select>
+  
   <update id="qrCouponUpdate" parameterType="java.util.Map">
   	update mycoupon set type=10, use_date=sysdate where c_num=#{c_num} and id=#{id}
   </update>
-  
   <!-- heeseong -->
-  <select id="myCouponList" resultType="myCouponDTO" parameterType="java.lang.String">
-  	select * from myCoupon where id=#{id} and type=#{type} order by v_date asc
+  <select id="hTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(num) from mycoupon where id=#{id} and type=#{type}
   </select>
-  
+  <!-- heeseong -->
+  <select id="myCouponHistoryList" resultType="myCouponDTO" parameterType="java.util.Map">
+	select * from (
+	select rownum R, N.* from  		
+	(select * from myCoupon where id=#{id} and type=#{type} order by v_date asc) N)
+	where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  	<!-- select * from myCoupon where id=#{id} and type=#{type} order by v_date asc -->
+  </select>
+   <!-- heeseong -->
+  <select id="dTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(num) from mycoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1}
+  </select>
   <!-- heeseong -->
   <select id="myCouponDList" resultType="myCouponDTO" parameterType="java.util.Map">
-  	select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1}
+ 	 select * from (
+	select rownum R, N.* from  		
+	(select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1}) N)
+	where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  	<!-- select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1} -->
   </select>
   
   <!-- heeseong -->

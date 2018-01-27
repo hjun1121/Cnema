@@ -10,12 +10,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.cnema.member.MemberDTO;
+import com.cnema.util.RowNum;
 
 @Repository
 public class MyCouponDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private final String NAMESPACE="myCouponMapper.";
+	
+	public List<MyCouponDTO> myCouponList(String id)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"myCouponList", id);
+	}
 	
 	public int qrCouponUpdate(int c_num, String id) throws Exception{
 		Map<String, Object> map = new HashMap<>();
@@ -24,19 +29,46 @@ public class MyCouponDAO {
 		return sqlSession.update(NAMESPACE+"qrCouponUpdate", map);
 	}
 	/*heeseong*/
-	public List<MyCouponDTO> myCouponList(String id,String type) throws Exception{
+	public int hTotalCount(String id,String type) throws Exception{
+		Map<String, Object> chMap = new HashMap<>();
+		chMap.put("id", id);
+		chMap.put("type", type);
+		return sqlSession.selectOne(NAMESPACE+"hTotalCount",chMap);
+	}
+	
+	/*heeseong*/
+	public List<MyCouponDTO> myCouponHistoryList(String id,String type,RowNum rowNum) throws Exception{
 		Map<String, Object> cMap = new HashMap<String, Object>();
 		cMap.put("id", id);
 		cMap.put("type", type);
-		return sqlSession.selectList(NAMESPACE+"myCouponList",cMap);
+		cMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"myCouponHistoryList",cMap);
+		/*Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("id", id);
+		cMap.put("type", type);
+		return sqlSession.selectList(NAMESPACE+"myCouponHistoryList",cMap);*/
 	}
 	/*heeseong*/
-	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2) throws Exception{
+	public int dTotalCount(String id,String dp1,String dp2) throws Exception{
 		Map<String, Object> cMap = new HashMap<String, Object>();
 		cMap.put("id", id);
 		cMap.put("dp1", dp1);
 		cMap.put("dp2", dp2);
+		return sqlSession.selectOne(NAMESPACE+"dTotalCount",cMap);
+	}
+	/*heeseong*/
+	public List<MyCouponDTO> myCouponDList(String id,String dp1,String dp2,RowNum rowNum) throws Exception{
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("id", id);
+		cMap.put("dp1", dp1);
+		cMap.put("dp2", dp2);
+		cMap.put("rowNum", rowNum);
 		return sqlSession.selectList(NAMESPACE+"myCouponDList",cMap);
+		/*Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("id", id);
+		cMap.put("dp1", dp1);
+		cMap.put("dp2", dp2);
+		return sqlSession.selectList(NAMESPACE+"myCouponDList",cMap);*/
 	}
 	/*heeseong*/
 	public List<MyCouponDTO> myCouponAList(String id) throws Exception{

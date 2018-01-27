@@ -11,11 +11,33 @@
  	<insert id="reserveInsert" parameterType="reserveDTO">
   		insert into reserve values(movie_seq.nextval,#{theater_num},#{screen_num},#{schedule_num},#{seat},#{movie_num},#{id},#{tp_num})
   	</insert>
-  
+  	<select id="rTotalCount" parameterType="java.util.Map" resultType="int">
+  		<choose>
+  			<when test="kind=='no'">
+  				select count(distinct tp_num) from reserve where id=#{id}
+  			</when>
+  			<otherwise>
+  				select count(distinct T.tp_num) from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind}
+  			</otherwise>
+  		</choose>
+  	</select>
+  	
   	<!-- heeseong -->
   	<select id="reserveList" resultType="reserveDTO" parameterType="java.util.Map">
-  		select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind}
+  		select * from (
+		select rownum R, N.* from  		
+		(<choose>
+  			<when test="kind=='no'">
+  				select distinct tp_num from reserve where id=#{id}
+  			</when>
+  			<otherwise>
+  				select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind}
+  			</otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind} -->
   	</select>
+  	
   	<!-- heeseong -->
   	<select id="reserveAList" resultType="reserveDTO" parameterType="java.lang.String">
   		select distinct tp_num from reserve where id=#{id}

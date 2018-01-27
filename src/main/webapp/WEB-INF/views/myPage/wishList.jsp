@@ -125,7 +125,7 @@ $(function(){
 					    <div class="movielog-detail-wrap">
 					        <div class="tit-mycgv">
 						        <h3>위시리스트</h3>
-						        <p><em>${fn:length(wList)}건</em></p>
+						        <%-- <p><em>${fn:length(wList)}건</em></p> --%>
 						         <div class="set-combo">
 				                <label for="year">내가 본 영화 년도별 정렬</label>
 				                <select id="kind" name="date">
@@ -179,6 +179,20 @@ $(function(){
 				                </c:forEach>
 						        </ul>
 						    </div>
+						    <div class="paging">
+					<ul id="paging_point" style="text-align: center;">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+								<a href="wishList?curPage=${i}&kind=${kind}&search=${search}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="wishList?curPage=${pager.lastNum+1}&kind=${kind}&search=${search}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 					    </div>
 					</div>
 				</div>
