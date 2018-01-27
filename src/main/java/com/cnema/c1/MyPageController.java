@@ -284,7 +284,6 @@ public class MyPageController {
 	public ModelAndView wishList(String kind, HttpSession session,RedirectAttributes rd,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<ReserveDTO> rList = new ArrayList<>();
 		if(kind==null){ kind="reg_date"; }
 		
 		int reserveLeftbar = 0;
@@ -302,7 +301,6 @@ public class MyPageController {
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
 		mv.addObject("kind", kind);
-		mv.addObject("rList", rList);
 		mv.setViewName("myPage/wishList");
 		return mv;
 	}
@@ -335,12 +333,8 @@ public class MyPageController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c1 = Calendar.getInstance();
         String strToday = sdf.format(c1.getTime());
-		if(testDatepicker1==null){
-			testDatepicker1="2000-01-01";
-		}
-		if(testDatepicker2==null){
-			testDatepicker2=strToday;
-		}
+		if(testDatepicker1==null){ testDatepicker1="2008-01-01"; }
+		if(testDatepicker2==null){ testDatepicker2=strToday; }
 		try {
 			mv = pointService.pointList(memberDTO.getId(), testDatepicker1, testDatepicker2, listData);
 			count = myCouponService.couponCount(memberDTO.getId());
@@ -397,7 +391,7 @@ public class MyPageController {
         String strToday = sdf.format(c1.getTime());
 
 		if(type==null){ type="12"; }
-		if(testDatepicker1==null){ testDatepicker1="2000-01-01"; }
+		if(testDatepicker1==null){ testDatepicker1="2008-01-01"; }
 		if(testDatepicker2==null){ testDatepicker2=strToday; }
 		
 		try {
