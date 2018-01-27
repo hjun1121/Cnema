@@ -28,14 +28,28 @@ public class PageController {
 
 	
 	//발신함
-	@RequestMapping(value = "sendBox", method=RequestMethod.GET)
-	public ModelAndView sendBox(HttpSession session) throws Exception {
+	@RequestMapping(value = "sendBox", method=RequestMethod.POST)
+	public ModelAndView sendBox(HttpSession session, @RequestParam(defaultValue = "1", required=false)int curPage, ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		
+		try {
+			String id = memberDTO.getId();
+			mv = pageService.selectSendMail(id, listData);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
 		return mv;
 	}
+	@RequestMapping(value = "sendBox", method=RequestMethod.GET)
+	public void sendBox() throws Exception {
+		
+	}
 	
-	//쪽지 수신
+	//쪽지 읽기
 	@RequestMapping(value="mailView", method=RequestMethod.GET)
 	public ModelAndView mailView(int message_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -46,6 +60,22 @@ public class PageController {
 	}
 	
 	//쪽지함
+	@RequestMapping(value="receiveBox", method=RequestMethod.POST)
+	public ModelAndView receiveBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		mv = pageService.mailReceive(session, listData);
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+
+		return mv;
+	}
+	@RequestMapping(value="receiveBox", method=RequestMethod.GET)
+	public void receiveBox() throws Exception {
+		
+	}
+	
+	//mailBox
 	@RequestMapping(value="mailBox", method=RequestMethod.GET)
 	public ModelAndView mailBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception {
 		ModelAndView mv = new ModelAndView();

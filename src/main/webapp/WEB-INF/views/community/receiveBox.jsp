@@ -6,23 +6,21 @@
 	<table>
 		<tr>
 			<td>No.</td>
-			<td>받는 사람</td>
+			<td>보내는 사람</td>
 			<td>제목</td>
+			<td>보낸날짜</td>
 			<td>수신여부</td>
-			<td>읽은날짜</td>
 		</tr>
 		<c:forEach items="${mailList}" var="mail" varStatus="count">
 			<tr>
 				<td>${count.count}</td>
-				<td>${mail.receive_id}</td>
+				<td>${mail.send_id }</td>
 				<td id="title"><a href="mailView?message_num=${mail.message_num }">${mail.title }</a></td>
+				<td>${mail.send_date }</td>
 				<td>
 					<c:if test="${mail.type eq 11 }">읽음</c:if>
 					<c:if test="${mail.type eq 12 }">안읽음</c:if>
 				</td>
-				<c:if test="${mail.type eq 11 }">
-					<td>${mail.read_date }</td>
-				</c:if>
 			</tr>
 		</c:forEach>
 		
@@ -32,18 +30,18 @@
 				<c:choose>
 				<c:when test="${fn:length(mailList) eq 0}">
 					<li style="text-decoration: none;" class=" on">
-						<a href="sendBox?curPage=1" title="1페이지 선택">1</a>
+						<a href="mailBox?curPage=1" title="1페이지 선택">1</a>
 					</li>
 				</c:when>
 				<c:otherwise>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<li style="text-decoration: none;" class=" on">
-						<a href="sendBox?curPage=${i}" title="${i}페이지 선택">${i}</a>
+						<a href="mailBox?curPage=${i}" title="${i}페이지 선택">${i}</a>
 					</li>
 				</c:forEach>
 				<c:if test="${pager.curBlock lt pager.totalBlock}">
 					<li class="paging-side">
-						<a href="sendBox?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+						<a href="mailBox?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 					</li>
 				</c:if>
 				</c:otherwise>

@@ -28,8 +28,15 @@ public class PageService {
 	
 	
 	//selectSendMail
-	public List<MessageDTO> selectSendMail(String id) throws Exception {
-		return pageDAO.selectSendMail(id);
+	public ModelAndView selectSendMail(String id, ListData listData) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(pageDAO.sendMailTotalCount(id));
+		
+		List<MessageDTO> ar = pageDAO.selectSendMail(id, rowNum);
+		mv.addObject("pager", pager);
+		mv.addObject("mailList", ar);
+		return mv;
 	}
 	
 	//selectMailOne

@@ -16,11 +16,31 @@
 	$(function(){
 		
 		$("#sendBox_btn").click(function() {
-			
+			$.ajax({
+				url:"receiveBox",
+				type:"POST",
+				data:{
+					
+				},
+				success:function(data){
+					$("#box_div").remove();
+					$("#box_div").html(data);
+				}
+			});
 		});
 		
 		$("#receiveBox_btn").click(function() {
-			
+			$.ajax({
+				url:"sendBox",
+				type:"POST",
+				data:{
+					
+				},
+				success:function(data){
+					$("#box_div").remove();
+					$("#box_div").html(data);
+				}
+			});
 		});
 		
 		
@@ -33,7 +53,8 @@
 	<button id="sendBox_btn">수신함</button>
 	<button id="receiveBox_btn">발신함</button>
 	<div id="box_div">
-	<table>
+		
+			<table>
 		<tr>
 			<td>No.</td>
 			<td>보내는 사람</td>
@@ -78,6 +99,8 @@
 				</c:choose>
 			</ul>
 		</div>
+		
+		
 	</div>
 	
 
