@@ -170,7 +170,7 @@ public class TheaterController {
 			theaterDTO = theaterService.selectOne(reserveDTO.getTheater_num());
 			scheduleDTO = scheduleService.scheduleOne(reserveDTO.getSchedule_num());
 			screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());		
-			couponList = myCouponService.myCouponList(memberDTO.getId(), "11");
+			couponList = myCouponService.myCouponList(memberDTO.getId());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
