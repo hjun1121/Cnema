@@ -171,7 +171,27 @@ function showSlides(n) {
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
-
+		<%-- 	<div class="cols-banner">
+				<div class="col-ad">
+					<div class="box-com">
+		    			<div class="box-inner">
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="1"></a>
+            			</div>
+					</div>
+				</div>
+				<div class="col-hd">
+					<a href="#">
+						<img src="${pageContext.request.contextPath }/resources/images/main/ccc.png" alt="2"></a>
+				</div>
+				<div class="col-collage">
+					<div class="box-com">
+						<div class="box-inner">
+                			<a href="#"><img src="${pageContext.request.contextPath }/resources/images/main/bbb.png" alt="3"></a>
+            			</div>
+					</div>
+				</div>
+			</div> --%>
+			
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
