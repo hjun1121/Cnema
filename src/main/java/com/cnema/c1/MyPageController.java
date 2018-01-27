@@ -152,6 +152,7 @@ public class MyPageController {
 		return mv;
 	}
 	
+	//중
 	@RequestMapping(value="movieHistory",method=RequestMethod.GET)
 	public ModelAndView movieHistory(HttpSession session, RedirectAttributes rd,String kind,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -164,7 +165,7 @@ public class MyPageController {
 		ScreenDTO screenDTO = null;
 		ReviewDTO reviewDTO = null;
 		if(kind==null){
-			kind="0000";
+			kind="no";
 		}
 		
 		List<ReserveDTO> rList = new ArrayList<ReserveDTO>();
@@ -172,13 +173,14 @@ public class MyPageController {
 		int reviewCount = 0;
 		
 		try {
-			if(kind.equals("0000")){
+			/*if(kind.equals("0000")){
 				rList = reserveService.reserveAList(memberDTO.getId());
 			}else{
 				rList = reserveService.reserveList(memberDTO.getId(), kind);
 			}
-			
-			for(ReserveDTO reserveDTO : rList){
+			*/
+			mv = reserveService.reserveList(memberDTO.getId(), kind, listData);
+			/*for(ReserveDTO reserveDTO : rList){
 				reserveDTO2 = reserveService.reserveBList(memberDTO.getId(), reserveDTO.getTp_num());
 				
 				scheduleDTO = scheduleService.scheduleInfo(reserveDTO2.getSchedule_num());
@@ -201,12 +203,13 @@ public class MyPageController {
 				
 				reviewDTO = reviewService.reviewInfo(reserveDTO2.getMovie_num(), memberDTO.getId());
 				reserveDTO.setReviewDTO(reviewDTO);
-			}
+			}*/
 			/*wList = wishService.wishList(memberDTO.getId(),"reg_date");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
 		mv.addObject("kind",kind);
 		mv.addObject("rList",rList);
 		mv.addObject("wList",wList);
@@ -317,7 +320,7 @@ public class MyPageController {
 		
 		return mv;
 	}
-	//중
+	
 	@RequestMapping(value="wishList",method=RequestMethod.GET)
 	public ModelAndView wishList(String kind, HttpSession session,RedirectAttributes rd,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -343,6 +346,7 @@ public class MyPageController {
 					wishDTO.setMovieDTO(movieDTO);
 				}
 			}*/
+			
 			mv = wishService.wishList(memberDTO.getId(), kind, listData);
 		} catch (Exception e) {
 			e.printStackTrace();
