@@ -211,7 +211,7 @@ public class MyPageController {
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
 		mv.addObject("kind",kind);
-		mv.addObject("rList",rList);
+		/*mv.addObject("rList",rList);*/
 		mv.addObject("wList",wList);
 			
 		mv.setViewName("myPage/movieHistory");
