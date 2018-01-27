@@ -14,6 +14,19 @@
 				var a = $(this).attr("title");  //booking
 				$(this).attr("class", a);
 			})
+
+			$("#tab1").click(function(){
+				location.href="${pageContext.request.contextPath}/movie/movie_chart";
+			});
+			$("#tab2").click(function(){
+				location.href="${pageContext.request.contextPath}/theater/quickReserve";
+			});
+			$("#tab3").click(function(){
+				location.href="${pageContext.request.contextPath}/notice/noticeList";
+			});
+			$("#tab4").click(function(){
+				location.href="${pageContext.request.contextPath}/community2/communityMain";
+			});
 		});
 		
 	</script>
@@ -45,9 +58,10 @@
             <!-- Important wrap -->
 				<h2><img src="${pageContext.request.contextPath }/resources/images/common/title/h2_cultureplex.png" alt="CULTUREPLEX"></h2>
 				<div class="lnb">
-					<h2>CGV 주메뉴</h2>
+					<h2>CENEMA 주메뉴</h2>
 					<ul id="gnb_list">
-						<li class="movie headbtn" title="movie headbtn" style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">영화
+						<li class="movie headbtn" title="movie headbtn" style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">
+						<span id="tab1" style="cursor: pointer;">영화</span>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -57,7 +71,8 @@
 								</div>
 							</div>
 						</li>
-						<li class="booking headbtn" title="booking headbtn"style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">예매
+						<li class="booking headbtn" title="booking headbtn"style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">
+							<span id="tab2" style="cursor: pointer;">예매</span>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -68,7 +83,8 @@
 								</div>
 							</div>
 						</li>
-						<li class="culture headbtn" title="culture headbtn"style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">소식지
+						<li class="culture headbtn" title="culture headbtn"style="font-size: 17px;width: 60px;font-family: -webkit-pictograph;font-weight: 900;">
+						<span id="tab3" style="cursor: pointer;">소식지</span>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">
@@ -81,7 +97,8 @@
 								</div>
 							</div>
 						</li>
-						<li class="theaters headbtn" title="theaters headbtn"style="font-size: 17px;font-family: -webkit-pictograph;font-weight: 900;">씨네마그램
+						<li class="theaters headbtn" title="theaters headbtn"style="font-size: 17px;font-family: -webkit-pictograph;font-weight: 900;">
+						<span id="tab4" style="cursor: pointer;">씨네마그램</span>
 							<div class="sub-wrap">
 								<i></i>
 								<div class="smenu">

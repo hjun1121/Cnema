@@ -43,8 +43,7 @@
 		});
 		
 		$("#mailBox_btn").click(function(){
-			alert("메일함");
-			
+			window.open("mailBox","쪽지함","width=720,height=394,toolbar=no");
 		});
 
 	});
@@ -105,17 +104,12 @@
 						<button class="page_btns" id="">그룹장이라 탈퇴안되지롱</button>
 					</c:otherwise>
 				</c:choose>
-				<input type = "text" class="page_btns" value="${pageMemberCount}명이 팔로우">
+				<input type = "button" class="page_btns" value="${pageMemberCount}명이 팔로우">
 			</div>
 			<!-- 커뮤니티 이름  -->
 			<div style="float: right;">
 				<h1>${page.page_name}</h1>
 			</div>
-		</div>
-		<!-- 메일 예시 -->
-		<div>
-			<c:forEach items="">
-			</c:forEach>
 		</div>
 	</div>
 	

@@ -9,6 +9,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.message.MessageDTO;
+import com.cnema.util.RowNum;
+
 
 @Repository
 public class PageDAO {
@@ -17,6 +20,39 @@ public class PageDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "pageMapper.";
 	
+	//발신함
+	public List<MessageDTO> selectSendMail(String id, RowNum rowNum) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"selectSendMail", map);
+	}
+	public int sendMailTotalCount(String id) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"sendMailTotalCount", id);
+	}
+	
+	
+	//쪽지 수신
+	public MessageDTO selectMailOne(int message_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"selectMailOne", message_num);
+	}
+	public int mailRead(int message_num) throws Exception {
+		return sqlSession.update(NAMESPACE+"mailRead", message_num);
+	}
+	
+	//쪽지함
+	public List<MessageDTO> mailReceive(String id, RowNum rowNum) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"mailReceive", map);
+	}
+	
+	public int mailTotalCount(String id) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		return sqlSession.selectOne(NAMESPACE+"mailTotalCount", map);
+	}
 	
 	//selectPageMemberOne
 	public PageMemberDTO selectPageMemberOne(String id, int page_num) throws Exception {

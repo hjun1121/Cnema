@@ -25,6 +25,9 @@ public class MovieService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	public List<MovieDTO> homeMovieList() throws Exception{
+		return movieDAO.homeMovieList();
+	}
 	
 	//warningCheck
 	public WarningDTO warningCheck(String id, int review_num) throws Exception {

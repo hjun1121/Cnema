@@ -115,15 +115,22 @@ function showSlides(n) {
 			<div class="sect-common">
 				<div class="slider" id="slider">
 					<div class="item-wrap">
-					<%-- <c:forEach items="${event_list }" begin="0" end="3" var="dto" varStatus="c">
-					 
-						<div class="mySlides mainSlides" style="display: block;">
-						  <div class="numbertext">c.count / 3</div>
-						  <img src="${pageContext.request.contextPath }/resources/upload/${dto.fileName}" style="width:100%">
+					
+					 <c:forEach items="${event_list }" begin="0" end="3" var="dto" varStatus="c">
+					 	<c:if test="${c.count eq 1 }">
+					 		<div class="mySlides mainSlides" style="display: block;">
+						  <div class="numbertext">${c.count } / 3</div>
+						  <img src="${pageContext.request.contextPath }/resources/board/${dto.fileName}" style="width:980px; height:450px;">
 						</div>
-					
-					</c:forEach> --%>
-					
+					 	</c:if>
+					 	<c:if test="${c.count ne 1 }">
+							<div class="mySlides mainSlides">
+							  <div class="numbertext">${c.count } / 3</div>
+							  <img src="${pageContext.request.contextPath }/resources/board/${dto.fileName}" style="width:980px; height:450px;">
+							</div>
+					 	</c:if>
+					</c:forEach>
+<%-- 					
 						<div class="mySlides mainSlides" style="display: block;">
 						  <div class="numbertext">1 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/15160782127650.jpg" style="width:100%">
@@ -137,7 +144,7 @@ function showSlides(n) {
 						<div class="mySlides mainSlides">
 						  <div class="numbertext">3 / 3</div>
 						  <img src="${pageContext.request.contextPath }/resources/images/main/15169432327320.jpg" style="width:100%">
-						</div>
+						</div> --%>
 						
 						<a class="prev" onclick="plusSlides(-1)" style="right: 938px;">&#10094;</a>
 						<a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -147,14 +154,19 @@ function showSlides(n) {
 			</div>
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_movie_selection.gif" alt="MOVIE SELECTION"></h3>
 			<div class="cols-movie">
-				<div id="Selection_L" class="col-slider">
-        			<iframe src="https://www.youtube.com/embed/5O5PVvHTWRo" width="733" height="388" title="영화광고-1987" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Movie_Selection_L" id="Movie_Selection_L"></iframe>
-				</div>
-				<div id="Selection_R" class="col-ad">
-					<a href="#" target="_blank">
-					<img src="${pageContext.request.contextPath }/resources/images/main/1ONOHF5TDF_2.jpg" width="240" height="388" border="0"></a>
-				</div>
+				<c:forEach items="${movieList }" var="movie" begin="0" step="1">
+					<div id="Selection_L" class="col-slider">
+	        			<iframe src="${movie.teaser_url }" width="733" height="388" title="영화광고-1987" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Movie_Selection_L" id="Movie_Selection_L"></iframe>
+					</div>
+					<div id="Selection_R" class="col-ad">
+						<a href="#" target="_blank">
+						<img src="${pageContext.request.contextPath }/resources/movie_poster/${movie.fileName}" width="240" height="388" border="0"></a>
+					</div>
+				
+				</c:forEach>
+			
 			</div>
+			
 			<h3><img src="${pageContext.request.contextPath }/resources/images/common/title/h3_event.gif" alt="EVENT"></h3>
 			
 			
@@ -164,14 +176,13 @@ function showSlides(n) {
 				<c:forEach items="${ event_list}" var="dto">
 		    	<li>
                 	<a href="./event/eventView?num=${dto.num}">
-                    	<img src="${pageContext.request.contextPath }/resources/images/main/${dto.fileName}" alt="♡">
+                    	<img src="${pageContext.request.contextPath }/resources/board/${dto.fileName}" width="320px;" height="225px;" alt="♡">
                 	</a>
             	</li>
             	</c:forEach>
             	<!-- 총 4개 넣어야함 -->
 			</ul>
 			</div>
-<<<<<<< HEAD
 		<%-- 	<div class="cols-banner">
 				<div class="col-ad">
 					<div class="box-com">
@@ -192,9 +203,6 @@ function showSlides(n) {
 					</div>
 				</div>
 			</div> --%>
-=======
-			
->>>>>>> d9793be7a5875a637637df91de1257451dd8eb38
 			<!-- ///////////공지사항 시작////////////// -->
 
 			<div id="ctl00_PlaceHolderContent_wrap_notice" class="sect-notice-info cf">
@@ -202,13 +210,16 @@ function showSlides(n) {
 			    <div class="sect-notice-list cf">
 			        <div class="inner" style="overflow: hidden; position: relative; height: 35px;">
 			            <ul style="position: absolute; margin: 0px; padding: 0px; top: 0px;">
-			            <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
-			                <a href="#">
-		                    [시스템 점검]1월 정기 시스템 안내
-		                    </a>
-		                    <span>2018.01.05</span>
-		                </li>
-		                <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+			            
+			            <c:forEach items="${noticeList }" begin="0" end="5" var="notice">
+				            <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
+				                <a href="notice/noticeView?num=${notice.num }">
+			                    ${notice.title }
+			                    </a>
+			                    <span>${notice.reg_date }</span>
+			                </li>
+			            </c:forEach>
+		                <!-- <li class="cf noticeSlides" style="margin: 0px; padding: 0px; height: 35px;">
 			                <a href="#">
 		                    [극장] 판매 개시일 변경
 		                    </a>
@@ -231,7 +242,7 @@ function showSlides(n) {
 		                    [시스템 점검]8월 정기 시스템 안내
 		                    </a>
 		                    <span>2017.08.08</span>
-			            <li>
+			            <li> -->
 			            </ul>
 			        </div>
 			    </div>
