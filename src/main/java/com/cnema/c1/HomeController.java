@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cnema.board.BoardDTO;
 import com.cnema.event.EventService;
+import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
 import com.cnema.notice.NoticeDTO;
 import com.cnema.notice.NoticeService;
@@ -47,11 +48,13 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		List<BoardDTO> ar = null;
 		List<NoticeDTO> noticeList = null;
+		List<MovieDTO> movieList = null;
 		
 		String formattedDate = dateFormat.format(date);
 		try {
 			ar= eventService.selectList();
 			noticeList = noticeService.noticeList();
+			movieList = movieService.homeMovieList();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +63,7 @@ public class HomeController {
 		model.addAttribute("message", message);
 		model.addAttribute("event_list", ar);
 		model.addAttribute("noticeList", noticeList);
-		
+		model.addAttribute("movieList", movieList);
 		return "home";
 	}
 	
