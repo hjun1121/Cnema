@@ -4,6 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pageMapper">
 
+	<!-- 추천 페이지 -->
+	<select id="recommendPageList" resultType="pageDTO">
+		select * from page order by reg_date desc
+	</select>
+
+	<!-- 가입한 페이지 -->
+	<select id="joinPageList" parameterType="String" resultType="pageDTO">
+		select M.id, P.* from pagemember M, page P where M.id=#{id} and M.page_num=P.page_num
+	</select>
+
 	<!-- 안읽은 쪽지 count -->
 	<select id="mailCount" parameterType="String" resultType="int">
 		select count(nvl(null, 0)) from message where receive_id=#{id} and type=12

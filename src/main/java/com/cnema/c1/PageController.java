@@ -135,6 +135,10 @@ public class PageController {
 		mv.setViewName("/common/messagePath");
 		return mv ;
 	}
+	@RequestMapping(value = "pageMemberJoin", method=RequestMethod.GET)
+	public void pageMemberJoin() throws Exception {
+		
+	}
 
 
 	//페이지 탈퇴하기
@@ -194,12 +198,15 @@ public class PageController {
 		int memberCheck = 0;
 		int pageMemberCount = 0;
 		int mailCount = 0;
+		List<PageDTO> joinPage = null;
+		List<PageDTO> recommendPage = pageService.recommendPageList();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		try {
 			String id = memberDTO.getId();
 			memberCheck = pageService.memberCheck(page_num, id);
 			member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
 			mailCount = pageService.mailCount(id);
+			joinPage = pageService.joinPageList(id);
 			List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
 			pageMemberCount = mc.size();
 		} catch (Exception e) {
@@ -211,6 +218,8 @@ public class PageController {
 		List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
 
 		mv.addObject("pageMemberCount", pageMemberCount);
+		mv.addObject("joinPage", joinPage);
+		mv.addObject("recommendPage", recommendPage);
 		mv.addObject("memberCheck", memberCheck);
 		mv.addObject("mailCount", mailCount);
 		mv.addObject("member_num", member_num);

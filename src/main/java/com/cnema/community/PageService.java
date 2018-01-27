@@ -26,6 +26,16 @@ public class PageService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	//recommendPageList
+	public List<PageDTO> recommendPageList() throws Exception {
+		return pageDAO.recommendPageList();
+	}
+	
+	//joinPageList
+	public List<PageDTO> joinPageList(String id) throws Exception {
+		return pageDAO.joinPageList(id);
+	}
+	
 	//mailCount
 	public int mailCount(String id) throws Exception {
 		return pageDAO.mailCount(id);

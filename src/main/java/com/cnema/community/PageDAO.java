@@ -20,6 +20,17 @@ public class PageDAO {
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "pageMapper.";
 	
+	
+	//추천 페이지
+	public List<PageDTO> recommendPageList() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"recommendPageList");
+	}
+	
+	//가입한 페이지
+	public List<PageDTO> joinPageList(String id) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"joinPageList", id);
+	}
+	
 	//발신함
 	public List<MessageDTO> selectSendMail(String id, RowNum rowNum) throws Exception {
 		Map<String, Object> map = new HashMap<>();

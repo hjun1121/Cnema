@@ -14,7 +14,7 @@
     height: auto;
 	padding: 12px 0;
 	position: absolute;
-	background-color: yellow;
+	background-color: #e9ebee;
 }
 
 #profile_img {
@@ -74,10 +74,44 @@
 
 #join_page_list {
 	clear: both;
+	float: left;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #717171eb;
+}
+
+#join_page_list span {
+	display: inline-block;
+	width: 120px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#join_page_list img {
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+	margin-bottom: 15px;
 }
 
 #recommend_page_list {
-	
+	clear: both;
+	float: left;
+}
+
+#recommend_page_list span {
+	display: inline-block;
+	width: 120px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#recommend_page_list img {
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+	margin-bottom: 15px;
 }
 
 #page_contents_wrap {
@@ -128,11 +162,14 @@
 	background-color: #f6f7f9;
     border: 1px solid #ced0d4;
     color: #4b4f56;
+    line-height: 25px;
 }
 
 .page_btns img {
 	width: 20px;
 	height: 20px;
+	padding-right: 5px;
+	padding-bottom: 4px;
 }
 
 
