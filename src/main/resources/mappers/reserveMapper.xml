@@ -37,6 +37,7 @@
 		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
   		<!-- select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind} -->
   	</select>
+  	
   	<!-- heeseong -->
   	<select id="reserveAList" resultType="reserveDTO" parameterType="java.lang.String">
   		select distinct tp_num from reserve where id=#{id}

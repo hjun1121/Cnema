@@ -36,6 +36,7 @@ public class ReserveDAO {
 	}
 	/*heeseong*/
 	public List<ReserveDTO> reserveList(String id,String kind,RowNum rowNum) throws Exception{
+		System.out.println("kind"+kind);
 		Map<String, Object> rMap = new HashMap<>();
 		rMap.put("id", id);
 		rMap.put("kind", kind);
