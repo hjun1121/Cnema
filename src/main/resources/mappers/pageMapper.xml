@@ -88,6 +88,11 @@
 	<delete id="pageContentsDelete" parameterType="int">
 		delete pageContents where contents_num=#{contents_num}
 	</delete>
+	<!--댓글쓰기  -->
+	<insert id="replyWrite" parameterType="pageContentsDTO">
+		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,#{ref},0,0)
+	</insert>
+	
 	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}

@@ -179,4 +179,8 @@ public class PageDAO {
 	public int pageContentsDelete(int contents_num) {
 		return sqlSession.update(NAMESPACE+"pageContentsDelete", contents_num);
 	}
+
+	public int replyWrite(PageContentsDTO pageContentsDTO) {
+		return sqlSession.insert(NAMESPACE+"replyWrite", pageContentsDTO);
+	}
 }

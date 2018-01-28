@@ -382,6 +382,29 @@ public class PageController {
 			return mv;
 			
 		}
+	//PageContents에서 ReplyWrite
+		@RequestMapping(value = "replyWrite", method=RequestMethod.POST)
+		public ModelAndView replyWrite(PageContentsDTO pageContentsDTO) {
+			ModelAndView mv = new ModelAndView();
+			int result=0;
+			try {
+				result = pageService.replyWrite(pageContentsDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String message = "contentes 댓글 실패";
+			if(result > 0) {
+				message = "contentes 댓글 완료";
+			}
+			
+			mv.addObject("message", message);
+			mv.addObject("path", "community/communityMainTest?page_num"+pageContentsDTO.getPage_num());
+			mv.setViewName("/common/messagePath");
+
+			return mv;
+			
+		}
 	
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.POST)

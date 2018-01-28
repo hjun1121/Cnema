@@ -189,5 +189,9 @@ public class PageService {
 	public int pageContentsDelete(int contents_num) {
 		return pageDAO.pageContentsDelete(contents_num);
 	}
+	//페이지글에서 댓글달기
+	public int replyWrite(PageContentsDTO pageContentsDTO) {
+		return pageDAO.replyWrite(pageContentsDTO);
+	}
 	
 }
