@@ -10,7 +10,7 @@
         				<h2 class="hidden">개인화 영역</h2> 
         					<div class="box-image">
 								<span class="thumb-image">
-									<img src="${pageContext.request.contextPath }/resources/images/myPageView/default_profile.gif" alt="프로필 사진">
+									<img src="${pageContext.request.contextPath }/resources/profil/${member.fileName}" alt="프로필 사진">
 									<span class="profile-mask"></span>
 								</span>
         					</div>
