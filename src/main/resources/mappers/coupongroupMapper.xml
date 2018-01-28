@@ -23,7 +23,7 @@
   	</select>
   	
   	<select id="groupAList" resultType="coupongroupDTO" parameterType="int">
-  		select * from coupongroup
+  		select distinct group_num from coupongroup
   	</select>
   	
   	<delete id="groupRemove" parameterType="int">
