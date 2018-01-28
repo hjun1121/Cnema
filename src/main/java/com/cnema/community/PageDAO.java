@@ -82,6 +82,11 @@ public class PageDAO {
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO){
 		return sqlSession.update(NAMESPACE+"pageContentsWrite", pageContentsDTO);
 	}
+	//scrolling
+	public List<PageContentsDTO> pageContentsList(int page){
+		return sqlSession.selectList(NAMESPACE+"pageContentsList", page);
+	}
+	
 	
 	//memberDropCount
 	public int memberDropCount(int page_num) throws Exception {

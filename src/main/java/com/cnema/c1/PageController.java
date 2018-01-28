@@ -183,7 +183,18 @@ public class PageController {
 	public void pageContentsWrite()throws Exception {
 		
 	}
-
+	//pageinfiniteScrolling
+	@RequestMapping(value = "scrolling",method=RequestMethod.POST)
+	public ModelAndView pageContentsScrolling(int page)throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<PageContentsDTO> ar = null;
+		ar=pageService.pageContentslist(page);
+		mv.addObject("list", ar);
+		mv.setViewName("community/scrolling");
+		return mv;
+	}
+	
+	
 	//pageMain
 	@RequestMapping(value = "pageMain", method=RequestMethod.POST)
 	public void pageMain() throws Exception {

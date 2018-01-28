@@ -95,6 +95,15 @@ public class PageService {
 		
 		return result;
 	}
+	//pageCotentsList
+	public List<PageContentsDTO> pageContentslist(int page) throws Exception{
+		page=(page*10)+1;
+		
+		List<PageContentsDTO> ar = pageDAO.pageContentsList(page);
+		
+		return ar;
+	}
+	
 	
 	//memberDrop
 	public int memberDrop(int page_num, String id) throws Exception {

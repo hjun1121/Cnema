@@ -59,6 +59,15 @@
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,movie_seq.nextval,0,0)
 	</insert>
 	
+	<!--페이지컨텐츠 리스트  -->
+	<select id="pageContentsList" parameterType="int" resultType="pageContentsDTO">
+		select * from
+  		(select rownum r, N.* from
+  		(select * from pageContents order by num desc) N)
+  		where r between #{page} and (#{page}+9)	
+	</select>
+	
+	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}
 	</delete>
