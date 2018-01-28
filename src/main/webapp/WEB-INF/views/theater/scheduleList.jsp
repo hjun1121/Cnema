@@ -106,18 +106,7 @@
 		
 	});
 </script>
-<style type="text/css">
-ul{
-	list-style: none;
-}
-#locationList ul{
-	clear: both;
-}
-/* li{
-	float: left; 
-	margin-left: 5px;
-} */
-</style>
+
 </head>
 <body>
 	<div id="cgvwrap">
@@ -190,20 +179,6 @@ ul{
                                 		</a>
                             		</div>
                         		</li>
-                        		<!-- <li class="on">
-                            		<div class="day">
-                                		<a href="#" title="현재 선택">
-                                    		<span>01월</span> <em> 일</em> <strong>28</strong>
-                                		</a>
-                            		</div>
-                        		</li>
-                        		<li>
-                            		<div class="day">
-                                		<a href="#">
-                                    		<span>01월</span> <em>월</em> <strong>29</strong>
-                                		</a>
-                            		</div>
-                        		</li> -->
                         	</c:forEach>
                         	</ul>
                         </div>
@@ -226,65 +201,35 @@ ul{
                                     	<a href="#"><strong>${movieDTO.movie_name }</strong></a>
                                     	<i>드라마,&nbsp;환타지</i>/ <i>139분</i>/ <i>2017.12.20개봉</i>
                                 	</div>
-                                	
-                                    <div class="type-hall">
-                                    	<div class="info-hall">
-                                         	<ul>
-                                            	<li>2D</li>
-                                                <li>2관 6층</li>
-                                                <li>총124석</li>
-                                            </ul>
-                                         </div>
-                                         <div class="info-timetable">
-                                         	<ul>
-                                            	<li>
-                                            		<a href="#">
-                                            		<em>27:30</em>
-                                            		<span class="midnight txt-lightblue">
-                                            			<span class="hidden">잔여좌석</span>113석
-                                            		</span>
-                                            		</a>
-                                            	</li>
-                                            </ul>
-                                         </div>
-                                     </div>
-                                     <div class="type-hall">
-                                     	<div class="info-hall">
-                                        	<ul>
-                                            	<li>2D</li>
-                                                <li>6관 10층</li>
-                                                <li>총124석</li>
-                                            </ul>
-                                         </div>
-                                         <div class="info-timetable">
-                                         	<ul>
-                                            	<li>
-                                            		<a href="#">
-                                            			<em>08:00</em>
-                                            			<span class="early txt-lightblue">
-                                            				<span class="hidden">잔여좌석</span>89석
-                                            			</span>
-                                            		</a>
-                                            	</li>
-                                                <li>
-                                                	<a href="#">
-                                               			<em>13:20</em>
-                                               			<span class="txt-lightblue">
-                                               				<span class="hidden">잔여좌석</span>18석
-                                               			</span>
-                                               		</a>
-                                               	</li>
-                                                <li>
-                                                	<a href="#">
-                                                		<em>21:50</em>
-                                                		<span class="txt-lightblue">
-                                                			<span class="hidden">잔여좌석</span>98석
-                                                		</span>
-                                                	</a>
-                                                </li>
-                                             </ul>
-                                         </div>
-                                      </div>
+                                	<c:forEach items="${movieDTO.sList}" var="sList" varStatus="count">
+                                	<c:forEach items="${sList }" var="sc" varStatus="count">	
+	                                    <div class="type-hall">
+	                                    	<div class="info-hall">
+	                                         	<ul>
+	                                         	<c:if test="${count.first }">
+	                                                <li>${sc.screen_num }관 6층</li>
+	                                                <li>총124석</li>
+	                                            </c:if>
+	                                            </ul>
+	                                         </div>
+	                                         <div class="info-timetable">
+	                                         	<ul>
+	                                            	<li>
+	                                            		<a href="#" class="schedules" id="${movieDTO.movie_num }" onclick="return false;" title="${sc.schedule_num }">
+		                                            		<em>${sc.in_time }</em>
+		                                            		<span class="txt-lightblue">
+		                                            			<span class="hidden">잔여좌석</span>113석
+		                                            		</span>
+	                                            		</a>
+	                                            		<%-- <c:if test="${count.last }">
+														<!-- <br> -->
+														</c:if> --%>
+	                                            	</li>
+	                                            </ul>
+	                                         </div>
+	                                     </div>
+	                                </c:forEach>
+                                    </c:forEach>
                             		</div>
                        		 	</li>
                        		 </c:forEach>
