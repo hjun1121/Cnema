@@ -45,13 +45,30 @@
 		$(".mailBox_btn").click(function(){
 			window.open("mailBox","쪽지함","width=750,height=450");
 		});
-
-		$("#join_more_btn").click(function() {
+		
+		$("#more_div").on('click', '#join_more_btn', function() {
 			$("#joinHidden_div").css("display","");
+			$("#more_div").empty();
+			$("#more_div").html("<button id=" + "hide_btn" + ">숨기기</button>");
 		});
 		
-		$("#recommend_more_btn").click(function() {
+		$("#more_div2").on('click', '#recommend_more_btn', function() {
 			$("#recommendHidden_div").css("display","");
+			$("#more_div2").empty();
+			$("#more_div2").html("<button id=" + "hide_btn2" + ">숨기기</button>");
+		});
+		
+		$("#more_div2").on('click', '#hide_btn2', function() {
+			$("#recommendHidden_div").css("display","none");
+			$("#more_div2").empty();
+			$("#more_div2").html("<button id=" + "recommend_more_btn" + ">+더보기</button>");
+		});
+
+		
+		$("#more_div").on('click', '#hide_btn', function() {
+			$("#joinHidden_div").css("display","none");
+			$("#more_div").empty();
+			$("#more_div").html("<button id=" + "join_more_btn" + ">+더보기</button>");
 		});
 		
 		$("#memberBar_btn").click(function() {
@@ -114,7 +131,9 @@
 					<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }"> <span>${join.page_name }</span></p>
 				</c:if>
 			</c:forEach>
-			<button id="join_more_btn">+더보기</button>
+			<div id="more_div">
+				<button id="join_more_btn">+더보기</button>
+			</div>
 		</div>
 
 		<!-- 추천 페이지  -->
@@ -130,7 +149,9 @@
 					<p><img alt="${recommend.page_name }" src="../resources/page_logo/${recommend.fileName }"> <span>${recommend.page_name }</span></p>
 				</c:if>
 			</c:forEach>
-			<button id="recommend_more_btn">+더보기</button>
+			<div id="more_div2">
+				<button id="recommend_more_btn">+더보기</button>
+			</div>
 		</div>
 	</div>
 	
@@ -172,7 +193,7 @@
 	<!-- 우측 멤버 명단  -->
 	<div id="member_bar">
 		<a href=# id="memberBar_btn" role="button">
-			멤버 리스트
+			커뮤니티 멤버
 		</a>
 	</div>
 </div>
