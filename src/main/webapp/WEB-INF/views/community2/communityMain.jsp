@@ -57,16 +57,16 @@ $(function() {
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
 			<span id="img_alt">가입한 페이지</span>
-			<span id="img_count">· ${fn:length(pageList)}개</span></h2>
+			<%-- <span id="img_count">· ${fn:length(pageList)}개</span></h2> --%>
 			<c:forEach items="${pageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<div>
+					<p style="padding-left: 25px;">
 						<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
 						<img id="pageImg"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
 						</a>
-					</div>
-					<div id="pageName"> ${page.page_name}</div>
+					<span id="pageName"> ${page.page_name}</span>
+					</p>
 				</div>
 			</c:if>
 			</c:forEach>
@@ -81,12 +81,12 @@ $(function() {
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<div>
+					<p>
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
 					<img id="pageImg"alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
 					</a>
-					</div>
-					<div id="pageName"> ${recommend.page_name}</div>
+					<span id="pageName"> ${recommend.page_name}</span>
+					</p>
 				</div>
 			</c:if>
 			</c:forEach>

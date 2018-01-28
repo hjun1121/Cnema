@@ -37,7 +37,7 @@ $(function() {
 		<!-- 프로필 사진  -->
 		<div id="profile">
 			<c:choose>
-				<c:when test="${not empty member}"><img id="profile_img"alt="사용자 프로필" src='../resources/profil/${member.fileName}'> ${member.id}</c:when>
+				<c:when test="${not empty member}"><img id="profile_img"alt="사용자 프로필" src='../resources/profil/${member.fileName}'><span>${member.id}</span></c:when>
 				<c:otherwise>
 					<a href="../member/memberLogin"><input type="button" value="로그인 후 이용해주세요."></a>
 				</c:otherwise>
@@ -50,16 +50,16 @@ $(function() {
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
 			<span id="img_alt">가입한 페이지</span>
-			<span id="img_count">· ${fn:length(pageList)}개</span></h2>
+			<%-- <span id="img_count">· ${fn:length(pageList)}개</span></h2> --%>
 			<c:forEach items="${pageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<div>
+					<p style="padding-left: 25px;">
 						<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
 						<img id="pageImg"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
 						</a>
-					</div>
-					<div id="pageName"> ${page.page_name}</div>
+					<span id="pageName"> ${page.page_name}</span>
+					</p>
 				</div>
 			</c:if>
 			</c:forEach>
@@ -74,12 +74,12 @@ $(function() {
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<div>
+					<p>
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
 					<img id="pageImg"alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
 					</a>
-					</div>
-					<div id="pageName"> ${recommend.page_name}</div>
+					<span id="pageName"> ${recommend.page_name}</span>
+					</p>
 				</div>
 			</c:if>
 			</c:forEach>
@@ -91,20 +91,36 @@ $(function() {
 <div id="infoBody">
 	<!-- 가입한 페이지  -->
 	<div id="joinBody">
-		<div>
+		<div style=" height: 5px; margin-left: 700px;     margin-bottom: 40px;">
 			<input type="search" name="search" id="search">
 			<input type="button" id="sBtn" class="round gray" value="GO">
 		</div>
-		<c:forEach items="${myPageList }" var="pageDTO">
-			<div id="roundList">
-				<div>
+		<c:forEach items="${myPageList }" var="pageDTO" varStatus="count">
+		<div class="roundList">
+			<div>
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
 					<img id="rePageImg" alt="${pageDTO.page_name}" src="../resources/page_logo/${pageDTO.fileName}">
 					</a>
 				</div>
 				<div id="roundName"><input type="text" name="page_name" value="${pageDTO.page_name }"></div>
-			</div>
+		</div>
 		</c:forEach>
+		<c:if test="${fn:length(myPageList) > 0}"> 
+		    	<div class="paging">
+					<ul id="paging_point" style="text-align: center;">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+								<a href="pageInsertList?curPage=${i}&search=${search}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="pageInsertList?curPage=${pager.lastNum+1}&search=${search}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+				</c:if>  
 	</div>
 </div>
 </div>
@@ -112,21 +128,3 @@ $(function() {
 <c:import url="${pageScope.pageContext.request.contextPath }/WEB-INF/views/temp/footer.jsp"></c:import>
 </body>
 </html>
-<%-- <div style="width: 60%; height: 1080px; background-color: #f0f0f0; margin: 0 auto; margin-top: 30px;">
-	<div>
-		<input type="search" name="search" id="search">
-		<input type="button" id="sBtn" class="round gray" value="GO">
-	</div>
-	<c:forEach items="${myPageList }" var="pageDTO">
-		<div style="display: inline-block; float: left; border: 1px solid #dddfe2; margin-left: 35px; height: 282px; margin: 0 12px 12px 0; background-color: white;">
-			<div>
-				<img alt="${pageDTO.page_name}" src="../resources/page_logo/${pageDTO.fileName}" style="width: 222px; height: 222px;">
-			</div>
-			<div style="margin-top: 10px;">
-				<input type="text" name="page_name" value="${pageDTO.page_name }"
-				style="color: #1d2129; display: inline-block; font-size: 14px; font-weight: bold; border: none;"><br>
-				<input type="button" id="pageInsert" value="가입하기" style="display: inline-block; margin-left: 130px; background-color: #e9ebee; color: #4b4f56; border: 1px solid #ced0d4; border-radius: 2px;">
-			</div>
-		</div>
-	</c:forEach>
-</div> --%>

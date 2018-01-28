@@ -11,10 +11,8 @@
 #left_bar{
 	width: 25%; 
 	height: auto; 
-	margin-left: 50px; 
 	display: inline-block; 
 	float: left; 
-	margin-top: 30px; 
 	text-align: center; 
 	background-color: #dcdcdc;
 }
@@ -26,14 +24,22 @@
 	float: left; 
 	margin: 0 30px 30px 0;
 }
+#profile span {
+	font-size: 20px;
+	font-weight: bold;
+	color: #4b4f56;
+}
 #profile_img{
-	width: 60%; 
-	margin-right: 5px;
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	margin: 0 35px 0 25px;
 }
 #myJoinList{
-	clear: both; 
-	height: 300px;
-	background-color: white;
+	clear: both;
+    height: 320px;
+    background-color: white;
+    margin-bottom: 20px;
 }
 #img_alt{
 	font-size: 16px;
@@ -64,23 +70,22 @@
 #pageList{
 	display: inline-block;
     float: left;
-    margin-bottom: 10px;
+    padding-left: 25px;
+    width: 200px;
 }
-#pageImg{
-	height: 100px;
-    width: 100px;
-    margin-right: 5px;
-    margin-left: 8px;
+}
+img#pageImg{
+	width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-bottom: 15px;
 }
 #pageName{
-	width: 90px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, .7));
-    bottom: 0;
-    color: #fff;
-    left: 0;
-    padding: 5px;
-    right: 0;
-    margin-left: 8px;
+	display: inline-block;
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 <!--main body-->
 
@@ -90,10 +95,13 @@
 	background-color: white;
 	margin: 0 auto; 
 	margin-top: 30px;
+    padding-top: 30px;
 }
 #joinBody{
-	height: 200px;
     background-color: gray;
+    height: 800px;
+    margin-left: 100px;
+    padding-top: 50px;
 }
 #recommendBody{
 	height: 50%; 
@@ -106,17 +114,12 @@
     height: 150px;
     border-radius: 150px;
 }
-#roundList{
-	/* display: inline-block;
-    float: left;
-    margin-bottom: 10px;
-    margin-left: 2px;
-    margin-top:30px; */
+.roundList{
     display: inline-block; 
     float: left; 
     border: 1px solid #dddfe2; 
     margin-left: 35px; 
-    height: 282px; 
+   height: 200px;
     margin: 0 12px 12px 0; 
     background-color: white;
 }
@@ -142,120 +145,20 @@
     margin-left: 600px;
     margin-top: 110px;
 }
-#moreBtn{
-	border: 2px solid #7b7b7b;
-    color: #7b7b7b;
-    line-height: 23px;
-    font-family: 'NanumBarunGothicBold';
-    text-align: center;
-    border-radius: 150px;
-    margin-left: 600px;
-    margin-top: 60px;
-}
-/* #container {
-    width: 1012px !important;
-    height: -webkit-fill-available;
-    margin: 0 auto;
-    min-height: 100px;
-    background-color: #dcdcdc;
-}
-
-#left_profile_bar {
-    width: 180px !important;
-    height: auto;
-	padding: 12px 0;
-	position: absolute;
-	background-color: yellow;
-}
-
-#profile_img {
-	border: 1px solid #dddfe2;
-    box-sizing: border-box;
-    -webkit-border-radius: 100px;
-    display: block;
-    position: relative;
-}
-
-#profile_img img {
-	width: 179px;
-	height: 180px;
-}
-
-#profile_info {
-	width: 100%;
-	float: left;
-    margin-bottom: 16px;
-    padding-top: 12px;
-}
-
-#profile_info span {
-	font-size: medium;
-}
-
-
-#profile_info h1 {
-	font-size: 20px;
-	text-align: center;
+#search{
 	display: inline-block;
+    height: 25px;
+    line-height: 22px;
+    padding-left: 10px;
+    border: 1px solid #b5b5b5;
 }
-
-#mailBox_btn {
-	width: 85px;
-	height:25px;
-	margin: 0 0 5px 15px;
-    background-color: #365899;
-    border-color: #365899;
-    border-radius: 10px;
-    color: #fff;
-}
-
-#join_page_list {
-	clear: both;
-}
-
-#recommend_page_list {
-	
-}
-
-#page_contents_wrap {
-	width: 820px !important;
-    margin-left: 12px !important;
-    float: right;
-    min-height: 1px;
-    position: relative;
-    background-color: orange;
-}
-
-#page_logo_img {
-    width: 820px;
-    height: 312px;
-    overflow: hidden;
-    display: block;
-    position: relative;
-    background-size: 351px 195px;
-    background-color: #ff8080;
-}
-
-#page_logo_img img {
-	width: 100%;
-	height: 100%;
-}
-
-#page_name {
+#sBtn{
 	height: 25px;
-	border: 1px solid #dddfe2;
-    padding: 12px;
+    vertical-align: top;
+    border: 1px solid #e6e6e6;
     background-color: #fff;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+    font-weight: bold;
 }
-
-#page_btns {
-	float: left;
-    max-width: 476px;
 }
-
-.page_btns {
-	height: 25px;
-	background-color: #f6f7f9;
-    border-color: #ced0d4;
-    color: #4b4f56;
-} */

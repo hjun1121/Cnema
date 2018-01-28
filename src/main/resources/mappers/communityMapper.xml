@@ -5,8 +5,15 @@
 <mapper namespace="communityMapper">
 
 	<select id="myPageList" parameterType="java.util.Map" resultType="pageDTO">
-		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%'
+	select * from (
+		select rownum R, N.* from  		
+		(select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%') N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+		<!-- select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%' -->
 	</select>
+	<select id="totalCount" parameterType="java.util.Map" resultType="int">
+  		select count(p.page_num) from page P, pagemember M where P.page_num=M.page_num and M.id=#{id} and page_name like '%'||#{search}||'%'
+  	</select>
 	
 	<select id="pageNumList" resultType="int" parameterType="string">
 		select page_num from pagemember where id=#{id} 
@@ -26,6 +33,10 @@
 	
 	<select id="pageList" resultType="int">
 		select page_num from page
+	</select>
+	
+	<select id="pageMemberNum" resultType="int" parameterType="int">
+		select count(*) from pagemember where page_num=#{p_num}
 	</select>
 	
 </mapper>
