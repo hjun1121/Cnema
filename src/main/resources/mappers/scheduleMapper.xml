@@ -28,8 +28,16 @@
   		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and to_char(in_time,'HH24:MI')>to_char(sysdate,'HH24:MI') and screen_num=#{screen_num} and movie_num=#{movie_num} order by inn asc
   	</select>
   	
+  	<select id="scheduleListNext" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num} and movie_num=#{movie_num} order by inn asc
+  	</select>
+  	
   	<select id="movieSchedule" resultMap="scheduleTime" parameterType="java.util.Map">
   		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YYYY-MM-DD') = #{day} and to_char(in_time,'HH24:MI')>to_char(sysdate,'HH24:MI') and theater_num=#{theater_num} and movie_num=#{movie_num}  and screen_num =#{screen_num} order by inn asc
+  	</select>
+  	
+  	<select id="movieScheduleNext" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} and movie_num=#{movie_num}  and screen_num =#{screen_num} order by inn asc
   	</select>
   	
   	<!-- <select id="scheduleList" resultType="scheduleDTO" parameterType="java.util.Map">

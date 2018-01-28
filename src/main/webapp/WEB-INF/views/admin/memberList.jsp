@@ -234,8 +234,8 @@ $(function(){
 				            <th scope="col"><input type="checkbox" name="groupAll" id="groupAll" value="all"></th>
 							<th scope="col">아이디</th>
 							<th scope="col">이름</th>
-							<th scope="col">생년월일<input type="button" id="bSort"value="^" style="border: none; background: none;"></th>
-							<th scope="col">회원타입<input type="button" id="tSort"value="^" style="border: none; background: none;"></th>
+							<th scope="col">생년월일<input type="button" id="bSort"value="▼" style="margin-top: 10px;  margin-left: 3px; height: 18px; width: 18px; vertical-align: top;"></th>
+							<th scope="col">회원타입<input type="button" id="tSort"value="▼" style="margin-top: 10px;  margin-left: 3px; height: 18px; width: 18px; vertical-align: top;"></th>
 							<th scope="col">쿠폰갯수</th>
 			            </tr>
 			        </thead>
@@ -260,6 +260,22 @@ $(function(){
 		            </c:if>  
 			        </tbody>
 			    </table>
+			     <c:if test="${fn:length(memList) > 0}"> 
+		    	<div class="paging">
+					<ul id="paging_point" style="text-align: center;">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+								<a href="memberList?curPage=${i}&group_num=-1&sort=-1" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="memberList?curPage=${pager.lastNum+1}&group_num=-1&sort=-1"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+				</c:if>  
 			</div>
 
 			<!-- /// -->

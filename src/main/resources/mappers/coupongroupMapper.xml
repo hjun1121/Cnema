@@ -7,12 +7,23 @@
   		insert into coupongroup values(movie_seq.nextval,#{number},#{id})
   	</insert>
   	
-  	<select id="groupList" resultType="coupongroupDTO">
-  		select distinct group_num from coupongroup
+  	<select id="groupList" resultType="coupongroupDTO" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select distinct group_num from coupongroup) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select distinct group_num from coupongroup -->
+  	</select>
+  	<select id="gTotalCount" resultType="int">
+  		select count(distinct group_num) from coupongroup
   	</select>
   	
   	<select id="groupSList" resultType="coupongroupDTO" parameterType="int">
   		select * from coupongroup where group_num=#{group_num}
+  	</select>
+  	
+  	<select id="groupAList" resultType="coupongroupDTO" parameterType="int">
+  		select * from coupongroup
   	</select>
   	
   	<delete id="groupRemove" parameterType="int">

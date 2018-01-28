@@ -58,14 +58,23 @@
 	</select>
 
 	<!-- 메일 보내기 -->
-	<insert id="mailsend" parameterType="java.util.Map">
-		insert into message values(message_seq.nextval, #{send_id}, #{receive_id}, #{messageDTO.title}, #{messageDTO.contents}, sysdate, null, 12)
+	<insert id="mailSend" parameterType="java.util.Map">
+		insert into message values(message_seq.nextval, #{messageDTO.send_id}, #{messageDTO.receive_id}, #{messageDTO.title}, #{messageDTO.contents}, sysdate, null, 12)
 	</insert>
 
 	<!-- 세나 -->
 	<insert id="pageContentsWrite" parameterType="pageContentsDTO">
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,movie_seq.nextval,0,0)
 	</insert>
+	
+	<!--페이지컨텐츠 리스트  -->
+	<select id="pageContentsList" parameterType="int" resultType="pageContentsDTO">
+		select * from
+  		(select rownum r, N.* from
+  		(select * from pageContents order by num desc) N)
+  		where r between #{page} and (#{page}+9)	
+	</select>
+	
 	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}

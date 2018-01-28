@@ -22,6 +22,13 @@ public class PageDAO {
 	private static final String NAMESPACE = "pageMapper.";
 	
 	
+	//쪽지 쓰기
+	public int mailSend(MessageDTO messageDTO) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("messageDTO", messageDTO);
+		return sqlSession.insert(NAMESPACE+"mailSend", map);
+	}
+	
 	//멤버 프로필
 	public List<MemberDTO> pageMemberProfile(int page_num, String search) throws Exception {
 		Map<String, Object> map = new HashMap<>();
@@ -92,6 +99,11 @@ public class PageDAO {
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO){
 		return sqlSession.update(NAMESPACE+"pageContentsWrite", pageContentsDTO);
 	}
+	//scrolling
+	public List<PageContentsDTO> pageContentsList(int page){
+		return sqlSession.selectList(NAMESPACE+"pageContentsList", page);
+	}
+	
 	
 	//memberDropCount
 	public int memberDropCount(int page_num) throws Exception {

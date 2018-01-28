@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.util.RowNum;
+
 @Repository
 public class CoupongroupDAO {
 	@Inject
@@ -22,8 +24,15 @@ public class CoupongroupDAO {
 		return sqlSession.insert(NAMESPACE+"groupInsert",gMap);
 	}
 
-	public List<CoupongroupDTO> groupList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"groupList");
+	public List<CoupongroupDTO> groupList(RowNum rowNum) throws Exception{
+		Map<String, Object> cgMap = new HashMap<>();
+		cgMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"groupList",cgMap);
+		/*return sqlSession.selectList(NAMESPACE+"groupList");*/
+	}
+	
+	public int gTotalCount() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"gTotalCount");
 	}
 
 	public List<CoupongroupDTO> groupSList(int group_num) throws Exception{
@@ -39,4 +48,9 @@ public class CoupongroupDAO {
 	public int withdrawal(String id) throws Exception{
 		return sqlSession.delete(NAMESPACE+"withdrawal",id);
 	}
+
+	public List<CoupongroupDTO> groupAList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"groupAList");
+	}
+
 }

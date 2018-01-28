@@ -18,7 +18,33 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/pageContents/write.css">
 <script type="text/javascript">
 
+
+
 	$(function(){
+	    //무한 스크롤링 부분
+	    var page=1;
+	    $(window).scroll(function() {
+	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+	      page++;
+
+			$.ajax({
+				url:"../community/scrolling",
+				type:"POST",
+				data:{
+				 page:page
+				},
+				success:function(data){
+					$("#PCview").append("<h1>Page " + page + "</h1>")+data;
+					},
+				error : function(){
+					
+				}
+			});
+	     
+	      
+	    }
+	});
+		
 		//SmartEditor start
 		//전역변수선언
     var editor_object = [];
@@ -49,7 +75,7 @@
         $("#frm").submit();
     });
     
-    
+
 		
 		
 		$("#chatting_btn").click(function() {
@@ -172,9 +198,15 @@
 			</div>
 	<div id="contentsListView">
 	
+	
 	</div>	
 			
-		</div>
+		
+		
+		
+		
+		</div><!--뷰 전체  -->
+	
 	</div>
 	
 </div>

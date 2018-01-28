@@ -26,6 +26,11 @@ public class PageService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	//mailSend
+	public int mailSend(MessageDTO messageDTO) throws Exception {
+		return pageDAO.mailSend(messageDTO);
+	}
+	
 	//pageMemberProfile
 	public List<MemberDTO> pageMemberProfile(int page_num, String search) throws Exception {
 		return pageDAO.pageMemberProfile(page_num, search);
@@ -100,6 +105,15 @@ public class PageService {
 		
 		return result;
 	}
+	//pageCotentsList
+	public List<PageContentsDTO> pageContentslist(int page) throws Exception{
+		page=(page*10)+1;
+		
+		List<PageContentsDTO> ar = pageDAO.pageContentsList(page);
+		
+		return ar;
+	}
+	
 	
 	//memberDrop
 	public int memberDrop(int page_num, String id) throws Exception {
