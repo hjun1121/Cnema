@@ -147,7 +147,7 @@ ul{
         	<!-- 내용시작 -->
   
 <!-- //////////////////////////// -->
-<%-- <div id="contents" >
+<div id="contents" >
 	<div class="sect-common"> 
     	<div class="favorite-wrap">
         	<h3 class="hidden">극장별 상영시간표</h3>
@@ -180,16 +180,17 @@ ul{
 			<div class="showtimes-wrap">
         		<div class="sect-schedule">
             		<div id="slider" class="slider">
-                        <div class="item-wrap">
+                        <div id="dayList" class="item-wrap">
                         	<ul class="item" style="width: 800px; height: 108px;">
-                        		<li>
+                        	<c:forEach items="${dayList }" var="DTO" varStatus="count">
+                        		<li id="day${count.count }" class="days" title="${DTO.day_num }">
                             		<div class="day">
-                                		<a href="#">
-                                    		<span>01월</span> <em>토</em> <strong>27</strong>
+                                		<a href="#" onclick="return false;">
+                                    		<span>01월</span> <em>${DTO.week}</em> <strong>${DTO.day }</strong>
                                 		</a>
                             		</div>
                         		</li>
-                        		<li class="on">
+                        		<!-- <li class="on">
                             		<div class="day">
                                 		<a href="#" title="현재 선택">
                                     		<span>01월</span> <em> 일</em> <strong>28</strong>
@@ -202,7 +203,8 @@ ul{
                                     		<span>01월</span> <em>월</em> <strong>29</strong>
                                 		</a>
                             		</div>
-                        		</li>
+                        		</li> -->
+                        	</c:forEach>
                         	</ul>
                         </div>
                 		<button type="button" class="btn-prev">이전 날자보기</button>
@@ -214,15 +216,17 @@ ul{
                 			<p>* 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
             			</div>
         			</div>
-        			<div class="sect-showtimes">
+        			<div id="scheduleList" class="sect-showtimes">
             			<ul>
+            			<c:forEach items="${movieList }" var="movieDTO">
                         	<li>
                             	<div class="col-times">
                                 	<div class="info-movie">
                                     	<span class="ico-grade grade-12">12세 이상</span> 
-                                    	<a href="#"><strong>신과함께-죄와 벌</strong></a>
+                                    	<a href="#"><strong>${movieDTO.movie_name }</strong></a>
                                     	<i>드라마,&nbsp;환타지</i>/ <i>139분</i>/ <i>2017.12.20개봉</i>
                                 	</div>
+                                	
                                     <div class="type-hall">
                                     	<div class="info-hall">
                                          	<ul>
@@ -283,6 +287,7 @@ ul{
                                       </div>
                             		</div>
                        		 	</li>
+                       		 </c:forEach>
            					 </ul>
         				</div>
         			<p class="info-noti"></p>
@@ -293,7 +298,7 @@ ul{
 
             <!--/ Contents End -->
 
-		</div> --%>
+		</div>
 <!-- //////////////////////////// -->
   
 <h2>상영 시간표</h2>
