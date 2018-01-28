@@ -92,6 +92,13 @@
 	<insert id="replyWrite" parameterType="pageContentsDTO">
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,#{ref},0,0)
 	</insert>
+	<!--댓글리스트  -->
+	<select id="replyList" parameterType="int" resultType="pageContentsDTO">
+		select * from
+  		(select rownum r, N.* from
+  		(select * from pageContents where ref=#{ref} order by num desc) N)
+  		where r between 1 and 10)	
+	</select>
 	
 	
 	<delete id="memberDrop" parameterType="java.util.Map">

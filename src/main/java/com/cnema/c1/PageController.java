@@ -405,6 +405,17 @@ public class PageController {
 			return mv;
 			
 		}
+		
+	//replyList
+		@RequestMapping(value = "replyList",method=RequestMethod.POST)
+		public ModelAndView replyList(int ref)throws Exception {
+			ModelAndView mv = new ModelAndView();
+			List<PageContentsDTO> ar = null;
+			ar=pageService.replyList(ref);
+			mv.addObject("list", ar);
+			mv.setViewName("community/replyList");
+			return mv;
+		}	
 	
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.POST)

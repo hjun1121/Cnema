@@ -183,4 +183,8 @@ public class PageDAO {
 	public int replyWrite(PageContentsDTO pageContentsDTO) {
 		return sqlSession.insert(NAMESPACE+"replyWrite", pageContentsDTO);
 	}
+
+	public List<PageContentsDTO> replyList(int ref) {
+		 return sqlSession.selectList(NAMESPACE+"replyList", ref);
+	}
 }

@@ -168,6 +168,27 @@
 	
 	
 	});
+	$(".reply").on("click", function(event){
+		
+		var contents_num=$(this).val();
+		var page_num=${page_num};
+				$.ajax({
+					url:"../community/replyList",
+					type:"POST",
+					data:{
+						contents_num:contents_num,
+						page_num:page_num
+					},
+					success:function(data){
+						$("#replyList"+contents_num).html(data);
+						},
+					error : function(){
+						
+					}
+				});
+	
+	
+	});
 
 	
 		

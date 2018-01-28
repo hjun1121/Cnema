@@ -25,6 +25,7 @@
 	<input type="submit" value="댓글등록"> 
 	</form>
 </div>
+<div id="replyList${dto.contents_num }"> </div>
  </div>
  </c:forEach>
  </c:if>
