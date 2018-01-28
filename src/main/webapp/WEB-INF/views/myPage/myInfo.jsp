@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(function(){
 		var pwCheck = true;
-		var emailCheck = false;
+		var emailCheck = true;
 		
 		var p0='${p[0]}';
 		$(".f").each(function(){
@@ -181,6 +181,10 @@
 			}	
 		});
 		
+		$("#pBtn").click(function(){
+			$("#profile").html('<input type="file" class="noneBorder" id="file" name="file" >');
+		});
+		
 		$("#revBtn").click(function(){
 			var f = $("#f").val();
 			var m = $("#m").val();
@@ -329,7 +333,7 @@
 			    <h3>회원 정보 수정</h3>
 			</div>
 			<p class="info-com">&nbsp;</p>
-			<form action="myInfoRevision" method="post" name="frm">
+			<form action="myInfoRevision" method="post" name="frm" enctype="multipart/form-data">
 				<table  class="revisionTable">
 					<tr>
 						<td>아이디</td>
@@ -403,6 +407,11 @@
 						<td><input type="text" class="noneBorder" id="addr" name="addr1" placeholder="주소" readonly="readonly" value="${myInfo.addr1 }">
 							<input type="text" class="noneBorder" id="addr2" name="addr2" placeholder="나머지주소" value="${myInfo.addr2 }"></td>
 					</tr>
+				<tr>
+					<td>프사</td>
+					<td id="profile"><img style="width: 100px; height: 80px;" src="${pageContext.request.contextPath }/resources/profil/${member.fileName}">
+					<input type="button" id="pBtn" value=" x " style="margin-top: -60px;"></td>
+				</tr>
 				</table>
 				<input type="hidden" id="phone" name="phone">
 				<div class="set-btn">

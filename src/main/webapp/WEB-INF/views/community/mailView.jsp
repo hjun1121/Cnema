@@ -6,8 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/mailBox.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/movie/movie.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/mailView.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>${mail.title}</title>
@@ -31,24 +30,25 @@
 
 	<table>
 		<tr>
-			<td>제목</td>
+			<td class="title">제목</td>
 			<td>${mail.title }</td>
 		</tr>
 		<tr>
-			<td>보내는 사람</td>
+			<td class="title">보내는 사람</td>
 			<td>${mail.send_id }</td>
 		</tr>
 		<tr>
-			<td>보낸 날짜</td>
+			<td class="title">보낸 날짜</td>
 			<td>${mail.send_date }</td>
 		</tr>
 		<tr>
-			<td>${mail.contents }</td>
+			<td class="title contents">내용</td>
+			<td class="contents">${mail.contents }</td>
 		</tr>
 	</table>
 	
-	<button id="reply_btn">답장</button>
-	<button id="delete_btn">삭제</button>
-	<button id="list_btn">목록</button>
+	<button class="mailView_btns" id="reply_btn">답장</button>
+	<button class="mailView_btns" id="delete_btn">삭제</button>
+	<button class="mailView_btns" id="list_btn">목록</button>
 </body>
 </html>
