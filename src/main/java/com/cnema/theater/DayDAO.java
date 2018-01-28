@@ -54,6 +54,7 @@ public class DayDAO {
 			dayDTO.setDay_num(DTO);
 			dayDTO.setDay(sDay.get(Calendar.DATE));
 			dayDTO.setWeek(sd.format(sDay.getTime()));
+			dayDTO.setMonth(sDay.get(Calendar.MONTH)+1);
 			ar.add(dayDTO);
 			
 			if(i>lastDay){

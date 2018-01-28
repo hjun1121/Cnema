@@ -12,8 +12,15 @@ public class ScheduleDTO {
 	private int theater_num;
 	
 	private int seatcheck;
+	private ScreenDTO screenDTO;
 	
 	
+	public ScreenDTO getScreenDTO() {
+		return screenDTO;
+	}
+	public void setScreenDTO(ScreenDTO screenDTO) {
+		this.screenDTO = screenDTO;
+	}
 	public int getTheater_num() {
 		return theater_num;
 	}

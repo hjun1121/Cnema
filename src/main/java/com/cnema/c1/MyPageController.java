@@ -124,9 +124,11 @@ public class MyPageController {
 	public ModelAndView myInfoRevision(HttpSession session,MemberDTO memberDTO,RedirectAttributes rd){
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
-		
+		MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
 		try {
-			result = memberService.myInfoRevision(memberDTO);
+			memberDTO.setFileName(memberDTO2.getFileName());
+			memberDTO.setOriName(memberDTO2.getOriName());
+			result = memberService.myInfoRevision(memberDTO, session);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,7 +136,6 @@ public class MyPageController {
 			mv.addObject("message", "회원정보 수정 완료하였습니다.");
 			mv.addObject("path", "./myPage/myInfoCheck");
 			mv.setViewName("common/messagePath");
-			MemberDTO memberDTO2 = (MemberDTO)session.getAttribute("member");
 			memberDTO2.setPw(memberDTO.getPw());
 			memberDTO2.setPhone(memberDTO.getPhone());
 			memberDTO2.setPostCode(memberDTO.getPostCode());
@@ -142,7 +143,6 @@ public class MyPageController {
 			memberDTO2.setAddr2(memberDTO.getAddr2());
 			memberDTO2.setEmail(memberDTO.getEmail());
 			
-			session.setAttribute("member", memberDTO2);
 		}else{
 			mv.addObject("message", "회원 정보 수정 실패하였습니다.");
 			mv.addObject("path", "./myPage/myInfoCheck");

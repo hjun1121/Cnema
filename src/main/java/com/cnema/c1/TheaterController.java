@@ -263,10 +263,13 @@ public class TheaterController {
 		List<TheaterDTO> areaList = null;
 		List<TheaterDTO> locationList = null;
 		List<MovieDTO> movieList = new ArrayList<>();
+		TheaterDTO theater= null;
+		List<Integer> seatCheck =null;
 		if(areaName==null){
 			areaName="서울";
 		}
 		try {
+			theater =theaterService.selectOne(theater_num);
 			dayList = theaterService.dayList();
 			areaList = theaterService.areaList();
 			locationList = theaterService.locationList(areaName);
@@ -286,6 +289,10 @@ public class TheaterController {
 					List<ScheduleDTO> sl = scheduleService.movieSchedule(theater_num, day, i, s);
 					for(ScheduleDTO scheduleDTO : sl){
 						//System.out.println(scheduleDTO.getIn_time());
+						ScreenDTO screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+						scheduleDTO.setScreenDTO(screenDTO); 
+						seatCheck = reserveService.seatCheck(screenDTO.getScreen_num(), scheduleDTO.getSchedule_num());
+						scheduleDTO.setSeatcheck(seatCheck.size());
 					}
 					sll.add(sl);
 					movieDTO.setsList(sll);
@@ -302,6 +309,7 @@ public class TheaterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("theater", theater);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("areaName", areaName);
 		model.addAttribute("theater_num", theater_num);

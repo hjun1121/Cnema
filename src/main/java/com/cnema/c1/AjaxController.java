@@ -276,6 +276,7 @@ public class AjaxController {
 	@RequestMapping(value="slScheduleList", method=RequestMethod.POST)
 	public void slScheduleList(int theater_num, String day, Model model){
 		List<MovieDTO> movieList = new ArrayList<>();
+		List<Integer> seatCheck =null;
 		try {
 			List<Integer> movieNumList = scheduleService.movieNumList(theater_num, day);
 			for(Integer i : movieNumList){
@@ -285,6 +286,14 @@ public class AjaxController {
 				List<List<ScheduleDTO>> sll = new ArrayList<>();
 				for(Integer s : screenNumList){
 					List<ScheduleDTO> sl = scheduleService.movieSchedule(theater_num, day, i, s);
+					for(ScheduleDTO scheduleDTO : sl){
+						//System.out.println(scheduleDTO.getIn_time());
+						ScreenDTO screenDTO = scheduleService.screenOne(scheduleDTO.getScreen_num());
+						scheduleDTO.setScreenDTO(screenDTO);
+						seatCheck = reserveService.seatCheck(screenDTO.getScreen_num(), scheduleDTO.getSchedule_num());
+						scheduleDTO.setSeatcheck(seatCheck.size());
+					}
+					
 					sll.add(sl);
 				}
 				movieDTO.setsList(sll);
