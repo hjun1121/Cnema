@@ -186,6 +186,7 @@
 	<div id="writeTab"> </div>
 	<form action="../community/pageContentsWrite"  method="post" id="frm">
 		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
+		<input type="hidden" name="id" value="${member.id}">
 		<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
 	
 	<div class="_51xa">
