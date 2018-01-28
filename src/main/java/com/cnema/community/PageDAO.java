@@ -166,5 +166,17 @@ public class PageDAO {
 	public List<PageDTO> selectPageList(String id) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"selectPageList", id);
 	}
+	
+	//pageLike
+	public int pageContentsLike(int contents_num) {
+		return sqlSession.update(NAMESPACE+"pageContentsLike", contents_num);
+	}
 
+	public int pageContentsWarning(int contents_num) {
+		return sqlSession.update(NAMESPACE+"pageContentsWarning", contents_num);
+	}
+	//페이지글 삭제
+	public int pageContentsDelete(int contents_num) {
+		return sqlSession.update(NAMESPACE+"pageContentsDelete", contents_num);
+	}
 }

@@ -106,8 +106,69 @@
 			alert("메일함");
 			
 		});
-
 	
+		//좋아요 누르기
+		$(".like").on("click", function(event){
+			
+			var contents_num=$(this).val();
+					$.ajax({
+						url:"../community/like",
+						type:"POST",
+						data:{
+							contents_num:contents_num
+						},
+						success:function(data){
+							$(this).attr("disabled",true);
+							},
+						error : function(){
+							
+						}
+					});
+		
+		
+		});
+		//신고하기 누르기
+	$(".warning").on("click", function(event){
+			
+			var contents_num=$(this).val();
+					$.ajax({
+						url:"../community/warning",
+						type:"POST",
+						data:{
+							contents_num:contents_num
+						},
+						success:function(data){
+							$(this).attr("disabled",true);
+							},
+						error : function(){
+							
+						}
+					});
+		
+		
+		});
+		
+	$(".deleteBtn").on("click", function(event){
+		
+		var contents_num=$(this).val();
+		var page_num=${page_num};
+				$.ajax({
+					url:"../community/delete",
+					type:"POST",
+					data:{
+						contents_num:contents_num,
+						page_num:page_num
+					},
+					success:function(data){
+						},
+					error : function(){
+						
+					}
+				});
+	
+	
+	});
+
 	
 		
 	

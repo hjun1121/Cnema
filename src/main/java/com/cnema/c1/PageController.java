@@ -335,6 +335,54 @@ public class PageController {
 		
 	}
 	
+	//like 하기
+	@RequestMapping(value = "like", method=RequestMethod.POST)
+	public void pagelike(int contents_num) {
+		int result=0;
+		try {
+			result = pageService.pageContentsLike(contents_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	//신고하기 
+	@RequestMapping(value = "warning", method=RequestMethod.POST)
+	public void pageWarning(int contents_num) {
+		int result=0;
+		try {
+			result = pageService.pageContentsWarning(contents_num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	//신고하기 
+		@RequestMapping(value = "delete", method=RequestMethod.POST)
+		public ModelAndView pageContentsDelete(int contents_num,int page_num) {
+			ModelAndView mv = new ModelAndView();
+			int result=0;
+			try {
+				result = pageService.pageContentsDelete(contents_num);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String message = "contentes 삭제 실패";
+			if(result > 0) {
+				message = "contentes 삭제완료";
+			}
+			
+			mv.addObject("message", message);
+			mv.addObject("path", "community/communityMainTest?page_num"+page_num);
+			mv.setViewName("/common/messagePath");
+
+			return mv;
+			
+		}
+	
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.POST)
 	public ModelAndView pageInsert(PageDTO pageDTO, HttpSession session, RedirectAttributes rd) throws Exception {

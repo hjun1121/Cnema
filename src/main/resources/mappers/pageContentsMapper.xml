@@ -5,7 +5,7 @@
 <mapper namespace="pageContentsMapper">
 
 	<insert id="contentsInsert" parameterType="java.util.Map">
-		insert into pagecontents values(movie_seq.nextval, #{page_num}, #{id}, #{pageContentsDTO.contents},
+		insert into pagecontents values(movie_seq.nextval, #{page_num}, #{id}, #{contents},
 			sysdate, #{pageContentsDTO.fileName}, #{pageContentsDTO.oriName}, 0, 0, 0, 0, 0)
 	</insert>
 

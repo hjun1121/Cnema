@@ -98,6 +98,12 @@ public class PageService {
 	public PageMemberDTO selectPageMemberOne(String id, int page_num) throws Exception {
 		return pageDAO.selectPageMemberOne(id, page_num);
 	}
+	//pageContetnsLIKE
+	public int pageContentsLike(int contents_num) throws Exception{
+		int result = pageDAO.pageContentsLike(contents_num);
+		
+		return result;
+	}
 	
 	//pageContentsWrite
 	public int pageContentsWrite(PageContentsDTO pageContentsDTO) throws Exception{
@@ -174,6 +180,14 @@ public class PageService {
 	//selectPageOne
 	public PageDTO selectPageOne(int page_num) throws Exception {
 		return pageDAO.selectPageOne(page_num);
+	}
+	//신고하기
+	public int pageContentsWarning(int contents_num) {
+		return pageDAO.pageContentsWarning(contents_num);
+	}
+	//페이지글 삭제
+	public int pageContentsDelete(int contents_num) {
+		return pageDAO.pageContentsDelete(contents_num);
 	}
 	
 }
