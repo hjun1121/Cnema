@@ -24,7 +24,7 @@
 		
 		$(".areas").each(function(){
 			 if($(this).attr("title") == area) {
-				$(this).css("background-color","#e87676");
+				$(this).css("background-color","none");
 				$(this).css("border-radius","60%");
 			 }
 		});
@@ -37,7 +37,7 @@
 		
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
-			$(this).css("background-color","#e87676");
+			$(this).css("background-color","none");
 			$(this).css("border-radius","60%");
 			area = $(this).attr("title");
 			$("#areaN").val(area);
@@ -147,7 +147,7 @@ ul{
         	<!-- 내용시작 -->
   
 <!-- //////////////////////////// -->
-<div id="contents" >
+<%-- <div id="contents" >
 	<div class="sect-common"> 
     	<div class="favorite-wrap">
         	<h3 class="hidden">극장별 상영시간표</h3>
@@ -163,14 +163,13 @@ ul{
     			</div>
 	        				
 				<div id="locationList" style="margin-top: 60px;">
-      					<ul>
+    				<ul>
 						<c:forEach items="${locationList }" var="DTO">
-       						<li>
-       							<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }">${DTO.location }</a>
-       						</li>
-       						
-       					</c:forEach>
-      					</ul>
+     						<li>
+     							<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }">${DTO.location }</a>
+     						</li>
+     					</c:forEach>
+    					</ul>
      			</div>
         	</div>
     	</div>
@@ -294,9 +293,9 @@ ul{
 
             <!--/ Contents End -->
 
-		</div>
+		</div> --%>
 <!-- //////////////////////////// -->
-<%--   
+  
 <h2>상영 시간표</h2>
 	
 <ul>
@@ -344,7 +343,7 @@ ul{
 			</c:forEach>
 		</c:forEach>
 	</ul>
-</div> --%>
+</div>
 
 <form action="../theater/scheduleList" id="frm" name="frm" method="get">
 	<input type="text" id="movie_num" name="movie_num">
