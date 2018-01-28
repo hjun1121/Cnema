@@ -197,7 +197,7 @@ $(function(){
 			        	<button type="submit" id="save" class="round inred on" style="width:58px;"><span>추가</span></button>
 			        </a>
 		    	</div>
-		    	
+		    	<c:if test="${fn:length(theaterList) > 0}"> 
 		    	<div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -212,6 +212,7 @@ $(function(){
 						</c:if>
 					</ul>
 				</div>
+				</c:if>  
 			</div>
 			<!-- /// -->
 			</div>

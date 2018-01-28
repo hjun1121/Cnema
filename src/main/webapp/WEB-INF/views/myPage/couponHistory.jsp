@@ -236,6 +236,7 @@
 				            </c:if>  
 				        </tbody>
 				    </table>
+				    <c:if test="${fn:length(mcList) > 0}">
 				    <div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -250,6 +251,7 @@
 						</c:if>
 					</ul>
 				</div>	
+				</c:if>
 				</div>
 				<div style="margin-top: 30px;"></div>
 				</div>

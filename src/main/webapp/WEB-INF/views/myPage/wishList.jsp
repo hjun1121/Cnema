@@ -177,6 +177,7 @@ $(function(){
 				                </c:forEach>
 						        </ul>
 						    </div>
+						    <c:if test="${wishLeftbar > 0}">
 						    <div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -190,7 +191,7 @@ $(function(){
 							</li>
 						</c:if>
 					</ul>
-				</div>
+				</div></c:if>
 					    </div>
 					</div>
 				</div>
