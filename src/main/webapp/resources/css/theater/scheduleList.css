@@ -1,0 +1,679 @@
+@CHARSET "UTF-8";
+
+.sect-showtimes .col-times .ico-grade {
+	top: -2px;
+	left: -1px;
+}
+#contaniner.bg-bricks {
+    background: url(../../../resources/images/common/bg/bg_c_bricks.png) repeat-x 0 29px;
+}
+.showtimes-wrap .early, .showtimes-wrap .midnight, .showtimes-wrap .early, .showtimes-wrap .midnight, .showtimes-wrap .ico_script, .descri-info > ul > li > a, .sect-showtimes .info-timetable a > em {
+    color: #333;
+}
+.sect-showtimes .info-timetable a > span {
+    color: #2275a4;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+
+.sect-showtimes .info-timetable span {
+    display: inline-block;
+    font-size: 11px;
+}
+.sect-showtimes .info-timetable em {
+    display: block;
+    font-family: verdana, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+h4.tit-showtime {
+    padding-bottom: 18px;
+    color: #333;
+    font-size: 31px;
+    text-align: left;
+}
+.sect-showtimes .info-timetable > ul > li {
+    float: left;
+    position: relative;
+    width: 70px;
+    height: 36px;
+    margin-right: -1px;
+    padding-top: 5px;
+    border: 1px solid #cbcabe;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.ico-grade.grade-12 {
+	background-position: -51px 0;
+}
+
+.ico-grade.grade-all {
+	background-position: -30px 0;
+}
+
+.ico-grade.grade-15 {
+	background-position: -72px 0;
+}
+
+.ico-grade.grade-19 {
+	background-position: -93px 0;
+}
+
+.ico-grade {
+	display: block;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 21px;
+	height: 21px;
+	background: url(../../../resources/images/common/sprite/sprite_icon.png)
+		no-repeat;
+	font: 0/0 a;
+	zoom: 1;
+}
+
+.cols-content {
+	margin-top: 25px;
+}
+
+.hidden {
+	font: 0/0 a;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	visibility: hidden;
+	width: 0;
+	zoom: 1;
+}
+
+@charset "utf-8";
+
+/* 영화 타입 선택 */
+.sect-movie-type {
+	margin-bottom: 30px;
+	padding: 20px 0;
+	border-top: 2px solid #2b2b2b;
+	border-bottom: 2px solid #2b2b2b;
+}
+
+.sect-movie-type:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+*+html .sect-movie-type {
+	zoom: 1;
+}
+
+.sect-movie-type>h4 {
+	float: left;
+	width: 150px;
+	padding-left: 16px;
+	color: #333333;
+	font-size: 17px;
+}
+
+.sect-movie-type>ul {
+	float: left;
+	width: 600px;
+	padding-left: 30px;
+	border-left: 2px solid #dfddd3;
+}
+
+.sect-movie-type>ul:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+*+html .sect-movie-type>ul {
+	zoom: 1;
+}
+
+.sect-movie-type>ul>li {
+	float: left;
+	width: 270px;
+	height: 29px;
+	margin: 2px 13px 2px 0;
+}
+
+.sect-movie-type>ul>li>a {
+	display: block;
+	padding-left: 9px;
+	color: #222222;
+	font-size: 14px;
+	font-family: 'NanumBarunGothicBold';
+	line-height: 29px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.sect-movie-type>ul>li:hover, .sect-movie-type>ul>li.on {
+	background: url('../../../resources/images/common/bg/bg_movielist.png') 0 0 no-repeat;
+}
+
+.sect-movie-type>ul>li:hover a, .sect-movie-type>ul>li.on a {
+	color: #ffffff;
+}
+
+/* 도시 선택 */
+.sect-city {
+	height: 44px;
+	border-top: 3px solid #241D1E;
+	line-height: 44px;
+}
+
+.sect-city li {
+	float: left;
+	margin: 0 8px;
+}
+
+.sect-city li>a {
+	padding: 0 16px;
+	color: #666;
+	font-size: 13px;
+}
+
+.sect-city li.on>a, .sect-city li>a:focus {
+	color: #333;
+	background: url(../images/common/ico/ico_arrow02.png) no-repeat 50% 100%;
+}
+
+/* 일 선택 */
+.showtimes-wrap .sect-schedule {
+	width: 100%;
+	border-top: 3px solid #241d1e;
+}
+
+.showtimes-wrap .slider {
+	position: relative; /*width:640px;*/
+	height: 48px;
+	padding: 12px 80px;
+}
+
+.showtimes-wrap .slider .item-wrap {
+	overflow: hidden;
+	height: 48px;
+}
+
+.showtimes-wrap .slider .item-wrap>.item {
+	position: static;
+}
+
+.showtimes-wrap .slider>button[type='button'] {
+	position: absolute;
+	top: 27px;
+	width: 54px;
+	height: 19px;
+	margin: 0;
+	font: 0/0 a;
+	background-image: url(../images/sprite/sprite_btn.png);
+	background-repeat: no-repeat;
+	zoom: 1;
+}
+
+.showtimes-wrap .slider>button[type='button'].btn-prev {
+	left: 0px;
+	background-position: -117px -174px;
+}
+
+.showtimes-wrap .slider>button[type='button'].btn-next {
+	right: 0px;
+	background-position: -117px -155px;
+}
+
+.showtimes-wrap .slider>button[type='button'].btn-prev.dim {
+	background-position: -61px -155px;
+}
+
+.showtimes-wrap .slider>button[type='button'].btn-next.dim {
+	background-position: -61px -174px;
+}
+
+.showtimes-wrap .slider li {
+	float: left;
+	margin-left: 2px;
+}
+
+.showtimes-wrap .slider li>.day {
+	position: relative;
+	width: 77px;
+	height: 48px;
+	color: #717171;
+}
+
+.showtimes-wrap .slider li>.day span, .showtimes-wrap .slider li>.day em,
+	.showtimes-wrap .slider li>.day strong {
+	position: absolute;
+	font-family: 'NanumBarunGothic', '맑은 고딕', '돋움', Dotum, sans-serif;
+	font-size: 11px;
+}
+
+.showtimes-wrap .slider li>.day span {
+	top: 14px;
+	left: 8px;
+}
+
+.showtimes-wrap .slider li>.day em {
+	top: 28px;
+	left: 15px;
+}
+
+.showtimes-wrap .slider li>.day strong {
+	top: 8px;
+	left: 31px;
+	font-family: verdana, sans-serif;
+	font-size: 32px;
+	line-height: 32px;
+}
+
+.showtimes-wrap .slider li.on>.day {
+	background: #fff url(../images/sprite/sprite_btn.png) no-repeat -61px
+		-97px;
+}
+
+.showtimes-wrap .slider li.on>.day>a {
+	height: 48px;
+}
+
+*+html .showtimes-wrap .slider li.on>.day>a {
+	cursor: pointer;
+}
+
+.showtimes-wrap .slider li.on>.day span, .showtimes-wrap .slider li.on>.day em,
+	.showtimes-wrap .slider li.on>.day strong {
+	color: #000;
+}
+
+/* 조조,심야,안내 */
+.sect-guide {
+	position: relative;
+	height: 37px;
+	padding: 0 0 0 13px;
+	border-top: 2px solid #474746;
+	border-bottom: 1px solid #474746;
+	line-height: 37px;
+}
+
+.sect-guide .descri-timezone ul {
+	float: left;
+}
+
+.sect-guide .descri-timezone ul:after {
+	clear: none;
+}
+
+.sect-guide .descri-timezone li, .descri-info>ul>li {
+	float: left;
+	position: relative;
+	margin-left: 15px;
+}
+
+.sect-guide .descri-timezone p {
+	float: left;
+	margin-left: 20px;
+	color: #794624;
+}
+
+.descri-info {
+	position: absolute;
+	top: 12px;
+	right: 6px;
+}
+
+.descri-info>ul>li>a {
+	height: 13px;
+	padding-left: 18px;
+	background-position: 0 -158px;
+	line-height: 13px;
+}
+
+.descri-info>ul>li>a.priceinfo {
+	
+}
+
+.descri-info>ul>li>a.priceinfo+.layer-wrap {
+	left: -506px;
+	top: -80px;
+}
+
+.descri-info>ul>li>a.priceinfo+.layer-wrap .pop_contents {
+	height: 500px;
+	overflow-y: auto;
+}
+
+.descri-info>ul>li>a.priceinfo+.layer-wrap .sect-price .tbl-list .col01
+	{
+	width: 80px;
+}
+
+.descri-info>ul>li>a.priceinfo+.layer-wrap .sect-price .tbl-list .col02
+	{
+	width: 80px;
+}
+
+.descri-info>ul>li>a.viewgrade {
+	
+}
+
+.descri-info>ul>li>a.viewgrade+.layer-wrap {
+	left: -608px;
+	top: 30px;
+}
+
+.descri-info.theater2 {
+	top: 89px;
+	right: 6px;
+	z-index: 4000
+}
+
+#movie_review_list_container a.view_review_detail_popup+.layer-wrap {
+	left: 50%;
+	top: -100px;
+	margin-left: -375px;
+}
+
+#movie_review_list_container a.view_review_detail_popup+.layer-wrap .layer-contents
+	{
+	width: 745px;
+	height: auto;
+}
+
+#movie_review_list_container a.view_review_detail_popup+.layer-wrap .pop-contents
+	{
+	max-height: 400px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	white-space: pre;
+	word-wrap: break-word;
+}
+
+#movie_review_list_container a.view_review_detail_popup+.layer-wrap .pop-contents>div
+	{
+	margin-bottom: 20px;
+}
+
+#movie_review_list_container a.view_review_detail_popup+.layer-wrap .pop-contents *
+	{
+	white-space: normal;
+}
+
+#movie_review_list_container a.view_review_detail_popup+.layer-wrap .pop-contents img
+	{
+	max-width: 100%;
+}
+
+/* 영화관 및 일정 리스트 */
+.sect-showtimes {
+	
+}
+
+.sect-showtimes>ul>li {
+	padding: 26px 0 40px;
+	border-top: 1px solid #474746;
+}
+
+.sect-showtimes>ul>li.nodata {
+	text-align: center;
+}
+
+.sect-showtimes>ul>li.nodata strong {
+	color: #222;
+	font-size: 13px;
+}
+
+.sect-showtimes>ul>li:first-child {
+	border-top: 0 none;
+}
+
+.sect-showtimes>ul>li:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+.sect-showtimes>ul>li {
+	zoom: 1;
+}
+
+.sect-showtimes .col-theater, .sect-showtimes .col-times {
+	float: left;
+}
+
+.sect-showtimes .col-theater {
+	width: 97px;
+	padding: 14px 0 0 14px;
+	color: #000;
+	font-size: 16px;
+	line-height: 1.2em;
+}
+
+.sect-showtimes .col-times {
+	position: relative;
+	margin-left: 14px;
+	padding-left: 26px;
+}
+
+.sect-showtimes .col-times>.info-movie {
+	vertical-align: middle;
+}
+
+.sect-showtimes .col-times>.info-movie strong {
+	margin-right: 5px;
+	color: #000;
+	font-size: 16px;
+}
+
+.sect-showtimes .col-times>.info-movie .round {
+	line-height: 16px;
+	vertical-align: top;
+}
+
+.sect-showtimes .col-times>.info-movie .round.red {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+}
+
+.sect-showtimes .col-times .ico-grade {
+	top: -2px;
+	left: -1px;
+}
+
+/* 영화관 정보 */
+.sect-showtimes .type-hall {
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.sect-showtimes .type-hall:after, .sect-showtimes .info-hall:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+.sect-showtimes .type-hall, .sect-showtimes .info-hall {
+	zoom: 1;
+}
+
+.sect-showtimes .type-hall:first-child {
+	margin-top: 0;
+	border-top: 0 none;
+}
+
+.sect-showtimes .info-hall {
+	clear: both;
+	margin-bottom: 5px;
+	padding-left: 16px;
+	background: url(../../../resources/images/common/ico/ico_arrow03.png) no-repeat 2px 50%;
+}
+
+.sect-showtimes .info-hall li {
+	float: left;
+	padding: 0 8px;
+	background: url(../../../resources/images/common/bg/bg_li_vline.gif) no-repeat 0 50%;
+	color: #333;
+	font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+	font-size: 11px;
+	line-height: 17px;
+}
+
+.sect-showtimes .info-hall li:first-child {
+	padding-left: 0;
+	background-image: none;
+}
+
+/* 극장별 상영시간표 */
+.favorite-wrap {
+	position: relative;
+	width: 874px;
+	height: 382px;
+	padding: 68px 53px 0;
+	background: url(../../../resources/images/common/bg/bg_showtimes_favorite.gif) no-repeat
+		0 0;
+}
+
+.favorite-wrap .tab-menu, .subtitles-wrap .tab-menu {
+	position: absolute;
+	top: 11px;
+	width: 874px;
+}
+
+.favorite-wrap .sect-favorite {
+	position: relative;
+	width: 676px;
+	height: 49px;
+	padding-left: 198px;
+}
+
+.favorite-wrap .sect-favorite h4 {
+	position: absolute;
+	top: 14px;
+	left: 33px;
+	padding: 0;
+	font: 0/0 a;
+	zoom: 1;
+}
+
+.favorite-wrap .sect-favorite li {
+	float: left;
+	margin-left: 2px;
+	padding: 2px;
+	border: 2px solid #6e6c6d;
+}
+
+.favorite-wrap .sect-favorite li:first-child {
+	margin-left: 0;
+}
+
+.favorite-wrap .sect-favorite li>a {
+	position: relative;
+	display: block;
+	width: 107px;
+	height: 39px;
+	border: 1px solid #6e6c6d;
+	color: #fff;
+	font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+	font-size: 11px;
+	line-height: 39px;
+	text-align: center;
+}
+
+.favorite-wrap .sect-favorite li>a>span {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-family: verdana, sans-serif;
+	line-height: 1;
+}
+
+.favorite-wrap .sect-favorite li>a>span>em {
+	font: 0/0 a;
+	zoom: 1;
+}
+
+.favorite-wrap .sect-favorite>button[type='button'] {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 794px;
+	width: 49px;
+	height: 49px;
+	background: #636162 url('../images/common/btn/btn_plus.gif') 0 0
+		no-repeat;
+	border: 2px solid #6e6c6d;
+	line-height: 49px;
+	text-indent: 100%;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.favorite-wrap .sect-favorite>button[type='button'].setting {
+	background: #636162 url(../images/common/ico/icon_setting02.png)
+		no-repeat 50% 50%
+}
+
+.favorite-wrap .sect-city {
+	height: 49px;
+	margin-top: 24px;
+	border-top: 2px solid #727171;
+	border-bottom: 2px solid #727171;
+}
+
+.favorite-wrap .sect-city ul>li {
+	position: relative;
+	margin: 0 8px;
+}
+
+.favorite-wrap .sect-city .area {
+	position: absolute;
+	top: 63px;
+	left: -8px;
+	width: 874px;
+}
+
+.favorite-wrap .sect-city ul>li>a {
+	white-space: nowrap
+}
+
+.favorite-wrap .sect-city ul>li>a, .favorite-wrap .sect-city ul>li>div>a
+	{
+	padding: 0 19px;
+	color: #dbdbdb;
+	font-size: 14px;
+	line-height: 49px;
+	text-align: center;
+}
+
+.favorite-wrap .sect-city ul>li>div.area {
+	display: none;
+}
+
+.favorite-wrap .sect-city ul>li.on>div.area {
+	display: block;
+}
+
+.favorite-wrap .sect-city li.on>a, .sect-favorite .sect-city li>a:focus
+	{
+	color: #fff;
+}
+
+.favorite-wrap .sect-city ul>li * li {
+	margin: 3px 7px 0;
+}
+
+.favorite-wrap .sect-city ul>li * li>a {
+	width: 118px;
+	padding: 0 0 0 12px;
+	font-size: 12px;
+	color: #b9b9b9;
+	line-height: 33px;
+	text-align: left;
+}
+
+.favorite-wrap .sect-city ul>li * li>a:hover, .favorite-wrap .sect-city ul>li * li>a:focus,
+	.favorite-wrap .sect-city ul>li * li.on>a {
+	background: url(../images/sprite/sprite_bar_on.png) no-repeat 0 -80px;
+	color: #fff;
+}
