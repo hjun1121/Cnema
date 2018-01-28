@@ -194,7 +194,7 @@ $(function(){
 			    <div class="set-btn">
 			    	<a href="./couponInsert"><Button class="round inred on">글쓰기</Button></a>
 		    	</div>
-		    	
+		    	<c:if test="${fn:length(cList) > 0}">
 		    	<div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -209,7 +209,7 @@ $(function(){
 						</c:if>
 					</ul>
 				</div>
-				
+				</c:if>  
 			</div>
 
 			<!-- /// -->

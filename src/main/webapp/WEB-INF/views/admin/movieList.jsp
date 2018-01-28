@@ -217,6 +217,7 @@ $(function(){
 			    <div class="set-btn">
 			        <input type="button" class="round inred on" style="width:58px;" value="등록">
 		    	</div>
+		    	<c:if test="${fn:length(movieList) > 0}">           
 		    	<div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -231,6 +232,7 @@ $(function(){
 						</c:if>
 					</ul>
 				</div>
+				 </c:if>  
 			</div>
 			<!-- /// -->
 			</div>

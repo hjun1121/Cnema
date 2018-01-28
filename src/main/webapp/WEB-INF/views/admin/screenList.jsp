@@ -139,7 +139,7 @@ $(function(){
 				</div>
 				<form id="form1" novalidate="novalidate">
 				<div class="tit-mycgv" style="padding-bottom: 10px;">
-					<h4>상영관 리스트 ${fn:length(sList)}개</h4>
+					<%-- <h4>상영관 리스트 ${fn:length(sList)}개</h4> --%>
 				</div>
 				<div class="tbl-data">
 				    <table>
@@ -187,6 +187,7 @@ $(function(){
 				         	<input type="button" id="schBtn2" class="round inred on" title="${theater_num}" style="width: 58px;" value="등록">
 				         </c:if>
 			   		</div>
+			   		<c:if test="${fn:length(sList) > 0}">
 			   		<div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -201,6 +202,7 @@ $(function(){
 						</c:if>
 					</ul>
 				</div>
+				</c:if>
 				</div>
 				</form>
 			

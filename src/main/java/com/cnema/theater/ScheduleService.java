@@ -1,6 +1,8 @@
 package com.cnema.theater;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,11 +32,33 @@ public class ScheduleService {
 	}
 	
 	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num, int movie_num)throws Exception{
-		return scheduleDAO.scheduleList(screen_num, day_num, movie_num);
+		Calendar ca = Calendar.getInstance();
+		SimpleDateFormat sd = new SimpleDateFormat("YYYY-MM-dd");
+		String a =sd.format(day_num);
+		String b = sd.format(ca.getTime());
+		
+		List<ScheduleDTO> ar = null;
+		if(a.equals(b)){
+			ar = scheduleDAO.scheduleList(screen_num, day_num, movie_num);
+		}else{
+			ar = scheduleDAO.scheduleListNext(screen_num, day_num, movie_num);
+		}
+		
+		return ar;
 	}
 	
 	public List<ScheduleDTO> movieSchedule(int theater_num, String day , int movie_num, int screen_num) throws Exception{
-		return scheduleDAO.movieSchedule(theater_num, day, movie_num, screen_num);
+		Calendar ca = Calendar.getInstance();
+		SimpleDateFormat sd = new SimpleDateFormat("YYYY-MM-dd");
+		String b = sd.format(ca.getTime());
+		List<ScheduleDTO> ar = null;
+		if(b.equals(day)){
+			ar =scheduleDAO.movieSchedule(theater_num, day, movie_num, screen_num);
+		}else{
+			ar = scheduleDAO.movieScheduleNext(theater_num, day, movie_num, screen_num);
+		}
+		
+		return ar;
 	}
 	
 	public List<ScreenDTO> screenList(int theater_num)throws Exception{
