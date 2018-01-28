@@ -136,7 +136,7 @@
 				alert("이메일 앞주소를 확인해주세요");
 				$("#email1").focus();
 			}else if(email2 ==""){
-				alert("뒷주소 확인");
+				alert("이메일주소를 확인해주세요");
 				$("#email2").focus();
 			}else if(emailCheck){
 				alert("이미 인증된 이메일입니다");
@@ -210,6 +210,9 @@
 			}else if($("#l").val()==""){
 				alert("끝번호를 확인해 주세요");
 				$("#l").focus();
+			}else if(emailCheck == false){
+				alert("이메일인증  필수");
+				$("#email1").focus();
 			}else{
 				document.frm.submit();
 			}
@@ -377,8 +380,8 @@
 						<td>이메일</td>
 						<td>
 						<input type="text" id="email1" class="noneBorder" value="${e[0] }">@
-						<input type="text" id="email2" class="noneBorder" value="${e[1] }">
-						<select id = "mailList">
+						<input type="text" id="email2" class="noneBorder" readonly="readonly" value="${e[1] }">
+						<select id = "mailList" >
 				   			<option class="mail" value="0">직접입력</option>
 							<option class="mail" value="naver.com">naver.com</option>
 							<option class="mail" value="daum.net">daum.net</option>
