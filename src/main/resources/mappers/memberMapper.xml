@@ -35,16 +35,32 @@
   	<!-- heeseong -->
   	<!-- <select id="memberList" resultType="memberDTO" parameterType="java.lang.String">
   		select * from member
-  		
   	</select> -->
-  	<!-- heeseong -->
-  	<select id="memberList" resultType="memberDTO" parameterType="java.lang.String">
-  		select * from member
+  	<select id="mTotalCount" resultType="int" parameterType="int">
+  	select count(id) from member
   		<choose>
-  			<when test="kind == 'birth'">order by birth desc</when>
-  			<when test="kind == 'type'">order by type desc</when>
+  			<when test="kind == 10">order by birth desc</when>
+  			<when test="kind == 20">order by type desc</when>
   			<otherwise></otherwise>
   		</choose>
+  	</select>
+  	<!-- heeseong -->
+  	<select id="memberList" resultType="memberDTO" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select * from member
+  		<choose>
+  			<when test="kind == 10">order by birth desc</when>
+  			<when test="kind == 20">order by type desc</when>
+  			<otherwise></otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select * from member
+  		<choose>
+  			<when test="kind == 10">order by birth desc</when>
+  			<when test="kind == 20">order by type desc</when>
+  			<otherwise></otherwise>
+  		</choose> -->
   		
   	</select>
   	<!-- heeseong -->

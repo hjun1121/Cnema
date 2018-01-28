@@ -21,9 +21,9 @@ public class CouponService {
 	}
 	
 	/*heeseong*/
-	/*public List<CouponDTO> couponList() throws Exception{
-		return couponDAO.couponList();
-	}*/
+	public List<CouponDTO> couponAList() throws Exception{
+		return couponDAO.couponAList();
+	}
 	/*heeseong*/
 	public CouponDTO couponInfo(int c_num) throws Exception{
 		return couponDAO.couponInfo(c_num);

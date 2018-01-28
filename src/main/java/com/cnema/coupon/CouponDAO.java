@@ -56,4 +56,8 @@ public class CouponDAO {
 	public CouponDTO couponRevisionInfo(String name) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"couponRevisionInfo",name);
 	}
+
+	public List<CouponDTO> couponAList() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"couponAList");
+	}
 }

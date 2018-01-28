@@ -708,7 +708,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
-	public ModelAndView memberList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort) {
+	public ModelAndView memberList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = null;
 		List<MemberDTO> memList = new ArrayList<MemberDTO>();
@@ -721,10 +721,10 @@ public class AdminController {
 		try {
 			count = myCouponService.couponCount(m.getId());
 			aCount = myCouponService.couponACount(m.getId());
-			
-			groupList = coupongroupService.groupList();
+			mv = memberService.memberList(sort, group_num, listData);
+			/*groupList = coupongroupService.groupList();*/
 			/*cList = couponService.couponList("","");*/
-			if (group_num == -1) {
+			/*if (group_num == -1) {
 				if(sort == 10){
 					memList = memberService.memberList("birth");
 				}else if(sort==20){
@@ -743,15 +743,18 @@ public class AdminController {
 				result = myCouponService.couponCount(memberDTO2.getId());
 				mv.addObject("result" + number, result);
 				number++;
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
-		mv.addObject("cList", cList);
-		mv.addObject("groupList", groupList);
-		mv.addObject("memList", memList);
+		mv.addObject("today", today);
+		/*mv.addObject("cList", cList);*/
+		/*mv.addObject("groupList", groupList);
+		mv.addObject("memList", memList);*/
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
@@ -772,11 +775,11 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "쿠폰 주기 성공하였습니다.");
+			mv.addObject("message", "쿠폰 주기 성공하였습니다.");
 			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
 			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "쿠폰 주기 실패하였습니다.");
+			mv.addObject("message", "쿠폰 주기 실패하였습니다.");
 			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
 			mv.setViewName("common/messagePath");
 		}
@@ -799,7 +802,7 @@ public class AdminController {
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "포인트 주기 성공하였습니다.");
+			mv.addObject("message", "포인트 주기 성공하였습니다.");
 			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
 			mv.setViewName("common/messagePath");
 			MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
@@ -807,7 +810,7 @@ public class AdminController {
 			memberDTO.setA_point(memberDTO2.getV_point());
 			session.setAttribute("member", memberDTO);
 		} else {
-			rd.addAttribute("message", "포인트 주기 실패하였습니다.");
+			mv.addObject("message", "포인트 주기 실패하였습니다.");
 			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
 			mv.setViewName("common/messagePath");
 		}
@@ -833,22 +836,21 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "groupList", method = RequestMethod.GET)
-	public ModelAndView groupList() {
+	public ModelAndView groupList(HttpSession session,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
+		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		List<CoupongroupDTO> groupList = new ArrayList<>();
-		List<Object> groupCountList = new ArrayList<>();
-		List<CoupongroupDTO> groupCount = new ArrayList<>();
 		try {
-			groupList = coupongroupService.groupList();
-			for (int num = 0; num < groupList.size(); num++) {
-				groupCount = coupongroupService.groupSList(groupList.get(num).getGroup_num());
-				groupCountList.add(groupCount.size());
-			}
+			count = myCouponService.couponCount(m.getId());
+			aCount = myCouponService.couponACount(m.getId());
+			mv = coupongroupService.groupList(listData);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("groupCountList", groupCountList);
-		mv.addObject("groupList", groupList);
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
 		mv.setViewName("admin/groupList");
 		return mv;
 	}
@@ -858,21 +860,17 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		try {
-			if(group_num!=-1){
-				result = coupongroupService.groupRemove(group_num);
-			}else{
-				result = coupongroupService.groupRemove(-1);
-			}
+			result = coupongroupService.groupRemove(group_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (result > 0) {
-			rd.addAttribute("message", "그룹 삭제 성공하였습니다.");
+			mv.addObject("message", "그룹 삭제 성공하였습니다.");
 			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
 			mv.setViewName("common/messagePath");
 		} else {
-			rd.addAttribute("message", "그룹 삭제 실패하였습니다.");
+			mv.addObject("message", "그룹 삭제 실패하였습니다.");
 			mv.addObject("path", "./admin/memberList?group_num=-1&sort=-1");
 			mv.setViewName("common/messagePath");
 		}

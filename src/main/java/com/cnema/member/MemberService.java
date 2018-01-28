@@ -1,5 +1,6 @@
 package com.cnema.member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,14 +9,31 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.cnema.coupon.CouponDAO;
+import com.cnema.coupon.CouponDTO;
+import com.cnema.coupon.CoupongroupDAO;
+import com.cnema.coupon.CoupongroupDTO;
+import com.cnema.coupon.MyCouponDAO;
 import com.cnema.util.FileSaver;
+import com.cnema.util.ListData;
+import com.cnema.util.Pager;
+import com.cnema.util.RowNum;
+
+import oracle.net.aso.c;
 
 @Service
 @Transactional
 public class MemberService {
 	@Inject
 	private MemberDAO memberDAO;
+	@Inject
+	private CoupongroupDAO coupongroupDAO;
+	@Inject
+	private MyCouponDAO myCouponDAO;
+	@Inject
+	private CouponDAO couponDAO;
 	
 	@Inject
 	private FileSaver fileSaver;
@@ -66,9 +84,47 @@ public class MemberService {
 	/*public List<MemberDTO> memberList() throws Exception{
 		return memberDAO.memberList();
 	}*/
+	public int mTotalCount(int kind) throws Exception{
+		return memberDAO.mTotalCount(kind);
+	}
 	/*heeseong*/
-	public List<MemberDTO> memberList(String kind) throws Exception{
-		return memberDAO.memberList(kind);
+	public ModelAndView memberList(int kind,int group_num,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(memberDAO.mTotalCount(kind));
+		
+		List<MemberDTO> memList = null;
+		List<CoupongroupDTO> gList = new ArrayList<>();
+		MemberDTO memberDTO = null;
+		List<CoupongroupDTO> groupList = new ArrayList<>();
+		groupList = coupongroupDAO.groupAList();
+		
+		if (group_num == -1) {
+			System.out.println("여기");
+			memList = memberDAO.memberList(kind, rowNum);
+		} else {
+			gList = coupongroupDAO.groupSList(group_num);
+			for (int num = 0; num < gList.size(); num++) {
+				memberDTO = memberDAO.memberInfo(gList.get(num).getId());
+				memList.add(memberDTO);
+			}
+		}
+		
+		int result = 0;
+		int number = 1;
+		for (MemberDTO memberDTO2 : memList) {
+			result = myCouponDAO.couponCount(memberDTO2.getId());
+			mv.addObject("result" + number, result);
+			number++;
+		}
+		List<CouponDTO> cList = new ArrayList<>();
+		cList = couponDAO.couponAList();
+		mv.addObject("cList", cList);
+		mv.addObject("groupList", groupList);
+		mv.addObject("memList", memList);
+		mv.addObject("pager",pager);
+		return mv;
+		/*return memberDAO.memberList(kind);*/
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{

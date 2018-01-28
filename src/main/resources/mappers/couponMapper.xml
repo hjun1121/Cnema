@@ -9,9 +9,9 @@
   	</select>
   
   <!-- heeseong -->
-  	<!-- <select id="couponList" resultType="couponDTO">
+  	<select id="couponAList" resultType="couponDTO">
   		select * from coupon
-  	</select> -->
+  	</select>
   	<!-- heeseong -->
   	<select id="couponInfo" resultType="couponDTO" parameterType="int">
   		select * from coupon where c_num=#{c_num}

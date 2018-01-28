@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.util.RowNum;
+
 @Repository
 public class MemberDAO {
 	@Inject
@@ -53,11 +55,20 @@ public class MemberDAO {
 	/*public List<MemberDTO> memberList() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"memberList");
 	}*/
+	public int mTotalCount(int kind) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"mTotalCount",kind);
+	}
 	/*heeseong*/
-	public List<MemberDTO> memberList(String kind) throws Exception{
-		Map<String, String> map = new HashMap<>();
+	public List<MemberDTO> memberList(int kind,RowNum rowNum) throws Exception{
+		System.out.println("dao kind:"+kind);
+		System.out.println("dao in");
+		Map<String, Object> mMap = new HashMap<>();
+		mMap.put("kind", kind);
+		mMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"memberList",mMap);
+		/*Map<String, String> map = new HashMap<>();
 		map.put("kind", kind);
-		return sqlSession.selectList(NAMESPACE+"memberList",map);
+		return sqlSession.selectList(NAMESPACE+"memberList",map);*/
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{
