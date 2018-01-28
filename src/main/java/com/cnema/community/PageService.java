@@ -26,6 +26,11 @@ public class PageService {
 	@Inject
 	private FileSaver fileSaver;
 	
+	//pageMemberProfile
+	public List<MemberDTO> pageMemberProfile(int page_num, String search) throws Exception {
+		return pageDAO.pageMemberProfile(page_num, search);
+	}
+	
 	//recommendPageList
 	public List<PageDTO> recommendPageList() throws Exception {
 		return pageDAO.recommendPageList();

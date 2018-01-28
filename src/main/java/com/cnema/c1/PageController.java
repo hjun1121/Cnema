@@ -27,6 +27,28 @@ public class PageController {
 	private PageService pageService;
 	
 	
+	//멤버 리스트
+	@RequestMapping(value = "member_profile_bar", method = RequestMethod.POST)
+	public ModelAndView memberProfile(int page_num) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		String search = null;
+		List<MemberDTO> ml = pageService.pageMemberProfile(page_num, search);
+
+		mv.addObject("page_num", page_num);
+		mv.addObject("memberList", ml);
+		return mv;
+	}
+	@RequestMapping(value = "member_profile_bar", method = RequestMethod.GET)
+	public ModelAndView memberProfile(int page_num, String search) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<MemberDTO> ml = pageService.pageMemberProfile(page_num, search);
+
+		mv.addObject("page_num", page_num);
+		mv.addObject("memberList", ml);
+		mv.setViewName("pageMain?page_num="+page_num);
+		return mv;
+	}
+	
 	//발신쪽지보기
 	@RequestMapping(value = "sendMailView", method = RequestMethod.GET)
 	public ModelAndView sendMailView(int message_num) throws Exception {

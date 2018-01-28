@@ -75,6 +75,7 @@
 #join_page_list {
 	clear: both;
 	float: left;
+	margin-left: 5px;
 	padding-bottom: 20px;
 	border-bottom: 2px solid #717171eb;
 }
@@ -97,6 +98,7 @@
 #recommend_page_list {
 	clear: both;
 	float: left;
+	margin-left: 5px;
 }
 
 #recommend_page_list span {
@@ -170,6 +172,82 @@
 	height: 20px;
 	padding-right: 5px;
 	padding-bottom: 4px;
+}
+
+#member_bar {
+	width: 15%;
+	height: 30px;
+	right: 0;
+	bottom: 20px;
+	position: fixed;
+	background-color: #f6f7f9;
+}
+
+#member_bar a {
+    background-color: #f6f7f9;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-size: large;
+    font-weight: bold;
+    color: #666;
+    line-height: 30px;
+    box-shadow: none;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#member_profile_div {
+	width: 15%;
+	height: 500px;
+	right: 0;
+	bottom: 20px;
+	position: fixed;
+	overflow-x: hidden;
+	background-color: yellow;
+}
+
+#search {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#search input{
+	width: 50%;
+	height: 25px;
+}
+
+#search button {
+	height: 25px;
+	padding: 0 7px;
+	background: green;
+	border: 1px solid green;
+}
+
+#member_profile_div p {
+	float: left;
+	margin-bottom: 8px;
+}
+
+.profile {
+	display: flex;
+	padding-left: 10px;
+}
+
+.m_id_a {
+	background: none;
+}
+
+.m_id {
+	font-size: 15px;
+	color: #666;
+	font-weight: bold;
+}
+
+#member_profile_div img {
+	width: 50px;
+	height: 50px;
+	margin-right: 15px;
+	border-radius: 100px;
 }
 
 

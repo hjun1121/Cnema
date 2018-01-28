@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.cnema.member.MemberDTO;
 import com.cnema.message.MessageDTO;
 import com.cnema.util.RowNum;
 
@@ -19,6 +20,15 @@ public class PageDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "pageMapper.";
+	
+	
+	//멤버 프로필
+	public List<MemberDTO> pageMemberProfile(int page_num, String search) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("page_num", page_num);
+		map.put("search", search);
+		return sqlSession.selectList(NAMESPACE+"pageMemberProfile", map);
+	}
 	
 	
 	//추천 페이지

@@ -17,7 +17,7 @@
 <script type="text/javascript">
 
 	$(function(){
-
+		
 		$("#chatting_btn").click(function() {
 			alert("채팅하기");
 		});
@@ -52,6 +52,19 @@
 		
 		$("#recommend_more_btn").click(function() {
 			$("#recommendHidden_div").css("display","");
+		});
+		
+		$("#memberBar_btn").click(function() {
+			$.ajax({
+				url:"member_profile_bar",
+				type:"POST",
+				data:{
+					page_num:${page.page_num}
+				},
+				success:function(data){
+					$("#member_bar").html(data);
+				}
+			});
 		});
 		
 	});
@@ -139,10 +152,10 @@
 				</form>
 				<c:choose>
 					<c:when test="${memberCheck eq 11}">
-						<button class="page_btns" id="drop_btn"><img style="padding-bottom: 7px;" alt="" src="../resources/page/탈퇴2.png">탈퇴하기</button>
+						<button class="page_btns" id="drop_btn"><img alt="" src="../resources/page/탈퇴2.png">탈퇴하기</button>
 					</c:when>
 					<c:when test="${memberCheck eq 0}">
-						<button class="page_btns" id="join_btn"><img style="padding-bottom: 7px;" alt="" src="../resources/page/가입.png">가입하기</button>
+						<button class="page_btns" id="join_btn"><img alt="" src="../resources/page/가입.png">가입하기</button>
 					</c:when>
 					<c:otherwise>
 						<button class="page_btns" id="">그룹장이라 탈퇴안되지롱</button>
@@ -156,7 +169,12 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- 우측 멤버 명단  -->
+	<div id="member_bar">
+		<a href=# id="memberBar_btn" role="button">
+			멤버 리스트
+		</a>
+	</div>
 </div>
 
 </div>
