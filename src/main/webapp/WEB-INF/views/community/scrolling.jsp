@@ -5,6 +5,9 @@
  <c:if test="${list !=null }">
  <c:forEach items="${list }" var="dto">
  <div class="pageContentsOne">
+ <div>
+ <a href="#">수정</a><a href="#">삭제</a>
+ </div>
 <div> ${dto.contents}
  </div>
  <div>
