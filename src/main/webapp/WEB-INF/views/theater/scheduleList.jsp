@@ -10,10 +10,9 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/theater/quickReserve.css">
-
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/reset.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/layout.css">
-    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/module.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/theater/scheduleList.css">
+<!-- 
+    <link rel="stylesheet" media="all" type="text/css" href="http://img.cgv.co.kr/R2014/css/layout.css"> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -158,7 +157,7 @@
      							<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }">${DTO.location }</a>
      						</li>
      					</c:forEach>
-    					</ul>
+    				</ul>
      			</div>
         	</div>
     	</div>
@@ -182,8 +181,7 @@
                         	</c:forEach>
                         	</ul>
                         </div>
-                		<button type="button" class="btn-prev">이전 날자보기</button>
-                		<button type="button" class="btn-next">다음 날자보기</button> 
+                		
             			</div>
         			</div>
         			<div class="sect-guide">
@@ -239,13 +237,9 @@
     			</div>   
     		</div>
 		</div>
- 
-
-            <!--/ Contents End -->
-
 		</div>
 <!-- //////////////////////////// -->
-  
+ <%--  
 <h2>상영 시간표</h2>
 	
 <ul>
@@ -293,19 +287,16 @@
 			</c:forEach>
 		</c:forEach>
 	</ul>
+</div> --%>
+<div style="display: none;">
+	<form action="../theater/scheduleList" id="frm" name="frm" method="get">
+		<input type="text" id="movie_num" name="movie_num">
+		<input type="text" id="areaN" name="areaName" value="${areaName }">
+		<input type="text" id="locationN" name="theater_num" value="${theater_num }">
+		<input type="text" id="dayN" name="day_num" value="${dayList[0].day_num }">
+		<input type="text" id="schedule_num" name="schedule_num">
+	</form>
 </div>
-
-<form action="../theater/scheduleList" id="frm" name="frm" method="get">
-	<input type="text" id="movie_num" name="movie_num">
-	<input type="text" id="areaN" name="areaName" value="${areaName }">
-	<input type="text" id="locationN" name="theater_num" value="${theater_num }">
-	<input type="text" id="dayN" name="day_num" value="${dayList[0].day_num }">
-	<input type="text" id="schedule_num" name="schedule_num">
-</form>
-
-
-
-
 			<!-- 내용 끝 -->
 			</div>
 			<!-- ///////////////////////////////// -->
