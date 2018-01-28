@@ -23,9 +23,9 @@
   		<li>
       		<div class="col-times">
           		<div class="info-movie">
-              		<span class="ico-grade grade-12">12세 이상</span> 
+              		<span class="ico-grade grade-12">${movieDTO.age_limit }</span> 
               		<a href="#"><strong>${movieDTO.movie_name }</strong></a>
-              		<i>드라마,&nbsp;환타지</i>/ <i>139분</i>/ <i>2017.12.20개봉</i>
+              		<i>${movieDTO.type }</i>/ <i>${movieDTO.run_time }분</i>/ <i>${movieDTO.open_date }개봉</i>
           		</div>
           		<c:forEach items="${movieDTO.sList}" var="sList" varStatus="count">
         			<div class="type-hall">
@@ -33,8 +33,8 @@
                 		<c:if test="${count.first }">
                 			<div class="info-hall">
                       		<ul>
-                             	<li>${sc.screen_num }관 6층</li>
-                             	<li>총124석</li>
+                             	<li>${sc.screenDTO.room_num }관 ${sc.screenDTO.floor }층</li>
+			                    <li>총${sc.screenDTO.x_num*sc.screenDTO.y_num }석</li>
                          	</ul>
                       		</div>
                      	</c:if>
@@ -44,7 +44,7 @@
                         			<a href="#" class="schedules" id="${movieDTO.movie_num }" onclick="return false;" title="${sc.schedule_num }">
 	                         			<em>${sc.in_time }</em>
 	                         			<span class="txt-lightblue">
-	                         				<span class="hidden">잔여좌석</span>113석
+	                         				<span class="hidden">잔여좌석</span>${sc.screenDTO.x_num*sc.screenDTO.y_num-sc.seatcheck }석
 	                         			</span>
                         			</a>
 				          		</li>

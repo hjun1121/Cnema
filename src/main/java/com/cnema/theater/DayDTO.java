@@ -7,7 +7,16 @@ public class DayDTO {
 	private Date day_num;
 	private int day;
 	private String week;
+	private int month;
 	
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
 	public String getWeek() {
 		return week;
 	}
