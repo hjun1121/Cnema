@@ -60,8 +60,6 @@ public class MemberDAO {
 	}
 	/*heeseong*/
 	public List<MemberDTO> memberList(int kind,RowNum rowNum) throws Exception{
-		System.out.println("dao kind:"+kind);
-		System.out.println("dao in");
 		Map<String, Object> mMap = new HashMap<>();
 		mMap.put("kind", kind);
 		mMap.put("rowNum", rowNum);
@@ -70,6 +68,7 @@ public class MemberDAO {
 		map.put("kind", kind);
 		return sqlSession.selectList(NAMESPACE+"memberList",map);*/
 	}
+	
 	/*heeseong*/
 	public List<MemberDTO> memberCList(int ctype) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"memberCList",ctype);

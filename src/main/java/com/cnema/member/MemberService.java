@@ -108,7 +108,6 @@ public class MemberService {
 				memList.add(memberDTO);
 			}
 		}
-		System.out.println("size"+memList.size());
 		int result = 0;
 		int number = 1;
 		for (MemberDTO memberDTO2 : memList) {

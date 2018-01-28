@@ -710,40 +710,11 @@ public class AdminController {
 	@RequestMapping(value = "memberList", method = RequestMethod.GET)
 	public ModelAndView memberList(HttpSession session,@RequestParam(defaultValue="-1", required=false)int group_num, @RequestParam(defaultValue="-1", required=false)int sort,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) {
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = null;
-		List<MemberDTO> memList = new ArrayList<MemberDTO>();
-		List<CoupongroupDTO> groupList = new ArrayList<>();
-		List<CoupongroupDTO> gList = new ArrayList<>();
-		List<CouponDTO> cList = new ArrayList<>();
-		int number = 1;
-		int result = 0;
 		MemberDTO m = (MemberDTO)session.getAttribute("member");
 		try {
 			count = myCouponService.couponCount(m.getId());
 			aCount = myCouponService.couponACount(m.getId());
 			mv = memberService.memberList(sort, group_num, listData);
-			/*groupList = coupongroupService.groupList();*/
-			/*cList = couponService.couponList("","");*/
-			/*if (group_num == -1) {
-				if(sort == 10){
-					memList = memberService.memberList("birth");
-				}else if(sort==20){
-					memList = memberService.memberList("type");
-				}else{
-					memList = memberService.memberList("");     
-				}
-			} else {
-				gList = coupongroupService.groupSList(group_num);
-				for (int num = 0; num < gList.size(); num++) {
-					memberDTO = memberService.memberInfo(gList.get(num).getId());
-					memList.add(memberDTO);
-				}
-			}
-			for (MemberDTO memberDTO2 : memList) {
-				result = myCouponService.couponCount(memberDTO2.getId());
-				mv.addObject("result" + number, result);
-				number++;
-			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -752,9 +723,8 @@ public class AdminController {
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
-		/*mv.addObject("cList", cList);*/
-		/*mv.addObject("groupList", groupList);
-		mv.addObject("memList", memList);*/
+		mv.addObject("sort", sort);
+		mv.addObject("group_num", group_num);
 		mv.setViewName("admin/memberList");
 		return mv;
 	}
