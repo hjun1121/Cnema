@@ -217,6 +217,7 @@ $(function() {
 				            </c:if>  
 				        </tbody>
 				    </table>
+				    <c:if test="${fn:length(pList) > 0}">
 				    <div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -231,6 +232,7 @@ $(function() {
 						</c:if>
 					</ul>
 				</div>
+				</c:if>  
 				</div>
 					<div class="sect-box-descri">
 					    <h4>CGV 예매 관련 정책 안내</h4>

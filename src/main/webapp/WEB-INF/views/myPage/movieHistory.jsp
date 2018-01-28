@@ -121,7 +121,7 @@ $(function(){
 				            <%-- <p><em>${fn:length(rList)}건</em></p> --%>
 				            <div class="set-combo">
 				                <label for="year">내가 본 영화 년도별 정렬</label>
-				                <select id="kind" name="year">
+				                <select id="kind" name="year" style="    width: 80px; height: 30px; border: 1px solid #e6e6e6; background-color: #fff; line-height: 29px;">
 				                    <option class = "kind" value="0000" selected="selected">전체</option>
 		                            <option class = "kind" value="2014">2014</option>
 		                            <option class = "kind" value="2015">2015</option>
@@ -199,6 +199,7 @@ $(function(){
 			    		</ul> 
 		    		</div>
 		    		</form>
+		    		<c:if test="${reserveLeftbar > 0}">
 		    		 <div class="paging">
 						<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -213,6 +214,7 @@ $(function(){
 						</c:if>
 						</ul>
 					</div>
+					</c:if>
 	    			</div>
 					</div>
 				</div>
