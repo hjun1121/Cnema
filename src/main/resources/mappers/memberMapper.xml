@@ -36,13 +36,8 @@
   	<!-- <select id="memberList" resultType="memberDTO" parameterType="java.lang.String">
   		select * from member
   	</select> -->
-  	<select id="mTotalCount" resultType="int" parameterType="int">
+  	<select id="mTotalCount" resultType="int">
   	select count(id) from member
-  		<choose>
-  			<when test="kind == 10">order by birth desc</when>
-  			<when test="kind == 20">order by type desc</when>
-  			<otherwise></otherwise>
-  		</choose>
   	</select>
   	<!-- heeseong -->
   	<select id="memberList" resultType="memberDTO" parameterType="java.util.Map">

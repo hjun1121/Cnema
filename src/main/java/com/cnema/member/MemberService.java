@@ -91,14 +91,17 @@ public class MemberService {
 	public ModelAndView memberList(int kind,int group_num,ListData listData) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		RowNum rowNum = listData.makeRow();
+		System.out.println("kind"+kind);
+		System.out.println("m"+memberDAO.mTotalCount(kind));
+		
 		Pager pager = listData.makePage(memberDAO.mTotalCount(kind));
+		System.out.println(pager);
 		
 		List<MemberDTO> memList = null;
 		List<CoupongroupDTO> gList = new ArrayList<>();
 		MemberDTO memberDTO = null;
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		groupList = coupongroupDAO.groupAList();
-		
 		if (group_num == -1) {
 			System.out.println("여기");
 			memList = memberDAO.memberList(kind, rowNum);
