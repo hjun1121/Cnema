@@ -6,49 +6,43 @@
 <html>
 <head>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/mailBox.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/movie/movie.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<title>${mail.title}</title>
+<title>쪽지 쓰기</title>
 <script type="text/javascript">
-
 	$(function() {
-		$("#reply_btn").click(function() {
-			location.href="mailWriteForm?receive_id=${mail.send_id}";
+		
+		$("#cancel_btn").click(function() {
+			window.close();
 		});
-		$("#delete_btn").click(function() {
-			alert("삭제");
-		});
-		$("#list_btn").click(function() {
-			location.href="mailBox";
-		});
+		
 	});
-
 </script>
 </head>
 <body>
 
+	<form action="mailWriteForm" method="POST">
 	<table>
 		<tr>
-			<td>제목</td>
-			<td>${mail.title }</td>
+			<td>받는 사람</td>
+			<td><input type="text" name="receive_id" value="${receive_id }" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<td>보내는 사람</td>
-			<td>${mail.send_id }</td>
+			<td><input type="text" name="send_id" value="${member.id }" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td>보낸 날짜</td>
-			<td>${mail.send_date }</td>
+			<td>제목</td>
+			<td><input type="text" name = "title"></td>
 		</tr>
 		<tr>
-			<td>${mail.contents }</td>
+			<td><input type="text" name="contents"></td>
 		</tr>
 	</table>
-	
-	<button id="reply_btn">답장</button>
-	<button id="delete_btn">삭제</button>
-	<button id="list_btn">목록</button>
+	<input type="submit" value="확인">
+	<input id="cancel_btn" type="button" value="취소">
+	</form>
+
 </body>
 </html>

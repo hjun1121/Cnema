@@ -15,7 +15,7 @@
 
 	$(function() {
 		$("#write_btn").click(function() {
-			alert("쪽지쓰기");
+			location.href="mailWriteForm?receive_id=${mail.receive_id}"
 		});
 		$("#delete_btn").click(function() {
 			alert("삭제");
@@ -38,8 +38,8 @@
 			<td>${mail.title }</td>
 		</tr>
 		<tr>
-			<td>보내는 사람</td>
-			<td>${mail.send_id }</td>
+			<td>받는 사람</td>
+			<td>${mail.receive_id }</td>
 		</tr>
 		<tr>
 			<td>보낸 날짜</td>

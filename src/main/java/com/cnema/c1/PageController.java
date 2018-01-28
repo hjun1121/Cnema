@@ -25,7 +25,33 @@ public class PageController {
 	
 	@Inject
 	private PageService pageService;
+
 	
+	//쪽지 쓰기
+	@RequestMapping(value = "mailWriteForm", method = RequestMethod.GET)
+	public ModelAndView mailWrite(String receive_id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("아이디 받아오니:?" + receive_id);
+
+		mv.addObject("receive_id", receive_id);
+		return mv;
+	}
+	@RequestMapping(value = "mailWriteForm", method = RequestMethod.POST)
+	public ModelAndView mailWrite(MessageDTO messageDTO, String receive_id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		String message = "쪽지 발송이 실패했습니다";
+		result = pageService.mailSend(messageDTO);
+		if(result > 0) {
+			message = "쪽지를 발송했습니다";
+		}
+		
+		mv.addObject("receive_id", receive_id);
+		mv.addObject("message", message);
+		mv.setViewName("/common/messageClose");
+		
+		return mv;
+	}
 	
 	//멤버 리스트
 	@RequestMapping(value = "member_profile_bar", method = RequestMethod.POST)
