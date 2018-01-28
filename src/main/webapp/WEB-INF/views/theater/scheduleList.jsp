@@ -24,7 +24,8 @@
 		
 		$(".areas").each(function(){
 			 if($(this).attr("title") == area) {
-				 $(this).css("background-color","red");
+				$(this).css("background-color","#e87676");
+				$(this).css("border-radius","60%");
 			 }
 		});
 		
@@ -36,7 +37,8 @@
 		
 		$(".areas").click(function(){
 			$(".areas").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#e87676");
+			$(this).css("border-radius","60%");
 			area = $(this).attr("title");
 			$("#areaN").val(area);
 			$("#scheduleList").html('<ul style="clear: both;"></ul>');
@@ -150,48 +152,26 @@ ul{
     	<div class="favorite-wrap">
         	<h3 class="hidden">극장별 상영시간표</h3>
         	<div class="sect-city">
-        		<ul>
-        		<c:forEach items="${areaList }" var="DTO" varStatus="count">
-        			<li>
-        				<a href="#" class="areas" onclick="return false;" title="${DTO.area }">${DTO.area }</a>
-        				<div class="area" style="margin-left: 0px;">
-        					<ul>
-								<div id="locationList">
-									<c:forEach items="${locationList }" var="DTO">
-		        						<li>
-		        							<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }">${DTO.location }</a>
-		        						</li>
-		        						
-		        					</c:forEach>
-	        					</div>
-        					</ul>
-        				</div>
-        			</li>
-        			<!-- <li>
-        				<a href="#">경기</a>
-        				<div class="area" style="margin-left: -78.9844px;">
-        					<ul>
-        						<li>
-        							<a title="CGV경기광주" href="#">CGV경기광주</a>
-        						</li>
-        						<li>
-        							<a title="CGV광명철산" href="#">CGV광명철산</a>
-        						</li>
-        					</ul>
-        				</div>
-        			</li>
-        			<li>
-        				<a href="#">인천</a>
-        				<div class="area" style="margin-left: -157.969px;">
-        					<ul>
-        						<li>
-        							<a title="CGV계양" href="#">CGV계양</a>
-        						</li>
-        					</ul>
-        				</div>
-        			</li> -->
+      			<div class="area" style="margin-left: 61px; margin-top: 30px;">
+        			<ul>
+        			<c:forEach items="${areaList }" var="DTO" varStatus="count">
+	        			<li>
+	        				<a href="#" class="areas" onclick="return false;" title="${DTO.area }">${DTO.area }</a>
+	        			</li>
         			</c:forEach>
-        		</ul>
+	        		</ul>
+    			</div>
+	        				
+				<div id="locationList" style="margin-top: 60px;">
+      					<ul>
+						<c:forEach items="${locationList }" var="DTO">
+       						<li>
+       							<a href="#" onclick="return false;" class="location time" title="${DTO.theater_num }">${DTO.location }</a>
+       						</li>
+       						
+       					</c:forEach>
+      					</ul>
+     			</div>
         	</div>
     	</div>
 	</div>
