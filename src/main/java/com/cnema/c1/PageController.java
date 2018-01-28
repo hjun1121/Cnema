@@ -225,12 +225,18 @@ public class PageController {
 			message = "글쓰기 성공";
 		}
 		mv.addObject("message", message);
+		mv.addObject("path", "community/communityMainTest?page_num"+pageContentsDTO.getPage_num());
+		mv.setViewName("/common/messagePath");
 		return mv;
 	}
+	
+	
 	@RequestMapping(value = "pageContentsWrite")
 	public void pageContentsWrite()throws Exception {
 		
 	}
+	
+	
 	//pageinfiniteScrolling
 	@RequestMapping(value = "scrolling",method=RequestMethod.POST)
 	public ModelAndView pageContentsScrolling(int page)throws Exception {

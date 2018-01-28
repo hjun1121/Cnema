@@ -91,19 +91,15 @@ public class MemberService {
 	public ModelAndView memberList(int kind,int group_num,ListData listData) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		RowNum rowNum = listData.makeRow();
-		System.out.println("kind"+kind);
-		System.out.println("m"+memberDAO.mTotalCount(kind));
 		
 		Pager pager = listData.makePage(memberDAO.mTotalCount(kind));
-		System.out.println(pager);
 		
-		List<MemberDTO> memList = null;
+		List<MemberDTO> memList = new ArrayList<>();
 		List<CoupongroupDTO> gList = new ArrayList<>();
-		MemberDTO memberDTO = null;
+		MemberDTO memberDTO = new MemberDTO();
 		List<CoupongroupDTO> groupList = new ArrayList<>();
 		groupList = coupongroupDAO.groupAList();
 		if (group_num == -1) {
-			System.out.println("여기");
 			memList = memberDAO.memberList(kind, rowNum);
 		} else {
 			gList = coupongroupDAO.groupSList(group_num);
@@ -112,7 +108,7 @@ public class MemberService {
 				memList.add(memberDTO);
 			}
 		}
-		
+		System.out.println("size"+memList.size());
 		int result = 0;
 		int number = 1;
 		for (MemberDTO memberDTO2 : memList) {
@@ -120,6 +116,7 @@ public class MemberService {
 			mv.addObject("result" + number, result);
 			number++;
 		}
+		
 		List<CouponDTO> cList = new ArrayList<>();
 		cList = couponDAO.couponAList();
 		mv.addObject("cList", cList);
