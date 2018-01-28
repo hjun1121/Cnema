@@ -385,7 +385,6 @@ public class AjaxController {
 			List<ScreenDTO> ar= scheduleService.screenList(theater_num);
 			for(ScreenDTO screenDTO : ar){
 				List<ScheduleDTO> ar2 = scheduleService.scheduleList(screenDTO.getScreen_num(), day_num, movie_num);
-				
 				for(ScheduleDTO scheduleDTO:ar2){
 					seatCheck = reserveService.seatCheck(screenDTO.getScreen_num(), scheduleDTO.getSchedule_num());
 					scheduleDTO.setSeatcheck(seatCheck.size());
@@ -399,6 +398,7 @@ public class AjaxController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	@RequestMapping(value="qrSeatList", method=RequestMethod.POST)

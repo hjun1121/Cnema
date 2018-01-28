@@ -46,6 +46,15 @@ public class ScheduleDAO {
 		return sqlSession.selectList(NAMESPACE+"movieSchedule", map);
 	}
 	
+	public List<ScheduleDTO> movieScheduleNext(int theater_num, String day , int movie_num, int screen_num) throws Exception{
+		Map<String, Object> map  =new HashMap<>();
+		map.put("theater_num", theater_num);
+		map.put("day", day);
+		map.put("movie_num", movie_num);
+		map.put("screen_num", screen_num);
+		return sqlSession.selectList(NAMESPACE+"movieScheduleNext", map);
+	}
+	
 	public List<ScheduleDTO> scheduleList(int screen_num, Date day_num, int movie_num) throws Exception{
 		Map<String, Object> map  =new HashMap<>();
 		map.put("screen_num", screen_num);
@@ -53,6 +62,14 @@ public class ScheduleDAO {
 		map.put("movie_num", movie_num);
 		return sqlSession.selectList(NAMESPACE+"scheduleList", map);
 	}
+	public List<ScheduleDTO> scheduleListNext(int screen_num, Date day_num, int movie_num) throws Exception{
+		Map<String, Object> map  =new HashMap<>();
+		map.put("screen_num", screen_num);
+		map.put("day_num", day_num);
+		map.put("movie_num", movie_num);
+		return sqlSession.selectList(NAMESPACE+"scheduleListNext", map);
+	}
+	
 	
 	public ScheduleDTO scheduleOne(int schedule_num)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"scheduleOne", schedule_num);
