@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	alert('sd'+'${message}');
+	alert('${message}');
 	$(function(){
 		$("#seatName").val("${reserve2.seatName}");
 		document.frm.submit();

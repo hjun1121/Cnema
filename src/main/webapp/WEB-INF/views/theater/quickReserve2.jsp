@@ -207,7 +207,7 @@
 		});
 		/*  */
 		$("#leftBtn1").click(function(){
-			
+			window.history.back();
 		});
 		/*  */
 		$("#rightBtn2").click(function(){
