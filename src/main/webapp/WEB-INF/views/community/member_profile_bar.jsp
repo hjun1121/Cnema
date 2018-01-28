@@ -43,8 +43,8 @@
 		</c:if>
 		</c:forEach>
 	</div>
-		<div id="member_bar">
+		<div id="member_bar" style="right: 5px;">
 		<a href=# id="memberBar_btn" role="button">
-			멤버 리스트
+			커뮤니티 멤버
 		</a>
 	</div>
