@@ -22,7 +22,7 @@
   		select * from coupongroup where group_num=#{group_num}
   	</select>
   	
-  	<select id="groupSList" resultType="coupongroupDTO" parameterType="int">
+  	<select id="groupAList" resultType="coupongroupDTO" parameterType="int">
   		select * from coupongroup
   	</select>
   	
