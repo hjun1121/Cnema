@@ -270,7 +270,6 @@ public class TheaterController {
 			dayList = theaterService.dayList();
 			areaList = theaterService.areaList();
 			locationList = theaterService.locationList(areaName);
-			
 			if(day==null){
 				day = dayList.get(0).getDay_num().toString();
 			}

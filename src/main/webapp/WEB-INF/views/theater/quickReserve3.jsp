@@ -19,7 +19,7 @@
 		$("#qrPrice").html('${reserve2DTO.price}');
 		/*  */
 		$("#leftBtn2").click(function(){
-			alert("이전");
+			window.history.back();
 		});
 		
 		/*  */
@@ -197,7 +197,16 @@
 			var adult_num = $("#adult_num").val();
 			var teen_num = $("#teen_num").val();
 			var pCount = $("#pCount").val();
-			document.reserve.submit();
+			var price = $("#price").val();
+			if(price == 0){
+				var ch = confirm("결제금액이 0 원 이므로 바로 예매됩니다.");
+				if(ch == true){
+					document.reserve.submit();
+				}
+			}else{
+				document.reserve.submit();
+			}
+			
 		});
 
 		
@@ -351,10 +360,10 @@
 												<h5>CNEMA 쿠폰사용</h5>
 												<div class="form_con">
 													<div class="button_con">
-														<a class="button gray" href="#">
+														<a class="button gray" href="#" onclick="return false;">
 															<span><input class="btn___3" type="button" id="couponBtn" value="쿠폰불러오기"></span>
 														</a>
-														<a class="button white" href="#">
+														<a class="button white" href="#" onclick="return false;">
 															<span><input class="btn___4" type="button" id="deleteBtn" value="쿠폰제거"></span>
 														</a>
 													</div>
@@ -400,7 +409,7 @@
 												<h5>CNEMA보유 포인트</h5>
 												<div class="form_con">
 													<div class="tpm_coupon_button">
-														<a class="gray  btn_listUp" href="#">
+														<a class="gray  btn_listUp" href="#" onclick="return false;">
 															<span>
 																<input class="btn___3" type="button" id="allPoint" value="모두쓰기">
 															</span>
