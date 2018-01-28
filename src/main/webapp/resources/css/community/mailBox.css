@@ -15,3 +15,52 @@ li {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+table {
+	border-top: 1px solid #cbcac4;
+	border-left: 1px solid #cbcac4;
+	border-right: 1px solid #cbcac4;
+	font-size: 15px;
+}
+
+td {
+	border-bottom: 1px solid #cbcac4;
+	height: 25px;
+	font-size: 15px;
+	max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.top_tr {
+	font-size: 17px;
+	color: #666;
+}
+
+.top_tr td {
+	font-size: 17px;
+	color: #666;
+	font-weight: bold;
+}
+
+tr {
+	color: #666666;
+}
+
+.mailBox_btns {
+    width: 60px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    background: #edece2;
+    border: 1px solid #edece2;
+    color: #7b7b7b;
+    font-weight: bold;
+}
+
+.read_tr {
+	color: #b5b5b5;
+}
+

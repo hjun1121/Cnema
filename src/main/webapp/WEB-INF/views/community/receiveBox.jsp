@@ -2,26 +2,42 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/mailBox.css">
 	<table>
-		<tr>
+		<tr class="top_tr">
 			<td>No.</td>
-			<td>보내는 사람</td>
+			<td>보낸 사람</td>
 			<td>제목</td>
 			<td>보낸날짜</td>
 			<td>수신여부</td>
 		</tr>
 		<c:forEach items="${mailList}" var="mail" varStatus="count">
-			<tr>
-				<td>${count.count}</td>
-				<td>${mail.send_id }</td>
-				<td id="title"><a href="mailView?message_num=${mail.message_num }">${mail.title }</a></td>
-				<td>${mail.send_date }</td>
-				<td>
-					<c:if test="${mail.type eq 11 }">읽음</c:if>
-					<c:if test="${mail.type eq 12 }">안읽음</c:if>
-				</td>
-			</tr>
+			<c:choose>
+				<c:when test="${mail.type eq 12 }">
+					<tr>
+						<td>${count.count + (curPage-1)*10}</td>
+						<td>${mail.send_id }</td>
+						<td id="title"><a href="mailView?message_num=${mail.message_num }">${mail.title }</a></td>
+						<td>${mail.send_date }</td>
+						<td>
+							<c:if test="${mail.type eq 11 }">읽음</c:if>
+							<c:if test="${mail.type eq 12 }">안읽음</c:if>
+						</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr class="read_tr">
+						<td>${count.count * curPage}</td>
+						<td>${mail.send_id }</td>
+						<td id="title"><a href="mailView?message_num=${mail.message_num }">${mail.title }</a></td>
+						<td>${mail.send_date }</td>
+						<td>
+							<c:if test="${mail.type eq 11 }">읽음</c:if>
+							<c:if test="${mail.type eq 12 }">안읽음</c:if>
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		
 	</table>

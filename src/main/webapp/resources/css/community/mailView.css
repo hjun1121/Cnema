@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+* {
+	clear: both;
+}
+
+table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #cbcac4;
+    border-left: 1px solid #cbcac4;
+    border-right: 1px solid #cbcac4;
+    font-size: 15px;
+}	
+
+td {
+	border-bottom: 1px solid #cbcac4;
+}
+
+td {
+	padding-left: 15px;
+}
+
+td.title {
+	width: 20%;
+	border-right: 1px solid #cbcac4;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.contents {
+	height: 300px;
+}
+
+.mailView_btns {
+    width: 75px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    background: #edece2;
+    border: 1px solid #edece2;
+    color: #7b7b7b;
+    font-weight: bold;
+}

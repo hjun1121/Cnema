@@ -187,7 +187,7 @@
     background-color: #f6f7f9;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    font-size: large;
+    font-size: small;
     font-weight: bold;
     color: #666;
     line-height: 30px;
@@ -204,7 +204,7 @@
 	margin-bottom: 30px;
 	position: fixed;
 	overflow-x: hidden;
-	background-color: yellow;
+	background-color: #f2f2f2;
 }
 
 .member_id_btn {
@@ -228,8 +228,9 @@
 #search button {
 	height: 25px;
 	padding: 0 7px;
-	background: green;
-	border: 1px solid green;
+	background: #365899;
+	border: 1px solid #365899;
+	color: #fff;
 }
 
 #member_profile_div p {

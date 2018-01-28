@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/mailBox.css">
 	<table>
-		<tr>
+		<tr class="top_tr">
 			<td>No.</td>
 			<td>받는 사람</td>
 			<td>제목</td>
@@ -20,9 +20,14 @@
 					<c:if test="${mail.type eq 11 }">읽음</c:if>
 					<c:if test="${mail.type eq 12 }">안읽음</c:if>
 				</td>
-				<c:if test="${mail.type eq 11 }">
-					<td>${mail.read_date }</td>
-				</c:if>
+				<c:choose>
+					<c:when test="${mail.type eq 11 }">
+						<td>${mail.read_date }</td>
+					</c:when>
+					<c:otherwise>
+						<td></td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 		</c:forEach>
 		

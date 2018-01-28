@@ -51,7 +51,7 @@
 			$("#more_div").empty();
 			$("#more_div").html("<button id=" + "hide_btn" + ">숨기기</button>");
 		});
-		
+
 		$("#more_div2").on('click', '#recommend_more_btn', function() {
 			$("#recommendHidden_div").css("display","");
 			$("#more_div2").empty();
@@ -120,7 +120,7 @@
 		</div>
 		<!-- 가입 페이지  -->
 		<div id="join_page_list" style="margin-bottom: 20px;">
-			<p style="margin-bottom: 10px; font-size: 15px; color: #717171b8; font-weight: bold;">가입한 페이지</p>
+			<p style="margin-bottom: 10px; font-size: 15px; color: #717171; font-weight: bold;">가입한 페이지</p>
 			<c:forEach items="${joinPage}" var="join" varStatus="count">
 				<c:if test="${count.count == 4 }">
 					<div style="display: none;" id="joinHidden_div">
@@ -138,7 +138,7 @@
 
 		<!-- 추천 페이지  -->
 		<div id="recommend_page_list">
-			<p style="margin-bottom: 10px; font-size: 15px; color: #717171b8; font-weight: bold;">추천 페이지</p>
+			<p style="margin-bottom: 10px; font-size: 15px; color: #717171; font-weight: bold;">추천 페이지</p>
 			<c:forEach items="${recommendPage }" var="recommend" varStatus="count">
 				<c:if test="${count.count == 4 }">
 					<div style="display: none;" id="recommendHidden_div">

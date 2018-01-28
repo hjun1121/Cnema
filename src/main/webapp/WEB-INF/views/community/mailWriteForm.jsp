@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/movie/movie.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/mailWriteForm.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>쪽지 쓰기</title>
@@ -25,23 +25,26 @@
 	<form action="mailWriteForm" method="POST">
 	<table>
 		<tr>
-			<td>받는 사람</td>
+			<td class="title">받는 사람</td>
 			<td><input type="text" name="receive_id" value="${receive_id }" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td>보내는 사람</td>
+			<td class="title">보내는 사람</td>
 			<td><input type="text" name="send_id" value="${member.id }" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td>제목</td>
+			<td class="title">제목</td>
 			<td><input type="text" name = "title"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="contents"></td>
+			<td class="title contents">내용</td>
+			<td class="contents"><input type="text" name="contents"></td>
 		</tr>
 	</table>
-	<input type="submit" value="확인">
-	<input id="cancel_btn" type="button" value="취소">
+	<div>
+		<input class="form_btns" type="submit" value="확인">
+		<input class="form_btns" id="cancel_btn" type="button" value="취소">
+	</div>
 	</form>
 
 </body>
