@@ -15,6 +15,19 @@
 
 	$(function(){
 		
+		//발신함=1, 수신함=2
+		
+		$.ajax({
+			url:"receiveBox",
+			type:"POST",
+			data:{
+				
+			},
+			success:function(data){
+				$("#box_div").html(data);
+			}
+		});
+		
 		$("#sendBox_btn").click(function() {
 			$.ajax({
 				url:"receiveBox",

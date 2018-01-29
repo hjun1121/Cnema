@@ -46,18 +46,18 @@
 				<c:choose>
 				<c:when test="${fn:length(mailList) eq 0}">
 					<li style="text-decoration: none;" class=" on">
-						<a href="mailBox?curPage=1" title="1페이지 선택">1</a>
+						<a href="mailBox?curPage=1&check=2" title="1페이지 선택">1</a>
 					</li>
 				</c:when>
 				<c:otherwise>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<li style="text-decoration: none;" class=" on">
-						<a href="mailBox?curPage=${i}" title="${i}페이지 선택">${i}</a>
+						<a href="mailBox?curPage=${i}&check=2" title="${i}페이지 선택">${i}</a>
 					</li>
 				</c:forEach>
 				<c:if test="${pager.curBlock lt pager.totalBlock}">
 					<li class="paging-side">
-						<a href="mailBox?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+						<a href="mailBox?curPage=${pager.lastNum+1}&check=2"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 					</li>
 				</c:if>
 				</c:otherwise>

@@ -137,12 +137,13 @@ public class PageController {
 	
 	//mailBox
 	@RequestMapping(value="mailBox", method=RequestMethod.GET)
-	public ModelAndView mailBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception {
+	public ModelAndView mailBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage, int check) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		mv = pageService.mailReceive(session, listData);
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
+		mv.addObject("check", check);
 
 		return mv;
 	}
