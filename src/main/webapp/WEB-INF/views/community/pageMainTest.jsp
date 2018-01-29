@@ -164,7 +164,7 @@
 		
 		});
 		
-	$(".deleteBtn").on("click", function(event){
+	$("#contentsListView").on("click",".deleteBtn", function(event){
 		
 		var contents_num=$(this).val();
 		var page_num=$("#page_num").val();
@@ -301,7 +301,7 @@
 	 <div class="pageContentsOne" style="width: 500px; height: 300px;">
 		 <input type="hidden" id="contents_num" value="${dto.contents_num }">
 		 <div>
-		 <span class="updateBtn">수정</span><span class="deleteBtn">삭제</span>
+		 <button class="updateBtn" value="${dto.contents_num }">수정</button><button class="deleteBtn" value="${dto.contents_num }">삭제</button>
 		 </div>
 		 
 		 <div>

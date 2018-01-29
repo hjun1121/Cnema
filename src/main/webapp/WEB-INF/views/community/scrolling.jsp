@@ -9,7 +9,7 @@
  <div class="pageContentsOne">
  <input type="hidden" id="contents_num" value="${dto.contents_num }">
  <div>
- <span class="updateBtn">수정</span><span class="deleteBtn">삭제</span>
+ <button class="updateBtn" value="${dto.contents_num }">수정</button><button class="deleteBtn" value="${dto.contents_num }">삭제</button>
  </div>
 
 <div> ${dto.contents}
