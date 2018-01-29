@@ -74,9 +74,7 @@ public class CommunityController {
 	
 	@RequestMapping(value="pageRecomList",method=RequestMethod.GET)
 	public ModelAndView pageRecomList(HttpSession session,String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception{
-		if(search==null){
-			search="";
-		}
+		if(search==null){ search=""; }
 		ModelAndView mv = new ModelAndView();
 		
 		List<Integer> pageNumList = new ArrayList<>();
@@ -107,13 +105,13 @@ public class CommunityController {
 				PageDTO pageDTO = null;
 				
 				for (int p_num : hs) {
-					pageDTO = communityService.pageSelect("", p_num);
+					pageDTO = communityService.pageSelect(search, p_num);
 					int count = communityService.pageMemberNum(p_num);
 					pageDTO.setCount(count);
 					recomPageList.add(pageDTO);
 				}
 				
-				for (int p_num : hs) {
+				/*for (int p_num : hs) {
 					pageDTO = communityService.pageSelect(search, p_num);
 					if(pageDTO!=null){
 						int count = communityService.pageMemberNum(p_num);
@@ -121,7 +119,7 @@ public class CommunityController {
 						recomPageSearchList.add(pageDTO);
 					}
 				}
-				
+				*/
 				Collections.reverse(recomPageList);
 				Collections.reverse(recomPageSearchList);
 			}
@@ -131,7 +129,7 @@ public class CommunityController {
 		mv.addObject("pageList", pageList);
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);
-		mv.addObject("recomPageSearchList", recomPageSearchList);
+		/*mv.addObject("recomPageSearchList", recomPageSearchList);*/
 		mv.setViewName("community2/pageRecomList");
 		return mv;
 	}
