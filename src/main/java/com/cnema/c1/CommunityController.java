@@ -115,9 +115,9 @@ public class CommunityController {
 				
 				for (int p_num : hs) {
 					pageDTO = communityService.pageSelect(search, p_num);
-					int count = communityService.pageMemberNum(p_num);
-					pageDTO.setCount(count);
 					if(pageDTO!=null){
+						int count = communityService.pageMemberNum(p_num);
+						pageDTO.setCount(count);
 						recomPageSearchList.add(pageDTO);
 					}
 				}

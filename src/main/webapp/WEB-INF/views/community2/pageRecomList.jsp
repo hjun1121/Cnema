@@ -29,7 +29,7 @@ $(function() {
 	$("#more_div").on('click', '#moreBtn', function() {
 		$(".hBtn").css("display","");
 		$("#more_div").empty();
-		$("#more_div").html("<button class=" + "hBtn" + ">숨기기</button>");
+		$("#more_div").html("<button class=" + "hBtn" + ">전체페이지보기</button>");
 	});
 	
 	$("#more_div").on('click', '.hBtn', function() {
@@ -64,15 +64,15 @@ $(function() {
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
 			<span id="img_alt">가입한 페이지</span>
-			<%-- <span id="img_count">· ${fn:length(pageList)}개</span></h2> --%>
+			</h2>
 			<c:forEach items="${pageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<p style="padding-left: 25px;">
+					<p style="padding-left: 10px;">
 						<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
-						<img id="pageImg"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
+						<img style="width: 50px; height: 50px; border-radius: 100px; margin-bottom: 15px;"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
 						</a>
-					<span id="pageName"> ${page.page_name}</span>
+					<span style="display: inline-block; width: 120px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"> ${page.page_name}</span>
 					</p>
 				</div>
 			</c:if>
@@ -88,11 +88,11 @@ $(function() {
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<p>
+					<p style="padding-left: 10px;">
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
-					<img id="pageImg"alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
+					<img style="width: 50px; height: 50px; border-radius: 100px; margin-bottom: 15px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
 					</a>
-					<span id="pageName"> ${recommend.page_name}</span>
+					<span style="display: inline-block; width: 120px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"> ${recommend.page_name}</span>
 					</p>
 				</div>
 			</c:if>
@@ -109,7 +109,7 @@ $(function() {
 			<input type="button" id="sBtn" class="round gray" value="GO">
 		</div>
 		<c:forEach items="${recomPageSearchList }" var="recommendSearch" varStatus="count">
-			<c:if test="${count.count >= 5 and count.count <= 12}">
+			<c:if test="${count.count >= 8 and count.count <= 16}">
 			<div class="roundList hBtn" style="display: none;">
 			<div>
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommendSearch.page_num}">
@@ -119,7 +119,7 @@ $(function() {
 				<div id="roundName"> ${recommendSearch.page_name}<br>${recommendSearch.count}명이 가입함</div>
 			</div>	
 			</c:if>
-			<c:if test="${count.count <= 4 }">
+			<c:if test="${count.count <= 8 }">
 			<div class="roundList">
 				<div>
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommendSearch.page_num}">

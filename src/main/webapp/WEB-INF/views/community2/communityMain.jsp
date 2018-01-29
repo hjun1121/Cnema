@@ -56,7 +56,7 @@ $(function() {
 		<c:if test="${not empty member}">
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
-			<span id="img_alt">가입한 페이지</span>
+			<a href="../${pageScope.pageContext.request.contextPath }community2/pageInsertList"><span id="img_alt">가입한 페이지</span></a>
 			</h2>
 			<c:forEach items="${pageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
