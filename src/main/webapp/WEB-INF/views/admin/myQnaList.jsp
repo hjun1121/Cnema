@@ -206,8 +206,14 @@ float: left;
 			</td>
 		</tr>
 		</c:forEach>
+		<c:if test="${fn:length(list) eq 0}">           
+			<tr>
+				<td colspan="5" class="nodata">문의 내역이 존재하지 않습니다.</td>
+			</tr>
+		</c:if> 
 	</table>
 	<br>
+	<c:if test="${fn:length(list) > 0}">   
 	<div class="paging">
 					<ul id="paging_point">
 						<c:if test="${pager.curBlock gt 1}">
@@ -227,6 +233,7 @@ float: left;
 						</c:if>
 					</ul>
 				</div>
+			</c:if>
 <%-- 	<c:if test="${fn:length(list) != 0}">
 	   	            <div class="paging">
 					<ul id="paging_point">
