@@ -18,6 +18,7 @@ import com.cnema.community.PageService;
 import com.cnema.member.MemberDTO;
 import com.cnema.message.MessageDTO;
 import com.cnema.util.ListData;
+import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 
 @Controller
 @RequestMapping(value = "/community/*")
@@ -297,7 +298,7 @@ public class PageController {
 			
 			e.printStackTrace();
 		}
-		
+
 		PageDTO pageDTO = pageService.selectPageOne(page_num); //페이지 정보 가져오기
 		List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
 

@@ -259,7 +259,6 @@
 	border-radius: 100px;
 }
 
-<!-- 게시물 -->
 
 .pageContentsOne {
 	margin-bottom: 10px;
@@ -289,7 +288,6 @@
 
 #contents_div {
 	min-height: 100px;
-/* 	height: 245px; */
     text-align: left;
     font-size: 15px;
     overflow: auto;
@@ -297,7 +295,7 @@
     background-color: #fafafaa3;
 }
 
-#content_btns_div {
+.content_btns_div {
 	background-color: #e9ebee;
     height: auto;
 }
@@ -312,42 +310,4 @@
     font-weight: bold;
     border-radius: 4px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 게시물 끝 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
 
