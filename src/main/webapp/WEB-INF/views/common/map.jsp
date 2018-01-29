@@ -131,7 +131,7 @@
         	<!-- 상단바 끝 -->
         	
         	<!-- 내용 시작 -->
-        	<div style="height: 500px; width: 750px; margin: 10px auto 0 auto">
+        	<div style="height: 500px; width: 750px; margin-top: 30px; margin-left: 300px;">
 				<select id="area">
 					<option class="areas">서울</option>	
 					<c:forEach items="${theaterList }" var="theaterDTO">

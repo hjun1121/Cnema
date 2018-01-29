@@ -61,8 +61,8 @@
 	width: 85px;
 	height:25px;
 	margin: 0 0 5px 15px;
-    background-color: #365899;
-    border-color: #365899;
+    background-color: #4267b2;
+    border-color: #4267b2;
     border-radius: 10px;
     color: #fff;
 }
@@ -227,8 +227,8 @@
 #search button {
 	height: 25px;
 	padding: 0 7px;
-	background: #365899;
-	border: 1px solid #365899;
+	background: #4267b2;
+	border: 1px solid #4267b2;
 	color: #fff;
 }
 
@@ -259,95 +259,55 @@
 	border-radius: 100px;
 }
 
-<!-- 게시물 -->
 
 .pageContentsOne {
-	width: 500px;
-	height: 300px;
-	background-color: red;
-	margin: 10px 0;
+	margin-bottom: 10px;
+    border: 1px solid #e9ebee;
 }
 
 #update_div {
     width: 100%;
     height: 25px;
-    background-color: red;
+    background-color: #f2f2f2;
     text-align: right;
 }
 
 .updateBtn {
-    font-size: 15px;
+    font-size: small;
     font-weight: bold;
     color: #666;
     line-height: 25px;
 }
 
 .deleteBtn {
-    font-size: 15px;
+    font-size: small;
     font-weight: bold;
     color: #666;
     line-height: 25px;
 }
 
 #contents_div {
-	height: 245px;
+	min-height: 100px;
     text-align: left;
     font-size: 15px;
     overflow: auto;
     padding: 10px;
-    background-color: yellow;
+    background-color: #fafafaa3;
 }
 
-#content_btns_div {
-	background-color: blue;
-    margin-bottom: 10px;
+.content_btns_div {
+	background-color: #e9ebee;
     height: auto;
 }
 
-.cbtns {
-    background: green;
+
+.btns {
+	background: #4267b2;
     height: 30px;
-    margin: 0 10px;
-    padding: 0 10px;
+    margin: 0 1px;
+    padding: 0 15px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 게시물 끝 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -147,19 +147,34 @@
 		});
 	    
 	    //댓글 쓰기
+// 	    $(".pageContentsOne").on("click", ".content_reply_btn", function() {
+// 	    	var contents_num = $(this).attr("title");
+// 			$.ajax({
+// 				url:"replyForm",
+// 				type:"POST",
+// 				data:{
+// 					contents_num: contents_num,
+// 					page_num: ${page_num}
+// 				},
+// 				success:function(data){
+// 					$("#content_btns_div" + ${contents_num}).empty();
+// 					$("#content_btns_div" + ${contents_num}).html(data);
+// 				}
+// 			});
+// 	    });
+
 	    $(".content_reply_btn").click(function() {
 	    	var contents_num = $(this).attr("title");
-	    	alert(contents_num);
 			$.ajax({
 				url:"replyForm",
 				type:"POST",
 				data:{
 					contents_num: contents_num,
-					page_num: ${page_num}
+					page_num: ${page_num }
 				},
 				success:function(data){
-					$("#content_btns_div").empty();
-					$("#content_btns_div").html(data);
+					$("#content_btns_div"+contents_num).empty();
+					$("#content_btns_div"+contents_num).html(data);
 				}
 			});
 	    });
@@ -289,22 +304,22 @@
 			 <div class="pageContentsOne">
 				 <input type="hidden" id="contents_num" value="${dto.contents_num }">
 				 <div id="update_div">
-				 <span class="updateBtn">수정/</span><span class="deleteBtn">삭제</span>
+				 <span class="updateBtn btns">수정</span><span class="deleteBtn btns">삭제</span>
 				 </div>
-				 
+
 				 <div id="contents_div">
 				 	${dto.contents}
 				 </div>
 
-				 <div id="content_btns_div">
-					 <button class="like cbtns content_like_btn" title="${dto.contents_num }">좋아요</button>
-					 <button class="reply cbtns content_reply_btn" title="${dto.contents_num }">댓글</button>
-					 <button class="warning cbtns" title="${dto.contents_num }">신고</button>
+				 <div id="content_btns_div${dto.contents_num }" class="content_btns_div">
+					 <button class="like cbtns content_like_btn btns" title="${dto.contents_num }">좋아요</button>
+					 <button class="reply cbtns content_reply_btn btns" title="${dto.contents_num }">댓글</button>
+					 <button class="warning cbtns btns" title="${dto.contents_num }">신고</button>
 				 </div>
 
-				 <div id="reply_div">
+<!-- 				 <div id="reply_div"> -->
 
-				 </div>
+<!-- 				 </div> -->
 				 
 				 <div id="replyList${dto.contents_num }"> </div>
 			 </div>
