@@ -231,6 +231,7 @@
                             		</div>
                        		 	</li>
                        		 </c:forEach>
+                       		 <!--  -->
            					 </ul>
         				</div>
         			<p class="info-noti"></p>

@@ -6,6 +6,14 @@ public class ListData {
 	private String search;
 	private int perPage; //가변적으로 사용할지 말지를 정해서 컨트롤러에서 받아올 지 말지 결정
 	
+	public int getPerPage() {
+		return perPage;
+	}
+
+	public void setPerPage(int perPage) {
+		this.perPage = perPage;
+	}
+
 	public ListData() {
 		// TODO Auto-generated constructor stub
 		this.curPage = 1;

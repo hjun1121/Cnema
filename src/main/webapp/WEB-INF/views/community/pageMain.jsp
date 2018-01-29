@@ -18,10 +18,6 @@
 
 	$(function(){
 		
-		$("#chatting_btn").click(function() {
-			alert("채팅하기");
-		});
-
 		$("#drop_btn").click(function(){
 			$("#frm").attr("action", "../community/pageMemberDrop");
 			document.frm.submit();
