@@ -22,13 +22,13 @@
 				location.href="${pageContext.request.contextPath}/theater/quickReserve";
 			});
 			$("#tab3").click(function(){
-				location.href="${pageContext.request.contextPath}/notice/noticeList";
+				location.href="${pageContext.request.contextPath}/board/park";
 			});
 			$("#tab4").click(function(){
 				location.href="${pageContext.request.contextPath}/community2/communityMain";
 			});
 			$("#page_insert").click(function() {
-				window.open('${pageContext.request.contextPath}/community/pageInsert', '페이지생성', 'width=750,height=450');
+				window.open('${pageContext.request.contextPath}/community/pageInsert', '페이지생성', 'width=550,height=250');
 			})
 		});
 		

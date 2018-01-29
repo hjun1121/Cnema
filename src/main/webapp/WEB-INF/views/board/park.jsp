@@ -385,8 +385,8 @@ margin-left:15px;
 			</c:forEach>
   	</div>
   
-  	<a href="../qna/qnaList">qnaList</a>
-  	<a href="../community/pageContentsWrite">페이지 글 쓰기</a>
+  <!-- 	<a href="../qna/qnaList">qnaList</a>
+  	<a href="../community/pageContentsWrite">페이지 글 쓰기</a> -->
   		</div>     
   </div> 	
         	

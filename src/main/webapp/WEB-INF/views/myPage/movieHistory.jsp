@@ -81,7 +81,7 @@ $(function(){
 				            <div class="inner-contents-profile">
 				                <div class="box-image">
 				                	<div class="thumb-image">
-				                        <img src="${pageContext.request.contextPath }/resources/images/myPageView/default_profile.gif">
+				                        <img src="${pageContext.request.contextPath }/resources/profil/${member.fileName}">
 				                        <span class="profile-mask"></span>
 				                    </div>
 				                </div>

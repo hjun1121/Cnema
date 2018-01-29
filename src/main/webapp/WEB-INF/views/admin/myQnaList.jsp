@@ -118,7 +118,7 @@ float: left;
 	    			<div class="snb">
 	       			<ul>
 	            	<li>
-	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
+	            		<a href="../member/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
 	            		<a href="#">나의 예매내역 <i></i></a>
@@ -208,7 +208,35 @@ float: left;
 	</table>
 	<br>
 	<c:if test="${fn:length(list) != 0}">
-	<div>
+	   	            <div class="paging">
+					<ul id="paging_point">
+						<c:choose>
+						<c:when test="${fn:length(review) eq 0}">
+							<li style="text-decoration: none;" class=" on">
+								<a href="#" title="1페이지 선택">1</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="#"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none;" class=" on">
+								<a href="#" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="#"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+						</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
+<%-- 	<div>
 		<c:if test="${pager.curBlock gt 1}">
 			<span class="list" title="${pager.startNum-1}">[이전]</span>
 		</c:if>
@@ -218,7 +246,7 @@ float: left;
 		<c:if test="${pager.curBlock lt pager.totalBlock}">
 			<span class="list" title="${pager.lastNum+1}">[다음]</span>
 		</c:if>
-	</div>
+	</div> --%>
 	
 	</c:if>
 		</div>

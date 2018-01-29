@@ -37,7 +37,7 @@
                    			 	</p>
         						
                     			<div class="mycgv_btn_special2">
-                       				<h5 class="special_tit">SPECIAL MEMBERSHIP</h5><!-- special_tit (X) -->
+                       				<h5 class="special_tit">SPECIAL MEMBERSHIP</h5>
 				    			</div>
 			        		</div>
 			        	</div>
@@ -58,11 +58,11 @@
 			        	</div>
 			                <div class="col-one-point">
 			               	<h3 class="myCouponAndMyPoint">MY POINT</h3>
-			        		<a href="#">MY POINT 더보기</a>
+			        		<a href="${pageContext.request.contextPath}/myPage/pointHistory">MY POINT 더보기</a>
 			        		<ul>
 			        			<li>
 			        				<strong>사용가능 포인트</strong>
-			        				<span><em class="txt-maroon">${member.v_point}</em> 점</span>
+			        				<span><em class="txt-maroon"><fmt:formatNumber value="${member.v_point}" type="number"/></em> 점</span>
 			        			</li>
 			        		    <li class="tooltip_list cf">
 			        				<strong>누적 포인트</strong>
@@ -73,12 +73,12 @@
 			        		</ul>
 			        	</div>
 			        	<div class="col-favorite-theater">
-			        		<h3 class="hidden">자주가는 CGV</h3>
+			        		<h3 class="hidden"> CNEMA</h3>
 				    		<div class="sect-favorite">
 					            <ul id="favoriteTheaters"><!-- ////////////////// -->
-			                            <li><a href="#"><span>1<em>순위</em></span>CGV북수원</a></li>
-			                            <li><a href="#"><span>2<em>순위</em></span>CGV수원</a></li>
-			                            <li><a href="#"><span>3<em>순위</em></span>CGV시흥</a></li>
+			                            <li><a href="#"><span>1<em>순위</em></span>북수원</a></li>
+			                            <li><a href="#"><span>2<em>순위</em></span>수원</a></li>
+			                            <li><a href="#"><span>3<em>순위</em></span>시흥</a></li>
 			                            <li><a href="#"><span>4<em>순위</em></span></a></li>
 			                            <li><a href="#"><span>5<em>순위</em></span></a></li>
 					            </ul>

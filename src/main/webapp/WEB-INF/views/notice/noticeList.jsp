@@ -11,6 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <title>공지사항</title>
 <style type="text/css">
 
@@ -34,99 +35,155 @@
 	});
 </script>
 <style type="text/css">
-.list{
-	cursor: pointer; 
+.list {
+	cursor: pointer;
 }
-#savebutton{
-	
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 auto;
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #e71a0f; 
-    color: #ffffff; 
-    border: 2px solid #e71a0f;
+
+#savebutton {
+	padding: 10px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 0 auto;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #e71a0f;
+	color: #ffffff;
+	border: 2px solid #e71a0f;
 }
-.sizeChange{
+
+.sizeChange {
 	height: 30px;
-
 }
 
-#wordSearch{
+#wordSearch {
 	font-size: 10px;
-	width:200px;
+	width: 200px;
 	height: 24px;
-
-}	
-table{
-    padding-top: 10px;
-        border-top: solid 1px #d6d4ca;
-    border-bottom: solid 1px #b8b6aa;
 }
+
+table {
+	padding-top: 10px;
+	border-top: solid 1px #d6d4ca;
+	border-bottom: solid 1px #b8b6aa;
+}
+
 th {
-    padding: 10px 0 8px 0px;
-    border-bottom: solid 1px #e1dfd5;
-    text-align: center;
-    background-color: #edebe1;
-    vertical-align: middle;
-    line-height: 1.5em;
+	padding: 10px 0 8px 0px;
+	border-bottom: solid 1px #e1dfd5;
+	text-align: center;
+	background-color: #edebe1;
+	vertical-align: middle;
+	line-height: 1.5em;
 }
-tr{
 
-    display: table-row;
- }
-td{
+tr {
+	display: table-row;
+}
 
-    padding: 15px 0px 13px 0px;
-    border-top: solid 1px #d6d4ca;
-    text-align: center;
+td {
+	padding: 15px 0px 13px 0px;
+	border-top: solid 1px #d6d4ca;
+	text-align: center;
 }
-.tit{
-color: #222;
-    font-weight: bold;
-    display:inline-block;
-    font-size: 26px;
-    text-align: left;
-    vertical-align: middle;
-    }
-#btn1{
-	
-    padding: 3px 9px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 0 auto;
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 5px;
-    color: #e71a0f; 
-    border: 2px solid #e71a0f;
+
+.tit {
+	color: #222;
+	font-weight: bold;
+	display: inline-block;
+	font-size: 26px;
+	text-align: left;
+	vertical-align: middle;
 }
+
+#btn1 {
+	padding: 3px 9px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 0 auto;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 5px;
+	color: #e71a0f;
+	border: 2px solid #e71a0f;
+}
+
 #btn1:hover {
-    background-color: #e71a0f;
-    color: white;
+	background-color: #e71a0f;
+	color: white;
 }
-.round.inblack{ background:#222222; border:2px solid #222222; color:#ffffff; line-height:21px;  border-radius: 3px; padding:1px;}
-.round.inblack:before{ left:-2px; top:-2px; background-position:-10px -10px; z-index:1;}
-.round.inblack:after{ left:-2px; bottom:-2px; background-position:-10px -15px;}
-.round.inblack > *{ border:1px solid #5b5b58;}
-.round.inblack > *:before{ right:-3px; top:-3px; background-position:-15px -10px;}
-.round.inblack > *:after{ right:-3px; bottom:-3px; background-position:-15px -15px;}
-.round , .round > *{ display:inline-block; position:relative;  }
-.round {line-height:23px; font-family:'NanumBarunGothicBold'; text-align:center; vertical-align:middle;}
-.round > *{ box-sizing:border-box; -moz-box-sizing:border-box; width:100%; /* height:100%; */ padding:0px 5px;} /* 20140620 Del padding-top:2px !important; */
-*+html .round{ white-space:nowrap; }
-*+html .round > *{  border:none !important; padding:0; cursor:pointer; }
 
+.round.inblack {
+	background: #222222;
+	border: 2px solid #222222;
+	color: #ffffff;
+	line-height: 21px;
+	border-radius: 3px;
+	padding: 1px;
+}
 
+.round.inblack:before {
+	left: -2px;
+	top: -2px;
+	background-position: -10px -10px;
+	z-index: 1;
+}
+
+.round.inblack:after {
+	left: -2px;
+	bottom: -2px;
+	background-position: -10px -15px;
+}
+
+.round.inblack>* {
+	border: 1px solid #5b5b58;
+}
+
+.round.inblack>*:before {
+	right: -3px;
+	top: -3px;
+	background-position: -15px -10px;
+}
+
+.round.inblack>*:after {
+	right: -3px;
+	bottom: -3px;
+	background-position: -15px -15px;
+}
+
+.round, .round>* {
+	display: inline-block;
+	position: relative;
+}
+
+.round {
+	line-height: 23px;
+	font-family: 'NanumBarunGothicBold';
+	text-align: center;
+	vertical-align: middle;
+}
+
+.round>* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%; /* height:100%; */
+	padding: 0px 5px;
+} /* 20140620 Del padding-top:2px !important; */
+*+html .round {
+	white-space: nowrap;
+}
+
+*+html .round>* {
+	border: none !important;
+	padding: 0;
+	cursor: pointer;
+}
 </style>
 
 </head>
