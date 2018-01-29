@@ -1,6 +1,5 @@
 package com.cnema.community;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cnema.theater.TheaterDTO;
 import com.cnema.util.ListData;
 import com.cnema.util.Pager;
 import com.cnema.util.RowNum;
@@ -28,12 +26,11 @@ public class CommunityService {
 		Pager pager = listData.makePage(communityDAO.totalCount(id,search));
 		
 		List<PageDTO> myPageList = communityDAO.myPageList(id, search, rowNum);
-		List<PageDTO> pageList = communityDAO.myPageList(id, "", rowNum);
+		/*List<PageDTO> pageList = communityDAO.myPageAList(id);*/
 		mv.addObject("myPageList", myPageList);
-		mv.addObject("pageList", pageList);
+		/*mv.addObject("pageList", pageList);*/
 		mv.addObject("pager",pager);
 		return mv;
-		/*return communityDAO.myPageList(id,search);*/
 	}
 	
 	
@@ -58,6 +55,9 @@ public class CommunityService {
 	}
 	public int pageMemberNum(int p_num) throws Exception{
 		return communityDAO.pageMemberNum(p_num);
+	}
+	public List<PageDTO> myPageAList(String id) throws Exception{
+		return communityDAO.myPageAList(id);
 	}
 	
 }
