@@ -44,6 +44,7 @@ public class MovieController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		listData.setPerPage(4);
 		mv = movieService.reviewList(movie_num, listData);
 
 		if(id != null) {
