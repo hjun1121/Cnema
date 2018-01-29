@@ -62,7 +62,8 @@
 	
 	<!-- 댓글 리스트 -->
 	<select id="replyList" parameterType="int" resultType="pageContentsDTO">
-		select * from pagecontents where ref=#{contents_num} order by contents_num asc
+<!-- 		select * from pagecontents where ref=#{contents_num} order by contents_num asc -->
+		select M.filename, P.* from pagecontents P, member M where P.ref=581 and P.id=M.id order by contents_num asc
 	</select>
 
 	<!--페이지글 쓰기  -->
