@@ -190,4 +190,8 @@ public class PageDAO {
 	public List<PageContentsDTO> replyList(int ref) {
 		 return sqlSession.selectList(NAMESPACE+"replyList", ref);
 	}
+
+	public int pageContentsUpdate(PageContentsDTO pageContentsDTO) {
+		return sqlSession.update(NAMESPACE+"pageContentsUpdate", pageContentsDTO);
+	}
 }
