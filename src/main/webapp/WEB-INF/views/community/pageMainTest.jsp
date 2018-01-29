@@ -272,7 +272,7 @@
 		<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
 	
 	<div class="_51xa">
-	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton" data-testid="react-composer-post-button" type="submit" value="1">
+	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton"  type="submit">
 	<span class="">게시</span>
 	</button>
 	</div>
