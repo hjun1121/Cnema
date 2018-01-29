@@ -93,6 +93,14 @@
 	<delete id="pageContentsDelete" parameterType="int">
 		delete pageContents where contents_num=#{contents_num}
 	</delete>
+	
+	<!--page 수정 -->
+	<update id="pageContentsUpdage" parameterType="pageContentsDTO">
+		update pageContents set contents=#{contents} where contents_num=#{contents_num}
+	</update>
+	
+	
+	
 	<!--댓글쓰기  -->
 	<insert id="replyWrite" parameterType="pageContentsDTO">
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,#{ref},0,0)

@@ -40,7 +40,7 @@
 	clear: both;
     height: 320px;
     background-color: white;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 #img_alt{
 	font-size: 16px;
@@ -52,9 +52,10 @@
     line-height: 18px;
 }
 #myJoinList h2{
-	font-size: 20px; 
-	color: #333333;
-	margin-bottom: 10px;
+	font-size: 20px;
+    color: #333333;
+    margin-bottom: 30px;
+        padding-top: 10px;
 }
 #recommedList{
 	clear: both; 
@@ -75,19 +76,6 @@
     width: 200px;
 }
 }
-img#pageImg{
-	width: 50px;
-    height: 50px;
-    border-radius: 100px;
-    margin-bottom: 15px;
-}
-#pageName{
-	display: inline-block;
-    width: 120px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 <!--main body-->
 
 #infoBody{
@@ -106,6 +94,7 @@ img#pageImg{
 #recommendBody{
 	height: 50%; 
 	background-color: #f0f0f0;
+	    margin-top: 80px;
 }
 #rePageImg{
 	margin-right: 12px;
@@ -124,7 +113,6 @@ img#pageImg{
 #roundName{
 	width: 150px;
     height: 20px;
-    background: linear-gradient(darkgrey, rgba(0, 0, 0, .7));
     bottom: 0;
     color: #fff;
     left: 0;

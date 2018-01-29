@@ -126,7 +126,11 @@ $(function(){
 						        <%-- <p><em>${fn:length(wList)}건</em></p> --%>
 						         <div class="set-combo">
 				                <label for="year">내가 본 영화 년도별 정렬</label>
-				                <select id="kind" name="date">
+				                <select id="kind" name="date" style="width: 80px;
+    height: 30px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    line-height: 29px;">
 		                            <option class = "kind" value="reg_date" selected="selected">등록일 순</option>
 		                            <option class = "kind" value="open_date">개봉일 순</option>
 				                </select>

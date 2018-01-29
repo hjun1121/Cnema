@@ -289,6 +289,7 @@ public class MyPageController {
 		int reserveLeftbar = 0;
 		int wishLeftbar = 0;
 		try {
+			listData.setPerPage(9);
 			mv = wishService.wishList(memberDTO.getId(), kind, listData);
 			reserveLeftbar = reserveService.reserveLeftbar(memberDTO.getId());
 			wishLeftbar = wishService.wishLeftbar(memberDTO.getId());

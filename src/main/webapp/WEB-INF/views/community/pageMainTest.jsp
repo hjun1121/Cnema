@@ -38,7 +38,7 @@
 				 page_num:page_num
 				},
 				success:function(data){
-					$("#listView").append("<h1>Page " + page + "</h1>")+data;
+					$("#contentsListView").append("<h1>Page " + page + "</h1>")+data;
 					},
 				error : function(){
 					

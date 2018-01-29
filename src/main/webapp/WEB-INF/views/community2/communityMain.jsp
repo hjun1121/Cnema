@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
@@ -57,15 +57,15 @@ $(function() {
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
 			<span id="img_alt">가입한 페이지</span>
-			<%-- <span id="img_count">· ${fn:length(pageList)}개</span></h2> --%>
+			</h2>
 			<c:forEach items="${pageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<p style="padding-left: 25px;">
+					<p style="padding-left: 10px;">
 						<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
-						<img id="pageImg"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
+						<img style="width: 50px; height: 50px; border-radius: 100px; margin-bottom: 15px;"  alt="${page.page_name}_logo" src="../resources/page_logo/${page.fileName}">
 						</a>
-					<span id="pageName"> ${page.page_name}</span>
+					<span style="display: inline-block; width: 120px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"> ${page.page_name}</span>
 					</p>
 				</div>
 			</c:if>
@@ -81,11 +81,11 @@ $(function() {
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 			<c:if test="${i.index < 4}">
 				<div id="pageList">
-					<p>
+					<p style="padding-left: 10px;">
 					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
-					<img id="pageImg"alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
+					<img style="width: 50px; height: 50px; border-radius: 100px; margin-bottom: 15px;" alt="${recommend.page_name}_logo" src="../resources/page_logo/${recommend.fileName}">
 					</a>
-					<span id="pageName"> ${recommend.page_name}</span>
+					<span style="display: inline-block; width: 120px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"> ${recommend.page_name}</span>
 					</p>
 				</div>
 			</c:if>
