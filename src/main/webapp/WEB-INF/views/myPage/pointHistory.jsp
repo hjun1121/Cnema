@@ -205,7 +205,7 @@ $(function() {
 								<c:if test="${pointList.type eq 20}">
 									<td>적립</td>
 								</c:if>
-								<c:if test="${pointList.type eq 10}">
+								<c:if test="${pointList.type eq 12}">
 									<td>사용</td>
 								</c:if>
 							</tr>
@@ -229,12 +229,12 @@ $(function() {
 						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none;" class=" on">
-								<a href="pointHistory?curPage=${i}" title="${i}페이지 선택">${i}</a>
+								<a href="pointHistory?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}" title="${i}페이지 선택">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="pointHistory?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+								<a href="pointHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
 					</ul>
