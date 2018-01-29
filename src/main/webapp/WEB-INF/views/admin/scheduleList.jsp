@@ -176,7 +176,7 @@ $(function(){
 						</c:if>
 							<c:if test="${fn:length(sList) eq 0}">           
 					            <tr>
-					                <td colspan="3" class="nodata">상영시간표가 존재하지 않습니다.</td>
+					                <td colspan="5" class="nodata">상영시간표가 존재하지 않습니다.</td>
 					            </tr>
 				            </c:if>  
 				        </tbody>
