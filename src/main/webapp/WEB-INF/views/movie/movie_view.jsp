@@ -212,7 +212,6 @@
 	                    <li>
 	                        <div class="box-image">
 	                            <a href="#" title="새창" class="movie_player_popup">
-<%-- 	                            	<iframe src="${movie.teaser_url}"></iframe> --%>
 									<iframe width="560" height="315" src="${movie.teaser_url}"></iframe>
 	                            </a>
 	                        </div>
