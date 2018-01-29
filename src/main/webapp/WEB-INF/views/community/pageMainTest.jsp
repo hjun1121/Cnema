@@ -119,7 +119,7 @@
 		});
 	
 		//좋아요 누르기
-		$(".contentsListView").on("click",".like", function(event){
+		$("#contentsListView").on("click",".like", function(event){
 			
 			var contents_num=$(this).val();
 			var page_num=$("#page_num").val();
@@ -132,7 +132,7 @@
 							page_num:page_num
 						},
 						success:function(data){
-							$(this).attr("disabled",true);
+						
 							},
 						error : function(){
 							
@@ -142,17 +142,19 @@
 		
 		});
 		//신고하기 누르기
-	$(".warning").on("click", function(event){
+	$("#contentsListView").on("click", ".warning",function(event){
 			
 			var contents_num=$(this).val();
+			var page_num=$("#page_num").val();
 					$.ajax({
 						url:"../community/warning",
 						type:"POST",
 						data:{
-							contents_num:contents_num
+							contents_num:contents_num,
+							page_num:page_num
 						},
 						success:function(data){
-							$(this).attr("disabled",true);
+							
 							},
 						error : function(){
 							
@@ -310,7 +312,7 @@
 		 </div>
 		 
 		 <div>
-		 <button class="like">좋아요</button><button class="reply">댓글</button><button class="warning">신고</button>
+		 <button class="like" value="${dto.contents_num }">좋아요</button><button class="reply">댓글</button><button class="warning"  value="${dto.contents_num }">신고</button>
 		 </div>
 		 
 		 <div>

@@ -366,7 +366,9 @@ public class PageController {
 	}
 	//신고하기 
 	@RequestMapping(value = "warning", method=RequestMethod.POST)
-	public void pageWarning(int contents_num) {
+	public ModelAndView pageWarning(int contents_num,int page_num) {
+		System.out.println("warn update");
+		ModelAndView mv = new ModelAndView();
 		int result=0;
 		try {
 			result = pageService.pageContentsWarning(contents_num);
@@ -374,6 +376,16 @@ public class PageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String message = "좋아요 성공";
+		if(result > 0) {
+			message = "좋아요 실패";
+		}
+		
+		mv.addObject("message", message);
+		mv.addObject("path", "community/communityMainTest?page_num"+page_num);
+		mv.setViewName("/common/messagePath");
+
+		return mv;
 		
 	}
 	//삭제하기 
