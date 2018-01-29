@@ -17,11 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.coupon.CoupongroupService;
-import com.cnema.coupon.MyCouponDTO;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;
 import com.cnema.member.MemberService;
-import com.cnema.member.PointDTO;
 import com.cnema.member.PointService;
 import com.cnema.movie.MovieDTO;
 import com.cnema.movie.MovieService;
@@ -29,15 +27,8 @@ import com.cnema.movie.ReviewDTO;
 import com.cnema.movie.ReviewService;
 import com.cnema.movie.WishDTO;
 import com.cnema.movie.WishService;
-import com.cnema.reserve.ReserveDTO;
 import com.cnema.reserve.ReserveService;
-import com.cnema.reserve.TicketPriceDTO;
 import com.cnema.reserve.TicketPriceService;
-import com.cnema.theater.ScheduleDTO;
-import com.cnema.theater.ScheduleService;
-import com.cnema.theater.ScreenDTO;
-import com.cnema.theater.TheaterDTO;
-import com.cnema.theater.TheaterService;
 import com.cnema.util.ListData;
 
 @Controller

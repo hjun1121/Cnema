@@ -32,9 +32,7 @@ public class NoticeDAO implements BoardDAO{
 	}
 	@Override
 	public int insert(BoardDTO boardDTO) throws Exception {
-		System.out.println("Before:"+boardDTO.getNum());
 		int result = sqlSession.insert(namespace+"insert", boardDTO);
-		System.out.println("After:"+boardDTO.getNum());
 		return result;
 	}
 	@Override
@@ -43,7 +41,6 @@ public class NoticeDAO implements BoardDAO{
 	}
 	@Override
 	public int delete(int num) throws Exception {
-		System.out.println("delete num : "+num);
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	@Override

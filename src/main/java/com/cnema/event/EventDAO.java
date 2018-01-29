@@ -38,7 +38,6 @@ public class EventDAO implements BoardDAO{
 	}
 	@Override
 	public int delete(int num) throws Exception {
-		System.out.println("delete num : "+num);
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	@Override

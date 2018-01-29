@@ -79,10 +79,8 @@ public class EventController {
 			 
 			 int endCheck= 0;
 			 if(now>end){
-				 System.out.println("종료");
 				 endCheck=1;
 			 }else{
-				 System.out.println("진행");
 			 }
 			int check=eventService.eventJoinCheck(eventJoinDTO);
 			
@@ -150,8 +148,6 @@ public class EventController {
 		//update --> DB 
 		@RequestMapping(value="eventUpdate",method=RequestMethod.POST)
 		public String update(EventDTO eventDTO,HttpSession session ,RedirectAttributes rd) throws Exception{
-			System.out.println("eventNofileTest");
-			System.out.println(eventDTO.getFile().getOriginalFilename() +"입니다");
 			
 			int result = 0;
 			result = eventService.update(eventDTO,session);

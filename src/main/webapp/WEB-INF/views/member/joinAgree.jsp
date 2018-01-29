@@ -57,7 +57,6 @@
 					data:{
 					},
 					success:function(data){
-						alert("d");
 					}
 				});
 				
