@@ -22,7 +22,7 @@
 				location.href="${pageContext.request.contextPath}/theater/quickReserve";
 			});
 			$("#tab3").click(function(){
-				location.href="${pageContext.request.contextPath}/notice/noticeList";
+				location.href="${pageContext.request.contextPath}/board/park";
 			});
 			$("#tab4").click(function(){
 				location.href="${pageContext.request.contextPath}/community2/communityMain";

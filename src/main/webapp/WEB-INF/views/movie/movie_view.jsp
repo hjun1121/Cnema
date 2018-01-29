@@ -279,7 +279,6 @@
 	                </div>
 	            </div>
 	            
-	            
    	            <div class="paging">
 					<ul id="paging_point">
 						<c:choose>
@@ -308,7 +307,6 @@
 						</c:choose>
 					</ul>
 				</div>
-
 
 	        </div>
 		</div>

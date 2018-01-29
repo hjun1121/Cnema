@@ -11,6 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/boardMain/boardTab.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -245,19 +246,25 @@ $("#ingEvent").click(function(){
 			</c:forEach>
 		</ul>
 	
-	
-	<div>
-		<c:if test="${pager.curBlock gt 1}">
-			<span class="list" title="${pager.startNum-1}">[이전]</span>
-		</c:if>
-		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			<span class="list" title="${i}">${i}</span>
-		</c:forEach>
-		<c:if test="${pager.curBlock lt pager.totalBlock}">
-			<span class="list" title="${pager.lastNum+1}">[다음]</span>
-		</c:if>
-	</div>
-
+	   	        <div class="paging">
+					<ul id="paging_point">
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="#"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; " class=" on">
+								<a href="#" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="#"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 </div>	
 	<c:if test="${not empty member and member.type eq 20  }">
 	<div id="btn1"><a href="./eventWrite">글쓰기</a></div>
