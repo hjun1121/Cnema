@@ -39,4 +39,8 @@
 		select count(*) from pagemember where page_num=#{p_num}
 	</select>
 	
+	<select id="myPageAList" resultType="pageDTO" parameterType="string">
+		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id}
+	</select>
+	
 </mapper>
