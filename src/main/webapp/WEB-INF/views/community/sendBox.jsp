@@ -41,6 +41,11 @@
 					</li>
 				</c:when>
 				<c:otherwise>
+				<c:if test="${pager.curBlock gt 1}">
+					<li class="paging-side">
+						<a href="mailBox?curPage=${pager.startNum-1}&check=1"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+					</li>						
+				</c:if>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<li style="text-decoration: none;" class=" on">
 						<a href="mailBox?curPage=${i}&check=1" title="${i}페이지 선택">${i}</a>

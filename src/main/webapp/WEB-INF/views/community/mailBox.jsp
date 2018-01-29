@@ -46,7 +46,7 @@
 				url:"receiveBox",
 				type:"POST",
 				data:{
-					curPage:${curPage}
+					curPage:1
 				},
 				success:function(data){
 					$("#box_div").html(data);
@@ -59,7 +59,7 @@
 				url:"sendBox",
 				type:"POST",
 				data:{
-					curPage:${curPage}
+					curPage:1
 				},
 				success:function(data){
 					$("#box_div").html(data);

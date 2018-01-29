@@ -493,8 +493,7 @@ public class PageController {
 		}
 		
 		mv.addObject("message", message);
-		mv.addObject("path", "community2/communityMain");
-		mv.setViewName("/common/messagePath");
+		mv.setViewName("/common/messageClose");
 
 		return mv;
 	}

@@ -162,7 +162,7 @@ $(function(){
 				                                <strong>개봉</strong>
 				                            </span>
 				                            <span class="like"> 
-				                                      <button class="btn-del">내가선택한영화</button>
+				                                      <button class="btn-del" title = ${wishList.movie_num }>내가선택한영화</button>
 				                                <span class="count"> 
 				                                    <strong>${wishList.movieDTO.wish}<span>명이 선택</span></strong> 
 				                                    <i class="corner-RT"></i>
