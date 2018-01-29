@@ -57,15 +57,17 @@ public class PageController {
 	@RequestMapping(value = "member_profile_bar", method = RequestMethod.POST)
 	public ModelAndView memberProfile(int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		String search = null;
+		String search = "";
 		List<MemberDTO> ml = pageService.pageMemberProfile(page_num, search);
-
+		System.out.println("ml"+ml);
 		mv.addObject("page_num", page_num);
 		mv.addObject("memberList", ml);
 		return mv;
 	}
+	
 	@RequestMapping(value = "member_profile_bar", method = RequestMethod.GET)
 	public ModelAndView memberProfile(int page_num, String search) throws Exception {
+		System.out.println("올까나");
 		ModelAndView mv = new ModelAndView();
 		List<MemberDTO> ml = pageService.pageMemberProfile(page_num, search);
 
@@ -225,7 +227,7 @@ public class PageController {
 			message = "글쓰기 성공";
 		}
 		mv.addObject("message", message);
-		mv.addObject("path", "community/pageMainTest?page_num="+pageContentsDTO.getPage_num());
+		mv.addObject("path", "community/pageMain?page_num="+pageContentsDTO.getPage_num());
 		mv.setViewName("/common/messagePath");
 		return mv;
 	}
@@ -266,6 +268,7 @@ public class PageController {
 		int pageMemberCount = 0;
 		int mailCount = 0;
 		List<PageDTO> joinPage = null;
+		List<PageContentsDTO> ar=null;
 		List<PageDTO> recommendPage = pageService.recommendPageList();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		try {
@@ -276,6 +279,7 @@ public class PageController {
 			joinPage = pageService.joinPageList(id);
 			List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
 			pageMemberCount = mc.size();
+			ar = pageService.pageContentslist(0, page_num);
 		} catch (Exception e) {
 			// TODO: handle exception
 			
@@ -292,48 +296,50 @@ public class PageController {
 		mv.addObject("mailCount", mailCount);
 		mv.addObject("member_num", member_num);
 		mv.addObject("page", pageDTO);
+		mv.addObject("page_num", page_num);
 		mv.addObject("pageMember", pageMember);
+		mv.addObject("list", ar);
 		mv.setViewName("community/pageMain");
+
+		return mv;
+	}
+	
+	//pageMainTest - pageContents Test
+	@RequestMapping(value = "pageMainTest", method=RequestMethod.GET)
+	public ModelAndView pageMainTest(HttpSession session, @RequestParam(defaultValue="0", required=false)int page_num) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int member_num = 0;
+		int memberCheck = 0;
+		int pageMemberCount = 0;
+		List<PageContentsDTO> ar=null;
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		try {
+			String id = memberDTO.getId();
+			memberCheck = pageService.memberCheck(page_num, id);
+			member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
+			List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
+			ar = pageService.pageContentslist(0,page_num);
+			pageMemberCount = mc.size();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		PageDTO pageDTO = pageService.selectPageOne(page_num); //페이지 정보 가져오기
+		List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
+
+		mv.addObject("pageMemberCount", pageMemberCount);
+		mv.addObject("memberCheck", memberCheck);
+		mv.addObject("member_num", member_num);
+		mv.addObject("page", pageDTO);
+		mv.addObject("pageMember", pageMember);
+		mv.addObject("list", ar);
+		mv.setViewName("community/pageMainTest");
 
 		return mv;
 	}
 
 	
-	//pageMainTest - pageContents Test
-		@RequestMapping(value = "pageMainTest", method=RequestMethod.GET)
-		public ModelAndView pageMainTest(HttpSession session, @RequestParam(defaultValue="0", required=false)int page_num) throws Exception {
-			ModelAndView mv = new ModelAndView();
-			int member_num = 0;
-			int memberCheck = 0;
-			int pageMemberCount = 0;
-			List<PageContentsDTO> ar=null;
-			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-			try {
-				String id = memberDTO.getId();
-				memberCheck = pageService.memberCheck(page_num, id);
-				member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
-				List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
-				ar = pageService.pageContentslist(0,page_num);
-				pageMemberCount = mc.size();
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-			
-			PageDTO pageDTO = pageService.selectPageOne(page_num); //페이지 정보 가져오기
-			List<PageMemberDTO> pageMember = pageService.selectPageMemberList(page_num);
-
-			mv.addObject("pageMemberCount", pageMemberCount);
-			mv.addObject("memberCheck", memberCheck);
-			mv.addObject("member_num", member_num);
-			mv.addObject("page", pageDTO);
-			mv.addObject("pageMember", pageMember);
-			mv.addObject("list", ar);
-			mv.setViewName("community/pageMainTest");
-
-			return mv;
-		}
-
 	//pageInsert
 	@RequestMapping(value = "pageInsert", method=RequestMethod.GET)
 	public void pageInsert() {
@@ -366,7 +372,9 @@ public class PageController {
 	}
 	//신고하기 
 	@RequestMapping(value = "warning", method=RequestMethod.POST)
-	public void pageWarning(int contents_num) {
+	public ModelAndView pageWarning(int contents_num,int page_num) {
+		System.out.println("warn update");
+		ModelAndView mv = new ModelAndView();
 		int result=0;
 		try {
 			result = pageService.pageContentsWarning(contents_num);
@@ -374,6 +382,16 @@ public class PageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String message = "좋아요 성공";
+		if(result > 0) {
+			message = "좋아요 실패";
+		}
+		
+		mv.addObject("message", message);
+		mv.addObject("path", "community/communityMainTest?page_num"+page_num);
+		mv.setViewName("/common/messagePath");
+
+		return mv;
 		
 	}
 	//삭제하기 
