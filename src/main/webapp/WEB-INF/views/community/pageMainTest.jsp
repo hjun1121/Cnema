@@ -23,9 +23,10 @@
 	$(function(){
 	    //무한 스크롤링 부분
 	    var page=0;
-	    var page_num = ${page.page_num}
+	    var page_num = $("#page_num").val();
 	   alert($(window).scrollTop());
-	    $(window).scroll(function() {
+	   
+    $(window).scroll(function() {
 	    
 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	      page++;
@@ -38,7 +39,13 @@
 				 page_num:page_num
 				},
 				success:function(data){
-					$("#contentsListView").append("<h1>Page " + page + "</h1>")+data;
+					alert(data.trim());
+					if(data.trim() !="0"){
+					$("#contentsListView").append(data);
+					}
+					else{
+						
+					}
 					},
 				error : function(){
 					
@@ -47,7 +54,7 @@
 	     
 	      
 	    }
-	});
+	}); 
 		
 		//SmartEditor start3
 		//전역변수선언
@@ -112,14 +119,17 @@
 		});
 	
 		//좋아요 누르기
-		$(".like").on("click", function(event){
+		$(".contentsListView").on("click",".like", function(event){
 			
 			var contents_num=$(this).val();
+			var page_num=$("#page_num").val();
+			 alert(contents_num);
 					$.ajax({
 						url:"../community/like",
 						type:"POST",
 						data:{
-							contents_num:contents_num
+							contents_num:contents_num,
+							page_num:page_num
 						},
 						success:function(data){
 							$(this).attr("disabled",true);
@@ -155,7 +165,7 @@
 	$(".deleteBtn").on("click", function(event){
 		
 		var contents_num=$(this).val();
-		var page_num=${page_num};
+		var page_num=$("#page_num").val();
 				$.ajax({
 					url:"../community/delete",
 					type:"POST",
@@ -175,7 +185,7 @@
 	$(".reply").on("click", function(event){
 		
 		var contents_num=$(this).val();
-		var page_num=${page_num};
+		var page_num=$("#page_num").val();
 				$.ajax({
 					url:"../community/replyList",
 					type:"POST",
@@ -317,7 +327,6 @@
 	 </div>
 </c:forEach>
 
-	<div id="listView"></div>
 	
 	
 	</div>	
