@@ -24,8 +24,8 @@
 		
 		$("#btn_search").click(function(){
 			var cur = $(this).attr("title");
-			var s = '${pager.search}';
-			var t = '${pager.kind}';
+			var s = '${search}';
+			var t = '${kind}';
 			document.frm.curPage.value=cur;
 			document.frm.search.value=s;
 			document.frm.kind.value=t;
@@ -202,7 +202,32 @@ color: #222;
 		</c:forEach>
 	</table>
 	<br>
-	<div>
+	
+	
+	
+	   	            <div class="paging">
+					<ul id="paging_point">
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="noticeList?kind=${pager.kind}&search=${pager.search}&curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none;" class=" on">
+								<a href="noticeList?kind=${pager.kind}&search=${pager.search}&movie_num=${movie.movie_num}&curPage=${i}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="noticeList?kind=${pager.kind}&search=${pager.search}&movie_num=${movie.movie_num}&curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+	<c:if test="${not empty member and member.type eq 20  }">
+		<a id="btn1" href="./noticeWrite">글쓰기</a>
+	</c:if>
+	<%-- <div>
 		<c:if test="${pager.curBlock gt 1}">
 			<span class="list" title="${pager.startNum-1}">[이전]</span>
 		</c:if>
@@ -217,7 +242,7 @@ color: #222;
 	<c:if test="${not empty member and member.type eq 20  }">
 		<a id="btn1" href="./noticeWrite">글쓰기</a>
 	</c:if>
-	</div>		
+	</div>		 --%>
 			</div><!--게시판 내용  -->
 	
 	
