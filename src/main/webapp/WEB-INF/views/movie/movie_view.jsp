@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>${movie.movie_name} &gt; 상세정보</title>
-
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/movie/movie.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/main.js"></script>
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
@@ -292,7 +291,7 @@
 						<c:otherwise>
 						<c:if test="${pager.curBlock gt 1}">
 							<li class="paging-side">
-								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging next" type="button">이전</button></a>
+								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
 							</li>						
 						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">

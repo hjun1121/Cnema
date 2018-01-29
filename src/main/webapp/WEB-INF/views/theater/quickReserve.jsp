@@ -30,7 +30,7 @@
 		$(".movies").each(function() {
 			if($(this).attr("title") == movieNum) {
 				var num = $(this).attr("title");
-				$(this).css("background-color","red");
+				$(this).css("background-color","#bbb6b6");
 				$.ajax({
 					url:"../ajax/qrMovie",
 					type:"post",
@@ -48,7 +48,7 @@
 			if($(this).attr("title") == areaName){
 				var area = $(this).attr("title");
 				$(".area").css("background-color","");		
-				$(this).css("background-color","red");
+				$(this).css("background-color","#bbb6b6");
 				
 				$.ajax({
 					url:"../ajax/locationList",
@@ -66,7 +66,7 @@
 		
 		$(".days").each(function(){
 			if($(this).attr("title") == dayNum){
-				$(this).css("background-color","red");
+				$(this).css("background-color","#bbb6b6");
 				
 				$.ajax({
 					url:"../ajax/qrScheduleList",
@@ -107,7 +107,7 @@
 		/*  */
 		$(".area").click(function(){
 			$(".area").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#bbb6b6");
 			var area = $(this).attr("title");
 			$("#areaName").val(area);
 			$.ajax({
@@ -126,7 +126,7 @@
 		/*  */
 		$(".movies").click(function(){
 			$(".movies").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#bbb6b6");
 			
 			var num = $(this).attr("title");
 			$("#movie_num").val(num);
@@ -144,7 +144,7 @@
 		/*  */
 		$("#list").on("click", ".location" , function(){
 			$(".location").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#bbb6b6");
 			var theater_num = $(this).attr("title");
 			$("#theater_num").val(theater_num);
 			$("#schedule_num").val("");
@@ -164,7 +164,7 @@
 		/*  */
 		$(".days").click(function(){
 			$(".days").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#bbb6b6");
 			var day = $(this).attr("title");
 			var theater_num = $("#theater_num").val();
 			$("#day_num").val(day);
@@ -210,7 +210,7 @@
 			//$(this).css("background-color","red");
 			var schedule_num = $(this).attr("title");
 			$(".time").css("background-color","");
-			$("#sc"+schedule_num).css("background-color","red");
+			$("#sc"+schedule_num).css("background-color","#bbb6b6");
 			$("#schedule_num").val(schedule_num);
 			var theater_num = $("#theater_num").val();
 			var day_num = $("#day_num").val();

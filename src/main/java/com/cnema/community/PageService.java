@@ -198,5 +198,10 @@ public class PageService {
 		
 		return pageDAO.replyList(ref);
 	}
+	//pageContetnsUpdate
+	public int pageContentsUdpate(PageContentsDTO pageContentsDTO) {
+		
+		return pageDAO.pageContentsUpdate(pageContentsDTO);
+	}
 	
 }
