@@ -99,7 +99,7 @@ public class PageController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
 		return mv;
@@ -137,7 +137,7 @@ public class PageController {
 	
 	//mailBox
 	@RequestMapping(value="mailBox", method=RequestMethod.GET)
-	public ModelAndView mailBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage, int check) throws Exception {
+	public ModelAndView mailBox(HttpSession session, ListData listData, @RequestParam(defaultValue="1", required=false)int curPage, @RequestParam(defaultValue="2", required=false)int check) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		mv = pageService.mailReceive(session, listData);
@@ -147,7 +147,7 @@ public class PageController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(value="mailBox", method=RequestMethod.POST)
 	public void mailBox() throws Exception {
 		

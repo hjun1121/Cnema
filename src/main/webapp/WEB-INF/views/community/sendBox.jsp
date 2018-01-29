@@ -13,7 +13,7 @@
 		</tr>
 		<c:forEach items="${mailList}" var="mail" varStatus="count">
 			<tr>
-				<td>${count.count}</td>
+				<td>${count.count + (curPage-1)*10}</td>
 				<td>${mail.receive_id}</td>
 				<td id="title"><a href="sendMailView?message_num=${mail.message_num }">${mail.title }</a></td>
 				<td>
@@ -43,7 +43,7 @@
 				<c:otherwise>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 					<li style="text-decoration: none;" class=" on">
-						<a href="mailBox?curPage=${i}$check=1" title="${i}페이지 선택">${i}</a>
+						<a href="mailBox?curPage=${i}&check=1" title="${i}페이지 선택">${i}</a>
 					</li>
 				</c:forEach>
 				<c:if test="${pager.curBlock lt pager.totalBlock}">

@@ -19,10 +19,9 @@
 		$("#delete_btn").click(function() {
 			alert("삭제");
 		});
-		
-		function goBack() {
-		    window.history.back();
-		}
+		$("#list_btn").click(function() {
+			location.href="mailBox?check=1";
+		});
 		
 	});
 
@@ -52,6 +51,6 @@
 	
 	<button class="mailView_btns" id="write_btn">쪽지쓰기</button>
 	<button class="mailView_btns" id="delete_btn">삭제</button>
-	<button class="mailView_btns" id="list_btn" onclick="goBack()">목록</button>
+	<button class="mailView_btns" id="list_btn">목록</button>
 </body>
 </html>
