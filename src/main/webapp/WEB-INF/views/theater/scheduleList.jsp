@@ -191,6 +191,9 @@
         			</div>
         			<div id="scheduleList" class="sect-showtimes">
             			<ul>
+            			<!--  -->
+            			<c:if test="${fn:length(movieList nq 0 }">
+            			<!--  -->
             			<c:forEach items="${movieList }" var="movieDTO">
                         	<li>
                             	<div class="col-times">
@@ -231,6 +234,14 @@
                             		</div>
                        		 	</li>
                        		 </c:forEach>
+                       		 </c:if>
+                       		 <!--  -->
+	            			<c:if test="${fn:length(movieList eq 0 }">
+	            			<li>
+	            			영화가 존재하지 않습니다ㅣ.
+	            			</li>
+	            			<!--  -->
+	            			</c:if>
            					 </ul>
         				</div>
         			<p class="info-noti"></p>
