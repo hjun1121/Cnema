@@ -121,47 +121,48 @@ float: left;
 	            		<a href="../member/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
-	            		<a href="#">나의 예매내역 <i></i></a>
+	            		<a href="../myPage/movieHistory">나의 예매내역 <i></i></a>
 	            			<ul>                      
 		                        <li><a href="../myPage/movieHistory">내가 본 영화</a></li>
 			                    <li><a href="../myPage/wishList">위시 리스트</a></li>
 	                        </ul>
                 	</li>
 	            	<li>
-	                	<a href="#">나의 쿠폰 관리 <i></i></a>
+	                	<a href="../myPage/couponHistory">나의 쿠폰 관리 <i></i></a>
 	                	<ul>                      
 	                        <li><a href="../myPage/couponHistory">나의 쿠폰</a></li>
+	                        <li><a href="../myPage/couponHistory2">사용 내역</a></li>
 	                	</ul>
 	           		</li>
 	            	<li>
-                    	<a href="#">나의 포인트 관리 <i></i></a>
+                    	<a href="../myPage/pointHistory">나의 포인트 관리 <i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/pointHistory">포인트 적립/사용내역</a></li>
 	                	</ul>
 	            	</li>
 
 	            	<li>
-                    	<a href="#">회원정보<i></i></a>
+                    	<a href="../myPage/myInfoCheck">회원정보<i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/myInfoCheck">회원정보수정</a></li>
-	                    	<!-- <li><a href="#">프로필관리</a></li> -->
 	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
-		            <li class="on">
-	                    <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
+		            <li>
+	                    <a href="../myPage/qnaHistory">나의 문의내역 <i></i></a>
 		                <ul>
-		                    <li class="on"><a href="../admin/myQnaList">1:1문의</a></li>
+		                    <li><a href="../myPage/qnaHistory">1:1문의</a></li>
 		                </ul>
 		            </li>
 		            <c:if test="${!empty member and member.type eq 20 }">
-		            <li >
+		            <li  class="on">
 	                    <a href="#">관리자 <i></i></a>
 		                <ul>
 		                    <li><a href="../admin/movieList">무비 리스트</a></li>
 		                    <li><a href="../admin/theaterList">극장 리스트</a></li>
 		                    <li><a href="../admin/screenList">상영관 리스트</a></li>
 		                    <li><a href="../admin/scheduleList">상영 리스트</a></li>
+		                    <li class="on"><a href="../admin/myQnaList">문의 리스트</a></li>
 		                    <li><a href="../admin/couponList">쿠폰 리스트</a></li>
 		                    <li><a href="../admin/memberList?group_num=-1">회원 리스트</a></li>
 		                </ul>
@@ -173,11 +174,11 @@ float: left;
     			</div>
 		
 	<div class="list_container">
-		<span id="otoTitle">1:1 문의</span><br>
-		<br><p> 총  ${fn:length(list)}개 </p>
+		<span id="otoTitle">문의 리스트</span><br>
+		<%-- <br><p> 총  ${fn:length(list)}개 </p> --%>
 	<table>
 		<tr>
-			<th>no.</th>
+			<th>No.</th>
 			<th>영화관</th>
 			<th>글제목</th>
 			<th>글쓴이</th>
@@ -188,7 +189,7 @@ float: left;
 		<tr>
 			<%-- <td><img src="${pageContext.request.contextPath}/resources/board/${dto.fileName}"></td> --%>
 			<td>${dto.num }</td>
-			<td>${dto.area} : ${dto.location}</td>
+			<td>${dto.location}(${dto.area})</td>
 			<td>
 			
 			<a href="../qna/qnaView?num=${dto.num}">[ ${dto.type} ] ${dto.title}</a>
@@ -207,7 +208,26 @@ float: left;
 		</c:forEach>
 	</table>
 	<br>
-	<c:if test="${fn:length(list) != 0}">
+	<div class="paging">
+					<ul id="paging_point">
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="myQnaList?curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none;" class=" on">
+								<a href="myQnaList?curPage=${i}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="myQnaList?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+<%-- 	<c:if test="${fn:length(list) != 0}">
 	   	            <div class="paging">
 					<ul id="paging_point">
 						<c:choose>
@@ -235,7 +255,7 @@ float: left;
 						</c:otherwise>
 						</c:choose>
 					</ul>
-				</div>
+				</div> --%>
 <%-- 	<div>
 		<c:if test="${pager.curBlock gt 1}">
 			<span class="list" title="${pager.startNum-1}">[이전]</span>
@@ -248,7 +268,6 @@ float: left;
 		</c:if>
 	</div> --%>
 	
-	</c:if>
 		</div>
 	
 			</div>

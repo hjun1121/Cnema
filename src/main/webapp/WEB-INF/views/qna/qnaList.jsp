@@ -135,7 +135,7 @@ td{
 		<c:if test="${pager.curBlock lt pager.totalBlock}">
 			<span class="list" title="${pager.lastNum+1}">[다음]</span>
 		</c:if>
-	</div>
+	</div> 
 	
 	
 		</div><!--게시판 내용  -->

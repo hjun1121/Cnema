@@ -71,42 +71,34 @@ public class AdminController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		int type = 0;
-				
 			try {
 				type =memberDTO.getType();
 				count = myCouponService.couponCount(memberDTO.getId());
 				aCount = myCouponService.couponACount(memberDTO.getId());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
 		if(type==20){
-	
 			try {
 				mv = qnaService.selectList(listData);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
 		}
 		else{
 			try {
 				mv=qnaService.selectMyList(memberDTO.getId());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
 			
-			
 		mv.addObject("count", count);
 		mv.addObject("aCount", aCount);
 		mv.addObject("today", today);
 		mv.addObject("myInfo", memberDTO);
-		
 		
 		return mv;
 		
