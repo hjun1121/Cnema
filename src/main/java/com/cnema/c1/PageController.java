@@ -405,9 +405,9 @@ public class PageController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String message = "contentes 삭제 실패";
+			String message = "contents 삭제 실패";
 			if(result > 0) {
-				message = "contentes 삭제완료";
+				message = "contents 삭제완료";
 			}
 			
 			mv.addObject("message", message);

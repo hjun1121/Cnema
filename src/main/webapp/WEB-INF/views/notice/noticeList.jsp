@@ -174,8 +174,8 @@ color: #222;
 	<p>CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.<br><br></p>
 	<input type="hidden" name="curPage" value="1">
 		<select name="kind" class="sizeChange">
-			<option>Title</option>
-			<option>Contents</option>
+			<option class="kind">제목</option>
+			<option class="kind">내용</option>
 		</select>
 		<input type="text" name="search" class="sizeChange" id="wordSearch" placeholder="검색어를 입력해 주세요">
 		<button type="button" class="round inblack" title="검색하기" id="btn_search"><span>검색하기</span></button>
@@ -209,17 +209,17 @@ color: #222;
 					<ul id="paging_point">
 						<c:if test="${pager.curBlock gt 1}">
 							<li class="paging-side">
-								<a href="noticeList?kind=${pager.kind}&search=${pager.search}&curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+								<a href="noticeList?kind=${kind}&search=${search}&curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
 							</li>						
 						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none;" class=" on">
-								<a href="noticeList?kind=${pager.kind}&search=${pager.search}&movie_num=${movie.movie_num}&curPage=${i}" title="${i}페이지 선택">${i}</a>
+								<a href="noticeList?kind=${kind}&search=${search}&movie_num=${movie.movie_num}&curPage=${i}" title="${i}페이지 선택">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="noticeList?kind=${pager.kind}&search=${pager.search}&movie_num=${movie.movie_num}&curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+								<a href="noticeList?kind=${kind}&search=${search}&movie_num=${movie.movie_num}&curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
 					</ul>
