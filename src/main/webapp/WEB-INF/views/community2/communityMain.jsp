@@ -103,7 +103,7 @@ $(function() {
 			<c:if test="${i.index < 4}">
 				<div id="roundList">
 					<div>
-					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${page.page_num}">
+					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommend.page_num}">
 					<img id="rePageImg" alt="${page.page_name}" src="../resources/page_logo/${page.fileName}">
 					</a>
 					</div>
