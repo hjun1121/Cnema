@@ -101,7 +101,7 @@
     margin-left: 13px;
 	width: 150px;
     height: 150px;
-    border-radius: 150px;
+    border-radius: 100px;
 }
 .roundList{
     display: inline-block; 
@@ -109,6 +109,7 @@
     margin-left: 35px; 
    height: 200px;
     margin: 0 12px 12px 0; 
+    margin-top: 20px;
 }
 #roundName{
 	width: 150px;
@@ -152,4 +153,7 @@
     width: 500px;
     margin-left: 500px;
     display: inline;
+}
+#paging_point{
+	margin-top: 300px;
 }
