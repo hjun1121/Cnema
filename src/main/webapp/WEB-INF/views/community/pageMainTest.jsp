@@ -23,7 +23,10 @@
 	$(function(){
 	    //무한 스크롤링 부분
 	    var page=1;
+	    var page_num = ${page.page_num}
+	   alert($(window).scrollTop());
 	    $(window).scroll(function() {
+	    
 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	      page++;
 
@@ -31,10 +34,11 @@
 				url:"../community/scrolling",
 				type:"POST",
 				data:{
-				 page:page
+				 page:page,
+				 page_num:page_num
 				},
 				success:function(data){
-					$("#PCview").append("<h1>Page " + page + "</h1>")+data;
+					$("#listView").append("<h1>Page " + page + "</h1>")+data;
 					},
 				error : function(){
 					
@@ -45,7 +49,7 @@
 	    }
 	});
 		
-		//SmartEditor start
+		//SmartEditor start3
 		//전역변수선언
     var editor_object = [];
      
@@ -264,28 +268,53 @@
 		<!-- 내용 넣을 것 -->
 		<div id="PCview">
 
-			<div id="writeForm">
-	<div id="writeTab"> </div>
-	<form action="../community/pageContentsWrite"  method="post" id="frm">
-		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
-		<input type="hidden" name="id" value="${member.id}">
-		<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
-	
-	<div class="_51xa">
-	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton" data-testid="react-composer-post-button" type="submit" value="1">
-	<span class="">게시</span>
-	</button>
-	</div>
+	<div id="writeForm">
+		<div id="writeTab"> </div>
+		<form action="../community/pageContentsWrite"  method="post" id="frm">
+			<input type="hidden" id="page_num"  name="page_num" value="${page.page_num}">
+			<input type="hidden" name="id" value="${member.id}">
+			<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
+		
+			<div class="_51xa">
+			<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton"  type="submit">
+				<span class="">게시</span>
+			</button>
 
-	</form>
 			</div>
+		</form>
+	</div>
 	<div id="contentsListView">
+
+<c:forEach items="${list}" var="dto">
+ <div class="pageContentsOne">
+ <input type="hidden" id="contents_num" value="${dto.contents_num }">
+ <div>
+ <span class="updateBtn">수정</span><span class="deleteBtn">삭제</span>
+ </div>
+
+<div> ${dto.contents}
+ </div>
+ 
+ <div>
+ <button class="like">좋아요</button><button class="reply">댓글</button><button class="warning">신고</button>
+ </div>
+<div>
+	<form action="../community/replyWrite" method="POST">
+	<input type="hidden" name="page_num" value="${page.page_num }">
+	<input type="hidden" name="id" value="${member.id}">
+	<input type="hidden" name="ref" value="${dto.contents_num}">
+	<input type="text"  name="contents">
+	<input type="submit" value="댓글등록"> 
+	</form>
+</div>
+<div id="replyList${dto.contents_num }"> </div>
+ </div>
+ </c:forEach>
+	<div id="listView"></div>
 	
 	
 	</div>	
 			
-		
-		
 		
 		
 		</div><!--뷰 전체  -->

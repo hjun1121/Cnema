@@ -112,10 +112,10 @@ public class PageService {
 		return result;
 	}
 	//pageCotentsList
-	public List<PageContentsDTO> pageContentslist(int page) throws Exception{
+	public List<PageContentsDTO> pageContentslist(int page,int page_num) throws Exception{
 		page=(page*10)+1;
 		
-		List<PageContentsDTO> ar = pageDAO.pageContentsList(page);
+		List<PageContentsDTO> ar = pageDAO.pageContentsList(page,page_num);
 		
 		return ar;
 	}
