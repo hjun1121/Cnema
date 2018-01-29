@@ -276,6 +276,7 @@ public class PageController {
 			pageMemberCount = mc.size();
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 			e.printStackTrace();
 		}
 		
@@ -303,13 +304,14 @@ public class PageController {
 			int member_num = 0;
 			int memberCheck = 0;
 			int pageMemberCount = 0;
-			
+			List<PageContentsDTO> ar=null;
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			try {
 				String id = memberDTO.getId();
 				memberCheck = pageService.memberCheck(page_num, id);
 				member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
 				List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
+				ar = pageService.pageContentslist(1);
 				pageMemberCount = mc.size();
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -324,6 +326,7 @@ public class PageController {
 			mv.addObject("member_num", member_num);
 			mv.addObject("page", pageDTO);
 			mv.addObject("pageMember", pageMember);
+			mv.addObject("list", ar);
 			mv.setViewName("community/pageMainTest");
 
 			return mv;
