@@ -38,7 +38,7 @@
 				 page_num:page_num
 				},
 				success:function(data){
-					$("#listView").append("<h1>Page " + page + "</h1>")+data;
+					$("#contentsListView").append("<h1>Page " + page + "</h1>")+data;
 					},
 				error : function(){
 					
@@ -286,30 +286,37 @@
 	<div id="contentsListView">
 
 <c:forEach items="${list}" var="dto">
- <div class="pageContentsOne">
- <input type="hidden" id="contents_num" value="${dto.contents_num }">
- <div>
- <span class="updateBtn">수정</span><span class="deleteBtn">삭제</span>
- </div>
+	 <div class="pageContentsOne" style="width: 500px; height: 300px;">
+		 <input type="hidden" id="contents_num" value="${dto.contents_num }">
+		 <div>
+		 <span class="updateBtn">수정</span><span class="deleteBtn">삭제</span>
+		 </div>
+		 
+		 <div>
+		 <table>
+		 	<tr></tr>
+		 </table> 
+		 ${dto.contents}
+		 </div>
+		 
+		 <div>
+		 <button class="like">좋아요</button><button class="reply">댓글</button><button class="warning">신고</button>
+		 </div>
+		 
+		 <div>
+			<form action="../community/replyWrite" method="POST">
+			<input type="hidden" name="page_num" value="${page.page_num }">
+			<input type="hidden" name="id" value="${member.id}">
+			<input type="hidden" name="ref" value="${dto.contents_num}">
+			<input type="text"  name="contents">
+			<input type="submit" value="댓글등록"> 
+			</form>
+		 </div>
+		 
+		 <div id="replyList${dto.contents_num }"> </div>
+	 </div>
+</c:forEach>
 
-<div> ${dto.contents}
- </div>
- 
- <div>
- <button class="like">좋아요</button><button class="reply">댓글</button><button class="warning">신고</button>
- </div>
-<div>
-	<form action="../community/replyWrite" method="POST">
-	<input type="hidden" name="page_num" value="${page.page_num }">
-	<input type="hidden" name="id" value="${member.id}">
-	<input type="hidden" name="ref" value="${dto.contents_num}">
-	<input type="text"  name="contents">
-	<input type="submit" value="댓글등록"> 
-	</form>
-</div>
-<div id="replyList${dto.contents_num }"> </div>
- </div>
- </c:forEach>
 	<div id="listView"></div>
 	
 	

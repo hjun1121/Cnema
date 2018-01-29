@@ -240,6 +240,7 @@ public class PageController {
 	//pageinfiniteScrolling
 	@RequestMapping(value = "scrolling",method=RequestMethod.POST)
 	public ModelAndView pageContentsScrolling(int page,int page_num)throws Exception {
+		System.out.println("scrolling controller");
 		ModelAndView mv = new ModelAndView();
 		List<PageContentsDTO> ar = null;
 		ar=pageService.pageContentslist(page,page_num);
@@ -362,7 +363,7 @@ public class PageController {
 		}
 		
 	}
-	//신고하기 
+	//삭제하기 
 		@RequestMapping(value = "delete", method=RequestMethod.POST)
 		public ModelAndView pageContentsDelete(int contents_num,int page_num) {
 			ModelAndView mv = new ModelAndView();
@@ -385,6 +386,18 @@ public class PageController {
 			return mv;
 			
 		}
+	//pageContentsUpdate
+		@RequestMapping(value = "contentsUpdate", method=RequestMethod.POST)
+		public void pageContentsUpdate(PageContentsDTO pageContentsDTO) {
+			int result=0;
+			try {
+				result = pageService.pageContentsUdpate(pageContentsDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	//PageContents에서 ReplyWrite
 		@RequestMapping(value = "replyWrite", method=RequestMethod.POST)
 		public ModelAndView replyWrite(PageContentsDTO pageContentsDTO) {

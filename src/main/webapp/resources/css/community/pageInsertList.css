@@ -15,6 +15,7 @@
 	float: left; 
 	text-align: center; 
 	background-color: #dcdcdc;
+	margin-right: 3px;
 }
 #left_bar2{
 	width: 90%; 
@@ -39,7 +40,7 @@
 	clear: both;
     height: 320px;
     background-color: white;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 #img_alt{
 	font-size: 16px;
@@ -51,9 +52,10 @@
     line-height: 18px;
 }
 #myJoinList h2{
-	font-size: 20px; 
-	color: #333333;
-	margin-bottom: 10px;
+	font-size: 20px;
+    color: #333333;
+    margin-bottom: 30px;
+        padding-top: 10px;
 }
 #recommedList{
 	clear: both; 
@@ -74,19 +76,6 @@
     width: 200px;
 }
 }
-img#pageImg{
-	width: 50px;
-    height: 50px;
-    border-radius: 100px;
-    margin-bottom: 15px;
-}
-#pageName{
-	display: inline-block;
-    width: 120px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 <!--main body-->
 
 #infoBody{
@@ -101,7 +90,7 @@ img#pageImg{
     background-color: gray;
     height: 800px;
     margin-left: 100px;
-    padding-top: 50px;
+    padding-top: 150px;
 }
 #recommendBody{
 	height: 50%; 
@@ -112,21 +101,19 @@ img#pageImg{
     margin-left: 13px;
 	width: 150px;
     height: 150px;
-    border-radius: 150px;
+    border-radius: 100px;
 }
 .roundList{
     display: inline-block; 
     float: left; 
-    border: 1px solid #dddfe2; 
     margin-left: 35px; 
    height: 200px;
     margin: 0 12px 12px 0; 
-    background-color: white;
+    margin-top: 20px;
 }
 #roundName{
 	width: 150px;
     height: 20px;
-    background: linear-gradient(darkgrey, rgba(0, 0, 0, .7));
     bottom: 0;
     color: #fff;
     left: 0;
@@ -161,4 +148,12 @@ img#pageImg{
     border-radius: 10px;
     font-weight: bold;
 }
+.paging{
+	clear: both;
+    width: 500px;
+    margin-left: 500px;
+    display: inline;
+}
+#paging_point{
+	margin-top: 300px;
 }

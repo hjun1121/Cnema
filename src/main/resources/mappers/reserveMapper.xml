@@ -31,10 +31,10 @@
 		select rownum R, N.* from  		
 		(<choose>
   			<when test="kind=='no'">
-  				select distinct tp_num from reserve where id=#{id}
+  				select distinct tp_num from reserve where id=#{id} order by  tp_num desc
   			</when>
   			<otherwise>
-  				select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind}
+  				select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind} order by  T.tp_num desc
   			</otherwise>
   		</choose>) N)
 		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
@@ -51,7 +51,7 @@
   	</select>
   	<!-- heeseong -->
   	<select id="selectList" resultType="reserveDTO" parameterType="java.lang.String">
-  		select * from reserve where id=#{id}
+  		select * from reserve where id=#{id} order by  reserve_num desc
   	</select>
   	<!-- heeseong -->
   	<delete id="reserveDel" parameterType="int" >
