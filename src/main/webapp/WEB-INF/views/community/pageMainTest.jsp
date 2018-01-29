@@ -281,7 +281,7 @@
 	</div>
 	<div id="contentsListView">
 
-<c:forEach items="${list }" var="dto">
+<c:forEach items="${list}" var="dto">
  <div class="pageContentsOne">
  <input type="hidden" id="contents_num" value="${dto.contents_num }">
  <div>
@@ -299,7 +299,7 @@
 	<input type="hidden" name="page_num" value="${page_num }">
 	<input type="hidden" name="id" value="${member.id}">
 	<input type="hidden" name="ref" value="${dto.contents_num}">
-	<input type="text" id="contents" name="contents">
+	<input type="text"  name="contents">
 	<input type="submit" value="댓글등록"> 
 	</form>
 </div>
