@@ -1,6 +1,8 @@
 package com.cnema.qna;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -53,6 +55,23 @@ public class QnaDAO {
 
 	public int getNum() throws Exception {
 		return sqlSession.selectOne(namespace+"getNum");
+	}
+	/*heeseong*/
+	public int qTotalCount(String id,String kind,String search) throws Exception{
+		Map<String, Object> qMap = new HashMap<>();
+		qMap.put("id", id);
+		qMap.put("kind", kind);
+		qMap.put("search", search);
+		return sqlSession.selectOne(namespace+"qTotalCount",qMap);
+	}
+	/*heeseong*/
+	public List<QnaDTO> myQnaList(String id,String kind,String search,RowNum rowNum) throws Exception {
+		Map<String, Object> qMap = new HashMap<>();
+		qMap.put("id", id);
+		qMap.put("kind", kind);
+		qMap.put("search", search);
+		qMap.put("rowNum", rowNum);
+		return sqlSession.selectList(namespace+"myQnaList",qMap);
 	}
 
 

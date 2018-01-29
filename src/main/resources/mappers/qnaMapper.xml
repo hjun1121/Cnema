@@ -68,4 +68,48 @@
   	select movie_seq.nextval from dual
   </select>
   
+  <!-- heeseong -->
+  	<select id="qTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(num) from qna
+  		<choose>
+  		<when test="kind == 'title'">
+  			where writer=#{id} and title like '%'||#{search}||'%'
+ 		</when>
+ 		<when test="kind == 'contents'">
+ 			where writer=#{id} and contents like '%'||#{search}||'%'
+ 		</when>
+ 		<otherwise>
+ 		</otherwise>
+  	</choose>
+  	</select>
+  	
+  <!-- heeseong -->
+  <select id="myQnaList" parameterType="java.util.Map" resultType="qnaDTO">
+   	select * from (
+		select rownum R, N.* from  		
+		(select * from qna where writer=#{id}
+  	<choose>
+  		<when test="kind == 'title'">
+  			 and title like '%'||#{search}||'%'
+ 		</when>
+ 		<when test="kind == 'contents'">
+ 			and contents like '%'||#{search}||'%'
+ 		</when>
+ 		<otherwise>
+ 		</otherwise>
+  	</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  	<!-- select * from qna 
+  	<choose>
+  		<when test="kind == 'title'">
+  			where writer=#{id} and title like '%'||#{search}||'%'
+ 		</when>
+ 		<when test="kind == 'contents'">
+ 			where writer=#{id} and contents like '%'||#{search}||'%'
+ 		</when>
+ 		<otherwise>
+ 		</otherwise>
+  	</choose> -->
+  </select>
+  
   </mapper>

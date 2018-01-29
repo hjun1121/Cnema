@@ -27,6 +27,8 @@ import com.cnema.movie.ReviewDTO;
 import com.cnema.movie.ReviewService;
 import com.cnema.movie.WishDTO;
 import com.cnema.movie.WishService;
+import com.cnema.qna.QnaDTO;
+import com.cnema.qna.QnaService;
 import com.cnema.reserve.ReserveService;
 import com.cnema.reserve.TicketPriceService;
 import com.cnema.util.ListData;
@@ -52,6 +54,8 @@ public class MyPageController {
 	private ReviewService reviewService;
 	@Inject
 	private CoupongroupService coupongroupService;
+	@Inject
+	private QnaService qnaService;
 	
 	private int count = 0;
 	private int aCount = 0;
@@ -468,6 +472,29 @@ public class MyPageController {
 			mv.addObject("path", "../member/myPageView");
 			mv.setViewName("common/messagePath");
 		}
+		return mv;
+	}
+	
+	@RequestMapping(value="qnaHistory", method=RequestMethod.GET)
+	public ModelAndView qnaHistory(HttpSession session,String kind,String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage){
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		ModelAndView mv = new ModelAndView();
+		try {
+			count = myCouponService.couponCount(memberDTO.getId());
+			aCount = myCouponService.couponACount(memberDTO.getId());
+			mv = qnaService.myQnaList(memberDTO.getId(), kind, search, listData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		mv.addObject("kind",kind);
+		mv.addObject("search",search);
+		mv.addObject("myInfo",memberDTO);
+		mv.addObject("count", count);
+		mv.addObject("aCount", aCount);
+		mv.addObject("today", today);
+		mv.setViewName("myPage/qnaHistory");
 		return mv;
 	}
 }
