@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
-
+#container{
+	
+	display: inline-grid;
+	
+}
 
 .board_container{
 	position:relative;
@@ -7,7 +11,7 @@
 	margin:0 auto;
 	height: auto;
 	display:block;
-	height:1200px;
+
 	padding: 50px 0px;
 }
 
@@ -19,9 +23,7 @@
 
 }
 
-#container {
-	height: auto;
-}
+
 /*test  */
 .cols-point-wrap span.vr {
 	color: #695c3e;
@@ -30,7 +32,7 @@
 	margin: 0 5px;
 }
 
-..col-aside h2 {
+.col-aside h2 {
 	font: 0/0 a;
 	visibility: hidden;
 	zoom: 1;

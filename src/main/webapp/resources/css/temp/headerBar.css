@@ -2,6 +2,7 @@
 
 #contaniner {
 	width: 100%;
+	display: inline-grid;
 }
 
 .linemap-wrap {

@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 #footer {
+	clear:both;
 	background: url(../../../resources/images/common/bg/bg_footer_com.gif)
 		repeat-x 0 100%;
 } /* .sect-ad height 값에 따라 background-position 값 변경 */
