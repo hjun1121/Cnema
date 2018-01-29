@@ -87,10 +87,10 @@
     padding-top: 30px;
 }
 #joinBody{
-   background-color: gray;
-   height: 800px;
-   margin-left: 100px;
-   padding-top: 150px;
+    background-color: #dcdcdc;
+    height: 500px;
+    margin-left: 100px;
+        padding-top: 156px;
 }
 #recommendBody{
 	height: 50%; 
@@ -101,32 +101,21 @@
     margin-left: 13px;
 	width: 150px;
     height: 150px;
-    border-radius: 150px;
+    border-radius: 100px;
+    margin-top: 70px;
 }
 .roundList{
     display: inline-block; 
     float: left; 
-    border: 1px solid #dddfe2; 
     margin-left: 35px; 
-   height: 200px;
     margin: 0 12px 12px 0; 
-    background-color: white;
-}
-#roundList {
-    display: inline-block;
-    float: left;
-    border: 1px solid #dddfe2;
-    margin-left: 35px;
-    height: 200px;
-    margin: 0 12px 12px 0;
-    background-color: white;
+    margin-top: -60px;
 }
 #roundName{
 	width: 150px;
     height: 20px;
-    background: linear-gradient(darkgrey, rgba(0, 0, 0, .7));
     bottom: 0;
-    color: #fff;
+    color: black;
     left: 0;
     padding: 5px;
     right: 0;
@@ -149,6 +138,7 @@
     line-height: 22px;
     padding-left: 10px;
     border: 1px solid #b5b5b5;
+        margin-top: 30px;
 }
 #sBtn{
 	height: 25px;
@@ -158,4 +148,30 @@
     padding: 0 10px 0 10px;
     border-radius: 10px;
     font-weight: bold;
+        margin-top: 30px;
+}
+.paging{
+	clear: both;
+    width: 500px;
+    display: inline;
+    margin-left: 250px;
+        margin-top: 60px;
+}
+#paging_point{
+	margin-top: 60px;
+}
+#empty{
+	background-color: white;
+       height: 670px;
+       margin-right: 8px;
+}
+
+#linkMore{
+	display: inline-block;
+    width: 20px;
+    height: 19px;
+    background: url(../../../resources/images/movie/sprite_btn.png) -50px -62px no-repeat;
+    vertical-align: middle;
+    font: 0/0 a;
+    zoom: 1;
 }

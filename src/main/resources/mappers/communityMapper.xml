@@ -43,4 +43,16 @@
 		select P.* from page P, pagemember M where P.page_num=M.page_num and M.id=#{id}
 	</select>
 	
+	<select id="pTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(page_num) from page where page_name like '%'||#{search}||'%'
+  	</select>
+  	
+	<select id="pageAllList" resultType="pageDTO" parameterType="java.util.Map">
+		select * from (
+		select rownum R, N.* from  		
+		(select * from page where page_name like '%'||#{search}||'%') N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+		<!-- select * from page where page_name like '%'||#{search}||'%' -->
+	</select>
+	
 </mapper>

@@ -273,7 +273,7 @@
 	    			<div class="snb">
 	       			<ul>
 	            	<li>
-	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
+	            		<a href="../member/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
 	            		<a href="../myPage/movieHistory">나의 예매내역 <i></i></a>

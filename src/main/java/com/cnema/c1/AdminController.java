@@ -1,7 +1,6 @@
 package com.cnema.c1;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnema.coupon.CouponDTO;
 import com.cnema.coupon.CouponService;
-import com.cnema.coupon.CoupongroupDTO;
 import com.cnema.coupon.CoupongroupService;
 import com.cnema.coupon.MyCouponService;
 import com.cnema.member.MemberDTO;

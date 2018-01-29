@@ -63,4 +63,15 @@ public class CommunityDAO {
 	public List<PageDTO> myPageAList(String id) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"myPageAList",id);
 	}
+	public int pTotalCount(String search) throws Exception{
+		Map<String, Object> mpMap = new HashMap<>();
+		mpMap.put("search", search);
+		return sqlSession.selectOne(NAMESPACE+"pTotalCount",mpMap);
+	}
+	public List<PageDTO> pageAllList(String search,RowNum rowNum) throws Exception{
+		Map<String, Object> mpMap = new HashMap<>();
+		mpMap.put("search", search);
+		mpMap.put("rowNum", rowNum);
+		return sqlSession.selectList(NAMESPACE+"pageAllList",mpMap);
+	}
 }

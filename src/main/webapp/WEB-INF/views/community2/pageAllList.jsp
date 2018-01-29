@@ -14,7 +14,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/slide.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/main/main.css">
-<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/pageRecomList.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/pageInsertList.css">
 <script type="text/javascript">
 $(function() {
 	var search='${search}';
@@ -22,24 +22,8 @@ $(function() {
 	
 	$("#sBtn").click(function(){
 		var search = $("#search").val();
-		location.href="pageRecomList?search="+search;
+		location.href="pageAllList?search="+search;
 	});
-	
-	$("#more_div").on('click',"#aBtn",function(){
-		location.href="pageAllList";
-	});
-	$("#more_div").on('click', '#moreBtn', function() {
-		$(".hBtn").css("display","");
-		$("#more_div").empty();
-		$("#more_div").html("<button id=" + "aBtn" + ">전체보기<i id='linkMore'>전체보기</i></button>");
-	});
-	
-	$("#more_div").on('click', '.hBtn', function() {
-		$(".hBtn").css("display","none");
-		$("#more_div").empty();
-		$("#more_div").html("<button id=" + "moreBtn" + ">+더보기<i id='linkMore'>전체보기</i></button>");
-	});
-
 });
 </script>
 </head>
@@ -105,41 +89,41 @@ $(function() {
 </div> 
 
 <div id="infoBody">
+	<!-- 가입한 페이지  -->
 	<div id="joinBody">
 	<div id="empty">
-		<!-- <div style=" height: 5px; margin-left: 700px;     margin-bottom: 40px;">
+		<div style=" height: 5px; margin-left: 700px;     margin-bottom: 40px;">
 			<input type="search" name="search" id="search">
 			<input type="button" id="sBtn" class="round gray" value="GO">
-		</div> -->
-		<c:forEach items="${recomPageSearchList }" var="recommendSearch" varStatus="count">
-			<c:if test="${count.count > 8 and count.count <= 12}">
-			<div class="roundList hBtn" style="display: none;">
-			<div>
-					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommendSearch.page_num}">
-					<img id="rePageImg"alt="${recommendSearch.page_name}_logo" src="../resources/page_logo/${recommendSearch.fileName}">
-				</a>
-				</div>
-				<div id="roundName"> ${recommendSearch.page_name}<br>${recommendSearch.count}명이 가입함</div>
-			</div>	
-			</c:if>
-			<c:if test="${count.count <= 8 }">
-			<div class="roundList">
-				<div>
-					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${recommendSearch.page_num}">
-					<img id="rePageImg"alt="${recommendSearch.page_name}_logo" src="../resources/page_logo/${recommendSearch.fileName}">
-				</a>
-				</div>
-				<div id="roundName"> ${recommendSearch.page_name}<br>${recommendSearch.count}명이 가입함</div>
-			</div>	
-			</c:if>
-		</c:forEach>
-		<c:if test="${search eq ''}">
-		<div id="more_div">
-			<button type="button" id="moreBtn">더보기 <i id="linkMore">더보기 +</i></button>
 		</div>
-		</c:if>
+		<c:forEach items="${pageAllList }" var="pageDTO" varStatus="count">
+		<div class="roundList">
+			<div>
+					<a href="../${pageScope.pageContext.request.contextPath }community/pageMain?page_num=${pageDTO.page_num}">
+					<img id="rePageImg" alt="${pageDTO.page_name}" src="../resources/page_logo/${pageDTO.fileName}">
+					</a>
+				</div>
+				<div id="roundName">${pageDTO.page_name }</div>
+		</div>
+		</c:forEach>
 		</div>
 	</div>
+	<c:if test="${fn:length(pageAllList) > 0}"> 
+		    	<div class="paging">
+					<ul id="paging_point" style="text-align: center;">
+						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+								<a href="pageAllList?curPage=${i}&search=${search}" title="${i}페이지 선택">${i}</a>
+							</li>
+						</c:forEach>
+						<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li class="paging-side">
+								<a href="pageAllList?curPage=${pager.lastNum+1}&search=${search}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+				</c:if>  
 </div>
 </div>
 </div>

@@ -26,9 +26,7 @@ public class CommunityService {
 		Pager pager = listData.makePage(communityDAO.totalCount(id,search));
 		
 		List<PageDTO> myPageList = communityDAO.myPageList(id, search, rowNum);
-		/*List<PageDTO> pageList = communityDAO.myPageAList(id);*/
 		mv.addObject("myPageList", myPageList);
-		/*mv.addObject("pageList", pageList);*/
 		mv.addObject("pager",pager);
 		return mv;
 	}
@@ -58,6 +56,19 @@ public class CommunityService {
 	}
 	public List<PageDTO> myPageAList(String id) throws Exception{
 		return communityDAO.myPageAList(id);
+	}
+	public int pTotalCount(String search) throws Exception{
+		return communityDAO.pTotalCount(search);
+	}
+	public ModelAndView pageAllList(String search,ListData listData) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(communityDAO.pTotalCount(search));
+		
+		List<PageDTO> pageAllList = communityDAO.pageAllList(search, rowNum);
+		mv.addObject("pageAllList", pageAllList);
+		mv.addObject("pager",pager);
+		return mv;
 	}
 	
 }

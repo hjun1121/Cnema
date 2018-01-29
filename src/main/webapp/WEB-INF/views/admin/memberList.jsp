@@ -140,7 +140,7 @@ $(function(){
 	    			<div class="snb">
 	       			<ul>
 	            	<li>
-	            		<a href="../myPage/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
+	            		<a href="../member/myPageView" title="현재 선택">MY CNEMA HOME <i></i></a>
 	            	</li>
 	            	<li>
 	            		<a href="../myPage/movieHistory">나의 예매내역 <i></i></a>
@@ -211,6 +211,7 @@ $(function(){
 			</div>
 			<div class="tit-mycgv" style="padding-bottom: 10px;">
 				<select id="kind" name="kind" class="f">
+					<option class="kind" value="x">쿠폰선택</option>
 					<c:forEach items="${cList}" var="couponList">
 						<option class="kind" value="${couponList.c_num }">${couponList.name }</option>
 					</c:forEach>

@@ -76,7 +76,7 @@ $(function() {
 		<!-- 추천 페이지 LIST -->
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
-			<span id="img_alt">추천 페이지</span>
+			<a href="../${pageScope.pageContext.request.contextPath }community2/pageRecomList"><span id="img_alt">추천 페이지</span></a>
 			</h2>
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 			<c:if test="${i.index < 4}">
@@ -98,6 +98,7 @@ $(function() {
 <div id="infoBody">
 	<!-- 가입한 페이지  -->
 	<div id="joinBody">
+	<div id="empty">
 		<div><input type="button" value="+더보기" id="moreInsertBtn"></div>
 		<c:forEach items="${myPageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
@@ -111,6 +112,7 @@ $(function() {
 				</div>
 			</c:if>
 		</c:forEach>
+	</div>
 	</div>
 	<!-- 추천 페이지 -->
 	<div id="recommendBody">
