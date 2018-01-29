@@ -27,8 +27,6 @@ public class NoticeService {
 		RowNum rowNum = listData.makeRow();
 		Pager pager = listData.makePage(noticeDAO.totalCount(rowNum));
 	
-		System.out.println(rowNum.getKind());
-		System.out.println(rowNum.getSearch());
 		
 		List<BoardDTO> ar = noticeDAO.selectList(rowNum);
 		mv.addObject("pager", pager);

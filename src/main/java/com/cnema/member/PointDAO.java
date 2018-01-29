@@ -38,7 +38,6 @@ public class PointDAO {
 	public List<PointDTO> pointList(String id,String testDatepicker1,String testDatepicker2,RowNum rowNum) throws Exception{
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		pMap.put("id", id);
-		System.out.println("dao in"+testDatepicker1);
 		pMap.put("datepicker1", testDatepicker1);
 		pMap.put("datepicker2", testDatepicker2);
 		pMap.put("rowNum", rowNum);

@@ -139,8 +139,6 @@ public class MovieDAO {
 	}
 	/*heeseong*/
 	public MovieDTO movieSInfo(int movie_num,String id) throws Exception{
-		System.out.println(movie_num);
-		System.out.println(id);
 		Map<String, Object> mMap = new HashMap<>();
 		mMap.put("id", id);
 		mMap.put("movie_num", movie_num);

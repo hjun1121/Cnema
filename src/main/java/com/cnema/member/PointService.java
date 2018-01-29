@@ -48,7 +48,6 @@ public class PointService {
 		RowNum rowNum = listData.makeRow();
 		
 		Pager pager = listData.makePage(pointDAO.pTotalCount(id,testDatepicker1,testDatepicker2));
-		System.out.println("service in"+testDatepicker1);
 		List<PointDTO> pList = pointDAO.pointList(id,testDatepicker1,testDatepicker2,rowNum);
 		mv.addObject("pList", pList);
 		mv.addObject("pager",pager);
