@@ -152,9 +152,9 @@
 	                	</ul>
 	            	</li>
 		            <li>
-	                    <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
+	                    <a href="../myPage/qnaHistory">나의 문의내역 <i></i></a>
 		                <ul>
-		                    <li><a href="../admin/myQnaList">1:1문의</a></li>
+		                    <li><a href="../myPage/qnaHistory">1:1문의</a></li>
 		                </ul>
 		            </li>
 		            <c:if test="${!empty member and member.type eq 20 }">
