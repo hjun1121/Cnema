@@ -160,7 +160,6 @@ $(function(){
 				                            <span class="txt-info" style="text-align: center;">
 				                                <i>${wishList.movieDTO.open_date}</i>
 				                                <strong>개봉</strong>
-<!-- 				                                <em class="dday">D-1</em> -->
 				                            </span>
 				                            <span class="like"> 
 				                                      <button class="btn-del">내가선택한영화</button>
@@ -172,7 +171,7 @@ $(function(){
 				                                    <i class="corner-RB"></i>
 				                                    <i class="corner-arrow"></i>
 				                                </span>
-				                                <a class="link-reservation" href="#">예매</a>
+				                                <a class="link-reservation" href="../theater/quickReserve?movie_num=${wishList.movieDTO.movie_num }">예매</a>
 				                            </span>
 				                        </div>
 				                         <button class="btn-del" title="${wishList.movie_num }" type="button">
