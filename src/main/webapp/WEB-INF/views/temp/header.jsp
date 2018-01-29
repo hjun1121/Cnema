@@ -28,7 +28,7 @@
 				location.href="${pageContext.request.contextPath}/community2/communityMain";
 			});
 			$("#page_insert").click(function() {
-				window.open('${pageContext.request.contextPath}/community/pageInsert', '페이지생성', 'width=750,height=450');
+				window.open('${pageContext.request.contextPath}/community/pageInsert', '페이지생성', 'width=550,height=250');
 			})
 		});
 		

@@ -10,6 +10,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/header.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/common.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/community/pageInsert.css">
 <title>커뮤니티 만들기</title>
 </head>
 <body>
@@ -17,19 +18,21 @@
 	<form action="pageInsert" name="frm" method="POST" enctype="multipart/form-data">
 	<table>
 		<tr>
-			<td>페이지 이름</td>
+			<td class="title">페이지 이름</td>
 			<td><input type="text" id="page_name" name="page_name"></td>
 		</tr>
 		<tr>
-			<td>커버 사진</td>
+			<td class="title">커버 사진</td>
 			<td> <input type="file" name="file"></td>
 		</tr>
 		<tr>
-			<td>페이지 생성자</td>
+			<td class="title">페이지 생성자</td>
 			<td> <input type="text" name="owner_id" readonly="readonly" value="${member.id}"></td>
 		</tr>
 	</table>
-	<input type="submit" id="insertBtn" value="insert">
+	<div style="text-align: center;">
+		<input class="form_btns" type="submit" id="insertBtn" value="insert">
+	</div>
 	</form>
 
 </body>

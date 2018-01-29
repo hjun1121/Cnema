@@ -3,10 +3,9 @@
 #writeForm{
 border: 1px solid #dddfe2;
 background-color: #fff;
-width:500px;
 height:239px;
 margin-top:10px;
-
+margin-bottom: 30px;
 
 }
 #contents{

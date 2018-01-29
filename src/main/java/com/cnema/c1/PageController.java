@@ -264,6 +264,7 @@ public class PageController {
 	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
 	public ModelAndView pageMain(HttpSession session, @RequestParam(defaultValue="0", required=false)int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(page_num);
 		int member_num = 0;
 		int memberCheck = 0;
 		int pageMemberCount = 0;
