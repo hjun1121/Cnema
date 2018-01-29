@@ -22,7 +22,7 @@
 
 	$(function(){
 	    //무한 스크롤링 부분
-	    var page=1;
+	    var page=0;
 	    var page_num = ${page.page_num}
 	   alert($(window).scrollTop());
 	    $(window).scroll(function() {
