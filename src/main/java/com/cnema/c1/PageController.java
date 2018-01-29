@@ -225,7 +225,7 @@ public class PageController {
 			message = "글쓰기 성공";
 		}
 		mv.addObject("message", message);
-		mv.addObject("path", "community/pageMainTest?page_num"+pageContentsDTO.getPage_num());
+		mv.addObject("path", "community/pageMainTest?page_num="+pageContentsDTO.getPage_num());
 		mv.setViewName("/common/messagePath");
 		return mv;
 	}
@@ -239,10 +239,10 @@ public class PageController {
 	
 	//pageinfiniteScrolling
 	@RequestMapping(value = "scrolling",method=RequestMethod.POST)
-	public ModelAndView pageContentsScrolling(int page)throws Exception {
+	public ModelAndView pageContentsScrolling(int page,int page_num)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<PageContentsDTO> ar = null;
-		ar=pageService.pageContentslist(page);
+		ar=pageService.pageContentslist(page,page_num);
 		mv.addObject("list", ar);
 		mv.setViewName("community/scrolling");
 		return mv;
@@ -311,7 +311,7 @@ public class PageController {
 				memberCheck = pageService.memberCheck(page_num, id);
 				member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
 				List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
-				ar = pageService.pageContentslist(1);
+				ar = pageService.pageContentslist(1,page_num);
 				pageMemberCount = mc.size();
 			} catch (Exception e) {
 				// TODO: handle exception

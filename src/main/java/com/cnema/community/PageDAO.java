@@ -100,8 +100,11 @@ public class PageDAO {
 		return sqlSession.update(NAMESPACE+"pageContentsWrite", pageContentsDTO);
 	}
 	//scrolling
-	public List<PageContentsDTO> pageContentsList(int page){
-		return sqlSession.selectList(NAMESPACE+"pageContentsList", page);
+	public List<PageContentsDTO> pageContentsList(int page,int page_num){
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("page_num", page_num);
+		return sqlSession.selectList(NAMESPACE+"pageContentsList", map);
 	}
 	
 	

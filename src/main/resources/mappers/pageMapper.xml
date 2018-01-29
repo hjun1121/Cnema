@@ -69,10 +69,10 @@
 	</insert>
 	
 	<!--페이지컨텐츠 리스트  -->
-	<select id="pageContentsList" parameterType="int" resultType="pageContentsDTO">
+	<select id="pageContentsList" parameterType="java.util.Map" resultType="pageContentsDTO">
 		select * from
   		(select rownum r, N.* from
-  		(select * from pageContents order by contents_num desc) N)
+  		(select * from pageContents where page_num=#{page_num} order by contents_num desc) N)
   		where r between #{page} and (#{page}+9)	
 	</select>
 	<!--page LIkE  -->
