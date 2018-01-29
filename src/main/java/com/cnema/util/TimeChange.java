@@ -46,7 +46,6 @@ public class TimeChange {
 				
 				sDay.add(Calendar.MINUTE, run_time);
 				out_time = out.format(d2);
-				System.out.println(out_time);
 			}
 			
 			
@@ -92,7 +91,6 @@ public class TimeChange {
 			sDay.setTime(d);
 			
 			sDay.add(Calendar.MINUTE, next_time);
-			System.out.println("끝시간"+sDay.getTime());
 			
 			Date d2 = sDay.getTime();
 			SimpleDateFormat out = new SimpleDateFormat("HH:mm");

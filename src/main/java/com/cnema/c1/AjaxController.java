@@ -125,7 +125,6 @@ public class AjaxController {
 		int result = 0;
 		String message = "가입 실패";
 		result = pageService.memberInsert(pageDTO, id);
-		System.out.println(result);
 		if(result > 0) {
 			message = "가입 성공";
 		}
@@ -154,15 +153,11 @@ public class AjaxController {
 	@RequestMapping(value="eventJoin", method=RequestMethod.POST)
 	public ModelAndView eventJoin(EventJoinDTO eventJoinDTO,int check,String couponType,ModelAndView mv) throws Exception{
 		
-			System.out.println(eventJoinDTO.getType());
-			System.out.println("ajax event check");
-			System.out.println(check+"입니다!!");
 			if(check!=0){
 				
 				mv.addObject("type","3");
 			}
 			else{
-			System.out.println("ajax 지나는중");
 			int result = eventService.eventJoin(eventJoinDTO);
 			if(eventJoinDTO.getType()==1){
 				if(couponType=="쿠폰"){

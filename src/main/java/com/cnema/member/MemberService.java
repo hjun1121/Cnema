@@ -140,7 +140,6 @@ public class MemberService {
 			//있던애 지워야함
 			String filePath = session.getServletContext().getRealPath("resources/profil");
 			File file = new File(filePath, memberDTO.getFileName());
-			System.out.println(file.getName());
 			if(file.getName().equals("defaultProfile.jpg")){
 				
 			}else{

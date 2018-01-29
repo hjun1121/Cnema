@@ -74,7 +74,6 @@ public class PageController {
 		ModelAndView mv = new ModelAndView();
 		String search = "";
 		List<MemberDTO> ml = pageService.pageMemberProfile(page_num, search);
-		System.out.println("ml"+ml);
 		mv.addObject("page_num", page_num);
 		mv.addObject("memberList", ml);
 		return mv;
@@ -82,7 +81,6 @@ public class PageController {
 	
 	@RequestMapping(value = "member_profile_bar", method = RequestMethod.GET)
 	public ModelAndView memberProfile(int page_num, String search) throws Exception {
-		System.out.println("올까나");
 		ModelAndView mv = new ModelAndView();
 		List<MemberDTO> ml = pageService.pageMemberProfile(page_num, search);
 
@@ -258,11 +256,9 @@ public class PageController {
 	//pageinfiniteScrolling
 	@RequestMapping(value = "scrolling",method=RequestMethod.POST)
 	public ModelAndView pageContentsScrolling(int page,int page_num)throws Exception {
-		System.out.println("scrolling controller");
 		ModelAndView mv = new ModelAndView();
 		List<PageContentsDTO> ar = null;
 		ar=pageService.pageContentslist(page,page_num);
-		System.out.println(ar);
 		mv.addObject("list", ar);
 		mv.setViewName("community/scrolling");
 		return mv;
@@ -279,7 +275,6 @@ public class PageController {
 	@RequestMapping(value = "pageMain", method=RequestMethod.GET)
 	public ModelAndView pageMain(HttpSession session, @RequestParam(defaultValue="0", required=false)int page_num) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(page_num);
 		int member_num = 0;
 		int memberCheck = 0;
 		int pageMemberCount = 0;
@@ -366,7 +361,6 @@ public class PageController {
 	//like 하기
 	@RequestMapping(value = "like", method=RequestMethod.POST)
 	public ModelAndView pagelike(int contents_num,int page_num) {
-		System.out.println("like update");
 		ModelAndView mv = new ModelAndView();
 		int result=0;
 		try {
@@ -390,7 +384,6 @@ public class PageController {
 	//신고하기 
 	@RequestMapping(value = "warning", method=RequestMethod.POST)
 	public ModelAndView pageWarning(int contents_num,int page_num) {
-		System.out.println("warn update");
 		ModelAndView mv = new ModelAndView();
 		int result=0;
 		try {
