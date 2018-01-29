@@ -40,12 +40,14 @@ $(function(){
 	
 	$("#group").click(function(){
 		var groupVal = [];
-		
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
 		});
-		
-		location.href="./groupInsert?groupVal[]="+groupVal;
+		if(groupVal.length ==0){
+			alert("멤버를 선택하세요.");
+		}else{
+			location.href="./groupInsert?groupVal[]="+groupVal;
+		}
 	});
 	
 	$("#groudAdmin").click(function(){
@@ -75,7 +77,14 @@ $(function(){
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
 		});
-		location.href="./couponGive?c_num="+c_num+"&groupVal[]="+groupVal;
+		if(groupVal.length ==0){
+			alert("멤버를 선택하세요.");
+		}else if(c_num == 'x'){
+			alert("쿠폰을 선택하세요.");
+		}
+		else{
+			location.href="./couponGive?c_num="+c_num+"&groupVal[]="+groupVal;
+		}
 	});
 	 
 	$("#pBtn").click(function(){
@@ -84,7 +93,13 @@ $(function(){
 		$("input[name='group']:checked").each(function(){
 			groupVal.push($(this).val());
 		});
+		if(groupVal.length==0){
+			alert("멤버를 선택하세요.");
+		}else if(price == 0){
+			alert("포인트 금액을 입력하세요.");
+		}else{
 		location.href="./pointGive?price="+price+"&groupVal[]="+groupVal;
+		}
 	});
 });
 </script>
@@ -264,7 +279,7 @@ $(function(){
 			        </tbody>
 			    </table>
 			    <c:if test="${group_num eq -1}"> 
-			     
+			     <c:if test="${fn:length(memList) > 0}">
 			     <div class="paging">
 					<ul id="paging_point">
 						<c:if test="${pager.curBlock gt 1}">
@@ -284,6 +299,7 @@ $(function(){
 						</c:if>
 					</ul>
 				</div>
+				</c:if>  
 				</c:if>  
 			</div>
 

@@ -197,7 +197,6 @@ $(function(){
 			        </tbody>
 			    </table>
 		    	<c:if test="${fn:length(qnaList) > 0}">   
-		    	
 		    	<div class="paging">
 					<ul id="paging_point">
 						<c:if test="${pager.curBlock gt 1}">
