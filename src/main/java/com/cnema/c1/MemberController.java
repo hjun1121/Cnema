@@ -95,7 +95,6 @@ public class MemberController {
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
 	public void login(@RequestParam(defaultValue="0", required=false)int num, @RequestParam(defaultValue="0", required=false)int page_num, String path, Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		InetAddress addr = null;
-		System.out.println("page_bum:" + page_num);
 		try {
 			addr = InetAddress.getLocalHost();
 			String ip = addr.toString();

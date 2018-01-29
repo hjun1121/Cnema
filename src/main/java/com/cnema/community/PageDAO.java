@@ -182,13 +182,14 @@ public class PageDAO {
 	public int pageContentsDelete(int contents_num) {
 		return sqlSession.update(NAMESPACE+"pageContentsDelete", contents_num);
 	}
+	
+	//replyList
+	public List<PageContentsDTO> replyList(int contents_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"replyList", contents_num);
+	}
 
 	public int replyWrite(PageContentsDTO pageContentsDTO) {
 		return sqlSession.insert(NAMESPACE+"replyWrite", pageContentsDTO);
-	}
-
-	public List<PageContentsDTO> replyList(int ref) {
-		 return sqlSession.selectList(NAMESPACE+"replyList", ref);
 	}
 
 	public int pageContentsUpdate(PageContentsDTO pageContentsDTO) {

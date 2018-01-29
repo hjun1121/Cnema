@@ -15,12 +15,18 @@ public class PageContentsDTO {
 	private String oriName;
 	private int hit;
 	private int warning;
-	private int reg;
+	private int ref;
 	private int step;
 	private int depth;
 	private MultipartFile file;
 	
 	
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
 	public MultipartFile getFile() {
 		return file;
 	}
@@ -80,12 +86,6 @@ public class PageContentsDTO {
 	}
 	public void setWarning(int warning) {
 		this.warning = warning;
-	}
-	public int getReg() {
-		return reg;
-	}
-	public void setReg(int reg) {
-		this.reg = reg;
 	}
 	public int getStep() {
 		return step;

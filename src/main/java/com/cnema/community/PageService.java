@@ -193,11 +193,12 @@ public class PageService {
 	public int replyWrite(PageContentsDTO pageContentsDTO) {
 		return pageDAO.replyWrite(pageContentsDTO);
 	}
-	//replyList ->ajax이용해서 띄우기
-	public List<PageContentsDTO> replyList(int ref) {
-		
-		return pageDAO.replyList(ref);
+	
+	//replyList
+	public List<PageContentsDTO> replyList(int contents_num) throws Exception {
+		return pageDAO.replyList(contents_num);
 	}
+	
 	//pageContetnsUpdate
 	public int pageContentsUdpate(PageContentsDTO pageContentsDTO) {
 		

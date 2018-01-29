@@ -120,6 +120,7 @@
     margin-left: 12px !important;
     float: right;
     min-height: 1px;
+    margin-bottom: 50px;
     position: relative;
 }
 
@@ -290,14 +291,17 @@
 
 #contents_div {
 	height: 245px;
-	text-align: left;
-	background-color: yellow;
+    text-align: left;
+    font-size: 15px;
+    overflow: auto;
+    padding: 10px;
+    background-color: yellow;
 }
 
-#content_btns {
+#content_btns_div {
 	background-color: blue;
     margin-bottom: 10px;
-    height: 30px;
+    height: auto;
 }
 
 .cbtns {

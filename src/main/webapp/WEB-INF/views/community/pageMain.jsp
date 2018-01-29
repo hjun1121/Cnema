@@ -145,6 +145,24 @@
 
 		    }
 		});
+	    
+	    //댓글 쓰기
+	    $(".content_reply_btn").click(function() {
+	    	var contents_num = $(this).attr("title");
+	    	alert(contents_num);
+			$.ajax({
+				url:"replyForm",
+				type:"POST",
+				data:{
+					contents_num: contents_num,
+					page_num: ${page_num}
+				},
+				success:function(data){
+					$("#content_btns_div").empty();
+					$("#content_btns_div").html(data);
+				}
+			});
+	    });
 		
 	});
 
@@ -185,11 +203,11 @@
 			<c:forEach items="${joinPage}" var="join" varStatus="count">
 				<c:if test="${count.count == 4 }">
 					<div style="display: none;" id="joinHidden_div">
-						<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }"> <span>${join.page_name }</span></p>
+						<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }"> <a href="pageMain?page_num=${join.page_num }"><span>${join.page_name }</span></a></p>
 					</div>
 				</c:if>
 				<c:if test="${count.count <= 3 }">
-					<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }"> <span>${join.page_name }</span></p>
+					<p><img alt="${join.page_name }" src="../resources/page_logo/${join.fileName }">  <a href="pageMain?page_num=${join.page_num }"><span>${join.page_name }</span></a></p>
 				</c:if>
 			</c:forEach>
 			<div id="more_div">
@@ -203,11 +221,11 @@
 			<c:forEach items="${recommendPage }" var="recommend" varStatus="count">
 				<c:if test="${count.count == 4 }">
 					<div style="display: none;" id="recommendHidden_div">
-						<p><img alt="${join.page_name }" src="../resources/page_logo/${recommend.fileName }"> <span>${recommend.page_name }</span></p>
+						<p><img alt="${join.page_name }" src="../resources/page_logo/${recommend.fileName }"> <a href="pageMain?page_num=${recommend.page_num }"><span>${recommend.page_name }</span></a></p>
 					</div>
 				</c:if>
 				<c:if test="${count.count <= 3 }">
-					<p><img alt="${recommend.page_name }" src="../resources/page_logo/${recommend.fileName }"> <span>${recommend.page_name }</span></p>
+					<p><img alt="${recommend.page_name }" src="../resources/page_logo/${recommend.fileName }"> <a href="pageMain?page_num=${recommend.page_num }"><span>${recommend.page_name }</span></a></p>
 				</c:if>
 			</c:forEach>
 			<div id="more_div2">
@@ -277,21 +295,15 @@
 				 <div id="contents_div">
 				 	${dto.contents}
 				 </div>
-				 
-				 <div id="content_btns">
-					 <button id="content_like_btn" class="like cbtns">좋아요</button>
-					 <button class="reply cbtns">댓글</button>
-					 <button class="warning cbtns">신고</button>
+
+				 <div id="content_btns_div">
+					 <button class="like cbtns content_like_btn" title="${dto.contents_num }">좋아요</button>
+					 <button class="reply cbtns content_reply_btn" title="${dto.contents_num }">댓글</button>
+					 <button class="warning cbtns" title="${dto.contents_num }">신고</button>
 				 </div>
-				 
+
 				 <div id="reply_div">
-<!-- 					<form action="../community/replyWrite" method="POST"> -->
-<%-- 					<input type="hidden" name="page_num" value="${page.page_num }"> --%>
-<%-- 					<input type="hidden" name="id" value="${member.id}"> --%>
-<%-- 					<input type="hidden" name="ref" value="${dto.contents_num}"> --%>
-<!-- 					<input type="text"  name="contents"> -->
-<!-- 					<input type="submit" value="댓글등록">  -->
-<!-- 					</form> -->
+
 				 </div>
 				 
 				 <div id="replyList${dto.contents_num }"> </div>

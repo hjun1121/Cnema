@@ -59,8 +59,12 @@
 	<insert id="mailSend" parameterType="java.util.Map">
 		insert into message values(message_seq.nextval, #{messageDTO.send_id}, #{messageDTO.receive_id}, #{messageDTO.title}, #{messageDTO.contents}, sysdate, null, 12)
 	</insert>
+	
+	<!-- 댓글 리스트 -->
+	<select id="replyList" parameterType="int" resultType="pageContentsDTO">
+		select * from pagecontents where ref=#{contents_num} order by contents_num asc
+	</select>
 
-	<!-- 세나 -->
 	<!--페이지글 쓰기  -->
 	<insert id="pageContentsWrite" parameterType="pageContentsDTO">
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,0,0,0)
@@ -75,7 +79,7 @@
 	<select id="pageContentsList" parameterType="java.util.Map" resultType="pageContentsDTO">
 		select * from
   		(select rownum r, N.* from
-  		(select * from pageContents where page_num=#{page_num} order by contents_num desc) N)
+  		(select * from pageContents where page_num=#{page_num} and ref=0 order by contents_num desc) N)
   		where r between #{page} and (#{page}+9)	
 	</select>
 	<!--page LIkE  -->
@@ -102,15 +106,7 @@
 	<!--댓글쓰기  -->
 	<insert id="replyWrite" parameterType="pageContentsDTO">
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,#{ref},0,0)
-	</insert>
-	<!--댓글리스트  -->
-	<select id="replyList" parameterType="int" resultType="pageContentsDTO">
-		select * from
-  		(select rownum r, N.* from
-  		(select * from pageContents where ref=#{ref} order by num desc) N)
-  		where r between 1 and 10)	
-	</select>
-	
+	</insert>	
 	
 	<delete id="memberDrop" parameterType="java.util.Map">
 		delete pagemember where page_num=#{page_num} and id=#{id}

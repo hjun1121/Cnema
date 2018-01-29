@@ -26,12 +26,27 @@ public class PageController {
 	@Inject
 	private PageService pageService;
 
+	//컨텐츠 댓글
+	@RequestMapping(value = "replyForm", method = RequestMethod.POST)
+	public ModelAndView replyForm(int contents_num, int page_num) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<PageContentsDTO> reply = pageService.replyList(contents_num);
+		
+		mv.addObject("replyList", reply);
+		mv.addObject("contents_num", contents_num);
+		mv.addObject("page_num", page_num);
+		return mv;
+	}
+	
+	@RequestMapping(value = "replyForm", method = RequestMethod.GET)
+	public void replyForm() throws Exception {
+		
+	}
 	
 	//쪽지 쓰기
 	@RequestMapping(value = "mailWriteForm", method = RequestMethod.GET)
 	public ModelAndView mailWrite(String receive_id) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("아이디 받아오니:?" + receive_id);
 
 		mv.addObject("receive_id", receive_id);
 		return mv;
@@ -442,13 +457,13 @@ public class PageController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String message = "contentes 댓글 실패";
+			String message = "댓글 작성 실패";
 			if(result > 0) {
-				message = "contentes 댓글 완료";
+				message = "댓글 작성 완료";
 			}
 			
 			mv.addObject("message", message);
-			mv.addObject("path", "community/communityMainTest?page_num"+pageContentsDTO.getPage_num());
+			mv.addObject("path", "community/pageMain?page_num="+pageContentsDTO.getPage_num());
 			mv.setViewName("/common/messagePath");
 
 			return mv;
