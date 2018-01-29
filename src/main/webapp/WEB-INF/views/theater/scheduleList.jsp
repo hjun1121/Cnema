@@ -23,21 +23,20 @@
 		
 		$(".areas").each(function(){
 			 if($(this).attr("title") == area) {
-				$(this).css("background-color","red");
-				$(this).css("border-radius","60%");
+				 $(this).css("border","1px solid");
 			 }
 		});
 		
 	 	$(".location").each(function(){
 			 if($(this).attr("title") == location) {
-				 $(this).css("background-color","red");
+				 $(this).css("background-color","#9a9191");
 			 }
 		}); 
 		
 		$(".areas").click(function(){
-			$(".areas").css("background-color","");
-			$(this).css("background-color","red");
-			$(this).css("border-radius","60%");
+			$(".areas").css("border","");
+			$(this).css("border","1px solid");
+			
 			area = $(this).attr("title");
 			$("#areaN").val(area);
 			$("#scheduleList").html('<ul style="clear: both;"></ul>');
@@ -58,7 +57,7 @@
 		
 		$("#locationList").on("click",".location",function(){
 			$(".location").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#9a9191");
 			$("#locationN").val($(this).attr("title"));
 			$("#dayN").val("${dayList[0].day_num }");
 
@@ -68,11 +67,11 @@
 			document.frm.submit();
 		});
 		
-		$("#day1").css("background-color","red");
+		$("#day1").css("background-color","#e2dbdb");
 		
 		$(".days").click(function(){
 			$(".days").css("background-color","");
-			$(this).css("background-color","red");
+			$(this).css("background-color","#e2dbdb");
 			
 			var day = $(this).attr("title");
 			var location = $("#locationN").val();
