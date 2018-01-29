@@ -88,7 +88,7 @@
 }
 #joinBody{
     background-color: gray;
-    height: 800px;
+    height: 500px;
     margin-left: 100px;
     padding-top: 150px;
 }
@@ -151,9 +151,6 @@
 .paging{
 	clear: both;
     width: 500px;
-    margin-left: 500px;
     display: inline;
-}
-#paging_point{
-	margin-top: 300px;
+    margin-left: 250px;
 }

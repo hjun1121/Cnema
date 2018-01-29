@@ -11,6 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/wishList.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/movieHistory.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>위시리스트 &lt;무비로그&gt;</title>
@@ -182,20 +183,27 @@ $(function(){
 						        </ul>
 						    </div>
 						    <c:if test="${wishLeftbar > 0}">
-						    <div class="paging">
-					<ul id="paging_point" style="text-align: center;">
+						    
+				<div class="paging">
+					<ul id="paging_point">
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="wishList?curPage=${pager.startNum-1}&kind=${kind}&search=${search}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+							<li style="text-decoration: none;" class=" on">
 								<a href="wishList?curPage=${i}&kind=${kind}&search=${search}" title="${i}페이지 선택">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="wishList?curPage=${pager.lastNum+1}&kind=${kind}&search=${search}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+								<a href="wishList?curPage=${pager.lastNum+1}&kind=${kind}&search=${search}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
 					</ul>
-				</div></c:if>
+				</div>
+					</c:if>
 					    </div>
 					</div>
 				</div>

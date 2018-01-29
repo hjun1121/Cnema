@@ -11,6 +11,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/footer.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/movieHistory.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>나의 예매 내역</title>
@@ -200,20 +201,27 @@ $(function(){
 		    		</div>
 		    		</form>
 		    		<c:if test="${reserveLeftbar > 0}">
-		    		 <div class="paging">
-						<ul id="paging_point" style="text-align: center;">
+		    		
+		    	<div class="paging">
+					<ul id="paging_point">
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="movieHistory?curPage=${pager.startNum-1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
+							<li style="text-decoration: none;" class=" on">
 								<a href="movieHistory?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}" title="${i}페이지 선택">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="movieHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+								<a href="movieHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
-						</ul>
-					</div>
+					</ul>
+				</div>
+		    		
 					</c:if>
 	    			</div>
 					</div>

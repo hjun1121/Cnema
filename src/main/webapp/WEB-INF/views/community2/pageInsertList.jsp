@@ -105,7 +105,8 @@ $(function() {
 				<div id="roundName">${pageDTO.page_name }</div>
 		</div>
 		</c:forEach>
-		<c:if test="${fn:length(myPageList) > 0}"> 
+	</div>
+	<c:if test="${fn:length(myPageList) > 0}"> 
 		    	<div class="paging">
 					<ul id="paging_point" style="text-align: center;">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -121,7 +122,6 @@ $(function() {
 					</ul>
 				</div>
 				</c:if>  
-	</div>
 </div>
 </div>
 </div>

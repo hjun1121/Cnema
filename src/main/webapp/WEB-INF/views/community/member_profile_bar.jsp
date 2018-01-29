@@ -5,12 +5,8 @@
 <script>
 
 	$(function() {
-		$("#memberBar_btn").click(function() {
-			location.href="pageMain?page_num=${page_num}";
-		});
-		
 		$("#search_btn").click(function() {
-			document.frm.submit();
+			//document.frm.submit();
 		});
 		
 
@@ -27,9 +23,9 @@
 
 	<div id="member_profile_div">
 		<div id="search">
-			<form action="member_profile_bar" id="frm" name="frm">
+			<form action="./member_profile_bar" id="frm" name="frm">
 				<input type="text" name="search" placeholder="아이디를 검색하세요">
-				<input type="hidden" name="${page_num}" value="검색">
+				<input type="hidden" name="page_num" value="${page_num}">
 				<button id="search_btn">검색</button>
 			</form>
 		</div>
@@ -42,9 +38,4 @@
 			</div>
 		</c:if>
 		</c:forEach>
-	</div>
-		<div id="member_bar" style="right: 5px;">
-		<a href=# id="memberBar_btn" role="button">
-			커뮤니티 멤버
-		</a>
 	</div>
