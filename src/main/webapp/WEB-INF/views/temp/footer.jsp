@@ -3,17 +3,11 @@
 
 
 	<!-- Footer 시작 -->
+	<div style="margin-top: 35px;"></div>
 	<div id="footer">
-		<div class="foot" style=" border-top: 1px solid #949494;">
+		<div class="foot" style=" border-top: 3px solid #e58240;">
 			<div class="sect-cinfo">
-				<%-- <p class="logo"><img src="${pageContext.request.contextPath }/resources/images/common/title/Cnema_footer1.png" alt="CNEMA"></p> --%>
 				<h2>CJ CGV 회사소개 및 정책</h2>
-				<!-- <div class="share">
-					<a href="#" target="_blank" class="facebook" title="새창">페이스북</a>
-					<a href="#" target="_blank" class="twitter" title="새창">트위터</a>
-					<a href="#" target="_blank" class="instagram" title="새창">인스타그램</a>
-				</div> -->
-				
 				<div class="address">
 					<address>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</address>
 					<p class="vl">
