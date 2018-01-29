@@ -68,6 +68,11 @@
 		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,0,0,0)
 	</insert>
 	
+	<!--페이지 총 갯수세기  -->
+	<select id="contentsTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from pageContents where page_num=#{page_num} and ref=0
+	</select>
+	
 	<!--페이지컨텐츠 리스트  -->
 	<select id="pageContentsList" parameterType="java.util.Map" resultType="pageContentsDTO">
 		select * from

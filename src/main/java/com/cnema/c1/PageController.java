@@ -311,7 +311,7 @@ public class PageController {
 				memberCheck = pageService.memberCheck(page_num, id);
 				member_num = pageService.selectPageMemberOne(id, page_num).getMember_num();
 				List<PageMemberDTO> mc = pageService.selectPageMemberList(page_num);
-				ar = pageService.pageContentslist(1,page_num);
+				ar = pageService.pageContentslist(0,page_num);
 				pageMemberCount = mc.size();
 			} catch (Exception e) {
 				// TODO: handle exception

@@ -23,7 +23,10 @@
 	$(function(){
 	    //무한 스크롤링 부분
 	    var page=1;
+	    var page_num = ${page.page_num}
+	   alert($(window).scrollTop());
 	    $(window).scroll(function() {
+	    
 	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 	      page++;
 
@@ -31,10 +34,11 @@
 				url:"../community/scrolling",
 				type:"POST",
 				data:{
-				 page:page
+				 page:page,
+				 page_num:page_num
 				},
 				success:function(data){
-					$("#contentsListView").append("<h1>Page " + page + "</h1>")+data;
+					$("#listView").append("<h1>Page " + page + "</h1>")+data;
 					},
 				error : function(){
 					
@@ -45,7 +49,7 @@
 	    }
 	});
 		
-		//SmartEditor start
+		//SmartEditor start3
 		//전역변수선언
     var editor_object = [];
      
@@ -281,7 +285,7 @@
 	</div>
 	<div id="contentsListView">
 
-<c:forEach items="${list }" var="dto">
+<c:forEach items="${list}" var="dto">
  <div class="pageContentsOne">
  <input type="hidden" id="contents_num" value="${dto.contents_num }">
  <div>
@@ -296,17 +300,17 @@
  </div>
 <div>
 	<form action="../community/replyWrite" method="POST">
-	<input type="hidden" name="page_num" value="${page_num }">
+	<input type="hidden" name="page_num" value="${page.page_num }">
 	<input type="hidden" name="id" value="${member.id}">
 	<input type="hidden" name="ref" value="${dto.contents_num}">
-	<input type="text" id="contents" name="contents">
+	<input type="text"  name="contents">
 	<input type="submit" value="댓글등록"> 
 	</form>
 </div>
 <div id="replyList${dto.contents_num }"> </div>
  </div>
  </c:forEach>
-	
+	<div id="listView"></div>
 	
 	
 	</div>	
