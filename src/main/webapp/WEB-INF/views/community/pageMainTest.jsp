@@ -264,21 +264,21 @@
 		<!-- 내용 넣을 것 -->
 		<div id="PCview">
 
-			<div id="writeForm">
-	<div id="writeTab"> </div>
-	<form action="../community/pageContentsWrite"  method="post" id="frm">
-		<input type="hidden" id="page_num"  name="page_num" value="${page_num}">
-		<input type="hidden" name="id" value="${member.id}">
-		<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
-	
-	<div class="_51xa">
-	<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton"  type="submit">
-	<span class="">게시</span>
-	</button>
-	</div>
+	<div id="writeForm">
+		<div id="writeTab"> </div>
+		<form action="../community/pageContentsWrite"  method="post" id="frm">
+			<input type="hidden" id="page_num"  name="page_num" value="${page.page_num}">
+			<input type="hidden" name="id" value="${member.id}">
+			<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
+		
+			<div class="_51xa">
+			<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton"  type="submit">
+				<span class="">게시</span>
+			</button>
 
-	</form>
 			</div>
+		</form>
+	</div>
 	<div id="contentsListView">
 
 <c:forEach items="${list }" var="dto">
@@ -311,8 +311,6 @@
 	
 	</div>	
 			
-		
-		
 		
 		
 		</div><!--뷰 전체  -->
