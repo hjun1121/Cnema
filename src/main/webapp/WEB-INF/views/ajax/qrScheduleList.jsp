@@ -10,7 +10,7 @@
 				<c:if test="${num eq ar.schedule_num }">
 					<a href="#" class="schedules button"  style="float:left; margin-top:7px;" title="${ar.schedule_num }" onclick="return false;" >
 						<%-- <span class="time"><span>${ar.in_time }</span></span> --%>
-						<span style="background-color: red" class="time" id="sc${ar.schedule_num }"><span>${ar.in_time }</span></span>
+						<span style="background-color: #bbb6b6" class="time" id="sc${ar.schedule_num }"><span>${ar.in_time }</span></span>
 						<span class="count">${DTO.x_num * DTO.y_num - ar.seatcheck } 석</span>
 						<div class="sreader">${ar.out_time }</div>
 						<span class="sreader mod"></span>
