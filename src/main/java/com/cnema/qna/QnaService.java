@@ -5,11 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cnema.qna.QnaDAO;
+import com.cnema.theater.TheaterDTO;
 import com.cnema.board.BoardDTO;
 import com.cnema.util.EmailDAO;
 import com.cnema.util.FileSaver;
@@ -99,6 +101,23 @@ public class QnaService {
 			emailDAO.qnaReplySend(boardDTO);
 		}
 		return result;
+	}
+
+	/*heeseong*/
+	public int qTotalCount(String id,String kind,String search) throws Exception{
+		return qnaDAO.qTotalCount(id,kind, search);
+	}
+	/*heeseong*/
+	public ModelAndView myQnaList(String id,String kind,String search,ListData listData) throws Exception {
+		/*return qnaDAO.myQnaList(id,kind,search);*/
+		ModelAndView mv = new ModelAndView();
+		RowNum rowNum = listData.makeRow();
+		Pager pager = listData.makePage(qnaDAO.qTotalCount(id,kind,search));
+		
+		List<QnaDTO> qnaList = qnaDAO.myQnaList(id,kind, search, rowNum);
+		mv.addObject("qnaList", qnaList);
+		mv.addObject("pager",pager);
+		return mv;
 	}
 	
 }
