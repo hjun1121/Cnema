@@ -58,7 +58,7 @@
 			        	</div>
 			                <div class="col-one-point">
 			               	<h3 class="myCouponAndMyPoint">MY POINT</h3>
-			        		<a href="#">MY POINT 더보기</a>
+			        		<a href="${pageContext.request.contextPath}/myPage/pointHistory">MY POINT 더보기</a>
 			        		<ul>
 			        			<li>
 			        				<strong>사용가능 포인트</strong>
