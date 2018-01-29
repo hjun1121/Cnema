@@ -14,6 +14,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfo.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/couponHistory.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>상영시간 리스트</title>
@@ -183,21 +184,36 @@ $(function(){
 				    <div class="set-btn">
 						<input type="button" id="schBtn" class="round inred on" style="width: 58px;" value="등록">
 			   		</div>
-			   		<c:if test="${fn:length(sList) > 0}">    
-			   		<div class="paging">
-					<ul id="paging_point" style="text-align: center;">
-						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
-								<a href="scheduleList?curPage=${i}" title="${i}페이지 선택">${i}</a>
-							</li>
-						</c:forEach>
-						<c:if test="${pager.curBlock lt pager.totalBlock}">
-							<li class="paging-side">
-								<a href="scheduleList?curPage=${pager.lastNum+1}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
-							</li>
-						</c:if>
-					</ul>
-				</div>
+			   		<c:if test="${fn:length(sList) > 0}">   
+			   		
+				   	<div class="paging">
+						<ul id="paging_point">
+							<c:choose>
+							<c:when test="${fn:length(sList) eq 0}">
+								<li style="text-decoration: none;" class=" on">
+									<a href="scheduleList?curPage=1" title="1페이지 선택">1</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+							<c:if test="${pager.curBlock gt 1}">
+								<li class="paging-side">
+									<a href="scheduleList?curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+								</li>						
+							</c:if>
+							<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+								<li style="text-decoration: none;" class=" on">
+									<a href="scheduleList?curPage=${i}" title="${i}페이지 선택">${i}</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pager.curBlock lt pager.totalBlock}">
+								<li class="paging-side">
+									<a href="scheduleList?curPage=${pager.lastNum+1}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
+								</li>
+							</c:if>
+							</c:otherwise>
+							</c:choose>
+						</ul>
+					</div> 
 				</c:if>  
 				</div>
 				</form>

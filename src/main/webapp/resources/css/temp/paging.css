@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+
+/* Paging Button */
+.btn-paging {
+	display: inline-block;
+	min-width: 56px;
+	height: 28px;
+	margin: 0 2px;
+	border: 1px solid #cacac1;
+	background: url('../../../resources/images/movie/btn_paging.gif') no-repeat;
+	background-color: #faf9ed;
+	color: #333333;
+	font-size: 11px;
+	font-family: 'NanumBarunGothicBold';
+	line-height: 28px;
+	vertical-align: middle
+}
+
+.btn-paging.dim {
+	color: #b0afa9;
+	cursor: default
+}
+
+.btn-paging.prev {
+	padding: 0 10px 0 24px;
+	background-position: 0 0;
+}
+
+.btn-paging.prev.dim {
+	background-position: 0 -26px;
+}
+
+.btn-paging.next {
+	padding: 0 24px 0 10px;
+	background-position: right -52px;
+}
+
+.btn-paging.next.dim {
+	background-position: right -78px;
+}
+
+.btn-paging.first {
+	min-width: 27px;
+	padding: 0;
+	width: 25px;
+	background-position: 4px -104px;
+	font: 0/0 a;
+	zoom: 1;
+}
+
+.btn-paging.first.dim {
+	background-position: 4px -130px;
+}
+
+.btn-paging.end {
+	min-width: 27px;
+	padding: 0;
+	background-position: 5px -156px;
+	font: 0/0 a;
+	zoom: 1;
+}
+
+.btn-paging.end.dim {
+	background-position: 6px -182px;
+}
+/* =============================
+ Paging Style 
+============================= */
+.paging {
+	text-align: center;
+	margin-top: 25px;
+}
+
+.paging>ul {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.paging li {
+	display: inline-block;
+	padding: 0 8px;
+	color: #333333;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 28px;
+}
+
+.paging li.on, .paging li a:hover, .paging li a:focus {
+	color: #993333;
+	text-decoration: underline;
+}
+
+.paging li.paging-side {
+	padding: 0;
+}
+
+*+html .paging li.on a {
+	color: #993333;
+	text-decoration: underline;
+}
+
+*+html .paging>ul {
+	display: inline;
+}
+
+*+html .paging li {
+	display: inline;
+}
+.sect-review>ul>li .paging {
+	margin-top: 15px;
+}
+.sect-curator-listen .paging {
+	margin: 30px 0;
+}
