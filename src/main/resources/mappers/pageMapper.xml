@@ -72,7 +72,7 @@
 	<select id="pageContentsList" parameterType="int" resultType="pageContentsDTO">
 		select * from
   		(select rownum r, N.* from
-  		(select * from pageContents order by num desc) N)
+  		(select * from pageContents order by contents_num desc) N)
   		where r between #{page} and (#{page}+9)	
 	</select>
 	<!--page LIkE  -->
