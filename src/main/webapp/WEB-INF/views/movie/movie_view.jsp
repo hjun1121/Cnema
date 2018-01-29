@@ -290,6 +290,11 @@
 							</li>
 						</c:when>
 						<c:otherwise>
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging next" type="button">이전</button></a>
+							</li>						
+						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 							<li style="text-decoration: none;" class=" on">
 								<a href="movie_view?movie_num=${movie.movie_num}&curPage=${i}" title="${i}페이지 선택">${i}</a>
