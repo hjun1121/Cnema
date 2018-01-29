@@ -93,8 +93,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.GET)
-	public void login(@RequestParam(defaultValue="0", required=false)int num, String path, Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
+	public void login(@RequestParam(defaultValue="0", required=false)int num, @RequestParam(defaultValue="0", required=false)int page_num, String path, Model model, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		InetAddress addr = null;
+		System.out.println("page_bum:" + page_num);
 		try {
 			addr = InetAddress.getLocalHost();
 			String ip = addr.toString();
@@ -104,6 +105,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		model.addAttribute("num", num);
+		model.addAttribute("page_num", page_num);
 		model.addAttribute("reserve2", reserve2DTO);
 		model.addAttribute("reserve", reserveDTO);
 		model.addAttribute("seat_num", reserveDTO.getSeat_num());
@@ -111,7 +113,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberLogin", method=RequestMethod.POST)
-	public ModelAndView login(@RequestParam(defaultValue="0", required=false)int num, String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
+	public ModelAndView login(@RequestParam(defaultValue="0", required=false)int num, @RequestParam(defaultValue="0", required=false)int page_num, String path,MemberDTO memberDTO, HttpSession session, RedirectAttributes rd, ReserveDTO reserveDTO, Reserve2DTO reserve2DTO){
 		ModelAndView mv = new ModelAndView();
 		MemberDTO member = null;
 		try {
@@ -132,6 +134,8 @@ public class MemberController {
 				}else{
 					if(num>0){
 						mv.setViewName("redirect:../"+path+"?num="+num);
+					}else if(page_num>0){
+						mv.setViewName("redirect:../"+path+"?page_num="+page_num);
 					}else{
 						mv.setViewName("redirect:../"+path);
 					}
