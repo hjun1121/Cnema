@@ -49,7 +49,7 @@ $(function() {
 		<c:if test="${not empty member}">
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
-			<span id="img_alt">가입한 페이지</span>
+			<a href="../${pageScope.pageContext.request.contextPath }community2/pageInsertList"><span id="img_alt">가입한 페이지</span></a>
 			</h2>
 			<c:forEach items="${pageList}" var="page" varStatus="i">
 			<c:if test="${i.index < 4}">
@@ -69,7 +69,7 @@ $(function() {
 		<!-- 추천 페이지 LIST -->
 		<div id="myJoinList">
 			<h2><img alt="페이지" src="../resources/images/common/ico/page.png">
-			<span id="img_alt">추천 페이지</span>
+			<a href="../${pageScope.pageContext.request.contextPath }community2/pageRecomList"><span id="img_alt">추천 페이지</span></a>
 			</h2>
 			<c:forEach items="${recommendPage}" var="recommend" varStatus="i">
 			<c:if test="${i.index < 4}">
@@ -91,6 +91,7 @@ $(function() {
 <div id="infoBody">
 	<!-- 가입한 페이지  -->
 	<div id="joinBody">
+	<div id="empty">
 		<div style=" height: 5px; margin-left: 700px;     margin-bottom: 40px;">
 			<input type="search" name="search" id="search">
 			<input type="button" id="sBtn" class="round gray" value="GO">
@@ -105,6 +106,7 @@ $(function() {
 				<div id="roundName">${pageDTO.page_name }</div>
 		</div>
 		</c:forEach>
+	</div>
 	</div>
 	<c:if test="${fn:length(myPageList) > 0}"> 
 		    	<div class="paging">

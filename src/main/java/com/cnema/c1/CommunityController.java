@@ -111,7 +111,7 @@ public class CommunityController {
 					recomPageList.add(pageDTO);
 				}
 				
-				/*for (int p_num : hs) {
+				for (int p_num : hs) {
 					pageDTO = communityService.pageSelect(search, p_num);
 					if(pageDTO!=null){
 						int count = communityService.pageMemberNum(p_num);
@@ -119,7 +119,7 @@ public class CommunityController {
 						recomPageSearchList.add(pageDTO);
 					}
 				}
-				*/
+				
 				Collections.reverse(recomPageList);
 				Collections.reverse(recomPageSearchList);
 			}
@@ -129,7 +129,7 @@ public class CommunityController {
 		mv.addObject("pageList", pageList);
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);
-		/*mv.addObject("recomPageSearchList", recomPageSearchList);*/
+		mv.addObject("recomPageSearchList", recomPageSearchList);
 		mv.setViewName("community2/pageRecomList");
 		return mv;
 	}
@@ -182,6 +182,57 @@ public class CommunityController {
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);
 		mv.setViewName("community2/pageInsertList");
+		return mv;
+		
+	}
+	@RequestMapping(value="pageAllList",method=RequestMethod.GET)
+	public ModelAndView pageAllList(HttpSession session,String search,ListData listData, @RequestParam(defaultValue="1", required=false)int curPage) throws Exception{
+		if(search==null){ search=""; }
+		ModelAndView mv = new ModelAndView();
+		
+		List<Integer> pageNumList = new ArrayList<>();
+		List<String> pageIdList = new ArrayList<>();
+		List<Integer> newPageNumList = new ArrayList<>();
+		List<Integer> newRecomPageList = new ArrayList<>();
+		List<PageDTO> recomPageList = new ArrayList<>();
+		List<PageDTO> pageList = new ArrayList<>();
+		try {
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			if(memberDTO.getId() != null) {
+				listData.setPerPage(8);
+				mv = communityService.pageAllList(search, listData);
+				pageList = communityService.myPageAList(memberDTO.getId());
+				pageNumList = communityService.pageNumList(memberDTO.getId());
+				for (int num : pageNumList) {
+					pageIdList = communityService.pageIdList(num);
+					for (String id : pageIdList) {
+						newPageNumList = communityService.recommendPageList(id);
+					}
+				}
+				
+				newRecomPageList = communityService.pageList();
+				newPageNumList.addAll(newRecomPageList);
+				
+				HashSet<Integer> hs = new HashSet<>(newPageNumList);
+				Iterator<Integer> it = hs.iterator();
+				PageDTO pageDTO = null;
+				
+				for (int p_num : hs) {
+					pageDTO = communityService.pageSelect("", p_num);
+					recomPageList.add(pageDTO);
+				}
+				
+				Collections.reverse(recomPageList);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("curPage", curPage);
+		mv.addObject("page", listData);
+		mv.addObject("pageList", pageList);
+		mv.addObject("search", search);
+		mv.addObject("recommendPage", recomPageList);
+		mv.setViewName("community2/pageAllList");
 		return mv;
 		
 	}

@@ -211,6 +211,7 @@ $(function(){
 			</div>
 			<div class="tit-mycgv" style="padding-bottom: 10px;">
 				<select id="kind" name="kind" class="f">
+					<option class="kind" value="x">쿠폰선택</option>
 					<c:forEach items="${cList}" var="couponList">
 						<option class="kind" value="${couponList.c_num }">${couponList.name }</option>
 					</c:forEach>

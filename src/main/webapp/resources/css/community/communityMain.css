@@ -15,7 +15,7 @@
 	float: left; 
 	text-align: center; 
 	background-color: #dcdcdc;
-	margin-right: 30px;
+	margin-right: 15px;
 }
 #left_bar2{
 	width: 90%; 
@@ -88,13 +88,15 @@
 }
 #joinBody{
 	margin-left: 100px;
-    height: 400px;
-    background-color: gray;
+    height: 476px;
+    background-color: white;
+        margin-right: 10px;
 }
 #recommendBody{
-	height: 50%; 
-	background-color: #f0f0f0;
-	    margin-top: 80px;
+	background-color: white;
+    margin-top: 30px;
+    height: 320px;
+    margin-right: 10px;
 }
 #rePageImg{
 	margin-right: 12px;
@@ -114,7 +116,7 @@
 	width: 150px;
     height: 20px;
     bottom: 0;
-    color: #fff;
+        color: black;
     left: 0;
     padding: 5px;
     right: 0;
@@ -129,7 +131,7 @@
     text-align: center;
     border-radius: 150px;
     margin-left: 600px;
-    margin-top: 110px;
+        margin-top: 200px;
 }
 #moreBtn{
 	border: 2px solid #7b7b7b;
@@ -139,5 +141,9 @@
     text-align: center;
     border-radius: 150px;
     margin-left: 600px;
-    margin-top: 60px;
+       margin-top: 50px;
+}
+#empty{
+	background-color: #dcdcdc;
+    height: 155px;
 }
