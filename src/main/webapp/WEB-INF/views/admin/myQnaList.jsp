@@ -12,6 +12,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/headerBar.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Q&A 리스트</title>
@@ -147,7 +148,7 @@ float: left;
 	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
-		            <li>
+		            <li class="on">
 	                    <a href="../admin/myQnaList">나의 문의내역 <i></i></a>
 		                <ul>
 		                    <li class="on"><a href="../admin/myQnaList">1:1문의</a></li>
@@ -218,17 +219,10 @@ float: left;
 			<span class="list" title="${pager.lastNum+1}">[다음]</span>
 		</c:if>
 	</div>
-	</c:if>
 	
+	</c:if>
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
+	
 			</div>
 			</div>
 			</div>

@@ -246,6 +246,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView();
 		List<PageContentsDTO> ar = null;
 		ar=pageService.pageContentslist(page,page_num);
+		System.out.println(ar);
 		mv.addObject("list", ar);
 		mv.setViewName("community/scrolling");
 		return mv;
@@ -347,7 +348,9 @@ public class PageController {
 	
 	//like 하기
 	@RequestMapping(value = "like", method=RequestMethod.POST)
-	public void pagelike(int contents_num) {
+	public ModelAndView pagelike(int contents_num,int page_num) {
+		System.out.println("like update");
+		ModelAndView mv = new ModelAndView();
 		int result=0;
 		try {
 			result = pageService.pageContentsLike(contents_num);
@@ -355,6 +358,16 @@ public class PageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		String message = "좋아요 성공";
+		if(result > 0) {
+			message = "좋아요 실패";
+		}
+		
+		mv.addObject("message", message);
+		mv.addObject("path", "community/communityMainTest?page_num"+page_num);
+		mv.setViewName("/common/messagePath");
+
+		return mv;
 		
 	}
 	//신고하기 

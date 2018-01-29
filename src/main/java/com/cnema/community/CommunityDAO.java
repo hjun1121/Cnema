@@ -60,4 +60,7 @@ public class CommunityDAO {
 	public int pageMemberNum(int p_num) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"pageMemberNum",p_num);
 	}
+	public List<PageDTO> myPageAList(String id) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"myPageAList",id);
+	}
 }

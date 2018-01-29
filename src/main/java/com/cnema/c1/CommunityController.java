@@ -35,10 +35,12 @@ public class CommunityController {
 		List<Integer> newPageNumList = new ArrayList<>();
 		List<Integer> newRecomPageList = new ArrayList<>();
 		List<PageDTO> recomPageList = new ArrayList<>();
+		List<PageDTO> pageList = new ArrayList<>();
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
 				mv = communityService.myPageList(memberDTO.getId(), "", listData);
+				pageList = communityService.myPageAList(memberDTO.getId());
 				pageNumList = communityService.pageNumList(memberDTO.getId());
 				for (int num : pageNumList) {
 					pageIdList = communityService.pageIdList(num);
@@ -64,7 +66,7 @@ public class CommunityController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.addObject("pageList", pageList);
 		mv.addObject("recommendPage", recomPageList);
 		mv.setViewName("community2/communityMain");
 		return mv;
@@ -83,11 +85,12 @@ public class CommunityController {
 		List<Integer> newRecomPageList = new ArrayList<>();
 		List<PageDTO> recomPageList = new ArrayList<>();
 		List<PageDTO> recomPageSearchList = new ArrayList<>();
+		List<PageDTO> pageList = new ArrayList<>();
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
 				mv = communityService.myPageList(memberDTO.getId(), search, listData);
-				
+				pageList = communityService.myPageAList(memberDTO.getId());
 				pageNumList = communityService.pageNumList(memberDTO.getId());
 				for (int num : pageNumList) {
 					pageIdList = communityService.pageIdList(num);
@@ -112,9 +115,9 @@ public class CommunityController {
 				
 				for (int p_num : hs) {
 					pageDTO = communityService.pageSelect(search, p_num);
-					int count = communityService.pageMemberNum(p_num);
-					pageDTO.setCount(count);
 					if(pageDTO!=null){
+						int count = communityService.pageMemberNum(p_num);
+						pageDTO.setCount(count);
 						recomPageSearchList.add(pageDTO);
 					}
 				}
@@ -125,7 +128,7 @@ public class CommunityController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		mv.addObject("pageList", pageList);
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);
 		mv.addObject("recomPageSearchList", recomPageSearchList);
@@ -143,11 +146,13 @@ public class CommunityController {
 		List<Integer> newPageNumList = new ArrayList<>();
 		List<Integer> newRecomPageList = new ArrayList<>();
 		List<PageDTO> recomPageList = new ArrayList<>();
+		List<PageDTO> pageList = new ArrayList<>();
 		try {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			if(memberDTO.getId() != null) {
-				
+				listData.setPerPage(8);
 				mv = communityService.myPageList(memberDTO.getId(), search, listData);
+				pageList = communityService.myPageAList(memberDTO.getId());
 				pageNumList = communityService.pageNumList(memberDTO.getId());
 				for (int num : pageNumList) {
 					pageIdList = communityService.pageIdList(num);
@@ -175,7 +180,7 @@ public class CommunityController {
 		}
 		mv.addObject("curPage", curPage);
 		mv.addObject("page", listData);
-		
+		mv.addObject("pageList", pageList);
 		mv.addObject("search", search);
 		mv.addObject("recommendPage", recomPageList);
 		mv.setViewName("community2/pageInsertList");

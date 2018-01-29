@@ -13,6 +13,7 @@
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/member/myPageView.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/myInfoCheck.css">
 <link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/myPage/couponHistory.css">
+<link rel="stylesheet"  type="text/css" href="${pageContext.request.contextPath }/resources/css/temp/paging.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 캘린더 추가 -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
@@ -204,7 +205,7 @@ $(function() {
 								<c:if test="${pointList.type eq 20}">
 									<td>적립</td>
 								</c:if>
-								<c:if test="${pointList.type eq 10}">
+								<c:if test="${pointList.type eq 12}">
 									<td>사용</td>
 								</c:if>
 							</tr>
@@ -218,20 +219,27 @@ $(function() {
 				        </tbody>
 				    </table>
 				    <c:if test="${fn:length(pList) > 0}">
-				    <div class="paging">
-					<ul id="paging_point" style="text-align: center;">
+				    
+				<div class="paging">
+					<ul id="paging_point">
+						<c:if test="${pager.curBlock gt 1}">
+							<li class="paging-side">
+								<a href="pointHistory?curPage=${pager.startNum-1}"><button style="line-height: 26px;" class="btn-paging prev" type="button">이전</button></a>
+							</li>						
+						</c:if>
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li style="text-decoration: none; display: inline-block; padding: 0 8px; color: #333333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px;" class=" on">
-								<a href="pointHistory?curPage=${i}" title="${i}페이지 선택">${i}</a>
+							<li style="text-decoration: none;" class=" on">
+								<a href="pointHistory?curPage=${i}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}" title="${i}페이지 선택">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pager.curBlock lt pager.totalBlock}">
 							<li class="paging-side">
-								<a href="pointHistory?curPage=${pager.lastNum+1}"><button style="line-height: 26px; color: inherit; text-decoration: none;margin-top: 30px;" class="btn-paging next" type="button">다음</button></a>
+								<a href="pointHistory?curPage=${pager.lastNum+1}&testDatepicker1=${testDatepicker1}&testDatepicker2=${testDatepicker2}"><button style="line-height: 26px;" class="btn-paging next" type="button">다음</button></a>
 							</li>
 						</c:if>
 					</ul>
 				</div>
+				  
 				</c:if>  
 				</div>
 					<div class="sect-box-descri">
