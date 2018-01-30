@@ -79,7 +79,7 @@
 					url:"member_profile_bar",
 					type:"POST",
 					data:{
-						page_num:${page.page_num }
+						page_num:${page.page_num}
 					},
 					success:function(data){
 						$("#mb").html(data);
@@ -306,8 +306,9 @@
 				 <div id="update_div">
 				 <span class="updateBtn btns">수정</span><span class="deleteBtn btns">삭제</span>
 				 </div>
-
+					
 				 <div id="contents_div">
+				 	<img alt="" src="${pageContext.request.contextPath}/resources/profil/${dto.fileName }">
 				 	${dto.contents}
 				 </div>
 
@@ -317,9 +318,6 @@
 					 <button class="warning cbtns btns" title="${dto.contents_num }">신고</button>
 				 </div>
 
-<!-- 				 <div id="reply_div"> -->
-
-<!-- 				 </div> -->
 				 
 				 <div id="replyList${dto.contents_num }"> </div>
 			 </div>
