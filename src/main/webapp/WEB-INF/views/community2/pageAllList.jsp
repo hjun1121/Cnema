@@ -37,7 +37,7 @@ $(function() {
 		<!-- 프로필 사진  -->
 		<div id="profile">
 			<c:choose>
-				<c:when test="${not empty member}"><img id="profile_img"alt="사용자 프로필" src='../resources/profil/${member.fileName}'><span>${member.id}</span></c:when>
+				<c:when test="${not empty member}"><img id="profile_img"alt="사용자 프로필" src='../resources/profil/${member.fileName}'><br><span>${member.id}</span></c:when>
 				<c:otherwise>
 					<a href="../member/memberLogin"><input type="button" value="로그인 후 이용해주세요."></a>
 				</c:otherwise>

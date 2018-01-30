@@ -89,7 +89,7 @@
                     	<a href="../myPage/myInfoCheck">회원정보<i></i></a>
 	                	<ul>
                         	<li><a href="../myPage/myInfoCheck">회원정보수정</a></li>
-	                    	<li><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
+	                    	<li class="on"><a href="../myPage/withdrawalCheck">회원탈퇴</a></li>
 	                	</ul>
 	            	</li>
 		            <li>

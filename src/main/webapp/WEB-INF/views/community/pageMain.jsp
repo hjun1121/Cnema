@@ -289,7 +289,7 @@
 		<form action="../community/pageContentsWrite"  method="post" id="frm">
 			<input type="hidden" id="page_num"  name="page_num" value="${page.page_num}">
 			<input type="hidden" name="id" value="${member.id}">
-			<textarea  name="contents" id="contents" rows="10" cols="30" ></textarea>
+			<textarea  name="contents" id="contents" rows="10" cols="30" style="width: 815px;"></textarea>
 		
 			<div class="_51xa">
 			<button class="_1mf7 _4jy0 _4jy3 _4jy1 _51sy selected _42ft" id="savebutton"  type="submit">

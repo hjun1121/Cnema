@@ -88,7 +88,7 @@
 }
 #joinBody{
 	margin-left: 100px;
-    height: 476px;
+       height: 498px;
     background-color: white;
         margin-right: 10px;
 }
@@ -145,5 +145,5 @@
 }
 #empty{
 	background-color: #dcdcdc;
-    height: 155px;
+       height: 178px
 }

@@ -31,7 +31,7 @@
   <select id="myCouponDList" resultType="myCouponDTO" parameterType="java.util.Map">
  	 select * from (
 	select rownum R, N.* from  		
-	(select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1}) N)
+	(select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> to_date(#{dp2},'yy/mm/dd') and use_date <![CDATA[>=]]> to_date(#{dp1},'yy/mm/dd')) N)
 	where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
   	<!-- select * from myCoupon where id=#{id} and type=10 and use_date <![CDATA[<=]]> #{dp2} and use_date <![CDATA[>=]]> #{dp1} -->
   </select>

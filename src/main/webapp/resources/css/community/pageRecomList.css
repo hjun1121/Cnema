@@ -90,7 +90,7 @@
     background-color: #dcdcdc;
     height: 500px;
     margin-left: 100px;
-        padding-top: 156px;
+       padding-top: 17.6%;
 }
 #recommendBody{
 	height: 50%; 
@@ -174,4 +174,8 @@
     vertical-align: middle;
     font: 0/0 a;
     zoom: 1;
+}
+#more_div{
+	padding-top: 620px;
+    padding-right: 230px;
 }
