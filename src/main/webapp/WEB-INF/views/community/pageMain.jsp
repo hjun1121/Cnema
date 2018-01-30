@@ -308,8 +308,13 @@
 				 </div>
 					
 				 <div id="contents_div">
-				 	<img alt="" src="${pageContext.request.contextPath}/resources/profil/${dto.fileName }">
-				 	${dto.contents}
+				 	<div style="display: inline-block;">
+					 	<img class="pis" alt="" src="${pageContext.request.contextPath}/resources/profil/${dto.fileName }">
+					 	<p><span class="pids">${dto.id }</span></p>
+				 	</div>
+				 	<div style="display:  inline-block; position:  absolute; margin-left:  15px;">
+					 	<span class="pcs">${dto.contents}</span>
+				 	</div>
 				 </div>
 
 				 <div id="content_btns_div${dto.contents_num }" class="content_btns_div">
