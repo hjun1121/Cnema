@@ -21,7 +21,7 @@ public class CommonController {
 	private TheaterService theaterService;
 	
 	@RequestMapping(value="map", method=RequestMethod.GET)
-	public void map(Model model, String area, @RequestParam(defaultValue="1", required=false)int theater_num){
+	public void map(Model model, String area, @RequestParam(defaultValue="1256", required=false)int theater_num){
 		List<TheaterDTO> theaterList = null;
 		List<TheaterDTO> locationList = null;
 		TheaterDTO theaterDTO = null;
