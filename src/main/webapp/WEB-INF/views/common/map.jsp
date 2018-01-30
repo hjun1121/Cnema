@@ -96,7 +96,7 @@
 				alert("극장을 선택해주세요");
 				$("#location").focus();
 			}else{
-				window.open("http://map.daum.net/link/to/CGV"+location+","+x+","+y);
+				window.open("http://map.daum.net/link/to/CNEMA"+location+","+x+","+y);
 			}
 		});
 		

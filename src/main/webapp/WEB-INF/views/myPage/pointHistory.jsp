@@ -203,10 +203,10 @@ $(function() {
 							<tr>
 								<td>${pointList.use_day }</td>
 								<td>${pointList.point_price }점</td>
-								<c:if test="${pointList.type eq 20}">
+								<c:if test="${pointList.type eq 10}">
 									<td>적립</td>
 								</c:if>
-								<c:if test="${pointList.type eq 12}">
+								<c:if test="${pointList.type eq 20}">
 									<td>사용</td>
 								</c:if>
 							</tr>
