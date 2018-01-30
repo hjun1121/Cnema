@@ -106,7 +106,6 @@
 								<i></i>
 								<div class="smenu">
 									<ul>
-										<li><a href="#">CGV 극장</a></li>
 										<li><a href="#" id="page_insert" onclick="return false">페이지생성</a></li>
 										<li class="last"><a href="${pageContext.request.contextPath}/community2/communityMain">씨네마그램</a></li>
 									</ul>
