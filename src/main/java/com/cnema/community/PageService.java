@@ -113,7 +113,7 @@ public class PageService {
 	}
 	//pageCotentsList
 	public List<PageContentsDTO> pageContentslist(int page,int page_num) throws Exception{
-		page=(page*10)+1;
+		page=(page*3)+1;
 		
 		List<PageContentsDTO> ar = pageDAO.pageContentsList(page,page_num);
 		
