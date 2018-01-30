@@ -180,6 +180,7 @@
 	bottom: 20px;
 	position: fixed;
 	background-color: #f6f7f9;
+	z-index: 999;
 }
 
 #member_bar a {
@@ -309,5 +310,21 @@
     color: #fff;
     font-weight: bold;
     border-radius: 4px;
+}
+
+.pcs {
+    display: -webkit-inline-box;
+    margin-left: 15px;
+}
+
+.pids {
+    font-size: small;
+    font-weight: bold;
+}
+
+.pis {
+    width: 65px;
+    height: 65px;
+    border-radius: 100px;
 }
 
